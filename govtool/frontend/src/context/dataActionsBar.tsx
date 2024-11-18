@@ -27,7 +27,6 @@ interface DataActionsBarContextType {
   setFiltersOpen: Dispatch<SetStateAction<boolean>>;
   setSearchText: Dispatch<SetStateAction<string>>;
   setSortOpen: Dispatch<SetStateAction<boolean>>;
-  sortingActive: boolean;
   sortOpen: boolean;
 }
 
@@ -76,7 +75,9 @@ const DataActionsBarProvider: FC<ProviderProps> = ({ children }) => {
 
   useEffect(() => {
     if (
-      (userMovedToDifferentAppArea && !userOpenedGADetailsFromCategoryPage) ||
+      (!pathname.includes("drep_directory") &&
+        userMovedToDifferentAppArea &&
+        !userOpenedGADetailsFromCategoryPage) ||
       userMovedFromGAListToCategoryPage
     ) {
       resetState();
@@ -102,7 +103,6 @@ const DataActionsBarProvider: FC<ProviderProps> = ({ children }) => {
       setFiltersOpen,
       setSearchText,
       setSortOpen,
-      sortingActive: Boolean(chosenSorting),
       sortOpen,
     }),
     [

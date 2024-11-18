@@ -1,28 +1,33 @@
 import { faker } from "@faker-js/faker";
+import { generateExactLengthText } from "@helpers/string";
 
 export const invalid = {
-  url: () => {
-    const invalidSchemes = ["ftp", "unsupported", "unknown-scheme"];
-    const invalidCharacters = "<>@!#$%^&*()";
-    const invalidTlds = [".invalid", ".example", ".test"];
+  url: (isSupportedGreaterThan128Words = true) => {
+    const choice = isSupportedGreaterThan128Words
+      ? 1
+      : faker.number.int({ min: 1, max: 2 });
+    if (choice === 1) {
+      const invalidSchemes = ["ftp", "unsupported", "unknown-scheme"];
+      const invalidCharacters = "<>@!#$%^&*()";
+      const invalidTlds = [".invalid", ".example", ".test"];
 
-    const scheme =
-      invalidSchemes[Math.floor(Math.random() * invalidSchemes.length)];
-    const invalidChar =
-      invalidCharacters[Math.floor(Math.random() * invalidCharacters.length)];
-    const invalidTld =
-      invalidTlds[Math.floor(Math.random() * invalidTlds.length)];
+      const scheme =
+        invalidSchemes[Math.floor(Math.random() * invalidSchemes.length)];
+      const invalidChar =
+        invalidCharacters[Math.floor(Math.random() * invalidCharacters.length)];
+      const invalidTld =
+        invalidTlds[Math.floor(Math.random() * invalidTlds.length)];
 
-    const randomDomain = `example${invalidChar}domain${invalidTld}`;
-    return `${scheme}://${randomDomain}`;
+      const randomDomain = `example${invalidChar}domain${invalidTld}`;
+      return `${scheme}://${randomDomain}`;
+    }
+    // max 128 words invalid
+    return faker.internet.url() + faker.lorem.paragraphs(2).replace(/\s+/g, "");
   },
 
   name: () => {
-    const choice = faker.number.int({ min: 1, max: 3 });
+    const choice = faker.number.int({ min: 1, max: 2 });
     if (choice === 1) {
-      // space invalid
-      return faker.lorem.word() + " " + faker.lorem.word();
-    } else if (choice === 2) {
       // maximum 80 words invalid
       return faker.lorem.paragraphs().replace(/\s+/g, "");
     }
@@ -74,11 +79,10 @@ export const invalid = {
     return " ";
   },
 
-  paragraph: () => {
+  paragraph: (maxCharacter: number) => {
     const choice = faker.number.int({ min: 1, max: 2 });
     if (choice === 1) {
-      // maximum 500 words
-      return faker.lorem.paragraphs(40);
+      return generateExactLengthText(maxCharacter);
     }
     // empty invalid
     return " ";
@@ -90,6 +94,13 @@ export const invalid = {
 };
 
 export const valid = {
+  name: () => {
+    const choice = faker.number.int({ min: 1, max: 2 });
+    if (choice === 1) {
+      return faker.internet.displayName();
+    }
+    return faker.lorem.word() + " " + faker.lorem.word();
+  },
   username: () => {
     let timeStamp = Date.now();
     let username = `${faker.internet.userName().toLowerCase()}_${timeStamp}`;

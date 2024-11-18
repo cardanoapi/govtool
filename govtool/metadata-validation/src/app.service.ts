@@ -1,21 +1,13 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { catchError, firstValueFrom, timeout } from 'rxjs';
+import { catchError, finalize, firstValueFrom } from 'rxjs';
 import { HttpService } from '@nestjs/axios';
 import * as blake from 'blakejs';
-import { AxiosRequestConfig } from 'axios';
 import * as jsonld from 'jsonld';
 
 import { ValidateMetadataDTO } from '@dto';
 import { LoggerMessage, MetadataValidationStatus } from '@enums';
 import { validateMetadataStandard, parseMetadata, getStandard } from '@utils';
 import { ValidateMetadataResult } from '@types';
-
-const axiosConfig: AxiosRequestConfig = {
-  timeout: 5000,
-  maxContentLength: 10 * 1024 * 1024, // Max content length 10MB
-  maxBodyLength: 10 * 1024 * 1024, // Max body length 10MB
-  responseType: 'text',
-};
 
 @Injectable()
 export class AppService {
@@ -24,15 +16,18 @@ export class AppService {
   async validateMetadata({
     hash,
     url,
+    standard: paramStandard,
   }: ValidateMetadataDTO): Promise<ValidateMetadataResult> {
     let status: MetadataValidationStatus;
     let metadata: Record<string, unknown>;
+    let standard = paramStandard;
 
     try {
       const { data: rawData } = await firstValueFrom(
-        this.httpService.get(url, axiosConfig).pipe(
-          timeout(5000),
-          catchError(() => {
+        this.httpService.get(url).pipe(
+          finalize(() => Logger.log(`Fetching ${url} completed`)),
+          catchError((error) => {
+            Logger.error(error, JSON.stringify(error));
             throw MetadataValidationStatus.URL_NOT_FOUND;
           }),
         ),
@@ -49,7 +44,9 @@ export class AppService {
         throw MetadataValidationStatus.INCORRECT_FORMAT;
       }
 
-      const standard = getStandard(parsedData);
+      if (!standard) {
+        standard = getStandard(parsedData);
+      }
 
       if (standard) {
         await validateMetadataStandard(parsedData.body, standard);
@@ -61,7 +58,7 @@ export class AppService {
       if (hashedMetadata !== hash) {
         // Optionally validate on a parsed metadata
         const hashedParsedMetadata = blake.blake2bHex(
-          JSON.stringify(parsedData),
+          JSON.stringify(parsedData, null, 2),
           undefined,
           32,
         );

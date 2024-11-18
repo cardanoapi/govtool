@@ -1,10 +1,11 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useCallback } from "react";
 import { Box } from "@mui/material";
 
 import { useScreenDimension } from "@hooks";
 import { VoteActionForm, VotesSubmitted } from "@molecules";
 import { useFeatureFlag } from "@/context";
 import { ProposalData, ProposalVote } from "@/models";
+import { SECURITY_RELEVANT_PARAMS_MAP } from "@/consts";
 
 type GovernanceActionCardVotesProps = {
   setIsVoteSubmitted: Dispatch<SetStateAction<boolean>>;
@@ -23,24 +24,20 @@ export const GovernanceActionDetailsCardVotes = ({
   vote,
   isDashboard,
   isInProgress,
-  proposal: {
-    dRepAbstainVotes,
-    dRepNoVotes,
-    dRepYesVotes,
-    poolAbstainVotes,
-    poolNoVotes,
-    poolYesVotes,
-    ccAbstainVotes,
-    ccNoVotes,
-    ccYesVotes,
-    expiryDate,
-    expiryEpochNo,
-    type,
-  },
+  proposal,
 }: GovernanceActionCardVotesProps) => {
-  const { isVotingOnGovernanceActionEnabled } = useFeatureFlag();
+  const { areDRepVoteTotalsDisplayed } = useFeatureFlag();
   const { screenWidth } = useScreenDimension();
-
+  const isSecurityGroup = useCallback(
+    () =>
+      Object.values(SECURITY_RELEVANT_PARAMS_MAP).some(
+        (paramKey) =>
+          proposal.protocolParams?.[
+            paramKey as keyof typeof proposal.protocolParams
+          ] !== null,
+      ),
+    [proposal.protocolParams],
+  );
   const isModifiedPadding =
     (isDashboard && screenWidth < 1368) ?? screenWidth < 1100;
 
@@ -52,29 +49,16 @@ export const GovernanceActionDetailsCardVotes = ({
         p: `40px ${isModifiedPadding ? "24px" : "80px"}`,
       }}
     >
-      {isVoter && isVotingOnGovernanceActionEnabled(type) ? (
+      {isVoter &&
+      areDRepVoteTotalsDisplayed(proposal.type, isSecurityGroup()) ? (
         <VoteActionForm
           setIsVoteSubmitted={setIsVoteSubmitted}
-          expiryDate={expiryDate}
-          expiryEpochNo={expiryEpochNo}
+          proposal={proposal}
           previousVote={vote}
-          dRepAbstainVotes={dRepAbstainVotes}
-          dRepNoVotes={dRepNoVotes}
-          dRepYesVotes={dRepYesVotes}
           isInProgress={isInProgress}
         />
       ) : (
-        <VotesSubmitted
-          dRepAbstainVotes={dRepAbstainVotes}
-          dRepNoVotes={dRepNoVotes}
-          dRepYesVotes={dRepYesVotes}
-          poolAbstainVotes={poolAbstainVotes}
-          poolNoVotes={poolNoVotes}
-          poolYesVotes={poolYesVotes}
-          ccAbstainVotes={ccAbstainVotes}
-          ccNoVotes={ccNoVotes}
-          ccYesVotes={ccYesVotes}
-        />
+        <VotesSubmitted votes={proposal} />
       )}
     </Box>
   );

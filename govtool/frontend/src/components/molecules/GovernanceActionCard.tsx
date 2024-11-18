@@ -11,6 +11,7 @@ import {
 
 import { useScreenDimension, useTranslation } from "@hooks";
 import {
+  encodeCIP129Identifier,
   getFullGovActionId,
   getProposalTypeLabel,
   getProposalTypeNoEmptySpaces,
@@ -53,6 +54,11 @@ export const GovernanceActionCard: FC<ActionTypeProps> = ({ ...props }) => {
   const { t } = useTranslation();
 
   const govActionId = getFullGovActionId(txHash, index);
+  const cip129GovernanceActionId = encodeCIP129Identifier({
+    txID: txHash,
+    index: index.toString(16).padStart(2, "0"),
+    bech32Prefix: "gov_action",
+  });
 
   return (
     <Box
@@ -87,14 +93,16 @@ export const GovernanceActionCard: FC<ActionTypeProps> = ({ ...props }) => {
           title={title}
           isDataMissing={metadataStatus}
         />
-        <GovernanceActionCardElement
-          label={t("govActions.abstract")}
-          text={abstract}
-          textVariant="twoLines"
-          dataTestId="governance-action-abstract"
-          isSliderCard
-          isMarkdown
-        />
+        {!metadataStatus && (
+          <GovernanceActionCardElement
+            label={t("govActions.abstract")}
+            text={abstract}
+            textVariant="twoLines"
+            dataTestId="governance-action-abstract"
+            isSliderCard
+            isMarkdown
+          />
+        )}
         <GovernanceActionCardElement
           label={t("govActions.governanceActionType")}
           text={getProposalTypeLabel(type)}
@@ -111,8 +119,15 @@ export const GovernanceActionCard: FC<ActionTypeProps> = ({ ...props }) => {
         />
         <GovernanceActionCardElement
           label={t("govActions.governanceActionId")}
-          text={getFullGovActionId(txHash, index)}
-          dataTestId={`${getFullGovActionId(txHash, index)}-id`}
+          text={govActionId}
+          dataTestId={`${govActionId}-id`}
+          isCopyButton
+          isSliderCard
+        />
+        <GovernanceActionCardElement
+          label={t("govActions.cip129GovernanceActionId")}
+          text={cip129GovernanceActionId}
+          dataTestId={`${cip129GovernanceActionId}-id`}
           isCopyButton
           isSliderCard
         />

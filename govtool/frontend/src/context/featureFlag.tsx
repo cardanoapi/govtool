@@ -10,16 +10,6 @@ import { GovernanceActionType } from "@/types/governanceAction";
 
 import { useAppContext } from "./appContext";
 
-const govActionVotingEnabledSinceProtocolVersion = {
-  [GovernanceActionType.InfoAction]: 9,
-  // TODO: Add minimum protocol versions for the following actions
-  [GovernanceActionType.HardForkInitiation]: Number.MAX_SAFE_INTEGER,
-  [GovernanceActionType.NewCommittee]: Number.MAX_SAFE_INTEGER,
-  [GovernanceActionType.NewConstitution]: Number.MAX_SAFE_INTEGER,
-  [GovernanceActionType.NoConfidence]: Number.MAX_SAFE_INTEGER,
-  [GovernanceActionType.ParameterChange]: Number.MAX_SAFE_INTEGER,
-  [GovernanceActionType.TreasuryWithdrawals]: Number.MAX_SAFE_INTEGER,
-};
 /**
  * The feature flag context type.
  */
@@ -28,11 +18,25 @@ type FeatureFlagContextType = {
   isVotingOnGovernanceActionEnabled: (
     governanceActionType: GovernanceActionType,
   ) => boolean;
+  areDRepVoteTotalsDisplayed: (
+    governanceActionType: GovernanceActionType,
+    isSecurityGroup?: boolean,
+  ) => boolean;
+  areSPOVoteTotalsDisplayed: (
+    governanceActionType: GovernanceActionType,
+    isSecurityGroup: boolean,
+  ) => boolean;
+  areCCVoteTotalsDisplayed: (
+    governanceActionType: GovernanceActionType,
+  ) => boolean;
 };
 
 const FeatureFlagContext = createContext<FeatureFlagContextType>({
   isProposalDiscussionForumEnabled: false,
   isVotingOnGovernanceActionEnabled: () => false,
+  areDRepVoteTotalsDisplayed: () => false,
+  areSPOVoteTotalsDisplayed: () => false,
+  areCCVoteTotalsDisplayed: () => false,
 });
 
 /**
@@ -41,7 +45,8 @@ const FeatureFlagContext = createContext<FeatureFlagContextType>({
  * @param children - The child components to render.
  */
 const FeatureFlagProvider = ({ children }: PropsWithChildren) => {
-  const { epochParams, isAppInitializing } = useAppContext();
+  const { isAppInitializing, isInBootstrapPhase, isFullGovernance } =
+    useAppContext();
 
   /**
    * Determines if voting on a governance action is enabled based on the protocol version.
@@ -50,17 +55,89 @@ const FeatureFlagProvider = ({ children }: PropsWithChildren) => {
    */
   const isVotingOnGovernanceActionEnabled = useCallback(
     (governanceActionType: GovernanceActionType) =>
-      (epochParams?.protocol_major || 0) >=
-      govActionVotingEnabledSinceProtocolVersion[governanceActionType],
-    [isAppInitializing],
+      governanceActionType === GovernanceActionType.InfoAction ||
+      !isInBootstrapPhase,
+    [isAppInitializing, isInBootstrapPhase],
   );
 
+  /**
+   * Determines if DRep vote totals should be displayed based on governance action type and phase.
+   * @param governanceActionType - The type of governance action.
+   * @returns {boolean} Whether DRep vote totals are displayed.
+   */
+  const areDRepVoteTotalsDisplayed = useCallback(
+    (
+      governanceActionType: GovernanceActionType,
+      isSecurityGroup: boolean = false,
+    ) => {
+      if (isInBootstrapPhase) {
+        return !(
+          governanceActionType === GovernanceActionType.HardForkInitiation ||
+          (governanceActionType === GovernanceActionType.ParameterChange &&
+            !isSecurityGroup)
+        );
+      }
+      if (isFullGovernance) {
+        return ![
+          GovernanceActionType.NoConfidence,
+          GovernanceActionType.NewCommittee,
+          GovernanceActionType.NewConstitution,
+        ].includes(governanceActionType);
+      }
+      return true;
+    },
+    [isAppInitializing, isInBootstrapPhase, isFullGovernance],
+  );
+
+  /**
+   * Determines if SPO vote totals should be displayed based on governance action type and phase.
+   * @param governanceActionType - The type of governance action.
+   * @returns {boolean} Whether SPO vote totals are displayed.
+   */
+  const areSPOVoteTotalsDisplayed = useCallback(
+    (governanceActionType: GovernanceActionType, isSecurityGroup: boolean) => {
+      if (isInBootstrapPhase) {
+        return governanceActionType !== GovernanceActionType.ParameterChange;
+      }
+      if (isFullGovernance) {
+        return !(
+          governanceActionType === GovernanceActionType.NewConstitution ||
+          governanceActionType === GovernanceActionType.TreasuryWithdrawals ||
+          (governanceActionType === GovernanceActionType.ParameterChange &&
+            !isSecurityGroup)
+        );
+      }
+      return true;
+    },
+    [isAppInitializing, isInBootstrapPhase, isFullGovernance],
+  );
+
+  /**
+   * Determines if CC vote totals should be displayed based on governance action type and phase.
+   * @param governanceActionType - The type of governance action.
+   * @returns {boolean} Whether CC vote totals are displayed.
+   */
+  const areCCVoteTotalsDisplayed = useCallback(
+    (governanceActionType: GovernanceActionType) => {
+      if (isFullGovernance) {
+        return ![
+          GovernanceActionType.NoConfidence,
+          GovernanceActionType.NewCommittee,
+        ].includes(governanceActionType);
+      }
+      return true;
+    },
+    [isAppInitializing, isFullGovernance],
+  );
   const value = useMemo(
     () => ({
       isProposalDiscussionForumEnabled:
         import.meta.env.VITE_IS_PROPOSAL_DISCUSSION_FORUM_ENABLED === "true" ||
         false,
       isVotingOnGovernanceActionEnabled,
+      areDRepVoteTotalsDisplayed,
+      areSPOVoteTotalsDisplayed,
+      areCCVoteTotalsDisplayed,
     }),
     [isVotingOnGovernanceActionEnabled],
   );

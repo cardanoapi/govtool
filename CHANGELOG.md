@@ -12,11 +12,58 @@ changes.
 
 ### Added
 
+- Handle displaying votes based on bootstrap phase, full governance and security groups [Issue 2316](https://github.com/IntersectMBO/govtool/issues/2316)
+- Add support for displaying Motion of No Confidence Governance Action [Issue 1597](https://github.com/IntersectMBO/govtool/issues/1597)
+- Add support for displaying Update committee/threshold Governance Action [Issue 1598](https://github.com/IntersectMBO/govtool/issues/1598)
+- Add support for displaying New Constitution and/or Guardrails Script Governance Action [Issue 1599](https://github.com/IntersectMBO/govtool/issues/1598)
+
+### Fixed
+
+- Fix submitting treasury governance action [Issue 1845](https://github.com/IntersectMBO/govtool/issues/1845)
+- Fix failing github action workflow [Issue 2277](https://github.com/IntersectMBO/govtool/issues/2277)
+
+### Changed
+
+- Bumped Cardano node version to `10.1.0-pre`.
+- Bumped Cardano DB Sync version to `13.6.0.0-pre`.
+
+### Removed
+
+-
+
+## [v1.0.26](https://github.com/IntersectMBO/govtool/releases/tag/v1.0.26) 2024-11-07
+
+### Added
+
+- add support for CIP-129 governance identifiers [Issue 2183](https://github.com/IntersectMBO/govtool/issues/2183)
+- Add label to supporting links in Governance Action details [Issue 2305](https://github.com/IntersectMBO/govtool/issues/2305)
+
+### Fixed
+
+- Fix certificates order where vote delegation cert is before the DRep registration cert [Issue 2333](https://github.com/IntersectMBO/govtool/issues/2333)
+
+### Changed
+
+- Change multilanguage support to use json file [Issue 2325](https://github.com/IntersectMBO/govtool/issues/2325)
+- Display full Governance Action IDs on desktop
+- Support space on given name [Issue 2276](https://github.com/IntersectMBO/govtool/issues/2276)
+- Display ADA in 'en-US' format [Issue 2305](https://github.com/IntersectMBO/govtool/issues/2305)
+
+### Removed
+
+-
+
+## [v1.0.25](https://github.com/IntersectMBO/govtool/releases/tag/v1.0.25) 2024-11-04
+
+### Added
+
 -
 
 ### Fixed
 
--
+- Fix searching by DRep Given name
+- Fix displaying the wallet connected modal
+- Fix navigating to DRep details [Issue 2307](https://github.com/IntersectMBO/govtool/issues/2307)
 
 ### Changed
 
@@ -25,6 +72,151 @@ changes.
 ### Removed
 
 -
+
+## [v1.0.24](https://github.com/IntersectMBO/govtool/releases/tag/v1.0.24) 2024-10-31
+
+### Added
+
+-
+
+### Fixed
+
+- Fix infinite DRep list loading [Issue 2285](https://github.com/IntersectMBO/govtool/issues/2285)
+
+### Changed
+
+-
+
+### Removed
+
+-
+
+## [v1.0.23](https://github.com/IntersectMBO/govtool/releases/tag/v1.0.23) 2024-10-29
+
+### Added
+
+- Add searching for DRep and Proposal metadatas [Issue 1893](https://github.com/IntersectMBO/govtool/issues/1783)
+
+### Fixed
+
+- Fix validating metadata against the CIP standard [Issue 2233](https://github.com/IntersectMBO/govtool/issues/2233)
+- Fix counting the CC votes [Issue 2247](https://github.com/IntersectMBO/govtool/issues/2247)
+
+### Changed
+
+-
+
+### Removed
+
+-
+
+## [v1.0.22](https://github.com/IntersectMBO/govtool/releases/tag/v1.0.22) 2024-10-24
+
+### Added
+
+-
+
+### Fixed
+
+- Fix unwanted horizontal page scroll on Governance Actions page [Issue 1897](https://github.com/IntersectMBO/govtool/issues/1897)
+- Fix duplicate testIds for reference errors and hints in DRep metadata form [Issue 1965](https://github.com/IntersectMBO/govtool/issues/1965)
+- Eliminate duplicate DReps in the DRep Directory [Issue 2171](https://github.com/IntersectMBO/govtool/issues/2171)
+- Handle script based DReps [Issue 1951](https://github.com/IntersectMBO/govtool/issues/1951)
+- Fix displaying protocol parameter cost models [Issue 2191](https://github.com/IntersectMBO/govtool/issues/2191)
+
+### Changed
+
+- Bump to use Cardano Node `10.0.0-pre`
+- Changed copy for no DRep found via search
+
+### Removed
+
+-
+
+## [v1.0.21](https://github.com/IntersectMBO/govtool/releases/tag/v1.0.21) 2024-10-15
+
+### Added
+
+-
+
+### Fixed
+
+- Fix counting epoch boundaries for Governance Actions [Issue 2125](https://github.com/IntersectMBO/govtool/issues/2125)
+- Fix displaying the SPO Votes [Issue 2085](https://github.com/IntersectMBO/govtool/issues/2085)
+- Fix counting ada holder voting power [Issue 2000](https://github.com/IntersectMBO/govtool/issues/2000)
+
+### Changed
+
+-
+
+### Removed
+
+-
+
+## [v1.0.20](https://github.com/IntersectMBO/govtool/releases/tag/v1.0.20) 2024-10-03
+
+### Added
+
+- Add useful external links to home page and dashboard [Issue 1995](https://github.com/IntersectMBO/govtool/issues/1995)
+
+### Fixed
+
+- Add missing testIds for submitted votes [Issue 1875](https://github.com/IntersectMBO/govtool/issues/1875)
+- Provide workaround for iOS for downloading metadata on iOS [Issue 1989](https://github.com/IntersectMBO/govtool/issues/1989)
+- Fix infinite loading in DRep Directory [Issue 2090](https://github.com/IntersectMBO/govtool/issues/2090)
+
+### Changed
+
+- Change constitutional committee vote totals to be constitutional for yes and unconstitutional for no [Issue 2062](https://github.com/IntersectMBO/govtool/issues/2062)
+- Bump @intersect.mbo/pdf-ui to v0.4.0
+- Include @language property in generated jsonld files [Issue 1856](https://github.com/IntersectMBO/govtool/issues/1856)
+
+### Removed
+
+-
+
+## [v1.0.19](https://github.com/IntersectMBO/govtool/releases/tag/v1.0.19) 2024-09-19
+
+### Added
+
+-
+
+### Fixed
+
+- Fix private policy link and get support link
+- Fixed poor UTxO management when building transactions [Issue 2059](https://github.com/IntersectMBO/govtool/issues/2059)
+
+### Changed
+
+- Bump cardano-db-sync 13.5.0.2 [Issue 1945](https://github.com/IntersectMBO/govtool/issues/1945)
+- Add Mainnet link to network banner [Issue 2002](https://github.com/IntersectMBO/govtool/issues/2002)
+- Bump CSL version to 12.1.0
+- Add random sorting as default sorting for DRep list [Issue 2013](https://github.com/IntersectMBO/govtool/issues/2013)
+
+### Removed
+
+-
+
+## [v1.0.18](https://github.com/IntersectMBO/govtool/releases/tag/v1.0.18) 2024-09-12
+
+### Added
+
+- Add script for Matomo Analytics [Issue 1817](https://github.com/IntersectMBO/govtool/issues/1817)
+
+### Fixed
+
+- Correctly show all kinds of votes in the modal showing vote numbers [Issue 1941](https://github.com/IntersectMBO/govtool/issues/1941)
+- Fixed terms and conditions link [Issue 1968](https://github.com/IntersectMBO/govtool/issues/1968)
+- Hide Delegate button in DRep list and details if user has already delegated to this DRep [Issue 1982](https://github.com/IntersectMBO/govtool/issues/1982)
+- Fix condition for disabling voting on different GA types [Issue 2008](https://github.com/IntersectMBO/govtool/issues/2008)
+- Fix incorrect copy (ex. github) to (e.g. github) [Issue 1748](https://github.com/IntersectMBO/govtool/issues/1748)
+- Fix broken translation in DRep Details [Issue 2036](https://github.com/IntersectMBO/govtool/issues/2036)
+
+### Changed
+
+- Bump @intersect.mbo/pdf-ui to v0.3.9
+- Changed misleading text for direct voter registration [Issue 1976](https://github.com/IntersectMBO/govtool/issues/1976)
+- Change base repo README header image to have correct branding and reflect mainnet launch.
 
 ## [sancho-v1.0.17](https://github.com/IntersectMBO/govtool/releases/tag/sancho-v1.0.17) 2024-09-05
 

@@ -4,6 +4,7 @@ import { expect, jest } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
 import { screen, userEvent, waitFor, within } from "@storybook/testing-library";
 import {
+  encodeCIP129Identifier,
   formatDisplayDate,
   getFullGovActionId,
   getProposalTypeNoEmptySpaces,
@@ -51,6 +52,13 @@ const commonArgs = {
     metadataHash: "exampleMetadataHash",
     metadataStatus: null,
     metadataValid: true,
+    references: [
+      {
+        "@type": "Reference",
+        uri: "https://exampleurl.com",
+        label: "Example label",
+      },
+    ],
   } satisfies ProposalData,
 };
 
@@ -58,6 +66,12 @@ const govActionId = getFullGovActionId(
   commonArgs.proposal.txHash,
   commonArgs.proposal.index,
 );
+
+const cip129GovActionId = encodeCIP129Identifier({
+  txID: commonArgs.proposal.txHash,
+  index: commonArgs.proposal.index.toString(16).padStart(2, "0"),
+  bech32Prefix: "gov_action",
+});
 
 async function assertTooltip(tooltip: HTMLElement, expectedText: RegExp) {
   await userEvent.hover(tooltip);
@@ -82,6 +96,9 @@ async function assertGovActionDetails(
   await expect(canvas.getByTestId(`${govActionId}-id`)).toHaveTextContent(
     govActionId,
   );
+  await expect(canvas.getByTestId(`${cip129GovActionId}-id`)).toHaveTextContent(
+    cip129GovActionId,
+  );
 }
 
 export const GovernanceActionDetailsCardComponent: Story = {
@@ -100,15 +117,24 @@ export const GovernanceActionDetailsCardComponent: Story = {
 
     await expect(canvas.getByText(args.proposal.title!)).toBeInTheDocument();
 
+    if (args.proposal.references?.[0]) {
+      await expect(
+        canvas.getByText(args.proposal.references[0].label),
+      ).toBeInTheDocument();
+      await expect(
+        canvas.getByText(args.proposal.references[0].uri),
+      ).toBeInTheDocument();
+    }
+
     await assertGovActionDetails(canvas, args);
     const [tooltip1, tooltip2] = canvas.getAllByTestId("InfoOutlinedIcon");
 
     await assertTooltip(tooltip1, /Submission Date/i);
     await assertTooltip(tooltip2, /Expiry Date/i);
 
-    await expect(canvas.getAllByText(/Yes/i)).toHaveLength(3);
-    await expect(canvas.getAllByText(/Abstain/i)).toHaveLength(3);
-    await expect(canvas.getAllByText(/No/i)).toHaveLength(3);
+    await expect(canvas.getAllByText(/yes/i)).toHaveLength(2);
+    await expect(canvas.getAllByText(/abstain/i)).toHaveLength(3);
+    await expect(canvas.getAllByText(/no/i)).toHaveLength(4);
   },
 };
 

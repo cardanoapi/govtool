@@ -72,7 +72,8 @@ data Vote
 
 data DRepInfo
   = DRepInfo
-      { dRepInfoIsRegisteredAsDRep       :: Bool
+      { dRepInfoIsScriptBased            :: Bool
+      , dRepInfoIsRegisteredAsDRep       :: Bool
       , dRepInfoWasRegisteredAsDRep      :: Bool
       , dRepInfoIsRegisteredAsSoleVoter  :: Bool
       , dRepInfoWasRegisteredAsSoleVoter :: Bool
@@ -101,6 +102,7 @@ data DRepRegistration
   = DRepRegistration
       { dRepRegistrationDRepHash               :: Text
       , dRepRegistrationView                   :: Text
+      , dRepRegistrationIsScriptBased          :: Bool
       , dRepRegistrationUrl                    :: Maybe Text
       , dRepRegistrationDataHash               :: Maybe Text
       , dRepRegistrationDeposit                :: Integer
@@ -109,6 +111,7 @@ data DRepRegistration
       , dRepRegistrationType                   :: DRepType
       , dRepRegistrationLatestTxHash           :: Maybe Text
       , dRepRegistrationLatestRegistrationDate :: UTCTime
+      , dRepRegistrationMetadataError          :: Maybe Text
       , dRepRegistrationPaymentAddress         :: Maybe Text
       , dRepRegistrationGivenName              :: Maybe Text
       , dRepRegistrationObjectives             :: Maybe Text
@@ -193,7 +196,7 @@ data CacheEnv
       , dRepGetVotesCache :: Cache.Cache Text ([Vote], [Proposal])
       , dRepInfoCache :: Cache.Cache Text DRepInfo
       , dRepVotingPowerCache :: Cache.Cache Text Integer
-      , dRepListCache :: Cache.Cache () [DRepRegistration]
+      , dRepListCache :: Cache.Cache Text [DRepRegistration]
       , networkMetricsCache :: Cache.Cache () NetworkMetrics
       }
 
@@ -214,7 +217,8 @@ data NetworkMetrics
 
 data Delegation
   = Delegation
-      { delegationDRepHash :: Maybe Text
-      , delegationDRepView :: Text
-      , delegationTxHash   :: Text
+      { delegationDRepHash          :: Maybe Text
+      , delegationDRepView          :: Text
+      , delegationIsDRepScriptBased :: Bool
+      , delegationTxHash            :: Text
       }

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { Box, CircularProgress } from "@mui/material";
 
@@ -9,11 +9,12 @@ import {
   useDelegateTodRep,
   useGetAdaHolderCurrentDelegationQuery,
   useGetAdaHolderVotingPowerQuery,
+  useGetDRepDetailsQuery,
   useGetDRepListInfiniteQuery,
 } from "@hooks";
 import { DataActionsBar, EmptyStateDrepDirectory } from "@molecules";
 import { AutomatedVotingOptions, DRepCard } from "@organisms";
-import { correctAdaFormat, formHexToBech32, isSameDRep } from "@utils";
+import { correctAdaFormat, isSameDRep } from "@utils";
 import { DRepListSort, DRepStatus } from "@models";
 import {
   AutomatedVotingOptionCurrentDelegation,
@@ -44,7 +45,12 @@ export const DRepDirectoryContent: FC<DRepDirectoryContentProps> = ({
   const { dRepID: myDRepId, pendingTransaction, stakeKey } = useCardano();
   const { t } = useTranslation();
   const { debouncedSearchText, ...dataActionsBarProps } = useDataActionsBar();
-  const { chosenFilters, chosenSorting } = dataActionsBarProps;
+  const { chosenFilters, chosenSorting, setChosenSorting } =
+    dataActionsBarProps;
+
+  useEffect(() => {
+    if (!chosenSorting) setChosenSorting(DRepListSort.Random);
+  }, [chosenSorting, setChosenSorting]);
 
   const { delegate, isDelegating } = useDelegateTodRep();
 
@@ -52,25 +58,15 @@ export const DRepDirectoryContent: FC<DRepDirectoryContentProps> = ({
   const { currentDelegation } = useGetAdaHolderCurrentDelegationQuery(stakeKey);
   const inProgressDelegation = pendingTransaction.delegate?.resourceId;
 
-  const { dRepData: myDRepList } = useGetDRepListInfiniteQuery(
-    {
-      searchPhrase: currentDelegation?.dRepView?.startsWith("drep")
-        ? currentDelegation.dRepView
-        : formHexToBech32(currentDelegation?.dRepHash ?? ""),
-    },
-    { enabled: !!inProgressDelegation || !!currentDelegation },
-  );
-  const myDrep = myDRepList?.[0];
-
-  const { dRepData: yourselfDRepList } = useGetDRepListInfiniteQuery({
-    searchPhrase: myDRepId,
+  const { dRep: myDrep } = useGetDRepDetailsQuery(currentDelegation?.dRepView, {
+    enabled: !!inProgressDelegation || !!currentDelegation,
   });
 
-  const yourselfDRep =
-    !!isConnected &&
-    (debouncedSearchText === myDRepId || debouncedSearchText === "")
-      ? yourselfDRepList?.[0]
-      : undefined;
+  const { dRep: yourselfDRep } = useGetDRepDetailsQuery(myDRepId, {
+    enabled: !!inProgressDelegation || !!currentDelegation,
+  });
+  const showYourselfDRep =
+    debouncedSearchText === myDRepId || debouncedSearchText === "";
 
   const {
     dRepData: dRepList,
@@ -84,6 +80,7 @@ export const DRepDirectoryContent: FC<DRepDirectoryContentProps> = ({
       status: chosenFilters as DRepStatus[],
     },
     {
+      enabled: !!chosenSorting,
       keepPreviousData: true,
     },
   );
@@ -101,9 +98,10 @@ export const DRepDirectoryContent: FC<DRepDirectoryContentProps> = ({
   const listedDRepsWithoutYourself = dRepList?.filter(
     (dRep) => !dRep.doNotList && !isSameDRep(dRep, myDRepId),
   );
-  const dRepListToDisplay = yourselfDRep
-    ? [yourselfDRep, ...listedDRepsWithoutYourself]
-    : listedDRepsWithoutYourself;
+  const dRepListToDisplay =
+    yourselfDRep && showYourselfDRep
+      ? [yourselfDRep, ...listedDRepsWithoutYourself]
+      : listedDRepsWithoutYourself;
 
   const inProgressDelegationDRepData = dRepListToDisplay.find(
     (dRep) =>
@@ -217,6 +215,7 @@ export const DRepDirectoryContent: FC<DRepDirectoryContentProps> = ({
                   isDelegating === dRep.view || isDelegating === dRep.drepId
                 }
                 isMe={isSameDRep(dRep, myDRepId)}
+                isMyDrep={isSameDRep(dRep, currentDelegation?.dRepView)}
                 onDelegate={() => delegate(dRep.drepId)}
               />
             </Box>

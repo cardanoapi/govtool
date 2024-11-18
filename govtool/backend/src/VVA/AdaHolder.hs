@@ -29,9 +29,6 @@ import           VVA.Types
 sqlFrom :: ByteString -> SQL.Query
 sqlFrom bs = fromString $ unpack $ Text.decodeUtf8 bs
 
-listDRepsSql :: SQL.Query
-listDRepsSql = sqlFrom $(embedFile "sql/list-dreps.sql")
-
 getCurrentDelegationSql :: SQL.Query
 getCurrentDelegationSql = sqlFrom $(embedFile "sql/get-current-delegation.sql")
 
@@ -42,9 +39,9 @@ getCurrentDelegation ::
 getCurrentDelegation stakeKey = withPool $ \conn -> do
   result <- liftIO $ SQL.query conn getCurrentDelegationSql (SQL.Only stakeKey)
   case result of
-    []                              -> return Nothing
-    [(mDRepHash, dRepView, txHash)] -> return $ Just $ Delegation mDRepHash dRepView txHash
-    _                               -> error ("multiple delegations for stake key: " <> unpack stakeKey)
+    []                                                 -> return Nothing
+    [(mDRepHash, dRepView, isDRepScriptBased, txHash)] -> return $ Just $ Delegation mDRepHash dRepView isDRepScriptBased txHash
+    _                                                  -> error ("multiple delegations for stake key: " <> unpack stakeKey)
 
 getVotingPowerSql :: SQL.Query
 getVotingPowerSql = sqlFrom $(embedFile "sql/get-stake-key-voting-power.sql")

@@ -1,61 +1,100 @@
-import { Box, Typography } from "@mui/material";
+import { useCallback } from "react";
+import { Box } from "@mui/material";
 
-import { IMAGES } from "@consts";
-import { VotePill } from "@atoms";
+import { IMAGES, SECURITY_RELEVANT_PARAMS_MAP } from "@consts";
+import { Typography, VotePill } from "@atoms";
 import { useTranslation } from "@hooks";
-import { correctAdaFormat } from "@utils";
+import { correctVoteAdaFormat, getGovActionVotingThresholdKey } from "@utils";
+import { SubmittedVotesData } from "@models";
+import { useFeatureFlag, useAppContext } from "@/context";
 
 type Props = {
-  dRepYesVotes: number;
-  dRepNoVotes: number;
-  dRepAbstainVotes: number;
-  poolYesVotes: number;
-  poolNoVotes: number;
-  poolAbstainVotes: number;
-  ccYesVotes: number;
-  ccNoVotes: number;
-  ccAbstainVotes: number;
+  votes: SubmittedVotesData;
 };
 
-const Vote = ({
-  vote,
-  value,
-}: {
-  vote: "yes" | "no" | "abstain";
-  value: string | number;
-}) => (
-  <Box sx={{ alignItems: "center", display: "flex", flexWrap: "wrap" }}>
-    <VotePill vote={vote} maxWidth={82} />
-    <Typography
-      fontSize="16px"
-      sx={{
-        marginLeft: "12px",
-        wordBreak: "break-all",
-      }}
-    >
-      {value}
-    </Typography>
-  </Box>
-);
-
 export const VotesSubmitted = ({
-  dRepAbstainVotes,
-  dRepNoVotes,
-  dRepYesVotes,
-  poolAbstainVotes,
-  poolNoVotes,
-  poolYesVotes,
-  ccAbstainVotes,
-  ccNoVotes,
-  ccYesVotes,
+  votes: {
+    dRepYesVotes,
+    dRepAbstainVotes,
+    dRepNoVotes,
+    poolYesVotes,
+    poolAbstainVotes,
+    poolNoVotes,
+    ccYesVotes,
+    ccAbstainVotes,
+    ccNoVotes,
+    type,
+    protocolParams,
+  },
 }: Props) => {
+  const isSecurityGroup = useCallback(
+    () =>
+      Object.values(SECURITY_RELEVANT_PARAMS_MAP).some(
+        (paramKey) =>
+          protocolParams?.[paramKey as keyof typeof protocolParams] !== null,
+      ),
+    [protocolParams],
+  );
+
+  const {
+    areDRepVoteTotalsDisplayed,
+    areSPOVoteTotalsDisplayed,
+    areCCVoteTotalsDisplayed,
+  } = useFeatureFlag();
   const { t } = useTranslation();
+  const { networkMetrics, epochParams } = useAppContext();
+  const totalDRepStake =
+    dRepYesVotes +
+    dRepAbstainVotes +
+    dRepNoVotes +
+    (networkMetrics?.alwaysAbstainVotingPower || 0) +
+    (networkMetrics?.alwaysNoConfidenceVotingPower || 0);
+  const totalPoolStake = poolYesVotes + poolAbstainVotes + poolNoVotes;
+  const totalCCStake = ccYesVotes + ccAbstainVotes + ccNoVotes;
+
+  const dRepNegativeVotesPercentage = totalDRepStake
+    ? ((dRepAbstainVotes +
+        dRepNoVotes +
+        (networkMetrics?.alwaysAbstainVotingPower || 0) +
+        (networkMetrics?.alwaysNoConfidenceVotingPower || 0)) /
+        totalDRepStake) *
+      100
+    : undefined;
+  const dRepNoVotesPercentage = totalDRepStake
+    ? (dRepNoVotes / totalDRepStake) * 100
+    : undefined;
+  const dRepYesVotesPercentage = dRepNegativeVotesPercentage
+    ? 100 - dRepNegativeVotesPercentage
+    : undefined;
+
+  // TODO: add abstain votes to the calculation
+  const poolNegativeVotesPercentage = totalPoolStake
+    ? ((poolAbstainVotes + poolNoVotes) / totalPoolStake) * 100
+    : undefined;
+  const poolNoVotesPercentage = totalPoolStake
+    ? (poolNoVotes / totalPoolStake) * 100
+    : undefined;
+  const poolYesVotesPercentage = poolNegativeVotesPercentage
+    ? 100 - poolNegativeVotesPercentage
+    : undefined;
+
+  // TODO: add abstain votes to the calculation
+  const ccNegativeVotesPercentage = totalCCStake
+    ? (ccAbstainVotes + ccNoVotes) / totalCCStake
+    : undefined;
+  const ccNoVotesPercentage = totalCCStake
+    ? ccNoVotes / totalCCStake
+    : undefined;
+  const ccYesVotesPercentage = ccNegativeVotesPercentage
+    ? 100 - ccNegativeVotesPercentage
+    : undefined;
 
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
+        flex: 1,
       }}
     >
       <img
@@ -88,67 +127,194 @@ export const VotesSubmitted = ({
         sx={{
           display: "flex",
           flexDirection: "column",
-          gap: "12px",
+          gap: 4.5,
         }}
       >
-        <Typography
-          sx={{
-            fontSize: "18px",
-            fontWeight: "600",
-            lineHeight: "24px",
-          }}
-        >
-          {t("govActions.dReps")}
-        </Typography>
-        <Vote vote="yes" value={`₳ ${correctAdaFormat(dRepYesVotes)}`} />
-        <Vote
-          vote="abstain"
-          value={`₳ ${correctAdaFormat(dRepAbstainVotes)}`}
-        />
-        <Vote vote="no" value={`₳ ${correctAdaFormat(dRepNoVotes)}`} />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "12px",
-            mt: "24px",
-          }}
-        >
-          <Typography
-            sx={{
-              fontSize: "18px",
-              fontWeight: "600",
-              lineHeight: "24px",
-            }}
-          >
-            {t("govActions.sPos")}
-          </Typography>
-          <Vote vote="yes" value={poolYesVotes} />
-          <Vote vote="abstain" value={poolAbstainVotes} />
-          <Vote vote="no" value={poolNoVotes} />
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "12px",
-              mt: "24px",
-            }}
-          >
-            <Typography
-              sx={{
-                fontSize: "18px",
-                fontWeight: "600",
-                lineHeight: "24px",
-              }}
-            >
-              {t("govActions.ccCommittee")}
-            </Typography>
-            <Vote vote="yes" value={ccYesVotes} />
-            <Vote vote="abstain" value={ccAbstainVotes} />
-            <Vote vote="no" value={ccNoVotes} />
-          </Box>
-        </Box>
+        {areDRepVoteTotalsDisplayed(type, isSecurityGroup()) && (
+          <VotesGroup
+            type="dReps"
+            yesVotes={dRepYesVotes}
+            yesVotesPercentage={dRepYesVotesPercentage}
+            noVotes={dRepNoVotes}
+            noVotesPercentage={dRepNoVotesPercentage}
+            abstainVotes={dRepAbstainVotes}
+            threshold={(() => {
+              const votingThresholdKey = getGovActionVotingThresholdKey({
+                govActionType: type,
+                protocolParams,
+                voterType: "dReps",
+              });
+              return votingThresholdKey && epochParams?.[votingThresholdKey];
+            })()}
+          />
+        )}
+        {areSPOVoteTotalsDisplayed(type, isSecurityGroup()) && (
+          <VotesGroup
+            type="sPos"
+            yesVotes={poolYesVotes}
+            yesVotesPercentage={poolYesVotesPercentage}
+            noVotes={poolNoVotes}
+            noVotesPercentage={poolNoVotesPercentage}
+            abstainVotes={poolAbstainVotes}
+            threshold={(() => {
+              const votingThresholdKey = getGovActionVotingThresholdKey({
+                govActionType: type,
+                protocolParams,
+                voterType: "sPos",
+              });
+              return votingThresholdKey && epochParams?.[votingThresholdKey];
+            })()}
+          />
+        )}
+        {areCCVoteTotalsDisplayed(type) && (
+          <VotesGroup
+            type="ccCommittee"
+            yesVotes={ccYesVotes}
+            noVotes={ccNoVotes}
+            abstainVotes={ccAbstainVotes}
+            yesVotesPercentage={ccYesVotesPercentage}
+            noVotesPercentage={ccNoVotesPercentage}
+          />
+        )}
       </Box>
     </Box>
   );
 };
+
+export type VoterType = "ccCommittee" | "dReps" | "sPos";
+
+type VotesGroupProps = {
+  type: VoterType;
+  yesVotes: number;
+  yesVotesPercentage?: number;
+  noVotes: number;
+  noVotesPercentage?: number;
+  abstainVotes: number;
+  threshold?: number | null;
+};
+
+const VotesGroup = ({
+  type,
+  yesVotes,
+  yesVotesPercentage,
+  noVotes,
+  noVotesPercentage,
+  abstainVotes,
+  threshold,
+}: VotesGroupProps) => {
+  const { t } = useTranslation();
+  return (
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "12px",
+      }}
+      data-testid={`submitted-votes-${type}`}
+    >
+      <Typography
+        sx={{
+          fontSize: "18px",
+          fontWeight: "600",
+          lineHeight: "24px",
+        }}
+      >
+        {t(`govActions.${type}`)}
+      </Typography>
+      <Vote
+        type={type}
+        vote="yes"
+        percentage={yesVotesPercentage}
+        value={yesVotes}
+      />
+      <Vote type={type} vote="abstain" value={abstainVotes} />
+      <Vote
+        type={type}
+        vote="no"
+        percentage={noVotesPercentage}
+        value={noVotes}
+      />
+      {threshold !== undefined && (
+        <Box
+          display="flex"
+          flexDirection="row"
+          flex={1}
+          borderBottom={1}
+          borderColor="neutralGray"
+        >
+          <Typography
+            sx={{
+              marginRight: 3,
+              fontSize: 16,
+              lineHeight: "24px",
+              fontWeight: "500",
+              color: "rgba(36, 34, 50, 1)",
+            }}
+          >
+            {t("govActions.threshold")}
+          </Typography>
+          <Typography
+            sx={{
+              fontSize: 16,
+              lineHeight: "24px",
+              fontWeight: "500",
+              color: "neutralGray",
+            }}
+          >
+            {threshold}
+          </Typography>
+        </Box>
+      )}
+    </Box>
+  );
+};
+
+type VoteProps = {
+  type: VoterType;
+  vote: VoteType;
+  value: number;
+  percentage?: number;
+};
+const Vote = ({ type, vote, value, percentage }: VoteProps) => (
+  <Box
+    sx={{
+      alignItems: "center",
+      display: "flex",
+      flexWrap: "wrap",
+      columnGap: 1.5,
+    }}
+  >
+    <VotePill vote={vote} width={115} isCC={type === "ccCommittee"} />
+    <Box
+      display="flex"
+      flexDirection="row"
+      flex={1}
+      justifyContent="space-between"
+    >
+      <Typography
+        data-testid={`submitted-votes-${type}-${vote}`}
+        sx={{
+          fontSize: 16,
+          wordBreak: "break-all",
+          lineHeight: "24px",
+          fontWeight: "500",
+        }}
+      >
+        {type !== "ccCommittee" ? `₳ ${correctVoteAdaFormat(value)}` : value}
+      </Typography>
+      {vote !== "abstain" && typeof percentage === "number" && (
+        <Typography
+          data-testid={`submitted-votes-${type}-${vote}-percentage`}
+          sx={{
+            fontSize: 16,
+            lineHeight: "24px",
+            fontWeight: "500",
+            color: "neutralGray",
+          }}
+        >
+          {typeof percentage === "number" ? `${percentage.toFixed(2)}%` : ""}
+        </Typography>
+      )}
+    </Box>
+  </Box>
+);

@@ -202,7 +202,7 @@ instance ToParamSchema GovernanceActionType where
       & enum_ ?~ map toJSON (enumFromTo minBound maxBound :: [GovernanceActionType])
 
 
-data DRepSortMode = VotingPower | RegistrationDate | Status deriving (Bounded, Enum, Eq, Generic, Read, Show)
+data DRepSortMode = Random | VotingPower | RegistrationDate | Status deriving (Bounded, Enum, Eq, Generic, Read, Show)
 
 instance FromJSON DRepSortMode where
   parseJSON (Aeson.String dRepSortMode) = pure $ fromJust $ readMaybe (Text.unpack dRepSortMode)
@@ -561,7 +561,8 @@ instance ToSchema VoteResponse where
 
 data DRepInfoResponse
   = DRepInfoResponse
-      { dRepInfoResponseIsRegisteredAsDRep       :: Bool
+      { dRepInfoResponseIsScriptBased            :: Bool
+      , dRepInfoResponseIsRegisteredAsDRep       :: Bool
       , dRepInfoResponseWasRegisteredAsDRep      :: Bool
       , dRepInfoResponseIsRegisteredAsSoleVoter  :: Bool
       , dRepInfoResponseWasRegisteredAsSoleVoter :: Bool
@@ -758,7 +759,8 @@ instance ToSchema DRepType where
 
 data DRep
   = DRep
-      { dRepDrepId                 :: DRepHash
+      { dRepIsScriptBased          :: Bool
+      , dRepDrepId                 :: DRepHash
       , dRepView                   :: Text
       , dRepUrl                    :: Maybe Text
       , dRepMetadataHash           :: Maybe Text
@@ -768,6 +770,7 @@ data DRep
       , dRepType                   :: DRepType
       , dRepLatestTxHash           :: Maybe HexText
       , dRepLatestRegistrationDate :: UTCTime
+      , dRepMetadataError          :: Maybe Text
       , dRepPaymentAddress         :: Maybe Text
       , dRepGivenName              :: Maybe Text
       , dRepObjectives             :: Maybe Text
@@ -854,9 +857,10 @@ instance ToSchema ListDRepsResponse where
 
 data DelegationResponse
   = DelegationResponse
-      { delegationResponseDRepHash :: Maybe HexText
-      , delegationResponseDRepView :: Text
-      , delegationResponseTxHash   :: HexText
+      { delegationResponseDRepHash          :: Maybe HexText
+      , delegationResponseDRepView          :: Text
+      , delegationResponseIsDRepScriptBased :: Bool
+      , delegationResponseTxHash            :: HexText
       }
 deriveJSON (jsonOptions "delegationResponse") ''DelegationResponse
 

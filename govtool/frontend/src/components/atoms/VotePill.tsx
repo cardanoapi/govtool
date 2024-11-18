@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Box, Typography } from "@mui/material";
 
 import { Vote } from "@models";
@@ -6,12 +7,15 @@ export const VotePill = ({
   vote,
   width,
   maxWidth,
+  isCC,
 }: {
   vote: Vote;
   width?: number;
   maxWidth?: number;
+  isCC?: boolean;
 }) => {
-  const VOTE = vote.toLowerCase();
+  const { t } = useTranslation();
+  const VOTE = vote.toLowerCase() as "yes" | "no" | "abstain";
   return (
     <Box
       py={0.75}
@@ -28,15 +32,27 @@ export const VotePill = ({
       minWidth="50px"
       maxWidth={maxWidth ? `${maxWidth}px` : "auto"}
       width={width ? `${width}px` : "auto"}
-      maxHeight="14px"
     >
       <Typography
         textTransform="uppercase"
         fontSize={12}
         fontWeight={400}
         lineHeight="16px"
+        whiteSpace="nowrap"
+        textOverflow="ellipsis"
+        overflow="hidden"
       >
-        {vote}
+        {t(
+          `votes.${
+            isCC
+              ? VOTE === "yes"
+                ? "constitutional"
+                : vote === "no"
+                ? "unconstitutional"
+                : VOTE
+              : VOTE
+          }`,
+        )}
       </Typography>
     </Box>
   );

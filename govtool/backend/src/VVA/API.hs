@@ -29,6 +29,7 @@ import           Numeric.Natural          (Natural)
 
 import           Servant.API
 import           Servant.Server
+import           System.Random            (randomRIO)
 
 import           Text.Read                (readMaybe)
 
@@ -105,7 +106,8 @@ mapDRepStatus Types.Inactive = Inactive
 drepRegistrationToDrep :: Types.DRepRegistration -> DRep
 drepRegistrationToDrep Types.DRepRegistration {..} =
   DRep
-    { dRepDrepId = DRepHash dRepRegistrationDRepHash,
+    { dRepIsScriptBased = dRepRegistrationIsScriptBased,
+      dRepDrepId = DRepHash dRepRegistrationDRepHash,
       dRepView = dRepRegistrationView,
       dRepUrl = dRepRegistrationUrl,
       dRepMetadataHash = dRepRegistrationDataHash,
@@ -115,6 +117,7 @@ drepRegistrationToDrep Types.DRepRegistration {..} =
       dRepType = mapDRepType dRepRegistrationType,
       dRepLatestTxHash = HexText <$> dRepRegistrationLatestTxHash,
       dRepLatestRegistrationDate = dRepRegistrationLatestRegistrationDate,
+      dRepMetadataError = dRepRegistrationMetadataError,
       dRepPaymentAddress = dRepRegistrationPaymentAddress,
       dRepGivenName = dRepRegistrationGivenName,
       dRepObjectives = dRepRegistrationObjectives,
@@ -129,6 +132,7 @@ delegationToResponse Types.Delegation {..} =
   DelegationResponse
     { delegationResponseDRepHash = HexText <$> delegationDRepHash,
       delegationResponseDRepView = delegationDRepView,
+      delegationResponseIsDRepScriptBased = delegationIsDRepScriptBased,
       delegationResponseTxHash = HexText delegationTxHash
     }
 
@@ -136,23 +140,32 @@ delegationToResponse Types.Delegation {..} =
 drepList :: App m => Maybe Text -> [DRepStatus] -> Maybe DRepSortMode -> Maybe Natural -> Maybe Natural -> m ListDRepsResponse
 drepList mSearchQuery statuses mSortMode mPage mPageSize = do
   CacheEnv {dRepListCache} <- asks vvaCache
-  dreps <- cacheRequest dRepListCache () DRep.listDReps
+  dreps <- cacheRequest dRepListCache (fromMaybe "" mSearchQuery) (DRep.listDReps mSearchQuery)
 
   let filterDRepsByQuery = case mSearchQuery of
-        Nothing -> filter $ \Types.DRepRegistration {..} -> dRepRegistrationType == Types.DRep
+        Nothing -> filter $ \Types.DRepRegistration {..} ->
+          dRepRegistrationType == Types.DRep
         Just query -> filter $ \Types.DRepRegistration {..} ->
-          case dRepRegistrationType of
-            Types.SoleVoter -> query == dRepRegistrationView || query == dRepRegistrationDRepHash
-            Types.DRep      ->  query `isInfixOf` dRepRegistrationView
-                                || query `isInfixOf` dRepRegistrationDRepHash
+          let searchLower = Text.toLower query
+              viewLower = Text.toLower dRepRegistrationView
+              hashLower = Text.toLower dRepRegistrationDRepHash
+              nameLower = maybe "" Text.toLower dRepRegistrationGivenName
+          in  case dRepRegistrationType of
+                Types.SoleVoter -> searchLower == viewLower || searchLower == hashLower
+                Types.DRep      -> searchLower `isInfixOf` viewLower
+                                  || searchLower `isInfixOf` hashLower
+                                  || searchLower `isInfixOf` nameLower
 
   let filterDRepsByStatus = case statuses of
         [] -> id
         _  -> filter $ \Types.DRepRegistration {..} ->
           mapDRepStatus dRepRegistrationStatus `elem` statuses
 
+  randomizedOrderList <- mapM (\_ -> randomRIO (0, 1 :: Double)) dreps
+
   let sortDReps = case mSortMode of
         Nothing -> id
+        Just Random -> fmap snd . sortOn fst . Prelude.zip randomizedOrderList
         Just VotingPower -> sortOn $ \Types.DRepRegistration {..} ->
           Down dRepRegistrationVotingPower
         Just RegistrationDate -> sortOn $ \Types.DRepRegistration {..} ->
@@ -281,7 +294,8 @@ drepInfo (unHexText -> dRepId) = do
   CacheEnv {dRepInfoCache} <- asks vvaCache
   Types.DRepInfo {..} <- cacheRequest dRepInfoCache dRepId $ DRep.getDRepInfo dRepId
   return $ DRepInfoResponse
-    { dRepInfoResponseIsRegisteredAsDRep = dRepInfoIsRegisteredAsDRep
+    { dRepInfoResponseIsScriptBased = dRepInfoIsScriptBased
+    , dRepInfoResponseIsRegisteredAsDRep = dRepInfoIsRegisteredAsDRep
     , dRepInfoResponseWasRegisteredAsDRep = dRepInfoWasRegisteredAsDRep
     , dRepInfoResponseIsRegisteredAsSoleVoter = dRepInfoIsRegisteredAsSoleVoter
     , dRepInfoResponseWasRegisteredAsSoleVoter = dRepInfoWasRegisteredAsSoleVoter
@@ -349,20 +363,20 @@ listProposals selectedTypes sortMode mPage mPageSize mDrepRaw mSearchQuery = do
       map (voteParamsProposalId . voteResponseVote)
         <$> getVotes drepId [] Nothing Nothing
 
-
   CacheEnv {proposalListCache} <- asks vvaCache
-  mappedAndSortedProposals <- do
-    proposals <- cacheRequest proposalListCache () Proposal.listProposals
-    mappedSortedAndFilteredProposals <- mapSortAndFilterProposals selectedTypes sortMode proposals
-    return $ filter
-      ( \p@ProposalResponse {proposalResponseId} ->
-          proposalResponseId `notElem` proposalsToRemove
-          && isProposalSearchedFor mSearchQuery p
-      ) mappedSortedAndFilteredProposals
 
-  let total = length mappedAndSortedProposals :: Int
+  proposals <- cacheRequest proposalListCache () (Proposal.listProposals mSearchQuery)
 
-  let elements = take pageSize $ drop (page * pageSize) mappedAndSortedProposals
+  mappedSortedAndFilteredProposals <- mapSortAndFilterProposals selectedTypes sortMode proposals
+  let filteredProposals = filter
+        ( \p@ProposalResponse {proposalResponseId} ->
+            proposalResponseId `notElem` proposalsToRemove
+            && isProposalSearchedFor mSearchQuery p
+        ) mappedSortedAndFilteredProposals
+
+  let total = length filteredProposals :: Int
+
+  let elements = take pageSize $ drop (page * pageSize) filteredProposals
 
   return $ ListProposalsResponse
     { listProposalsResponsePage = fromIntegral page

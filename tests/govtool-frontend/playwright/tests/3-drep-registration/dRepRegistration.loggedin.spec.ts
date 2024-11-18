@@ -60,7 +60,7 @@ test.describe("Validation of dRep Registration Form", () => {
 
     for (let i = 0; i < 100; i++) {
       await dRepRegistrationPage.validateForm({
-        name: faker.internet.displayName(),
+        name: mockValid.name(),
         objectives: faker.lorem.paragraph(2),
         motivations: faker.lorem.paragraph(2),
         qualifications: faker.lorem.paragraph(2),
@@ -156,8 +156,16 @@ test.describe("Validation of dRep Registration Form", () => {
     await dRepRegistrationPage.registerBtn.click();
 
     for (let i = 0; i < 100; i++) {
-      await dRepRegistrationPage.metadataUrlInput.fill(mockInvalid.url());
-      await expect(page.getByTestId("invalid-url-error")).toBeVisible();
+      const invalidUrl = mockInvalid.url(false);
+
+      await dRepRegistrationPage.metadataUrlInput.fill(invalidUrl);
+      if (invalidUrl.length <= 128) {
+        await expect(page.getByTestId("invalid-url-error")).toBeVisible();
+      } else {
+        await expect(
+          page.getByTestId("url-must-be-less-than-128-bytes-error")
+        ).toBeVisible();
+      }
     }
 
     const sentenceWithoutSpace = faker.lorem

@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 import { Box, Tabs, Tab, styled } from "@mui/material";
-import { useLocation } from "react-router-dom";
 
 import { CopyButton, ExternalModalButton, Typography } from "@atoms";
 import {
@@ -10,17 +9,24 @@ import {
   DataMissingHeader,
   GovernanceActionsDatesBox,
   GovernanceActionDetailsDiffView,
+  GovernanceActionNewCommitteeDetailsTabContent,
 } from "@molecules";
 import { useScreenDimension, useTranslation } from "@hooks";
 import {
   getProposalTypeNoEmptySpaces,
-  testIdFromLabel,
   getProposalTypeLabel,
   filterUpdatableProtocolParams,
   filterOutNullParams,
   getFullGovActionId,
+  mapArrayToObjectByKeys,
+  encodeCIP129Identifier,
+  testIdFromLabel,
 } from "@utils";
-import { MetadataValidationStatus, ProposalData } from "@models";
+import {
+  MetadataValidationStatus,
+  NewConstitutionAnchor,
+  ProposalData,
+} from "@models";
 import { GovernanceActionType } from "@/types/governanceAction";
 import { useAppContext } from "@/context";
 
@@ -92,20 +98,34 @@ export const GovernanceActionDetailsCardData = ({
   const { screenWidth } = useScreenDimension();
   const { isMobile } = useScreenDimension();
 
+  const mappedArraysToObjectsProtocolParams = useMemo(
+    () =>
+      mapArrayToObjectByKeys(protocolParams, [
+        "PlutusV1",
+        "PlutusV2",
+        "PlutusV3",
+      ]),
+    [protocolParams],
+  );
+
   const updatableProtocolParams = useMemo(
     () =>
-      filterUpdatableProtocolParams(epochParams, protocolParams, [
-        "id",
-        "registered_tx_id",
-        "key",
-      ]),
-    [epochParams, protocolParams],
+      filterUpdatableProtocolParams(
+        epochParams,
+        mappedArraysToObjectsProtocolParams,
+        ["id", "registered_tx_id", "key"],
+      ),
+    [epochParams, mappedArraysToObjectsProtocolParams],
   );
 
   const nonNullProtocolParams = useMemo(
     () =>
-      filterOutNullParams(protocolParams, ["id", "registered_tx_id", "key"]),
-    [updatableProtocolParams, protocolParams],
+      filterOutNullParams(mappedArraysToObjectsProtocolParams, [
+        "id",
+        "registered_tx_id",
+        "key",
+      ]),
+    [updatableProtocolParams, mappedArraysToObjectsProtocolParams],
   );
 
   const isModifiedPadding =
@@ -113,20 +133,17 @@ export const GovernanceActionDetailsCardData = ({
 
   const [selectedTab, setSelectedTab] = useState<number>(0);
 
-  const { pathname, hash } = useLocation();
-
-  const govActionLinkToShare = `${window.location.protocol}//${
-    window.location.hostname
-  }${window.location.port ? `:${window.location.port}` : ""}${pathname}${
-    hash ?? ""
-  }`;
-
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setSelectedTab(newValue);
   };
 
   const label = getProposalTypeLabel(type);
   const govActionId = getFullGovActionId(txHash, index);
+  const cip129GovernanceActionId = encodeCIP129Identifier({
+    txID: txHash,
+    index: index.toString(16).padStart(2, "0"),
+    bech32Prefix: "gov_action",
+  });
   const prevGovActionId =
     prevGovActionIndex && prevGovActionTxHash
       ? getFullGovActionId(prevGovActionTxHash, prevGovActionIndex)
@@ -158,7 +175,8 @@ export const GovernanceActionDetailsCardData = ({
             />
           ),
           visible:
-            type === GovernanceActionType.ParameterChange &&
+            (type === GovernanceActionType.ParameterChange ||
+              type === GovernanceActionType.NewConstitution) &&
             !!protocolParams &&
             !!epochParams,
         },
@@ -173,6 +191,14 @@ export const GovernanceActionDetailsCardData = ({
           ),
           visible:
             type === GovernanceActionType.HardForkInitiation && !!details,
+        },
+        {
+          label: "Parameters",
+          dataTestId: "parameters-tab",
+          content: (
+            <GovernanceActionNewCommitteeDetailsTabContent details={details} />
+          ),
+          visible: type === GovernanceActionType.NewCommittee && !!details,
         },
       ].filter((tab) => tab.visible),
     [
@@ -195,11 +221,7 @@ export const GovernanceActionDetailsCardData = ({
         overflow: "hidden",
       }}
     >
-      <DataMissingHeader
-        isDataMissing={isDataMissing}
-        shareLink={govActionLinkToShare}
-        title={title}
-      />
+      <DataMissingHeader isDataMissing={isDataMissing} title={title} />
       <DataMissingInfoBox
         isDataMissing={isDataMissing}
         isInProgress={isInProgress}
@@ -228,6 +250,14 @@ export const GovernanceActionDetailsCardData = ({
         text={govActionId}
         isCopyButton
         dataTestId={`${govActionId}-id`}
+        textVariant={screenWidth > 1600 ? "longText" : "oneLine"}
+      />
+      <GovernanceActionCardElement
+        label={t("govActions.cip129GovernanceActionId")}
+        text={cip129GovernanceActionId}
+        dataTestId={`${cip129GovernanceActionId}-id`}
+        isCopyButton
+        textVariant={screenWidth > 1600 ? "longText" : "oneLine"}
       />
 
       {tabs.length === 1 ? (
@@ -269,16 +299,36 @@ export const GovernanceActionDetailsCardData = ({
       )}
 
       {details &&
-        type !== GovernanceActionType.HardForkInitiation &&
+        type === GovernanceActionType.TreasuryWithdrawals &&
         Object.keys(details).length !== 0 &&
         Object.entries(details).map(([detailLabel, content]) => (
           <GovernanceActionCardElement
             isCopyButton={detailLabel.toLowerCase().includes("address")}
             label={detailLabel}
-            text={content}
+            text={content as string}
             dataTestId={testIdFromLabel(detailLabel)}
           />
         ))}
+      {details?.anchor && type === GovernanceActionType.NewConstitution && (
+        <>
+          <GovernanceActionCardElement
+            isCopyButton
+            label="Data Hash"
+            text={
+              (details?.anchor as NewConstitutionAnchor)?.dataHash as string
+            }
+            dataTestId="new-constitution-data-hash"
+            textVariant={screenWidth > 1600 ? "longText" : "oneLine"}
+          />
+          <GovernanceActionCardElement
+            isCopyButton
+            label="URL"
+            text={(details?.anchor as NewConstitutionAnchor)?.url as string}
+            dataTestId="new-constitution-url"
+            textVariant={screenWidth > 1600 ? "longText" : "oneLine"}
+          />
+        </>
+      )}
       <GovernanceActionDetailsCardLinks links={references} />
     </Box>
   );

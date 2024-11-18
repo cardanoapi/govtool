@@ -21,6 +21,7 @@ DRepActivity AS (
 SELECT
   encode(dh.raw, 'hex'),
   dh.view,
+  dh.has_script,
   va.url,
   encode(va.data_hash, 'hex'),
   dr_deposit.deposit,
@@ -30,6 +31,7 @@ SELECT
   newestRegister.time AS last_register_time,
   COALESCE(latestDeposit.deposit, 0),
   non_deregister_voting_anchor.url IS NOT NULL AS has_non_deregister_voting_anchor,
+  fetch_error.message,
   off_chain_vote_drep_data.payment_address,
   off_chain_vote_drep_data.given_name,
   off_chain_vote_drep_data.objectives,
@@ -95,7 +97,15 @@ FROM
   LEFT JOIN DRepDistr ON DRepDistr.hash_id = dh.id
     AND DRepDistr.rn = 1
   LEFT JOIN voting_anchor va ON va.id = dr_voting_anchor.voting_anchor_id
-  LEFT JOIN voting_anchor non_deregister_voting_anchor on non_deregister_voting_anchor.id = dr_non_deregister_voting_anchor.voting_anchor_id
+  LEFT JOIN voting_anchor non_deregister_voting_anchor ON non_deregister_voting_anchor.id = dr_non_deregister_voting_anchor.voting_anchor_id
+  LEFT JOIN (
+    SELECT fetch_error as message, voting_anchor_id
+    FROM off_chain_vote_fetch_error
+    WHERE fetch_time = (
+      SELECT max(fetch_time)
+      FROM off_chain_vote_fetch_error)
+    GROUP BY fetch_error, voting_anchor_id
+  ) AS fetch_error ON fetch_error.voting_anchor_id = va.id
   LEFT JOIN off_chain_vote_data ON off_chain_vote_data.voting_anchor_id = va.id
   LEFT JOIN off_chain_vote_drep_data on off_chain_vote_drep_data.off_chain_vote_data_id = off_chain_vote_data.id 
   CROSS JOIN DRepActivity
@@ -124,10 +134,18 @@ FROM
     AND dr_first_register.rn = 1
   LEFT JOIN tx AS tx_first_register ON tx_first_register.id = dr_first_register.tx_id
   LEFT JOIN block AS block_first_register ON block_first_register.id = tx_first_register.block_id
+WHERE
+  (
+    COALESCE(?, '') = '' OR
+    (CASE WHEN LENGTH(?) % 2 = 0 AND ? ~ '^[0-9a-fA-F]+$' THEN dh.raw = decode(?, 'hex') ELSE false END) OR
+    dh.view ILIKE ? OR
+    off_chain_vote_drep_data.given_name ILIKE ?
+  )
 GROUP BY
   dh.raw,
   second_to_newest_drep_registration.voting_anchor_id,
   dh.view,
+  dh.has_script,
   va.url,
   va.data_hash,
   dr_deposit.deposit,
@@ -138,6 +156,7 @@ GROUP BY
   newestRegister.time,
   latestDeposit.deposit,
   non_deregister_voting_anchor.url,
+  fetch_error.message,
   off_chain_vote_drep_data.payment_address,
   off_chain_vote_drep_data.given_name,
   off_chain_vote_drep_data.objectives,
