@@ -3,13 +3,11 @@ version: "3.9"
 networks:
   frontend:
     external: true
-  cardano:
-    external: true
 
 services:
 
   frontend:
-    image: govtool/gov-action-loader-frontend:${GOVTOOL_TAG}
+    image: ${REGISTRY_HOST}/govtool/gov-action-loader-frontend:${GOVTOOL_TAG}
     build:
       context: ../../gov-action-loader/frontend
       dockerfile: Dockerfile
@@ -30,12 +28,12 @@ services:
           memory: 100M
 
   backend:
-    image: govtool/gov-action-loader-backend:${GOVTOOL_TAG}
+    image: ${REGISTRY_HOST}/govtool/gov-action-loader-backend:${GOVTOOL_TAG}
     build:
       context: ../../gov-action-loader/backend
       dockerfile: Dockerfile
     environment:
-      KUBER_API_URL_SANCHO: "http://kuber:8081"
+      KUBER_API_URL_SANCHO: ${KUBER_API_URL_SANCHO:-http://kuber:8081}
       KUBER_API_URL_PREPROD: "https://preprod.kuber.cardanoapi.io"
       KUBER_API_URL_PREVIEW: "https://preview.kuber.cardanoapi.io"
       KUBER_API_KEY: ${KUBER_API_KEY}
@@ -43,7 +41,6 @@ services:
     networks:
       - default
       - frontend
-      - cardano
     deploy:
       placement:
         constraints:

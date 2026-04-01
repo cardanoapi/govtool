@@ -1,14 +1,11 @@
 version: "3.9"
 secrets:
-  postgres_user:
-    external: true
-    name:  ${PROJECT_NAME}_postgres_user
-  postgres_password:
-    external: true
-    name:  ${PROJECT_NAME}_postgres_password
+  dbsync_postgres_user:
+    x-content: ${DBSYNC_POSTGRES_USER}
+  dbsync_postgres_password:
+    x-content: ${DBSYNC_POSTGRES_PASSWORD}
   dbsync_database:
-      external: true
-      name: ${PROJECT_NAME}_dbsync_database
+    x-content: ${DBSYNC_DATABASE}
 
 volumes:
   node_data:
@@ -16,8 +13,6 @@ volumes:
   dbsync_data:
 
 networks:
-  postgres:
-    external: true
   frontend:
     external: true
   cardano:
@@ -52,20 +47,20 @@ services:
         delay: 15s
   dbsync:
     image: ghcr.io/intersectmbo/cardano-db-sync:sancho-5.0.0
-    networks:
-      - postgres
     environment:
       NETWORK: ${CARDANO_NETWORK}
-      POSTGRES_HOST: postgres
-      POSTGRES_PORT: 5432
+      POSTGRES_HOST: ${DBSYNC_POSTGRES_HOST}
+      POSTGRES_PORT: ${DBSYNC_POSTGRES_PORT:-5432}
       DISABLE_CACHE: ""
       DISABLE_LEDGER: ""
       DISABLE_EPOCH: ""
     secrets:
-      - postgres_user
+      - source: dbsync_postgres_user
+        target: postgres_user
       - source: dbsync_database
         target: postgres_db
-      - postgres_password
+      - source: dbsync_postgres_password
+        target: postgres_password
     volumes:
       - dbsync_data:/var/lib/cexplorer
       - node_ipc:/node-ipc

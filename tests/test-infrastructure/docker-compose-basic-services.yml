@@ -1,15 +1,12 @@
 version: "3.9"
 secrets:
-  postgres_user:
-    external: true
-    name:  ${PROJECT_NAME}_postgres_user
-  postgres_password:
-    external: true
-    name:  ${PROJECT_NAME}_postgres_password
+  test_infra_postgres_user:
+    x-content: postgres
+  test_infra_postgres_password:
+    x-content: ${POSTGRES_PASSWORD}
 configs:
-  postgres_db_setup.sql:
-    external: true
-    name: ${PROJECT_NAME}_postgres_db_setup.sql
+  test_infra_postgres_db_setup.sql:
+    x-template-file: ./configs_template/postgres_db_setup.sql
 
 volumes:
   postgres:
@@ -55,10 +52,12 @@ services:
       - POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password
       - POSTGRES_USER_FILE=/run/secrets/postgres_user
     secrets:
-      - postgres_password
-      - postgres_user
+      - source: test_infra_postgres_password
+        target: postgres_password
+      - source: test_infra_postgres_user
+        target: postgres_user
     configs:
-      - source: postgres_db_setup.sql
+      - source: test_infra_postgres_db_setup.sql
         target: /docker-entrypoint-initdb.d/postgres_db_setup.sql
     networks:
       - postgres

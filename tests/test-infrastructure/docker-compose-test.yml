@@ -1,8 +1,7 @@
 version: "3.9"
 secrets:
   lighthouserc.json:
-    external: true
-    name:  ${PROJECT_NAME}_lighthouserc.json
+    x-template-file: ./secrets_template/lighthouserc.json
 
 volumes:
   lhci_data:
@@ -39,7 +38,7 @@ services:
           memory: 300M
 
   metadata-api:
-    image: govtool/metadata-api:${GOVTOOL_TAG}
+    image: ${REGISTRY_HOST}/govtool/metadata-api:${GOVTOOL_TAG}
     build:
       context: ../test-metadata-api
     environment:

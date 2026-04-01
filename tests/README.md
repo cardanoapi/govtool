@@ -20,7 +20,7 @@ This directory contains tests for the GovTool project.
 - Executes load tests on the GovTool API using Gatling.
 
 ## Test Infrastructure
-- Includes Docker Compose files and scripts to deploy and manage the GovTool test environment.
+- Includes Docker Compose files and templates to deploy and manage the GovTool test environment with `docker-stack`.
 
 ## Metadata API
 - A simple service to host JSON metadata during testing.
