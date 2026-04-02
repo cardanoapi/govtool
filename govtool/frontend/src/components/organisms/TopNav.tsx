@@ -3,7 +3,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { AppBar, Box, Grid, IconButton, Menu, MenuItem } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Button, Link, FakeLink } from "@atoms";
-import { ICONS, IMAGES, PATHS, NAV_ITEMS, NavMenuItem } from "@consts";
+import {
+  ICONS,
+  IMAGES,
+  PATHS,
+  NAV_ITEMS,
+  NavMenuItem,
+  shouldDisplayNavItem,
+} from "@consts";
 import { useCardano, useFeatureFlag, useModal } from "@context";
 import { useScreenDimension, useTranslation } from "@hooks";
 import { openInNewTab } from "@utils";
@@ -22,6 +29,10 @@ export const TopNav = ({ isConnectButton = true }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { screenWidth, isMobile } = useScreenDimension();
   const { isEnabled, disconnectWallet, stakeKey } = useCardano();
+  const {
+    isProposalDiscussionForumEnabled,
+    isGovernanceOutcomesPillarEnabled,
+  } = useFeatureFlag();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -63,6 +74,15 @@ export const TopNav = ({ isConnectButton = true }) => {
         columnSpacing={screenWidth < 1024 ? 2 : 4}
       >
         {NAV_ITEMS.map((navItem) => {
+          if (
+            !shouldDisplayNavItem(navItem.dataTestId, {
+              isProposalDiscussionForumEnabled,
+              isGovernanceOutcomesPillarEnabled,
+            })
+          ) {
+            return null;
+          }
+
           if (isNavMenuItem(navItem)) {
             return (
               <Grid item key={navItem.label}>
@@ -218,19 +238,12 @@ const MenuNavItem: FC<{
 
   const filterChildNavItems = () => {
     if (navItem.dataTestId === "governance-actions") {
-      return (navItem.childNavItems || []).filter((item) => {
-        if (
-          !isProposalDiscussionForumEnabled &&
-          item.dataTestId === "proposed-governance-actions-link"
-        )
-          return false;
-        if (
-          !isGovernanceOutcomesPillarEnabled &&
-          item.dataTestId === "governance-actions-outcomes-link"
-        )
-          return false;
-        return true;
-      });
+      return (navItem.childNavItems || []).filter((item) =>
+        shouldDisplayNavItem(item.dataTestId, {
+          isProposalDiscussionForumEnabled,
+          isGovernanceOutcomesPillarEnabled,
+        }),
+      );
     }
     return navItem.childNavItems;
   };

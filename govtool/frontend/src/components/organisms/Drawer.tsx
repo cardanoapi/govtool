@@ -2,7 +2,13 @@ import { Box, Grid } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 import { DrawerLink, Spacer } from "@atoms";
-import { CONNECTED_NAV_ITEMS, IMAGES, PATHS, DRAWER_WIDTH } from "@consts";
+import {
+  CONNECTED_NAV_ITEMS,
+  IMAGES,
+  PATHS,
+  DRAWER_WIDTH,
+  shouldDisplayNavItem,
+} from "@consts";
 import { useFeatureFlag } from "@context";
 import { useGetVoterInfo } from "@hooks";
 import { WalletInfoCard, DRepInfoCard } from "@molecules";
@@ -55,59 +61,56 @@ export const Drawer = () => {
         rowGap={2}
       >
         {CONNECTED_NAV_ITEMS.map((navItem) => (
-          <Grid item key={navItem.label}>
-            <DrawerLink
-              {...navItem}
-              onClick={
-                navItem.newTabLink
-                  ? () => openInNewTab(navItem.newTabLink)
-                  : undefined
-              }
-            />
-            {navItem.childNavItems && (
-              <Grid
-                columns={1}
-                container
-                display="flex"
-                flex={1}
-                flexDirection="column"
-                mt={2}
-                pl={3}
-                rowGap={2}
-              >
-                {navItem.childNavItems.map((childItem) => {
-                  if (
-                    !isProposalDiscussionForumEnabled &&
-                    childItem.dataTestId === "proposal-discussion-link"
-                  ) {
-                    return null;
-                  }
+          shouldDisplayNavItem(navItem.dataTestId, {
+            isProposalDiscussionForumEnabled,
+            isGovernanceOutcomesPillarEnabled,
+          }) && (
+            <Grid item key={navItem.label}>
+              <DrawerLink
+                {...navItem}
+                onClick={
+                  navItem.newTabLink
+                    ? () => openInNewTab(navItem.newTabLink)
+                    : undefined
+                }
+              />
+              {navItem.childNavItems && (
+                <Grid
+                  columns={1}
+                  container
+                  display="flex"
+                  flex={1}
+                  flexDirection="column"
+                  mt={2}
+                  pl={3}
+                  rowGap={2}
+                >
+                  {navItem.childNavItems.map((childItem) => {
+                    if (
+                      !shouldDisplayNavItem(childItem.dataTestId, {
+                        isProposalDiscussionForumEnabled,
+                        isGovernanceOutcomesPillarEnabled,
+                      })
+                    ) {
+                      return null;
+                    }
 
-                  if (
-                    !isGovernanceOutcomesPillarEnabled &&
-                    (childItem.dataTestId ===
-                      "governance-actions-voted-by-me-link" ||
-                      childItem.dataTestId ===
-                        "governance-actions-outcomes-link")
-                  ) {
-                    return null;
-                  }
-
-                  return (
-                    <DrawerLink
-                      key={childItem.label}
-                      {...childItem}
-                      onClick={
-                        childItem.newTabLink
-                          ? () => openInNewTab(childItem.newTabLink!)
-                          : undefined
-                      }
-                    />
-                  );
-                })}
-              </Grid>
-            )}
-          </Grid>
+                    return (
+                      <DrawerLink
+                        key={childItem.label}
+                        {...childItem}
+                        onClick={
+                          childItem.newTabLink
+                            ? () => openInNewTab(childItem.newTabLink!)
+                            : undefined
+                        }
+                      />
+                    );
+                  })}
+                </Grid>
+              )}
+            </Grid>
+          )
         ))}
       </Grid>
       <Box p={2}>

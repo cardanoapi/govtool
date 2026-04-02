@@ -2,7 +2,7 @@ import { Box, Grid, IconButton, SwipeableDrawer } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 import { Background, Link } from "@atoms";
-import { CONNECTED_NAV_ITEMS, ICONS, PATHS } from "@consts";
+import { CONNECTED_NAV_ITEMS, ICONS, PATHS, shouldDisplayNavItem } from "@consts";
 import { DRepInfoCard, WalletInfoCard } from "@molecules";
 import { useGetVoterInfo, useScreenDimension } from "@hooks";
 import { openInNewTab } from "@utils";
@@ -86,65 +86,69 @@ export const DashboardDrawerMobile = ({
 
             <Grid container direction="column" rowGap={4} mt={6}>
               {navItems.map((navItem, i) => (
-                <Grid
-                  item
-                  key={
-                    navItem.dataTestId ??
-                    navItem.label ??
-                    navItem.navTo ??
-                    `nav-${i}`
-                  }
-                >
-                  <Link
-                    {...navItem}
-                    size="big"
-                    onClick={() => {
-                      if (navItem.newTabLink) openInNewTab(navItem.newTabLink);
-                      setIsDrawerOpen(false);
-                    }}
-                    isConnectWallet
-                  />
+                shouldDisplayNavItem(navItem.dataTestId ?? "", {
+                  isProposalDiscussionForumEnabled,
+                  isGovernanceOutcomesPillarEnabled,
+                }) && (
+                  <Grid
+                    item
+                    key={
+                      navItem.dataTestId ??
+                      navItem.label ??
+                      navItem.navTo ??
+                      `nav-${i}`
+                    }
+                  >
+                    <Link
+                      {...navItem}
+                      size="big"
+                      onClick={() => {
+                        if (navItem.newTabLink) openInNewTab(navItem.newTabLink);
+                        setIsDrawerOpen(false);
+                      }}
+                      isConnectWallet
+                    />
 
-                  {!!navItem.childNavItems?.length && (
-                    <Grid container direction="column" rowGap={4} mt={3} pl={3}>
-                      {navItem.childNavItems.map((childItem, ci) => {
-                        if (
-                          !isProposalDiscussionForumEnabled &&
-                          childItem.dataTestId === "proposal-discussion-link"
-                        ) {
-                          return null;
-                        }
-                        if (
-                          !isGovernanceOutcomesPillarEnabled &&
-                          (childItem.dataTestId ===
-                            "governance-actions-voted-by-me-link" ||
-                            childItem.dataTestId ===
-                              "governance-actions-outcomes-link")
-                        ) {
-                          return null;
-                        }
-                        return (
-                          <Link
-                            key={
-                              childItem.dataTestId ??
-                              childItem.label ??
-                              childItem.navTo ??
-                              `child-${i}-${ci}`
-                            }
-                            {...childItem}
-                            size="big"
-                            onClick={() => {
-                              if (childItem.newTabLink)
-                                openInNewTab(childItem.newTabLink);
-                              setIsDrawerOpen(false);
-                            }}
-                            isConnectWallet
-                          />
-                        );
-                      })}
-                    </Grid>
-                  )}
-                </Grid>
+                    {!!navItem.childNavItems?.length && (
+                      <Grid
+                        container
+                        direction="column"
+                        rowGap={4}
+                        mt={3}
+                        pl={3}
+                      >
+                        {navItem.childNavItems.map((childItem, ci) => {
+                          if (
+                            !shouldDisplayNavItem(childItem.dataTestId ?? "", {
+                              isProposalDiscussionForumEnabled,
+                              isGovernanceOutcomesPillarEnabled,
+                            })
+                          ) {
+                            return null;
+                          }
+                          return (
+                            <Link
+                              key={
+                                childItem.dataTestId ??
+                                childItem.label ??
+                                childItem.navTo ??
+                                `child-${i}-${ci}`
+                              }
+                              {...childItem}
+                              size="big"
+                              onClick={() => {
+                                if (childItem.newTabLink)
+                                  openInNewTab(childItem.newTabLink);
+                                setIsDrawerOpen(false);
+                              }}
+                              isConnectWallet
+                            />
+                          );
+                        })}
+                      </Grid>
+                    )}
+                  </Grid>
+                )
               ))}
             </Grid>
           </Box>

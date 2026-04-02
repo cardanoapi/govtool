@@ -88,7 +88,7 @@ export const MaintenanceEndingBanner = () => {
                   variant="caption"
                   fontWeight={600}
                   color="common.white"
-                  href="https://gov.tools/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0"
+                  href="https://govtool.cardanoapi.io/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0"
                   data-testid="govtool-info-link"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -109,7 +109,7 @@ export const MaintenanceEndingBanner = () => {
                   variant="caption"
                   fontWeight={600}
                   color="common.white"
-                  href="https://gov.tools/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0"
+                  href="https://govtool.cardanoapi.io/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0"
                   data-testid="govtool-info-link"
                   target="_blank"
                   rel="noopener noreferrer"

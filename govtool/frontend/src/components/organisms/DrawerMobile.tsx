@@ -3,7 +3,15 @@ import { NavLink } from "react-router-dom";
 import { Box, Grid, IconButton, SwipeableDrawer } from "@mui/material";
 
 import { Background, Button, Link, Typography } from "@atoms";
-import { ICONS, IMAGES, NAV_ITEMS, NavMenuItem, NavItem, PATHS } from "@consts";
+import {
+  ICONS,
+  IMAGES,
+  NAV_ITEMS,
+  NavMenuItem,
+  NavItem,
+  PATHS,
+  shouldDisplayNavItem,
+} from "@consts";
 import { useScreenDimension, useTranslation } from "@hooks";
 import { useFeatureFlag, useModal } from "@context";
 import { openInNewTab } from "@utils";
@@ -22,6 +30,10 @@ export const DrawerMobile = ({
   isDrawerOpen,
   setIsDrawerOpen,
 }: DrawerMobileProps) => {
+  const {
+    isProposalDiscussionForumEnabled,
+    isGovernanceOutcomesPillarEnabled,
+  } = useFeatureFlag();
   const { screenWidth } = useScreenDimension();
   const { openModal } = useModal();
   const { t } = useTranslation();
@@ -85,6 +97,15 @@ export const DrawerMobile = ({
           <Box sx={{ display: "flex", flex: 1, flexDirection: "column" }}>
             <Grid container direction="column" mt={6} rowGap={4}>
               {NAV_ITEMS.map((navItem) => {
+                if (
+                  !shouldDisplayNavItem(navItem.dataTestId, {
+                    isProposalDiscussionForumEnabled,
+                    isGovernanceOutcomesPillarEnabled,
+                  })
+                ) {
+                  return null;
+                }
+
                 if (isNavMenuItem(navItem)) {
                   return (
                     <MenuNavItem
@@ -137,19 +158,12 @@ const MenuNavItem: FC<{
 
   const filterChildNavItems = () => {
     if (navItem.dataTestId === "governance-actions") {
-      return (navItem.childNavItems || []).filter((item) => {
-        if (
-          !isProposalDiscussionForumEnabled &&
-          item.dataTestId === "proposed-governance-actions-link"
-        )
-          return false;
-        if (
-          !isGovernanceOutcomesPillarEnabled &&
-          item.dataTestId === "governance-actions-outcomes-link"
-        )
-          return false;
-        return true;
-      });
+      return (navItem.childNavItems || []).filter((item) =>
+        shouldDisplayNavItem(item.dataTestId, {
+          isProposalDiscussionForumEnabled,
+          isGovernanceOutcomesPillarEnabled,
+        }),
+      );
     }
     return navItem.childNavItems;
   };

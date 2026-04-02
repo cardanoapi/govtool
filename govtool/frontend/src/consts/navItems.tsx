@@ -24,6 +24,43 @@ export type NavMenuItem = {
   label: string;
   childNavItems?: Array<NavItem>;
 };
+
+type NavVisibilityFlags = {
+  isProposalDiscussionForumEnabled: boolean;
+  isGovernanceOutcomesPillarEnabled: boolean;
+};
+
+export const shouldDisplayNavItem = (
+  dataTestId: string,
+  {
+    isProposalDiscussionForumEnabled,
+    isGovernanceOutcomesPillarEnabled,
+  }: NavVisibilityFlags,
+) => {
+  if (
+    !isProposalDiscussionForumEnabled &&
+    [
+      "budget-discussion-link",
+      "proposal-discussion-link",
+      "proposed-governance-actions-link",
+    ].includes(dataTestId)
+  ) {
+    return false;
+  }
+
+  if (
+    !isGovernanceOutcomesPillarEnabled &&
+    [
+      "governance-actions-voted-by-me-link",
+      "governance-actions-outcomes-link",
+    ].includes(dataTestId)
+  ) {
+    return false;
+  }
+
+  return true;
+};
+
 export const NAV_ITEMS: Array<NavItem | NavMenuItem> = [
   {
     dataTestId: "dashboard-link",
