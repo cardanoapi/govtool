@@ -34,5 +34,8 @@
     "eslint-config-next": "^16.2.2",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0"
+  },
+  "overrides": {
+     "@tootallnate/once": "^3.0.1"
   }
 }
