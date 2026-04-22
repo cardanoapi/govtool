@@ -148,13 +148,13 @@
 
       function navigateToReport(reportName, groupName) {
         if (groupName == "Web App Boilerplate") {
-          window.location.href = `/govtool-test-reports/${reportName}`;
+          window.location.href = `/govtool/${reportName}`;
           return;
         }
         const replaceDeploymentFromGroupName = groupName
           .replace(/ Deployment/g, "")
           .toLowerCase();
-        window.location.href = `/govtool-test-reports/${replaceDeploymentFromGroupName}/${reportName}`;
+        window.location.href = `/govtool/${replaceDeploymentFromGroupName}/${reportName}`;
       }
 
       function renderCards(data) {
