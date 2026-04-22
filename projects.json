@@ -1,0 +1,15 @@
+{
+  "name": "GovTool Test Reports",
+  "description": "A collection of test reports for GovTool",
+  "tests": [
+   
+    {
+      "name": "Preview Deployment",
+      "description": "Tests conducted in the preview deployment environment",
+      "tests": [
+        { "name": "govtool-frontend" },
+      ]
+    },
+    
+  ]
+}
