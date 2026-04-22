@@ -1,0 +1,5 @@
+✔ Uploaded Wellington metadata to bucket
+ℹ Submitting tx: {"lock_id":"2307496daa25db588143769504aaa3934cf9bdc7bd0a30cec93364ed2dae92f4","tx":{"certificates":[{"type":"registerdrep","key":"08aaa9a2ff47bfd55e366f1c31113c3a43b1674efbe6133049708a5f","anchor":{"url":"https://metadata-govtool.cardanoapi.io/data/Wellington","dataHash":"2e03e075940cb0fbebb10d7ccdb28826e9962a2a2eaa0fc943c682550e8e94c3"}}],"selections":[{"type":"PaymentSigningKeyShelley_ed25519","description":"Stake Signing Key","cborHex":"58204a3399ce5f708f3e1c07dd1325383d704df17d860fe860027abed7c46c67c888"},{"type":"PaymentSigningKeyShelley_ed25519","description":"Payment Signing Key","cborHex":"58204a6ae978d1656381cfe8d9316c7262dd96d72a0c2ce6368ad8559b392170aa0e"},"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"],"changeAddress":"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"}}
+✔ Tx submitted: 3df2295bb2948ce4ceda9188723d4c7637cedbb066fb019c29472123f1e03b56
+ℹ Waiting for tx completion: 3df2295bb2948ce4ceda9188723d4c7637cedbb066fb019c29472123f1e03b56
+✔ Tx completed
