@@ -1,0 +1,344 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 11-proposal-budget/proposalBudget.dRep.pb.spec.ts >> Budget proposal dRep behaviour >> 11M. Should display DRep tag, name and ID when a registered DRep comments on a proposal
+- Location: tests/11-proposal-budget/proposalBudget.dRep.pb.spec.ts:85:7
+
+# Error details
+
+```
+Error: expect(locator).toHaveText(expected) failed
+
+Locator: locator('[data-testid^="comment-"][data-testid$="-content-card"]').first().getByTestId('dRep-given-name')
+Expected: "Bradford"
+Timeout: 60000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toHaveText" with timeout 60000ms
+  - waiting for locator('[data-testid^="comment-"][data-testid$="-content-card"]').first().getByTestId('dRep-given-name')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+      - button [ref=e14] [cursor=pointer]:
+        - img [ref=e15]
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - link "The Info Action" [ref=e20] [cursor=pointer]:
+          - /url: https://gov.tools/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+        - text: has passed — thank you for your support!
+      - generic [ref=e21]:
+        - text: We have now submitted a
+        - link "Treasury Withdrawal" [ref=e22] [cursor=pointer]:
+          - /url: https://gov.tools/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+        - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+  - img "bg-orange" [ref=e23]
+  - generic [ref=e24]:
+    - generic [ref=e25]:
+      - link "app-logo" [ref=e26] [cursor=pointer]:
+        - /url: /dashboard
+        - img "app-logo" [ref=e27]
+      - generic [ref=e28]:
+        - link "icon Home" [ref=e30] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=e31]:
+            - img "icon" [ref=e32]
+            - paragraph [ref=e33]: Home
+        - link "icon DRep Directory" [ref=e35] [cursor=pointer]:
+          - /url: /connected/drep_directory
+          - generic [ref=e36]:
+            - img "icon" [ref=e37]
+            - paragraph [ref=e38]: DRep Directory
+        - link "icon Budget Proposals" [ref=e40] [cursor=pointer]:
+          - /url: /budget_discussion
+          - generic [ref=e41]:
+            - img "icon" [ref=e42]
+            - paragraph [ref=e43]: Budget Proposals
+        - generic [ref=e44]:
+          - link "icon Governance Actions" [ref=e45] [cursor=pointer]:
+            - /url: /connected/governance_actions
+            - generic [ref=e46]:
+              - img "icon" [ref=e47]
+              - paragraph [ref=e48]: Governance Actions
+          - generic [ref=e49]:
+            - link "Proposals" [ref=e50] [cursor=pointer]:
+              - /url: /proposal_discussion
+              - generic [ref=e51]:
+                - img [ref=e53]
+                - paragraph [ref=e55]: Proposals
+            - link "icon Live Voting" [ref=e56] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e57]:
+                - img "icon" [ref=e58]
+                - paragraph [ref=e59]: Live Voting
+            - link "icon Outcomes" [ref=e60] [cursor=pointer]:
+              - /url: /outcomes
+              - generic [ref=e61]:
+                - img "icon" [ref=e62]
+                - paragraph [ref=e63]: Outcomes
+        - link "icon Guides" [ref=e65] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e66]:
+            - img "icon" [ref=e67]
+            - paragraph [ref=e68]: Guides
+        - link "icon FAQs" [ref=e70] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e71]:
+            - img "icon" [ref=e72]
+            - paragraph [ref=e73]: FAQs
+      - generic [ref=e74]:
+        - generic [ref=e75]:
+          - generic [ref=e76]:
+            - paragraph [ref=e77]: "My DRep ID:"
+            - img "copy" [ref=e78] [cursor=pointer]
+          - paragraph [ref=e80]: drep1pagh5r57g0xqla08qt75jvzdxw033zp7mnqlamhp56ylugtds3m
+        - generic [ref=e82]:
+          - paragraph [ref=e83]: "Connected Wallet:"
+          - generic [ref=e84]:
+            - paragraph [ref=e85]: 006bfbeccb18f94a57e82627dfb883889bba3dca1225b94e32088d2c8b635099c7dbf421853dc0d491bc6fda0a34fa47c7b3bfe1e0b9d90c51
+            - button "Disconnect" [ref=e86] [cursor=pointer]: Disconnect
+    - generic [ref=e87]:
+      - navigation [ref=e88]:
+        - paragraph [ref=e90]: Budget Proposals
+        - generic [ref=e92]:
+          - img [ref=e93]
+          - paragraph [ref=e95]: "Voting power:"
+          - paragraph [ref=e96]: ₳ 0
+      - paragraph [ref=e101]:
+        - generic [ref=e102]:
+          - button "Show all" [ref=e104] [cursor=pointer]:
+            - img [ref=e106]
+            - text: Show all
+          - generic [ref=e110]:
+            - generic [ref=e111]:
+              - generic [ref=e112]:
+                - heading "tam sum angelus" [level=2] [ref=e113]
+                - heading "@river42_1776913100828" [level=5] [ref=e114]
+              - button [ref=e116] [cursor=pointer]:
+                - img [ref=e117]
+            - generic [ref=e119]:
+              - text: Budget category
+              - paragraph [ref=e120]: Core
+            - generic [ref=e121]:
+              - generic [ref=e122]: "Last Edit: 23 April 2026"
+              - generic [ref=e123]:
+                - text: Review Versions
+                - paragraph
+            - generic [ref=e124]:
+              - heading "Proposal Ownership" [level=5] [ref=e125]
+              - generic [ref=e126]:
+                - text: What social handles would you like to be used? E.g. Github, X
+                - paragraph [ref=e128]:
+                  - link "Louisa.Hamill14@yahoo.com" [ref=e129] [cursor=pointer]:
+                    - /url: mailto:Louisa.Hamill14@yahoo.com
+            - generic [ref=e130]:
+              - heading "Problem Statements and Proposal Benefits" [level=5] [ref=e131]
+              - generic [ref=e132]:
+                - text: Problem Statement
+                - paragraph [ref=e134]: Bene coruscus viduo pel. Amplitudo arto pel comburo speculum.
+            - button "Read more" [ref=e135] [cursor=pointer]: Read more
+            - generic "Total comments number" [ref=e137]:
+              - generic [ref=e138]:
+                - button "proposal comments" [disabled]:
+                  - generic "proposal comments":
+                    - generic: "1"
+                  - img
+          - heading "Poll of DRep sentiment" [level=3] [ref=e140]
+          - generic [ref=e143]:
+            - generic [ref=e144]:
+              - paragraph [ref=e145]: Should this proposal be included in the next Cardano Budget?
+              - generic [ref=e147]:
+                - button "Yes" [ref=e148] [cursor=pointer]: "Yes"
+                - button "No" [ref=e149] [cursor=pointer]: "No"
+            - separator [ref=e150]
+            - generic [ref=e151]: "Total votes: 0"
+            - generic [ref=e152]:
+              - paragraph [ref=e153]: "Yes: (0%)"
+              - button "See details" [ref=e154] [cursor=pointer]: See details
+            - generic [ref=e155]:
+              - paragraph [ref=e156]: "No: (0%)"
+              - button "See details" [ref=e157] [cursor=pointer]: See details
+          - generic [ref=e158]:
+            - heading "Comments" [level=3] [ref=e159]
+            - button [ref=e160] [cursor=pointer]:
+              - img [ref=e161]
+          - generic [ref=e165]:
+            - heading "Submit a comment" [level=6] [ref=e166]
+            - generic [ref=e167]:
+              - generic [ref=e168]:
+                - textbox [ref=e169]
+                - group
+              - paragraph [ref=e170]:
+                - generic [ref=e171]: 0/15000
+            - generic [ref=e172]:
+              - button "Comment" [disabled]:
+                - text: Comment
+                - generic:
+                  - img
+          - generic [ref=e178]:
+            - generic [ref=e179]:
+              - generic [ref=e180]:
+                - heading "@elliott.cremin80_1776913118240" [level=6] [ref=e181]
+                - generic [ref=e183]: DRep
+              - link "drep1pagh5r57g0xqla08qt75j..." [ref=e185] [cursor=pointer]:
+                - /url: /connected/drep_directory/drep1pagh5r57g0xqla08qt75jvzdxw033zp7mnqlamhp56ylugtds3m
+            - generic [ref=e186]:
+              - generic [ref=e187]: 23/04/2026 - 3:39 AM UTC
+              - generic "Report inappropriate comment":
+                - paragraph
+            - paragraph [ref=e190]: infit tonsor optio tamdiu denuncio
+            - generic [ref=e191]:
+              - generic [ref=e192]:
+                - img [ref=e193]
+                - paragraph [ref=e195]: "0"
+              - button "Reply" [ref=e197] [cursor=pointer]:
+                - img [ref=e199]
+                - text: Reply
+      - contentinfo [ref=e201]:
+        - paragraph [ref=e202]: © 2026 GovTool
+        - generic [ref=e203]:
+          - generic [ref=e204] [cursor=pointer]: Privacy policy
+          - generic [ref=e205] [cursor=pointer]: Terms of Use
+        - generic [ref=e206]:
+          - button "helpIcon Help" [ref=e207] [cursor=pointer]:
+            - img "helpIcon" [ref=e209]
+            - text: Help
+          - button "Feedback" [ref=e210] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e211]
+```
+
+# Test source
+
+```ts
+  9   | import { skipIfMainnet } from "@helpers/cardano";
+  10  | 
+  11  | test.beforeEach(async () => {
+  12  |   await setAllureEpic("11. Proposal Budget");
+  13  |   await skipIfMainnet();
+  14  | });
+  15  | 
+  16  | test.describe("Budget proposal dRep behaviour", () => {
+  17  |   test.use({
+  18  |     storageState: dRep03AuthFile,
+  19  |     wallet: dRep03Wallet,
+  20  |   });
+  21  | 
+  22  |   test.describe("Budget proposal voting", () => {
+  23  |     let budgetDiscussionDetailsPage: BudgetDiscussionDetailsPage;
+  24  |     test.beforeEach(async ({ page, proposalId }) => {
+  25  |       budgetDiscussionDetailsPage = new BudgetDiscussionDetailsPage(page);
+  26  |       await budgetDiscussionDetailsPage.goto(proposalId);
+  27  | 
+  28  |       await budgetDiscussionDetailsPage.verifyUserLink.click();
+  29  |       await budgetDiscussionDetailsPage.verifyDRepLink.click();
+  30  |     });
+  31  | 
+  32  |     test("11K. Should allow registered DRep to vote on a proposal", async () => {
+  33  |       const pollVotes = ["Yes", "No"];
+  34  |       const choice = faker.helpers.arrayElement(pollVotes);
+  35  | 
+  36  |       await budgetDiscussionDetailsPage.voteOnPoll(choice);
+  37  | 
+  38  |       await expect(budgetDiscussionDetailsPage.pollYesBtn).not.toBeVisible({
+  39  |         timeout: 60_000,
+  40  |       });
+  41  |       await expect(budgetDiscussionDetailsPage.pollNoBtn).not.toBeVisible();
+  42  |       await expect(
+  43  |         budgetDiscussionDetailsPage.currentPage.getByTestId(
+  44  |           `poll-${choice.toLowerCase()}-count`
+  45  |         )
+  46  |       ).toHaveText(`${choice}: (100%)`);
+  47  |       // opposite of random choice vote
+  48  |       const oppositeVote = pollVotes.filter((vote) => vote !== choice)[0];
+  49  |       await expect(
+  50  |         budgetDiscussionDetailsPage.currentPage.getByTestId(
+  51  |           `poll-${oppositeVote.toLowerCase()}-count`
+  52  |         )
+  53  |       ).toHaveText(`${oppositeVote}: (0%)`);
+  54  |     });
+  55  | 
+  56  |     test("11L. Should allow registered DRep to change vote on a proposal", async () => {
+  57  |       test.slow();
+  58  |       const pollVotes = ["Yes", "No"];
+  59  |       const choice = faker.helpers.arrayElement(pollVotes);
+  60  | 
+  61  |       await budgetDiscussionDetailsPage.voteOnPoll(choice);
+  62  |       await budgetDiscussionDetailsPage.changePollVote();
+  63  | 
+  64  |       await expect(budgetDiscussionDetailsPage.pollYesBtn).not.toBeVisible({
+  65  |         timeout: 60_000,
+  66  |       });
+  67  |       await expect(budgetDiscussionDetailsPage.pollNoBtn).not.toBeVisible();
+  68  | 
+  69  |       // vote must be changed
+  70  |       await expect(
+  71  |         budgetDiscussionDetailsPage.currentPage.getByTestId(
+  72  |           `poll-${choice.toLowerCase()}-count`
+  73  |         )
+  74  |       ).toHaveText(`${choice}: (0%)`, { timeout: 60_000 });
+  75  |       // opposite of random choice vote
+  76  |       const oppositeVote = pollVotes.filter((vote) => vote !== choice)[0];
+  77  |       await expect(
+  78  |         budgetDiscussionDetailsPage.currentPage.getByTestId(
+  79  |           `poll-${oppositeVote.toLowerCase()}-count`
+  80  |         )
+  81  |       ).toHaveText(`${oppositeVote}: (100%)`);
+  82  |     });
+  83  |   });
+  84  | 
+  85  |   test("11M. Should display DRep tag, name and ID when a registered DRep comments on a proposal", async ({
+  86  |     page,
+  87  |   }) => {
+  88  |     const comment = faker.lorem.words(5);
+  89  |     const budgetDiscussionPage = new BudgetDiscussionPage(page);
+  90  |     await budgetDiscussionPage.goto();
+  91  |     await budgetDiscussionPage.verifyUserLink.click();
+  92  |     const budgetDiscussionDetailsPage =
+  93  |       await budgetDiscussionPage.viewFirstProposal();
+  94  |     await budgetDiscussionPage.verifyDRepLink.click();
+  95  |     await budgetDiscussionDetailsPage.addComment(comment);
+  96  | 
+  97  |     await expect(
+  98  |       budgetDiscussionDetailsPage.currentPage
+  99  |         .locator('[data-testid^="comment-"][data-testid$="-content"]')
+  100 |         .first()
+  101 |     ).toHaveText(comment);
+  102 | 
+  103 |     const dRepCommentedCard = budgetDiscussionDetailsPage.currentPage
+  104 |       .locator('[data-testid^="comment-"][data-testid$="-content-card"]')
+  105 |       .first();
+  106 | 
+  107 |     await expect(dRepCommentedCard.getByTestId("dRep-tag")).toBeVisible();
+  108 | 
+> 109 |     await expect(dRepCommentedCard.getByTestId("dRep-given-name")).toHaveText(
+      |                                                                    ^ Error: expect(locator).toHaveText(expected) failed
+  110 |       dRep03Wallet.givenName,
+  111 |       { timeout: 60_000 }
+  112 |     );
+  113 | 
+  114 |     const dRepIdWithoutDotted = (
+  115 |       await dRepCommentedCard.getByTestId("dRep-id").textContent()
+  116 |     ).replace(/\./g, "");
+  117 | 
+  118 |     expect(dRep03Wallet.dRepId).toContain(dRepIdWithoutDotted);
+  119 |   });
+  120 | });
+  121 | 
+```

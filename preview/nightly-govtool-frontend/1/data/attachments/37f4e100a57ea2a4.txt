@@ -1,0 +1,317 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 2-delegation/delegation.loggedin.spec.ts >> DRep dependent tests >> 2I. Should check validity of DRep Id
+- Location: tests/2-delegation/delegation.loggedin.spec.ts:101:7
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByText('No DReps found')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for getByText('No DReps found')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+      - button [ref=e14] [cursor=pointer]:
+        - img [ref=e15]
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - link "The Info Action" [ref=e20] [cursor=pointer]:
+          - /url: https://gov.tools/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+        - text: has passed — thank you for your support!
+      - generic [ref=e21]:
+        - text: We have now submitted a
+        - link "Treasury Withdrawal" [ref=e22] [cursor=pointer]:
+          - /url: https://gov.tools/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+        - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+  - img "bg-orange" [ref=e23]
+  - generic [ref=e24]:
+    - generic [ref=e25]:
+      - link "app-logo" [ref=e26] [cursor=pointer]:
+        - /url: /dashboard
+        - img "app-logo" [ref=e27]
+      - generic [ref=e28]:
+        - link "icon Home" [ref=e30] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=e31]:
+            - img "icon" [ref=e32]
+            - paragraph [ref=e33]: Home
+        - link "icon DRep Directory" [ref=e35] [cursor=pointer]:
+          - /url: /connected/drep_directory
+          - generic [ref=e36]:
+            - img "icon" [ref=e37]
+            - paragraph [ref=e38]: DRep Directory
+        - link "icon Budget Proposals" [ref=e40] [cursor=pointer]:
+          - /url: /budget_discussion
+          - generic [ref=e41]:
+            - img "icon" [ref=e42]
+            - paragraph [ref=e43]: Budget Proposals
+        - generic [ref=e44]:
+          - link "icon Governance Actions" [ref=e45] [cursor=pointer]:
+            - /url: /connected/governance_actions
+            - generic [ref=e46]:
+              - img "icon" [ref=e47]
+              - paragraph [ref=e48]: Governance Actions
+          - generic [ref=e49]:
+            - link "Proposals" [ref=e50] [cursor=pointer]:
+              - /url: /proposal_discussion
+              - generic [ref=e51]:
+                - img [ref=e53]
+                - paragraph [ref=e55]: Proposals
+            - link "icon Live Voting" [ref=e56] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e57]:
+                - img "icon" [ref=e58]
+                - paragraph [ref=e59]: Live Voting
+            - link "icon Outcomes" [ref=e60] [cursor=pointer]:
+              - /url: /outcomes
+              - generic [ref=e61]:
+                - img "icon" [ref=e62]
+                - paragraph [ref=e63]: Outcomes
+        - link "icon Guides" [ref=e65] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e66]:
+            - img "icon" [ref=e67]
+            - paragraph [ref=e68]: Guides
+        - link "icon FAQs" [ref=e70] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e71]:
+            - img "icon" [ref=e72]
+            - paragraph [ref=e73]: FAQs
+      - generic [ref=e76]:
+        - paragraph [ref=e77]: "Connected Wallet:"
+        - generic [ref=e78]:
+          - paragraph [ref=e79]: 002adb976e59369fc0a9c7784f6433989673c8cab691291cb9524f2bfaf14a27252b682253f4f1c0dccc418300865efd3e16f29d8811704dad
+          - button "Disconnect" [ref=e80] [cursor=pointer]: Disconnect
+    - generic [ref=e81]:
+      - navigation [ref=e82]:
+        - paragraph [ref=e84]: DRep Directory
+      - generic [ref=e86]:
+        - generic [ref=e87]:
+          - paragraph [ref=e88]: Delegation Options
+          - button "Automated Voting Options arrow" [ref=e90] [cursor=pointer]:
+            - paragraph [ref=e92]: Automated Voting Options
+            - img "arrow" [ref=e94]
+        - paragraph [ref=e95]: Find a DRep
+        - generic [ref=e96]:
+          - generic [ref=e97]:
+            - generic [ref=e98]:
+              - img [ref=e99]
+              - textbox "Search for a DRep name or ID" [active] [ref=e101]: drep1ryq87rfchpduehrl25269mk49wysvj2dsfxypl97pmtduyun025
+              - button [ref=e102] [cursor=pointer]:
+                - img [ref=e103]
+            - generic [ref=e106]:
+              - generic [ref=e107] [cursor=pointer]:
+                - img "filter" [ref=e108]
+                - paragraph [ref=e109]: Filter
+                - paragraph [ref=e111]: "1"
+              - generic [ref=e112] [cursor=pointer]:
+                - img "sort" [ref=e113]
+                - paragraph [ref=e114]: "Sort by: Voting Activity"
+          - button "Active" [ref=e116]:
+            - generic [ref=e117]: Active
+            - button [ref=e118] [cursor=pointer]:
+              - img [ref=e119]
+        - list [ref=e121]:
+          - listitem [ref=e122]:
+            - generic [ref=e126]:
+              - generic [ref=e128]:
+                - generic [ref=e129]:
+                  - img [ref=e131]
+                  - generic [ref=e133]:
+                    - paragraph [ref=e134]: Test
+                    - generic [ref=e135]:
+                      - button "drep1ytr8dkp69xz4k9gvwruhz528ywl8v5xnqy407u8ye9w6zmctrw8qe" [ref=e136] [cursor=pointer]:
+                        - paragraph [ref=e137]: drep1ytr8dkp69xz4k9gvwruhz528ywl8v5xnqy407u8ye9w6zmctrw8qe
+                      - button "(CIP-105) drep1cemdsw3fs4d32rrsl9c4z3erhem9p5cp9tlhpexftksk7pht8h4" [ref=e138] [cursor=pointer]:
+                        - paragraph [ref=e139]: (CIP-105) drep1cemdsw3fs4d32rrsl9c4z3erhem9p5cp9tlhpexftksk7pht8h4
+                - generic [ref=e140]:
+                  - generic [ref=e141]:
+                    - paragraph [ref=e142]: Voting power
+                    - paragraph [ref=e143]: ₳ 9,498
+                  - separator [ref=e144]
+                  - generic [ref=e145]:
+                    - paragraph [ref=e146]: Status
+                    - generic [ref=e149]: Active
+              - generic [ref=e150]:
+                - button "View details" [ref=e151] [cursor=pointer]: View details
+                - button "Delegate" [ref=e152] [cursor=pointer]: Delegate
+        - generic [ref=e154]:
+          - generic [ref=e155]:
+            - paragraph [ref=e156]: "Rows per page:"
+            - generic [ref=e157]:
+              - combobox [ref=e158] [cursor=pointer]:
+                - generic [ref=e159]: "5"
+              - textbox: "5"
+              - img [ref=e160] [cursor=pointer]
+          - paragraph [ref=e162]: 1-1 of 1
+          - generic [ref=e163]:
+            - button "Previous page" [disabled]:
+              - img
+            - paragraph [ref=e164]: "1"
+            - button "Next page" [disabled]:
+              - img
+      - contentinfo [ref=e165]:
+        - paragraph [ref=e166]: © 2026 GovTool
+        - generic [ref=e167]:
+          - generic [ref=e168] [cursor=pointer]: Privacy policy
+          - generic [ref=e169] [cursor=pointer]: Terms of Use
+        - generic [ref=e170]:
+          - button "helpIcon Help" [ref=e171] [cursor=pointer]:
+            - img "helpIcon" [ref=e173]
+            - text: Help
+          - button "Feedback" [ref=e174] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e175]
+```
+
+# Test source
+
+```ts
+  12  | test.use({ storageState: user01AuthFile, wallet: user01Wallet });
+  13  | 
+  14  | test.beforeEach(async () => {
+  15  |   await setAllureEpic("2. Delegation");
+  16  | });
+  17  | 
+  18  | test("2B. Should access DRep Directory page", async ({ page }) => {
+  19  |   await page.goto("/");
+  20  | 
+  21  |   await page.getByTestId("view-drep-directory-button").click();
+  22  |   if (isMobile(page)) {
+  23  |     await expect(page.getByText("DRep Directory")).toBeVisible();
+  24  |   } else {
+  25  |     await expect(
+  26  |       page.getByRole("navigation").getByText("DRep Directory")
+  27  |     ).toBeVisible();
+  28  |   }
+  29  | });
+  30  | 
+  31  | test("2D. Should show delegation options in connected state", async ({
+  32  |   page,
+  33  | }) => {
+  34  |   const dRepDirectoryPage = new DRepDirectoryPage(page);
+  35  |   await dRepDirectoryPage.goto();
+  36  | 
+  37  |   // Verifying automatic delegation options
+  38  |   await dRepDirectoryPage.automaticDelegationOptionsDropdown.click();
+  39  |   await expect(dRepDirectoryPage.abstainDelegationCard).toBeVisible();
+  40  |   await expect(dRepDirectoryPage.signalNoConfidenceCard).toBeVisible();
+  41  | 
+  42  |   expect(await dRepDirectoryPage.delegateBtns.count()).toBeGreaterThanOrEqual(
+  43  |     2
+  44  |   );
+  45  | });
+  46  | 
+  47  | test("2X_1. Should include info button and voting power on the Abstain card", async ({
+  48  |   page,
+  49  | }) => {
+  50  |   const dRepDirectoryPage = new DRepDirectoryPage(page);
+  51  |   await dRepDirectoryPage.goto();
+  52  | 
+  53  |   await dRepDirectoryPage.automaticDelegationOptionsDropdown.click();
+  54  | 
+  55  |   await expect(
+  56  |     dRepDirectoryPage.abstainDelegationCard.getByText("₳")
+  57  |   ).toBeVisible();
+  58  | 
+  59  |   await expect(dRepDirectoryPage.abstainInfoButton).toBeVisible();
+  60  | });
+  61  | 
+  62  | test("2X_2. Should include info button and voting power on the Signal-No-Confidence card", async ({
+  63  |   page,
+  64  | }) => {
+  65  |   const dRepDirectoryPage = new DRepDirectoryPage(page);
+  66  |   await dRepDirectoryPage.goto();
+  67  | 
+  68  |   await dRepDirectoryPage.automaticDelegationOptionsDropdown.click();
+  69  | 
+  70  |   await expect(
+  71  |     dRepDirectoryPage.signalNoConfidenceCard.getByText("₳")
+  72  |   ).toBeVisible();
+  73  | 
+  74  |   await expect(dRepDirectoryPage.signalNoConfidenceInfoButton).toBeVisible();
+  75  | });
+  76  | 
+  77  | test.describe("DRep dependent tests", () => {
+  78  |   let dRepGivenName: string;
+  79  |   let dRepId: string;
+  80  |   let dRepDirectoryPage: DRepDirectoryPage;
+  81  | 
+  82  |   test.beforeEach(async ({ page }) => {
+  83  |     ({ dRepDirectoryPage, dRepId, dRepGivenName } =
+  84  |       await fetchFirstActiveDRepDetails(page));
+  85  |   });
+  86  | 
+  87  |   test("2T. Should show warning message on delegation when insufficient funds", async ({
+  88  |     page,
+  89  |   }) => {
+  90  |     await dRepDirectoryPage.searchInput.fill(dRepId);
+  91  |     await page.getByTestId(`${dRepId}-delegate-button`).click();
+  92  | 
+  93  |     await expect(dRepDirectoryPage.delegationErrorModal).toBeVisible({
+  94  |       timeout: 60_000,
+  95  |     });
+  96  |     await expect(dRepDirectoryPage.delegationErrorModal).toHaveText(
+  97  |       /UTxO Balance Insufficient/
+  98  |     );
+  99  |   });
+  100 | 
+  101 |   test("2I. Should check validity of DRep Id", async () => {
+  102 |     await dRepDirectoryPage.searchInput.fill(dRepId);
+  103 |     await expect(dRepDirectoryPage.getDRepCard(dRepId)).toBeVisible({
+  104 |       timeout: 60_000,
+  105 |     });
+  106 | 
+  107 |     const wallet = await ShelleyWallet.generate();
+  108 |     const invalidDRepId = extractDRepFromWallet(wallet);
+  109 | 
+  110 |     await dRepDirectoryPage.searchInput.fill(invalidDRepId);
+  111 | 
+> 112 |     await expect(dRepDirectoryPage.NoDRepText).toBeVisible();
+      |                                                ^ Error: expect(locator).toBeVisible() failed
+  113 |     await expect(
+  114 |       dRepDirectoryPage.getDRepCard(invalidDRepId)
+  115 |     ).not.toBeVisible();
+  116 |   });
+  117 | 
+  118 |   test("2J. Should search by DRep id and DRep givenname", async () => {
+  119 |     // search by dRep Id
+  120 |     await dRepDirectoryPage.searchInput.fill(dRepId);
+  121 |     await expect(dRepDirectoryPage.getDRepCard(dRepId)).toBeVisible();
+  122 | 
+  123 |     // search by dRep givenname
+  124 |     await dRepDirectoryPage.searchInput.fill(dRepGivenName);
+  125 |     const searchDRepCards = await dRepDirectoryPage.getAllListedDReps();
+  126 | 
+  127 |     for (const dRepCard of searchDRepCards) {
+  128 |       expect((await dRepCard.innerText()).includes(dRepGivenName));
+  129 |     }
+  130 |   });
+  131 | });
+  132 | 
+```

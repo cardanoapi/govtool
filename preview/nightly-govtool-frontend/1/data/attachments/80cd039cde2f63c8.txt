@@ -1,0 +1,5 @@
+✔ Uploaded Bradford metadata to bucket
+ℹ Submitting tx: {"lock_id":"ee9aa9da33551ba2ac6091db5473d2254d847b13f2c3c6a7461fc1b23d5e790b","tx":{"certificates":[{"type":"registerdrep","key":"0f517a0e9e43cc0ff5e702fd49304d339f18883edcc1feeee1a689fe","anchor":{"url":"https://metadata-govtool.cardanoapi.io/data/Bradford","dataHash":"e50f640ca8e10b2c2c4a0569fab0b0d6f7c3caee0215a718c4fecf30f1e4f7a6"}}],"selections":[{"type":"PaymentSigningKeyShelley_ed25519","description":"Stake Signing Key","cborHex":"5820bcbee208eda57f2571ae136109ae1a190491c0de51bd2c2bd5a054d461ef21e3"},{"type":"PaymentSigningKeyShelley_ed25519","description":"Payment Signing Key","cborHex":"58204a6ae978d1656381cfe8d9316c7262dd96d72a0c2ce6368ad8559b392170aa0e"},"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"],"changeAddress":"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"}}
+✔ Tx submitted: 69c1a6d0d615c6c624dd7eb55e6d0eb594e90ab96ab49f436b2fb7396e0cc861
+ℹ Waiting for tx completion: 69c1a6d0d615c6c624dd7eb55e6d0eb594e90ab96ab49f436b2fb7396e0cc861
+✔ Tx completed

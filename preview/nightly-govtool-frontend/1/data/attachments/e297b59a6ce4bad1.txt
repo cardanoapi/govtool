@@ -1,0 +1,379 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 9-outcomes/outcomes.spec.ts >> Outcome details >> Invalid Outcome Metadata >> 9H_3A: Should display "Data Not Verifiable" message in outcomes when metadata hash and URL do not match. in disconnect state
+- Location: tests/9-outcomes/outcomes.spec.ts:98:11
+
+# Error details
+
+```
+Error: The URL "https://metadata-govtool.cardanoapi.io/data/data.jsonld" and hash "e71bf6171adda3754a87fff5c2d8d9e404eb3366428a5be13f7e76357a39004f" do not match the expected properties for type "Data Not Verifiable".
+
+expect(locator).toHaveText(expected) failed
+
+Locator:  getByTestId('single-action-title')
+Expected: "Data Not Verifiable"
+Received: "Data Missing"
+Timeout:  60000ms
+
+Call log:
+  - The URL "https://metadata-govtool.cardanoapi.io/data/data.jsonld" and hash "e71bf6171adda3754a87fff5c2d8d9e404eb3366428a5be13f7e76357a39004f" do not match the expected properties for type "Data Not Verifiable". with timeout 60000ms
+  - waiting for getByTestId('single-action-title')
+    63 × locator resolved to <p data-testid="single-action-title" class="MuiTypography-root MuiTypography-body1 css-18zfkm5">Data Missing</p>
+       - unexpected value "Data Missing"
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+      - button [ref=e14] [cursor=pointer]:
+        - img [ref=e15]
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - link "The Info Action" [ref=e20] [cursor=pointer]:
+          - /url: https://gov.tools/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+        - text: has passed — thank you for your support!
+      - generic [ref=e21]:
+        - text: We have now submitted a
+        - link "Treasury Withdrawal" [ref=e22] [cursor=pointer]:
+          - /url: https://gov.tools/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+        - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+  - img "bg-orange" [ref=e23]
+  - generic [ref=e24]:
+    - banner [ref=e26]:
+      - generic [ref=e27]:
+        - link "app-logo" [ref=e28] [cursor=pointer]:
+          - /url: /
+          - img "app-logo" [ref=e29]
+        - generic [ref=e30]:
+          - button "Connect" [ref=e31] [cursor=pointer]: Connect
+          - img "drawer-icon" [ref=e32]
+    - generic [ref=e37]:
+      - generic [ref=e38]:
+        - img "arrow" [ref=e39]
+        - link "Outcomes" [ref=e40] [cursor=pointer]:
+          - /url: /outcomes
+          - paragraph [ref=e41]: Outcomes
+        - separator [ref=e42]
+        - paragraph [ref=e43]: Data Missing
+      - generic [ref=e44]:
+        - generic [ref=e46]:
+          - generic [ref=e47]:
+            - paragraph [ref=e48]: Data Missing
+            - button [ref=e49] [cursor=pointer]:
+              - img [ref=e50]
+          - generic [ref=e52]:
+            - paragraph [ref=e53]: The data that was originally used when this Governance Action was created has not been found.
+            - paragraph [ref=e54]: GovTool uses external sources for Governance Action data, and these sources are maintained by the proposers of the Actions. This error means that GovTool cannot locate the data on the URL specified when the Governance Action was originally posted.
+            - text: Learn More
+          - generic [ref=e55]:
+            - generic [ref=e56]:
+              - paragraph [ref=e57]: Governance Action Type
+              - generic [ref=e60]: Info Action
+            - generic [ref=e61]:
+              - generic [ref=e62]:
+                - paragraph [ref=e63]: "Submitted: Mon Jan 27, 2025"
+                - generic [ref=e64]:
+                  - paragraph [ref=e65]: (Epoch 825)
+                  - img [ref=e67]
+              - generic [ref=e69]:
+                - paragraph [ref=e70]: "Expired: Mon Mar 24, 2025"
+                - generic [ref=e71]:
+                  - paragraph [ref=e72]: (Epoch 856)
+                  - img [ref=e74]
+            - generic [ref=e76]:
+              - paragraph [ref=e77]: Status
+              - generic [ref=e78]:
+                - generic [ref=e80]: Expired
+                - generic [ref=e82]: Not Ratified
+            - generic [ref=e83]:
+              - paragraph [ref=e84]: Governance Action ID
+              - generic [ref=e85]:
+                - paragraph [ref=e86]: 833382b22ebd07bb7dee60001cfdce78ede3b8397b1027daeb7996f61c072bde#0
+                - button [ref=e87] [cursor=pointer]:
+                  - img [ref=e88]
+            - generic [ref=e92]:
+              - paragraph [ref=e93]: (CIP-129) Governance Action ID
+              - generic [ref=e94]:
+                - paragraph [ref=e95]: gov_action1svec9v3wh5rmkl0wvqqpelww0rk78wpe0vgz0kht0xt0v8q8900qqwjn8dl
+                - button [ref=e96] [cursor=pointer]:
+                  - img [ref=e97]
+          - generic [ref=e101]:
+            - paragraph [ref=e102]: Metadata anchor link
+            - generic [ref=e103] [cursor=pointer]:
+              - paragraph [ref=e104]: https://metadata-govtool.cardanoapi.io/data/data.jsonld
+              - button [ref=e105]:
+                - img [ref=e106]
+          - generic [ref=e108]:
+            - paragraph [ref=e109]: Metadata anchor hash
+            - generic [ref=e110]:
+              - paragraph [ref=e111]: e71bf6171adda3754a87fff5c2d8d9e404eb3366428a5be13f7e76357a39004f
+              - button [ref=e112] [cursor=pointer]:
+                - img [ref=e113]
+          - generic [ref=e117]:
+            - paragraph [ref=e118]: Author(s)
+            - paragraph [ref=e119]: No author data available
+          - generic [ref=e120]:
+            - paragraph [ref=e121]: Discussion forum
+            - paragraph [ref=e122]: No discussion for this action in GovTool.
+        - generic [ref=e124]:
+          - generic [ref=e125]:
+            - paragraph [ref=e126]: Outcome
+            - generic [ref=e128]: Expired
+          - paragraph [ref=e129]: "Votes Submitted for this Governance Action:"
+          - generic [ref=e130]:
+            - paragraph [ref=e131]: DReps
+            - generic [ref=e132]:
+              - generic [ref=e133]:
+                - generic [ref=e135]:
+                  - progressbar [ref=e136]
+                  - generic:
+                    - paragraph: "Yes"
+                    - paragraph: "No"
+                - generic [ref=e138]:
+                  - generic [ref=e139]: ₳ 0 - 0.00%
+                  - generic [ref=e140]: ₳ 117.25M - 100.00%
+              - generic [ref=e142]:
+                - table [ref=e143]:
+                  - rowgroup [ref=e144]:
+                    - row "Metric Value (₳)" [ref=e145]:
+                      - columnheader "Metric" [ref=e146]
+                      - columnheader "Value (₳)" [ref=e147]
+                  - rowgroup [ref=e148]:
+                    - row "Total Active Stake 132,412,311" [ref=e149]:
+                      - cell "Total Active Stake" [ref=e150]:
+                        - paragraph [ref=e151]: Total Active Stake
+                      - cell "132,412,311" [ref=e152]
+                    - row "Total Abstain 15,164,178" [ref=e153]:
+                      - cell "Total Abstain" [ref=e154]:
+                        - paragraph [ref=e155]: Total Abstain
+                      - cell "15,164,178" [ref=e156]
+                    - row "Ratification Threshold Stake 117,248,133" [ref=e157]:
+                      - cell "Ratification Threshold Stake" [ref=e158]:
+                        - paragraph [ref=e159]: Ratification Threshold Stake
+                      - cell "117,248,133" [ref=e160]
+                - generic [ref=e162] [cursor=pointer]:
+                  - text: Expand
+                  - img [ref=e163]
+          - separator [ref=e165]
+          - generic [ref=e166]:
+            - paragraph [ref=e167]: SPOs
+            - generic [ref=e168]:
+              - generic [ref=e169]:
+                - generic [ref=e171]:
+                  - progressbar [ref=e172]
+                  - generic:
+                    - paragraph: "Yes"
+                    - paragraph: "No"
+                - generic [ref=e174]:
+                  - generic [ref=e175]: ₳ 0 - 0.00%
+                  - generic [ref=e176]: ₳ 697.55M - 100.00%
+              - generic [ref=e178]:
+                - table [ref=e179]:
+                  - rowgroup [ref=e180]:
+                    - row "Metric Value (₳)" [ref=e181]:
+                      - columnheader "Metric" [ref=e182]
+                      - columnheader "Value (₳)" [ref=e183]
+                  - rowgroup [ref=e184]:
+                    - row "Total Active Stake 750,622,734" [ref=e185]:
+                      - cell "Total Active Stake" [ref=e186]:
+                        - paragraph [ref=e187]: Total Active Stake
+                      - cell "750,622,734" [ref=e188]
+                    - row "Total Abstain 53,073,990" [ref=e189]:
+                      - cell "Total Abstain" [ref=e190]:
+                        - paragraph [ref=e191]: Total Abstain
+                      - cell "53,073,990" [ref=e192]
+                    - row "Ratification Threshold Stake 697,548,745" [ref=e193]:
+                      - cell "Ratification Threshold Stake" [ref=e194]:
+                        - paragraph [ref=e195]: Ratification Threshold Stake
+                      - cell "697,548,745" [ref=e196]
+                - generic [ref=e198] [cursor=pointer]:
+                  - text: Expand
+                  - img [ref=e199]
+          - separator [ref=e201]
+          - generic [ref=e202]:
+            - paragraph [ref=e203]: Constitutional Committee
+            - generic [ref=e204]:
+              - generic [ref=e205]:
+                - generic [ref=e206]:
+                  - paragraph [ref=e209]: 1 - 67%
+                  - generic [ref=e212]:
+                    - progressbar [ref=e213]
+                    - generic:
+                      - paragraph: "Yes"
+                      - paragraph: "No"
+                - generic [ref=e215]:
+                  - generic [ref=e216]: 0 - 0.00%
+                  - generic [ref=e217]: 0 - 100.00%
+              - table [ref=e220]:
+                - rowgroup [ref=e221]:
+                  - row "Metric Value" [ref=e222]:
+                    - columnheader "Metric" [ref=e223]
+                    - columnheader "Value" [ref=e224]
+                - rowgroup [ref=e225]:
+                  - row "Number of Active CCs 1" [ref=e226]:
+                    - cell "Number of Active CCs" [ref=e227]:
+                      - paragraph [ref=e228]: Number of Active CCs
+                    - cell "1" [ref=e229]
+                  - row "Abstain Votes 0" [ref=e230]:
+                    - cell "Abstain Votes" [ref=e231]:
+                      - paragraph [ref=e232]: Abstain Votes
+                    - cell "0" [ref=e233]
+                  - row "Not Voted 1" [ref=e234]:
+                    - cell "Not Voted" [ref=e235]:
+                      - paragraph [ref=e236]: Not Voted
+                    - cell "1" [ref=e237]
+          - separator [ref=e238]
+          - generic [ref=e239]:
+            - paragraph [ref=e240]: Outcome
+            - generic [ref=e241]:
+              - generic [ref=e244]:
+                - img [ref=e246]
+                - paragraph [ref=e248]: DReps
+              - generic [ref=e251]:
+                - img [ref=e253]
+                - paragraph [ref=e255]: SPOs
+              - generic [ref=e258]:
+                - img [ref=e260]
+                - paragraph [ref=e262]: CC
+    - contentinfo [ref=e263]:
+      - paragraph [ref=e264]: © 2026 GovTool
+      - generic [ref=e265]:
+        - generic [ref=e266] [cursor=pointer]: Privacy policy
+        - generic [ref=e267] [cursor=pointer]: Terms of Use
+      - generic [ref=e268]:
+        - button "helpIcon Help" [ref=e269] [cursor=pointer]:
+          - img "helpIcon" [ref=e271]
+          - text: Help
+        - button "Feedback" [ref=e272] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e273]
+```
+
+# Test source
+
+```ts
+  222 |             govActionDetailsPage.sPosResultData.getByRole("row", {
+  223 |               name: "Auto-Abstain",
+  224 |             }),
+  225 |             {
+  226 |               message: `SPos "Auto-Abstain" voting power checked for ${currentPageUrl}`,
+  227 |             }
+  228 |           ).toHaveText(`Auto-Abstain${sPosAutoAbstain}`); //BUG missing testIds
+  229 |           await expect(
+  230 |             govActionDetailsPage.sPosResultData.getByRole("row", {
+  231 |               name: "No Confidence",
+  232 |             }),
+  233 |             {
+  234 |               message: `SPos "No Confidence" voting power checked for ${currentPageUrl}`,
+  235 |             }
+  236 |           ).toHaveText(`No Confidence${sPosNoConfidence}`); //BUG missing testIds
+  237 |           await expect(
+  238 |             govActionDetailsPage.sPosResultData.getByRole("row", {
+  239 |               name: "Explicit",
+  240 |             }),
+  241 |             {
+  242 |               message: `SPos "Explicit" voting power checked for ${currentPageUrl}`,
+  243 |             }
+  244 |           ).toHaveText(
+  245 |             `Explicit${formatWithThousandSeparator(proposalToCheck.pool_abstain_votes, false)}`
+  246 |           ); //BUG missing testIds
+  247 |           await expect(
+  248 |             govActionDetailsPage.sPosResultData
+  249 |               .getByRole("row", {
+  250 |                 name: "No",
+  251 |               })
+  252 |               .first(),
+  253 |             {
+  254 |               message: `SPos "No" voting power checked for ${currentPageUrl}`,
+  255 |             }
+  256 |           ).toHaveText(
+  257 |             `No${formatWithThousandSeparator(totalSposNoVotes, false)}`
+  258 |           ); //BUG missing testIds
+  259 |         }
+  260 | 
+  261 |         // check ccCommittee votes
+  262 |         if (areCCVoteTotalsDisplayed(proposalToCheck)) {
+  263 |           const ccYesVoteSubmittedText =
+  264 |             await govActionDetailsPage.ccCommitteeYesVotes.textContent();
+  265 | 
+  266 |           const { percentage: yesPercentage } = parseVotingPowerAndPercentage(
+  267 |             ccYesVoteSubmittedText
+  268 |           );
+  269 | 
+  270 |           await expect(govActionDetailsPage.ccCommitteeYesVotes, {
+  271 |             message: `CC "Yes" vote count checked for ${currentPageUrl}`,
+  272 |           }).toHaveText(`${proposalToCheck.cc_yes_votes} - ${yesPercentage}`);
+  273 |           await expect(
+  274 |             govActionDetailsPage.cCResultData.getByRole("row", {
+  275 |               name: "Abstain Votes",
+  276 |             }),
+  277 |             {
+  278 |               message: `CC "Abstain" vote count checked for ${currentPageUrl}`,
+  279 |             }
+  280 |           ).toHaveText(`Abstain Votes${proposalToCheck.cc_abstain_votes}`); //BUG missing testIds
+  281 | 
+  282 |           const noPercentage = 100 - parseFloat(yesPercentage.replace("%", ""));
+  283 |           await expect(govActionDetailsPage.ccCommitteeNoVotes, {
+  284 |             message: `CC "No" vote count checked for ${currentPageUrl}`,
+  285 |           }).toHaveText(
+  286 |             `${proposalToCheck.cc_no_votes} - ${noPercentage.toFixed(2)}%`
+  287 |           );
+  288 |         }
+  289 |       })
+  290 |     );
+  291 |   }
+  292 | 
+  293 |   async verifyInvalidOutcomeMetadata({
+  294 |     outcomeResponse,
+  295 |     type,
+  296 |     url,
+  297 |     hash,
+  298 |   }: {
+  299 |     outcomeResponse: outcomeProposal;
+  300 |     type: string;
+  301 |     url: string;
+  302 |     hash: string;
+  303 |   }) {
+  304 |     let governanceActionPromise = this.page.route("**/governance-actions/*", async (route) => {
+  305 |       if (route.request().url().includes("/governance-actions/metadata")) {
+  306 |         await route.continue();
+  307 |       } else {
+  308 |         await route.fulfill({ body: JSON.stringify(outcomeResponse)});
+  309 |       }
+  310 |     }
+  311 |     );
+  312 |     const outcomePage = new OutComesPage(this.page);
+  313 |     await outcomePage.goto();
+  314 |     await outcomePage.viewFirstOutcomes();
+  315 |     await governanceActionPromise;
+  316 |     const outcomeTitle = await outcomePage.title.textContent();
+  317 | 
+  318 |     await expect(
+  319 |       outcomePage.title,
+  320 |       outcomeTitle.toLowerCase() !== type.toLowerCase() &&
+  321 |       `The URL "${url}" and hash "${hash}" do not match the expected properties for type "${type}".`
+> 322 |     ).toHaveText(type, {
+      |       ^ Error: The URL "https://metadata-govtool.cardanoapi.io/data/data.jsonld" and hash "e71bf6171adda3754a87fff5c2d8d9e404eb3366428a5be13f7e76357a39004f" do not match the expected properties for type "Data Not Verifiable".
+  323 |       ignoreCase: true,
+  324 |       timeout: 60_000,
+  325 |     });
+  326 |     await expect(outcomePage.metadataErrorLearnMoreBtn).toBeVisible();
+  327 |   }
+  328 | }
+  329 | 
+```
