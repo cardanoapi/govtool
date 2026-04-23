@@ -1,0 +1,5 @@
+✔ Uploaded Kathryn metadata to bucket
+ℹ Submitting tx: {"lock_id":"6faf03cc3552b66bd4cfd3743a5fba5bc1c22d6fc3cda7fd2bbcc181bf04a50f","tx":{"certificates":[{"type":"registerdrep","key":"f2623571467ed106c4fdd225abf40ec193fc116289dfa0f6eb57b45a","anchor":{"url":"https://metadata-govtool.cardanoapi.io/data/Kathryn","dataHash":"c5e9ecb294ea560d8465cf6d62540fa98fcad71362560aff8b38cdf3504ffb28"}}],"selections":[{"type":"PaymentSigningKeyShelley_ed25519","description":"Stake Signing Key","cborHex":"5820c5b3ef3a0e839801e8ca46a6c5f44f4d8952201057d4de65da066033106fcb21"},{"type":"PaymentSigningKeyShelley_ed25519","description":"Payment Signing Key","cborHex":"58204a6ae978d1656381cfe8d9316c7262dd96d72a0c2ce6368ad8559b392170aa0e"},"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"],"changeAddress":"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"}}
+✔ Tx submitted: 35b35f27804073c754df62580bcdabd65957c8b9cac5e62331de576cee8011a4
+ℹ Waiting for tx completion: 35b35f27804073c754df62580bcdabd65957c8b9cac5e62331de576cee8011a4
+✔ Tx completed
