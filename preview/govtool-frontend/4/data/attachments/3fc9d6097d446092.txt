@@ -1,0 +1,8 @@
+✖ Failed to load resource: the server responded with a status of 406 ()
+✖ Failed to load resource: the server responded with a status of 406 ()
+✔ Uploaded Sherwood.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 406 ()
+✖ Failed to load resource: the server responded with a status of 406 ()
+ℹ Waiting for tx completion: f2a1cfd33706b116fd1cfdaea724c68e98c1132c6c9c79914ad7887a401864ef
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 406 ()
