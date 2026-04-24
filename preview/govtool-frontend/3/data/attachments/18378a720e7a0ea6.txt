@@ -1,0 +1,8 @@
+✖ Failed to load resource: the server responded with a status of 406 ()
+✖ Failed to load resource: the server responded with a status of 406 ()
+✔ Uploaded Lacey.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 406 ()
+✖ Failed to load resource: the server responded with a status of 406 ()
+ℹ Waiting for tx completion: e02b294638a5e1e83f4c84e436ac5ac00e51310397cd4b0352551fd55d1414dc
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 406 ()

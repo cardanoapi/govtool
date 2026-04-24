@@ -1,0 +1,102 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: proposal-submission.ga.auth.setup.ts >> Create auth for proposal submission balance dependent test
+- Location: tests/proposal-submission.ga.auth.setup.ts:14:6
+
+# Error details
+
+```
+Error: No wallets found for purpose: proposalSubmissionCopy
+```
+
+# Test source
+
+```ts
+  1  | import { StaticWallet } from "@types";
+  2  | import { LockInterceptor } from "./lockInterceptor";
+  3  | import { atomicWriteFile, createFile, getFile } from "@helpers/file";
+  4  | const path = require("path");
+  5  | 
+  6  | const baseFilePath = path.resolve(__dirname, "./_mock");
+  7  | 
+  8  | export type Purpose =
+  9  |   | "registerDRep"
+  10 |   | "registeredDRep"
+  11 |   | "proposalSubmission"
+  12 |   | "proposalSubmissionCopy"
+  13 |   | "registerDRepCopy"
+  14 |   | "registeredDRepCopy";
+  15 | 
+  16 | /**
+  17 |  * WalletManager class is responsible for managing a list of temporary wallets.
+  18 |  * It ensures that each wallet is used only once across all tests.
+  19 |  */
+  20 | class WalletManager {
+  21 |   private static instance: WalletManager;
+  22 | 
+  23 |   public static getInstance(): WalletManager {
+  24 |     if (!WalletManager.instance) {
+  25 |       WalletManager.instance = new WalletManager();
+  26 |     }
+  27 |     return WalletManager.instance;
+  28 |   }
+  29 | 
+  30 |   async writeWallets(wallets: StaticWallet[], purpose: Purpose) {
+  31 |     await createFile(`${purpose}Wallets.json`, wallets);
+  32 |   }
+  33 | 
+  34 |   async readWallets(purpose: Purpose): Promise<StaticWallet[]> {
+  35 |     return (await getFile(`${purpose}Wallets.json`)) ?? [];
+  36 |   }
+  37 | 
+  38 |   async removeCopyWallet(walletToRemove: StaticWallet, purpose: Purpose) {
+  39 |     const currentWallets = await this.readWallets(purpose);
+  40 |     const updatedWallets = currentWallets.filter(
+  41 |       (wallet) => wallet.address !== walletToRemove.address
+  42 |     );
+  43 |     await this.writeWallets(updatedWallets, purpose);
+  44 |   }
+  45 |   async getFirstWalletByPurpose(purpose: Purpose): Promise<StaticWallet> {
+  46 |     const wallets = await this.readWallets(purpose);
+  47 |     if (wallets.length === 0) {
+> 48 |       throw new Error(`No wallets found for purpose: ${purpose}`);
+     |             ^ Error: No wallets found for purpose: proposalSubmissionCopy
+  49 |     }
+  50 |     return wallets[0];
+  51 |   }
+  52 | 
+  53 |   async popWallet(purpose: Purpose): Promise<StaticWallet> {
+  54 |     const popCb = async () => {
+  55 |       const wallets = await this.readWallets(purpose);
+  56 |       if (wallets.length === 0) {
+  57 |         throw new Error("No more wallets available");
+  58 |       }
+  59 |       const wallet = wallets.pop();
+  60 |       await this.writeWallets(wallets, purpose);
+  61 | 
+  62 |       await LockInterceptor.releaseLock("tempWallets");
+  63 |       return wallet;
+  64 |     };
+  65 | 
+  66 |     return await LockInterceptor.intercept<StaticWallet>("tempWallets", popCb);
+  67 |   }
+  68 | 
+  69 |   async updateWalletGivenName(address: string, givenName: string) {
+  70 |     const wallets: StaticWallet[] = (await getFile("wallets.json")) ?? [];
+  71 |     wallets.map((wallet: StaticWallet) => {
+  72 |       if (wallet.address === address) {
+  73 |         wallet.givenName = givenName;
+  74 |       }
+  75 |     });
+  76 |     await atomicWriteFile("wallets.json", wallets);
+  77 |   }
+  78 | }
+  79 | export default WalletManager.getInstance();
+  80 | 
+```

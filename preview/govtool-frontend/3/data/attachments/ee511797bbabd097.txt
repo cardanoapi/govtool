@@ -1,0 +1,12 @@
+✖ Failed to load resource: the server responded with a status of 406 ()
+✖ expect(locator).toBeVisible() failed
+
+Locator: getByTestId('drep1m6772qq6zpjsjtfclmky380vjgscq5hgzqth8dplhs97c8gfem2-delegate-button')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for getByTestId('drep1m6772qq6zpjsjtfclmky380vjgscq5hgzqth8dplhs97c8gfem2-delegate-button')
+
