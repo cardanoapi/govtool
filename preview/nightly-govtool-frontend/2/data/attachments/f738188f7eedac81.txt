@@ -1,0 +1,4 @@
+wallet balance 100022
+wallet address addr_test1qrv465eytzk8sdcdx8cmv2mfcqcys29kxp583qu66le6jh949qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998qm0lefq
+✔ Uploaded guardrail-script metadata to bucket
+2

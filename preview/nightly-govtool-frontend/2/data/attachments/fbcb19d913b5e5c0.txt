@@ -1,0 +1,6 @@
+✖ Failed to load resource: the server responded with a status of 406 ()
+✖ Failed to load resource: the server responded with a status of 406 ()
+✔ Uploaded Darrion.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 406 ()
+ℹ Waiting for tx completion: 93915cba599f3fb4dfc2bb4977d78c494baa43aac1b2bfe1b523cfcda26b6691
+✔ Tx completed

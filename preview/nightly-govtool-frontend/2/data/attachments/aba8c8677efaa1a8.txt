@@ -1,0 +1,5 @@
+✔ Uploaded Clint metadata to bucket
+ℹ Submitting tx: {"lock_id":"a4af164e1f33e27aabea840ac46104938865e1ec592c7f948ef0eb56fa931398","tx":{"certificates":[{"type":"registerdrep","key":"a5a7a6f43cb331290b6bcdf7941b161c9f9e8b2bc9f7c256a1308ac6","anchor":{"url":"https://metadata-govtool.cardanoapi.io/data/Clint","dataHash":"8c0e9614e715c2cfaeefaafe9474e1b19254ba14c5f9762d8a8023de7bdf3d6d"}}],"selections":[{"type":"PaymentSigningKeyShelley_ed25519","description":"Stake Signing Key","cborHex":"582046239c3c92faabd0e6b618ce61b27d96c4702770200d5afd5a2f44495aa35a5c"},{"type":"PaymentSigningKeyShelley_ed25519","description":"Payment Signing Key","cborHex":"58204a6ae978d1656381cfe8d9316c7262dd96d72a0c2ce6368ad8559b392170aa0e"},"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"],"changeAddress":"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"}}
+✔ Tx submitted: dcb004f792384bdd712b254886327268e8440432474ae0143f2674d20c4bec4b
+ℹ Waiting for tx completion: dcb004f792384bdd712b254886327268e8440432474ae0143f2674d20c4bec4b
+✔ Tx completed
