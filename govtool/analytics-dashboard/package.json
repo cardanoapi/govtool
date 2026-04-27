@@ -36,6 +36,8 @@
     "jest-environment-jsdom": "^30.3.0"
   },
   "overrides": {
-     "@tootallnate/once": "^3.0.1"
+    "@tootallnate/once": "^3.0.1",
+    "uuid": "^14.0.0",
+    "postcss": "^8.5.10"
   }
 }

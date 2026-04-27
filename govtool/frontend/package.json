@@ -123,6 +123,7 @@
     "underscore": "^1.13.8",
     "jsonpath": "^1.3.0",
     "bfj": "^9.1.3",
-    "@tootallnate/once": "^3.0.1"
+    "@tootallnate/once": "^3.0.1",
+    "uuid": "^14.0.0"
   }
 }
