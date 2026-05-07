@@ -1,0 +1,5 @@
+✔ Uploaded Dakota metadata to bucket
+ℹ Submitting tx: {"lock_id":"cf0c990fb51bcb955fb6e3c3f6ea4a13373935f50352fc3088eddece3d74ac52","tx":{"certificates":[{"type":"registerdrep","key":"ef7759fcf1ab183bb9ec873dd29f967a47e81e0180cdf3cffeca759a","anchor":{"url":"https://metadata-govtool.cardanoapi.io/data/Dakota","dataHash":"2bc4117169d03d0e21554f7dc46917205cc9b04c8c00a3c82b9e426f41b3f1f7"}}],"selections":[{"type":"PaymentSigningKeyShelley_ed25519","description":"Stake Signing Key","cborHex":"5820e3a50f62244e9dc051f9db053c050ff9ee2e3738fbb6015350ece4dc9eb0c93e"},{"type":"PaymentSigningKeyShelley_ed25519","description":"Payment Signing Key","cborHex":"58204a6ae978d1656381cfe8d9316c7262dd96d72a0c2ce6368ad8559b392170aa0e"},"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"],"changeAddress":"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"}}
+✔ Tx submitted: f3760455785fa03c28c2587e62f8db9d9f52025c4dadd5e140928b0c9b4e53b2
+ℹ Waiting for tx completion: f3760455785fa03c28c2587e62f8db9d9f52025c4dadd5e140928b0c9b4e53b2
+✔ Tx completed

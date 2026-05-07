@@ -1,0 +1,255 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 11-proposal-budget/proposalBudget.spec.ts >> Budget proposal list manipulation >> 11B_1. Should search for budget proposals by title
+- Location: tests/11-proposal-budget/proposalBudget.spec.ts:38:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: page.waitForResponse: Test timeout of 180000ms exceeded.
+=========================== logs ===========================
+waiting for response "**/api/bds?**"
+============================================================
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+      - button [ref=e14] [cursor=pointer]:
+        - img [ref=e15]
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - link "The Info Action" [ref=e20] [cursor=pointer]:
+          - /url: https://govtool.cardanoapi.io/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+        - text: has passed — thank you for your support!
+      - generic [ref=e21]:
+        - text: We have now submitted a
+        - link "Treasury Withdrawal" [ref=e22] [cursor=pointer]:
+          - /url: https://govtool.cardanoapi.io/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+        - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+  - generic [ref=e23]:
+    - banner [ref=e25]:
+      - generic [ref=e26]:
+        - link "app-logo" [ref=e27] [cursor=pointer]:
+          - /url: /
+          - img "app-logo" [ref=e28]
+        - generic [ref=e29]:
+          - button "Connect" [ref=e30] [cursor=pointer]: Connect
+          - img "drawer-icon" [ref=e31]
+    - generic [ref=e39]:
+      - heading "Budget Proposals" [level=1] [ref=e41]
+      - generic [ref=e43]:
+        - button "Submit proposal for Cardano budget" [disabled]
+        - generic [ref=e45]:
+          - paragraph [ref=e46]: To submit a budget proposal, you need to
+          - paragraph [ref=e47]:
+            - generic [ref=e48] [cursor=pointer]: connect a Cardano wallet
+      - generic [ref=e51]:
+        - img [ref=e53]
+        - textbox "Search..." [ref=e55]
+        - group
+      - generic [ref=e57]:
+        - button "Filter:" [ref=e58] [cursor=pointer]:
+          - text: "Filter:"
+          - img [ref=e60]
+        - 'button "Sort: Newest" [ref=e62] [cursor=pointer]':
+          - text: "Sort: Newest"
+          - img [ref=e64]
+    - contentinfo [ref=e66]:
+      - paragraph [ref=e67]: © 2026 GovTool
+      - generic [ref=e68]:
+        - generic [ref=e69] [cursor=pointer]: Privacy policy
+        - generic [ref=e70] [cursor=pointer]: Terms of Use
+      - generic [ref=e71]:
+        - button "helpIcon Help" [ref=e72] [cursor=pointer]:
+          - img "helpIcon" [ref=e74]
+          - text: Help
+        - button "Feedback" [ref=e75] [cursor=pointer]: Feedback
+```
+
+# Test source
+
+```ts
+  1   | import environments from "@constants/environments";
+  2   | import { budgetProposalfilterOptionNames } from "@constants/index";
+  3   | import { faker } from "@faker-js/faker";
+  4   | import { test } from "@fixtures/walletExtension";
+  5   | import { setAllureEpic } from "@helpers/allure";
+  6   | import { injectLogger } from "@helpers/page";
+  7   | import { extractProposalIdFromUrl } from "@helpers/string";
+  8   | import { functionWaitedAssert } from "@helpers/waitedLoop";
+  9   | import BudgetDiscussionDetailsPage from "@pages/budgetDiscussionDetailsPage";
+  10  | import BudgetDiscussionPage from "@pages/budgetDiscussionPage";
+  11  | import { expect } from "@playwright/test";
+  12  | import {
+  13  |   BudgetDiscussionEnum,
+  14  |   BudgetProposalFilterTypes,
+  15  |   ProposedGovAction,
+  16  | } from "@types";
+  17  | 
+  18  | const mockBudgetProposal = require("../../lib/_mock/budgetProposal.json");
+  19  | const mockPoll = require("../../lib/_mock/budgetProposalPoll.json");
+  20  | const mockComments = require("../../lib/_mock/budgetProposalComments.json");
+  21  | 
+  22  | test.beforeEach(async ({}) => {
+  23  |   await setAllureEpic("11. Proposal Budget");
+  24  | });
+  25  | 
+  26  | test("11A. Should access budget proposal page in disconnect state", async ({
+  27  |   page,
+  28  | }) => {
+  29  |   const budgetDiscussionPage = new BudgetDiscussionPage(page);
+  30  |   await budgetDiscussionPage.goto();
+  31  | 
+  32  |   await expect(
+  33  |     budgetDiscussionPage.currentPage.getByText(/Budget Proposals/i)
+  34  |   ).toHaveCount(2);
+  35  | });
+  36  | 
+  37  | test.describe("Budget proposal list manipulation", () => {
+  38  |   test("11B_1. Should search for budget proposals by title", async ({
+  39  |     page,
+  40  |   }) => {
+  41  |     let proposalName = "EchoFeed";
+  42  |     let proposalNameSet = false;
+  43  | 
+  44  |     await page.route("**/api/bds?**", async (route) => {
+  45  |       const response = await route.fetch();
+  46  |       const json = await response.json();
+  47  |       if (!proposalNameSet && "data" in json && json["data"].length > 0) {
+  48  |         const randomIndex = Math.floor(Math.random() * json["data"].length);
+  49  |         proposalName =
+  50  |           json["data"][randomIndex]["attributes"]["bd_proposal_detail"]["data"][
+  51  |             "attributes"
+  52  |           ]["proposal_name"];
+  53  |         proposalNameSet = true;
+  54  |       }
+  55  |       await route.fulfill({
+  56  |         status: 200,
+  57  |         contentType: "application/json",
+  58  |         body: JSON.stringify(json),
+  59  |       });
+  60  |     });
+  61  | 
+> 62  |     const responsePromise = page.waitForResponse("**/api/bds?**");
+      |                                  ^ Error: page.waitForResponse: Test timeout of 180000ms exceeded.
+  63  |     const budgetDiscussionPage = new BudgetDiscussionPage(page);
+  64  |     await budgetDiscussionPage.goto();
+  65  | 
+  66  |     await responsePromise;
+  67  | 
+  68  |     await budgetDiscussionPage.searchInput.fill(proposalName);
+  69  | 
+  70  |     await page.waitForTimeout(2000);
+  71  | 
+  72  |     await functionWaitedAssert(
+  73  |       async () => {
+  74  |         const proposalCards = await budgetDiscussionPage.getAllProposals();
+  75  |         for (const proposalCard of proposalCards) {
+  76  |           await expect(proposalCard).toBeVisible();
+  77  |           const proposalTitle = await proposalCard
+  78  |             .getByTestId("budget-discussion-title")
+  79  |             .textContent();
+  80  |           expect(proposalTitle.toLowerCase()).toContain(
+  81  |             proposalName.toLowerCase()
+  82  |           );
+  83  |         }
+  84  |       },
+  85  |       {
+  86  |         message: `A proposal card does not contain the search term ${proposalName}`,
+  87  |       }
+  88  |     );
+  89  |   });
+  90  | 
+  91  |   test.describe("Filter and sort budget proposals", () => {
+  92  |     let budgetDiscussionPage: BudgetDiscussionPage;
+  93  | 
+  94  |     test.beforeEach(async ({ page }) => {
+  95  |       budgetDiscussionPage = new BudgetDiscussionPage(page);
+  96  |       await budgetDiscussionPage.goto();
+  97  |     });
+  98  | 
+  99  |     test("11B_2. Should filter budget proposals by categories", async () => {
+  100 |       test.slow();
+  101 |       await budgetDiscussionPage.filterBtn.click();
+  102 | 
+  103 |       // proposal type filter
+  104 |       await budgetDiscussionPage.applyAndValidateFilters(
+  105 |         Object.values(BudgetDiscussionEnum),
+  106 |         budgetDiscussionPage._validateTypeFiltersInProposalCard
+  107 |       );
+  108 |     });
+  109 | 
+  110 |     test("11B_3. Should sort budget proposals", async () => {
+  111 |       test.slow();
+  112 |       const sortOptions = {
+  113 |         Oldest: (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  114 |           p1.attributes.createdAt <= p2.attributes.createdAt,
+  115 |         Newest: (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  116 |           p1.attributes.createdAt >= p2.attributes.createdAt,
+  117 |         "Most comments": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  118 |           p1.attributes.prop_comments_number >=
+  119 |           p2.attributes.prop_comments_number,
+  120 |         "Least comments": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  121 |           p1.attributes.prop_comments_number <=
+  122 |           p2.attributes.prop_comments_number,
+  123 |         "Name A-Z": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  124 |           p1.attributes.bd_proposal_detail.data.attributes.proposal_name
+  125 |             .replace(/ /g, "")
+  126 |             .localeCompare(
+  127 |               p2.attributes.bd_proposal_detail.data.attributes.proposal_name.replace(
+  128 |                 / /g,
+  129 |                 ""
+  130 |               )
+  131 |             ) <= 0,
+  132 |         "Name Z-A": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  133 |           p1.attributes.bd_proposal_detail.data.attributes.proposal_name
+  134 |             .replace(/ /g, "")
+  135 |             .localeCompare(
+  136 |               p2.attributes.bd_proposal_detail.data.attributes.proposal_name.replace(
+  137 |                 / /g,
+  138 |                 ""
+  139 |               )
+  140 |             ) >= 0,
+  141 |         "Proposer A-Z": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  142 |           p1.attributes.creator.data.attributes.govtool_username
+  143 |             .replace(/ /g, "")
+  144 |             .localeCompare(
+  145 |               p2.attributes.creator.data.attributes.govtool_username
+  146 |             ) <= 0,
+  147 |         "Proposer Z-A": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  148 |           p1.attributes.creator.data.attributes.govtool_username
+  149 |             .replace(/ /g, "")
+  150 |             .localeCompare(
+  151 |               p2.attributes.creator.data.attributes.govtool_username
+  152 |             ) >= 0,
+  153 |       };
+  154 | 
+  155 |       for (const [option, validationFn] of Object.entries(sortOptions)) {
+  156 |         await budgetDiscussionPage.sortAndValidate(
+  157 |           option as BudgetProposalFilterTypes,
+  158 |           validationFn
+  159 |         );
+  160 |       }
+  161 |     });
+  162 |   });
+```

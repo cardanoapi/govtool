@@ -1,0 +1,777 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 9-outcomes/outcomes.spec.ts >> Outcomes page >> 9E_1. Should verify all of the displayed governance actions have expired in disconnect state
+- Location: tests/9-outcomes/outcomes.spec.ts:45:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.innerText: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for locator('[data-testid$="-outcome-card"]').first().locator('[data-testid$="-Expired-date"]')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+      - button [ref=e14] [cursor=pointer]:
+        - img [ref=e15]
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - link "The Info Action" [ref=e20] [cursor=pointer]:
+          - /url: https://govtool.cardanoapi.io/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+        - text: has passed — thank you for your support!
+      - generic [ref=e21]:
+        - text: We have now submitted a
+        - link "Treasury Withdrawal" [ref=e22] [cursor=pointer]:
+          - /url: https://govtool.cardanoapi.io/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+        - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+  - img "bg-orange" [ref=e23]
+  - generic [ref=e24]:
+    - banner [ref=e26]:
+      - generic [ref=e27]:
+        - link "app-logo" [ref=e28] [cursor=pointer]:
+          - /url: /
+          - img "app-logo" [ref=e29]
+        - generic [ref=e30]:
+          - button "Connect" [ref=e31] [cursor=pointer]: Connect
+          - img "drawer-icon" [ref=e32]
+    - generic [ref=e37]:
+      - heading "Outcomes" [level=1] [ref=e38]
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - img [ref=e42]
+          - textbox "Search Action..." [ref=e44]
+        - generic [ref=e45]:
+          - button "0 Filters" [ref=e47] [cursor=pointer]:
+            - generic [ref=e48]:
+              - generic:
+                - generic: "0"
+              - generic [ref=e49]:
+                - paragraph [ref=e50]: Filters
+                - img [ref=e52]
+          - 'button "Sort: Newest first" [ref=e55] [cursor=pointer]':
+            - generic [ref=e56]:
+              - paragraph [ref=e57]: "Sort: Newest first"
+              - img [ref=e59]
+      - generic [ref=e62]:
+        - generic [ref=e63]:
+          - generic [ref=e65]:
+            - generic [ref=e66]:
+              - paragraph [ref=e68]: Hard Fork to Protocol Version 11 ("van Rossem" Hard Fork)
+              - generic [ref=e70]:
+                - generic [ref=e71]:
+                  - paragraph [ref=e72]: "Submitted: Tue May 05, 2026"
+                  - generic [ref=e73]:
+                    - paragraph [ref=e74]: (Epoch 1288)
+                    - img [ref=e76]
+                - generic [ref=e78]:
+                  - paragraph [ref=e79]: "Expires: Fri Jun 05, 2026"
+                  - generic [ref=e80]:
+                    - paragraph [ref=e81]: (Epoch 1319)
+                    - img [ref=e83]
+              - generic [ref=e86]:
+                - paragraph [ref=e87]: Abstract
+                - paragraph [ref=e89]: "We propose to upgrade Cardano preview to Protocol Version 11. This upgrade will be achieved via an intra-era Hard Fork (called \"van Rossem\"). Following the upgrade:"
+              - generic [ref=e90]:
+                - generic [ref=e91]:
+                  - paragraph [ref=e92]: Governance Action Type
+                  - paragraph [ref=e93]: Hard-Fork Initiation
+                - generic [ref=e94]:
+                  - paragraph [ref=e95]: Status
+                  - generic [ref=e97]: Ratified
+                - generic [ref=e98]:
+                  - paragraph [ref=e99]: Governance Action ID
+                  - generic [ref=e100]:
+                    - paragraph [ref=e101]: fa2b252c9d645b376ee68f94ea87764dad6510e201726921e0cb733161ca6ef8#0
+                    - button [ref=e102] [cursor=pointer]:
+                      - img [ref=e103]
+                - generic [ref=e107]:
+                  - paragraph [ref=e108]: (CIP-129) Governance Action ID
+                  - generic [ref=e109]:
+                    - paragraph [ref=e110]: gov_action1lg4j2tyav3dnwmhx372w4pmkfkkk2y8zq9exjg0qedenzcw2dmuqql0r99d
+                    - button [ref=e111] [cursor=pointer]:
+                      - img [ref=e112]
+            - link "fa2b252c9d645b376ee68f94ea87764dad6510e201726921e0cb733161ca6ef8#0-view-details" [ref=e117] [cursor=pointer]:
+              - /url: /outcomes/governance_actions/fa2b252c9d645b376ee68f94ea87764dad6510e201726921e0cb733161ca6ef8#0
+              - button "fa2b252c9d645b376ee68f94ea87764dad6510e201726921e0cb733161ca6ef8#0-view-details" [ref=e118]: View Details
+          - generic [ref=e120]:
+            - generic [ref=e121]:
+              - paragraph [ref=e123]: Update Plutus Cost Models
+              - generic [ref=e125]:
+                - generic [ref=e126]:
+                  - paragraph [ref=e127]: "Submitted: Tue Apr 14, 2026"
+                  - generic [ref=e128]:
+                    - paragraph [ref=e129]: (Epoch 1267)
+                    - img [ref=e131]
+                - generic [ref=e133]:
+                  - paragraph [ref=e134]: "Expired: Fri May 15, 2026"
+                  - generic [ref=e135]:
+                    - paragraph [ref=e136]: (Epoch 1298)
+                    - img [ref=e138]
+              - generic [ref=e141]:
+                - paragraph [ref=e142]: Abstract
+                - paragraph [ref=e144]: Intersect's Parameter Committee proposes to update the Plutus V3 Cost Model via a Parameter Update governance action to enable the new Plutus primitives that will be available following the van Rossem hard fork (to Protocol Version 11), to enable all Plutus primitives in Plutus V1 and V2 as well as Plutus V3, and to change settings for some existing Plutus primitives. Note that the new primitives will not be enabled in Protocol version 10, but only following the enactment of the hard fork to Protocol Version 11. However, the changes for existing primitives will happen immediately on enactment of this governance action.
+              - generic [ref=e145]:
+                - generic [ref=e146]:
+                  - paragraph [ref=e147]: Governance Action Type
+                  - paragraph [ref=e148]: Protocol Parameter Change
+                - generic [ref=e149]:
+                  - paragraph [ref=e150]: Status
+                  - generic [ref=e151]:
+                    - generic [ref=e153]: Ratified
+                    - generic [ref=e155]: Enacted
+                - generic [ref=e156]:
+                  - paragraph [ref=e157]: Governance Action ID
+                  - generic [ref=e158]:
+                    - paragraph [ref=e159]: 014c32e57347d114744210e1934a2084c5d0052a2312170d93758bfd566f3956#0
+                    - button [ref=e160] [cursor=pointer]:
+                      - img [ref=e161]
+                - generic [ref=e165]:
+                  - paragraph [ref=e166]: (CIP-129) Governance Action ID
+                  - generic [ref=e167]:
+                    - paragraph [ref=e168]: gov_action1q9xr9etnglg3gazzzrsexj3qsnzaqpf2yvfpwrvnwk9l64n089tqqqg02j9
+                    - button [ref=e169] [cursor=pointer]:
+                      - img [ref=e170]
+            - link "014c32e57347d114744210e1934a2084c5d0052a2312170d93758bfd566f3956#0-view-details" [ref=e175] [cursor=pointer]:
+              - /url: /outcomes/governance_actions/014c32e57347d114744210e1934a2084c5d0052a2312170d93758bfd566f3956#0
+              - button "014c32e57347d114744210e1934a2084c5d0052a2312170d93758bfd566f3956#0-view-details" [ref=e176]: View Details
+          - generic [ref=e178]:
+            - generic [ref=e179]:
+              - paragraph [ref=e181]: Update Plutus Cost Models
+              - generic [ref=e183]:
+                - generic [ref=e184]:
+                  - paragraph [ref=e185]: "Submitted: Fri Apr 10, 2026"
+                  - generic [ref=e186]:
+                    - paragraph [ref=e187]: (Epoch 1263)
+                    - img [ref=e189]
+                - generic [ref=e191]:
+                  - paragraph [ref=e192]: "Expired: Mon May 11, 2026"
+                  - generic [ref=e193]:
+                    - paragraph [ref=e194]: (Epoch 1294)
+                    - img [ref=e196]
+              - generic [ref=e199]:
+                - paragraph [ref=e200]: Abstract
+                - paragraph [ref=e202]: Intersect's Parameter Committee proposes to update the Plutus V3 Cost Model via a Parameter Update governance action to enable the new Plutus primitives that will be available following the van Rossem hard fork (to Protocol Version 11), to enable all Plutus primitives in Plutus V1 and V2 as well as Plutus V3, and to change settings for some existing Plutus primitives. Note that the new primitives will not be enabled in Protocol version 10, but only following the enactment of the hard fork to Protocol Version 11. However, the changes for existing primitives will happen immediately on enactment of this governance action.
+              - generic [ref=e203]:
+                - generic [ref=e204]:
+                  - paragraph [ref=e205]: Governance Action Type
+                  - paragraph [ref=e206]: Protocol Parameter Change
+                - generic [ref=e207]:
+                  - paragraph [ref=e208]: Status
+                  - generic [ref=e210]: Not Ratified
+                - generic [ref=e211]:
+                  - paragraph [ref=e212]: Governance Action ID
+                  - generic [ref=e213]:
+                    - paragraph [ref=e214]: 4c885796072684fe8d0cccf1cec57972d63434b75b285754db8e5140c4ff30c7#0
+                    - button [ref=e215] [cursor=pointer]:
+                      - img [ref=e216]
+                - generic [ref=e220]:
+                  - paragraph [ref=e221]: (CIP-129) Governance Action ID
+                  - generic [ref=e222]:
+                    - paragraph [ref=e223]: gov_action1fjy909s8y6z0argvencua3tewttrgd9htv59w4xm3eg5p38lxrrsqh7y3nh
+                    - button [ref=e224] [cursor=pointer]:
+                      - img [ref=e225]
+            - link "4c885796072684fe8d0cccf1cec57972d63434b75b285754db8e5140c4ff30c7#0-view-details" [ref=e230] [cursor=pointer]:
+              - /url: /outcomes/governance_actions/4c885796072684fe8d0cccf1cec57972d63434b75b285754db8e5140c4ff30c7#0
+              - button "4c885796072684fe8d0cccf1cec57972d63434b75b285754db8e5140c4ff30c7#0-view-details" [ref=e231]: View Details
+          - generic [ref=e233]:
+            - generic [ref=e234]:
+              - paragraph [ref=e236]: "[TEST #3] Bump maxBlockSize (follows TEST #1)"
+              - generic [ref=e238]:
+                - generic [ref=e239]:
+                  - paragraph [ref=e240]: "Submitted: Wed Apr 08, 2026"
+                  - generic [ref=e241]:
+                    - paragraph [ref=e242]: (Epoch 1261)
+                    - img [ref=e244]
+                - generic [ref=e246]:
+                  - paragraph [ref=e247]: "Expired: Sat May 09, 2026"
+                  - generic [ref=e248]:
+                    - paragraph [ref=e249]: (Epoch 1292)
+                    - img [ref=e251]
+              - generic [ref=e254]:
+                - paragraph [ref=e255]: Abstract
+                - paragraph [ref=e257]: "Test ParameterChange proposal #3 used to exercise the conflict-badge UI on Preview. Its latestEnacted should point to TEST #1, so the UI should display 'Follows #1'."
+              - generic [ref=e258]:
+                - generic [ref=e259]:
+                  - paragraph [ref=e260]: Governance Action Type
+                  - paragraph [ref=e261]: Protocol Parameter Change
+                - generic [ref=e262]:
+                  - paragraph [ref=e263]: Status
+                  - generic [ref=e265]: Not Ratified
+                - generic [ref=e266]:
+                  - paragraph [ref=e267]: Governance Action ID
+                  - generic [ref=e268]:
+                    - paragraph [ref=e269]: 2585fa3772a1866ae8e79bc4f19cf094c7815f4e7963e363078c8f573bd6268a#0
+                    - button [ref=e270] [cursor=pointer]:
+                      - img [ref=e271]
+                - generic [ref=e275]:
+                  - paragraph [ref=e276]: (CIP-129) Governance Action ID
+                  - generic [ref=e277]:
+                    - paragraph [ref=e278]: gov_action1ykzl5dmj5xrx4688n0z0r88sjnrczh6w0937xcc83j84ww7ky69qq04l5gg
+                    - button [ref=e279] [cursor=pointer]:
+                      - img [ref=e280]
+            - link "2585fa3772a1866ae8e79bc4f19cf094c7815f4e7963e363078c8f573bd6268a#0-view-details" [ref=e285] [cursor=pointer]:
+              - /url: /outcomes/governance_actions/2585fa3772a1866ae8e79bc4f19cf094c7815f4e7963e363078c8f573bd6268a#0
+              - button "2585fa3772a1866ae8e79bc4f19cf094c7815f4e7963e363078c8f573bd6268a#0-view-details" [ref=e286]: View Details
+          - generic [ref=e288]:
+            - generic [ref=e289]:
+              - paragraph [ref=e291]: "[TEST #2] Raise minFeeA to 60"
+              - generic [ref=e293]:
+                - generic [ref=e294]:
+                  - paragraph [ref=e295]: "Submitted: Wed Apr 08, 2026"
+                  - generic [ref=e296]:
+                    - paragraph [ref=e297]: (Epoch 1261)
+                    - img [ref=e299]
+                - generic [ref=e301]:
+                  - paragraph [ref=e302]: "Expired: Sat May 09, 2026"
+                  - generic [ref=e303]:
+                    - paragraph [ref=e304]: (Epoch 1292)
+                    - img [ref=e306]
+              - generic [ref=e309]:
+                - paragraph [ref=e310]: Abstract
+                - paragraph [ref=e312]: "Test ParameterChange proposal #2 used to exercise the conflict-badge UI on Preview. Competes with TEST #1 (same purpose, same latestEnacted parent)."
+              - generic [ref=e313]:
+                - generic [ref=e314]:
+                  - paragraph [ref=e315]: Governance Action Type
+                  - paragraph [ref=e316]: Protocol Parameter Change
+                - generic [ref=e317]:
+                  - paragraph [ref=e318]: Status
+                  - generic [ref=e320]: Not Ratified
+                - generic [ref=e321]:
+                  - paragraph [ref=e322]: Governance Action ID
+                  - generic [ref=e323]:
+                    - paragraph [ref=e324]: 4ac138ad9ffc3021bb6168d042d86becb595ec25db02ae0f142fbc23d10c08da#1
+                    - button [ref=e325] [cursor=pointer]:
+                      - img [ref=e326]
+                - generic [ref=e330]:
+                  - paragraph [ref=e331]: (CIP-129) Governance Action ID
+                  - generic [ref=e332]:
+                    - paragraph [ref=e333]: gov_action1ftqn3tvllsczrwmpdrgy9krtaj6etmp9mvp2urc5977z85gvprdqz2tlml2
+                    - button [ref=e334] [cursor=pointer]:
+                      - img [ref=e335]
+            - link "4ac138ad9ffc3021bb6168d042d86becb595ec25db02ae0f142fbc23d10c08da#1-view-details" [ref=e340] [cursor=pointer]:
+              - /url: /outcomes/governance_actions/4ac138ad9ffc3021bb6168d042d86becb595ec25db02ae0f142fbc23d10c08da#1
+              - button "4ac138ad9ffc3021bb6168d042d86becb595ec25db02ae0f142fbc23d10c08da#1-view-details" [ref=e341]: View Details
+          - generic [ref=e343]:
+            - generic [ref=e344]:
+              - paragraph [ref=e346]: "[TEST #1] Lower minFeeA to 40"
+              - generic [ref=e348]:
+                - generic [ref=e349]:
+                  - paragraph [ref=e350]: "Submitted: Wed Apr 08, 2026"
+                  - generic [ref=e351]:
+                    - paragraph [ref=e352]: (Epoch 1261)
+                    - img [ref=e354]
+                - generic [ref=e356]:
+                  - paragraph [ref=e357]: "Expired: Sat May 09, 2026"
+                  - generic [ref=e358]:
+                    - paragraph [ref=e359]: (Epoch 1292)
+                    - img [ref=e361]
+              - generic [ref=e364]:
+                - paragraph [ref=e365]: Abstract
+                - paragraph [ref=e367]: "Test ParameterChange proposal #1 used to exercise the conflict-badge UI on Preview. Competes with TEST #2 (same purpose, same latestEnacted parent)."
+              - generic [ref=e368]:
+                - generic [ref=e369]:
+                  - paragraph [ref=e370]: Governance Action Type
+                  - paragraph [ref=e371]: Protocol Parameter Change
+                - generic [ref=e372]:
+                  - paragraph [ref=e373]: Status
+                  - generic [ref=e375]: Not Ratified
+                - generic [ref=e376]:
+                  - paragraph [ref=e377]: Governance Action ID
+                  - generic [ref=e378]:
+                    - paragraph [ref=e379]: 4ac138ad9ffc3021bb6168d042d86becb595ec25db02ae0f142fbc23d10c08da#0
+                    - button [ref=e380] [cursor=pointer]:
+                      - img [ref=e381]
+                - generic [ref=e385]:
+                  - paragraph [ref=e386]: (CIP-129) Governance Action ID
+                  - generic [ref=e387]:
+                    - paragraph [ref=e388]: gov_action1ftqn3tvllsczrwmpdrgy9krtaj6etmp9mvp2urc5977z85gvprdqqew7cv8
+                    - button [ref=e389] [cursor=pointer]:
+                      - img [ref=e390]
+            - link "4ac138ad9ffc3021bb6168d042d86becb595ec25db02ae0f142fbc23d10c08da#0-view-details" [ref=e395] [cursor=pointer]:
+              - /url: /outcomes/governance_actions/4ac138ad9ffc3021bb6168d042d86becb595ec25db02ae0f142fbc23d10c08da#0
+              - button "4ac138ad9ffc3021bb6168d042d86becb595ec25db02ae0f142fbc23d10c08da#0-view-details" [ref=e396]: View Details
+          - generic [ref=e398]:
+            - generic [ref=e399]:
+              - paragraph [ref=e401]: Test
+              - generic [ref=e403]:
+                - generic [ref=e404]:
+                  - paragraph [ref=e405]: "Submitted: Tue Mar 17, 2026"
+                  - generic [ref=e406]:
+                    - paragraph [ref=e407]: (Epoch 1239)
+                    - img [ref=e409]
+                - generic [ref=e411]:
+                  - paragraph [ref=e412]: "Expired: Fri Apr 17, 2026"
+                  - generic [ref=e413]:
+                    - paragraph [ref=e414]: (Epoch 1270)
+                    - img [ref=e416]
+              - generic [ref=e419]:
+                - paragraph [ref=e420]: Abstract
+                - paragraph [ref=e422]: Test
+              - generic [ref=e423]:
+                - generic [ref=e424]:
+                  - paragraph [ref=e425]: Governance Action Type
+                  - paragraph [ref=e426]: Treasury Withdrawals
+                - generic [ref=e427]:
+                  - paragraph [ref=e428]: Status
+                  - generic [ref=e429]:
+                    - generic [ref=e431]: Expired
+                    - generic [ref=e433]: Not Ratified
+                - generic [ref=e434]:
+                  - paragraph [ref=e435]: Governance Action ID
+                  - generic [ref=e436]:
+                    - paragraph [ref=e437]: af397cc47fe7564425285f502f5f4726cf0372734cef969bfbd7b952f9a1a319#0
+                    - button [ref=e438] [cursor=pointer]:
+                      - img [ref=e439]
+                - generic [ref=e443]:
+                  - paragraph [ref=e444]: (CIP-129) Governance Action ID
+                  - generic [ref=e445]:
+                    - paragraph [ref=e446]: gov_action14uuhe3rluatygffgtagz7h68ym8sxunnfnhedxlm67u497dp5vvsqptkkav
+                    - button [ref=e447] [cursor=pointer]:
+                      - img [ref=e448]
+            - link "af397cc47fe7564425285f502f5f4726cf0372734cef969bfbd7b952f9a1a319#0-view-details" [ref=e453] [cursor=pointer]:
+              - /url: /outcomes/governance_actions/af397cc47fe7564425285f502f5f4726cf0372734cef969bfbd7b952f9a1a319#0
+              - button "af397cc47fe7564425285f502f5f4726cf0372734cef969bfbd7b952f9a1a319#0-view-details" [ref=e454]: View Details
+          - generic [ref=e456]:
+            - generic [ref=e457]:
+              - generic [ref=e458]:
+                - paragraph [ref=e459]: Data Formatted Incorrectly
+                - img [ref=e461]
+              - generic [ref=e464]:
+                - generic [ref=e465]:
+                  - paragraph [ref=e466]: "Submitted: Fri Mar 06, 2026"
+                  - generic [ref=e467]:
+                    - paragraph [ref=e468]: (Epoch 1228)
+                    - img [ref=e470]
+                - generic [ref=e472]:
+                  - paragraph [ref=e473]: "Expired: Mon Apr 06, 2026"
+                  - generic [ref=e474]:
+                    - paragraph [ref=e475]: (Epoch 1259)
+                    - img [ref=e477]
+              - generic [ref=e479]:
+                - generic [ref=e480]:
+                  - paragraph [ref=e481]: Governance Action Type
+                  - paragraph [ref=e482]: Info Action
+                - generic [ref=e483]:
+                  - paragraph [ref=e484]: Status
+                  - generic [ref=e485]:
+                    - generic [ref=e487]: Expired
+                    - generic [ref=e489]: Not Ratified
+                - generic [ref=e490]:
+                  - paragraph [ref=e491]: Governance Action ID
+                  - generic [ref=e492]:
+                    - paragraph [ref=e493]: 725e1a2e603201fb6e8cfb5d26bcb2405b2b30c13820cb278d6d62b89e195f4b#0
+                    - button [ref=e494] [cursor=pointer]:
+                      - img [ref=e495]
+                - generic [ref=e499]:
+                  - paragraph [ref=e500]: (CIP-129) Governance Action ID
+                  - generic [ref=e501]:
+                    - paragraph [ref=e502]: gov_action1wf0p5tnqxgqlkm5vldwjd09jgpdjkvxp8qsvkfudd43t38seta9sq00fsa8
+                    - button [ref=e503] [cursor=pointer]:
+                      - img [ref=e504]
+            - link "725e1a2e603201fb6e8cfb5d26bcb2405b2b30c13820cb278d6d62b89e195f4b#0-view-details" [ref=e509] [cursor=pointer]:
+              - /url: /outcomes/governance_actions/725e1a2e603201fb6e8cfb5d26bcb2405b2b30c13820cb278d6d62b89e195f4b#0
+              - button "725e1a2e603201fb6e8cfb5d26bcb2405b2b30c13820cb278d6d62b89e195f4b#0-view-details" [ref=e510]: View Details
+          - generic [ref=e512]:
+            - generic [ref=e513]:
+              - generic [ref=e514]:
+                - paragraph [ref=e515]: Data Formatted Incorrectly
+                - img [ref=e517]
+              - generic [ref=e520]:
+                - generic [ref=e521]:
+                  - paragraph [ref=e522]: "Submitted: Thu Mar 05, 2026"
+                  - generic [ref=e523]:
+                    - paragraph [ref=e524]: (Epoch 1227)
+                    - img [ref=e526]
+                - generic [ref=e528]:
+                  - paragraph [ref=e529]: "Expired: Sun Apr 05, 2026"
+                  - generic [ref=e530]:
+                    - paragraph [ref=e531]: (Epoch 1258)
+                    - img [ref=e533]
+              - generic [ref=e535]:
+                - generic [ref=e536]:
+                  - paragraph [ref=e537]: Governance Action Type
+                  - paragraph [ref=e538]: Info Action
+                - generic [ref=e539]:
+                  - paragraph [ref=e540]: Status
+                  - generic [ref=e541]:
+                    - generic [ref=e543]: Expired
+                    - generic [ref=e545]: Not Ratified
+                - generic [ref=e546]:
+                  - paragraph [ref=e547]: Governance Action ID
+                  - generic [ref=e548]:
+                    - paragraph [ref=e549]: 739a2f693368f25e9150d78f2af25b55287a59ca2250f183a429ab6289e1cc90#0
+                    - button [ref=e550] [cursor=pointer]:
+                      - img [ref=e551]
+                - generic [ref=e555]:
+                  - paragraph [ref=e556]: (CIP-129) Governance Action ID
+                  - generic [ref=e557]:
+                    - paragraph [ref=e558]: gov_action1wwdz76fndre9ay2s678j4ujm25585kw2yfg0rqay9x4k9z0pejgqqctxtnm
+                    - button [ref=e559] [cursor=pointer]:
+                      - img [ref=e560]
+            - link "739a2f693368f25e9150d78f2af25b55287a59ca2250f183a429ab6289e1cc90#0-view-details" [ref=e565] [cursor=pointer]:
+              - /url: /outcomes/governance_actions/739a2f693368f25e9150d78f2af25b55287a59ca2250f183a429ab6289e1cc90#0
+              - button "739a2f693368f25e9150d78f2af25b55287a59ca2250f183a429ab6289e1cc90#0-view-details" [ref=e566]: View Details
+          - generic [ref=e568]:
+            - generic [ref=e569]:
+              - generic [ref=e570]:
+                - paragraph [ref=e571]: Data Formatted Incorrectly
+                - img [ref=e573]
+              - generic [ref=e576]:
+                - generic [ref=e577]:
+                  - paragraph [ref=e578]: "Submitted: Thu Mar 05, 2026"
+                  - generic [ref=e579]:
+                    - paragraph [ref=e580]: (Epoch 1227)
+                    - img [ref=e582]
+                - generic [ref=e584]:
+                  - paragraph [ref=e585]: "Expired: Sun Apr 05, 2026"
+                  - generic [ref=e586]:
+                    - paragraph [ref=e587]: (Epoch 1258)
+                    - img [ref=e589]
+              - generic [ref=e591]:
+                - generic [ref=e592]:
+                  - paragraph [ref=e593]: Governance Action Type
+                  - paragraph [ref=e594]: Treasury Withdrawals
+                - generic [ref=e595]:
+                  - paragraph [ref=e596]: Status
+                  - generic [ref=e597]:
+                    - generic [ref=e599]: Expired
+                    - generic [ref=e601]: Not Ratified
+                - generic [ref=e602]:
+                  - paragraph [ref=e603]: Governance Action ID
+                  - generic [ref=e604]:
+                    - paragraph [ref=e605]: 3c234f5f9e781aa9f4ea5a7f5c35dde1087b764b1a1e007993e44543caca794d#0
+                    - button [ref=e606] [cursor=pointer]:
+                      - img [ref=e607]
+                - generic [ref=e611]:
+                  - paragraph [ref=e612]: (CIP-129) Governance Action ID
+                  - generic [ref=e613]:
+                    - paragraph [ref=e614]: gov_action18s357hu70qd2na82tfl4cdwauyy8kajtrg0qq7vnu3z58jk209xsqyxpxt8
+                    - button [ref=e615] [cursor=pointer]:
+                      - img [ref=e616]
+            - link "3c234f5f9e781aa9f4ea5a7f5c35dde1087b764b1a1e007993e44543caca794d#0-view-details" [ref=e621] [cursor=pointer]:
+              - /url: /outcomes/governance_actions/3c234f5f9e781aa9f4ea5a7f5c35dde1087b764b1a1e007993e44543caca794d#0
+              - button "3c234f5f9e781aa9f4ea5a7f5c35dde1087b764b1a1e007993e44543caca794d#0-view-details" [ref=e622]: View Details
+          - generic [ref=e624]:
+            - generic [ref=e625]:
+              - paragraph [ref=e627]: test
+              - generic [ref=e629]:
+                - generic [ref=e630]:
+                  - paragraph [ref=e631]: "Submitted: Wed Mar 04, 2026"
+                  - generic [ref=e632]:
+                    - paragraph [ref=e633]: (Epoch 1226)
+                    - img [ref=e635]
+                - generic [ref=e637]:
+                  - paragraph [ref=e638]: "Expired: Sat Apr 04, 2026"
+                  - generic [ref=e639]:
+                    - paragraph [ref=e640]: (Epoch 1257)
+                    - img [ref=e642]
+              - generic [ref=e645]:
+                - paragraph [ref=e646]: Abstract
+                - paragraph [ref=e648]: test
+              - generic [ref=e649]:
+                - generic [ref=e650]:
+                  - paragraph [ref=e651]: Governance Action Type
+                  - paragraph [ref=e652]: Info Action
+                - generic [ref=e653]:
+                  - paragraph [ref=e654]: Status
+                  - generic [ref=e655]:
+                    - generic [ref=e657]: Expired
+                    - generic [ref=e659]: Not Ratified
+                - generic [ref=e660]:
+                  - paragraph [ref=e661]: Governance Action ID
+                  - generic [ref=e662]:
+                    - paragraph [ref=e663]: 0cf34fb4fbce00a858e5b0574bfe37f67a00827312a7659d0f15b0b4b439d8fe#0
+                    - button [ref=e664] [cursor=pointer]:
+                      - img [ref=e665]
+                - generic [ref=e669]:
+                  - paragraph [ref=e670]: (CIP-129) Governance Action ID
+                  - generic [ref=e671]:
+                    - paragraph [ref=e672]: gov_action1pne5ld8mecq2sk89kpt5hl3h7eaqpqnnz2nkt8g0zkctfdpemrlqqv9c9ng
+                    - button [ref=e673] [cursor=pointer]:
+                      - img [ref=e674]
+            - link "0cf34fb4fbce00a858e5b0574bfe37f67a00827312a7659d0f15b0b4b439d8fe#0-view-details" [ref=e679] [cursor=pointer]:
+              - /url: /outcomes/governance_actions/0cf34fb4fbce00a858e5b0574bfe37f67a00827312a7659d0f15b0b4b439d8fe#0
+              - button "0cf34fb4fbce00a858e5b0574bfe37f67a00827312a7659d0f15b0b4b439d8fe#0-view-details" [ref=e680]: View Details
+          - generic [ref=e682]:
+            - generic [ref=e683]:
+              - paragraph [ref=e685]: The Cardano Budget Process for Intersect
+              - generic [ref=e687]:
+                - generic [ref=e688]:
+                  - paragraph [ref=e689]: "Submitted: Wed Mar 04, 2026"
+                  - generic [ref=e690]:
+                    - paragraph [ref=e691]: (Epoch 1226)
+                    - img [ref=e693]
+                - generic [ref=e695]:
+                  - paragraph [ref=e696]: "Expired: Sat Apr 04, 2026"
+                  - generic [ref=e697]:
+                    - paragraph [ref=e698]: (Epoch 1257)
+                    - img [ref=e700]
+              - generic [ref=e703]:
+                - paragraph [ref=e704]: Abstract
+                - paragraph [ref=e706]: This Governance Information Action provides the formal description of the Intersect Budget Process Framework for the 2026 and future cycles, until modified, administered by Intersect. It outlines a structured, multi-step workflow used to collect, review, consolidate, and execute Treasury-funded activities, and records the improvements introduced for the 2026 budgeting year.
+              - generic [ref=e707]:
+                - generic [ref=e708]:
+                  - paragraph [ref=e709]: Governance Action Type
+                  - paragraph [ref=e710]: Info Action
+                - generic [ref=e711]:
+                  - paragraph [ref=e712]: Status
+                  - generic [ref=e713]:
+                    - generic [ref=e715]: Expired
+                    - generic [ref=e717]: Not Ratified
+                - generic [ref=e718]:
+                  - paragraph [ref=e719]: Governance Action ID
+                  - generic [ref=e720]:
+                    - paragraph [ref=e721]: d0c822e3808a1a33d929f5483c274d19235b88dbd0bf81fdebfe092abd9f7100#0
+                    - button [ref=e722] [cursor=pointer]:
+                      - img [ref=e723]
+                - generic [ref=e727]:
+                  - paragraph [ref=e728]: (CIP-129) Governance Action ID
+                  - generic [ref=e729]:
+                    - paragraph [ref=e730]: gov_action16ryz9cuq3gdr8kff74yrcf6dry34hzxm6zlcrl0tlcyj40vlwyqqqf5jje2
+                    - button [ref=e731] [cursor=pointer]:
+                      - img [ref=e732]
+            - link "d0c822e3808a1a33d929f5483c274d19235b88dbd0bf81fdebfe092abd9f7100#0-view-details" [ref=e737] [cursor=pointer]:
+              - /url: /outcomes/governance_actions/d0c822e3808a1a33d929f5483c274d19235b88dbd0bf81fdebfe092abd9f7100#0
+              - button "d0c822e3808a1a33d929f5483c274d19235b88dbd0bf81fdebfe092abd9f7100#0-view-details" [ref=e738]: View Details
+        - button "Show More Actions" [ref=e740] [cursor=pointer]: Show More Actions
+    - contentinfo [ref=e741]:
+      - paragraph [ref=e742]: © 2026 GovTool
+      - generic [ref=e743]:
+        - generic [ref=e744] [cursor=pointer]: Privacy policy
+        - generic [ref=e745] [cursor=pointer]: Terms of Use
+      - generic [ref=e746]:
+        - button "helpIcon Help" [ref=e747] [cursor=pointer]:
+          - img "helpIcon" [ref=e749]
+          - text: Help
+        - button "Feedback" [ref=e750] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e751]
+```
+
+# Test source
+
+```ts
+  235 |     return filters.includes(outcomeType);
+  236 |   }
+  237 | 
+  238 |   async _validateStatusFiltersInOutcomeCard(
+  239 |     proposalCard: Locator,
+  240 |     filters: string[]
+  241 |   ): Promise<boolean> {
+  242 |     const status = await proposalCard
+  243 |       .locator('[data-testid$="-status"]')
+  244 |       .textContent();
+  245 |     const outcomeStatus = outcomeStatusType.filter((statusType) => {
+  246 |       if (statusType === "Live") {
+  247 |         return "In Progress";
+  248 |       }
+  249 |       return status.includes(statusType);
+  250 |     });
+  251 |     return outcomeStatus.some((status) => filters.includes(status));
+  252 |   }
+  253 | 
+  254 |   async shouldAccessPage(isLoggedIn = false) {
+  255 |     await this.page.goto("/");
+  256 | 
+  257 |     if (isMobile(this.page)) {
+  258 |       await this.page.getByTestId("open-drawer-button").click();
+  259 |     } else {
+  260 |       if (!isLoggedIn) {
+  261 |         await this.page.getByTestId("governance-actions").click();
+  262 |       }
+  263 |     }
+  264 |     await this.page.getByTestId("governance-actions-outcomes-link").click();
+  265 | 
+  266 |     if (!isMobile(this.page) && !isLoggedIn) {
+  267 |       await this.page.getByTestId("governance-actions").click();
+  268 |     }
+  269 | 
+  270 |     await expect(this.page.getByText(/outcomes/i)).toHaveCount(2);
+  271 |   }
+  272 | 
+  273 |   async filterOutcomes() {
+  274 |     await this.filterBtn.click();
+  275 |     const filterOptionNames = Object.values(outcomeType);
+  276 | 
+  277 |     // proposal type filter
+  278 |     await this.applyAndValidateFilters(
+  279 |       filterOptionNames,
+  280 |       this._validateFiltersInOutcomeCard
+  281 |     );
+  282 | 
+  283 |     // proposal status filter
+  284 |     await this.applyAndValidateFilters(
+  285 |       status,
+  286 |       this._validateStatusFiltersInOutcomeCard
+  287 |     );
+  288 |   }
+  289 | 
+  290 |   async sortOutcomes() {
+  291 |     await this.sortBtn.click();
+  292 | 
+  293 |     await this.sortAndValidate(
+  294 |       SortOption.NewestFirst,
+  295 |       (p1, p2) => p1.expiry_date >= p2.time
+  296 |     );
+  297 | 
+  298 |     await this.sortAndValidate(
+  299 |       SortOption.OldestFirst,
+  300 |       (p1, p2) => p1.expiry_date <= p2.expiry_date
+  301 |     );
+  302 | 
+  303 |     await this.sortAndValidate(
+  304 |       SortOption.HighestAmountYesVote,
+  305 |       (p1, p2) => parseInt(p1.yes_votes) >= parseInt(p2.yes_votes)
+  306 |     );
+  307 |   }
+  308 | 
+  309 |   async filterAndSortOutcomes() {
+  310 |     const filterOptionKeys = Object.keys(outcomeType);
+  311 |     const filterOptionNames = Object.values(outcomeType);
+  312 | 
+  313 |     const choice = Math.floor(Math.random() * filterOptionKeys.length);
+  314 |     await this.goto({ filter: filterOptionKeys[choice] });
+  315 |     await this.sortBtn.click();
+  316 | 
+  317 |     await this.sortAndValidate(
+  318 |       SortOption.OldestFirst,
+  319 |       (p1, p2) => p1.expiry_date <= p2.expiry_date
+  320 |     );
+  321 | 
+  322 |     await this.validateFilters(
+  323 |       [filterOptionNames[choice]],
+  324 |       this._validateFiltersInOutcomeCard
+  325 |     );
+  326 |   }
+  327 | 
+  328 |   async verifyAllOutcomesAreExpired() {
+  329 |     const proposalCards = await this.getAllOutcomes();
+  330 | 
+  331 |     for (const proposalCard of proposalCards) {
+  332 |       const expiryDateEl = proposalCard.locator(
+  333 |         '[data-testid$="-Expired-date"]'
+  334 |       );
+> 335 |       const expiryDateTxt = await expiryDateEl.innerText();
+      |                                                ^ Error: locator.innerText: Test timeout of 180000ms exceeded.
+  336 |       const expiryDate = extractExpiryDateFromText(expiryDateTxt);
+  337 |       const today = new Date();
+  338 |       expect(today >= expiryDate).toBeTruthy();
+  339 |     }
+  340 |   }
+  341 | 
+  342 |   async VerifyLoadMoreOutcomes() {
+  343 |     const responsePromise = this.page.waitForResponse((response) =>
+  344 |       response
+  345 |         .url()
+  346 |         .includes(`governance-actions?search=&filters=&sort=newestFirst&page=2`)
+  347 |     );
+  348 |     await this.goto();
+  349 | 
+  350 |     let governanceActionIdsBefore: String[];
+  351 |     let governanceActionIdsAfter: String[];
+  352 | 
+  353 |     await functionWaitedAssert(
+  354 |       async () => {
+  355 |         governanceActionIdsBefore =
+  356 |           await this.getAllListedCIP105GovernanceIds();
+  357 |         await this.showMoreBtn.click();
+  358 |       },
+  359 |       { message: "Show more button not visible" }
+  360 |     );
+  361 | 
+  362 |     const response = await responsePromise;
+  363 |     const governanceActionListAfter = await response.json();
+  364 | 
+  365 |     await functionWaitedAssert(
+  366 |       async () => {
+  367 |         governanceActionIdsAfter = await this.getAllListedCIP105GovernanceIds();
+  368 |         expect(governanceActionIdsAfter.length).toBeGreaterThan(
+  369 |           governanceActionIdsBefore.length
+  370 |         );
+  371 |       },
+  372 |       { message: "Outcomes not loaded after clicking show more" }
+  373 |     );
+  374 | 
+  375 |     if (governanceActionListAfter.length >= governanceActionIdsBefore.length) {
+  376 |       await expect(this.showMoreBtn).toBeVisible();
+  377 |       expect(true).toBeTruthy();
+  378 |     } else {
+  379 |       await expect(this.showMoreBtn).not.toBeVisible();
+  380 |     }
+  381 |   }
+  382 | 
+  383 |   async fetchOutcomeIdAndTitleFromNetwork(
+  384 |     governanceActionId?: string,
+  385 |     governanceActionTitle?: string
+  386 |   ): Promise<{ governanceActionId: string; governanceActionTitle: string }> {
+  387 |     let updatedGovernanceActionId = governanceActionId;
+  388 |     let updatedGovernanceActionTitle = governanceActionTitle;
+  389 | 
+  390 |     await this.page.route(
+  391 |       "**/governance-actions?search=&filters=&sort=**",
+  392 |       async (route) => {
+  393 |         const response = await route.fetch();
+  394 |         const data: outcomeProposal[] = await response.json();
+  395 | 
+  396 |         if (!updatedGovernanceActionId && data.length > 0) {
+  397 |           const randomIndex = Math.floor(Math.random() * data.length);
+  398 |           updatedGovernanceActionId = `${data[randomIndex].tx_hash}#${data[randomIndex].index}`;
+  399 |         }
+  400 | 
+  401 |         if (!updatedGovernanceActionTitle) {
+  402 |           const itemWithTitle = data.find((item) => item.title != null);
+  403 |           if (itemWithTitle) {
+  404 |             updatedGovernanceActionTitle = itemWithTitle.title;
+  405 |           }
+  406 |         }
+  407 | 
+  408 |         await route.fulfill({
+  409 |           status: 200,
+  410 |           contentType: "application/json",
+  411 |           body: JSON.stringify(data),
+  412 |         });
+  413 |       }
+  414 |     );
+  415 | 
+  416 |     await this.page.route(
+  417 |       "**/governance-actions/metadata?**",
+  418 |       async (route) => {
+  419 |         try {
+  420 |           const response = await route.fetch();
+  421 |           if (response.status() !== 200) {
+  422 |             await route.continue();
+  423 |             return;
+  424 |           }
+  425 | 
+  426 |           const data: outcomeMetadata = await response.json();
+  427 |           if (!updatedGovernanceActionTitle && data.data.title) {
+  428 |             updatedGovernanceActionTitle = data.data.title;
+  429 |           }
+  430 | 
+  431 |           await route.fulfill({
+  432 |             status: 200,
+  433 |             contentType: "application/json",
+  434 |             body: JSON.stringify(data),
+  435 |           });
+```
