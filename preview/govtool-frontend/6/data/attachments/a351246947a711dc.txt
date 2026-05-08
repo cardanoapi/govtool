@@ -1,0 +1,13 @@
+✔ Uploaded Ella metadata to bucket
+ℹ Submitting tx: {"lock_id":"f6df4b7ec5fd215f4af59d3141d7c084e6594d527957d83967e68c396cb8ce5a","tx":{"certificates":[{"type":"registerdrep","key":"fe92a5259ca4c90a781e17f4c2e6e8422b9d3558ce5edfeeeb58e616","anchor":{"url":"https://metadata-govtool.cardanoapi.io/data/Ella","dataHash":"2302e54791d016ac0a109d4fa243ecaba4a0c886e2689f777cd493ff6db8b8e6"}}],"selections":[{"type":"PaymentSigningKeyShelley_ed25519","description":"Stake Signing Key","cborHex":"5820669cd8c6d821793cd2842d8e01457c3dbfaf50bc1eb1f416833f4247037c4099"},{"type":"PaymentSigningKeyShelley_ed25519","description":"Payment Signing Key","cborHex":"58204a6ae978d1656381cfe8d9316c7262dd96d72a0c2ce6368ad8559b392170aa0e"},"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"],"changeAddress":"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"}}
+✔ Tx submitted: 719baeb3e781e7df0e6b0c2bf1a2fd37a0ad2543a130250525744ff7ace5d0fe
+ℹ Waiting for tx completion: 719baeb3e781e7df0e6b0c2bf1a2fd37a0ad2543a130250525744ff7ace5d0fe
+✖ Failed due to Error: expect(received).toBeGreaterThan(expected)
+
+Matcher error: received value must be a number or bigint
+
+Received has value: undefined
+
+Call Log:
+- Test timeout of 240000ms exceeded
+ℹ Retrying the function pollTransaction
