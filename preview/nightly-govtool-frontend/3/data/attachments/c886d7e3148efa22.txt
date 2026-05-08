@@ -1,0 +1,360 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 7-proposal-submission/proposalSubmission.loggedin.pd.spec.ts >> Proposal created logged state >> 7O. Should display insufficient balance modal when submitting proposal with insufficient funds
+- Location: tests/7-proposal-submission/proposalSubmission.loggedin.pd.spec.ts:339:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByTestId('delete-proposal-yes-button')
+    - locator resolved to <button tabindex="0" type="button" data-testid="delete-proposal-yes-button" class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-fullWidth css-vgm4tf">…</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="MuiDialogActions-root MuiDialogActions-spacing css-5q8ycy">…</div> from <div role="presentation" class="MuiDialog-root MuiModal-root css-126xj0f">…</div> subtree intercepts pointer events
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is visible, enabled and stable
+      - scrolling into view if needed
+      - done scrolling
+      - <div class="MuiDialogActions-root MuiDialogActions-spacing css-5q8ycy">…</div> from <div role="presentation" class="MuiDialog-root MuiModal-root css-126xj0f">…</div> subtree intercepts pointer events
+    - retrying click action
+      - waiting 100ms
+    243 × waiting for element to be visible, enabled and stable
+        - element is visible, enabled and stable
+        - scrolling into view if needed
+        - done scrolling
+        - <div class="MuiDialogActions-root MuiDialogActions-spacing css-5q8ycy">…</div> from <div role="presentation" class="MuiDialog-root MuiModal-root css-126xj0f">…</div> subtree intercepts pointer events
+      - retrying click action
+        - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+    - element is visible, enabled and stable
+    - scrolling into view if needed
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: "Network: Preview"
+      - generic [ref=e7]: "|"
+      - link [ref=e8] [cursor=pointer]:
+        - /url: https://gov.tools/
+        - text: Go to Mainnet
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+        - button [ref=e14] [cursor=pointer]:
+          - img [ref=e15]
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - link [ref=e20] [cursor=pointer]:
+            - /url: https://gov.tools/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+            - text: The Info Action
+          - text: has passed — thank you for your support!
+        - generic [ref=e21]:
+          - text: We have now submitted a
+          - link [ref=e22] [cursor=pointer]:
+            - /url: https://gov.tools/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+            - text: Treasury Withdrawal
+          - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+    - img [ref=e23]
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - link [ref=e26] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e27]
+        - generic [ref=e28]:
+          - link [ref=e30] [cursor=pointer]:
+            - /url: /dashboard
+            - generic [ref=e31]:
+              - img [ref=e32]
+              - paragraph [ref=e33]: Home
+          - link [ref=e35] [cursor=pointer]:
+            - /url: /connected/drep_directory
+            - generic [ref=e36]:
+              - img [ref=e37]
+              - paragraph [ref=e38]: DRep Directory
+          - link [ref=e40] [cursor=pointer]:
+            - /url: /budget_discussion
+            - generic [ref=e41]:
+              - img [ref=e42]
+              - paragraph [ref=e43]: Budget Proposals
+          - generic [ref=e44]:
+            - link [ref=e45] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e46]:
+                - img [ref=e47]
+                - paragraph [ref=e48]: Governance Actions
+            - generic [ref=e49]:
+              - link [ref=e50] [cursor=pointer]:
+                - /url: /proposal_discussion
+                - generic [ref=e51]:
+                  - img [ref=e53]
+                  - paragraph [ref=e55]: Proposals
+              - link [ref=e56] [cursor=pointer]:
+                - /url: /connected/governance_actions
+                - generic [ref=e57]:
+                  - img [ref=e58]
+                  - paragraph [ref=e59]: Live Voting
+              - link [ref=e60] [cursor=pointer]:
+                - /url: /outcomes
+                - generic [ref=e61]:
+                  - img [ref=e62]
+                  - paragraph [ref=e63]: Outcomes
+          - link [ref=e65] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e66]:
+              - img [ref=e67]
+              - paragraph [ref=e68]: Guides
+          - link [ref=e70] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e71]:
+              - img [ref=e72]
+              - paragraph [ref=e73]: FAQs
+        - generic [ref=e76]:
+          - paragraph [ref=e77]: "Connected Wallet:"
+          - generic [ref=e78]:
+            - paragraph [ref=e79]: 00508cb60ee1c73860b49773f7965d6a761b0a6669f612519e2096039ed32646f49dad2955e515af6ad57ee3103a3713ac0048ac87c8e2fd15
+            - button [ref=e80] [cursor=pointer]: Disconnect
+      - generic [ref=e81]:
+        - navigation [ref=e82]:
+          - paragraph [ref=e84]: Proposals
+        - paragraph [ref=e89]:
+          - generic [ref=e90]:
+            - button [ref=e92] [cursor=pointer]:
+              - img [ref=e94]
+              - text: Back
+            - generic [ref=e98]:
+              - generic [ref=e99]:
+                - generic [ref=e100]:
+                  - heading [level=2] [ref=e101]: Demulceo territo quod cerno comis via.
+                  - heading [level=5] [ref=e102]: "@priscilla.rowe22_1778209032665"
+                - generic [ref=e103]:
+                  - button [ref=e104] [cursor=pointer]:
+                    - img [ref=e105]
+                  - button [ref=e108] [cursor=pointer]:
+                    - img [ref=e109]
+              - generic [ref=e111]:
+                - text: Governance Action Type
+                - paragraph [ref=e112]: Motion of No Confidence
+              - generic [ref=e113]:
+                - generic [ref=e114]:
+                  - text: "Proposed on:"
+                  - paragraph [ref=e115]: 8 May 2026
+                - generic [ref=e116]: Submit as Governance Action
+              - generic [ref=e117]:
+                - generic [ref=e118]:
+                  - text: "Last Edit:"
+                  - paragraph [ref=e119]: 8 May 2026
+                - generic [ref=e120]: Review Versions
+              - generic [ref=e121]:
+                - text: Abstract
+                - paragraph [ref=e123]: depopulo cicuta solvo tamen calco
+              - generic [ref=e124]:
+                - text: Motivation
+                - paragraph [ref=e127]: vinitor veritatis tempore thema quia
+              - generic [ref=e128]:
+                - text: Rationale
+                - paragraph [ref=e131]: audeo inventore conscendo spero templum
+              - generic [ref=e132]:
+                - text: Supporting links
+                - button [ref=e134] [cursor=pointer]:
+                  - img [ref=e136]
+                  - paragraph [ref=e138]: frozen-overhead
+              - generic [ref=e139]:
+                - generic [ref=e141]:
+                  - button [disabled]:
+                    - generic: "0"
+                    - img
+                - generic [ref=e143]:
+                  - generic [ref=e144]:
+                    - button [disabled]:
+                      - generic: "0"
+                      - img
+                  - generic [ref=e145]:
+                    - button [disabled]:
+                      - generic: "0"
+                      - img
+            - generic [ref=e148]:
+              - paragraph [ref=e149]: Do you want to check if your proposal is ready to be submitted as a Governance Action?
+              - paragraph [ref=e150]: The poll will be pinned to the top of your comments list, and you can close it whenever you like. Opening a new poll will automatically close the previous one, which will then appear as a comment in the comments feed.
+              - button [ref=e152] [cursor=pointer]: Add Poll
+            - generic [ref=e153]:
+              - heading [level=3] [ref=e154]: Comments
+              - button [ref=e155] [cursor=pointer]:
+                - img [ref=e156]
+            - generic [ref=e160]:
+              - heading [level=6] [ref=e161]: Submit a comment
+              - generic [ref=e162]:
+                - generic [ref=e163]:
+                  - textbox [ref=e164]
+                  - group
+                - paragraph [ref=e165]:
+                  - generic [ref=e166]: 0/15000
+              - generic [ref=e167]:
+                - button [disabled]:
+                  - text: Comment
+                  - generic:
+                    - img
+            - generic [ref=e170]:
+              - heading [level=6] [ref=e171]: No Comments yet
+              - paragraph [ref=e172]: Be the first to share your thoughts on this proposal.
+        - contentinfo [ref=e173]:
+          - paragraph [ref=e174]: © 2026 GovTool
+          - generic [ref=e175]:
+            - generic [ref=e176] [cursor=pointer]: Privacy policy
+            - generic [ref=e177] [cursor=pointer]: Terms of Use
+          - generic [ref=e178]:
+            - button [ref=e179] [cursor=pointer]:
+              - img [ref=e181]
+              - text: Help
+            - button [ref=e182] [cursor=pointer]: Feedback
+    - img [ref=e183]
+  - generic [ref=e186]:
+    - generic [ref=e187]:
+      - generic [ref=e188]:
+        - heading [level=2] [ref=e189]: Do you want to delete your proposal?
+        - button [ref=e190] [cursor=pointer]:
+          - img [ref=e191]
+      - paragraph [ref=e193]: Clicking "Delete Proposal" will permanently remove your proposal from the system. This action cannot be undone.
+    - generic [ref=e194]:
+      - button [ref=e195] [cursor=pointer]: Delete Proposal
+      - button [ref=e196] [cursor=pointer]: Cancel
+  - dialog [ref=e199]:
+    - generic [ref=e200]:
+      - generic [ref=e201]:
+        - heading "Insufficient wallet balance" [level=5] [ref=e202]
+        - button [ref=e203] [cursor=pointer]:
+          - img [ref=e204]
+      - paragraph [ref=e206]: Insufficient wallet balance to submit a Governance Action. To submit a Governance Action on-chain, you require a wallet balance of ₳100,000 (refundable deposit) plus a transaction fee of ₳0.18.
+    - button "Close" [active] [ref=e208] [cursor=pointer]: Close
+```
+
+# Test source
+
+```ts
+  2   | import { Page, expect } from "@playwright/test";
+  3   | import { CommentResponse } from "@types";
+  4   | 
+  5   | export default class ProposalDiscussionDetailsPage {
+  6   |   // Buttons
+  7   |   readonly likeBtn = this.page.getByTestId("like-button");
+  8   |   readonly dislikeBtn = this.page.getByTestId("dislike-button");
+  9   |   readonly commentBtn = this.page.getByTestId("comment-button");
+  10  |   readonly replyCommentBtn = this.page.getByTestId("reply-comment-button");
+  11  |   readonly addPollBtn = this.page.getByTestId("add-poll-button");
+  12  |   readonly SubmitBtn = this.page.getByTestId("submit-button");
+  13  |   readonly menuBtn = this.page.getByTestId("menu-button");
+  14  |   readonly editProposalBtn = this.page.getByTestId("edit-proposal");
+  15  |   readonly deleteProposalBtn = this.page.getByTestId("delete-proposal");
+  16  |   readonly reviewVersionsBtn = this.page.getByTestId("review-versions");
+  17  |   readonly closePollBtn = this.page.getByTestId("close-poll-button");
+  18  |   readonly sortBtn = this.page.getByTestId("sort-comments");
+  19  |   readonly proposeGovernanceAction = this.page.getByTestId("propose-GA-button");
+  20  |   readonly replyBtn = this.page.getByTestId("reply-button");
+  21  |   readonly pollYesBtn = this.page.getByTestId("poll-yes-button");
+  22  |   readonly pollNoBtn = this.page.getByTestId("poll-no-button");
+  23  |   readonly showReplyBtn = this.page.getByTestId("show-more-reply");
+  24  |   readonly closePollYesBtn = this.page.getByTestId("close-the-poll-button");
+  25  |   readonly changeVoteBtn = this.page.getByTestId("change-vote-button");
+  26  |   readonly verifyIdentityBtn = this.page
+  27  |     .getByTestId("verify-user-link")
+  28  |     .first();
+  29  |   readonly submitAsGABtn = this.page.getByTestId("submit-as-GA-button");
+  30  | 
+  31  |   // Indicators
+  32  |   readonly likeCount = this.likeBtn.getByTestId("like-count");
+  33  |   readonly dislikeCount = this.dislikeBtn.getByTestId("dislike-count");
+  34  |   readonly commentCount = this.page.getByTestId("comment-count");
+  35  | 
+  36  |   // Cards
+  37  |   readonly pollVoteCard = this.page.getByTestId("poll-vote-card");
+  38  |   readonly pollResultCard = this.page.getByTestId("poll-result-card");
+  39  | 
+  40  |   //inputs
+  41  |   readonly commentInput = this.page.getByTestId("comment-input");
+  42  | 
+  43  |   constructor(private readonly page: Page) {}
+  44  | 
+  45  |   async goto(proposalId: number) {
+  46  |     await this.page.goto(
+  47  |       `${environments.frontendUrl}/proposal_discussion/${proposalId}`
+  48  |     );
+  49  |   }
+  50  | 
+  51  |   async closeUsernamePrompt() {
+  52  |     await this.page
+  53  |       .locator("div")
+  54  |       .filter({ hasText: /^Hey, setup your username$/ })
+  55  |       .getByRole("button")
+  56  |       .click();
+  57  |   }
+  58  | 
+  59  |   async addComment(comment: string) {
+  60  |     await this.commentInput.fill(comment);
+  61  |     await this.commentBtn.click();
+  62  |   }
+  63  | 
+  64  |   async replyComment(reply: string) {
+  65  |     await this.replyBtn.click();
+  66  |     await this.page.getByTestId("reply-input").fill(reply);
+  67  |     await this.replyCommentBtn.click();
+  68  |   }
+  69  | 
+  70  |   async sortAndValidate(
+  71  |     order: string,
+  72  |     validationFn: (date1: string, date2: string) => boolean
+  73  |   ) {
+  74  |     const responsePromise = this.page.waitForResponse((response) =>
+  75  |       response.url().includes(`&sort[createdAt]=${order}`)
+  76  |     );
+  77  | 
+  78  |     await this.sortBtn.click();
+  79  |     const response = await responsePromise;
+  80  | 
+  81  |     const comments: CommentResponse[] = (await response.json()).data;
+  82  | 
+  83  |     // API validation
+  84  |     for (let i = 0; i < comments.length - 1; i++) {
+  85  |       const isValid = validationFn(
+  86  |         comments[i].attributes.updatedAt,
+  87  |         comments[i + 1].attributes.updatedAt
+  88  |       );
+  89  |       expect(isValid).toBe(true);
+  90  |     }
+  91  |   }
+  92  | 
+  93  |   async voteOnPoll(vote: string) {
+  94  |     await this.page.getByTestId(`poll-${vote.toLowerCase()}-button`).click();
+  95  |   }
+  96  | 
+  97  |   async deleteProposal() {
+  98  |     await this.page.waitForTimeout(2_000);
+  99  | 
+  100 |     await this.page.getByTestId("menu-button").click();
+  101 |     await this.page.getByTestId("delete-proposal").click();
+> 102 |     await this.page.getByTestId("delete-proposal-yes-button").click();
+      |                                                               ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  103 |   }
+  104 | }
+  105 | 
+```

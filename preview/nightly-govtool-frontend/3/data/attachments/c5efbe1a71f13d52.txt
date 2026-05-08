@@ -1,0 +1,60 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: proposal-budget.dRep.setup.ts >> Register DRep of proposal budget static wallets
+- Location: tests/proposal-budget.dRep.setup.ts:23:6
+
+# Error details
+
+```
+Error: BlockFrost [Status 400] : {"contents":{"contents":{"contents":{"era":"ShelleyBasedEraConway","error":["ConwayMempoolFailure \"All inputs are spent. Transaction has probably already been included\""],"kind":"ShelleyTxValidationError"},"tag":"TxValidationErrorInCardanoMode"},"tag":"TxCmdTxSubmitValidationError"},"tag":"TxSubmitFail"}
+```
+
+# Test source
+
+```ts
+  1  | import environments from "@constants/environments";
+  2  | 
+  3  | export async function blockfrostSubmitTransaction(cborSignedTx: Buffer) {
+  4  |   const url = `${environments.blockfrostApiUrl}/v0/tx/submit`;
+  5  |   const res = await fetch(url, {
+  6  |     method: "POST",
+  7  |     headers: {
+  8  |       "Content-Type": "application/cbor",
+  9  |       project_id: environments.blockfrostApiKey,
+  10 |     },
+  11 |     body: cborSignedTx,
+  12 |   });
+  13 |   if (res.status === 200) {
+  14 |     return res.json();
+  15 |   } else {
+  16 |     return res.text().then((txt) => {
+  17 |       let err;
+  18 |       let json: any;
+  19 |       try {
+  20 |         json = JSON.parse(txt);
+  21 |         if (json) {
+> 22 |           err = Error(
+     |                 ^ Error: BlockFrost [Status 400] : {"contents":{"contents":{"contents":{"era":"ShelleyBasedEraConway","error":["ConwayMempoolFailure \"All inputs are spent. Transaction has probably already been included\""],"kind":"ShelleyTxValidationError"},"tag":"TxValidationErrorInCardanoMode"},"tag":"TxCmdTxSubmitValidationError"},"tag":"TxSubmitFail"}
+  23 |             `BlockFrost [Status ${res.status}] : ${
+  24 |               json.message ? json.message : txt
+  25 |             }`
+  26 |           );
+  27 |         } else {
+  28 |           err = Error(`BlockFrost [Status ${res.status}] : ${txt}`);
+  29 |         }
+  30 |       } catch (e) {
+  31 |         err = Error(`BlockFrost [Status ${res.status}] : ${txt}`);
+  32 |       }
+  33 |       err.status = res.status;
+  34 |       throw err;
+  35 |     });
+  36 |   }
+  37 | }
+  38 | 
+```

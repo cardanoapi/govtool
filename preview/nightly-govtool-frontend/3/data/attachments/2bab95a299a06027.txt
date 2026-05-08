@@ -1,0 +1,142 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: delegation.teardown.ts >> Abstain delegation
+- Location: tests/delegation.teardown.ts:16:8
+
+# Error details
+
+```
+Error: KuberApi [Status 503] : {"detail":"Service not available"}
+```
+
+# Test source
+
+```ts
+  507 | 
+  508 |   queryProtocolParams() {
+  509 |     return callKuber("/api/v3/protocol-params") as Promise<ProtocolParams>;
+  510 |   },
+  511 | 
+  512 |   voteOnProposal(
+  513 |     addr: string,
+  514 |     signingKey: string,
+  515 |     voter: string, // dRepHash
+  516 |     dRepStakePrivKey: string,
+  517 |     proposal: string
+  518 |   ) {
+  519 |     const kuber = new Kuber(addr, signingKey);
+  520 |     const req = {
+  521 |       selections: [
+  522 |         {
+  523 |           type: "PaymentSigningKeyShelley_ed25519",
+  524 |           description: "Payment Signing Key",
+  525 |           cborHex: "5820" + dRepStakePrivKey,
+  526 |         },
+  527 |       ],
+  528 |       vote: {
+  529 |         voter,
+  530 |         role: "drep",
+  531 |         proposal,
+  532 |         vote: true,
+  533 |         anchor: {
+  534 |           url: "https://bit.ly/3zCH2HL",
+  535 |           dataHash:
+  536 |             "1111111111111111111111111111111111111111111111111111111111111111",
+  537 |         },
+  538 |       },
+  539 |     };
+  540 |     return kuber.signAndSubmitTx(req);
+  541 |   },
+  542 | 
+  543 |   abstainDelegations(
+  544 |     stakePrivKeys: string[],
+  545 |     stakePkhs: string[]
+  546 |   ): Promise<TxSubmitResponse> {
+  547 |     const kuber = new Kuber(
+  548 |       getWalletConfigForFaucet().address,
+  549 |       getWalletConfigForFaucet().payment.private
+  550 |     );
+  551 |     const selections = stakePrivKeys.map((key) => {
+  552 |       return {
+  553 |         type: "PaymentSigningKeyShelley_ed25519",
+  554 |         description: "Payment Signing Key",
+  555 |         cborHex: "5820" + key,
+  556 |       };
+  557 |     });
+  558 | 
+  559 |     const certificates = stakePkhs.map((pkh) => {
+  560 |       return {
+  561 |         type: "delegate",
+  562 |         key: pkh,
+  563 |         drep: "abstain",
+  564 |       };
+  565 |     });
+  566 |     const req = {
+  567 |       selections,
+  568 |       certificates,
+  569 |     };
+  570 |     return kuber.signAndSubmitTx(req);
+  571 |   },
+  572 | };
+  573 | async function callKuber(
+  574 |   path: any,
+  575 |   method: "GET" | "POST" = "GET",
+  576 |   body?: BodyInit,
+  577 |   contentType = "application/json"
+  578 | ) {
+  579 |   const url = config.apiUrl + path;
+  580 | 
+  581 |   const headers: Record<string, string> = {
+  582 |     "api-key": config.apiKey,
+  583 |   };
+  584 |   if (contentType) {
+  585 |     headers["content-type"] = contentType;
+  586 |   }
+  587 | 
+  588 |   const options: RequestInit = {
+  589 |     method,
+  590 |     headers,
+  591 |   };
+  592 | 
+  593 |   if (method === "POST") {
+  594 |     if (body) options.body = body;
+  595 |   }
+  596 | 
+  597 |   return fetch(url, options).then(async (res) => {
+  598 |     if (res.status === 200) {
+  599 |       return res.json();
+  600 |     } else {
+  601 |       return res.text().then((txt) => {
+  602 |         let err;
+  603 |         let json: any;
+  604 |         try {
+  605 |           json = JSON.parse(txt);
+  606 |           if (json) {
+> 607 |             err = Error(
+      |                   ^ Error: KuberApi [Status 503] : {"detail":"Service not available"}
+  608 |               `KuberApi [Status ${res.status}] : ${
+  609 |                 json.message ? json.message : txt
+  610 |               }`
+  611 |             );
+  612 |           } else {
+  613 |             err = Error(`KuberApi [Status ${res.status}] : ${txt}`);
+  614 |           }
+  615 |         } catch (e) {
+  616 |           err = Error(`KuberApi [Status ${res.status}] : ${txt}`);
+  617 |         }
+  618 |         err.status = res.status;
+  619 |         throw err;
+  620 |       });
+  621 |     }
+  622 |   });
+  623 | }
+  624 | 
+  625 | export default kuberService;
+  626 | 
+```

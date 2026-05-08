@@ -1,0 +1,103 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: faucet.teardown.ts >> Refund faucet
+- Location: tests/faucet.teardown.ts:21:8
+
+# Error details
+
+```
+Error: Faucet cleanup had failed batch merges:
+batch 1/4: KuberApi [Status 503] : {"detail":"Service not available"}
+batch 2/4: KuberApi [Status 503] : {"detail":"Service not available"}
+batch 3/4: KuberApi [Status 503] : {"detail":"Service not available"}
+batch 4/4: KuberApi [Status 503] : {"detail":"Service not available"}
+```
+
+# Test source
+
+```ts
+  1  | import environments from "@constants/environments";
+  2  | import { allStaticWallets } from "@constants/staticWallets";
+  3  | import { setAllureEpic, setAllureStory } from "@helpers/allure";
+  4  | import { skipIfBalanceIsInsufficient, skipIfMainnet } from "@helpers/cardano";
+  5  | import { pollTransaction } from "@helpers/transaction";
+  6  | import { expect } from "@playwright/test";
+  7  | import { test as cleanup } from "@fixtures/walletExtension";
+  8  | import kuberService from "@services/kuberService";
+  9  | import { StaticWallet } from "@types";
+  10 | import walletManager from "lib/walletManager";
+  11 | 
+  12 | cleanup.describe.configure({ timeout: environments.txTimeOut });
+  13 | const MERGE_UTXO_BATCH_SIZE = 5;
+  14 | cleanup.beforeEach(async () => {
+  15 |   await setAllureEpic("Setup");
+  16 |   await setAllureStory("Cleanup");
+  17 |   await skipIfMainnet();
+  18 |   await skipIfBalanceIsInsufficient(10);
+  19 | });
+  20 | 
+  21 | cleanup("Refund faucet", async () => {
+  22 |   const registerDRepWallets: StaticWallet[] =
+  23 |     await walletManager.readWallets("registerDRepCopy");
+  24 |   const registeredDRepWallets: StaticWallet[] =
+  25 |     await walletManager.readWallets("registeredDRepCopy");
+  26 |   const proposalSubmissionWallets: StaticWallet[] =
+  27 |     await walletManager.readWallets("proposalSubmissionCopy");
+  28 |   try {
+  29 |     const walletsToMerge = [
+  30 |       ...allStaticWallets,
+  31 |       ...registerDRepWallets,
+  32 |       ...registeredDRepWallets,
+  33 |       ...proposalSubmissionWallets,
+  34 |     ];
+  35 |     const { errors } = await kuberService.mergeUtXosInBatches(walletsToMerge, {
+  36 |       batchSize: MERGE_UTXO_BATCH_SIZE,
+  37 |       continueOnError: true,
+  38 |       onBatchSubmitted: async ({ txId, lockInfo }, context) => {
+  39 |         console.log(
+  40 |           `Submitted faucet merge batch ${context.batchNumber}/${context.totalBatches}, waiting for tx ${txId}`
+  41 |         );
+  42 |         await pollTransaction(txId, lockInfo);
+  43 |       },
+  44 |     });
+  45 | 
+  46 |     if (errors.length > 0) {
+  47 |       const nonBadRequestErrors = errors.filter(
+  48 |         ({ error }) => error?.status !== 400
+  49 |       );
+  50 | 
+  51 |       if (nonBadRequestErrors.length === 0) {
+  52 |         expect(true, "Failed to trasfer Ada").toBeTruthy();
+  53 |         return;
+  54 |       }
+  55 | 
+  56 |       const failureSummary = nonBadRequestErrors
+  57 |         .map(
+  58 |           ({ batchNumber, totalBatches, error }) =>
+  59 |             `batch ${batchNumber}/${totalBatches}: ${error?.message || error}`
+  60 |         )
+  61 |         .join("\n");
+  62 | 
+> 63 |       throw new Error(
+     |             ^ Error: Faucet cleanup had failed batch merges:
+  64 |         `Faucet cleanup had failed batch merges:\n${failureSummary}`
+  65 |       );
+  66 |     }
+  67 | 
+  68 |   } catch (err) {
+  69 |     console.log(err);
+  70 |     if (err?.status === 400) {
+  71 |       expect(true, "Failed to trasfer Ada").toBeTruthy();
+  72 |     } else {
+  73 |       throw err instanceof Error ? err : new Error(String(err));
+  74 |     }
+  75 |   }
+  76 | });
+  77 | 
+```
