@@ -1,0 +1,59 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: wallet.bootstrap.ts >> Initialize static wallets
+- Location: tests/wallet.bootstrap.ts:19:6
+
+# Error details
+
+```
+Error: Error: KuberApi [Status 503] : {"detail":"Service not available"}
+```
+
+# Test source
+
+```ts
+  1  | import { adaHolderWallets, dRepWallets } from "@constants/staticWallets";
+  2  | import { setAllureEpic, setAllureStory } from "@helpers/allure";
+  3  | import { skipIfBalanceIsInsufficient, skipIfMainnet } from "@helpers/cardano";
+  4  | import { pollTransaction } from "@helpers/transaction";
+  5  | import { expect } from "@playwright/test";
+  6  | import { test as setup } from "@fixtures/walletExtension";
+  7  | import kuberService from "@services/kuberService";
+  8  | import environments from "lib/constants/environments";
+  9  | 
+  10 | const totalWalletsToInitialize = [...adaHolderWallets, ...dRepWallets];
+  11 | 
+  12 | setup.beforeEach(async () => {
+  13 |   await setAllureEpic("Setup");
+  14 |   await setAllureStory("Wallet bootstrap");
+  15 |   await skipIfMainnet();
+  16 |   await skipIfBalanceIsInsufficient(22 * totalWalletsToInitialize.length);
+  17 | });
+  18 | 
+  19 | setup("Initialize static wallets", async () => {
+  20 |   setup.setTimeout(environments.txTimeOut);
+  21 |   try {
+  22 |     const res = await kuberService.initializeWallets(totalWalletsToInitialize);
+  23 |     await pollTransaction(res.txId);
+  24 |   } catch (err) {
+  25 |     if (err.status === 400 && err.message.includes("StakeKeyRegisteredDELEG")) {
+  26 |        const refillRes = await kuberService.transferADA(
+  27 |         totalWalletsToInitialize.map((wallet) => wallet.address),
+  28 |         20
+  29 |       );
+  30 |       await pollTransaction(refillRes.txId, refillRes.lockInfo);
+  31 |       expect(true, "Wallets already initialized and refilled").toBeTruthy();
+  32 |     } else {
+> 33 |       throw Error(err);
+     |             ^ Error: Error: KuberApi [Status 503] : {"detail":"Service not available"}
+  34 |     }
+  35 |   }
+  36 | });
+  37 | 
+```
