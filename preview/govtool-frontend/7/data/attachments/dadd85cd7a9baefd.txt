@@ -1,0 +1,5 @@
+✖ Access to XMLHttpRequest at 'https://pdf-govtool-preview.cardanoapi.io/api/governance-action-types' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://pdf-govtool-preview.cardanoapi.io/api/auth/challenge?identifier=e043a3ae5296faf29ba5d926feab799b586e0c203d572633ac653e5595' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+Username is already set

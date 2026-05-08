@@ -1,0 +1,258 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 8-proposal-discussion/proposalDiscussion.spec.ts >> 8H. Should disable proposal interaction on a disconnected state.
+- Location: tests/8-proposal-discussion/proposalDiscussion.spec.ts:209:5
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for locator('[data-testid^="proposal-"][data-testid$="-view-details"]').first()
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+      - button [ref=e14] [cursor=pointer]:
+        - img [ref=e15]
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - link "The Info Action" [ref=e20] [cursor=pointer]:
+          - /url: https://govtool.cardanoapi.io/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+        - text: has passed — thank you for your support!
+      - generic [ref=e21]:
+        - text: We have now submitted a
+        - link "Treasury Withdrawal" [ref=e22] [cursor=pointer]:
+          - /url: https://govtool.cardanoapi.io/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+        - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+  - generic [ref=e23]:
+    - banner [ref=e25]:
+      - generic [ref=e26]:
+        - link "app-logo" [ref=e27] [cursor=pointer]:
+          - /url: /
+          - img "app-logo" [ref=e28]
+        - navigation [ref=e29]:
+          - generic [ref=e30]:
+            - link "Home" [ref=e32] [cursor=pointer]:
+              - /url: /
+              - paragraph [ref=e33]: Home
+            - link "DRep Directory" [ref=e35] [cursor=pointer]:
+              - /url: /drep_directory
+              - paragraph [ref=e36]: DRep Directory
+            - link "Budget Proposals" [ref=e38] [cursor=pointer]:
+              - /url: /budget_discussion
+              - paragraph [ref=e39]: Budget Proposals
+            - paragraph [ref=e41] [cursor=pointer]:
+              - generic [ref=e42]:
+                - text: Governance Actions
+                - img "dropdown-icon" [ref=e43]
+            - link "Guides" [ref=e45] [cursor=pointer]:
+              - /url: /proposal_discussion
+              - paragraph [ref=e46]: Guides
+            - link "FAQs" [ref=e48] [cursor=pointer]:
+              - /url: /proposal_discussion
+              - paragraph [ref=e49]: FAQs
+            - button "Connect Wallet" [ref=e51] [cursor=pointer]: Connect Wallet
+    - generic [ref=e58]:
+      - heading "Proposed Governance Actions" [level=1] [ref=e60]
+      - generic [ref=e62]:
+        - button "Propose a Governance Action" [disabled]
+        - generic [ref=e64]:
+          - paragraph [ref=e65]: To submit a proposal, you need to
+          - paragraph [ref=e66]:
+            - generic [ref=e67] [cursor=pointer]: connect a Cardano wallet
+      - generic [ref=e70]:
+        - img [ref=e72]
+        - textbox "Search..." [ref=e74]
+        - group
+      - generic [ref=e76]:
+        - button "Filter:" [ref=e77] [cursor=pointer]:
+          - text: "Filter:"
+          - img [ref=e79]
+        - 'button "Sort: Newest" [ref=e81] [cursor=pointer]':
+          - text: "Sort: Newest"
+          - img [ref=e83]
+    - contentinfo [ref=e85]:
+      - paragraph [ref=e86]: © 2026 GovTool
+      - generic [ref=e87]:
+        - generic [ref=e88] [cursor=pointer]: Privacy policy
+        - generic [ref=e89] [cursor=pointer]: Terms of Use
+      - generic [ref=e90]:
+        - button "helpIcon Help" [ref=e91] [cursor=pointer]:
+          - img "helpIcon" [ref=e93]
+          - text: Help
+        - button "Feedback" [ref=e94] [cursor=pointer]: Feedback
+```
+
+# Test source
+
+```ts
+  1   | import { expect, Locator, Page } from "@playwright/test";
+  2   | import {
+  3   |   ProposalCreateRequest,
+  4   |   ProposalDiscussionFilterTypes,
+  5   |   ProposalType,
+  6   |   ProposedGovAction,
+  7   | } from "@types";
+  8   | import environments from "lib/constants/environments";
+  9   | import ProposalDiscussionDetailsPage from "./proposalDiscussionDetailsPage";
+  10  | import { functionWaitedAssert, waitedLoop } from "@helpers/waitedLoop";
+  11  | 
+  12  | export default class ProposalDiscussionPage {
+  13  |   // Buttons
+  14  |   readonly proposalCreateBtn = this.page.getByTestId(
+  15  |     "propose-a-governance-action-button"
+  16  |   );
+  17  |   readonly continueBtn = this.page.getByTestId("continue-button");
+  18  |   readonly filterBtn = this.page.getByTestId("filter-button");
+  19  |   readonly sortBtn = this.page.getByTestId("sort-button");
+  20  |   readonly searchInput = this.page.getByTestId("search-input");
+  21  |   readonly showAllBtn = this.page.getByTestId("show-all-button").first(); //this.page.getByTestId("show-all-button");
+  22  |   readonly verifyIdentityBtn = this.page
+  23  |     .getByTestId("verify-user-link")
+  24  |     .first();
+  25  |   readonly addLinkBtn = this.page.getByTestId("add-link-button");
+  26  |   readonly infoRadio = this.page.getByTestId("info action-radio-wrapper");
+  27  |   readonly treasuryRadio = this.page.getByTestId(
+  28  |     "treasury requests-radio-wrapper"
+  29  |   );
+  30  |   readonly activeProposalWrapper = this.page.getByTestId(
+  31  |     "active-proposal-radio-wrapper"
+  32  |   );
+  33  | 
+  34  |   constructor(private readonly page: Page) {}
+  35  | 
+  36  |   async goto() {
+  37  |     await this.page.goto(`${environments.frontendUrl}/proposal_discussion`);
+  38  |     // wait for the proposal cards to load
+  39  |     await this.page.waitForTimeout(2_000);
+  40  |   }
+  41  | 
+  42  |   async viewFirstProposal(): Promise<ProposalDiscussionDetailsPage> {
+  43  |     await this.page
+  44  |       .locator('[data-testid^="proposal-"][data-testid$="-view-details"]')
+  45  |       .first()
+> 46  |       .click();
+      |        ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  47  |     return new ProposalDiscussionDetailsPage(this.page);
+  48  |   }
+  49  | 
+  50  |   async getAllProposals() {
+  51  |     await waitedLoop(async () => {
+  52  |       return (
+  53  |         (await this.page
+  54  |           .locator('[data-testid^="proposal-"][data-testid$="-card"]')
+  55  |           .count()) > 0
+  56  |       );
+  57  |     });
+  58  | 
+  59  |     return this.page
+  60  |       .locator('[data-testid^="proposal-"][data-testid$="-card"]')
+  61  |       .all();
+  62  |   }
+  63  | 
+  64  |   async setUsername(name: string) {
+  65  |     await this.page.getByTestId("username-input").fill(name);
+  66  | 
+  67  |     const proceedBtn = this.page.getByTestId("proceed-button");
+  68  |     await proceedBtn.click();
+  69  |     await proceedBtn.click();
+  70  | 
+  71  |     await this.page.getByTestId("close-button").click();
+  72  |   }
+  73  | 
+  74  |   private async fillForm(data: ProposalCreateRequest) {
+  75  |     await this.page.getByTestId("governance-action-type").click();
+  76  |     await this.page.getByTestId("info-button").click();
+  77  |     await this.page.getByTestId("title-input").fill(data.prop_name);
+  78  |     await this.page.getByTestId("abstract-input").fill(data.prop_abstract);
+  79  |     await this.page.getByTestId("motivation-input").fill(data.prop_motivation);
+  80  |     await this.page.getByTestId("rationale-input").fill(data.prop_rationale);
+  81  | 
+  82  |     for (let index = 0; index < data.proposal_links.length; index++) {
+  83  |       await this.addLinkBtn.click();
+  84  | 
+  85  |       await this.page
+  86  |         .getByTestId(`link-${index}-url-input`)
+  87  |         .fill(data.proposal_links[index].prop_link);
+  88  |       await this.page
+  89  |         .getByTestId(`link-${index}-text-input`)
+  90  |         .fill(data.proposal_links[index].prop_link_text);
+  91  |     }
+  92  |   }
+  93  | 
+  94  |   async applyAndValidateFilters(
+  95  |     filters: string[],
+  96  |     validateFunction: (proposalCard: any, filters: string[]) => Promise<boolean>
+  97  |   ) {
+  98  |     await this.page.waitForTimeout(4_000); // wait for the proposals to load
+  99  |     // single filter
+  100 |     for (const filter of filters) {
+  101 |       await this.filterProposalByNames([filter]);
+  102 |       await this.validateFilters([filter], validateFunction);
+  103 |       await this.unFilterProposalByNames([filter]);
+  104 |     }
+  105 | 
+  106 |     // multiple filter
+  107 |     const multipleFilters = [...filters];
+  108 |     while (multipleFilters.length > 1) {
+  109 |       await this.filterProposalByNames(multipleFilters);
+  110 |       await this.validateFilters(multipleFilters, validateFunction);
+  111 |       await this.unFilterProposalByNames(multipleFilters);
+  112 |       multipleFilters.pop();
+  113 |     }
+  114 |   }
+  115 | 
+  116 |   async clickRadioButtonsByNames(names: string[]) {
+  117 |     for (const name of names) {
+  118 |       const testId = Object.values(ProposalType).includes(name as ProposalType)
+  119 |         ? name.toLowerCase()
+  120 |         : name.toLowerCase().replace(/ /g, "-");
+  121 |       await this.page.getByTestId(`${testId}-radio`).click();
+  122 |     }
+  123 |   }
+  124 | 
+  125 |   async filterProposalByNames(names: string[]) {
+  126 |     await this.clickRadioButtonsByNames(names);
+  127 |   }
+  128 | 
+  129 |   async unFilterProposalByNames(names: string[]) {
+  130 |     await this.clickRadioButtonsByNames(names);
+  131 |   }
+  132 | 
+  133 |   async validateFilters(
+  134 |     filters: string[],
+  135 |     validateFunction: (proposalCard: any, filters: string[]) => Promise<boolean>
+  136 |   ) {
+  137 |     await functionWaitedAssert(async () => {
+  138 |       const proposalCards = await this.getAllProposals();
+  139 | 
+  140 |       for (const proposalCard of proposalCards) {
+  141 |         if (await proposalCard.isVisible()) {
+  142 |           const type = await proposalCard
+  143 |             .getByTestId("governance-action-type")
+  144 |             .textContent();
+  145 |           const hasFilter = await validateFunction(proposalCard, filters);
+  146 |           if (!hasFilter) {
+```

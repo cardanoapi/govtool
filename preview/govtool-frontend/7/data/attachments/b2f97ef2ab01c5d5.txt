@@ -1,0 +1,5 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Access to XMLHttpRequest at 'https://pdf-govtool-preview.cardanoapi.io/api/bd-types' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://pdf-govtool-preview.cardanoapi.io/api/auth/challenge?identifier=e0650c2f46e6a107d2e5adb81aeeb59f15fa16ecf754052a4e735bdeeb' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED

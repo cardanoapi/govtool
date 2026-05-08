@@ -1,0 +1,232 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 5-proposal-functionality/proposalFunctionality.spec.ts >> Bad Proposals >> 5G. Should show warning in bad governance action proposal to the users to visit the site at their own risk, when external url is opened
+- Location: tests/5-proposal-functionality/proposalFunctionality.spec.ts:24:7
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByText('Be careful')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for getByText('Be careful')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: "Network: Preview"
+      - generic [ref=e7]: "|"
+      - link [ref=e8] [cursor=pointer]:
+        - /url: https://gov.tools/
+        - text: Go to Mainnet
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+        - button [ref=e14] [cursor=pointer]:
+          - img [ref=e15]
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - link [ref=e20] [cursor=pointer]:
+            - /url: https://govtool.cardanoapi.io/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+            - text: The Info Action
+          - text: has passed — thank you for your support!
+        - generic [ref=e21]:
+          - text: We have now submitted a
+          - link [ref=e22] [cursor=pointer]:
+            - /url: https://govtool.cardanoapi.io/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+            - text: Treasury Withdrawal
+          - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+    - img [ref=e23]
+    - generic [ref=e24]:
+      - banner [ref=e26]:
+        - generic [ref=e27]:
+          - link [ref=e28] [cursor=pointer]:
+            - /url: /
+            - img [ref=e29]
+          - generic [ref=e30]:
+            - button [ref=e31] [cursor=pointer]: Connect
+            - img [ref=e32]
+      - generic [ref=e35]:
+        - paragraph [ref=e37]: Live Voting
+        - generic [ref=e38]:
+          - link [ref=e39] [cursor=pointer]:
+            - /url: /governance_actions
+            - paragraph [ref=e40]: Live Voting
+          - separator [ref=e41]
+          - paragraph [ref=e42]: Data Missing
+        - generic [ref=e43] [cursor=pointer]:
+          - img [ref=e44]
+          - paragraph [ref=e45]: Back
+        - generic [ref=e47]:
+          - generic [ref=e48]:
+            - heading [level=1] [ref=e51]: Data Missing
+            - generic [ref=e52]:
+              - paragraph [ref=e53]: The data that was originally used when this Governance Action was created has not been found.
+              - paragraph [ref=e54]: GovTool uses external sources for Governance Action data, and these sources are maintained by the proposers of the Actions. This error means that GovTool cannot locate the data on the URL specified when the Governance Action was originally posted.
+              - text: Learn more
+            - generic [ref=e55]:
+              - heading [level=2] [ref=e57]: "Governance Action Type:"
+              - paragraph [ref=e60]: Treasury Withdrawal
+            - generic [ref=e61]:
+              - generic [ref=e62]:
+                - paragraph [ref=e63]: "Submitted: 29th May 2024 (Epoch 349)"
+                - img [ref=e64]
+              - generic [ref=e66]:
+                - paragraph [ref=e67]: "Expires: 4th Jun 2024 (Epoch 355)"
+                - img [ref=e68]
+            - button [active] [ref=e70] [cursor=pointer]:
+              - paragraph [ref=e71]: See external data
+              - img [ref=e72]
+            - generic [ref=e73]:
+              - heading [level=2] [ref=e75]: "Governance Action ID:"
+              - generic [ref=e76]:
+                - paragraph [ref=e77]: gov_action15y4ljy5dfgkqyk9fgfa5war4dd4fu8t0auzsz80vyrfg32pwskgqqvqnjwj
+                - img [ref=e79] [cursor=pointer]
+            - generic [ref=e80]:
+              - heading [level=2] [ref=e82]: "Legacy Governance Action ID (CIP-105):"
+              - generic [ref=e83]:
+                - paragraph [ref=e84]: a12bf9128d4a2c0258a9427b4774756b6a9e1d6fef05011dec20d288a82e8590#0
+                - img [ref=e86] [cursor=pointer]
+            - generic [ref=e89]:
+              - heading [level=2] [ref=e91]: Metadata anchor link
+              - generic [ref=e92]:
+                - paragraph [ref=e93]: https://metadata.cardanoapi.io/data/Treasuy.jsonld
+                - img [ref=e95] [cursor=pointer]
+            - generic [ref=e96]:
+              - heading [level=2] [ref=e98]: Metadata anchor hash
+              - generic [ref=e99]:
+                - paragraph [ref=e100]: 37ac1dcf986c08517f2f64a0b70a6b5b3c72ac608b6f8e94ba532e8f4817361
+                - img [ref=e102] [cursor=pointer]
+            - generic [ref=e103]:
+              - heading [level=2] [ref=e105]: Author(s)
+              - generic [ref=e107]: No data available
+          - generic [ref=e109]:
+            - img [ref=e110]
+            - paragraph [ref=e111]: Votes submitted
+            - paragraph [ref=e112]: for this Governance Action
+            - generic [ref=e113]:
+              - generic [ref=e114]:
+                - paragraph [ref=e115]: DReps
+                - generic [ref=e116]:
+                  - paragraph [ref=e117]: Ratification Threshold
+                  - paragraph [ref=e118]: 67%
+                - generic [ref=e119]:
+                  - paragraph [ref=e121]: "Yes"
+                  - paragraph [ref=e123]: ₳ 0
+                - generic [ref=e124]:
+                  - paragraph [ref=e126]: Abstain
+                  - paragraph [ref=e128]: ₳ 0
+                - generic [ref=e129]:
+                  - paragraph [ref=e131]: "No"
+                  - paragraph [ref=e133]: ₳ 0
+              - generic [ref=e134]:
+                - paragraph [ref=e135]: Constitutional Committee
+                - generic [ref=e136]:
+                  - paragraph [ref=e137]: Ratification Threshold
+                  - paragraph [ref=e138]: 67%
+                - generic [ref=e139]:
+                  - paragraph [ref=e141]: Constitutional
+                  - paragraph [ref=e143]: NaN%
+                - paragraph [ref=e146]: Abstain
+                - generic [ref=e147]:
+                  - paragraph [ref=e149]: Unconstitutional
+                  - paragraph [ref=e151]: NaN%
+                - generic [ref=e152]:
+                  - paragraph [ref=e154]: Not voted
+                  - generic [ref=e155]:
+                    - paragraph [ref=e156]: NaN
+                    - paragraph [ref=e157]: NaN%
+      - contentinfo [ref=e158]:
+        - paragraph [ref=e159]: © 2026 GovTool
+        - generic [ref=e160]:
+          - generic [ref=e161] [cursor=pointer]: Privacy policy
+          - generic [ref=e162] [cursor=pointer]: Terms of Use
+        - generic [ref=e163]:
+          - button [ref=e164] [cursor=pointer]:
+            - img [ref=e166]
+            - text: Help
+          - button [ref=e167] [cursor=pointer]: Feedback
+    - img [ref=e168]
+  - generic [ref=e171]:
+    - img "close" [ref=e172] [cursor=pointer]
+    - img "Status icon" [ref=e173]
+    - paragraph [ref=e174]: External Link Safety
+    - generic [ref=e175]:
+      - paragraph [ref=e176]: "This is an external link:"
+      - paragraph [ref=e177]: https://metadata.cardanoapi.io/data/Treasuy.jsonld
+      - paragraph [ref=e178]: Exercise caution and verify the website's authenticity before sharing personal information. To proceed, click 'Continue'. To stay on Cardano, click 'Cancel'.
+    - generic [ref=e179]:
+      - button "Continue" [ref=e180] [cursor=pointer]: Continue
+      - button "Cancel" [ref=e181] [cursor=pointer]: Cancel
+```
+
+# Test source
+
+```ts
+  1  | import { test } from "@fixtures/walletExtension";
+  2  | import { setAllureEpic } from "@helpers/allure";
+  3  | import GovernanceActionsPage from "@pages/governanceActionsPage";
+  4  | import { expect } from "@playwright/test";
+  5  | const invalidInfinityProposals = require("../../lib/_mock/invalidInfinityProposals.json");
+  6  | 
+  7  | test.beforeEach(async () => {
+  8  |   await setAllureEpic("5. Proposal functionality");
+  9  | });
+  10 | test.describe("Bad Proposals", () => {
+  11 |   let govActionsPage: GovernanceActionsPage;
+  12 | 
+  13 |   test.beforeEach(async ({ page }) => {
+  14 |     await page.route("**/proposal/list?**", async (route) =>
+  15 |       route.fulfill({
+  16 |         body: JSON.stringify(invalidInfinityProposals),
+  17 |       })
+  18 |     );
+  19 | 
+  20 |     govActionsPage = new GovernanceActionsPage(page);
+  21 |     await govActionsPage.goto();
+  22 |   });
+  23 | 
+  24 |   test("5G. Should show warning in bad governance action proposal to the users to visit the site at their own risk, when external url is opened", async () => {
+  25 |     const govActionDetailsPage = await govActionsPage.viewFirstProposal();
+  26 | 
+  27 |     await govActionDetailsPage.externalModalBtn.click();
+  28 | 
+  29 |     await expect(govActionDetailsPage.externalLinkModal).toBeVisible();
+  30 |     await expect(
+  31 |       govActionDetailsPage.currentPage.getByText("Be careful", {
+  32 |         exact: false,
+  33 |       })
+> 34 |     ).toBeVisible();
+     |       ^ Error: expect(locator).toBeVisible() failed
+  35 |   });
+  36 | 
+  37 |   test("5H. Should open a new tab in Bad governance action proposal, when external URL is opened", async ({
+  38 |     page,
+  39 |   }) => {
+  40 |     const govActionDetailsPage = await govActionsPage.viewFirstProposal();
+  41 | 
+  42 |     await govActionDetailsPage.externalModalBtn.click();
+  43 |     await govActionDetailsPage.continueModalBtn.click();
+  44 |     const existingPages = page.context().pages();
+  45 |     expect(existingPages).toHaveLength(1);
+  46 |   });
+  47 | });
+  48 | 
+```

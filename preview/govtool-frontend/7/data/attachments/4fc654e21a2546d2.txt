@@ -1,0 +1,54 @@
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/014c32e57347d114744210e1934a2084c5d0052a2312170d93758bfd566f3956' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/657ce2b0b935bbdb91ef7fc6cdc9cb7029a3925b1fd6e34dfc7d2312b0c30e0e' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/af397cc47fe7564425285f502f5f4726cf0372734cef969bfbd7b952f9a1a319' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/e384c5a41b0535a4b5ed601bb4c7d9d69b0597911fe22256a1aaf1bfe8a25b9f' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/f5d8fbd0688b967299ac988333dbc8171b57930537b7fe265967447c1d9ac69d' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/014c32e57347d114744210e1934a2084c5d0052a2312170d93758bfd566f3956' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/fa2b252c9d645b376ee68f94ea87764dad6510e201726921e0cb733161ca6ef8' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/725e1a2e603201fb6e8cfb5d26bcb2405b2b30c13820cb278d6d62b89e195f4b' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/657ce2b0b935bbdb91ef7fc6cdc9cb7029a3925b1fd6e34dfc7d2312b0c30e0e' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/af397cc47fe7564425285f502f5f4726cf0372734cef969bfbd7b952f9a1a319' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/e384c5a41b0535a4b5ed601bb4c7d9d69b0597911fe22256a1aaf1bfe8a25b9f' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/f5d8fbd0688b967299ac988333dbc8171b57930537b7fe265967447c1d9ac69d' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/fa2b252c9d645b376ee68f94ea87764dad6510e201726921e0cb733161ca6ef8' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/725e1a2e603201fb6e8cfb5d26bcb2405b2b30c13820cb278d6d62b89e195f4b' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/014c32e57347d114744210e1934a2084c5d0052a2312170d93758bfd566f3956' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/657ce2b0b935bbdb91ef7fc6cdc9cb7029a3925b1fd6e34dfc7d2312b0c30e0e' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/af397cc47fe7564425285f502f5f4726cf0372734cef969bfbd7b952f9a1a319' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/e384c5a41b0535a4b5ed601bb4c7d9d69b0597911fe22256a1aaf1bfe8a25b9f' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/f5d8fbd0688b967299ac988333dbc8171b57930537b7fe265967447c1d9ac69d' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/fa2b252c9d645b376ee68f94ea87764dad6510e201726921e0cb733161ca6ef8' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/725e1a2e603201fb6e8cfb5d26bcb2405b2b30c13820cb278d6d62b89e195f4b' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/014c32e57347d114744210e1934a2084c5d0052a2312170d93758bfd566f3956' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ yt
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/657ce2b0b935bbdb91ef7fc6cdc9cb7029a3925b1fd6e34dfc7d2312b0c30e0e' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ yt
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/af397cc47fe7564425285f502f5f4726cf0372734cef969bfbd7b952f9a1a319' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ yt
+✖ Failed to load resource: net::ERR_FAILED
+✖ Access to XMLHttpRequest at 'https://outcomes-govtool-preview.cardanoapi.io/governance-actions/proposal/e384c5a41b0535a4b5ed601bb4c7d9d69b0597911fe22256a1aaf1bfe8a25b9f' from origin 'https://govtool-preview.cardanoapi.io' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+✖ yt
+✖ Failed to load resource: net::ERR_FAILED
