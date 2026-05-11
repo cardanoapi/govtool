@@ -1,0 +1,6 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Uploaded Travon.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 7aaa8a08ae4610dd99a54bcce2c7bdeda6d3e8dfada4b4908e41d9bf3974225a
+✔ Tx completed

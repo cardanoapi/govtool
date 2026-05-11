@@ -1,0 +1,442 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 12-proposal-budget-submission/proposalBudgetSubmission.loggedin.pb.spec.ts >> Budget proposal 01 wallet >> Budget proposal with proposalSubmissionPageNavigation >> Budget proposal field validation >> 12F_4. Should reject invalid data in “Costing” section
+- Location: tests/12-proposal-budget-submission/proposalBudgetSubmission.loggedin.pb.spec.ts:327:13
+
+# Error details
+
+```
+Test timeout of 540000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 540000ms exceeded.
+Call log:
+  - waiting for getByTestId('programmable assets-button')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: "Network: Preview"
+      - generic [ref=e7]: "|"
+      - link [ref=e8] [cursor=pointer]:
+        - /url: https://gov.tools/
+        - text: Go to Mainnet
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+        - button [ref=e14] [cursor=pointer]:
+          - img [ref=e15]
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - link [ref=e20] [cursor=pointer]:
+            - /url: https://govtool.cardanoapi.io/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+            - text: The Info Action
+          - text: has passed — thank you for your support!
+        - generic [ref=e21]:
+          - text: We have now submitted a
+          - link [ref=e22] [cursor=pointer]:
+            - /url: https://govtool.cardanoapi.io/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+            - text: Treasury Withdrawal
+          - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+    - img [ref=e23]
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - link [ref=e26] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e27]
+        - generic [ref=e28]:
+          - link [ref=e30] [cursor=pointer]:
+            - /url: /dashboard
+            - generic [ref=e31]:
+              - img [ref=e32]
+              - paragraph [ref=e33]: Home
+          - link [ref=e35] [cursor=pointer]:
+            - /url: /connected/drep_directory
+            - generic [ref=e36]:
+              - img [ref=e37]
+              - paragraph [ref=e38]: DRep Directory
+          - link [ref=e40] [cursor=pointer]:
+            - /url: /budget_discussion
+            - generic [ref=e41]:
+              - img [ref=e42]
+              - paragraph [ref=e43]: Budget Proposals
+          - generic [ref=e44]:
+            - link [ref=e45] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e46]:
+                - img [ref=e47]
+                - paragraph [ref=e48]: Governance Actions
+            - generic [ref=e49]:
+              - link [ref=e50] [cursor=pointer]:
+                - /url: /proposal_discussion
+                - generic [ref=e51]:
+                  - img [ref=e53]
+                  - paragraph [ref=e55]: Proposals
+              - link [ref=e56] [cursor=pointer]:
+                - /url: /connected/governance_actions
+                - generic [ref=e57]:
+                  - img [ref=e58]
+                  - paragraph [ref=e59]: Live Voting
+              - link [ref=e60] [cursor=pointer]:
+                - /url: /outcomes
+                - generic [ref=e61]:
+                  - img [ref=e62]
+                  - paragraph [ref=e63]: Outcomes
+          - link [ref=e65] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e66]:
+              - img [ref=e67]
+              - paragraph [ref=e68]: Guides
+          - link [ref=e70] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e71]:
+              - img [ref=e72]
+              - paragraph [ref=e73]: FAQs
+        - generic [ref=e76]:
+          - paragraph [ref=e77]: "Connected Wallet:"
+          - generic [ref=e78]:
+            - paragraph [ref=e79]: 00b33696e6f7ccb0499b8a7f072a4a4e646a78ae3755333fa99f490cca47bd5449a4c114ea19bdb46991c7c11b99a491f0d9b7325519eb0d8e
+            - button [ref=e80] [cursor=pointer]: Disconnect
+      - generic [ref=e81]:
+        - navigation [ref=e82]:
+          - paragraph [ref=e84]: Budget Proposals
+        - generic [ref=e92]:
+          - button [ref=e95] [cursor=pointer]: Submit proposal for Cardano budget
+          - generic [ref=e98]:
+            - img [ref=e100]
+            - textbox [ref=e102]:
+              - /placeholder: Search...
+            - group
+          - generic [ref=e104]:
+            - button [ref=e105] [cursor=pointer]:
+              - text: "Filter:"
+              - img [ref=e107]
+            - button [ref=e109] [cursor=pointer]:
+              - text: "Sort: Newest"
+              - img [ref=e111]
+        - contentinfo [ref=e113]:
+          - paragraph [ref=e114]: © 2026 GovTool
+          - generic [ref=e115]:
+            - generic [ref=e116] [cursor=pointer]: Privacy policy
+            - generic [ref=e117] [cursor=pointer]: Terms of Use
+          - generic [ref=e118]:
+            - button [ref=e119] [cursor=pointer]:
+              - img [ref=e121]
+              - text: Help
+            - button [ref=e122] [cursor=pointer]: Feedback
+    - img [ref=e123]
+  - dialog [ref=e127]:
+    - generic [ref=e129]:
+      - heading [level=1] [ref=e131]: Submit a Budget Proposal
+      - button [ref=e133] [cursor=pointer]:
+        - img [ref=e135]
+        - text: Show all
+      - generic [ref=e142]:
+        - generic [ref=e143]:
+          - heading [level=4] [ref=e144]: "Section 2: Problem Statements and Proposal Benefits"
+          - generic [ref=e145]:
+            - paragraph [ref=e146]: "2"
+            - paragraph [ref=e147]: /
+            - paragraph [ref=e148]: "6"
+          - paragraph [ref=e150]: This section focuses on understanding the drivers behind the proposed project. E.g., Why should this project be undertaken?
+        - generic [ref=e151]:
+          - generic [ref=e152]:
+            - text: Problem Statement
+            - generic [ref=e153]: "*"
+          - generic [ref=e154]:
+            - textbox [ref=e155]: Inflammatio similique cognatus sursum barba. Utilis peior vae absum surgo minima clamo blandior.
+            - group:
+              - generic: Problem Statement *
+          - paragraph [ref=e156]:
+            - text: What problem does this proposal seek to address?
+            - generic [ref=e157]: 96/15000
+        - generic [ref=e158]:
+          - generic [ref=e159]:
+            - text: Proposal Benefit
+            - generic [ref=e160]: "*"
+          - generic [ref=e161]:
+            - textbox [ref=e162]: Vitium ipsam totus adulescens delectus deputo talus iusto vos balbus. Tactus tener vilis tubineus adinventitias denique.
+            - group:
+              - generic: Proposal Benefit *
+          - paragraph [ref=e163]:
+            - text: If implemented, what would be the benefit and to which parts of the community? Please include the demonstrated value or return on investment to the Cardano Community.
+            - generic [ref=e164]: 120/15000
+        - generic [ref=e165]:
+          - generic [ref=e166]:
+            - text: Does this proposal align to the Product Roadmap and Roadmap Goals?
+            - generic [ref=e167]: "*"
+          - generic [ref=e168]:
+            - combobox [expanded] [ref=e169] [cursor=pointer]
+            - textbox
+            - img
+            - group:
+              - generic: Does this proposal align to the Product Roadmap and Roadmap Goals? *
+          - paragraph [ref=e170]:
+            - text: Please click
+            - link [ref=e171] [cursor=pointer]:
+              - /url: https://productcommittee.docs.intersectmbo.org/committee-outcomes/2025-cardanos-roadmap/2025-proposed-cardano-roadmap#scaling-the-l1-engine
+              - text: here
+            - text: to see details of the Product Roadmap
+        - generic [ref=e172]:
+          - generic:
+            - text: Does your proposal align to any of the budget categories?
+            - generic: "*"
+          - generic [ref=e173]:
+            - combobox [ref=e174] [cursor=pointer]
+            - textbox
+            - img
+            - group:
+              - generic: Does your proposal align to any of the budget categories? *
+        - generic [ref=e175]:
+          - generic:
+            - text: Does your proposal align with any of the Intersect Committees?
+            - generic: "*"
+          - generic [ref=e176]:
+            - combobox [ref=e177] [cursor=pointer]
+            - textbox
+            - img
+            - group:
+              - generic: Does your proposal align with any of the Intersect Committees? *
+          - paragraph [ref=e178]:
+            - text: Please click
+            - link [ref=e179] [cursor=pointer]:
+              - /url: https://www.intersectmbo.org/committees
+              - text: here
+            - text: to see details of Intersect Committees.
+        - generic [ref=e180]:
+          - generic [ref=e181]: If possible provide evidence of wider community endorsement for this proposal?
+          - generic [ref=e182]:
+            - textbox [ref=e183]: Trado dolor theologus viduo currus argumentum aperte. Hic tenetur velit pecus distinctio supra animus.
+            - group:
+              - generic: If possible provide evidence of wider community endorsement for this proposal?
+          - paragraph [ref=e184]:
+            - text: E.g., CIP/CPS discussion, Technical Working Group, Special Interest Group, draft committee budget code, or other forum where comments and consensus have been made to date. Please share any links you have available.
+            - generic [ref=e185]: 102/15000
+        - generic [ref=e186]:
+          - generic [ref=e187]:
+            - button [ref=e188] [cursor=pointer]: Cancel
+            - button [ref=e189] [cursor=pointer]: Back
+          - generic [ref=e190]:
+            - button [ref=e191] [cursor=pointer]: Save Draft
+            - button [disabled]: Continue
+  - listbox "Does this proposal align to the Product Roadmap and Roadmap Goals? *" [active] [ref=e194]
+```
+
+# Test source
+
+```ts
+  217 |   );
+  218 |   readonly experienceContent = this.page.getByTestId("experience-content");
+  219 |   readonly contractingContent = this.page.getByTestId(
+  220 |     "contracting-type-name-content"
+  221 |   );
+  222 |   readonly contractingOtherContent = this.page.getByTestId(
+  223 |     "other-contract-description"
+  224 |   );
+  225 | 
+  226 |   // costing
+  227 |   readonly adaAmountContent = this.page.getByTestId("ada-amount-content");
+  228 |   readonly usdToAdaConversionRateContent = this.page.getByTestId(
+  229 |     "usd-to-ada-conversion-rate-content"
+  230 |   );
+  231 |   readonly preferredCurrencyContent = this.page.getByTestId(
+  232 |     "preferred-currency-content"
+  233 |   );
+  234 |   readonly preferredCurrencyAmountContent = this.page.getByTestId(
+  235 |     "amount-in-preferred-currency-content"
+  236 |   );
+  237 |   readonly costBreakdownContent = this.page.getByTestId(
+  238 |     "cost-breakdown-content"
+  239 |   );
+  240 | 
+  241 |   // administration and auditing
+  242 |   readonly intersectAdministrationContent = this.page.getByTestId(
+  243 |     "intersect-named-administrator-content"
+  244 |   );
+  245 | 
+  246 |   constructor(private readonly page: Page) {}
+  247 | 
+  248 |   get currentPage(): Page {
+  249 |     return this.page;
+  250 |   }
+  251 | 
+  252 |   async goto() {
+  253 |     await this.page.goto(`${environments.frontendUrl}/budget_discussion`);
+  254 | 
+  255 |     await this.verifyIdentityBtn.click();
+  256 |     await this.createBudgetProposalBtn.click();
+  257 | 
+  258 |     await this.continueBtn.click();
+  259 |   }
+  260 | 
+  261 |   async fillupProposalOwnershipForm(
+  262 |     proposalOwnership: BudgetProposalOwnershipProps,
+  263 |     isNaviagted = true
+  264 |   ) {
+  265 |     await this.proposalCommittee.click();
+  266 |     await this.page
+  267 |       .getByTestId(`${proposalOwnership.companyType.toLowerCase()}-submission`)
+  268 |       .click();
+  269 | 
+  270 |     await this.contactDetailsInput.fill(proposalOwnership.contactDetails);
+  271 | 
+  272 |     if (proposalOwnership.companyType === "Group") {
+  273 |       await this.groupNameInput.fill(proposalOwnership.groupName);
+  274 |       await this.groupTypeInput.fill(proposalOwnership.groupType);
+  275 |       await this.keyInformationOfGroupInput.fill(
+  276 |         proposalOwnership.groupKeyIdentity
+  277 |       );
+  278 |     }
+  279 |     if (proposalOwnership.companyType === "Company") {
+  280 |       await this.companyNameInput.fill(proposalOwnership.companyName);
+  281 |       await this.companyDomainNameInput.fill(
+  282 |         proposalOwnership.companyDomainName
+  283 |       );
+  284 |       await this.countryOfIncorporationBtn.click();
+  285 |       await this.page
+  286 |         .getByTestId(
+  287 |           `${proposalOwnership.countryOfIncorportation.toLowerCase().replace(/ /g, "-")}-country-of-incorporation-button`
+  288 |         )
+  289 |         .click();
+  290 |     }
+  291 | 
+  292 |     if (isNaviagted) {
+  293 |       await this.agreeCheckbox.click();
+  294 |       await this.continueBtn.click();
+  295 |     }
+  296 |   }
+  297 | 
+  298 |   async fillupProblemStatementAndBenefitsForm(
+  299 |     problemStatementAndBenefits: BudgetProposalProblemStatementAndBenefitProps,
+  300 |     isNaviagated = true
+  301 |   ) {
+  302 |     await this.problemStatementInput.fill(
+  303 |       problemStatementAndBenefits.problemStatement
+  304 |     );
+  305 |     await this.proposalBenefitInput.fill(
+  306 |       problemStatementAndBenefits.proposalBenefits
+  307 |     );
+  308 |     await this.suplimentaryEndorsementInput.fill(
+  309 |       problemStatementAndBenefits.suplimentaryEndorsement
+  310 |     );
+  311 | 
+  312 |     await this.roadmapNameSelect.click();
+  313 |     await this.page
+  314 |       .getByTestId(
+  315 |         `${problemStatementAndBenefits.roadmapName.toLowerCase()}-button`
+  316 |       )
+> 317 |       .click();
+      |        ^ Error: locator.click: Test timeout of 540000ms exceeded.
+  318 | 
+  319 |     if (
+  320 |       problemStatementAndBenefits.roadmapName ===
+  321 |       "It supports the product roadmap"
+  322 |     ) {
+  323 |       await this.productRoadmapDescriptionInput.fill(
+  324 |         problemStatementAndBenefits.productRoadmapDescription
+  325 |       );
+  326 |     }
+  327 | 
+  328 |     await this.budgetDiscussionTypeSelect.click();
+  329 |     await this.page
+  330 |       .getByTestId(
+  331 |         `${problemStatementAndBenefits.budgetDiscussionType.toLowerCase()}-button`
+  332 |       )
+  333 |       .click();
+  334 | 
+  335 |     await this.committeeAlignmentTypeSelect.click();
+  336 |     await this.page
+  337 |       .getByTestId(
+  338 |         `${problemStatementAndBenefits.committeeAlignmentType.toLowerCase()}-button`
+  339 |       )
+  340 |       .click();
+  341 | 
+  342 |     if (isNaviagated) {
+  343 |       await this.continueBtn.click();
+  344 |     }
+  345 |   }
+  346 | 
+  347 |   async fillupProposalDetailsFormWithoutContractingType(
+  348 |     proposalDetails: BudgetProposalDetailsProps
+  349 |   ) {
+  350 |     await this.proposalNameInput.fill(proposalDetails.proposalName);
+  351 |     await this.proposalDescriptionInput.fill(
+  352 |       proposalDetails.proposalDescription
+  353 |     );
+  354 |     await this.proposalKeyDependenciesInput.fill(
+  355 |       proposalDetails.proposalKeyDependencies
+  356 |     );
+  357 |     await this.proposalMaintainAndSupportInput.fill(
+  358 |       proposalDetails.proposalMaintainAndSupport
+  359 |     );
+  360 |     await this.milestonesInput.fill(proposalDetails.milestones);
+  361 |     await this.teamSizeAndDurationInput.fill(
+  362 |       proposalDetails.teamSizeAndDuration
+  363 |     );
+  364 |     await this.previousExperienceInput.fill(proposalDetails.previousExperience);
+  365 |   }
+  366 | 
+  367 |   async fillupProposalDetailsForm(proposalDetails: BudgetProposalDetailsProps) {
+  368 |     await this.fillupProposalDetailsFormWithoutContractingType(proposalDetails);
+  369 |     await this.contractingTypeSelect.click();
+  370 |     await this.page
+  371 |       .getByTestId(`${proposalDetails.contracting.toLowerCase()}-button`)
+  372 |       .click();
+  373 |     if (proposalDetails.contracting === "Other") {
+  374 |       await this.otherDescriptionInput.fill(proposalDetails.otherDescription);
+  375 |     }
+  376 | 
+  377 |     await this.continueBtn.click();
+  378 |   }
+  379 | 
+  380 |   async fillupCostingFormWithoutPreferredCurrency(costing: BudgetCostingProps) {
+  381 |     await this.adaAmountInput.fill(costing.adaAmount.toString());
+  382 |     await this.usaToAdaCnversionRateInput.fill(
+  383 |       costing.usdToAdaConversionRate.toString()
+  384 |     );
+  385 |     await this.preferredCurrencyInput.fill(
+  386 |       costing.AmountInPreferredCurrency.toString()
+  387 |     );
+  388 |     await this.costBreakdownInput.fill(costing.costBreakdown);
+  389 |   }
+  390 | 
+  391 |   async fillupCostingForm(costing: BudgetCostingProps) {
+  392 |     await this.fillupCostingFormWithoutPreferredCurrency(costing);
+  393 |     await this.preferredCurrencySelect.click();
+  394 |     await this.page
+  395 |       .getByTestId(`${costing.preferredCurrency.toLowerCase()}-button`)
+  396 |       .click();
+  397 | 
+  398 |     await this.continueBtn.click();
+  399 |   }
+  400 | 
+  401 |   async fillupFurtherInformation(proposal_links: Array<ProposalLink>) {
+  402 |     for (let i = 0; i < proposal_links.length; i++) {
+  403 |       if (i > 0) {
+  404 |         await this.addLinkBtn.click();
+  405 |       }
+  406 |       await this.page
+  407 |         .getByTestId(`link-${i}-url-input`)
+  408 |         .fill(proposal_links[i].prop_link);
+  409 |       await this.page
+  410 |         .getByTestId(`link-${i}-text-input`)
+  411 |         .fill(proposal_links[i].prop_link_text);
+  412 |     }
+  413 |     await this.continueBtn.click();
+  414 |   }
+  415 | 
+  416 |   async fillupAdministrationAndAuditing(
+  417 |     administrationAndAuditing: AdministrationAndAuditingProps
+```

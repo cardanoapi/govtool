@@ -1,0 +1,10 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Uploaded Katheryn.jsonld metadata to bucket
+ℹ Waiting for tx completion: abf54bb2eb54525ed2b85a21bf4822ff255383863250da501846291dd0d0d228
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()

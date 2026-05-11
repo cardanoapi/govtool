@@ -1,0 +1,327 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 2-delegation/delegationFunctionality.delegation.spec.ts >> Register DRep state >> 2S. Should retire as a Direct Voter on delegating to another DRep
+- Location: tests/2-delegation/delegationFunctionality.delegation.spec.ts:178:7
+
+# Error details
+
+```
+Error: Error: expect(locator).not.toBeVisible() failed
+
+Locator:  getByText('In Progress', { exact: true }).first()
+Expected: not visible
+Received: visible
+Timeout:  90000ms
+
+Call log:
+  - Expect "not toBeVisible" with timeout 90000ms
+  - waiting for getByText('In Progress', { exact: true }).first()
+    93 × locator resolved to <span class="MuiChip-label MuiChip-labelMedium css-14vsv3w">In Progress</span>
+       - unexpected value "visible"
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+      - button [ref=e14] [cursor=pointer]:
+        - img [ref=e15]
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - link "The Info Action" [ref=e20] [cursor=pointer]:
+          - /url: https://govtool.cardanoapi.io/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+        - text: has passed — thank you for your support!
+      - generic [ref=e21]:
+        - text: We have now submitted a
+        - link "Treasury Withdrawal" [ref=e22] [cursor=pointer]:
+          - /url: https://govtool.cardanoapi.io/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+        - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+  - img "bg-orange" [ref=e23]
+  - generic [ref=e24]:
+    - generic [ref=e25]:
+      - link "app-logo" [ref=e26] [cursor=pointer]:
+        - /url: /dashboard
+        - img "app-logo" [ref=e27]
+      - generic [ref=e28]:
+        - link "icon Home" [ref=e30] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=e31]:
+            - img "icon" [ref=e32]
+            - paragraph [ref=e33]: Home
+        - link "icon DRep Directory" [ref=e35] [cursor=pointer]:
+          - /url: /connected/drep_directory
+          - generic [ref=e36]:
+            - img "icon" [ref=e37]
+            - paragraph [ref=e38]: DRep Directory
+        - link "icon Budget Proposals" [ref=e40] [cursor=pointer]:
+          - /url: /budget_discussion
+          - generic [ref=e41]:
+            - img "icon" [ref=e42]
+            - paragraph [ref=e43]: Budget Proposals
+        - generic [ref=e44]:
+          - link "icon Governance Actions" [ref=e45] [cursor=pointer]:
+            - /url: /connected/governance_actions
+            - generic [ref=e46]:
+              - img "icon" [ref=e47]
+              - paragraph [ref=e48]: Governance Actions
+          - generic [ref=e49]:
+            - link "Proposals" [ref=e50] [cursor=pointer]:
+              - /url: /proposal_discussion
+              - generic [ref=e51]:
+                - img [ref=e53]
+                - paragraph [ref=e55]: Proposals
+            - link "icon Live Voting" [ref=e56] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e57]:
+                - img "icon" [ref=e58]
+                - paragraph [ref=e59]: Live Voting
+            - link "icon Outcomes" [ref=e60] [cursor=pointer]:
+              - /url: /outcomes
+              - generic [ref=e61]:
+                - img "icon" [ref=e62]
+                - paragraph [ref=e63]: Outcomes
+        - link "icon Guides" [ref=e65] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e66]:
+            - img "icon" [ref=e67]
+            - paragraph [ref=e68]: Guides
+        - link "icon FAQs" [ref=e70] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e71]:
+            - img "icon" [ref=e72]
+            - paragraph [ref=e73]: FAQs
+      - generic [ref=e76]:
+        - paragraph [ref=e77]: "Connected Wallet:"
+        - generic [ref=e78]:
+          - paragraph [ref=e79]: 00339095946154c779615dd45003e449099be1a6ad611bd916c2ea6c632a429c16ce3a1effb5633d27a20f6c0ece40c0be519e44e9ea9304ca
+          - button "Disconnect" [ref=e80] [cursor=pointer]: Disconnect
+    - generic [ref=e81]:
+      - navigation [ref=e82]:
+        - paragraph [ref=e84]: Home
+      - generic [ref=e85]:
+        - generic [ref=e86]:
+          - generic [ref=e87]:
+            - generic [ref=e88]:
+              - img "card" [ref=e89]
+              - paragraph [ref=e90]: Delegate your Voting Power
+              - paragraph [ref=e91]: Find a DRep to vote on your behalf.
+            - generic [ref=e92]:
+              - button "View DRep Directory" [ref=e93] [cursor=pointer]: View DRep Directory
+              - button "Learn more" [ref=e94] [cursor=pointer]: Learn more
+          - generic [ref=e95]:
+            - generic [ref=e96]:
+              - img "card" [ref=e97]
+              - paragraph [ref=e98]: Become a DRep
+              - paragraph [ref=e99]: Accept delegated voting power from other Ada holders, and combine it with your own voting power. Vote with the accumulated Power on Governance Actions.
+            - generic [ref=e100]:
+              - button "Register" [ref=e101] [cursor=pointer]: Register
+              - button "Learn more" [ref=e102] [cursor=pointer]: Learn more
+          - generic [ref=e103]:
+            - generic [ref=e104]:
+              - img "card" [ref=e105]
+              - paragraph [ref=e106]: Become a Direct Voter
+              - paragraph [ref=e107]: Register to Vote on Governance Actions.
+            - generic [ref=e108]:
+              - button "Register" [ref=e109] [cursor=pointer]: Register
+              - button "Learn more" [ref=e110] [cursor=pointer]: Learn more
+          - generic [ref=e111]:
+            - generic [ref=e112]:
+              - img "card" [ref=e113]
+              - paragraph [ref=e114]: View Governance Actions
+              - paragraph [ref=e115]: Review governance actions submitted on-chain.
+            - generic [ref=e116]:
+              - button "View Governance Actions" [ref=e117] [cursor=pointer]: View Governance Actions
+              - button "Learn more" [ref=e118] [cursor=pointer]: Learn more
+          - generic [ref=e119]:
+            - generic [ref=e120]:
+              - img "card" [ref=e121]
+              - paragraph [ref=e122]: Propose a Governance Action
+              - paragraph [ref=e123]: Submit your proposal for a Governance Action.
+            - generic [ref=e124]:
+              - button "Propose" [ref=e125] [cursor=pointer]: Propose
+              - button "Learn more" [ref=e126] [cursor=pointer]: Learn more
+        - generic [ref=e127]:
+          - paragraph [ref=e128]: Useful links
+          - generic [ref=e129]:
+            - generic [ref=e130]:
+              - paragraph [ref=e131]: Check the Constitutional Committee Portal
+              - paragraph [ref=e132]: See Interim Cardano Constitution and Constitutional committee votes rationales
+              - link "CC Portal link" [ref=e133] [cursor=pointer]:
+                - /url: https://constitution.gov.tools
+                - paragraph [ref=e134]: CC Portal
+                - img "link" [ref=e135]
+            - generic [ref=e136]:
+              - paragraph [ref=e137]: Intersect website
+              - paragraph [ref=e138]: Intersect is a member-based organization for the Cardano ecosystem — putting the community at the center of Cardano’s development
+              - link "Intersect website link" [ref=e139] [cursor=pointer]:
+                - /url: https://www.intersectmbo.org/
+                - paragraph [ref=e140]: Intersect website
+                - img "link" [ref=e141]
+      - contentinfo [ref=e142]:
+        - paragraph [ref=e143]: © 2026 GovTool
+        - generic [ref=e144]:
+          - generic [ref=e145] [cursor=pointer]: Privacy policy
+          - generic [ref=e146] [cursor=pointer]: Terms of Use
+        - generic [ref=e147]:
+          - button "helpIcon Help" [ref=e148] [cursor=pointer]:
+            - img "helpIcon" [ref=e150]
+            - text: Help
+          - button "Feedback" [ref=e151] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e152]
+```
+
+# Test source
+
+```ts
+  1   | import environments from "@constants/environments";
+  2   | import { Page, expect } from "@playwright/test";
+  3   | import kuberService from "@services/kuberService";
+  4   | import { LockInterceptor, LockInterceptorInfo } from "lib/lockInterceptor";
+  5   | import convertBufferToHex from "./convertBufferToHex";
+  6   | import { ShelleyWallet } from "./crypto";
+  7   | import { uploadMetadataAndGetJsonHash } from "./metadata";
+  8   | import { WalletAndAnchorType } from "@types";
+  9   | import { Logger } from "@helpers/logger";
+  10  | import { functionWaitedAssert } from "./waitedLoop";
+  11  | 
+  12  | /**
+  13  |  * Polls the transaction status until it's resolved or times out.
+  14  |  * address is used to release lock of that address
+  15  |  */
+  16  | export async function pollTransaction(
+  17  |   txHash: string,
+  18  |   lockInfo?: LockInterceptorInfo
+  19  | ) {
+  20  |   await functionWaitedAssert(
+  21  |     async () => {
+  22  |       try {
+  23  |         Logger.info(`Waiting for tx completion: ${txHash}`);
+  24  |         await expect
+  25  |           .poll(
+  26  |             async () => {
+  27  |               const response = await kuberService.getTransactionDetails(txHash);
+  28  |               const data = await response.json();
+  29  |               return data.length;
+  30  |             },
+  31  |             {
+  32  |               timeout: environments.txTimeOut,
+  33  |             }
+  34  |           )
+  35  |           .toBeGreaterThan(0);
+  36  | 
+  37  |         Logger.success("Tx completed");
+  38  | 
+  39  |         if (!lockInfo) return;
+  40  | 
+  41  |         await LockInterceptor.releaseLock(
+  42  |           lockInfo.initiator,
+  43  |           lockInfo.lockId,
+  44  |           `Task completed for:${lockInfo.lockId}`
+  45  |         );
+  46  |       } catch (err) {
+  47  |         if (lockInfo) {
+  48  |           const errorMessage = { lockInfo, error: JSON.stringify(err) };
+  49  | 
+  50  |           await LockInterceptor.releaseLock(
+  51  |             lockInfo.initiator,
+  52  |             lockInfo.lockId,
+  53  |             `Task failure: \n${JSON.stringify(errorMessage)}`
+  54  |           );
+  55  |         }
+  56  |         Logger.fail(`Failed due to ${err}`);
+  57  |         throw err;
+  58  |       }
+  59  |     },
+  60  |     { timeout: environments.txTimeOut + 60_000, name: "pollTransaction" }
+  61  |   );
+  62  | }
+  63  | 
+  64  | export async function waitForTxConfirmation(
+  65  |   page: Page,
+  66  |   triggerCallback?: () => Promise<void>
+  67  | ) {
+  68  |   let transactionHash: string | undefined;
+  69  |   try {
+  70  |     await triggerCallback?.call(this);
+  71  |     const transactionStatusPromise = page.waitForRequest((request) => {
+  72  |       return request.url().includes("/transaction/status/");
+  73  |     });
+  74  | 
+  75  |     await expect(
+  76  |       page
+  77  |         .getByTestId("alert-warning")
+  78  |         .getByText("Transaction in progress", { exact: false })
+  79  |     ).toBeVisible({
+  80  |       timeout: 90_000,
+  81  |     });
+  82  |     const url = (await transactionStatusPromise).url();
+  83  |     const regex = /\/transaction\/status\/([^\/]+)$/;
+  84  |     const match = url.match(regex);
+  85  |     if (match) {
+  86  |       transactionHash = match[1];
+  87  |     }
+  88  | 
+  89  |     if (transactionHash) {
+  90  |       await pollTransaction(transactionHash);
+  91  |       await expect(
+  92  |         page.getByText("In Progress", { exact: true }).first() //FIXME: Only one element needs to be displayed
+  93  |       ).not.toBeVisible({ timeout: 90_000 });
+  94  |     }
+  95  |   } catch (error) {
+  96  |     Logger.fail(error.message);
+> 97  |     throw new Error(error);
+      |           ^ Error: Error: expect(locator).not.toBeVisible() failed
+  98  |   }
+  99  | }
+  100 | 
+  101 | export async function registerStakeForWallet(wallet: ShelleyWallet) {
+  102 |   const { txId, lockInfo } = await kuberService.registerStake(
+  103 |     convertBufferToHex(wallet.stakeKey.private),
+  104 |     convertBufferToHex(wallet.stakeKey.pkh),
+  105 |     convertBufferToHex(wallet.paymentKey.private),
+  106 |     wallet.addressBech32(environments.networkId)
+  107 |   );
+  108 |   await pollTransaction(txId, lockInfo);
+  109 | }
+  110 | 
+  111 | export async function transferAdaForWallet(
+  112 |   wallet: ShelleyWallet,
+  113 |   amount?: number
+  114 | ) {
+  115 |   const { txId, lockInfo } = await kuberService.transferADA(
+  116 |     [wallet.addressBech32(environments.networkId)],
+  117 |     amount
+  118 |   );
+  119 |   await pollTransaction(txId, lockInfo);
+  120 | }
+  121 | 
+  122 | export async function registerDRepForWallet(wallet: ShelleyWallet) {
+  123 |   const dataHashAndUrl = await uploadMetadataAndGetJsonHash();
+  124 |   const metadataAnchorAndWallet: WalletAndAnchorType = {
+  125 |     ...dataHashAndUrl,
+  126 |     wallet: wallet.json(),
+  127 |   };
+  128 |   const registrationRes = await kuberService.dRepRegistration(
+  129 |     convertBufferToHex(wallet.dRepKey.private),
+  130 |     convertBufferToHex(wallet.dRepKey.pkh),
+  131 |     metadataAnchorAndWallet
+  132 |   );
+  133 |   await pollTransaction(registrationRes.txId, registrationRes.lockInfo);
+  134 | }
+  135 | 
+```

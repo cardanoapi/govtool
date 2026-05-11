@@ -1,0 +1,5 @@
+✔ Uploaded Grayson metadata to bucket
+ℹ Submitting tx: {"lock_id":"0bb295cb92746f97a66ec07b31c1604900364ce09d112e46dddbf82b88eb991c","tx":{"certificates":[{"type":"registerdrep","key":"21329470cb550c780ea0c0012840c4f98738b77d5e1b2a720249ddcd","anchor":{"url":"https://metadata-govtool.cardanoapi.io/data/Grayson","dataHash":"c60972aebcd4b958c887c081c1819bae2a8cbc98f316e0a3d07975f04cfce660"}}],"selections":[{"type":"PaymentSigningKeyShelley_ed25519","description":"Stake Signing Key","cborHex":"5820651860683dbb6fc8a24086ab3fbc74b067dba9a378a7a17c486f3e014da452c9"},{"type":"PaymentSigningKeyShelley_ed25519","description":"Payment Signing Key","cborHex":"58204a6ae978d1656381cfe8d9316c7262dd96d72a0c2ce6368ad8559b392170aa0e"},"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"],"changeAddress":"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"}}
+✔ Tx submitted: faf824c2d26fc2807f3f14448ba7642969abe4f5a92bc6ee38f5b721c75a823d
+ℹ Waiting for tx completion: faf824c2d26fc2807f3f14448ba7642969abe4f5a92bc6ee38f5b721c75a823d
+✔ Tx completed

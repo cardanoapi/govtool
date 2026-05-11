@@ -1,0 +1,8 @@
+wallet balance 100022
+wallet address addr_test1qq35vycu2rlm5uw2ww5hldun8cyr82mzuzg96dvv6nj4wwa49qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998qdqk65d
+✖ Failed to load resource: the server responded with a status of 404 ()
+Username is already set
+✔ Uploaded guardrail-script metadata to bucket
+2
+✔ Uploaded coepi metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()

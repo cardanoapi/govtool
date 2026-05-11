@@ -1,0 +1,291 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 11-proposal-budget/proposalBudget.dRep.pb.spec.ts >> Budget proposal dRep behaviour >> 11M. Should display DRep tag, name and ID when a registered DRep comments on a proposal
+- Location: tests/11-proposal-budget/proposalBudget.dRep.pb.spec.ts:85:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for locator('[data-testid^="budget-discussion-"][data-testid$="-view-details"]').first()
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+      - button [ref=e14] [cursor=pointer]:
+        - img [ref=e15]
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - link "The Info Action" [ref=e20] [cursor=pointer]:
+          - /url: https://govtool.cardanoapi.io/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+        - text: has passed — thank you for your support!
+      - generic [ref=e21]:
+        - text: We have now submitted a
+        - link "Treasury Withdrawal" [ref=e22] [cursor=pointer]:
+          - /url: https://govtool.cardanoapi.io/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+        - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+  - img "bg-orange" [ref=e23]
+  - generic [ref=e24]:
+    - generic [ref=e25]:
+      - link "app-logo" [ref=e26] [cursor=pointer]:
+        - /url: /dashboard
+        - img "app-logo" [ref=e27]
+      - generic [ref=e28]:
+        - link "icon Home" [ref=e30] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=e31]:
+            - img "icon" [ref=e32]
+            - paragraph [ref=e33]: Home
+        - link "icon DRep Directory" [ref=e35] [cursor=pointer]:
+          - /url: /connected/drep_directory
+          - generic [ref=e36]:
+            - img "icon" [ref=e37]
+            - paragraph [ref=e38]: DRep Directory
+        - link "icon Budget Proposals" [ref=e40] [cursor=pointer]:
+          - /url: /budget_discussion
+          - generic [ref=e41]:
+            - img "icon" [ref=e42]
+            - paragraph [ref=e43]: Budget Proposals
+        - generic [ref=e44]:
+          - link "icon Governance Actions" [ref=e45] [cursor=pointer]:
+            - /url: /connected/governance_actions
+            - generic [ref=e46]:
+              - img "icon" [ref=e47]
+              - paragraph [ref=e48]: Governance Actions
+          - generic [ref=e49]:
+            - link "Proposals" [ref=e50] [cursor=pointer]:
+              - /url: /proposal_discussion
+              - generic [ref=e51]:
+                - img [ref=e53]
+                - paragraph [ref=e55]: Proposals
+            - link "icon Live Voting" [ref=e56] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e57]:
+                - img "icon" [ref=e58]
+                - paragraph [ref=e59]: Live Voting
+            - link "icon Outcomes" [ref=e60] [cursor=pointer]:
+              - /url: /outcomes
+              - generic [ref=e61]:
+                - img "icon" [ref=e62]
+                - paragraph [ref=e63]: Outcomes
+        - link "icon Guides" [ref=e65] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e66]:
+            - img "icon" [ref=e67]
+            - paragraph [ref=e68]: Guides
+        - link "icon FAQs" [ref=e70] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e71]:
+            - img "icon" [ref=e72]
+            - paragraph [ref=e73]: FAQs
+      - generic [ref=e76]:
+        - paragraph [ref=e77]: "Connected Wallet:"
+        - generic [ref=e78]:
+          - paragraph [ref=e79]: 001a70078a9ff72d8feef2536fbff7a2d714a14552c8e73f3f5761870255c5f1560c3555823030bfca41610c3659c4d393ab73343cb449ef56
+          - button "Disconnect" [ref=e80] [cursor=pointer]: Disconnect
+    - generic [ref=e81]:
+      - navigation [ref=e82]:
+        - paragraph [ref=e84]: Budget Proposals
+        - generic [ref=e86]:
+          - img [ref=e87]
+          - paragraph [ref=e89]: "Voting power:"
+          - paragraph [ref=e90]: ₳ 0
+      - generic [ref=e98]:
+        - button "Submit proposal for Cardano budget" [ref=e101] [cursor=pointer]: Submit proposal for Cardano budget
+        - generic [ref=e104]:
+          - img [ref=e106]
+          - textbox "Search..." [ref=e108]
+          - group
+        - generic [ref=e110]:
+          - button "Filter:" [ref=e111] [cursor=pointer]:
+            - text: "Filter:"
+            - img [ref=e113]
+          - 'button "Sort: Newest" [ref=e115] [cursor=pointer]':
+            - text: "Sort: Newest"
+            - img [ref=e117]
+      - contentinfo [ref=e119]:
+        - paragraph [ref=e120]: © 2026 GovTool
+        - generic [ref=e121]:
+          - generic [ref=e122] [cursor=pointer]: Privacy policy
+          - generic [ref=e123] [cursor=pointer]: Terms of Use
+        - generic [ref=e124]:
+          - button "helpIcon Help" [ref=e125] [cursor=pointer]:
+            - img "helpIcon" [ref=e127]
+            - text: Help
+          - button "Feedback" [ref=e128] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e129]
+```
+
+# Test source
+
+```ts
+  1   | import { functionWaitedAssert, waitedLoop } from "@helpers/waitedLoop";
+  2   | import { expect, Locator, Page } from "@playwright/test";
+  3   | import {
+  4   |   BudgetDiscussionEnum,
+  5   |   BudgetProposalFilterTypes,
+  6   |   ProposedGovAction,
+  7   | } from "@types";
+  8   | import environments from "lib/constants/environments";
+  9   | import BudgetDiscussionDetailsPage from "./budgetDiscussionDetailsPage";
+  10  | 
+  11  | export default class BudgetDiscussionPage {
+  12  |   // Buttons
+  13  |   readonly drawerBtn = this.page.getByTestId("open-drawer-button");
+  14  |   readonly proposalBudgetDiscussionBtn = this.page.getByTestId(
+  15  |     "propose-a-budget-discussion-button"
+  16  |   );
+  17  |   readonly verifyUserLink = this.page.getByTestId("verify-user-link").first();
+  18  |   readonly verifyDRepLink = this.page.getByTestId("verify-drep-link").first();
+  19  |   readonly filterBtn = this.page.getByTestId("filter-button");
+  20  |   readonly sortBtn = this.page.getByTestId("sort-button");
+  21  |   readonly myProposalBtn = this.page.getByTestId(
+  22  |     "My Proposals-owner-filter-option"
+  23  |   );
+  24  | 
+  25  |   // input
+  26  |   readonly searchInput = this.page.getByTestId("search-input");
+  27  | 
+  28  |   constructor(private readonly page: Page) {}
+  29  | 
+  30  |   get currentPage(): Page {
+  31  |     return this.page;
+  32  |   }
+  33  | 
+  34  |   async goto() {
+  35  |     await this.page.goto(`${environments.frontendUrl}/budget_discussion`);
+  36  |     // wait for the proposal cards to load
+  37  |     await this.page.waitForTimeout(2_000);
+  38  |   }
+  39  | 
+  40  |   async viewFirstProposal(): Promise<BudgetDiscussionDetailsPage> {
+  41  |     await this.page
+  42  |       .locator(
+  43  |         '[data-testid^="budget-discussion-"][data-testid$="-view-details"]'
+  44  |       )
+  45  |       .first()
+> 46  |       .click();
+      |        ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  47  |     return new BudgetDiscussionDetailsPage(this.page);
+  48  |   }
+  49  | 
+  50  |   async getAllProposals() {
+  51  |     const proposalCardSelector =
+  52  |       '[data-testid^="budget-discussion-"][data-testid$="-card"]';
+  53  | 
+  54  |     await waitedLoop(async () => {
+  55  |       const count = await this.page.locator(proposalCardSelector).count();
+  56  |       return count > 0;
+  57  |     });
+  58  |     const proposalCards = await this.page.locator(proposalCardSelector).all();
+  59  | 
+  60  |     expect(
+  61  |       true,
+  62  |       proposalCards.length === 0 && "No budget proposals found."
+  63  |     ).toBeTruthy();
+  64  | 
+  65  |     return proposalCards;
+  66  |   }
+  67  | 
+  68  |   async clickRadioButtonsByNames(names: string[]) {
+  69  |     for (const name of names) {
+  70  |       const budgetProposalValue = Object.values(BudgetDiscussionEnum).includes(
+  71  |         name as BudgetDiscussionEnum
+  72  |       );
+  73  |       if (budgetProposalValue) {
+  74  |         await this.page.getByLabel(name).click();
+  75  |       }
+  76  |     }
+  77  |   }
+  78  | 
+  79  |   async filterProposalByNames(names: string[]) {
+  80  |     await this.clickRadioButtonsByNames(names);
+  81  |   }
+  82  | 
+  83  |   async unFilterProposalByNames(names: string[]) {
+  84  |     await this.clickRadioButtonsByNames(names);
+  85  |   }
+  86  | 
+  87  |   async applyAndValidateFilters(
+  88  |     filters: string[],
+  89  |     validateFunction: (proposalCard: any, filters: string[]) => Promise<boolean>
+  90  |   ) {
+  91  |     await this.page.waitForTimeout(4_000); // wait for the proposals to load
+  92  |     // single filter
+  93  |     for (const filter of filters) {
+  94  |       await this.filterProposalByNames([filter]);
+  95  |       await this.validateFilters([filter], validateFunction);
+  96  |       await this.unFilterProposalByNames([filter]);
+  97  |     }
+  98  | 
+  99  |     // multiple filter
+  100 |     const multipleFilters = [...filters];
+  101 |     while (multipleFilters.length > 1) {
+  102 |       await this.filterProposalByNames(multipleFilters);
+  103 |       await this.validateFilters(multipleFilters, validateFunction);
+  104 |       await this.unFilterProposalByNames(multipleFilters);
+  105 |       multipleFilters.pop();
+  106 |     }
+  107 |   }
+  108 | 
+  109 |   async validateFilters(
+  110 |     filters: string[],
+  111 |     validateFunction: (proposalCard: any, filters: string[]) => Promise<boolean>
+  112 |   ) {
+  113 |     await functionWaitedAssert(async () => {
+  114 |       const proposalCards = await this.getAllProposals();
+  115 | 
+  116 |       for (const proposalCard of proposalCards) {
+  117 |         if (await proposalCard.isVisible()) {
+  118 |           const type = await proposalCard
+  119 |             .getByTestId("budget-discussion-type")
+  120 |             .textContent();
+  121 |           const hasFilter = await validateFunction(proposalCard, filters);
+  122 | 
+  123 |           expect(
+  124 |             hasFilter,
+  125 |             !hasFilter &&
+  126 |               `A budget proposal type ${type} does not contain on ${filters}`
+  127 |           ).toBe(true);
+  128 |         }
+  129 |       }
+  130 |     });
+  131 |   }
+  132 | 
+  133 |   async _validateTypeFiltersInProposalCard(
+  134 |     proposalCard: Locator,
+  135 |     filters: string[]
+  136 |   ): Promise<boolean> {
+  137 |     const govActionType = await proposalCard
+  138 |       .getByTestId("budget-discussion-type")
+  139 |       .textContent();
+  140 | 
+  141 |     if (govActionType === "None of these") {
+  142 |       return filters.includes(BudgetDiscussionEnum.NoCategory);
+  143 |     }
+  144 |     return filters.includes(govActionType);
+  145 |   }
+  146 | 
+```

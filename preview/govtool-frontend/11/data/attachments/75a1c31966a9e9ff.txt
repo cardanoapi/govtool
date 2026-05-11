@@ -1,0 +1,7 @@
+wallet balance 100022
+wallet address addr_test1qr3yma9dcflev53amrjfy6v9yd3np0fpdvnd23l0773qv0a49qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998qdkt39s
+✖ Failed to load resource: the server responded with a status of 404 ()
+Username is already set
+3
+✔ Uploaded campana metadata to bucket
+✖ Failed to load resource: the server responded with a status of 400 ()

@@ -1,0 +1,495 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 7-proposal-submission/proposalSubmission.loggedin.pd.spec.ts >> Proposal created logged state >> Create a proposal with proper data >> 7G_1. Should create a proposal with proper info action data
+- Location: tests/7-proposal-submission/proposalSubmission.loggedin.pd.spec.ts:134:11
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByTestId('info action-button')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: "Network: Preview"
+      - generic [ref=e7]: "|"
+      - link [ref=e8] [cursor=pointer]:
+        - /url: https://gov.tools/
+        - text: Go to Mainnet
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+        - button [ref=e14] [cursor=pointer]:
+          - img [ref=e15]
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - link [ref=e20] [cursor=pointer]:
+            - /url: https://govtool.cardanoapi.io/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+            - text: The Info Action
+          - text: has passed — thank you for your support!
+        - generic [ref=e21]:
+          - text: We have now submitted a
+          - link [ref=e22] [cursor=pointer]:
+            - /url: https://govtool.cardanoapi.io/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+            - text: Treasury Withdrawal
+          - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+    - img [ref=e23]
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - link [ref=e26] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e27]
+        - generic [ref=e28]:
+          - link [ref=e30] [cursor=pointer]:
+            - /url: /dashboard
+            - generic [ref=e31]:
+              - img [ref=e32]
+              - paragraph [ref=e33]: Home
+          - link [ref=e35] [cursor=pointer]:
+            - /url: /connected/drep_directory
+            - generic [ref=e36]:
+              - img [ref=e37]
+              - paragraph [ref=e38]: DRep Directory
+          - link [ref=e40] [cursor=pointer]:
+            - /url: /budget_discussion
+            - generic [ref=e41]:
+              - img [ref=e42]
+              - paragraph [ref=e43]: Budget Proposals
+          - generic [ref=e44]:
+            - link [ref=e45] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e46]:
+                - img [ref=e47]
+                - paragraph [ref=e48]: Governance Actions
+            - generic [ref=e49]:
+              - link [ref=e50] [cursor=pointer]:
+                - /url: /proposal_discussion
+                - generic [ref=e51]:
+                  - img [ref=e53]
+                  - paragraph [ref=e55]: Proposals
+              - link [ref=e56] [cursor=pointer]:
+                - /url: /connected/governance_actions
+                - generic [ref=e57]:
+                  - img [ref=e58]
+                  - paragraph [ref=e59]: Live Voting
+              - link [ref=e60] [cursor=pointer]:
+                - /url: /outcomes
+                - generic [ref=e61]:
+                  - img [ref=e62]
+                  - paragraph [ref=e63]: Outcomes
+          - link [ref=e65] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e66]:
+              - img [ref=e67]
+              - paragraph [ref=e68]: Guides
+          - link [ref=e70] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e71]:
+              - img [ref=e72]
+              - paragraph [ref=e73]: FAQs
+        - generic [ref=e76]:
+          - paragraph [ref=e77]: "Connected Wallet:"
+          - generic [ref=e78]:
+            - paragraph [ref=e79]: 007ac213b5cee40ff87f8031da6f3757e92690f8283c9994f122bafae7c7f23a76f3b0ed60b038c72a172638898f24c5fc0d4ebb34129678d0
+            - button [ref=e80] [cursor=pointer]: Disconnect
+      - generic [ref=e81]:
+        - navigation [ref=e82]:
+          - paragraph [ref=e84]: Proposals
+        - generic [ref=e89]:
+          - generic [ref=e92]:
+            - button [ref=e95] [cursor=pointer]: Propose a Governance Action
+            - generic [ref=e98]:
+              - img [ref=e100]
+              - textbox [ref=e102]:
+                - /placeholder: Search...
+              - group
+            - generic [ref=e104]:
+              - button [ref=e105] [cursor=pointer]:
+                - text: "Filter:"
+                - img [ref=e107]
+              - button [ref=e109] [cursor=pointer]:
+                - text: "Sort: Newest"
+                - img [ref=e111]
+          - generic [ref=e113]:
+            - generic [ref=e115]:
+              - heading [level=2] [ref=e118]: Updates to the Constitution
+              - generic [ref=e121]:
+                - heading [level=6] [ref=e122]: No proposals found
+                - paragraph [ref=e123]: Please try a different search
+            - generic [ref=e125]:
+              - generic [ref=e126]:
+                - generic [ref=e127]:
+                  - heading [level=2] [ref=e128]: Motion of No Confidence
+                  - button [ref=e129] [cursor=pointer]: Show all
+                - generic [ref=e130]:
+                  - button [ref=e131] [cursor=pointer]:
+                    - img [ref=e132]
+                  - button [ref=e134] [cursor=pointer]:
+                    - img [ref=e135]
+              - generic [ref=e145]:
+                - generic [ref=e146]:
+                  - generic [ref=e147]:
+                    - generic [ref=e149]:
+                      - heading [level=3] [ref=e150]: nothing
+                      - heading [level=5] [ref=e151]: "@ksuhal"
+                    - button [ref=e153] [cursor=pointer]:
+                      - img [ref=e154]
+                  - generic [ref=e156]:
+                    - generic [ref=e157]:
+                      - generic [ref=e158]:
+                        - paragraph [ref=e159]: Abstract
+                        - paragraph [ref=e162]: vsvfvfs
+                      - generic [ref=e163]:
+                        - paragraph [ref=e164]: Governance Action Type
+                        - paragraph [ref=e165]: Motion of No Confidence
+                    - generic [ref=e166]:
+                      - generic [ref=e167]:
+                        - img [ref=e169]
+                        - paragraph [ref=e171]: "Proposed on: 11 May 2026"
+                      - generic [ref=e172]:
+                        - generic [ref=e174]:
+                          - button [disabled]:
+                            - generic: "1"
+                            - img
+                        - link [ref=e176] [cursor=pointer]:
+                          - /url: /proposal_discussion/3
+                          - button [ref=e177]: View Details
+                - generic [ref=e178]: Active
+        - contentinfo [ref=e185]:
+          - paragraph [ref=e186]: © 2026 GovTool
+          - generic [ref=e187]:
+            - generic [ref=e188] [cursor=pointer]: Privacy policy
+            - generic [ref=e189] [cursor=pointer]: Terms of Use
+          - generic [ref=e190]:
+            - button [ref=e191] [cursor=pointer]:
+              - img [ref=e193]
+              - text: Help
+            - button [ref=e194] [cursor=pointer]: Feedback
+    - img [ref=e195]
+  - dialog [ref=e199]:
+    - generic [ref=e200]:
+      - generic [ref=e201]:
+        - heading [level=1] [ref=e203]: Propose a Governance Action
+        - button [ref=e205] [cursor=pointer]:
+          - img [ref=e207]
+          - text: Show all
+        - generic [ref=e212]:
+          - generic [ref=e213]:
+            - generic [ref=e214]:
+              - heading [level=6] [ref=e215]: REQUIRED
+              - heading [level=4] [ref=e216]: Proposal Details
+            - generic [ref=e217]:
+              - generic [ref=e218]:
+                - text: Governance Action Type
+                - generic [ref=e219]: "*"
+              - generic [ref=e220]:
+                - combobox [expanded] [ref=e221] [cursor=pointer]
+                - textbox
+                - img
+                - group:
+                  - generic: Governance Action Type *
+            - generic [ref=e222]:
+              - generic:
+                - text: Title
+                - generic: "*"
+              - generic [ref=e223]:
+                - textbox [ref=e224]
+                - group:
+                  - generic: Title *
+            - generic [ref=e225]:
+              - generic:
+                - text: Abstract
+                - generic: "*"
+              - generic [ref=e226]:
+                - textbox [ref=e227]
+                - group:
+                  - generic: Abstract *
+              - paragraph [ref=e228]:
+                - text: "* A short summary of your proposal"
+                - generic [ref=e229]: 0/2500
+            - generic [ref=e230]:
+              - generic:
+                - text: Motivation
+                - generic: "*"
+              - generic [ref=e231]:
+                - textbox [ref=e232]:
+                  - /placeholder: This is a problem because...
+                - group:
+                  - generic: Motivation *
+              - paragraph [ref=e233]:
+                - text: "* What problem is your proposal solving?"
+                - generic [ref=e234]: 0/12000
+            - generic [ref=e235]:
+              - generic:
+                - text: Rationale
+                - generic: "*"
+              - generic [ref=e236]:
+                - textbox [ref=e237]:
+                  - /placeholder: This problem is solved by...
+                - group:
+                  - generic: Rationale *
+              - paragraph [ref=e238]:
+                - text: "* How does the on-chain change solve the problem?"
+                - generic [ref=e239]: 0/12000
+            - generic [ref=e240]:
+              - heading [level=6] [ref=e241]: OPTIONAL
+              - heading [level=5] [ref=e242]: References and Supporting Information
+              - heading [level=6] [ref=e243]: Links to additional content or social media contacts (up to 7 entries)
+            - generic [ref=e244]:
+              - generic [ref=e246]:
+                - button [ref=e248] [cursor=pointer]:
+                  - img [ref=e249]
+                - generic [ref=e251]:
+                  - generic [ref=e252]:
+                    - generic: "Link #1 URL"
+                    - generic [ref=e253]:
+                      - textbox [ref=e254]:
+                        - /placeholder: https://website.com
+                      - group:
+                        - generic: "Link #1 URL"
+                  - generic [ref=e255]:
+                    - generic: "Link #1 Text"
+                    - generic [ref=e256]:
+                      - textbox [ref=e257]:
+                        - /placeholder: Text
+                      - group:
+                        - generic: "Link #1 Text"
+              - button [ref=e259] [cursor=pointer]:
+                - img [ref=e261]
+                - text: Add link
+          - generic [ref=e263]:
+            - button [ref=e265] [cursor=pointer]: Back
+            - generic [ref=e266]:
+              - generic [ref=e267]:
+                - button [disabled]: Save Draft
+              - generic [ref=e268]:
+                - button [disabled]: Continue
+      - img [ref=e270]
+  - listbox "Governance Action Type *" [ref=e275]:
+    - option "Updates to the Constitution" [active] [ref=e276] [cursor=pointer]: Updates to the Constitution
+    - option "Motion of No Confidence" [ref=e277] [cursor=pointer]: Motion of No Confidence
+```
+
+# Test source
+
+```ts
+  98  |   );
+  99  |   readonly guardrailsScriptUrlInput = this.page.getByTestId(
+  100 |     "prop-guardrails-script-url-input"
+  101 |   );
+  102 |   readonly guardrailsScriptHashInput = this.page.getByTestId(
+  103 |     "prop-guardrails-script-hash-input"
+  104 |   );
+  105 |   readonly closeDraftSuccessModalBtn = this.page.getByTestId("close-button");
+  106 |   readonly linkTextInput = this.page.getByTestId("link-0-text-input");
+  107 |   readonly linkUrlInput = this.page.getByTestId("link-0-url-input");
+  108 |   readonly previousGAHashInput = this.page.getByTestId(
+  109 |     "previous-ga-hash-input"
+  110 |   );
+  111 |   readonly previousGAIdInput = this.page.getByTestId("previous-ga-id-input");
+  112 |   readonly majorInput = this.page.getByTestId("major-input");
+  113 |   readonly minorInput = this.page.getByTestId("minor-input");
+  114 | 
+  115 |   // content
+  116 |   readonly governanceActionTypeContent = this.page.getByTestId(
+  117 |     "governance-action-type-content"
+  118 |   );
+  119 |   readonly titleContent = this.page.getByTestId("title-content");
+  120 |   readonly abstractContent = this.page.getByTestId("abstract-content");
+  121 |   readonly motivationContent = this.page.getByTestId("motivation-content");
+  122 |   readonly rationaleContent = this.page.getByTestId("rationale-content");
+  123 |   readonly receivingAddressContent = this.page.getByTestId(
+  124 |     "receiving-address-0-content"
+  125 |   );
+  126 |   readonly amountContent = this.page.getByTestId("amount-0-content");
+  127 |   readonly constitutionUrlContent = this.page.getByTestId(
+  128 |     "new-constitution-url-content"
+  129 |   );
+  130 |   readonly guardrailsScriptUrlContent = this.page.getByTestId(
+  131 |     "guardrails-script-url-content"
+  132 |   );
+  133 |   readonly guardrailsScriptHashContent = this.page.getByTestId(
+  134 |     "guardrails-script-hash-content"
+  135 |   );
+  136 |   readonly linkTextContent = this.page.getByTestId("link-0-text-content");
+  137 |   readonly linkUrlContent = this.page.getByTestId("link-0-url-content");
+  138 |   readonly majorVersionContent = this.page.getByTestId("major-version-content");
+  139 |   readonly minorVersionContent = this.page.getByTestId("minor-version-content");
+  140 | 
+  141 |   constructor(private readonly page: Page) {}
+  142 | 
+  143 |   get currentPage(): Page {
+  144 |     return this.page;
+  145 |   }
+  146 | 
+  147 |   async goto() {
+  148 |     await this.page.goto(`${environments.frontendUrl}/proposal_discussion`);
+  149 | 
+  150 |     await this.verifyIdentityBtn.click();
+  151 |     await this.proposalCreateBtn.click();
+  152 | 
+  153 |     await this.continueBtn.click();
+  154 |   }
+  155 | 
+  156 |   async fillUpValidMetadata() {
+  157 |     this.page.getByTestId("download-button").click();
+  158 | 
+  159 |     const dRepMetadata = await this.downloadVoteMetadata();
+  160 |     const url = await metadataBucketService.uploadMetadata(
+  161 |       faker.lorem.word({ length: { min: 5, max: 10 } }),
+  162 |       dRepMetadata.data
+  163 |     );
+  164 |     await this.metadataUrlInput.fill(url);
+  165 |     await this.submitBtn.click();
+  166 |   }
+  167 | 
+  168 |   async downloadVoteMetadata() {
+  169 |     const download: Download = await this.page.waitForEvent("download");
+  170 |     return downloadMetadata(download);
+  171 |   }
+  172 | 
+  173 |   async fillupFormWithTypeSelected(governanceProposal: ProposalCreateRequest) {
+  174 |     await this.fillCommonFields(governanceProposal);
+  175 | 
+  176 |     if (governanceProposal.gov_action_type_id === 1) {
+  177 |       await this.fillTreasuryFields(governanceProposal);
+  178 |     }
+  179 | 
+  180 |     if (governanceProposal.gov_action_type_id === 2) {
+  181 |       await this.fillUpdateTheConstitutionFields(governanceProposal);
+  182 |     }
+  183 | 
+  184 |     if (governanceProposal.proposal_links != null) {
+  185 |       await this.fillProposalLinks(governanceProposal.proposal_links);
+  186 |     }
+  187 | 
+  188 |     if (governanceProposal.gov_action_type_id == 4) {
+  189 |       await this.fillHardForkFields(governanceProposal);
+  190 |     }
+  191 |   }
+  192 | 
+  193 |   async fillupForm(governanceProposal: ProposalCreateRequest) {
+  194 |     console.log(governanceProposal.gov_action_type_id);
+  195 |     await this.governanceActionType.click();
+  196 | 
+  197 |     if (governanceProposal.gov_action_type_id === 0) {
+> 198 |       await this.infoBtn.click();
+      |                          ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  199 |     } else if (governanceProposal.gov_action_type_id === 1) {
+  200 |       await this.treasuryBtn.click();
+  201 |     } else if (governanceProposal.gov_action_type_id === 2) {
+  202 |       await this.updateTheConstitutionBtn.click();
+  203 |       if (governanceProposal.has_guardrails) {
+  204 |         await this.guardrailsScriptCheckbox.click();
+  205 |       }
+  206 |     } else if (governanceProposal.gov_action_type_id === 3) {
+  207 |       await this.motionOfNoConfidenceBtn.click();
+  208 |     } else {
+  209 |       await this.hardForkBtn.click();
+  210 |     }
+  211 | 
+  212 |     await this.fillupFormWithTypeSelected(governanceProposal);
+  213 |   }
+  214 | 
+  215 |   async fillCommonFields(governanceProposal: ProposalCreateRequest) {
+  216 |     await this.titleInput.fill(governanceProposal.prop_name);
+  217 |     await this.abstractInput.fill(governanceProposal.prop_abstract);
+  218 |     await this.motivationInput.fill(governanceProposal.prop_motivation);
+  219 |     await this.rationaleInput.fill(governanceProposal.prop_rationale);
+  220 |   }
+  221 | 
+  222 |   async fillTreasuryFields(governanceProposal: ProposalCreateRequest) {
+  223 |     await this.receivingAddressInput.fill(
+  224 |       governanceProposal.prop_receiving_address
+  225 |     );
+  226 |     await this.amountInput.fill(governanceProposal.prop_amount);
+  227 |   }
+  228 | 
+  229 |   async fillUpdateTheConstitutionFields(
+  230 |     governanceProposal: ProposalCreateRequest
+  231 |   ) {
+  232 |     await this.constitutionUrlInput.fill(
+  233 |       governanceProposal.prop_constitution_url
+  234 |     );
+  235 | 
+  236 |     if (governanceProposal.has_guardrails) {
+  237 |       await this.guardrailsScriptUrlInput.fill(
+  238 |         governanceProposal.prop_guardrails_script_url
+  239 |       );
+  240 |       await this.guardrailsScriptHashInput.fill(
+  241 |         governanceProposal.prop_guardrails_script_hash
+  242 |       );
+  243 |     }
+  244 |   }
+  245 | 
+  246 |   async fillProposalLinks(proposal_links: Array<ProposalLink>) {
+  247 |     for (let i = 0; i < proposal_links.length; i++) {
+  248 |       if (i > 0) {
+  249 |         await this.addLinkBtn.click();
+  250 |       }
+  251 |       await this.page
+  252 |         .getByTestId(`link-${i}-url-input`)
+  253 |         .fill(proposal_links[i].prop_link);
+  254 |       await this.page
+  255 |         .getByTestId(`link-${i}-text-input`)
+  256 |         .fill(proposal_links[i].prop_link_text);
+  257 |     }
+  258 |   }
+  259 | 
+  260 |   async fillHardForkFields(hardForkProposal: ProposalCreateRequest) {
+  261 |     await this.minorInput.fill(hardForkProposal.prop_min_version.toString());
+  262 |     await this.majorInput.fill(hardForkProposal.prop_major_version.toString());
+  263 |   }
+  264 | 
+  265 |   async getAllDrafts() {
+  266 |     await expect(
+  267 |       this.page.locator('[data-testid^="draft-"][data-testid$="-card"]')
+  268 |     ).toBeVisible({ timeout: 60_000 }); // slow rendering
+  269 | 
+  270 |     return await this.page
+  271 |       .locator('[data-testid^="draft-"][data-testid$="-card"]')
+  272 |       .all();
+  273 |   }
+  274 | 
+  275 |   async getFirstDraft() {
+  276 |     await expect(
+  277 |       this.page.locator('[data-testid^="draft-"][data-testid$="-card"]').first()
+  278 |     ).toBeVisible({ timeout: 60_000 }); // slow rendering
+  279 | 
+  280 |     return this.page
+  281 |       .locator('[data-testid^="draft-"][data-testid$="-card"]')
+  282 |       .first();
+  283 |   }
+  284 | 
+  285 |   async viewFirstDraft() {
+  286 |     await expect(
+  287 |       this.page.locator('[data-testid^="draft-"][data-testid$="-card"]')
+  288 |     ).toBeVisible({ timeout: 60_000 }); // slow rendering
+  289 | 
+  290 |     return await this.page
+  291 |       .locator('[data-testid^="draft-"][data-testid$="-start-editing"]')
+  292 |       .first()
+  293 |       .click();
+  294 |   }
+  295 | 
+  296 |   async validateForm(governanceProposal: ProposalCreateRequest) {
+  297 |     await this.fillupFormWithTypeSelected(governanceProposal);
+  298 | 
+```

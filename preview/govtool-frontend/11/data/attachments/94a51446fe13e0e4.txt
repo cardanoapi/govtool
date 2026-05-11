@@ -1,0 +1,469 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 4-proposal-visibility/proposalVisibility.spec.ts >> 4C_1. Should filter Governance Action Type on governance actions page
+- Location: tests/4-proposal-visibility/proposalVisibility.spec.ts:65:5
+
+# Error details
+
+```
+Error: A proposal card does not contain any of the Protocol Parameter Change
+
+expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: false
+
+expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: false
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+      - button [ref=e14] [cursor=pointer]:
+        - img [ref=e15]
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - link "The Info Action" [ref=e20] [cursor=pointer]:
+          - /url: https://govtool.cardanoapi.io/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+        - text: has passed — thank you for your support!
+      - generic [ref=e21]:
+        - text: We have now submitted a
+        - link "Treasury Withdrawal" [ref=e22] [cursor=pointer]:
+          - /url: https://govtool.cardanoapi.io/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+        - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+  - img "bg-orange" [ref=e23]
+  - generic [ref=e24]:
+    - banner [ref=e26]:
+      - generic [ref=e27]:
+        - link "app-logo" [ref=e28] [cursor=pointer]:
+          - /url: /
+          - img "app-logo" [ref=e29]
+        - navigation [ref=e30]:
+          - generic [ref=e31]:
+            - link "Home" [ref=e33] [cursor=pointer]:
+              - /url: /
+              - paragraph [ref=e34]: Home
+            - link "DRep Directory" [ref=e36] [cursor=pointer]:
+              - /url: /drep_directory
+              - paragraph [ref=e37]: DRep Directory
+            - link "Budget Proposals" [ref=e39] [cursor=pointer]:
+              - /url: /budget_discussion
+              - paragraph [ref=e40]: Budget Proposals
+            - paragraph [ref=e42] [cursor=pointer]:
+              - generic [ref=e43]:
+                - text: Governance Actions
+                - img "dropdown-icon" [ref=e44]
+            - link "Guides" [ref=e46] [cursor=pointer]:
+              - /url: /governance_actions
+              - paragraph [ref=e47]: Guides
+            - link "FAQs" [ref=e49] [cursor=pointer]:
+              - /url: /governance_actions
+              - paragraph [ref=e50]: FAQs
+            - button "Connect Wallet" [ref=e52] [cursor=pointer]: Connect Wallet
+    - generic [ref=e53]:
+      - paragraph [ref=e54]: Live Voting
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - generic [ref=e57]:
+            - generic [ref=e58]:
+              - img [ref=e59]
+              - textbox "Search..." [ref=e61]
+            - generic [ref=e63]:
+              - generic [ref=e64] [cursor=pointer]:
+                - img "filter" [ref=e65]
+                - paragraph [ref=e66]: Filter
+              - generic [ref=e67] [cursor=pointer]:
+                - img "sort" [ref=e68]
+                - paragraph [ref=e69]: Sort
+              - generic [ref=e70]:
+                - generic [ref=e71]: Governance Action Type
+                - generic [ref=e73] [cursor=pointer]:
+                  - generic [ref=e74]:
+                    - checkbox "No Confidence" [ref=e75]
+                    - img [ref=e76]
+                  - paragraph [ref=e78]: No Confidence
+                - generic [ref=e80] [cursor=pointer]:
+                  - generic [ref=e81]:
+                    - checkbox "New Committee" [ref=e82]
+                    - img [ref=e83]
+                  - paragraph [ref=e85]: New Committee
+                - generic [ref=e87] [cursor=pointer]:
+                  - generic [ref=e88]:
+                    - checkbox "Update to the Constitution" [ref=e89]
+                    - img [ref=e90]
+                  - paragraph [ref=e92]: Update to the Constitution
+                - generic [ref=e94] [cursor=pointer]:
+                  - generic [ref=e95]:
+                    - checkbox "Hard Fork" [ref=e96]
+                    - img [ref=e97]
+                  - paragraph [ref=e99]: Hard Fork
+                - generic [ref=e101] [cursor=pointer]:
+                  - generic [ref=e102]:
+                    - checkbox "Protocol Parameter Change" [checked] [active] [ref=e103]
+                    - img [ref=e104]
+                  - paragraph [ref=e106]: Protocol Parameter Change
+                - generic [ref=e108] [cursor=pointer]:
+                  - generic [ref=e109]:
+                    - checkbox "Treasury Withdrawal" [ref=e110]
+                    - img [ref=e111]
+                  - paragraph [ref=e113]: Treasury Withdrawal
+                - generic [ref=e115] [cursor=pointer]:
+                  - generic [ref=e116]:
+                    - checkbox "Info Action" [ref=e117]
+                    - img [ref=e118]
+                  - paragraph [ref=e120]: Info Action
+          - button "Protocol Parameter Change" [ref=e122]:
+            - generic [ref=e123]: Protocol Parameter Change
+            - button [ref=e124] [cursor=pointer]:
+              - img [ref=e125]
+        - generic [ref=e128]:
+          - generic [ref=e130]:
+            - generic [ref=e131]:
+              - paragraph [ref=e133]: My amazing title limited to 80 chars
+              - generic [ref=e134]:
+                - heading "Governance Action Type:" [level=2] [ref=e136]
+                - paragraph [ref=e139]: Treasury Withdrawal
+              - generic [ref=e140]:
+                - generic [ref=e141]:
+                  - paragraph [ref=e142]: "Submitted: 17th Apr 2026 (Epoch 1270)"
+                  - img [ref=e143]
+                - generic [ref=e145]:
+                  - paragraph [ref=e146]: "Expires: 18th May 2026 (Epoch 1301)"
+                  - img [ref=e147]
+              - generic [ref=e149]:
+                - heading "Governance Action ID:" [level=2] [ref=e151]
+                - generic [ref=e152]:
+                  - paragraph [ref=e153]: gov_action13emu2wacg36fxtul9u4vzm72ld73ek6u576ya9rsvlylk3lapurqqgfg7fp
+                  - img "copy" [ref=e155] [cursor=pointer]
+              - generic [ref=e156]:
+                - heading "Legacy Governance Action ID (CIP-105):" [level=2] [ref=e158]
+                - generic [ref=e159]:
+                  - paragraph [ref=e160]: 8e77c53bb84474932f9f2f2ac16fcafb7d1cdb5ca7b44e947067c9fb47fd0f06#0
+                  - img "copy" [ref=e162] [cursor=pointer]
+            - link "View Details and Vote" [ref=e164] [cursor=pointer]:
+              - /url: /governance_actions/8e77c53bb84474932f9f2f2ac16fcafb7d1cdb5ca7b44e947067c9fb47fd0f06#0
+              - text: View Details and Vote
+          - generic [ref=e166]:
+            - generic [ref=e167]:
+              - paragraph [ref=e169]: "Cardano at TOKEN2049 Singapore 2026: Platinum Sponsorship Proposal"
+              - generic [ref=e170]:
+                - heading "Governance Action Type:" [level=2] [ref=e172]
+                - paragraph [ref=e175]: Treasury Withdrawal
+              - generic [ref=e176]:
+                - generic [ref=e177]:
+                  - paragraph [ref=e178]: "Submitted: 24th Apr 2026 (Epoch 1277)"
+                  - img [ref=e179]
+                - generic [ref=e181]:
+                  - paragraph [ref=e182]: "Expires: 25th May 2026 (Epoch 1308)"
+                  - img [ref=e183]
+              - generic [ref=e185]:
+                - heading "Governance Action ID:" [level=2] [ref=e187]
+                - generic [ref=e188]:
+                  - paragraph [ref=e189]: gov_action10ylcsdj5merr4djjp3s4a3e2gfsew5lkd8e503swsha29uht0jfqq3dzx9y
+                  - img "copy" [ref=e191] [cursor=pointer]
+              - generic [ref=e192]:
+                - heading "Legacy Governance Action ID (CIP-105):" [level=2] [ref=e194]
+                - generic [ref=e195]:
+                  - paragraph [ref=e196]: 793f883654de463ab6520c615ec72a42619753f669f347c60e85faa2f2eb7c92#0
+                  - img "copy" [ref=e198] [cursor=pointer]
+            - link "View Details and Vote" [ref=e200] [cursor=pointer]:
+              - /url: /governance_actions/793f883654de463ab6520c615ec72a42619753f669f347c60e85faa2f2eb7c92#0
+              - text: View Details and Vote
+          - generic [ref=e202]:
+            - generic [ref=e203]:
+              - paragraph [ref=e205]: Mike's Island
+              - generic [ref=e206]:
+                - heading "Governance Action Type:" [level=2] [ref=e208]
+                - paragraph [ref=e211]: Protocol Parameter Change
+              - generic [ref=e212]:
+                - generic [ref=e213]:
+                  - paragraph [ref=e214]: "Submitted: 29th Apr 2026 (Epoch 1282)"
+                  - img [ref=e215]
+                - generic [ref=e217]:
+                  - paragraph [ref=e218]: "Expires: 30th May 2026 (Epoch 1313)"
+                  - img [ref=e219]
+              - generic [ref=e221]:
+                - heading "Governance Action ID:" [level=2] [ref=e223]
+                - generic [ref=e224]:
+                  - paragraph [ref=e225]: gov_action1xwqmqlxep09ermdzpszeyyegjhy8grj2secvxsnpymgm8c9wlghsqgg8crv
+                  - img "copy" [ref=e227] [cursor=pointer]
+              - generic [ref=e228]:
+                - heading "Legacy Governance Action ID (CIP-105):" [level=2] [ref=e230]
+                - generic [ref=e231]:
+                  - paragraph [ref=e232]: 3381b07cd90bcb91eda20c0592132895c8740e4a8670c3426126d1b3e0aefa2f#0
+                  - img "copy" [ref=e234] [cursor=pointer]
+            - link "View Details and Vote" [ref=e236] [cursor=pointer]:
+              - /url: /governance_actions/3381b07cd90bcb91eda20c0592132895c8740e4a8670c3426126d1b3e0aefa2f#0
+              - text: View Details and Vote
+          - generic [ref=e238]:
+            - generic [ref=e239]:
+              - paragraph [ref=e241]: "Cardano at TOKEN2049 Singapore 2026: Baseline ‘Platinum' Sponsorship Proposal"
+              - generic [ref=e242]:
+                - heading "Governance Action Type:" [level=2] [ref=e244]
+                - paragraph [ref=e247]: Treasury Withdrawal
+              - generic [ref=e248]:
+                - generic [ref=e249]:
+                  - paragraph [ref=e250]: "Submitted: 29th Apr 2026 (Epoch 1282)"
+                  - img [ref=e251]
+                - generic [ref=e253]:
+                  - paragraph [ref=e254]: "Expires: 30th May 2026 (Epoch 1313)"
+                  - img [ref=e255]
+              - generic [ref=e257]:
+                - heading "Governance Action ID:" [level=2] [ref=e259]
+                - generic [ref=e260]:
+                  - paragraph [ref=e261]: gov_action1rqdhg5qx72t3e87q6q4attvje8hxse48w4f7fxj5lsxd4s37za7sq8nwzqj
+                  - img "copy" [ref=e263] [cursor=pointer]
+              - generic [ref=e264]:
+                - heading "Legacy Governance Action ID (CIP-105):" [level=2] [ref=e266]
+                - generic [ref=e267]:
+                  - paragraph [ref=e268]: 181b745006f2971c9fc0d02bd5ad92c9ee6866a77553e49a54fc0cdac23e177d#0
+                  - img "copy" [ref=e270] [cursor=pointer]
+            - link "View Details and Vote" [ref=e272] [cursor=pointer]:
+              - /url: /governance_actions/181b745006f2971c9fc0d02bd5ad92c9ee6866a77553e49a54fc0cdac23e177d#0
+              - text: View Details and Vote
+          - generic [ref=e274]:
+            - generic [ref=e275]:
+              - paragraph [ref=e277]: "Tweag Core Cardano Infrastructure: Treasury Withdrawal 2026–2028"
+              - generic [ref=e278]:
+                - heading "Governance Action Type:" [level=2] [ref=e280]
+                - paragraph [ref=e283]: Treasury Withdrawal
+              - generic [ref=e284]:
+                - generic [ref=e285]:
+                  - paragraph [ref=e286]: "Submitted: 30th Apr 2026 (Epoch 1283)"
+                  - img [ref=e287]
+                - generic [ref=e289]:
+                  - paragraph [ref=e290]: "Expires: 31st May 2026 (Epoch 1314)"
+                  - img [ref=e291]
+              - generic [ref=e293]:
+                - heading "Governance Action ID:" [level=2] [ref=e295]
+                - generic [ref=e296]:
+                  - paragraph [ref=e297]: gov_action1024tdacsjjmfkhc4g6kpnyzxgp07pwnptzfd7jfjaxv3d78zjkhqqcm3gke
+                  - img "copy" [ref=e299] [cursor=pointer]
+              - generic [ref=e300]:
+                - heading "Legacy Governance Action ID (CIP-105):" [level=2] [ref=e302]
+                - generic [ref=e303]:
+                  - paragraph [ref=e304]: 7aaab6f71094b69b5f1546ac199046405fe0ba615892df4932e99916f8e295ae#0
+                  - img "copy" [ref=e306] [cursor=pointer]
+            - link "View Details and Vote" [ref=e308] [cursor=pointer]:
+              - /url: /governance_actions/7aaab6f71094b69b5f1546ac199046405fe0ba615892df4932e99916f8e295ae#0
+              - text: View Details and Vote
+          - generic [ref=e310]:
+            - generic [ref=e311]:
+              - paragraph [ref=e313]: "Cardano at TOKEN2049 Singapore 2026: Top-Up ‘Title’ Sponsorship Upgrade"
+              - generic [ref=e314]:
+                - heading "Governance Action Type:" [level=2] [ref=e316]
+                - paragraph [ref=e319]: Treasury Withdrawal
+              - generic [ref=e320]:
+                - generic [ref=e321]:
+                  - paragraph [ref=e322]: "Submitted: 30th Apr 2026 (Epoch 1283)"
+                  - img [ref=e323]
+                - generic [ref=e325]:
+                  - paragraph [ref=e326]: "Expires: 31st May 2026 (Epoch 1314)"
+                  - img [ref=e327]
+              - generic [ref=e329]:
+                - heading "Governance Action ID:" [level=2] [ref=e331]
+                - generic [ref=e332]:
+                  - paragraph [ref=e333]: gov_action1vp7sqx26zsj6h6sl344ehk72rmg0zfmsrg6uctxxnuduaehqsf0sqmesz5y
+                  - img "copy" [ref=e335] [cursor=pointer]
+              - generic [ref=e336]:
+                - heading "Legacy Governance Action ID (CIP-105):" [level=2] [ref=e338]
+                - generic [ref=e339]:
+                  - paragraph [ref=e340]: 607d00195a1425abea1f8d6b9bdbca1ed0f127701a35cc2cc69f1bcee6e0825f#0
+                  - img "copy" [ref=e342] [cursor=pointer]
+            - link "View Details and Vote" [ref=e344] [cursor=pointer]:
+              - /url: /governance_actions/607d00195a1425abea1f8d6b9bdbca1ed0f127701a35cc2cc69f1bcee6e0825f#0
+              - text: View Details and Vote
+          - generic [ref=e346]:
+            - generic [ref=e347]:
+              - generic [ref=e348]:
+                - paragraph [ref=e349]: Data Formatted Incorrectly
+                - img [ref=e350]
+              - generic [ref=e352]:
+                - heading "Governance Action Type:" [level=2] [ref=e354]
+                - paragraph [ref=e357]: Treasury Withdrawal
+              - generic [ref=e358]:
+                - generic [ref=e359]:
+                  - paragraph [ref=e360]: "Submitted: 1st May 2026 (Epoch 1284)"
+                  - img [ref=e361]
+                - generic [ref=e363]:
+                  - paragraph [ref=e364]: "Expires: 1st Jun 2026 (Epoch 1315)"
+                  - img [ref=e365]
+              - generic [ref=e367]:
+                - heading "Governance Action ID:" [level=2] [ref=e369]
+                - generic [ref=e370]:
+                  - paragraph [ref=e371]: gov_action1ngy4fz2xmqvcqkhgwgvymd5yeaqfqmj8hatd5dmfrwxldysfnmjqqtm5zwf
+                  - img "copy" [ref=e373] [cursor=pointer]
+              - generic [ref=e374]:
+                - heading "Legacy Governance Action ID (CIP-105):" [level=2] [ref=e376]
+                - generic [ref=e377]:
+                  - paragraph [ref=e378]: 9a09548946d819805ae872184db684cf40906e47bf56da37691b8df692099ee4#0
+                  - img "copy" [ref=e380] [cursor=pointer]
+            - link "View Details and Vote" [ref=e382] [cursor=pointer]:
+              - /url: /governance_actions/9a09548946d819805ae872184db684cf40906e47bf56da37691b8df692099ee4#0
+              - text: View Details and Vote
+          - generic [ref=e384]:
+            - generic [ref=e385]:
+              - paragraph [ref=e387]: Cardano dOSPO and OMF Program
+              - generic [ref=e388]:
+                - heading "Governance Action Type:" [level=2] [ref=e390]
+                - paragraph [ref=e393]: Treasury Withdrawal
+              - generic [ref=e394]:
+                - generic [ref=e395]:
+                  - paragraph [ref=e396]: "Submitted: 1st May 2026 (Epoch 1284)"
+                  - img [ref=e397]
+                - generic [ref=e399]:
+                  - paragraph [ref=e400]: "Expires: 1st Jun 2026 (Epoch 1315)"
+                  - img [ref=e401]
+              - generic [ref=e403]:
+                - heading "Governance Action ID:" [level=2] [ref=e405]
+                - generic [ref=e406]:
+                  - paragraph [ref=e407]: gov_action1vgpkrgufejcessm3gvul3x0ufqcux7274v8g2ktpgzmungk7ghlsqppvp3l
+                  - img "copy" [ref=e409] [cursor=pointer]
+              - generic [ref=e410]:
+                - heading "Legacy Governance Action ID (CIP-105):" [level=2] [ref=e412]
+                - generic [ref=e413]:
+                  - paragraph [ref=e414]: 620361a389ccb19843714339f899fc4831c3795eab0e85596140b7c9a2de45ff#0
+                  - img "copy" [ref=e416] [cursor=pointer]
+            - link "View Details and Vote" [ref=e418] [cursor=pointer]:
+              - /url: /governance_actions/620361a389ccb19843714339f899fc4831c3795eab0e85596140b7c9a2de45ff#0
+              - text: View Details and Vote
+          - generic [ref=e420]:
+            - generic [ref=e421]:
+              - paragraph [ref=e423]: Update Plutus Cost Models
+              - generic [ref=e424]:
+                - heading "Governance Action Type:" [level=2] [ref=e426]
+                - paragraph [ref=e429]: Info Action
+              - generic [ref=e430]:
+                - generic [ref=e431]:
+                  - paragraph [ref=e432]: "Submitted: 6th May 2026 (Epoch 1289)"
+                  - img [ref=e433]
+                - generic [ref=e435]:
+                  - paragraph [ref=e436]: "Expires: 6th Jun 2026 (Epoch 1320)"
+                  - img [ref=e437]
+              - generic [ref=e439]:
+                - heading "Governance Action ID:" [level=2] [ref=e441]
+                - generic [ref=e442]:
+                  - paragraph [ref=e443]: gov_action18q6l49h3d8vylc0pc7uexefx5xp6lah99djc48nn83k7026wu87qq2mrufp
+                  - img "copy" [ref=e445] [cursor=pointer]
+              - generic [ref=e446]:
+                - heading "Legacy Governance Action ID (CIP-105):" [level=2] [ref=e448]
+                - generic [ref=e449]:
+                  - paragraph [ref=e450]: 3835fa96f169d84fe1e1c7b9936526a183aff6e52b658a9e733c6de7ab4ee1fc#0
+                  - img "copy" [ref=e452] [cursor=pointer]
+            - link "View Details and Vote" [ref=e454] [cursor=pointer]:
+              - /url: /governance_actions/3835fa96f169d84fe1e1c7b9936526a183aff6e52b658a9e733c6de7ab4ee1fc#0
+              - text: View Details and Vote
+          - generic [ref=e456]:
+            - generic [ref=e457]:
+              - generic [ref=e458]:
+                - paragraph [ref=e459]: Data Formatted Incorrectly
+                - img [ref=e460]
+              - generic [ref=e462]:
+                - heading "Abstract" [level=2] [ref=e464]
+                - paragraph [ref=e466]: "Cardano's infrastructure depends on open source software maintained by a handful of individuals with no formal support, succession planning, or continuity funding. Research shows 96% of commercial codebases contain OSS with fewer than 10 contributors. Critical protocol libraries, wallet SDKs, developer tooling, and indexing infrastructure have single maintainers, no succession plans, and no stable funding beyond episodic grants. This program establishes a community-governed, data-driven open source sustainment architecture. Funded through direct treasury withdrawal, operated by an independent entity, and overseen by two advisory councils — an External Open Source Advisory Council and a Technical Community Advisory Council. Four programs: (1) a Maintenance Fund providing long-term retainer funding for the highest-risk infrastructure, selected by dependency data; (2) a Maintainer Development program building structured mentor–mentee pipelines; (3) a CodeForUs bounty program for targeted delivery work; and (4) an Ecosystem Activation Reserve funding contributor entry programs. Selection follows published dependency centrality data, not relationships. Reporting is public and quarterly. All programs carry explicit sunset criteria. The operator is replaceable by community governance. Total: 12,000,000 ADA over 36 months."
+              - generic [ref=e467]:
+                - heading "Governance Action Type:" [level=2] [ref=e469]
+                - paragraph [ref=e472]: Treasury Withdrawal
+              - generic [ref=e473]:
+                - generic [ref=e474]:
+                  - paragraph [ref=e475]: "Submitted: 6th May 2026 (Epoch 1289)"
+                  - img [ref=e476]
+                - generic [ref=e478]:
+                  - paragraph [ref=e479]: "Expires: 6th Jun 2026 (Epoch 1320)"
+                  - img [ref=e480]
+              - generic [ref=e482]:
+                - heading "Governance Action ID:" [level=2] [ref=e484]
+                - generic [ref=e485]:
+                  - paragraph [ref=e486]: gov_action1eksxhhzveznlw2q797xxnqljmwtpryj88jj58v5drcnz4a837q4qqrcrqld
+                  - img "copy" [ref=e488] [cursor=pointer]
+              - generic [ref=e489]:
+                - heading "Legacy Governance Action ID (CIP-105):" [level=2] [ref=e491]
+                - generic [ref=e492]:
+                  - paragraph [ref=e493]: cda06bdc4cc8a7f7281e2f8c6983f2db961192473ca543b28d1e262af4f1f02a#0
+                  - img "copy" [ref=e495] [cursor=pointer]
+            - link "View Details and Vote" [ref=e497] [cursor=pointer]:
+              - /url: /governance_actions/cda06bdc4cc8a7f7281e2f8c6983f2db961192473ca543b28d1e262af4f1f02a#0
+              - text: View Details and Vote
+    - contentinfo [ref=e498]:
+      - paragraph [ref=e499]: © 2026 GovTool
+      - generic [ref=e500]:
+        - generic [ref=e501] [cursor=pointer]: Privacy policy
+        - generic [ref=e502] [cursor=pointer]: Terms of Use
+      - generic [ref=e503]:
+        - button "helpIcon Help" [ref=e504] [cursor=pointer]:
+          - img "helpIcon" [ref=e506]
+          - text: Help
+        - button "Feedback" [ref=e507] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e508]
+```
+
+# Test source
+
+```ts
+  1  | import { expect } from "@playwright/test";
+  2  | import { Logger } from "./logger";
+  3  | 
+  4  | export async function waitedLoop(
+  5  |   conditionFn,
+  6  |   timeout = 60000,
+  7  |   interval = 2000
+  8  | ) {
+  9  |   const startTime = Date.now();
+  10 |   while (Date.now() - startTime < timeout) {
+  11 |     if (await conditionFn()) return true;
+  12 |     Logger.info("Retrying the function");
+  13 |     await new Promise((resolve) => setTimeout(resolve, interval));
+  14 |   }
+  15 |   return false;
+  16 | }
+  17 | 
+  18 | export async function functionWaitedAssert(
+  19 |   fn,
+  20 |   options: {
+  21 |     timeout?: number;
+  22 |     interval?: number;
+  23 |     message?: string;
+  24 |     name?: string;
+  25 |   } = {}
+  26 | ) {
+  27 |   const startTime = Date.now();
+  28 |   const timeout = options.timeout || 60000;
+  29 |   const interval = options.interval || 2000;
+  30 |   const name = options.name || "";
+  31 | 
+  32 |   while (true) {
+  33 |     try {
+  34 |       await fn();
+  35 |       return true;
+  36 |     } catch (error) {
+  37 |       if (Date.now() - startTime >= timeout) {
+  38 |         const errorMessage = options.message || error.message;
+  39 |         console.log(errorMessage);
+> 40 |         expect(false, { message: errorMessage }).toBe(true);
+     |                                                  ^ Error: A proposal card does not contain any of the Protocol Parameter Change
+  41 |       }
+  42 |       Logger.info(`Retrying the function ${name}`);
+  43 |       await new Promise((resolve) => setTimeout(resolve, interval));
+  44 |     }
+  45 |   }
+  46 | }
+  47 | 
+```
