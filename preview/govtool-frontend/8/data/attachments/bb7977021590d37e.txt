@@ -1,0 +1,16 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: wallet.bootstrap.ts >> Initialize static wallets
+- Location: tests/wallet.bootstrap.ts:19:6
+
+# Error details
+
+```
+Test timeout of 240000ms exceeded.
+```

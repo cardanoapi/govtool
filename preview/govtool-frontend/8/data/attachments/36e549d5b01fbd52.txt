@@ -1,0 +1,5 @@
+✔ Uploaded Lee metadata to bucket
+ℹ Submitting tx: {"lock_id":"b86058bcbe624d8ae8a3349040e35bc2632f7d2fbe15b28d95d8419fb50d4c69","tx":{"certificates":[{"type":"registerdrep","key":"cdce448e0ad185feb8672f68963da5a70e78a1e2cde49e82aa24c48f","anchor":{"url":"https://metadata-govtool.cardanoapi.io/data/Lee","dataHash":"9afb895ba667431a0ae9f479a29248c7ad6b631921a6f9abdc8232a17cb7240d"}}],"selections":[{"type":"PaymentSigningKeyShelley_ed25519","description":"Stake Signing Key","cborHex":"5820a8d1ebef7e56ef1ef13b901db07fbb6a34f73005d40b0c3abe3ff9c86a36a438"},{"type":"PaymentSigningKeyShelley_ed25519","description":"Payment Signing Key","cborHex":"58204a6ae978d1656381cfe8d9316c7262dd96d72a0c2ce6368ad8559b392170aa0e"},"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"],"changeAddress":"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"}}
+✔ Tx submitted: 48e5dcfa4783e064526240fd172e4cd9d2dd66616e711e58b81082b6447ca1db
+ℹ Waiting for tx completion: 48e5dcfa4783e064526240fd172e4cd9d2dd66616e711e58b81082b6447ca1db
+✔ Tx completed
