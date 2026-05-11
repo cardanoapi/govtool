@@ -1,0 +1,5 @@
+✔ Uploaded Emery metadata to bucket
+ℹ Submitting tx: {"lock_id":"e8be793ec65ffffe0666586bc8eefc3d435ea4ecb1b729b40a544f8e0ceef9a3","tx":{"certificates":[{"type":"registerdrep","key":"ca9d531c0877e2400738981c8a9b16e6eab761d5c994508ee89ad157","anchor":{"url":"https://metadata-govtool.cardanoapi.io/data/Emery","dataHash":"ee456aafbe7dda08958e60c8b9666f60cc35aac951e28894666d260d6cb0d479"}}],"selections":[{"type":"PaymentSigningKeyShelley_ed25519","description":"Stake Signing Key","cborHex":"5820501fb6f02f2670e3ce940ff4a95b69e7e6633756857709fa9201ec3bbdafd0b5"},{"type":"PaymentSigningKeyShelley_ed25519","description":"Payment Signing Key","cborHex":"58204a6ae978d1656381cfe8d9316c7262dd96d72a0c2ce6368ad8559b392170aa0e"},"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"],"changeAddress":"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"}}
+✔ Tx submitted: 7a899aebcb0cd3b2d870a3400fc61d344dc1184edbbb9e5dd216df0fb7f59a94
+ℹ Waiting for tx completion: 7a899aebcb0cd3b2d870a3400fc61d344dc1184edbbb9e5dd216df0fb7f59a94
+✔ Tx completed
