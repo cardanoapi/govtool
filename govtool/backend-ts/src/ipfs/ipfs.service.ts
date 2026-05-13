@@ -43,7 +43,7 @@ export class IpfsService {
     let response: Response;
 
     try {
-      response = await fetch('https://upload.pinata.cloud/v3/files', {
+      response = await fetch('https://api.pinata.cloud/pinning/pinFileToIPFS', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${jwt}`,
@@ -77,7 +77,6 @@ export class IpfsService {
     }
 
     let parsed: PinataUploadResponse;
-
     try {
       parsed = JSON.parse(responseText) as PinataUploadResponse;
     } catch {
@@ -94,11 +93,12 @@ export class IpfsService {
       );
     }
 
-    if (!parsed.data?.cid) {
+    const cid = parsed.IpfsHash;
+    if (!cid) {
       throw new HttpException(
         {
           errorType: 'PinataDecodingError',
-          message: 'Failed to decode Pinata API reponse',
+          message: 'Failed to decode Pinata API response',
           pinataResponse: {
             status: 'unknown',
             body: responseText,
@@ -108,8 +108,9 @@ export class IpfsService {
       );
     }
 
+
     return {
-      ipfsCid: parsed.data.cid,
+      ipfsCid: cid,
     };
   }
 }

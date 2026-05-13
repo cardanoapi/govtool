@@ -3,7 +3,5 @@ export type UploadResponse = {
 };
 
 export type PinataUploadResponse = {
-  data?: {
-    cid?: string;
-  };
+  IpfsHash?: string;
 };
