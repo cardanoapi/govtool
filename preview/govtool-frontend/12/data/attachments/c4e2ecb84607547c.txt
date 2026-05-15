@@ -1,0 +1,444 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 2-delegation/delegationFunctionality.delegation.spec.ts >> Abstain delegation >> 2U. Should show delegated voting power to Abstain
+- Location: tests/2-delegation/delegationFunctionality.delegation.spec.ts:266:7
+
+# Error details
+
+```
+Error: Error: expect(locator).not.toBeVisible() failed
+
+Locator:  getByText('In Progress', { exact: true }).first()
+Expected: not visible
+Received: visible
+Timeout:  90000ms
+
+Call log:
+  - Expect "not toBeVisible" with timeout 90000ms
+  - waiting for getByText('In Progress', { exact: true }).first()
+    93 × locator resolved to <span class="MuiChip-label MuiChip-labelMedium css-14vsv3w">In Progress</span>
+       - unexpected value "visible"
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+      - button [ref=e14] [cursor=pointer]:
+        - img [ref=e15]
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - link "The Info Action" [ref=e20] [cursor=pointer]:
+          - /url: https://govtool.cardanoapi.io/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+        - text: has passed — thank you for your support!
+      - generic [ref=e21]:
+        - text: We have now submitted a
+        - link "Treasury Withdrawal" [ref=e22] [cursor=pointer]:
+          - /url: https://govtool.cardanoapi.io/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+        - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+  - img "bg-orange" [ref=e23]
+  - generic [ref=e24]:
+    - generic [ref=e25]:
+      - link "app-logo" [ref=e26] [cursor=pointer]:
+        - /url: /dashboard
+        - img "app-logo" [ref=e27]
+      - generic [ref=e28]:
+        - link "icon Home" [ref=e30] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=e31]:
+            - img "icon" [ref=e32]
+            - paragraph [ref=e33]: Home
+        - link "icon DRep Directory" [ref=e35] [cursor=pointer]:
+          - /url: /connected/drep_directory
+          - generic [ref=e36]:
+            - img "icon" [ref=e37]
+            - paragraph [ref=e38]: DRep Directory
+        - link "icon Budget Proposals" [ref=e40] [cursor=pointer]:
+          - /url: /budget_discussion
+          - generic [ref=e41]:
+            - img "icon" [ref=e42]
+            - paragraph [ref=e43]: Budget Proposals
+        - generic [ref=e44]:
+          - link "icon Governance Actions" [ref=e45] [cursor=pointer]:
+            - /url: /connected/governance_actions
+            - generic [ref=e46]:
+              - img "icon" [ref=e47]
+              - paragraph [ref=e48]: Governance Actions
+          - generic [ref=e49]:
+            - link "Proposals" [ref=e50] [cursor=pointer]:
+              - /url: /proposal_discussion
+              - generic [ref=e51]:
+                - img [ref=e53]
+                - paragraph [ref=e55]: Proposals
+            - link "icon Live Voting" [ref=e56] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e57]:
+                - img "icon" [ref=e58]
+                - paragraph [ref=e59]: Live Voting
+            - link "icon Outcomes" [ref=e60] [cursor=pointer]:
+              - /url: /outcomes
+              - generic [ref=e61]:
+                - img "icon" [ref=e62]
+                - paragraph [ref=e63]: Outcomes
+        - link "icon Guides" [ref=e65] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e66]:
+            - img "icon" [ref=e67]
+            - paragraph [ref=e68]: Guides
+        - link "icon FAQs" [ref=e70] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e71]:
+            - img "icon" [ref=e72]
+            - paragraph [ref=e73]: FAQs
+      - generic [ref=e76]:
+        - paragraph [ref=e77]: "Connected Wallet:"
+        - generic [ref=e78]:
+          - paragraph [ref=e79]: 00edbed699594d0e1f7c8f4546f70257bfb294316af1ee8561579e6afa572b1a5df7275dd2d338ba84f6ad45268d98e6b31d28d78d2381d99d
+          - button "Disconnect" [ref=e80] [cursor=pointer]: Disconnect
+    - generic [ref=e81]:
+      - navigation [ref=e82]:
+        - paragraph [ref=e84]: DRep Directory
+      - generic [ref=e86]:
+        - generic [ref=e87]:
+          - paragraph [ref=e88]: Delegation Options
+          - generic [ref=e89]:
+            - button "Automated Voting Options arrow" [expanded] [ref=e90] [cursor=pointer]:
+              - paragraph [ref=e92]: Automated Voting Options
+              - img "arrow" [ref=e94]
+            - region [ref=e98]:
+              - generic [ref=e100]:
+                - generic [ref=e101]:
+                  - generic [ref=e103]: In Progress
+                  - generic [ref=e104]:
+                    - paragraph [ref=e105]: Abstain from Every Vote
+                    - paragraph [ref=e106]: Select this to vote ABSTAIN to every vote.
+                    - button "See transaction" [ref=e107] [cursor=pointer]: See transaction
+                - generic [ref=e108]:
+                  - generic [ref=e109]:
+                    - paragraph [ref=e110]: Signal No Confidence on Every Vote
+                    - paragraph [ref=e111]: Select this to signal no confidence in the current constitutional committee by voting NO on every proposal and voting YES to no confidence proposals
+                  - separator [ref=e112]
+                  - generic [ref=e113]:
+                    - paragraph [ref=e114]: Voting Power
+                    - paragraph [ref=e115]: ₳ 3,332,636
+                  - separator [ref=e116]
+                  - generic [ref=e117]:
+                    - button "Info" [ref=e118] [cursor=pointer]: Info
+                    - button "Delegate" [ref=e119] [cursor=pointer]: Delegate
+        - paragraph [ref=e120]: Find a DRep
+        - generic [ref=e121]:
+          - generic [ref=e122]:
+            - generic [ref=e123]:
+              - img [ref=e124]
+              - textbox "Search for a DRep name or ID" [ref=e126]
+            - generic [ref=e128]:
+              - generic [ref=e129] [cursor=pointer]:
+                - img "filter" [ref=e130]
+                - paragraph [ref=e131]: Filter
+                - paragraph [ref=e133]: "1"
+              - generic [ref=e134] [cursor=pointer]:
+                - img "sort" [ref=e135]
+                - paragraph [ref=e136]: "Sort by: Voting Activity"
+          - button "Active" [ref=e138]:
+            - generic [ref=e139]: Active
+            - button [ref=e140] [cursor=pointer]:
+              - img [ref=e141]
+        - list [ref=e143]:
+          - listitem [ref=e144]:
+            - generic [ref=e148]:
+              - generic [ref=e150]:
+                - generic [ref=e151]:
+                  - img "drep-image" [ref=e153]
+                  - generic [ref=e154]:
+                    - paragraph [ref=e155]: InputEndorsers
+                    - generic [ref=e156]:
+                      - button "drep1y2urtnpqef68w3dm2xrggdsfpp98h00xmkf4qj78r70r3xq8lekef" [ref=e157] [cursor=pointer]:
+                        - paragraph [ref=e158]: drep1y2urtnpqef68w3dm2xrggdsfpp98h00xmkf4qj78r70r3xq8lekef
+                      - button "(CIP-105) drep1hq6ucgx2w3m5tw63s6zrvzggffammekajdgyh3clncufsdgqyvu" [ref=e159] [cursor=pointer]:
+                        - paragraph [ref=e160]: (CIP-105) drep1hq6ucgx2w3m5tw63s6zrvzggffammekajdgyh3clncufsdgqyvu
+                - generic [ref=e161]:
+                  - generic [ref=e162]:
+                    - paragraph [ref=e163]: Voting power
+                    - paragraph [ref=e164]: ₳ 5,917,458
+                  - separator [ref=e165]
+                  - generic [ref=e166]:
+                    - paragraph [ref=e167]: Status
+                    - generic [ref=e170]: Active
+              - generic [ref=e171]:
+                - button "View details" [ref=e172] [cursor=pointer]: View details
+                - button "Delegate" [ref=e173] [cursor=pointer]: Delegate
+          - listitem [ref=e174]:
+            - generic [ref=e178]:
+              - generic [ref=e180]:
+                - generic [ref=e181]:
+                  - img "drep-image" [ref=e183]
+                  - generic [ref=e184]:
+                    - paragraph [ref=e185]: Elisha
+                    - generic [ref=e186]:
+                      - button "drep1yg8y2svn4a5aruxhkpfq9uhpl568459y44wtec75an5slwgpl7ljn" [ref=e187] [cursor=pointer]:
+                        - paragraph [ref=e188]: drep1yg8y2svn4a5aruxhkpfq9uhpl568459y44wtec75an5slwgpl7ljn
+                      - button "(CIP-105) drep1pez5rya0d8glp4as2gp09c0ax3adpf9dtj7w848vay8mjm4dxps" [ref=e189] [cursor=pointer]:
+                        - paragraph [ref=e190]: (CIP-105) drep1pez5rya0d8glp4as2gp09c0ax3adpf9dtj7w848vay8mjm4dxps
+                - generic [ref=e191]:
+                  - generic [ref=e192]:
+                    - paragraph [ref=e193]: Voting power
+                    - paragraph [ref=e194]: ₳ 0
+                  - separator [ref=e195]
+                  - generic [ref=e196]:
+                    - paragraph [ref=e197]: Status
+                    - generic [ref=e200]: Active
+              - generic [ref=e201]:
+                - button "View details" [ref=e202] [cursor=pointer]: View details
+                - button "Delegate" [ref=e203] [cursor=pointer]: Delegate
+          - listitem [ref=e204]:
+            - generic [ref=e208]:
+              - generic [ref=e210]:
+                - generic [ref=e211]:
+                  - img "drep-image" [ref=e213]
+                  - generic [ref=e214]:
+                    - paragraph [ref=e215]: Jena
+                    - generic [ref=e216]:
+                      - button "drep1ygah3l5mqdaqtadycs4l9x2q4e8knq04934d0xgd892fheg3g9dg4" [ref=e217] [cursor=pointer]:
+                        - paragraph [ref=e218]: drep1ygah3l5mqdaqtadycs4l9x2q4e8knq04934d0xgd892fheg3g9dg4
+                      - button "(CIP-105) drep18du0axcr0gzltfxy90efjs9wfa5crafvdttejrfe2jd72lkqmwg" [ref=e219] [cursor=pointer]:
+                        - paragraph [ref=e220]: (CIP-105) drep18du0axcr0gzltfxy90efjs9wfa5crafvdttejrfe2jd72lkqmwg
+                - generic [ref=e221]:
+                  - generic [ref=e222]:
+                    - paragraph [ref=e223]: Voting power
+                    - paragraph [ref=e224]: ₳ 0
+                  - separator [ref=e225]
+                  - generic [ref=e226]:
+                    - paragraph [ref=e227]: Status
+                    - generic [ref=e230]: Active
+              - generic [ref=e231]:
+                - button "View details" [ref=e232] [cursor=pointer]: View details
+                - button "Delegate" [ref=e233] [cursor=pointer]: Delegate
+          - listitem [ref=e234]:
+            - generic [ref=e238]:
+              - generic [ref=e240]:
+                - generic [ref=e241]:
+                  - img "drep-image" [ref=e243]
+                  - generic [ref=e244]:
+                    - paragraph [ref=e245]: Eulalia
+                    - generic [ref=e246]:
+                      - button "drep1yf9eek7yfhww9p408zun9dqx2m8vpyh6tfaqj8c3zn0hfggwgp2k5" [ref=e247] [cursor=pointer]:
+                        - paragraph [ref=e248]: drep1yf9eek7yfhww9p408zun9dqx2m8vpyh6tfaqj8c3zn0hfggwgp2k5
+                      - button "(CIP-105) drep1fwwdh3zdmn3gdtechyetgpjkemqf97j60gy37yg5ma62zek6tmr" [ref=e249] [cursor=pointer]:
+                        - paragraph [ref=e250]: (CIP-105) drep1fwwdh3zdmn3gdtechyetgpjkemqf97j60gy37yg5ma62zek6tmr
+                - generic [ref=e251]:
+                  - generic [ref=e252]:
+                    - paragraph [ref=e253]: Voting power
+                    - paragraph [ref=e254]: ₳ 0
+                  - separator [ref=e255]
+                  - generic [ref=e256]:
+                    - paragraph [ref=e257]: Status
+                    - generic [ref=e260]: Active
+              - generic [ref=e261]:
+                - button "View details" [ref=e262] [cursor=pointer]: View details
+                - button "Delegate" [ref=e263] [cursor=pointer]: Delegate
+          - listitem [ref=e264]:
+            - generic [ref=e268]:
+              - generic [ref=e270]:
+                - generic [ref=e271]:
+                  - img "drep-image" [ref=e273]
+                  - generic [ref=e274]:
+                    - paragraph [ref=e275]: Glen
+                    - generic [ref=e276]:
+                      - button "drep1yf58rvgvhzd53unpth53k4kkclumc7trsayeu55zakwsepsdc2xwe" [ref=e277] [cursor=pointer]:
+                        - paragraph [ref=e278]: drep1yf58rvgvhzd53unpth53k4kkclumc7trsayeu55zakwsepsdc2xwe
+                      - button "(CIP-105) drep1dpcmzr9cndy0yc2aayd4d4k8lx78jcu8fx099qhdn5xgvl0yglp" [ref=e279] [cursor=pointer]:
+                        - paragraph [ref=e280]: (CIP-105) drep1dpcmzr9cndy0yc2aayd4d4k8lx78jcu8fx099qhdn5xgvl0yglp
+                - generic [ref=e281]:
+                  - generic [ref=e282]:
+                    - paragraph [ref=e283]: Voting power
+                    - paragraph [ref=e284]: ₳ 0
+                  - separator [ref=e285]
+                  - generic [ref=e286]:
+                    - paragraph [ref=e287]: Status
+                    - generic [ref=e290]: Active
+              - generic [ref=e291]:
+                - button "View details" [ref=e292] [cursor=pointer]: View details
+                - button "Delegate" [ref=e293] [cursor=pointer]: Delegate
+        - generic [ref=e295]:
+          - generic [ref=e296]:
+            - paragraph [ref=e297]: "Rows per page:"
+            - generic [ref=e298]:
+              - combobox [ref=e299] [cursor=pointer]:
+                - generic [ref=e300]: "5"
+              - textbox: "5"
+              - img [ref=e301] [cursor=pointer]
+          - paragraph [ref=e303]: 1-5 of 14
+          - generic [ref=e304]:
+            - button "Previous page" [disabled]:
+              - img
+            - paragraph [ref=e305]: "1"
+            - button "Next page" [ref=e306] [cursor=pointer]:
+              - img [ref=e307]
+      - contentinfo [ref=e309]:
+        - paragraph [ref=e310]: © 2026 GovTool
+        - generic [ref=e311]:
+          - generic [ref=e312] [cursor=pointer]: Privacy policy
+          - generic [ref=e313] [cursor=pointer]: Terms of Use
+        - generic [ref=e314]:
+          - button "helpIcon Help" [ref=e315] [cursor=pointer]:
+            - img "helpIcon" [ref=e317]
+            - text: Help
+          - button "Feedback" [ref=e318] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e319]
+```
+
+# Test source
+
+```ts
+  1   | import environments from "@constants/environments";
+  2   | import { Page, expect } from "@playwright/test";
+  3   | import kuberService from "@services/kuberService";
+  4   | import { LockInterceptor, LockInterceptorInfo } from "lib/lockInterceptor";
+  5   | import convertBufferToHex from "./convertBufferToHex";
+  6   | import { ShelleyWallet } from "./crypto";
+  7   | import { uploadMetadataAndGetJsonHash } from "./metadata";
+  8   | import { WalletAndAnchorType } from "@types";
+  9   | import { Logger } from "@helpers/logger";
+  10  | import { functionWaitedAssert } from "./waitedLoop";
+  11  | 
+  12  | /**
+  13  |  * Polls the transaction status until it's resolved or times out.
+  14  |  * address is used to release lock of that address
+  15  |  */
+  16  | export async function pollTransaction(
+  17  |   txHash: string,
+  18  |   lockInfo?: LockInterceptorInfo
+  19  | ) {
+  20  |   await functionWaitedAssert(
+  21  |     async () => {
+  22  |       try {
+  23  |         Logger.info(`Waiting for tx completion: ${txHash}`);
+  24  |         await expect
+  25  |           .poll(
+  26  |             async () => {
+  27  |               const response = await kuberService.getTransactionDetails(txHash);
+  28  |               const data = await response.json();
+  29  |               return data.length;
+  30  |             },
+  31  |             {
+  32  |               timeout: environments.txTimeOut,
+  33  |             }
+  34  |           )
+  35  |           .toBeGreaterThan(0);
+  36  | 
+  37  |         Logger.success("Tx completed");
+  38  | 
+  39  |         if (!lockInfo) return;
+  40  | 
+  41  |         await LockInterceptor.releaseLock(
+  42  |           lockInfo.initiator,
+  43  |           lockInfo.lockId,
+  44  |           `Task completed for:${lockInfo.lockId}`
+  45  |         );
+  46  |       } catch (err) {
+  47  |         if (lockInfo) {
+  48  |           const errorMessage = { lockInfo, error: JSON.stringify(err) };
+  49  | 
+  50  |           await LockInterceptor.releaseLock(
+  51  |             lockInfo.initiator,
+  52  |             lockInfo.lockId,
+  53  |             `Task failure: \n${JSON.stringify(errorMessage)}`
+  54  |           );
+  55  |         }
+  56  |         Logger.fail(`Failed due to ${err}`);
+  57  |         throw err;
+  58  |       }
+  59  |     },
+  60  |     { timeout: environments.txTimeOut + 60_000, name: "pollTransaction" }
+  61  |   );
+  62  | }
+  63  | 
+  64  | export async function waitForTxConfirmation(
+  65  |   page: Page,
+  66  |   triggerCallback?: () => Promise<void>
+  67  | ) {
+  68  |   let transactionHash: string | undefined;
+  69  |   try {
+  70  |     await triggerCallback?.call(this);
+  71  |     const transactionStatusPromise = page.waitForRequest((request) => {
+  72  |       return request.url().includes("/transaction/status/");
+  73  |     });
+  74  | 
+  75  |     await expect(
+  76  |       page
+  77  |         .getByTestId("alert-warning")
+  78  |         .getByText("Transaction in progress", { exact: false })
+  79  |     ).toBeVisible({
+  80  |       timeout: 90_000,
+  81  |     });
+  82  |     const url = (await transactionStatusPromise).url();
+  83  |     const regex = /\/transaction\/status\/([^\/]+)$/;
+  84  |     const match = url.match(regex);
+  85  |     if (match) {
+  86  |       transactionHash = match[1];
+  87  |     }
+  88  | 
+  89  |     if (transactionHash) {
+  90  |       await pollTransaction(transactionHash);
+  91  |       await expect(
+  92  |         page.getByText("In Progress", { exact: true }).first() //FIXME: Only one element needs to be displayed
+  93  |       ).not.toBeVisible({ timeout: 90_000 });
+  94  |     }
+  95  |   } catch (error) {
+  96  |     Logger.fail(error.message);
+> 97  |     throw new Error(error);
+      |           ^ Error: Error: expect(locator).not.toBeVisible() failed
+  98  |   }
+  99  | }
+  100 | 
+  101 | export async function registerStakeForWallet(wallet: ShelleyWallet) {
+  102 |   const { txId, lockInfo } = await kuberService.registerStake(
+  103 |     convertBufferToHex(wallet.stakeKey.private),
+  104 |     convertBufferToHex(wallet.stakeKey.pkh),
+  105 |     convertBufferToHex(wallet.paymentKey.private),
+  106 |     wallet.addressBech32(environments.networkId)
+  107 |   );
+  108 |   await pollTransaction(txId, lockInfo);
+  109 | }
+  110 | 
+  111 | export async function transferAdaForWallet(
+  112 |   wallet: ShelleyWallet,
+  113 |   amount?: number
+  114 | ) {
+  115 |   const { txId, lockInfo } = await kuberService.transferADA(
+  116 |     [wallet.addressBech32(environments.networkId)],
+  117 |     amount
+  118 |   );
+  119 |   await pollTransaction(txId, lockInfo);
+  120 | }
+  121 | 
+  122 | export async function registerDRepForWallet(wallet: ShelleyWallet) {
+  123 |   const dataHashAndUrl = await uploadMetadataAndGetJsonHash();
+  124 |   const metadataAnchorAndWallet: WalletAndAnchorType = {
+  125 |     ...dataHashAndUrl,
+  126 |     wallet: wallet.json(),
+  127 |   };
+  128 |   const registrationRes = await kuberService.dRepRegistration(
+  129 |     convertBufferToHex(wallet.dRepKey.private),
+  130 |     convertBufferToHex(wallet.dRepKey.pkh),
+  131 |     metadataAnchorAndWallet
+  132 |   );
+  133 |   await pollTransaction(registrationRes.txId, registrationRes.lockInfo);
+  134 | }
+  135 | 
+```

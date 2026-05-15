@@ -1,0 +1,669 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 7-proposal-submission/proposalSubmission.loggedin.pd.spec.ts >> Proposal created logged state >> 7O. Should display insufficient balance modal when submitting proposal with insufficient funds
+- Location: tests/7-proposal-submission/proposalSubmission.loggedin.pd.spec.ts:339:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByTestId('propose-a-governance-action-button')
+    - locator resolved to <button disabled tabindex="-1" type="button" data-testid="propose-a-governance-action-button" class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-161ht83">Propose a Governance Action</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    319 × waiting for element to be visible, enabled and stable
+        - element is not enabled
+      - retrying click action
+        - waiting 500ms
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+      - button [ref=e14] [cursor=pointer]:
+        - img [ref=e15]
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - link "The Info Action" [ref=e20] [cursor=pointer]:
+          - /url: https://govtool.cardanoapi.io/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+        - text: has passed — thank you for your support!
+      - generic [ref=e21]:
+        - text: We have now submitted a
+        - link "Treasury Withdrawal" [ref=e22] [cursor=pointer]:
+          - /url: https://govtool.cardanoapi.io/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+        - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+  - img "bg-orange" [ref=e23]
+  - generic [ref=e24]:
+    - generic [ref=e25]:
+      - link "app-logo" [ref=e26] [cursor=pointer]:
+        - /url: /dashboard
+        - img "app-logo" [ref=e27]
+      - generic [ref=e28]:
+        - link "icon Home" [ref=e30] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=e31]:
+            - img "icon" [ref=e32]
+            - paragraph [ref=e33]: Home
+        - link "icon DRep Directory" [ref=e35] [cursor=pointer]:
+          - /url: /connected/drep_directory
+          - generic [ref=e36]:
+            - img "icon" [ref=e37]
+            - paragraph [ref=e38]: DRep Directory
+        - link "icon Budget Proposals" [ref=e40] [cursor=pointer]:
+          - /url: /budget_discussion
+          - generic [ref=e41]:
+            - img "icon" [ref=e42]
+            - paragraph [ref=e43]: Budget Proposals
+        - generic [ref=e44]:
+          - link "icon Governance Actions" [ref=e45] [cursor=pointer]:
+            - /url: /connected/governance_actions
+            - generic [ref=e46]:
+              - img "icon" [ref=e47]
+              - paragraph [ref=e48]: Governance Actions
+          - generic [ref=e49]:
+            - link "Proposals" [ref=e50] [cursor=pointer]:
+              - /url: /proposal_discussion
+              - generic [ref=e51]:
+                - img [ref=e53]
+                - paragraph [ref=e55]: Proposals
+            - link "icon Live Voting" [ref=e56] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e57]:
+                - img "icon" [ref=e58]
+                - paragraph [ref=e59]: Live Voting
+            - link "icon Outcomes" [ref=e60] [cursor=pointer]:
+              - /url: /outcomes
+              - generic [ref=e61]:
+                - img "icon" [ref=e62]
+                - paragraph [ref=e63]: Outcomes
+        - link "icon Guides" [ref=e65] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e66]:
+            - img "icon" [ref=e67]
+            - paragraph [ref=e68]: Guides
+        - link "icon FAQs" [ref=e70] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e71]:
+            - img "icon" [ref=e72]
+            - paragraph [ref=e73]: FAQs
+      - generic [ref=e76]:
+        - paragraph [ref=e77]: "Connected Wallet:"
+        - generic [ref=e78]:
+          - paragraph [ref=e79]: 0081c1b6521bf360ac2b52da79e3354daa0eaf1434dd9c75cafa794827d1b81484b925a0f2c00a0b45634417805c1ae46ca0d0a3a8577dc74e
+          - button "Disconnect" [ref=e80] [cursor=pointer]: Disconnect
+    - generic [ref=e81]:
+      - navigation [ref=e82]:
+        - paragraph [ref=e84]: Proposals
+      - generic [ref=e89]:
+        - generic [ref=e92]:
+          - heading "Proposed Governance Actions" [level=1] [ref=e94]
+          - generic [ref=e96]:
+            - button "Propose a Governance Action" [disabled]
+            - generic [ref=e98]:
+              - paragraph [ref=e99]: To submit a proposal, you need to
+              - paragraph [ref=e100]:
+                - generic [ref=e101] [cursor=pointer]: connect a Cardano wallet
+          - generic [ref=e104]:
+            - img [ref=e106]
+            - textbox "Search..." [ref=e108]
+            - group
+          - generic [ref=e110]:
+            - button "Filter:" [ref=e111] [cursor=pointer]:
+              - text: "Filter:"
+              - img [ref=e113]
+            - 'button "Sort: Newest" [ref=e115] [cursor=pointer]':
+              - text: "Sort: Newest"
+              - img [ref=e117]
+        - generic [ref=e119]:
+          - generic [ref=e121]:
+            - generic [ref=e122]:
+              - generic [ref=e123]:
+                - heading "Updates to the Constitution" [level=2] [ref=e124]
+                - button "Show all" [ref=e125] [cursor=pointer]: Show all
+              - generic [ref=e126]:
+                - button [ref=e127] [cursor=pointer]:
+                  - img [ref=e128]
+                - button [ref=e130] [cursor=pointer]:
+                  - img [ref=e131]
+            - generic [ref=e136]:
+              - generic "status-badge" [ref=e141]:
+                - generic [ref=e142]:
+                  - generic [ref=e143]:
+                    - generic [ref=e145]:
+                      - heading "Aro caste veritas vos stipes adsidue." [level=3] [ref=e146]
+                      - heading "@ellie.herman_1778494997163" [level=5] [ref=e147]
+                    - button "Share" [ref=e149] [cursor=pointer]:
+                      - img [ref=e150]
+                  - generic [ref=e152]:
+                    - generic [ref=e153]:
+                      - generic [ref=e154]:
+                        - paragraph [ref=e155]: Abstract
+                        - paragraph [ref=e158]: avaritia cognatus cogito villa tandem
+                      - generic [ref=e159]:
+                        - paragraph [ref=e160]: Governance Action Type
+                        - paragraph [ref=e161]: Updates to the Constitution
+                    - generic [ref=e162]:
+                      - generic [ref=e163]:
+                        - generic "Proposal Date" [ref=e164]:
+                          - img [ref=e165]
+                        - paragraph [ref=e167]: "Proposed on: 14 May 2026"
+                      - generic [ref=e168]:
+                        - generic "Comments Number" [ref=e170]:
+                          - button "comments" [disabled]:
+                            - generic "comments":
+                              - generic: "0"
+                            - img
+                        - link "View Details" [ref=e172] [cursor=pointer]:
+                          - /url: /proposal_discussion/36
+                          - button "View Details" [ref=e173]: View Details
+                - generic [ref=e174]: Active
+              - generic "status-badge" [ref=e179]:
+                - generic [ref=e180]:
+                  - generic [ref=e181]:
+                    - generic [ref=e183]:
+                      - heading "Angustus provident aegrus blandior sunt defaeco." [level=3] [ref=e184]
+                      - heading "@ellie.herman_1778494997163" [level=5] [ref=e185]
+                    - button "Share" [ref=e187] [cursor=pointer]:
+                      - img [ref=e188]
+                  - generic [ref=e190]:
+                    - generic [ref=e191]:
+                      - generic [ref=e192]:
+                        - paragraph [ref=e193]: Abstract
+                        - paragraph [ref=e196]: ademptio aequus defessus administratio suffragium
+                      - generic [ref=e197]:
+                        - paragraph [ref=e198]: Governance Action Type
+                        - paragraph [ref=e199]: Updates to the Constitution
+                    - generic [ref=e200]:
+                      - generic [ref=e201]:
+                        - generic "Proposal Date" [ref=e202]:
+                          - img [ref=e203]
+                        - paragraph [ref=e205]: "Proposed on: 13 May 2026"
+                      - generic [ref=e206]:
+                        - generic "Comments Number" [ref=e208]:
+                          - button "comments" [disabled]:
+                            - generic "comments":
+                              - generic: "0"
+                            - img
+                        - link "View Details" [ref=e210] [cursor=pointer]:
+                          - /url: /proposal_discussion/23
+                          - button "View Details" [ref=e211]: View Details
+                - generic [ref=e212]: Active
+              - generic "status-badge" [ref=e217]:
+                - generic [ref=e218]:
+                  - generic [ref=e219]:
+                    - generic [ref=e221]:
+                      - heading "Ancilla pectus stipes virtus beatae sapiente." [level=3] [ref=e222]
+                      - heading "@ellie.herman_1778494997163" [level=5] [ref=e223]
+                    - button "Share" [ref=e225] [cursor=pointer]:
+                      - img [ref=e226]
+                  - generic [ref=e228]:
+                    - generic [ref=e229]:
+                      - generic [ref=e230]:
+                        - paragraph [ref=e231]: Abstract
+                        - paragraph [ref=e234]: capio voluptate coaegresco tredecim defetiscor
+                      - generic [ref=e235]:
+                        - paragraph [ref=e236]: Governance Action Type
+                        - paragraph [ref=e237]: Updates to the Constitution
+                    - generic [ref=e238]:
+                      - generic [ref=e239]:
+                        - generic "Proposal Date" [ref=e240]:
+                          - img [ref=e241]
+                        - paragraph [ref=e243]: "Proposed on: 11 May 2026"
+                      - generic [ref=e244]:
+                        - generic "Comments Number" [ref=e246]:
+                          - button "comments" [disabled]:
+                            - generic "comments":
+                              - generic: "0"
+                            - img
+                        - link "View Details" [ref=e248] [cursor=pointer]:
+                          - /url: /proposal_discussion/12
+                          - button "View Details" [ref=e249]: View Details
+                - generic [ref=e250]: Active
+          - generic [ref=e258]:
+            - generic [ref=e259]:
+              - generic [ref=e260]:
+                - heading "Motion of No Confidence" [level=2] [ref=e261]
+                - button "Show all" [ref=e262] [cursor=pointer]: Show all
+              - generic [ref=e263]:
+                - button [ref=e264] [cursor=pointer]:
+                  - img [ref=e265]
+                - button [ref=e267] [cursor=pointer]:
+                  - img [ref=e268]
+            - generic [ref=e273]:
+              - generic "status-badge" [ref=e278]:
+                - generic [ref=e279]:
+                  - generic [ref=e280]:
+                    - generic [ref=e282]:
+                      - heading "nothing" [level=3] [ref=e283]
+                      - heading "@ksuhal" [level=5] [ref=e284]
+                    - button "Share" [ref=e286] [cursor=pointer]:
+                      - img [ref=e287]
+                  - generic [ref=e289]:
+                    - generic [ref=e290]:
+                      - generic [ref=e291]:
+                        - paragraph [ref=e292]: Abstract
+                        - paragraph [ref=e295]: gsdgv
+                      - generic [ref=e296]:
+                        - paragraph [ref=e297]: Governance Action Type
+                        - paragraph [ref=e298]: Motion of No Confidence
+                    - generic [ref=e299]:
+                      - generic [ref=e300]:
+                        - generic "Proposal Date" [ref=e301]:
+                          - img [ref=e302]
+                        - paragraph [ref=e304]: "Proposed on: 14 May 2026"
+                      - generic [ref=e305]:
+                        - generic "Comments Number" [ref=e307]:
+                          - button "comments" [disabled]:
+                            - generic "comments":
+                              - generic: "2"
+                            - img
+                        - link "View Details" [ref=e309] [cursor=pointer]:
+                          - /url: /proposal_discussion/39
+                          - button "View Details" [ref=e310]: View Details
+                - generic [ref=e311]: Active
+              - generic "status-badge" [ref=e316]:
+                - generic [ref=e317]:
+                  - generic [ref=e318]:
+                    - generic [ref=e320]:
+                      - heading "Certe annus consuasor sufficio cervus sunt." [level=3] [ref=e321]
+                      - heading "@ellie.herman_1778494997163" [level=5] [ref=e322]
+                    - button "Share" [ref=e324] [cursor=pointer]:
+                      - img [ref=e325]
+                  - generic [ref=e327]:
+                    - generic [ref=e328]:
+                      - generic [ref=e329]:
+                        - paragraph [ref=e330]: Abstract
+                        - paragraph [ref=e333]: numquam solus facere defendo abutor
+                      - generic [ref=e334]:
+                        - paragraph [ref=e335]: Governance Action Type
+                        - paragraph [ref=e336]: Motion of No Confidence
+                    - generic [ref=e337]:
+                      - generic [ref=e338]:
+                        - generic "Proposal Date" [ref=e339]:
+                          - img [ref=e340]
+                        - paragraph [ref=e342]: "Proposed on: 14 May 2026"
+                      - generic [ref=e343]:
+                        - generic "Comments Number" [ref=e345]:
+                          - button "comments" [disabled]:
+                            - generic "comments":
+                              - generic: "0"
+                            - img
+                        - link "View Details" [ref=e347] [cursor=pointer]:
+                          - /url: /proposal_discussion/37
+                          - button "View Details" [ref=e348]: View Details
+                - generic [ref=e349]: Active
+              - generic "status-badge" [ref=e354]:
+                - generic [ref=e355]:
+                  - generic [ref=e356]:
+                    - generic [ref=e358]:
+                      - heading "Ascisco sto claustrum tibi comis celebrer." [level=3] [ref=e359]
+                      - heading "@ellie.herman_1778494997163" [level=5] [ref=e360]
+                    - button "Share" [ref=e362] [cursor=pointer]:
+                      - img [ref=e363]
+                  - generic [ref=e365]:
+                    - generic [ref=e366]:
+                      - generic [ref=e367]:
+                        - paragraph [ref=e368]: Abstract
+                        - paragraph [ref=e371]: cohibeo voluptas assumenda cursus appello
+                      - generic [ref=e372]:
+                        - paragraph [ref=e373]: Governance Action Type
+                        - paragraph [ref=e374]: Motion of No Confidence
+                    - generic [ref=e375]:
+                      - generic [ref=e376]:
+                        - generic "Proposal Date" [ref=e377]:
+                          - img [ref=e378]
+                        - paragraph [ref=e380]: "Proposed on: 13 May 2026"
+                      - generic [ref=e381]:
+                        - generic "Comments Number" [ref=e383]:
+                          - button "comments" [disabled]:
+                            - generic "comments":
+                              - generic: "0"
+                            - img
+                        - link "View Details" [ref=e385] [cursor=pointer]:
+                          - /url: /proposal_discussion/25
+                          - button "View Details" [ref=e386]: View Details
+                - generic [ref=e387]: Active
+              - generic [ref=e392]:
+                - generic [ref=e393]:
+                  - generic [ref=e394]:
+                    - generic [ref=e396]:
+                      - heading [level=3] [ref=e397]: Paens nobis pax paulatim strenuus vae.
+                      - heading [level=5] [ref=e398]: "@ellie.herman_1778494997163"
+                    - button [ref=e400] [cursor=pointer]:
+                      - img [ref=e401]
+                  - generic [ref=e403]:
+                    - generic [ref=e404]:
+                      - generic [ref=e405]:
+                        - paragraph [ref=e406]: Abstract
+                        - paragraph [ref=e409]: tenuis delinquo approbo vulariter dolore
+                      - generic [ref=e410]:
+                        - paragraph [ref=e411]: Governance Action Type
+                        - paragraph [ref=e412]: Motion of No Confidence
+                    - generic [ref=e413]:
+                      - generic [ref=e414]:
+                        - img [ref=e416]
+                        - paragraph [ref=e418]: "Proposed on: 13 May 2026"
+                      - generic [ref=e419]:
+                        - generic [ref=e421]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e423] [cursor=pointer]:
+                          - /url: /proposal_discussion/22
+                          - button [ref=e424]: View Details
+                - generic [ref=e425]: Active
+              - generic [ref=e430]:
+                - generic [ref=e431]:
+                  - generic [ref=e432]:
+                    - generic [ref=e434]:
+                      - heading [level=3] [ref=e435]: Consectetur textor solutio victoria urbs nemo.
+                      - heading [level=5] [ref=e436]: "@ellie.herman_1778494997163"
+                    - button [ref=e438] [cursor=pointer]:
+                      - img [ref=e439]
+                  - generic [ref=e441]:
+                    - generic [ref=e442]:
+                      - generic [ref=e443]:
+                        - paragraph [ref=e444]: Abstract
+                        - paragraph [ref=e447]: vos una soluta minus chirographum
+                      - generic [ref=e448]:
+                        - paragraph [ref=e449]: Governance Action Type
+                        - paragraph [ref=e450]: Motion of No Confidence
+                    - generic [ref=e451]:
+                      - generic [ref=e452]:
+                        - img [ref=e454]
+                        - paragraph [ref=e456]: "Proposed on: 11 May 2026"
+                      - generic [ref=e457]:
+                        - generic [ref=e459]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e461] [cursor=pointer]:
+                          - /url: /proposal_discussion/11
+                          - button [ref=e462]: View Details
+                - generic [ref=e463]: Active
+              - generic [ref=e468]:
+                - generic [ref=e469]:
+                  - generic [ref=e470]:
+                    - generic [ref=e472]:
+                      - heading [level=3] [ref=e473]: nothing
+                      - heading [level=5] [ref=e474]: "@ksuhal"
+                    - button [ref=e476] [cursor=pointer]:
+                      - img [ref=e477]
+                  - generic [ref=e479]:
+                    - generic [ref=e480]:
+                      - generic [ref=e481]:
+                        - paragraph [ref=e482]: Abstract
+                        - paragraph [ref=e485]: vsvfvfs
+                      - generic [ref=e486]:
+                        - paragraph [ref=e487]: Governance Action Type
+                        - paragraph [ref=e488]: Motion of No Confidence
+                    - generic [ref=e489]:
+                      - generic [ref=e490]:
+                        - img [ref=e492]
+                        - paragraph [ref=e494]: "Proposed on: 11 May 2026"
+                      - generic [ref=e495]:
+                        - generic [ref=e497]:
+                          - button [disabled]:
+                            - generic: "1"
+                            - img
+                        - link [ref=e499] [cursor=pointer]:
+                          - /url: /proposal_discussion/3
+                          - button [ref=e500]: View Details
+                - generic [ref=e501]: Active
+          - generic [ref=e509]:
+            - heading "Info Action" [level=2] [ref=e512]
+            - generic [ref=e515]:
+              - heading "No proposals found" [level=6] [ref=e516]
+              - paragraph [ref=e517]: Please try a different search
+          - generic [ref=e519]:
+            - heading "Treasury requests" [level=2] [ref=e522]
+            - generic [ref=e525]:
+              - heading "No proposals found" [level=6] [ref=e526]
+              - paragraph [ref=e527]: Please try a different search
+      - contentinfo [ref=e528]:
+        - paragraph [ref=e529]: © 2026 GovTool
+        - generic [ref=e530]:
+          - generic [ref=e531] [cursor=pointer]: Privacy policy
+          - generic [ref=e532] [cursor=pointer]: Terms of Use
+        - generic [ref=e533]:
+          - button "helpIcon Help" [ref=e534] [cursor=pointer]:
+            - img "helpIcon" [ref=e536]
+            - text: Help
+          - button "Feedback" [ref=e537] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e538]
+```
+
+# Test source
+
+```ts
+  51  |   readonly skipBtn = this.page.getByTestId("skip-button");
+  52  |   readonly confirmBtn = this.page.getByTestId("confirm-modal-button");
+  53  | 
+  54  |   readonly continueBtn = this.page.getByTestId("continue-button");
+  55  |   readonly addLinkBtn = this.page.getByTestId("add-link-button");
+  56  |   readonly addWithdrawalAddressBtn = this.page.getByTestId(
+  57  |     "add-withdrawal-link-button"
+  58  |   );
+  59  |   readonly infoBtn = this.page.getByTestId("info action-button");
+  60  |   readonly treasuryBtn = this.page.getByTestId("treasury requests-button");
+  61  |   readonly updateTheConstitutionBtn = this.page.getByTestId(
+  62  |     "updates to the constitution-button"
+  63  |   );
+  64  |   readonly motionOfNoConfidenceBtn = this.page.getByTestId(
+  65  |     "motion of no confidence-button"
+  66  |   );
+  67  |   readonly hardForkBtn = this.page.getByTestId("hard fork-button");
+  68  |   readonly editSubmissionButton = this.page.getByTestId(
+  69  |     "edit-submission-button"
+  70  |   );
+  71  |   readonly verifyIdentityBtn = this.page
+  72  |     .getByTestId("verify-user-link")
+  73  |     .first();
+  74  |   readonly governanceActionType = this.page.getByLabel(
+  75  |     "Governance Action Type *"
+  76  |   );
+  77  |   readonly saveDraftBtn = this.page.getByTestId("save-draft-button");
+  78  |   readonly submitBtn = this.page.getByTestId("submit-button");
+  79  |   readonly createNewProposalBtn = this.page.getByTestId(
+  80  |     "create-new-proposal-button"
+  81  |   );
+  82  |   readonly guardrailsScriptCheckbox = this.page.getByTestId(
+  83  |     "chb-prop-have-guardrails-script"
+  84  |   );
+  85  | 
+  86  |   // input fields
+  87  |   readonly titleInput = this.page.getByTestId("title-input");
+  88  |   readonly abstractInput = this.page.getByTestId("abstract-input");
+  89  |   readonly metadataUrlInput = this.page.getByTestId("url-input");
+  90  |   readonly motivationInput = this.page.getByTestId("motivation-input");
+  91  |   readonly rationaleInput = this.page.getByTestId("rationale-input");
+  92  |   readonly receivingAddressInput = this.page.getByTestId(
+  93  |     "receiving-address-0-text-input"
+  94  |   );
+  95  |   readonly amountInput = this.page.getByTestId("amount-0-text-input");
+  96  |   readonly constitutionUrlInput = this.page.getByTestId(
+  97  |     "prop_constitution_url"
+  98  |   );
+  99  |   readonly guardrailsScriptUrlInput = this.page.getByTestId(
+  100 |     "prop-guardrails-script-url-input"
+  101 |   );
+  102 |   readonly guardrailsScriptHashInput = this.page.getByTestId(
+  103 |     "prop-guardrails-script-hash-input"
+  104 |   );
+  105 |   readonly closeDraftSuccessModalBtn = this.page.getByTestId("close-button");
+  106 |   readonly linkTextInput = this.page.getByTestId("link-0-text-input");
+  107 |   readonly linkUrlInput = this.page.getByTestId("link-0-url-input");
+  108 |   readonly previousGAHashInput = this.page.getByTestId(
+  109 |     "previous-ga-hash-input"
+  110 |   );
+  111 |   readonly previousGAIdInput = this.page.getByTestId("previous-ga-id-input");
+  112 |   readonly majorInput = this.page.getByTestId("major-input");
+  113 |   readonly minorInput = this.page.getByTestId("minor-input");
+  114 | 
+  115 |   // content
+  116 |   readonly governanceActionTypeContent = this.page.getByTestId(
+  117 |     "governance-action-type-content"
+  118 |   );
+  119 |   readonly titleContent = this.page.getByTestId("title-content");
+  120 |   readonly abstractContent = this.page.getByTestId("abstract-content");
+  121 |   readonly motivationContent = this.page.getByTestId("motivation-content");
+  122 |   readonly rationaleContent = this.page.getByTestId("rationale-content");
+  123 |   readonly receivingAddressContent = this.page.getByTestId(
+  124 |     "receiving-address-0-content"
+  125 |   );
+  126 |   readonly amountContent = this.page.getByTestId("amount-0-content");
+  127 |   readonly constitutionUrlContent = this.page.getByTestId(
+  128 |     "new-constitution-url-content"
+  129 |   );
+  130 |   readonly guardrailsScriptUrlContent = this.page.getByTestId(
+  131 |     "guardrails-script-url-content"
+  132 |   );
+  133 |   readonly guardrailsScriptHashContent = this.page.getByTestId(
+  134 |     "guardrails-script-hash-content"
+  135 |   );
+  136 |   readonly linkTextContent = this.page.getByTestId("link-0-text-content");
+  137 |   readonly linkUrlContent = this.page.getByTestId("link-0-url-content");
+  138 |   readonly majorVersionContent = this.page.getByTestId("major-version-content");
+  139 |   readonly minorVersionContent = this.page.getByTestId("minor-version-content");
+  140 | 
+  141 |   constructor(private readonly page: Page) {}
+  142 | 
+  143 |   get currentPage(): Page {
+  144 |     return this.page;
+  145 |   }
+  146 | 
+  147 |   async goto() {
+  148 |     await this.page.goto(`${environments.frontendUrl}/proposal_discussion`);
+  149 | 
+  150 |     await this.verifyIdentityBtn.click();
+> 151 |     await this.proposalCreateBtn.click();
+      |                                  ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  152 | 
+  153 |     await this.continueBtn.click();
+  154 |   }
+  155 | 
+  156 |   async fillUpValidMetadata() {
+  157 |     this.page.getByTestId("download-button").click();
+  158 | 
+  159 |     const dRepMetadata = await this.downloadVoteMetadata();
+  160 |     const url = await metadataBucketService.uploadMetadata(
+  161 |       faker.lorem.word({ length: { min: 5, max: 10 } }),
+  162 |       dRepMetadata.data
+  163 |     );
+  164 |     await this.metadataUrlInput.fill(url);
+  165 |     await this.submitBtn.click();
+  166 |   }
+  167 | 
+  168 |   async downloadVoteMetadata() {
+  169 |     const download: Download = await this.page.waitForEvent("download");
+  170 |     return downloadMetadata(download);
+  171 |   }
+  172 | 
+  173 |   async fillupFormWithTypeSelected(governanceProposal: ProposalCreateRequest) {
+  174 |     await this.fillCommonFields(governanceProposal);
+  175 | 
+  176 |     if (governanceProposal.gov_action_type_id === 1) {
+  177 |       await this.fillTreasuryFields(governanceProposal);
+  178 |     }
+  179 | 
+  180 |     if (governanceProposal.gov_action_type_id === 2) {
+  181 |       await this.fillUpdateTheConstitutionFields(governanceProposal);
+  182 |     }
+  183 | 
+  184 |     if (governanceProposal.proposal_links != null) {
+  185 |       await this.fillProposalLinks(governanceProposal.proposal_links);
+  186 |     }
+  187 | 
+  188 |     if (governanceProposal.gov_action_type_id == 4) {
+  189 |       await this.fillHardForkFields(governanceProposal);
+  190 |     }
+  191 |   }
+  192 | 
+  193 |   async fillupForm(governanceProposal: ProposalCreateRequest) {
+  194 |     console.log(governanceProposal.gov_action_type_id);
+  195 |     await this.governanceActionType.click();
+  196 | 
+  197 |     if (governanceProposal.gov_action_type_id === 0) {
+  198 |       await this.infoBtn.click();
+  199 |     } else if (governanceProposal.gov_action_type_id === 1) {
+  200 |       await this.treasuryBtn.click();
+  201 |     } else if (governanceProposal.gov_action_type_id === 2) {
+  202 |       await this.updateTheConstitutionBtn.click();
+  203 |       if (governanceProposal.has_guardrails) {
+  204 |         await this.guardrailsScriptCheckbox.click();
+  205 |       }
+  206 |     } else if (governanceProposal.gov_action_type_id === 3) {
+  207 |       await this.motionOfNoConfidenceBtn.click();
+  208 |     } else {
+  209 |       await this.hardForkBtn.click();
+  210 |     }
+  211 | 
+  212 |     await this.fillupFormWithTypeSelected(governanceProposal);
+  213 |   }
+  214 | 
+  215 |   async fillCommonFields(governanceProposal: ProposalCreateRequest) {
+  216 |     await this.titleInput.fill(governanceProposal.prop_name);
+  217 |     await this.abstractInput.fill(governanceProposal.prop_abstract);
+  218 |     await this.motivationInput.fill(governanceProposal.prop_motivation);
+  219 |     await this.rationaleInput.fill(governanceProposal.prop_rationale);
+  220 |   }
+  221 | 
+  222 |   async fillTreasuryFields(governanceProposal: ProposalCreateRequest) {
+  223 |     await this.receivingAddressInput.fill(
+  224 |       governanceProposal.prop_receiving_address
+  225 |     );
+  226 |     await this.amountInput.fill(governanceProposal.prop_amount);
+  227 |   }
+  228 | 
+  229 |   async fillUpdateTheConstitutionFields(
+  230 |     governanceProposal: ProposalCreateRequest
+  231 |   ) {
+  232 |     await this.constitutionUrlInput.fill(
+  233 |       governanceProposal.prop_constitution_url
+  234 |     );
+  235 | 
+  236 |     if (governanceProposal.has_guardrails) {
+  237 |       await this.guardrailsScriptUrlInput.fill(
+  238 |         governanceProposal.prop_guardrails_script_url
+  239 |       );
+  240 |       await this.guardrailsScriptHashInput.fill(
+  241 |         governanceProposal.prop_guardrails_script_hash
+  242 |       );
+  243 |     }
+  244 |   }
+  245 | 
+  246 |   async fillProposalLinks(proposal_links: Array<ProposalLink>) {
+  247 |     for (let i = 0; i < proposal_links.length; i++) {
+  248 |       if (i > 0) {
+  249 |         await this.addLinkBtn.click();
+  250 |       }
+  251 |       await this.page
+```

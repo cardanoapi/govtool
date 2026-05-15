@@ -1,0 +1,8 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Uploaded Camren.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: f4626cea54059b0436e618012375c4a106ace8a82b98b3fdb7b22cfba27f8f68
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

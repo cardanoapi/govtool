@@ -1,0 +1,7 @@
+wallet balance 100022
+wallet address addr_test1qzm7y4safsca8t3v8wad25rd8t4l2gn28lknc70zapjpkkd49qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q7xmfwn
+✖ Failed to load resource: the server responded with a status of 404 ()
+Username is already set
+1
+✔ Uploaded combibo metadata to bucket
+✖ Failed to load resource: the server responded with a status of 400 ()

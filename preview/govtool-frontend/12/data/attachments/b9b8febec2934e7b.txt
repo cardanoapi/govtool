@@ -1,0 +1,5 @@
+✔ Uploaded Howell metadata to bucket
+ℹ Submitting tx: {"lock_id":"8f6d835ac37badc4bd941abe03b1b22bf4d78ebc9dacbe7677511c86cd7245ce","tx":{"certificates":[{"type":"registerdrep","key":"d8a401502275e801728114df8587f1a1837fca5711b9a247b22481bd","anchor":{"url":"https://metadata-govtool.cardanoapi.io/data/Howell","dataHash":"5302123b8fcad506cf8942eac9aeb8e638d46296674238c6381411f11b65ef32"}}],"selections":[{"type":"PaymentSigningKeyShelley_ed25519","description":"Stake Signing Key","cborHex":"5820a35d6f232f14691f77da1e99943c2d137b8b8d27e28ab5ec1790b61b0c787cf7"},{"type":"PaymentSigningKeyShelley_ed25519","description":"Payment Signing Key","cborHex":"58204a6ae978d1656381cfe8d9316c7262dd96d72a0c2ce6368ad8559b392170aa0e"},"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"],"changeAddress":"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"}}
+✔ Tx submitted: ee45824e03310482c6aa9fedf7802ad78c5d016c7be57aa46f005044a5c9e8dc
+ℹ Waiting for tx completion: ee45824e03310482c6aa9fedf7802ad78c5d016c7be57aa46f005044a5c9e8dc
+✔ Tx completed

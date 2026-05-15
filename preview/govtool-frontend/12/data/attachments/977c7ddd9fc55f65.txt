@@ -1,0 +1,344 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 8-proposal-discussion/proposalDiscussion.loggedin.pd.spec.ts >> Proposal created with poll enabled (user auth) >> 8T. Should change vote on poll.
+- Location: tests/8-proposal-discussion/proposalDiscussion.loggedin.pd.spec.ts:116:7
+
+# Error details
+
+```
+Test timeout of 540000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 540000ms exceeded.
+Call log:
+  - waiting for getByTestId('poll-yes-button')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+      - button [ref=e14] [cursor=pointer]:
+        - img [ref=e15]
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - link "The Info Action" [ref=e20] [cursor=pointer]:
+          - /url: https://govtool.cardanoapi.io/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+        - text: has passed — thank you for your support!
+      - generic [ref=e21]:
+        - text: We have now submitted a
+        - link "Treasury Withdrawal" [ref=e22] [cursor=pointer]:
+          - /url: https://govtool.cardanoapi.io/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+        - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+  - img "bg-orange" [ref=e23]
+  - generic [ref=e24]:
+    - generic [ref=e25]:
+      - link "app-logo" [ref=e26] [cursor=pointer]:
+        - /url: /dashboard
+        - img "app-logo" [ref=e27]
+      - generic [ref=e28]:
+        - link "icon Home" [ref=e30] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=e31]:
+            - img "icon" [ref=e32]
+            - paragraph [ref=e33]: Home
+        - link "icon DRep Directory" [ref=e35] [cursor=pointer]:
+          - /url: /connected/drep_directory
+          - generic [ref=e36]:
+            - img "icon" [ref=e37]
+            - paragraph [ref=e38]: DRep Directory
+        - link "icon Budget Proposals" [ref=e40] [cursor=pointer]:
+          - /url: /budget_discussion
+          - generic [ref=e41]:
+            - img "icon" [ref=e42]
+            - paragraph [ref=e43]: Budget Proposals
+        - generic [ref=e44]:
+          - link "icon Governance Actions" [ref=e45] [cursor=pointer]:
+            - /url: /connected/governance_actions
+            - generic [ref=e46]:
+              - img "icon" [ref=e47]
+              - paragraph [ref=e48]: Governance Actions
+          - generic [ref=e49]:
+            - link "Proposals" [ref=e50] [cursor=pointer]:
+              - /url: /proposal_discussion
+              - generic [ref=e51]:
+                - img [ref=e53]
+                - paragraph [ref=e55]: Proposals
+            - link "icon Live Voting" [ref=e56] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e57]:
+                - img "icon" [ref=e58]
+                - paragraph [ref=e59]: Live Voting
+            - link "icon Outcomes" [ref=e60] [cursor=pointer]:
+              - /url: /outcomes
+              - generic [ref=e61]:
+                - img "icon" [ref=e62]
+                - paragraph [ref=e63]: Outcomes
+        - link "icon Guides" [ref=e65] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e66]:
+            - img "icon" [ref=e67]
+            - paragraph [ref=e68]: Guides
+        - link "icon FAQs" [ref=e70] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e71]:
+            - img "icon" [ref=e72]
+            - paragraph [ref=e73]: FAQs
+      - generic [ref=e76]:
+        - paragraph [ref=e77]: "Connected Wallet:"
+        - generic [ref=e78]:
+          - paragraph [ref=e79]: 00a3345addb95909898a2456f5c0b141044ce45c848071ac08ba8adfc5b2507237ba4eca216b6226349efbe1ff846ddaaa0cdc5fa1df29699d
+          - button "Disconnect" [ref=e80] [cursor=pointer]: Disconnect
+    - generic [ref=e81]:
+      - navigation [ref=e82]:
+        - paragraph [ref=e84]: Proposals
+      - paragraph [ref=e89]:
+        - generic [ref=e90]:
+          - button "Back" [ref=e92] [cursor=pointer]:
+            - img [ref=e94]
+            - text: Back
+          - generic [ref=e98]:
+            - paragraph [ref=e99]: If this is your Proposal, to submit it, you need to
+            - paragraph [ref=e100]:
+              - generic [ref=e101] [cursor=pointer]: connect a Cardano wallet
+          - generic [ref=e104]:
+            - generic [ref=e105]:
+              - generic [ref=e106]:
+                - heading "Impedit validus talis subiungo cariosus vado." [level=2] [ref=e107]
+                - heading "@kaelyn.murray_1778816514855" [level=5] [ref=e108]
+              - button [ref=e110] [cursor=pointer]:
+                - img [ref=e111]
+            - generic [ref=e113]:
+              - text: Governance Action Type
+              - paragraph [ref=e114]: Treasury requests
+            - generic [ref=e116]:
+              - text: "Proposed on:"
+              - paragraph [ref=e117]: 15 May 2026
+            - generic [ref=e118]:
+              - generic [ref=e119]:
+                - text: "Last Edit:"
+                - paragraph [ref=e120]: 15 May 2026
+              - generic [ref=e121]:
+                - text: Review Versions
+                - paragraph
+            - generic [ref=e122]:
+              - text: Abstract
+              - paragraph [ref=e124]: acsi altus nostrum aqua solium
+            - generic [ref=e125]:
+              - text: Motivation
+              - paragraph [ref=e128]: depraedor colligo umbra nemo umquam
+            - generic [ref=e129]:
+              - text: Rationale
+              - paragraph [ref=e132]: arbitro ea timidus illo facere
+            - generic [ref=e133]:
+              - generic [ref=e134]:
+                - paragraph [ref=e135]: Receiving address
+                - paragraph [ref=e136]: stake1urgms9yyhyj6pukqpg952c6yz7q9cxhydjsdpgag2a7uwnsalatg7
+              - generic [ref=e137]:
+                - paragraph [ref=e138]: Amount
+                - paragraph [ref=e139]: ₳ 499
+            - generic [ref=e140]:
+              - text: Supporting links
+              - button "occasional-sequence" [ref=e142] [cursor=pointer]:
+                - img [ref=e144]
+                - paragraph [ref=e146]: occasional-sequence
+            - generic [ref=e147]:
+              - generic "Total comments number" [ref=e148]:
+                - generic [ref=e149]:
+                  - button "proposal comments" [disabled]:
+                    - generic "proposal comments":
+                      - generic: "0"
+                    - img
+              - generic [ref=e150]:
+                - generic [ref=e152]:
+                  - paragraph [ref=e153]: To show sentiment, you need to
+                  - paragraph [ref=e154]:
+                    - generic [ref=e155] [cursor=pointer]: connect a Cardano wallet
+                - generic [ref=e156]:
+                  - generic [ref=e157]:
+                    - button "proposal likes" [disabled]:
+                      - generic "proposal likes":
+                        - generic: "0"
+                      - img
+                  - generic [ref=e158]:
+                    - button "proposal dislikes" [disabled]:
+                      - generic "proposal dislikes":
+                        - generic: "0"
+                      - img
+          - heading "Polls" [level=3] [ref=e160]
+          - generic [ref=e163]:
+            - paragraph [ref=e164]: "@kaelyn.murray_1778816514855"
+            - generic [ref=e165]: 15/05/2026 - 4:10 AM UTC
+            - paragraph [ref=e166]: Poll Results
+            - paragraph [ref=e167]: Is this proposal ready to be submitted on chain?
+            - separator [ref=e168]
+            - generic [ref=e169]: "Total votes: 0"
+            - generic [ref=e170]:
+              - generic [ref=e171]: "Yes: (0%)"
+              - progressbar [ref=e172]
+            - generic [ref=e174]:
+              - generic [ref=e175]: "No: (0%)"
+              - progressbar [ref=e176]
+          - generic [ref=e178]:
+            - heading "Comments" [level=3] [ref=e179]
+            - button [ref=e180] [cursor=pointer]:
+              - img [ref=e181]
+          - generic [ref=e185]:
+            - heading "Submit a comment" [level=6] [ref=e186]
+            - generic [ref=e187]:
+              - generic [ref=e188]:
+                - textbox [ref=e189]
+                - group
+              - paragraph [ref=e190]:
+                - generic [ref=e191]: 0/15000
+            - generic [ref=e192]:
+              - generic [ref=e194]:
+                - paragraph [ref=e195]: To submit a comment, you need to
+                - paragraph [ref=e196]:
+                  - generic [ref=e197] [cursor=pointer]: connect a Cardano wallet
+              - button "Comment" [disabled]:
+                - text: Comment
+                - generic:
+                  - img
+          - generic [ref=e200]:
+            - heading "No Comments yet" [level=6] [ref=e201]
+            - paragraph [ref=e202]: Be the first to share your thoughts on this proposal.
+      - contentinfo [ref=e203]:
+        - paragraph [ref=e204]: © 2026 GovTool
+        - generic [ref=e205]:
+          - generic [ref=e206] [cursor=pointer]: Privacy policy
+          - generic [ref=e207] [cursor=pointer]: Terms of Use
+        - generic [ref=e208]:
+          - button "helpIcon Help" [ref=e209] [cursor=pointer]:
+            - img "helpIcon" [ref=e211]
+            - text: Help
+          - button "Feedback" [ref=e212] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e213]
+```
+
+# Test source
+
+```ts
+  1   | import environments from "@constants/environments";
+  2   | import { Page, expect } from "@playwright/test";
+  3   | import { CommentResponse } from "@types";
+  4   | 
+  5   | export default class ProposalDiscussionDetailsPage {
+  6   |   // Buttons
+  7   |   readonly likeBtn = this.page.getByTestId("like-button");
+  8   |   readonly dislikeBtn = this.page.getByTestId("dislike-button");
+  9   |   readonly commentBtn = this.page.getByTestId("comment-button");
+  10  |   readonly replyCommentBtn = this.page.getByTestId("reply-comment-button");
+  11  |   readonly addPollBtn = this.page.getByTestId("add-poll-button");
+  12  |   readonly SubmitBtn = this.page.getByTestId("submit-button");
+  13  |   readonly menuBtn = this.page.getByTestId("menu-button");
+  14  |   readonly editProposalBtn = this.page.getByTestId("edit-proposal");
+  15  |   readonly deleteProposalBtn = this.page.getByTestId("delete-proposal");
+  16  |   readonly reviewVersionsBtn = this.page.getByTestId("review-versions");
+  17  |   readonly closePollBtn = this.page.getByTestId("close-poll-button");
+  18  |   readonly sortBtn = this.page.getByTestId("sort-comments");
+  19  |   readonly proposeGovernanceAction = this.page.getByTestId("propose-GA-button");
+  20  |   readonly replyBtn = this.page.getByTestId("reply-button");
+  21  |   readonly pollYesBtn = this.page.getByTestId("poll-yes-button");
+  22  |   readonly pollNoBtn = this.page.getByTestId("poll-no-button");
+  23  |   readonly showReplyBtn = this.page.getByTestId("show-more-reply");
+  24  |   readonly closePollYesBtn = this.page.getByTestId("close-the-poll-button");
+  25  |   readonly changeVoteBtn = this.page.getByTestId("change-vote-button");
+  26  |   readonly verifyIdentityBtn = this.page
+  27  |     .getByTestId("verify-user-link")
+  28  |     .first();
+  29  |   readonly submitAsGABtn = this.page.getByTestId("submit-as-GA-button");
+  30  | 
+  31  |   // Indicators
+  32  |   readonly likeCount = this.likeBtn.getByTestId("like-count");
+  33  |   readonly dislikeCount = this.dislikeBtn.getByTestId("dislike-count");
+  34  |   readonly commentCount = this.page.getByTestId("comment-count");
+  35  | 
+  36  |   // Cards
+  37  |   readonly pollVoteCard = this.page.getByTestId("poll-vote-card");
+  38  |   readonly pollResultCard = this.page.getByTestId("poll-result-card");
+  39  | 
+  40  |   //inputs
+  41  |   readonly commentInput = this.page.getByTestId("comment-input");
+  42  | 
+  43  |   constructor(private readonly page: Page) {}
+  44  | 
+  45  |   async goto(proposalId: number) {
+  46  |     await this.page.goto(
+  47  |       `${environments.frontendUrl}/proposal_discussion/${proposalId}`
+  48  |     );
+  49  |   }
+  50  | 
+  51  |   async closeUsernamePrompt() {
+  52  |     await this.page
+  53  |       .locator("div")
+  54  |       .filter({ hasText: /^Hey, setup your username$/ })
+  55  |       .getByRole("button")
+  56  |       .click();
+  57  |   }
+  58  | 
+  59  |   async addComment(comment: string) {
+  60  |     await this.commentInput.fill(comment);
+  61  |     await this.commentBtn.click();
+  62  |   }
+  63  | 
+  64  |   async replyComment(reply: string) {
+  65  |     await this.replyBtn.click();
+  66  |     await this.page.getByTestId("reply-input").fill(reply);
+  67  |     await this.replyCommentBtn.click();
+  68  |   }
+  69  | 
+  70  |   async sortAndValidate(
+  71  |     order: string,
+  72  |     validationFn: (date1: string, date2: string) => boolean
+  73  |   ) {
+  74  |     const responsePromise = this.page.waitForResponse((response) =>
+  75  |       response.url().includes(`&sort[createdAt]=${order}`)
+  76  |     );
+  77  | 
+  78  |     await this.sortBtn.click();
+  79  |     const response = await responsePromise;
+  80  | 
+  81  |     const comments: CommentResponse[] = (await response.json()).data;
+  82  | 
+  83  |     // API validation
+  84  |     for (let i = 0; i < comments.length - 1; i++) {
+  85  |       const isValid = validationFn(
+  86  |         comments[i].attributes.updatedAt,
+  87  |         comments[i + 1].attributes.updatedAt
+  88  |       );
+  89  |       expect(isValid).toBe(true);
+  90  |     }
+  91  |   }
+  92  | 
+  93  |   async voteOnPoll(vote: string) {
+> 94  |     await this.page.getByTestId(`poll-${vote.toLowerCase()}-button`).click();
+      |                                                                      ^ Error: locator.click: Test timeout of 540000ms exceeded.
+  95  |   }
+  96  | 
+  97  |   async deleteProposal() {
+  98  |     await this.page.waitForTimeout(2_000);
+  99  | 
+  100 |     await this.page.getByTestId("menu-button").click();
+  101 |     await this.page.getByTestId("delete-proposal").click();
+  102 |     await this.page.getByTestId("delete-proposal-yes-button").click();
+  103 |   }
+  104 | }
+  105 | 
+```

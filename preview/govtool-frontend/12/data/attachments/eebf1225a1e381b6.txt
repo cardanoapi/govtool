@@ -1,0 +1,20 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 11-proposal-budget/proposalBudget.dRep.pb.spec.ts >> Budget proposal dRep behaviour >> Budget proposal voting >> 11K. Should allow registered DRep to vote on a proposal
+- Location: tests/11-proposal-budget/proposalBudget.dRep.pb.spec.ts:32:9
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Tearing down "proposalId" exceeded the test timeout of 180000ms.
+```
