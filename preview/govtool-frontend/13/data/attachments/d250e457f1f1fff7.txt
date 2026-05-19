@@ -1,0 +1,7 @@
+wallet balance 100022
+wallet address addr_test1qpzg9lw5ylx656v6ssf6u6eu5s6fehytq6e7ujhffwcs3td49qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q7g75cf
+✖ Failed to load resource: the server responded with a status of 404 ()
+Username is already set
+1
+✔ Uploaded laboriosam metadata to bucket
+✖ Failed to load resource: the server responded with a status of 400 ()

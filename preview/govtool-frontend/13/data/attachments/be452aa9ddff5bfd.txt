@@ -1,0 +1,36 @@
+ℹ Retrying the function
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+ℹ Retrying the function 
+A proposal card does not contain any of the Protocol Parameter Change
+
+expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: false

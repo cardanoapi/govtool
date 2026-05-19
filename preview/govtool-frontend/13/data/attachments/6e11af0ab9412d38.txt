@@ -1,0 +1,233 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 12-proposal-budget-submission/proposalBudgetSubmission.loggedin.pb.spec.ts >> 12I. Should submit a valid draft budget proposal
+- Location: tests/12-proposal-budget-submission/proposalBudgetSubmission.loggedin.pb.spec.ts:493:5
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: locator('[data-testid^="draft-"][data-testid$="-proposal"]').last()
+Expected: visible
+Timeout: 60000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 60000ms
+  - waiting for locator('[data-testid^="draft-"][data-testid$="-proposal"]').last()
+
+```
+
+# Test source
+
+```ts
+  394 |     await this.page
+  395 |       .getByTestId(`${costing.preferredCurrency.toLowerCase()}-button`)
+  396 |       .click();
+  397 | 
+  398 |     await this.continueBtn.click();
+  399 |   }
+  400 | 
+  401 |   async fillupFurtherInformation(proposal_links: Array<ProposalLink>) {
+  402 |     for (let i = 0; i < proposal_links.length; i++) {
+  403 |       if (i > 0) {
+  404 |         await this.addLinkBtn.click();
+  405 |       }
+  406 |       await this.page
+  407 |         .getByTestId(`link-${i}-url-input`)
+  408 |         .fill(proposal_links[i].prop_link);
+  409 |       await this.page
+  410 |         .getByTestId(`link-${i}-text-input`)
+  411 |         .fill(proposal_links[i].prop_link_text);
+  412 |     }
+  413 |     await this.continueBtn.click();
+  414 |   }
+  415 | 
+  416 |   async fillupAdministrationAndAuditing(
+  417 |     administrationAndAuditing: AdministrationAndAuditingProps
+  418 |   ) {
+  419 |     await this.intersectNamedAdministratorSelect.click();
+  420 |     await this.page
+  421 |       .getByTestId(
+  422 |         `${administrationAndAuditing.intersectAdministration}-button`
+  423 |       )
+  424 |       .click();
+  425 |     if (!administrationAndAuditing.intersectAdministration) {
+  426 |       await this.venderDetailsInput.fill(
+  427 |         administrationAndAuditing.venderDetails
+  428 |       );
+  429 |     }
+  430 |   }
+  431 | 
+  432 |   async fillupForm(
+  433 |     budgetProposal: BudgetProposalProps,
+  434 |     stage: BudgetProposalStageEnum = BudgetProposalStageEnum.Review
+  435 |   ) {
+  436 |     await this.fillupProposalOwnershipForm(budgetProposal.proposalOwnership);
+  437 | 
+  438 |     if (stage > BudgetProposalStageEnum.ProposalOwnership) {
+  439 |       await this.fillupProblemStatementAndBenefitsForm(
+  440 |         budgetProposal.problemStatementAndBenefits
+  441 |       );
+  442 |     }
+  443 | 
+  444 |     if (stage > BudgetProposalStageEnum.ProblemStatementAndBenefits) {
+  445 |       await this.fillupProposalDetailsForm(budgetProposal.proposalDetails);
+  446 |     }
+  447 |     if (stage > BudgetProposalStageEnum.ProposalDetails) {
+  448 |       await this.fillupCostingForm(budgetProposal.costing);
+  449 |     }
+  450 |     if (stage > BudgetProposalStageEnum.Costing) {
+  451 |       await this.fillupFurtherInformation(budgetProposal.furtherInformation);
+  452 |     }
+  453 |     if (stage > BudgetProposalStageEnum.FurtherInformation) {
+  454 |       this.fillupAdministrationAndAuditing(
+  455 |         budgetProposal.administrationAndAuditing
+  456 |       );
+  457 |       await this.continueBtn.click();
+  458 |       if (stage > BudgetProposalStageEnum.AdministrationAndAuditing) {
+  459 |         await this.submitCheckbox.click();
+  460 |         await this.continueBtn.click();
+  461 |       }
+  462 |     }
+  463 |   }
+  464 | 
+  465 |   async getAllDrafts() {
+  466 |     await expect(
+  467 |       this.page
+  468 |         .locator('[data-testid^="draft-"][data-testid$="-proposal"]')
+  469 |         .first()
+  470 |     ).toBeVisible({ timeout: 60_000 }); // slow rendering
+  471 | 
+  472 |     return await this.page
+  473 |       .locator('[data-testid^="draft-"][data-testid$="-proposal"]')
+  474 |       .all();
+  475 |   }
+  476 | 
+  477 |   async getFirstDraft() {
+  478 |     await expect(
+  479 |       this.page
+  480 |         .locator('[data-testid^="draft-"][data-testid$="-proposal"]')
+  481 |         .first()
+  482 |     ).toBeVisible({ timeout: 60_000 }); // slow rendering
+  483 | 
+  484 |     return this.page
+  485 |       .locator('[data-testid^="draft-"][data-testid$="-proposal"]')
+  486 |       .first();
+  487 |   }
+  488 | 
+  489 |   async viewLastDraft() {
+  490 |     await expect(
+  491 |       this.page
+  492 |         .locator('[data-testid^="draft-"][data-testid$="-proposal"]')
+  493 |         .last()
+> 494 |     ).toBeVisible({ timeout: 60_000 }); // slow rendering
+      |       ^ Error: expect(locator).toBeVisible() failed
+  495 | 
+  496 |     return await this.page.getByTestId("draft-start-editing").last().click();
+  497 |   }
+  498 | 
+  499 |   generateValidBudgetProposalContactInformation(): BudgetProposalContactInformationProps {
+  500 |     return {
+  501 |       beneficiaryFullName: faker.person.fullName(),
+  502 |       beneficiaryEmail: faker.internet.email(),
+  503 |       beneficiaryCountry: faker.helpers.arrayElement(
+  504 |         Object.values(LocationEnum)
+  505 |       ),
+  506 |       beneficiaryNationality: faker.helpers.arrayElement(
+  507 |         Object.values(LocationEnum)
+  508 |       ),
+  509 |       submissionLeadFullName: faker.person.fullName(),
+  510 |       submissionLeadEmail: faker.internet.email(),
+  511 |     };
+  512 |   }
+  513 | 
+  514 |   generateValidBudgetProposalProblemStatementAndBenefits(): BudgetProposalProblemStatementAndBenefitProps {
+  515 |     return {
+  516 |       problemStatement: faker.lorem.paragraph(2),
+  517 |       proposalBenefits: faker.lorem.paragraph(2),
+  518 |       roadmapName: faker.helpers.arrayElement(Object.values(RoadmapNameEnum)),
+  519 |       budgetDiscussionType: faker.helpers.arrayElement(
+  520 |         Object.values(BudgetDiscussionEnum).filter(
+  521 |           (type) => type !== "No Category"
+  522 |         )
+  523 |       ),
+  524 |       productRoadmapDescription: faker.lorem.paragraph(2),
+  525 |       committeeAlignmentType: faker.helpers.arrayElement(
+  526 |         Object.values(CommitteeAlignmentEnum)
+  527 |       ),
+  528 |       suplimentaryEndorsement: faker.lorem.paragraph(2),
+  529 |     };
+  530 |   }
+  531 | 
+  532 |   generateValidProposalOwnerShip(): BudgetProposalOwnershipProps {
+  533 |     return {
+  534 |       companyType: faker.helpers.arrayElement(Object.values(CompanyEnum)),
+  535 |       contactDetails: faker.internet.email(),
+  536 |       groupName: faker.company.name(),
+  537 |       groupType: faker.company.buzzVerb(),
+  538 |       groupKeyIdentity: faker.lorem.paragraph(2),
+  539 |       companyName: faker.company.name(),
+  540 |       companyDomainName: faker.internet.domainName(),
+  541 |       countryOfIncorportation: faker.helpers.arrayElement(
+  542 |         Object.values(LocationEnum)
+  543 |       ),
+  544 |     };
+  545 |   }
+  546 |   generateInvalidProposalOwnerShip(): BudgetProposalOwnershipProps {
+  547 |     return {
+  548 |       groupName: invalid.paragraph(50),
+  549 |       groupType: invalid.paragraph(50),
+  550 |       groupKeyIdentity: invalid.paragraph(50),
+  551 |       companyName: invalid.paragraph(50),
+  552 |       companyDomainName: invalid.paragraph(50),
+  553 |       companyType: faker.helpers.arrayElement(Object.values(CompanyEnum)),
+  554 |       contactDetails: faker.lorem.paragraph(2),
+  555 |       countryOfIncorportation: faker.helpers.arrayElement(
+  556 |         Object.values(LocationEnum)
+  557 |       ),
+  558 |     };
+  559 |   }
+  560 | 
+  561 |   generateValidBudgetProposalDetails(): BudgetProposalDetailsProps {
+  562 |     return {
+  563 |       proposalName: faker.lorem.words(3),
+  564 |       proposalDescription: faker.lorem.paragraph(2),
+  565 |       proposalKeyDependencies: faker.lorem.paragraph(1),
+  566 |       proposalMaintainAndSupport: faker.lorem.paragraph(2),
+  567 |       milestones: faker.lorem.lines(2),
+  568 |       teamSizeAndDuration: faker.lorem.paragraph(2),
+  569 |       previousExperience: faker.lorem.paragraph(2),
+  570 |       contracting: faker.helpers.arrayElement(
+  571 |         Object.values(ProposalContractingEnum)
+  572 |       ),
+  573 |       otherDescription: faker.lorem.paragraph(2),
+  574 |     };
+  575 |   }
+  576 | 
+  577 |   generateValidCosting(): BudgetCostingProps {
+  578 |     return {
+  579 |       adaAmount: faker.number.int({ min: 100, max: 10000 }),
+  580 |       usdToAdaConversionRate: faker.number.int({ min: 1, max: 10 }),
+  581 |       preferredCurrency: faker.helpers.arrayElement(
+  582 |         Object.values(PreferredCurrencyEnum)
+  583 |       ),
+  584 |       AmountInPreferredCurrency: faker.number.int({ min: 100, max: 10000 }),
+  585 |       costBreakdown: faker.lorem.paragraph(2),
+  586 |     };
+  587 |   }
+  588 | 
+  589 |   generateInValidCosting(): BudgetCostingProps {
+  590 |     return {
+  591 |       adaAmount: faker.lorem.paragraph(2),
+  592 |       usdToAdaConversionRate: faker.lorem.paragraph(2),
+  593 |       preferredCurrency: faker.helpers.arrayElement(
+  594 |         Object.values(PreferredCurrencyEnum)
+```

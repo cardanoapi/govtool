@@ -1,0 +1,7 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Uploaded Jena.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 55459e7b408626b5946ac3c40e45fb144269c82433bdd78b8bd8765b73a60062
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Tx completed

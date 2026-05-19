@@ -1,0 +1,215 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 12-proposal-budget-submission/proposalBudgetSubmission.loggedin.pb.spec.ts >> 12H. Should submit a valid budget proposal
+- Location: tests/12-proposal-budget-submission/proposalBudgetSubmission.loggedin.pb.spec.ts:473:5
+
+# Error details
+
+```
+Error: expect(locator).toHaveText(expected) failed
+
+Locator:  getByTestId('problem-statement')
+Expected: "Porro varius tergeo claudeo abbas admitto dignissimos thalassinus vereor facilis. Tolero tego bardus."
+Received: ""
+Timeout:  5000ms
+
+Call log:
+  - Expect "toHaveText" with timeout 5000ms
+  - waiting for getByTestId('problem-statement')
+    9 × locator resolved to <div data-testid="problem-statement"></div>
+      - unexpected value ""
+
+```
+
+# Test source
+
+```ts
+  58  |   readonly proposalContractingContent = this.page.getByTestId(
+  59  |     "proposal-contracting"
+  60  |   );
+  61  |   readonly proposalContractingOtherContent = this.page.getByTestId(
+  62  |     "other-contract-description"
+  63  |   );
+  64  |   readonly costingAmountContent = this.page.getByTestId("costing-amount");
+  65  |   readonly costingConversionRateContent = this.page.getByTestId(
+  66  |     "costing-conversion-rate"
+  67  |   );
+  68  |   readonly constingPreferedCurrencyContent = this.page.getByTestId(
+  69  |     "costing-preferred-currency"
+  70  |   );
+  71  |   readonly costingPreferedCurrencyAmountContent = this.page.getByTestId(
+  72  |     "costing-preferred-currency-amount"
+  73  |   );
+  74  |   readonly costBreakdownContent = this.page.getByTestId("cost-breakdown");
+  75  |   readonly includeAsAuditorContent =
+  76  |     this.page.getByTestId("include-as-auditor");
+  77  | 
+  78  |   // Input
+  79  |   readonly commentInput = this.page.getByTestId("comment-input");
+  80  |   readonly replyInput = this.page.getByTestId("reply-input");
+  81  | 
+  82  |   constructor(private readonly page: Page) {}
+  83  | 
+  84  |   get currentPage(): Page {
+  85  |     return this.page;
+  86  |   }
+  87  | 
+  88  |   async goto(proposalId: number) {
+  89  |     await this.page.goto(
+  90  |       `${environments.frontendUrl}/budget_discussion/${proposalId}`
+  91  |     );
+  92  |   }
+  93  | 
+  94  |   async sortAndValidate(
+  95  |     order: string,
+  96  |     validationFn: (date1: string, date2: string) => boolean
+  97  |   ) {
+  98  |     const responsePromise = this.page.waitForResponse((response) =>
+  99  |       response.url().includes(`&sort[createdAt]=${order}`)
+  100 |     );
+  101 | 
+  102 |     await this.sortCommentsBtn.click();
+  103 |     const response = await responsePromise;
+  104 | 
+  105 |     const comments: CommentResponse[] = (await response.json()).data;
+  106 | 
+  107 |     // API validation
+  108 |     for (let i = 0; i < comments.length - 1; i++) {
+  109 |       const isValid = validationFn(
+  110 |         comments[i].attributes.updatedAt,
+  111 |         comments[i + 1].attributes.updatedAt
+  112 |       );
+  113 |       expect(isValid).toBe(true);
+  114 |     }
+  115 |   }
+  116 | 
+  117 |   async addComment(comment: string) {
+  118 |     await this.commentInput.fill(comment);
+  119 |     await this.commentBtn.click();
+  120 |   }
+  121 | 
+  122 |   async replyComment(reply: string) {
+  123 |     await this.page
+  124 |       .locator('[data-testid^="comment-"][data-testid$="-content-card"]')
+  125 |       .first()
+  126 |       .getByTestId("reply-button")
+  127 |       .click();
+  128 |     await this.replyInput.fill(reply);
+  129 |     await this.replyCommentBtn.click();
+  130 |   }
+  131 | 
+  132 |   async voteOnPoll(vote: string) {
+  133 |     await this.page.getByTestId(`poll-${vote.toLowerCase()}-button`).click();
+  134 |   }
+  135 | 
+  136 |   async changePollVote() {
+  137 |     await this.changeVoteBtn.click();
+  138 |     await this.changeVoteYesBtn.click();
+  139 |   }
+  140 | 
+  141 |   async deleteProposal() {
+  142 |     await this.page.waitForTimeout(2_000);
+  143 | 
+  144 |     await this.menuButton.click();
+  145 |     await this.page.getByTestId("delete-proposal").click();
+  146 |     await this.page.getByTestId("delete-proposal-yes-button").click();
+  147 |   }
+  148 | 
+  149 |   async validateProposalDetails(budgetProposal: BudgetProposalProps) {
+  150 |     await this.readMoreBtn.click();
+  151 | 
+  152 |     // proposal ownership validation
+  153 |     await expect(this.socialHandlesContent).toHaveText(
+  154 |       budgetProposal.proposalOwnership.contactDetails
+  155 |     );
+  156 | 
+  157 |     // problem statement and benefits validation
+> 158 |     await expect(this.problemStatementContent).toHaveText(
+      |                                                ^ Error: expect(locator).toHaveText(expected) failed
+  159 |       budgetProposal.problemStatementAndBenefits.problemStatement
+  160 |     );
+  161 |     await expect(this.proposalBenefitsContent).toHaveText(
+  162 |       budgetProposal.problemStatementAndBenefits.proposalBenefits
+  163 |     );
+  164 |     await expect(this.productRoadMapContent).toHaveText(
+  165 |       budgetProposal.problemStatementAndBenefits.roadmapName
+  166 |     );
+  167 |     await expect(this.budgetDiscussionTypeContent).toHaveText(
+  168 |       budgetProposal.problemStatementAndBenefits.budgetDiscussionType
+  169 |     );
+  170 |     await expect(this.alignProposalComittesContent).toHaveText(
+  171 |       budgetProposal.problemStatementAndBenefits.committeeAlignmentType
+  172 |     );
+  173 |     await expect(this.evidenceContent).toHaveText(
+  174 |       budgetProposal.problemStatementAndBenefits.suplimentaryEndorsement
+  175 |     );
+  176 | 
+  177 |     // proposal details validation
+  178 |     await expect(this.proposalNameContent).toHaveText(
+  179 |       budgetProposal.proposalDetails.proposalName
+  180 |     );
+  181 |     await expect(this.proposalDescriptionContent).toHaveText(
+  182 |       budgetProposal.proposalDetails.proposalDescription
+  183 |     );
+  184 |     await expect(this.proposalKeyDependenciesContent).toHaveText(
+  185 |       budgetProposal.proposalDetails.proposalKeyDependencies
+  186 |     );
+  187 |     await expect(this.milestonesContent).toHaveText(
+  188 |       budgetProposal.proposalDetails.milestones
+  189 |     );
+  190 |     await expect(this.proposalResourcesAndEstimates).toHaveText(
+  191 |       budgetProposal.proposalDetails.teamSizeAndDuration
+  192 |     );
+  193 |     await expect(this.projectExperienceContent).toHaveText(
+  194 |       budgetProposal.proposalDetails.previousExperience
+  195 |     );
+  196 |     await expect(this.proposalContractingContent).toHaveText(
+  197 |       budgetProposal.proposalDetails.contracting
+  198 |     );
+  199 | 
+  200 |     if (budgetProposal.proposalDetails.contracting === "Other") {
+  201 |       await expect(this.proposalContractingOtherContent).toHaveText(
+  202 |         budgetProposal.proposalDetails.otherDescription
+  203 |       );
+  204 |     }
+  205 | 
+  206 |     // costing validation
+  207 |     await expect(this.costingAmountContent).toHaveText(
+  208 |       `₳ ${formatWithThousandSeparator(budgetProposal.costing.adaAmount)}`
+  209 |     );
+  210 |     await expect(this.costingConversionRateContent).toHaveText(
+  211 |       budgetProposal.costing.usdToAdaConversionRate.toString()
+  212 |     );
+  213 |     await expect(this.constingPreferedCurrencyContent).toHaveText(
+  214 |       budgetProposal.costing.preferredCurrency
+  215 |     );
+  216 |     await expect(this.costingPreferedCurrencyAmountContent).toHaveText(
+  217 |       formatWithThousandSeparator(
+  218 |         budgetProposal.costing.AmountInPreferredCurrency
+  219 |       )
+  220 |     );
+  221 |     await expect(this.costBreakdownContent).toHaveText(
+  222 |       budgetProposal.costing.costBreakdown
+  223 |     );
+  224 | 
+  225 |     // further information validation
+  226 |     await expect(this.linkTextContent).toHaveText(
+  227 |       budgetProposal.furtherInformation[0].prop_link_text
+  228 |     );
+  229 | 
+  230 |     // administration and auditing validation
+  231 |     await expect(this.includeAsAuditorContent).toHaveText(
+  232 |       budgetProposal.administrationAndAuditing.intersectAdministration === true
+  233 |         ? "Yes"
+  234 |         : "No"
+  235 |     );
+  236 |   }
+  237 | }
+  238 | 
+```

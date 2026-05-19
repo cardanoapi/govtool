@@ -1,0 +1,7 @@
+wallet balance 100022
+wallet address addr_test1qregv7mhrek9zzwcjukeghysr2tqmt2zqqpxu4pxpdfwc2d49qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0ea2le
+✖ Failed to load resource: the server responded with a status of 404 ()
+Username is already set
+3
+✔ Uploaded comis metadata to bucket
+✖ Failed to load resource: the server responded with a status of 400 ()

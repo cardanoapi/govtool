@@ -1,0 +1,659 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 11-proposal-budget/proposalBudget.dRep.pb.spec.ts >> Budget proposal dRep behaviour >> 11M. Should display DRep tag, name and ID when a registered DRep comments on a proposal
+- Location: tests/11-proposal-budget/proposalBudget.dRep.pb.spec.ts:85:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByTestId('comment-button')
+    - locator resolved to <button disabled tabindex="-1" type="button" data-testid="comment-button" class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-161ht83">…</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    316 × waiting for element to be visible, enabled and stable
+        - element is not enabled
+      - retrying click action
+        - waiting 500ms
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - generic [ref=e11]:
+      - link "app-logo" [ref=e12] [cursor=pointer]:
+        - /url: /dashboard
+        - img "app-logo" [ref=e13]
+      - generic [ref=e14]:
+        - link "icon Home" [ref=e16] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=e17]:
+            - img "icon" [ref=e18]
+            - paragraph [ref=e19]: Home
+        - link "icon DRep Directory" [ref=e21] [cursor=pointer]:
+          - /url: /connected/drep_directory
+          - generic [ref=e22]:
+            - img "icon" [ref=e23]
+            - paragraph [ref=e24]: DRep Directory
+        - link "icon Budget Proposals" [ref=e26] [cursor=pointer]:
+          - /url: /budget_discussion
+          - generic [ref=e27]:
+            - img "icon" [ref=e28]
+            - paragraph [ref=e29]: Budget Proposals
+        - generic [ref=e30]:
+          - link "icon Governance Actions" [ref=e31] [cursor=pointer]:
+            - /url: /connected/governance_actions
+            - generic [ref=e32]:
+              - img "icon" [ref=e33]
+              - paragraph [ref=e34]: Governance Actions
+          - generic [ref=e35]:
+            - link "Proposals" [ref=e36] [cursor=pointer]:
+              - /url: /proposal_discussion
+              - generic [ref=e37]:
+                - img [ref=e39]
+                - paragraph [ref=e41]: Proposals
+            - link "icon Live Voting" [ref=e42] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e43]:
+                - img "icon" [ref=e44]
+                - paragraph [ref=e45]: Live Voting
+            - link "icon Outcomes" [ref=e46] [cursor=pointer]:
+              - /url: /outcomes
+              - generic [ref=e47]:
+                - img "icon" [ref=e48]
+                - paragraph [ref=e49]: Outcomes
+        - link "icon Guides" [ref=e51] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e52]:
+            - img "icon" [ref=e53]
+            - paragraph [ref=e54]: Guides
+        - link "icon FAQs" [ref=e56] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e57]:
+            - img "icon" [ref=e58]
+            - paragraph [ref=e59]: FAQs
+      - generic [ref=e62]:
+        - paragraph [ref=e63]: "Connected Wallet:"
+        - generic [ref=e64]:
+          - paragraph [ref=e65]: 00a436a02a94fdd1329ece57222e9c6122fbe44f5ca6c1f55d4e841a5f65ff399b40388053a74d01f276a6bacbd380f58be530b85fdac6fcaf
+          - button "Disconnect" [ref=e66] [cursor=pointer]: Disconnect
+    - generic [ref=e67]:
+      - navigation [ref=e68]:
+        - paragraph [ref=e70]: Budget Proposals
+        - generic [ref=e72]:
+          - img [ref=e73]
+          - paragraph [ref=e75]: "Voting power:"
+          - paragraph [ref=e76]: ₳ 0
+      - paragraph [ref=e81]:
+        - generic [ref=e82]:
+          - button "Show all" [ref=e84] [cursor=pointer]:
+            - img [ref=e86]
+            - text: Show all
+          - generic [ref=e90]:
+            - generic [ref=e91]:
+              - heading "tempore acidus undique" [level=2] [ref=e93]
+              - button [ref=e95] [cursor=pointer]:
+                - img [ref=e96]
+            - generic [ref=e98]:
+              - text: Budget category
+              - paragraph
+            - generic [ref=e99]:
+              - generic [ref=e100]: "Last Edit: 14 May 2026"
+              - generic [ref=e101]:
+                - text: Review Versions
+                - paragraph
+            - generic [ref=e102]:
+              - heading "Proposal Ownership" [level=5] [ref=e103]
+              - generic [ref=e104]:
+                - generic [ref=e105]:
+                  - text: Group Name
+                  - paragraph [ref=e107]: Halvorson - Okuneva
+                - generic [ref=e108]:
+                  - text: Type of Group
+                  - paragraph [ref=e110]: extend
+                - generic [ref=e111]:
+                  - text: Key Information to Identify Group
+                  - paragraph [ref=e113]: Adflicto colo tonsor pel coma curso deorsum statim certe adiuvo. Accendo vos vestigium certus.
+              - generic [ref=e114]:
+                - text: What social handles would you like to be used? E.g. Github, X
+                - paragraph [ref=e116]:
+                  - link "Anibal.Stokes@yahoo.com" [ref=e117] [cursor=pointer]:
+                    - /url: mailto:Anibal.Stokes@yahoo.com
+            - generic [ref=e118]:
+              - heading "Problem Statements and Proposal Benefits" [level=5] [ref=e119]
+              - generic [ref=e120]: Problem Statement
+            - button "Read more" [ref=e121] [cursor=pointer]: Read more
+            - generic "Total comments number" [ref=e123]:
+              - generic [ref=e124]:
+                - button "proposal comments" [disabled]:
+                  - generic "proposal comments":
+                    - generic: "14"
+                  - img
+          - heading "Poll of DRep sentiment" [level=3] [ref=e126]
+          - generic [ref=e129]:
+            - generic [ref=e130]:
+              - paragraph [ref=e131]: Should this proposal be included in the next Cardano Budget?
+              - generic [ref=e134]:
+                - paragraph [ref=e135]: If you are a Drep, you need to
+                - paragraph [ref=e136]:
+                  - generic [ref=e137] [cursor=pointer]: connect a Cardano wallet
+                - paragraph [ref=e138]: and Drep key to vote. This is a two step process for security.
+            - separator [ref=e139]
+            - generic [ref=e140]: "Total votes: 0"
+            - generic [ref=e141]:
+              - paragraph [ref=e142]: "Yes: (0%)"
+              - button "See details" [ref=e143] [cursor=pointer]: See details
+            - generic [ref=e144]:
+              - paragraph [ref=e145]: "No: (0%)"
+              - button "See details" [ref=e146] [cursor=pointer]: See details
+          - generic [ref=e147]:
+            - heading "Comments" [level=3] [ref=e148]
+            - button [ref=e149] [cursor=pointer]:
+              - img [ref=e150]
+          - generic [ref=e154]:
+            - heading "Submit a comment" [level=6] [ref=e155]
+            - generic [ref=e156]:
+              - generic [ref=e157]:
+                - textbox [active] [ref=e158]: speculum validus vilis utroque illo
+                - group
+              - paragraph [ref=e159]:
+                - generic [ref=e160]: 35/15000
+            - generic [ref=e161]:
+              - generic [ref=e163]:
+                - paragraph [ref=e164]: To submit a comment, you need to
+                - paragraph [ref=e165]:
+                  - generic [ref=e166] [cursor=pointer]: connect a Cardano wallet
+              - button "Comment" [disabled]:
+                - text: Comment
+                - generic:
+                  - img
+          - generic [ref=e170]:
+            - img [ref=e175] [cursor=pointer]
+            - generic [ref=e177]:
+              - heading "@stephon49_1779166414945" [level=6] [ref=e180]
+              - generic [ref=e181]:
+                - generic [ref=e182]: 19/05/2026 - 5:18 AM UTC
+                - generic "Report inappropriate comment":
+                  - paragraph
+              - paragraph [ref=e185]: caput dolore vester caveo sui
+              - generic [ref=e186]:
+                - generic [ref=e187]:
+                  - img [ref=e188]
+                  - paragraph [ref=e190]: "1"
+                - generic [ref=e191]:
+                  - generic [ref=e193]:
+                    - paragraph [ref=e194]: To submit a reply, you need to
+                    - paragraph [ref=e195]:
+                      - generic [ref=e196] [cursor=pointer]: connect a Cardano wallet
+                  - button "Reply" [disabled]:
+                    - generic:
+                      - img
+                    - text: Reply
+          - generic [ref=e202]:
+            - heading "@stephon49_1779166414945" [level=6] [ref=e205]
+            - generic [ref=e206]:
+              - generic [ref=e207]: 19/05/2026 - 5:18 AM UTC
+              - generic "Report inappropriate comment":
+                - paragraph
+            - paragraph [ref=e210]: verbera bis blanditiis velit sequi
+            - generic [ref=e211]:
+              - generic [ref=e212]:
+                - img [ref=e213]
+                - paragraph [ref=e215]: "0"
+              - generic [ref=e216]:
+                - generic [ref=e218]:
+                  - paragraph [ref=e219]: To submit a reply, you need to
+                  - paragraph [ref=e220]:
+                    - generic [ref=e221] [cursor=pointer]: connect a Cardano wallet
+                - button "Reply" [disabled]:
+                  - generic:
+                    - img
+                  - text: Reply
+          - generic [ref=e227]:
+            - heading "@stephon49_1779166414945" [level=6] [ref=e230]
+            - generic [ref=e231]:
+              - generic [ref=e232]: 19/05/2026 - 5:18 AM UTC
+              - generic "Report inappropriate comment":
+                - paragraph
+            - paragraph [ref=e235]: antea antepono veritas nostrum vapulus
+            - generic [ref=e236]:
+              - generic [ref=e237]:
+                - img [ref=e238]
+                - paragraph [ref=e240]: "0"
+              - generic [ref=e241]:
+                - generic [ref=e243]:
+                  - paragraph [ref=e244]: To submit a reply, you need to
+                  - paragraph [ref=e245]:
+                    - generic [ref=e246] [cursor=pointer]: connect a Cardano wallet
+                - button "Reply" [disabled]:
+                  - generic:
+                    - img
+                  - text: Reply
+          - generic [ref=e252]:
+            - heading "@stephon49_1779166414945" [level=6] [ref=e255]
+            - generic [ref=e256]:
+              - generic [ref=e257]: 19/05/2026 - 5:18 AM UTC
+              - generic "Report inappropriate comment":
+                - paragraph
+            - paragraph [ref=e260]: ter quae acidus tonsor subseco
+            - generic [ref=e261]:
+              - generic [ref=e262]:
+                - img [ref=e263]
+                - paragraph [ref=e265]: "0"
+              - generic [ref=e266]:
+                - generic [ref=e268]:
+                  - paragraph [ref=e269]: To submit a reply, you need to
+                  - paragraph [ref=e270]:
+                    - generic [ref=e271] [cursor=pointer]: connect a Cardano wallet
+                - button "Reply" [disabled]:
+                  - generic:
+                    - img
+                  - text: Reply
+          - generic [ref=e277]:
+            - heading "@stephon49_1779166414945" [level=6] [ref=e280]
+            - generic [ref=e281]:
+              - generic [ref=e282]: 19/05/2026 - 5:18 AM UTC
+              - generic "Report inappropriate comment":
+                - paragraph
+            - paragraph [ref=e285]: arbitro vestigium verbum approbo cupressus
+            - generic [ref=e286]:
+              - generic [ref=e287]:
+                - img [ref=e288]
+                - paragraph [ref=e290]: "0"
+              - generic [ref=e291]:
+                - generic [ref=e293]:
+                  - paragraph [ref=e294]: To submit a reply, you need to
+                  - paragraph [ref=e295]:
+                    - generic [ref=e296] [cursor=pointer]: connect a Cardano wallet
+                - button "Reply" [disabled]:
+                  - generic:
+                    - img
+                  - text: Reply
+          - generic [ref=e302]:
+            - heading "@stephon49_1779166414945" [level=6] [ref=e305]
+            - generic [ref=e306]:
+              - generic [ref=e307]: 19/05/2026 - 5:18 AM UTC
+              - generic "Report inappropriate comment":
+                - paragraph
+            - paragraph [ref=e310]: totam absum decumbo arx armarium
+            - generic [ref=e311]:
+              - generic [ref=e312]:
+                - img [ref=e313]
+                - paragraph [ref=e315]: "0"
+              - generic [ref=e316]:
+                - generic [ref=e318]:
+                  - paragraph [ref=e319]: To submit a reply, you need to
+                  - paragraph [ref=e320]:
+                    - generic [ref=e321] [cursor=pointer]: connect a Cardano wallet
+                - button "Reply" [disabled]:
+                  - generic:
+                    - img
+                  - text: Reply
+          - generic [ref=e325]:
+            - img [ref=e330] [cursor=pointer]
+            - generic [ref=e332]:
+              - heading "@freddy_glover55_1778816487138" [level=6] [ref=e335]
+              - generic [ref=e336]:
+                - generic [ref=e337]: 15/05/2026 - 4:14 AM UTC
+                - generic "Report inappropriate comment":
+                  - paragraph
+              - paragraph [ref=e340]: desolo abundans tametsi stabilis arguo
+              - generic [ref=e341]:
+                - generic [ref=e342]:
+                  - img [ref=e343]
+                  - paragraph [ref=e345]: "1"
+                - generic [ref=e346]:
+                  - generic [ref=e348]:
+                    - paragraph [ref=e349]: To submit a reply, you need to
+                    - paragraph [ref=e350]:
+                      - generic [ref=e351] [cursor=pointer]: connect a Cardano wallet
+                  - button "Reply" [disabled]:
+                    - generic:
+                      - img
+                    - text: Reply
+          - generic [ref=e357]:
+            - heading "@freddy_glover55_1778816487138" [level=6] [ref=e360]
+            - generic [ref=e361]:
+              - generic [ref=e362]: 15/05/2026 - 4:13 AM UTC
+              - generic "Report inappropriate comment":
+                - paragraph
+            - paragraph [ref=e365]: vulgus admitto caelum calculus callide
+            - generic [ref=e366]:
+              - generic [ref=e367]:
+                - img [ref=e368]
+                - paragraph [ref=e370]: "0"
+              - generic [ref=e371]:
+                - generic [ref=e373]:
+                  - paragraph [ref=e374]: To submit a reply, you need to
+                  - paragraph [ref=e375]:
+                    - generic [ref=e376] [cursor=pointer]: connect a Cardano wallet
+                - button "Reply" [disabled]:
+                  - generic:
+                    - img
+                  - text: Reply
+          - generic [ref=e382]:
+            - heading "@freddy_glover55_1778816487138" [level=6] [ref=e385]
+            - generic [ref=e386]:
+              - generic [ref=e387]: 15/05/2026 - 4:13 AM UTC
+              - generic "Report inappropriate comment":
+                - paragraph
+            - paragraph [ref=e390]: aspernatur coaegresco officiis patrocinor cotidie
+            - generic [ref=e391]:
+              - generic [ref=e392]:
+                - img [ref=e393]
+                - paragraph [ref=e395]: "0"
+              - generic [ref=e396]:
+                - generic [ref=e398]:
+                  - paragraph [ref=e399]: To submit a reply, you need to
+                  - paragraph [ref=e400]:
+                    - generic [ref=e401] [cursor=pointer]: connect a Cardano wallet
+                - button "Reply" [disabled]:
+                  - generic:
+                    - img
+                  - text: Reply
+          - generic [ref=e407]:
+            - heading "@freddy_glover55_1778816487138" [level=6] [ref=e410]
+            - generic [ref=e411]:
+              - generic [ref=e412]: 15/05/2026 - 4:13 AM UTC
+              - generic "Report inappropriate comment":
+                - paragraph
+            - paragraph [ref=e415]: stips depopulo curiositas coerceo cimentarius
+            - generic [ref=e416]:
+              - generic [ref=e417]:
+                - img [ref=e418]
+                - paragraph [ref=e420]: "0"
+              - generic [ref=e421]:
+                - generic [ref=e423]:
+                  - paragraph [ref=e424]: To submit a reply, you need to
+                  - paragraph [ref=e425]:
+                    - generic [ref=e426] [cursor=pointer]: connect a Cardano wallet
+                - button "Reply" [disabled]:
+                  - generic:
+                    - img
+                  - text: Reply
+          - generic [ref=e432]:
+            - heading "@freddy_glover55_1778816487138" [level=6] [ref=e435]
+            - generic [ref=e436]:
+              - generic [ref=e437]: 15/05/2026 - 4:13 AM UTC
+              - generic "Report inappropriate comment":
+                - paragraph
+            - paragraph [ref=e440]: vallum supra apparatus curo cito
+            - generic [ref=e441]:
+              - generic [ref=e442]:
+                - img [ref=e443]
+                - paragraph [ref=e445]: "0"
+              - generic [ref=e446]:
+                - generic [ref=e448]:
+                  - paragraph [ref=e449]: To submit a reply, you need to
+                  - paragraph [ref=e450]:
+                    - generic [ref=e451] [cursor=pointer]: connect a Cardano wallet
+                - button "Reply" [disabled]:
+                  - generic:
+                    - img
+                  - text: Reply
+          - generic [ref=e457]:
+            - heading "@freddy_glover55_1778816487138" [level=6] [ref=e460]
+            - generic [ref=e461]:
+              - generic [ref=e462]: 15/05/2026 - 4:13 AM UTC
+              - generic "Report inappropriate comment":
+                - paragraph
+            - paragraph [ref=e465]: video atrox crastinus in cubo
+            - generic [ref=e466]:
+              - generic [ref=e467]:
+                - img [ref=e468]
+                - paragraph [ref=e470]: "0"
+              - generic [ref=e471]:
+                - generic [ref=e473]:
+                  - paragraph [ref=e474]: To submit a reply, you need to
+                  - paragraph [ref=e475]:
+                    - generic [ref=e476] [cursor=pointer]: connect a Cardano wallet
+                - button "Reply" [disabled]:
+                  - generic:
+                    - img
+                  - text: Reply
+      - contentinfo [ref=e477]:
+        - paragraph [ref=e478]: © 2026 GovTool
+        - generic [ref=e479]:
+          - generic [ref=e480] [cursor=pointer]: Privacy policy
+          - generic [ref=e481] [cursor=pointer]: Terms of Use
+        - generic [ref=e482]:
+          - button "helpIcon Help" [ref=e483] [cursor=pointer]:
+            - img "helpIcon" [ref=e485]
+            - text: Help
+          - button "Feedback" [ref=e486] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e487]
+```
+
+# Test source
+
+```ts
+  19  |   );
+  20  |   readonly verifyUserLink = this.page.getByTestId("verify-user-link").first();
+  21  |   readonly verifyDRepLink = this.page.getByTestId("verify-drep-link").first();
+  22  |   readonly readMoreBtn = this.page.getByTestId("read-more-button");
+  23  |   readonly menuButton = this.page.getByTestId("menu-button");
+  24  | 
+  25  |   // content
+  26  |   readonly copyLinkText = this.page.getByTestId("copy-link-text");
+  27  |   readonly pollVoteCard = this.page.getByTestId("poll-vote-card");
+  28  |   readonly totalComments = this.page.getByTestId("total-comments");
+  29  |   readonly linkTextContent = this.page.getByTestId("link-0-text-content");
+  30  |   readonly linkUrlContent = this.page.getByTestId("link-0-url-content");
+  31  |   readonly budgetDiscussionTypeContent = this.page
+  32  |     .getByTestId("budget-discussion-type")
+  33  |     .first();
+  34  |   readonly publicProposalChampionContent = this.page.getByTestId(
+  35  |     "public-proposal-champion"
+  36  |   );
+  37  |   readonly socialHandlesContent = this.page.getByTestId("social-handles");
+  38  |   readonly problemStatementContent = this.page.getByTestId("problem-statement");
+  39  |   readonly proposalBenefitsContent = this.page.getByTestId("problem-benefit");
+  40  |   readonly productRoadMapContent = this.page.getByTestId("product-roadmap");
+  41  |   readonly alignProposalComittesContent = this.page.getByTestId(
+  42  |     "align-proposal-committees"
+  43  |   );
+  44  |   readonly evidenceContent = this.page.getByTestId("evidence");
+  45  |   readonly proposalNameContent = this.page.getByTestId("proposal-name");
+  46  |   readonly proposalDescriptionContent = this.page.getByTestId(
+  47  |     "proposal-description"
+  48  |   );
+  49  |   readonly proposalKeyDependenciesContent = this.page.getByTestId(
+  50  |     "proposal-key-dependencies"
+  51  |   );
+  52  |   readonly milestonesContent = this.page.getByTestId("proposal-milestone");
+  53  |   readonly proposalResourcesAndEstimates = this.page.getByTestId(
+  54  |     "proposal-resources-&-duration-estimates"
+  55  |   );
+  56  |   readonly projectExperienceContent =
+  57  |     this.page.getByTestId("project-experience");
+  58  |   readonly proposalContractingContent = this.page.getByTestId(
+  59  |     "proposal-contracting"
+  60  |   );
+  61  |   readonly proposalContractingOtherContent = this.page.getByTestId(
+  62  |     "other-contract-description"
+  63  |   );
+  64  |   readonly costingAmountContent = this.page.getByTestId("costing-amount");
+  65  |   readonly costingConversionRateContent = this.page.getByTestId(
+  66  |     "costing-conversion-rate"
+  67  |   );
+  68  |   readonly constingPreferedCurrencyContent = this.page.getByTestId(
+  69  |     "costing-preferred-currency"
+  70  |   );
+  71  |   readonly costingPreferedCurrencyAmountContent = this.page.getByTestId(
+  72  |     "costing-preferred-currency-amount"
+  73  |   );
+  74  |   readonly costBreakdownContent = this.page.getByTestId("cost-breakdown");
+  75  |   readonly includeAsAuditorContent =
+  76  |     this.page.getByTestId("include-as-auditor");
+  77  | 
+  78  |   // Input
+  79  |   readonly commentInput = this.page.getByTestId("comment-input");
+  80  |   readonly replyInput = this.page.getByTestId("reply-input");
+  81  | 
+  82  |   constructor(private readonly page: Page) {}
+  83  | 
+  84  |   get currentPage(): Page {
+  85  |     return this.page;
+  86  |   }
+  87  | 
+  88  |   async goto(proposalId: number) {
+  89  |     await this.page.goto(
+  90  |       `${environments.frontendUrl}/budget_discussion/${proposalId}`
+  91  |     );
+  92  |   }
+  93  | 
+  94  |   async sortAndValidate(
+  95  |     order: string,
+  96  |     validationFn: (date1: string, date2: string) => boolean
+  97  |   ) {
+  98  |     const responsePromise = this.page.waitForResponse((response) =>
+  99  |       response.url().includes(`&sort[createdAt]=${order}`)
+  100 |     );
+  101 | 
+  102 |     await this.sortCommentsBtn.click();
+  103 |     const response = await responsePromise;
+  104 | 
+  105 |     const comments: CommentResponse[] = (await response.json()).data;
+  106 | 
+  107 |     // API validation
+  108 |     for (let i = 0; i < comments.length - 1; i++) {
+  109 |       const isValid = validationFn(
+  110 |         comments[i].attributes.updatedAt,
+  111 |         comments[i + 1].attributes.updatedAt
+  112 |       );
+  113 |       expect(isValid).toBe(true);
+  114 |     }
+  115 |   }
+  116 | 
+  117 |   async addComment(comment: string) {
+  118 |     await this.commentInput.fill(comment);
+> 119 |     await this.commentBtn.click();
+      |                           ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  120 |   }
+  121 | 
+  122 |   async replyComment(reply: string) {
+  123 |     await this.page
+  124 |       .locator('[data-testid^="comment-"][data-testid$="-content-card"]')
+  125 |       .first()
+  126 |       .getByTestId("reply-button")
+  127 |       .click();
+  128 |     await this.replyInput.fill(reply);
+  129 |     await this.replyCommentBtn.click();
+  130 |   }
+  131 | 
+  132 |   async voteOnPoll(vote: string) {
+  133 |     await this.page.getByTestId(`poll-${vote.toLowerCase()}-button`).click();
+  134 |   }
+  135 | 
+  136 |   async changePollVote() {
+  137 |     await this.changeVoteBtn.click();
+  138 |     await this.changeVoteYesBtn.click();
+  139 |   }
+  140 | 
+  141 |   async deleteProposal() {
+  142 |     await this.page.waitForTimeout(2_000);
+  143 | 
+  144 |     await this.menuButton.click();
+  145 |     await this.page.getByTestId("delete-proposal").click();
+  146 |     await this.page.getByTestId("delete-proposal-yes-button").click();
+  147 |   }
+  148 | 
+  149 |   async validateProposalDetails(budgetProposal: BudgetProposalProps) {
+  150 |     await this.readMoreBtn.click();
+  151 | 
+  152 |     // proposal ownership validation
+  153 |     await expect(this.socialHandlesContent).toHaveText(
+  154 |       budgetProposal.proposalOwnership.contactDetails
+  155 |     );
+  156 | 
+  157 |     // problem statement and benefits validation
+  158 |     await expect(this.problemStatementContent).toHaveText(
+  159 |       budgetProposal.problemStatementAndBenefits.problemStatement
+  160 |     );
+  161 |     await expect(this.proposalBenefitsContent).toHaveText(
+  162 |       budgetProposal.problemStatementAndBenefits.proposalBenefits
+  163 |     );
+  164 |     await expect(this.productRoadMapContent).toHaveText(
+  165 |       budgetProposal.problemStatementAndBenefits.roadmapName
+  166 |     );
+  167 |     await expect(this.budgetDiscussionTypeContent).toHaveText(
+  168 |       budgetProposal.problemStatementAndBenefits.budgetDiscussionType
+  169 |     );
+  170 |     await expect(this.alignProposalComittesContent).toHaveText(
+  171 |       budgetProposal.problemStatementAndBenefits.committeeAlignmentType
+  172 |     );
+  173 |     await expect(this.evidenceContent).toHaveText(
+  174 |       budgetProposal.problemStatementAndBenefits.suplimentaryEndorsement
+  175 |     );
+  176 | 
+  177 |     // proposal details validation
+  178 |     await expect(this.proposalNameContent).toHaveText(
+  179 |       budgetProposal.proposalDetails.proposalName
+  180 |     );
+  181 |     await expect(this.proposalDescriptionContent).toHaveText(
+  182 |       budgetProposal.proposalDetails.proposalDescription
+  183 |     );
+  184 |     await expect(this.proposalKeyDependenciesContent).toHaveText(
+  185 |       budgetProposal.proposalDetails.proposalKeyDependencies
+  186 |     );
+  187 |     await expect(this.milestonesContent).toHaveText(
+  188 |       budgetProposal.proposalDetails.milestones
+  189 |     );
+  190 |     await expect(this.proposalResourcesAndEstimates).toHaveText(
+  191 |       budgetProposal.proposalDetails.teamSizeAndDuration
+  192 |     );
+  193 |     await expect(this.projectExperienceContent).toHaveText(
+  194 |       budgetProposal.proposalDetails.previousExperience
+  195 |     );
+  196 |     await expect(this.proposalContractingContent).toHaveText(
+  197 |       budgetProposal.proposalDetails.contracting
+  198 |     );
+  199 | 
+  200 |     if (budgetProposal.proposalDetails.contracting === "Other") {
+  201 |       await expect(this.proposalContractingOtherContent).toHaveText(
+  202 |         budgetProposal.proposalDetails.otherDescription
+  203 |       );
+  204 |     }
+  205 | 
+  206 |     // costing validation
+  207 |     await expect(this.costingAmountContent).toHaveText(
+  208 |       `₳ ${formatWithThousandSeparator(budgetProposal.costing.adaAmount)}`
+  209 |     );
+  210 |     await expect(this.costingConversionRateContent).toHaveText(
+  211 |       budgetProposal.costing.usdToAdaConversionRate.toString()
+  212 |     );
+  213 |     await expect(this.constingPreferedCurrencyContent).toHaveText(
+  214 |       budgetProposal.costing.preferredCurrency
+  215 |     );
+  216 |     await expect(this.costingPreferedCurrencyAmountContent).toHaveText(
+  217 |       formatWithThousandSeparator(
+  218 |         budgetProposal.costing.AmountInPreferredCurrency
+  219 |       )
+```

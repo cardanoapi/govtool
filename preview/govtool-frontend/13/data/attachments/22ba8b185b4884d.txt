@@ -1,0 +1,6 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Uploaded Rolando.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 9731134fb6024ee6d87eb49fbeae35b144248e579fadca3eb0ca25946188581f
+✔ Tx completed

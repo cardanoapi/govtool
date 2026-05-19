@@ -1,0 +1,22 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Uploaded Vote_Context.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 400 ()
+✖ Failed to load resource: the server responded with a status of 400 ()
+✖ Failed to load resource: the server responded with a status of 400 ()
+✖ ew
+ℹ Waiting for tx completion: 5d3f6da1812eaa748f9ca94594130543bd59e6e97ae7b613fd1083bac3fb3e7d
+✔ Tx completed
+✖ expect(locator).not.toBeVisible() failed
+
+Locator:  getByText('In Progress', { exact: true }).first()
+Expected: not visible
+Received: visible
+Timeout:  90000ms
+
+Call log:
+  - Expect "not toBeVisible" with timeout 90000ms
+  - waiting for getByText('In Progress', { exact: true }).first()
+    93 × locator resolved to <p class="MuiTypography-root MuiTypography-body1 css-1n9xmse">In Progress</p>
+       - unexpected value "visible"
+

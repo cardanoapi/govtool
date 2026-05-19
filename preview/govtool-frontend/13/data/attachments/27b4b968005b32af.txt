@@ -1,0 +1,21 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 400 ()
+✖ Failed to load resource: the server responded with a status of 400 ()
+✖ Failed to load resource: the server responded with a status of 400 ()
+✖ ew
+ℹ Waiting for tx completion: a0fc7a628e5ede7bd0647ef25e1aa964fce361075f91da4837066bd6be41f6f1
+✔ Tx completed
+✖ expect(locator).not.toBeVisible() failed
+
+Locator:  getByText('In Progress', { exact: true }).first()
+Expected: not visible
+Received: visible
+Timeout:  90000ms
+
+Call log:
+  - Expect "not toBeVisible" with timeout 90000ms
+  - waiting for getByText('In Progress', { exact: true }).first()
+    93 × locator resolved to <p class="MuiTypography-root MuiTypography-body1 css-1n9xmse">In Progress</p>
+       - unexpected value "visible"
+

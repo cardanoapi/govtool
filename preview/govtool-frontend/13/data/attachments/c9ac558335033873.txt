@@ -1,0 +1,5 @@
+✔ Uploaded Dorcas metadata to bucket
+ℹ Submitting tx: {"lock_id":"993d95fb054ec5d93f97d97be88d551935eee7dfb6e44568e431c9ee503d952d","tx":{"certificates":[{"type":"registerdrep","key":"1827329075e9fd2e294adbfaf187c45016071b405eb751af2ddfe564","anchor":{"url":"https://metadata-govtool.cardanoapi.io/data/Dorcas","dataHash":"e4bf4f881f27265fd5a091fab40ec5d41163251ea9a0879e6ed2115f8c8a0088"}}],"selections":[{"type":"PaymentSigningKeyShelley_ed25519","description":"Stake Signing Key","cborHex":"5820f4e78cb9494343253fd3d8841ad6600864aedf25cbaae329a69c4f89a0d146d4"},{"type":"PaymentSigningKeyShelley_ed25519","description":"Payment Signing Key","cborHex":"58204a6ae978d1656381cfe8d9316c7262dd96d72a0c2ce6368ad8559b392170aa0e"},"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"],"changeAddress":"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"}}
+✔ Tx submitted: ca5de5b752fa68be6925b46acf09aa18f7af9d1c4aff7396f2c1f6a6eda1e2f6
+ℹ Waiting for tx completion: ca5de5b752fa68be6925b46acf09aa18f7af9d1c4aff7396f2c1f6a6eda1e2f6
+✔ Tx completed

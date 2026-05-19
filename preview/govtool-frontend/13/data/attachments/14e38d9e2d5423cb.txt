@@ -1,0 +1,138 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 12-proposal-budget-submission/proposalBudgetSubmission.loggedin.pb.spec.ts >> 12J. Should verify created proposal appears in my proposals list
+- Location: tests/12-proposal-budget-submission/proposalBudgetSubmission.loggedin.pb.spec.ts:522:5
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByTestId('menu-button')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for getByTestId('menu-button')
+
+```
+
+# Test source
+
+```ts
+  450 |     await expect(budgetSubmissionPage.groupNameInput).toHaveValue(
+  451 |       draftProposalOwnership.groupName
+  452 |     );
+  453 |     await expect(budgetSubmissionPage.groupTypeInput).toHaveValue(
+  454 |       draftProposalOwnership.groupType
+  455 |     );
+  456 |     await expect(budgetSubmissionPage.keyInformationOfGroupInput).toHaveValue(
+  457 |       draftProposalOwnership.groupKeyIdentity
+  458 |     );
+  459 |   }
+  460 |   if (draftProposalOwnership.companyType === "Company") {
+  461 |     await expect(budgetSubmissionPage.companyNameInput).toHaveValue(
+  462 |       draftProposalOwnership.companyName
+  463 |     );
+  464 |     await expect(budgetSubmissionPage.companyDomainNameInput).toHaveValue(
+  465 |       draftProposalOwnership.companyDomainName
+  466 |     );
+  467 |     await expect(budgetSubmissionPage.countryOfIncorporationBtn).toHaveText(
+  468 |       draftProposalOwnership.countryOfIncorportation
+  469 |     );
+  470 |   }
+  471 | });
+  472 | 
+  473 | test("12H. Should submit a valid budget proposal", async ({ browser }) => {
+  474 |   await skipIfMainnet();
+  475 | 
+  476 |   const page = await createNewPageWithWallet(browser, {
+  477 |     storageState: budgetProposal03AuthFile,
+  478 |     wallet: budgetProposal03Wallet,
+  479 |   });
+  480 |   const budgetSubmissionPage = new BudgetDiscussionSubmissionPage(page);
+  481 |   await budgetSubmissionPage.goto();
+  482 |   const { proposalId, proposalDetails } =
+  483 |     await budgetSubmissionPage.createBudgetProposal();
+  484 | 
+  485 |   const budgetDiscussionDetailsPage = new BudgetDiscussionDetailsPage(page);
+  486 |   await budgetDiscussionDetailsPage.goto(proposalId);
+  487 | 
+  488 |   await budgetDiscussionDetailsPage.validateProposalDetails(proposalDetails);
+  489 | 
+  490 |   await budgetDiscussionDetailsPage.deleteProposal();
+  491 | });
+  492 | 
+  493 | test("12I. Should submit a valid draft budget proposal", async ({
+  494 |   browser,
+  495 | }) => {
+  496 |   await skipIfMainnet();
+  497 |   test.slow();
+  498 |   const page = await createNewPageWithWallet(browser, {
+  499 |     storageState: budgetProposal04AuthFile,
+  500 |     wallet: budgetProposal04Wallet,
+  501 |   });
+  502 | 
+  503 |   const budgetSubmissionPage = new BudgetDiscussionSubmissionPage(page);
+  504 |   await budgetSubmissionPage.goto();
+  505 |   const draftContact = (await budgetSubmissionPage.createDraftBudgetProposal(
+  506 |     true
+  507 |   )) as BudgetProposalProps;
+  508 | 
+  509 |   await budgetSubmissionPage.viewLastDraft();
+  510 | 
+  511 |   for (let i = 0; i < 7; i++) {
+  512 |     await budgetSubmissionPage.continueBtn.click();
+  513 |   }
+  514 |   await budgetSubmissionPage.submitBtn.click();
+  515 | 
+  516 |   const budgetDiscussionDetailsPage = new BudgetDiscussionDetailsPage(page);
+  517 |   await budgetDiscussionDetailsPage.validateProposalDetails(draftContact);
+  518 | 
+  519 |   await budgetDiscussionDetailsPage.deleteProposal();
+  520 | });
+  521 | 
+  522 | test("12J. Should verify created proposal appears in my proposals list", async ({
+  523 |   browser,
+  524 | }) => {
+  525 |   await skipIfMainnet();
+  526 |   test.slow();
+  527 |   const page = await createNewPageWithWallet(browser, {
+  528 |     storageState: budgetProposal05AuthFile,
+  529 |     wallet: budgetProposal05Wallet,
+  530 |   });
+  531 | 
+  532 |   const budgetSubmissionPage = new BudgetDiscussionSubmissionPage(page);
+  533 |   await budgetSubmissionPage.goto();
+  534 |   const { proposalDetails } = await budgetSubmissionPage.createBudgetProposal();
+  535 |   const budgetDiscussionPage = new BudgetDiscussionPage(page);
+  536 |   await budgetDiscussionPage.goto();
+  537 | 
+  538 |   await budgetDiscussionPage.filterBtn.click();
+  539 |   await budgetDiscussionPage.myProposalBtn.click();
+  540 | 
+  541 |   const proposalList = await budgetDiscussionPage.getAllProposals();
+  542 | 
+  543 |   expect(proposalList.length).toBeGreaterThan(0);
+  544 | 
+  545 |   // Close the filter dropdown to ensure the proposals list is visible
+  546 |   await budgetDiscussionPage.sortBtn.click({ force: true });
+  547 |   const budgetDiscussionDetailsPage =
+  548 |     await budgetDiscussionPage.viewFirstProposal();
+  549 | 
+> 550 |   await expect(budgetDiscussionDetailsPage.menuButton).toBeVisible();
+      |                                                        ^ Error: expect(locator).toBeVisible() failed
+  551 |   await budgetDiscussionDetailsPage.validateProposalDetails(proposalDetails);
+  552 | 
+  553 |   await budgetDiscussionDetailsPage.deleteProposal();
+  554 | });
+  555 | 
+```

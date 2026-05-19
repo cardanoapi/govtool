@@ -1,0 +1,22 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 295c991a720386559c4e367e085c0347f19e073845272cc36715929837d5209c
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 71018e4244af793226d3d6c105a90246594558cbb42142d5476d0527b421dba3
+✔ Tx completed
+✖ expect(locator).not.toBeVisible() failed
+
+Locator:  getByText('In Progress', { exact: true }).first()
+Expected: not visible
+Received: visible
+Timeout:  90000ms
+
+Call log:
+  - Expect "not toBeVisible" with timeout 90000ms
+  - waiting for getByText('In Progress', { exact: true }).first()
+    93 × locator resolved to <span class="MuiChip-label MuiChip-labelMedium css-14vsv3w">In Progress</span>
+       - unexpected value "visible"
+
