@@ -26,9 +26,9 @@ import { SystemController } from './system/system.controller';
 import { CacheService } from './cache/cache.service';
 import { CacheWarmerService } from './cache/cache-warmer.service';
 import { MetadataModule } from './metadata/metadata.module';
-
+import { OutcomesModule } from './outcomes/outcomes.module';
 @Module({
-  imports: [MetadataModule],
+  imports: [MetadataModule, OutcomesModule],
   controllers: [AppController, HealthController, NetworkController, EpochController, TransactionController, AdaHolderController, AccountController,DRepController,ProposalController,IpfsController,SystemController],
   providers: [AppService, ConfigService, DbService, NetworkService, SqlService, EpochService, TransactionService, AdaHolderService, AccountService, DRepService,ProposalService,IpfsService,CacheService,CacheWarmerService],
   exports: [ConfigService, DbService]
