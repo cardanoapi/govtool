@@ -31,9 +31,10 @@ import { CacheWarmerService } from './cache/cache-warmer.service';
 import { MetadataModule } from './metadata/metadata.module';
 import { SurveyController } from './survey/survey.controller';
 import { SurveyService } from './survey/survey.service';
+import { OutcomesModule } from './outcomes/outcomes.module';
 
 @Module({
-  imports: [MetadataModule],
+  imports: [MetadataModule, OutcomesModule],
   controllers: [AppController, HealthController, NetworkController, EpochController, TransactionController, AdaHolderController, AccountController,DRepController,ProposalController,IpfsController,SystemController,SurveyController],
   providers: [{ provide: APP_INTERCEPTOR, useClass: IntegerJsonInterceptor }, VoteService, AppService, ConfigService, DbService, NetworkService, SqlService, EpochService, TransactionService, AdaHolderService, AccountService, DRepService,ProposalService,IpfsService,CacheService,CacheWarmerService,SurveyService],
   exports: [ConfigService, DbService]
