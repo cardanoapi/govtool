@@ -1,7 +1,7 @@
-import { Injectable, NotImplementedException } from "@nestjs/common";
+import { Injectable, NotFoundException, HttpException,InternalServerErrorException } from "@nestjs/common";
 import { DbService } from "src/db/db.service";
 import { SqlService } from "src/sql/sq.service";
-
+import { MetadataService } from "src/metadata/metadata.service";
 type GovernanceActionListParams = {
   search?: string;
   filters: string[];
@@ -15,6 +15,7 @@ export class OutcomesGovernanceActionService {
     constructor (
         private readonly dbService: DbService,
         private readonly sqlService: SqlService,
+        private readonly metadataService: MetadataService,
     ) {}
     async findAll(params: GovernanceActionListParams) {
         const searchTerm = params.search?.trim() ?? '';
@@ -35,14 +36,47 @@ export class OutcomesGovernanceActionService {
         ]).then((result) => result.rows);
   }
 
-    getMetadata(_url:string, _hash: string) {
-        throw new NotImplementedException('')
+    async getMetadata(url:string, hash: string) {
+     const result = await this.metadataService.validateMetadata({
+            url,
+            hash
+        });
+        return {
+            metadataStatus: result.status ?? null,
+            metadataValid: result.valid,
+            data: result.metadata,
+        }
     }
-     findProposal(_hash: string) {
-        throw new NotImplementedException('');
+      async findProposal(hash: string): Promise<unknown> {
+        const apiUrl = process.env.PDF_API_URL?.replace(/\/+$/, '');
+        if(!apiUrl){
+            throw new InternalServerErrorException('PDF_API_URL is not configgured');
+        }
+
+        const response = await fetch(`${apiUrl}/proposals/${hash}`,{
+            headers: {
+                'User-Agent': 'GovTool/Proposal-Fetch-Tool',
+                'Content-Type': 'application/json',
+            },
+        });
+         if (!response.ok) {
+        throw new HttpException(
+        await response.text(),
+        response.status,
+        );
+  }
+        return response.json();
     }
 
-    findOne(_govActionId: string) {
-        throw new NotImplementedException('');
+      async findOne(_govActionId: string) {
+        const sql = this.sqlService.load('get-governance-action.sql');
+        const result = await this.dbService.query(sql, [_govActionId]);
+
+        if (result.rows.length === 0) {
+            throw new NotFoundException(
+                `Governance action with ID '${_govActionId} not found`,
+            );
+        }
+        return result.rows[0];
     }
 }
