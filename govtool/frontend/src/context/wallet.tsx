@@ -95,7 +95,7 @@ import {
 } from "@utils";
 import { useTranslation } from "@hooks";
 import { AutomatedVotingOptionDelegationId } from "@/types/automatedVotingOptions";
-
+import { env } from "@/config/env";
 import { getUtxos } from "./getUtxos";
 import { useAppContext, useModal, useSnackbar } from ".";
 import {
@@ -282,7 +282,7 @@ type Utxos = {
   TransactionUnspentOutput: TransactionUnspentOutput;
 }[];
 
-const NETWORK = +import.meta.env.VITE_NETWORK_FLAG;
+const NETWORK = +env.VITE_NETWORK_FLAG;
 
 const CardanoContext = createContext<CardanoContextType>(
   {} as CardanoContextType,

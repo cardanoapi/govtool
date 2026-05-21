@@ -4,7 +4,7 @@ import { Footer, TopNav } from "@/components/organisms";
 import { useCardano } from "@/context";
 import { useScreenDimension, useTranslation } from "@/hooks";
 import { Background } from "@/components/atoms";
-
+import { env } from "@/config/env";
 const GovernanceActionsOutcomes = React.lazy(
   () => import("@intersect.mbo/govtool-outcomes-pillar-ui/dist/esm"),
 );
@@ -48,8 +48,8 @@ export const GovernanceActionOutComesPillar = () => {
             }
           >
             <GovernanceActionsOutcomes
-              apiUrl={import.meta.env.VITE_OUTCOMES_API_URL}
-              ipfsGateway={import.meta.env.VITE_IPFS_GATEWAY}
+              apiUrl={env.VITE_OUTCOMES_API_URL}
+              ipfsGateway={env.VITE_IPFS_GATEWAY}
               walletAPI={{ ...context, ...walletApi }}
               i18n={i18n}
             />

@@ -13,7 +13,7 @@ import App from "./App.tsx";
 import { theme } from "./theme.ts";
 import "./i18n";
 import pkg from "../package.json";
-
+import { env } from "./config/env.ts";
 const { version } = pkg;
 
 const queryClient = new QueryClient({
@@ -26,14 +26,16 @@ const queryClient = new QueryClient({
 });
 
 const tagManagerArgs = {
-  gtmId: import.meta.env.VITE_GTM_ID,
+  gtmId: env.VITE_GTM_ID,
 };
+if(env.VITE_GTM_ID){
+  TagManager.initialize(tagManagerArgs);
+}
 
-TagManager.initialize(tagManagerArgs);
-
-Sentry.init({
-  dsn: import.meta.env.VITE_SENTRY_DSN,
-  environment: import.meta.env.VITE_APP_ENV,
+if(env.VITE_SENTRY_DSN){
+  Sentry.init({
+  dsn: env.VITE_SENTRY_DSN,
+  environment: env.VITE_APP_ENV,
   release: version,
   integrations: [
     Sentry.browserTracingIntegration(),
@@ -53,6 +55,7 @@ Sentry.init({
     return event;
   },
 });
+}
 
 Sentry.setTag("pdf_ui_version", pkg.dependencies["@intersect.mbo/pdf-ui"]);
 Sentry.setTag(
@@ -72,7 +75,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           </BrowserRouter>
         </UsersnapProvider>
       </ThemeProvider>
-      {import.meta.env.VITE_IS_DEV && (
+      {env.VITE_IS_DEV && (
         <ReactQueryDevtools initialIsOpen={false} />
       )}
     </QueryClientProvider>

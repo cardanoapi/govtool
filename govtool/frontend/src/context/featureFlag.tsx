@@ -7,7 +7,7 @@ import {
 } from "react";
 
 import { GovernanceActionType } from "@/types/governanceAction";
-
+import { env } from "@/config/env";
 import { useAppContext } from "./appContext";
 
 /**
@@ -128,12 +128,12 @@ const FeatureFlagProvider = ({ children }: PropsWithChildren) => {
   const value = useMemo(
     () => ({
       isProposalDiscussionForumEnabled:
-        import.meta.env.VITE_IS_PROPOSAL_DISCUSSION_FORUM_ENABLED === "true" ||
-        import.meta.env.VITE_IS_PROPOSAL_DISCUSSION_FORUM_ENABLED === true ||
+        env.VITE_IS_PROPOSAL_DISCUSSION_FORUM_ENABLED === "true" ||
+        env.VITE_IS_PROPOSAL_DISCUSSION_FORUM_ENABLED === true ||
         false,
       isGovernanceOutcomesPillarEnabled:
-        import.meta.env.VITE_IS_GOVERNANCE_OUTCOMES_PILLAR_ENABLED === "true" ||
-        import.meta.env.VITE_IS_GOVERNANCE_OUTCOMES_PILLAR_ENABLED === true ||
+        env.VITE_IS_GOVERNANCE_OUTCOMES_PILLAR_ENABLED === "true" ||
+        env.VITE_IS_GOVERNANCE_OUTCOMES_PILLAR_ENABLED === true ||
         false,
       isVotingOnGovernanceActionEnabled,
       areDRepVoteTotalsDisplayed,
