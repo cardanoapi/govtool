@@ -17,6 +17,8 @@ RUN npm run build
 
 FROM fholzer/nginx-brotli:v1.28
 
+RUN apk add --no-cache gettext
+
 EXPOSE 80
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
@@ -24,7 +26,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /src/maintenance-page/index.html /usr/share/nginx/html/maintenance.html
 COPY --from=builder /src/dist /usr/share/nginx/html
 
-RUN apk add --no-cache gettext
+
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
