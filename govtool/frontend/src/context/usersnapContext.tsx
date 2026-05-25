@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { InitOptions, WidgetApi, loadSpace } from "@usersnap/browser";
 import { useTranslation } from "react-i18next";
-
+import { env } from "@/config/env";
 type WidgetValues = {
   assignee?: string;
   custom?: object;
@@ -38,7 +38,7 @@ type SpaceEventCallback = (
 
 type SpaceEventName = "open" | "close" | "beforeSubmit" | "submit";
 
-const API_KEY = import.meta.env.VITE_USERSNAP_SPACE_API_KEY;
+const API_KEY = env.VITE_USERSNAP_SPACE_API_KEY;
 
 type UsersnapProviderProps = {
   initParams?: InitOptions;

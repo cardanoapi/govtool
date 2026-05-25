@@ -4,7 +4,7 @@ import { FeatureFlagProvider, useFeatureFlag } from "./featureFlag";
 import { GovernanceActionType } from "@/types/governanceAction";
 import { useAppContext } from "./appContext";
 import { Network } from "@/models";
-
+import { env } from "@/config/env";
 vi.mock("./appContext");
 
 const mockUseAppContext = useAppContext as MockedFunction<typeof useAppContext>;
@@ -26,7 +26,7 @@ describe("FeatureFlagProvider", () => {
   });
 
   it("should enable proposal discussion forum based on environment variable", () => {
-    import.meta.env.VITE_IS_PROPOSAL_DISCUSSION_FORUM_ENABLED = "true";
+    env.VITE_IS_PROPOSAL_DISCUSSION_FORUM_ENABLED = "true";
 
     const { result } = renderHook(() => useFeatureFlag(), {
       wrapper: FeatureFlagProvider,
@@ -36,7 +36,7 @@ describe("FeatureFlagProvider", () => {
   });
 
   it("should disable proposal discussion forum if environment variable is false", () => {
-    import.meta.env.VITE_IS_PROPOSAL_DISCUSSION_FORUM_ENABLED = "false";
+    env.VITE_IS_PROPOSAL_DISCUSSION_FORUM_ENABLED = "false";
 
     const { result } = renderHook(() => useFeatureFlag(), {
       wrapper: FeatureFlagProvider,

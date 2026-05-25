@@ -1,7 +1,7 @@
 import axios from "axios";
-
+import { env } from "@/config/env";
 export const checkIsMaintenanceOn = async () => {
-  if (import.meta.env.VITE_IS_DEV) return;
+  if (env.VITE_IS_DEV) return;
 
   try {
     const response = await axios.get(

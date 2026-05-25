@@ -13,7 +13,7 @@ import { useScreenDimension } from "@/hooks/useScreenDimension";
 import { Footer, TopNav } from "@/components/organisms";
 import { useGetDRepVotingPowerList, useGetVoterInfo } from "@/hooks";
 import { getAdaHolderVotingPower, getAccount } from "@/services";
-
+import { env } from "@/config/env";
 const ProposalDiscussion = React.lazy(
   () => import("@intersect.mbo/pdf-ui/cjs"),
 );
@@ -62,7 +62,7 @@ export const ProposalDiscussionPillar = () => {
           }
         >
           <ProposalDiscussion
-            pdfApiUrl={import.meta.env.VITE_PDF_API_URL}
+            pdfApiUrl={env.VITE_PDF_API_URL}
             walletAPI={{
               ...context,
               ...walletApi,
