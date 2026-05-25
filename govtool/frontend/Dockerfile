@@ -15,7 +15,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-FROM fholzer/nginx-brotli:v1.23.4
+FROM fholzer/nginx-brotli:v1.28
 
 EXPOSE 80
 
