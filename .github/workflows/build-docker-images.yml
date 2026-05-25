@@ -23,12 +23,12 @@ jobs:
         include:
           - name: govtool-backend
             workdir: ./govtool/backend
-            dockerfile: ./govtool/backend/Dockerfile.qovery
+            dockerfile: ./govtool/backend/Dockerfile
             image: ghcr.io/${{ github.repository }}-backend
 
           - name: govtool-frontend
             workdir: ./govtool/frontend
-            dockerfile: ./govtool/frontend/Dockerfile.qovery
+            dockerfile: ./govtool/frontend/Dockerfile
             image: ghcr.io/${{ github.repository }}-frontend
 
           - name: govtool-metadata-validation
@@ -45,7 +45,7 @@ jobs:
         run: |
           IMAGE=$(echo "${{ matrix.image }}" | tr '[:upper:]' '[:lower:]')
           BRANCH=$(echo "${{ github.ref_name }}" | tr '/' '-')
-          TAG="${BRANCH}-${{ github.sha }}-${{ github.run_number }}"
+          TAG="${{ github.sha}}"
 
           echo "image=$IMAGE" >> "$GITHUB_OUTPUT"
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
