@@ -17,7 +17,7 @@ RUN npm run build
 
 FROM fholzer/nginx-brotli:v1.28
 
-RUN apk add --no-cache gettext
+RUN apk add --no-cache gettext jq
 
 EXPOSE 80
 
