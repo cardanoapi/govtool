@@ -11,6 +11,7 @@ networks:
     external: true
   frontend:
     external: true
+    name: frontend2
 
 services:
   lhci-server:
