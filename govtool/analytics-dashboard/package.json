@@ -12,7 +12,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
-    "@google-analytics/data": "^4.4.0",
+    "@google-analytics/data": "^6.0.0",
     "@mui/icons-material": "^5.15.15",
     "@mui/material": "^5.15.15",
     "@sentry/nextjs": "^10.47.0",
