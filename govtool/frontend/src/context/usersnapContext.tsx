@@ -8,6 +8,7 @@ import React, {
 import { InitOptions, WidgetApi, loadSpace } from "@usersnap/browser";
 import { useTranslation } from "react-i18next";
 import { env } from "@/config/env";
+
 type WidgetValues = {
   assignee?: string;
   custom?: object;

@@ -14,6 +14,7 @@ import { theme } from "./theme.ts";
 import "./i18n";
 import pkg from "../package.json";
 import { env } from "./config/env.ts";
+
 const { version } = pkg;
 
 const queryClient = new QueryClient({
@@ -28,11 +29,12 @@ const queryClient = new QueryClient({
 const tagManagerArgs = {
   gtmId: env.VITE_GTM_ID,
 };
-if(env.VITE_GTM_ID){
+
+if (env.VITE_GTM_ID) {
   TagManager.initialize(tagManagerArgs);
 }
 
-if(env.VITE_SENTRY_DSN){
+if (env.VITE_SENTRY_DSN) {
   Sentry.init({
   dsn: env.VITE_SENTRY_DSN,
   environment: env.VITE_APP_ENV,

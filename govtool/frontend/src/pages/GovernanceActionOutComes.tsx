@@ -5,6 +5,7 @@ import { useCardano } from "@/context";
 import { useScreenDimension, useTranslation } from "@/hooks";
 import { Background } from "@/components/atoms";
 import { env } from "@/config/env";
+
 const GovernanceActionsOutcomes = React.lazy(
   () => import("@intersect.mbo/govtool-outcomes-pillar-ui/dist/esm"),
 );

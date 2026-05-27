@@ -1,6 +1,7 @@
 import type { MetadataValidationDTO, ValidateMetadataResult } from "@models";
 import axios from "axios";
 import { env } from "@/config/env";
+
 const TIMEOUT_IN_SECONDS = 30 * 1000; // 1000 ms is 1 s then its 30 s
 
 const METADATA_API = axios.create({
