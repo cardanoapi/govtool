@@ -8,10 +8,6 @@ configs:
 services:
   backend:
     image: ${REGISTRY_HOST}/govtool/backend:${GOVTOOL_TAG}
-    build:
-      context: ../../govtool/backend
-      args:
-        BASE_IMAGE_REPO: ghcr.io/intersectmbo/backend-base
     entrypoint:
       - sh
       - -c
@@ -32,8 +28,6 @@ services:
           - node.labels.govtool==true
   frontend:
     image: ${REGISTRY_HOST}/govtool/frontend:${GOVTOOL_TAG}
-    build:
-      context: ../../govtool/frontend
     environment:
       VIRTUAL_HOST: https://${BASE_DOMAIN}
       VITE_BASE_URL: /api
@@ -59,11 +53,6 @@ services:
           - node.labels.govtool==true
   metadata-validation:
     image: ${REGISTRY_HOST}/govtool/metadata-validation:${GOVTOOL_TAG}
-    build:
-      context: ../../govtool/metadata-validation
-      args:
-        IPFS_GATEWAY: ${IPFS_GATEWAY}
-        IPFS_PROJECT_ID: ${IPFS_PROJECT_ID}
     environment:
       VIRTUAL_HOST: https://${BASE_DOMAIN}/metadata-validation/ -> :3000/
       PORT: "3000"
@@ -79,11 +68,6 @@ services:
           - node.labels.govtool==true
   storybook:
     image: ${REGISTRY_HOST}/govtool/storybook:${GOVTOOL_TAG}
-    build:
-      context: ../../govtool/frontend
-      dockerfile: storybook.Dockerfile
-      args:
-        NPMRC_TOKEN: ${NPMRC_TOKEN}
     environment:
       VIRTUAL_HOST: https://storybook-${BASE_DOMAIN}
     networks:
