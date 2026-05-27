@@ -1,5 +1,5 @@
 ARG BASE_IMAGE_TAG=latest
-ARG BASE_IMAGE_REPO=733019650473.dkr.ecr.eu-west-1.amazonaws.com/backend-base
+ARG BASE_IMAGE_REPO=ghcr.io/intersectmbo/backend-base
 FROM $BASE_IMAGE_REPO:$BASE_IMAGE_TAG
 WORKDIR /src
 COPY . .
