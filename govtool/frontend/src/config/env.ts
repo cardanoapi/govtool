@@ -14,7 +14,8 @@ declare global {
   }
 }
 
-const runtimeEnv = window.__ENV__ || {};
+/* eslint-disable-next-line dot-notation */
+const runtimeEnv = window['__ENV__'] || {};
 
 export const env = {
   VITE_APP_ENV: getEnv("VITE_APP_ENV"),

@@ -1,4 +1,5 @@
 import { env } from "@/config/env";
+
 export const openInNewTab = (url: string) => {
   // Ensure the URL is absolute
   const fullUrl =

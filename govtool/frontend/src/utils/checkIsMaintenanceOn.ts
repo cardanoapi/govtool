@@ -1,5 +1,6 @@
 import axios from "axios";
 import { env } from "@/config/env";
+
 export const checkIsMaintenanceOn = async () => {
   if (env.VITE_IS_DEV) return;
 

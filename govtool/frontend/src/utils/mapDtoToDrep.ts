@@ -1,6 +1,7 @@
 import { DRepData } from "@/models";
 import { fixViewForScriptBasedDRep } from "./dRep";
 import { env } from "@/config/env";
+
 const imageFetchDefaultOptions: RequestInit = {
   mode: "no-cors",
 };
