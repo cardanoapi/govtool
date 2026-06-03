@@ -1,0 +1,24 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 503 ()
+✖ AxiosError: Request failed with status code 503
+    at Tw (https://preview.gov.tools/assets/index-CKggaEgp.js:81:47348)
+    at XMLHttpRequest.A (https://preview.gov.tools/assets/index-CKggaEgp.js:81:52515)
+✖ locator.click: Test ended.
+Call log:
+  - waiting for getByTestId('confirm-modal-button')
+    - locator resolved to <button disabled tabindex="-1" type="button" data-testid="confirm-modal-button" class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-jcavev">Continue</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    1489 × waiting for element to be visible, enabled and stable
+         - element is not enabled
+       - retrying click action
+         - waiting 500ms
+

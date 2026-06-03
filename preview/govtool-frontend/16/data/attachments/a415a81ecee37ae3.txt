@@ -1,0 +1,3 @@
+wallet balance 100022
+wallet address addr_test1qq76kj5txw75pj54c4hkran30n2gtj4vysxs9ntfd5yp3zd49qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q5hs7x9
+0

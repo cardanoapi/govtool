@@ -1,0 +1,5 @@
+✔ Uploaded Cydney metadata to bucket
+ℹ Submitting tx: {"lock_id":"93232682aa966b12ad50cadf36638a02e68fd8b9d60f6ee749cd1ebb0afe3c5f","tx":{"certificates":[{"type":"registerdrep","key":"00bf177d9ef318c96f0aca5858154edac0ac11419d5ef6f196f9dacc","anchor":{"url":"https://metadata-govtool.cardanoapi.io/data/Cydney","dataHash":"338842c458165bd110f55820e1474addd5ff9be0ca5ef690f8135c4397bb4b55"}}],"selections":[{"type":"PaymentSigningKeyShelley_ed25519","description":"Stake Signing Key","cborHex":"582096e442b3c5782995f29dd24aad275aa6dc813aa38217224454b8b80d705d5426"},{"type":"PaymentSigningKeyShelley_ed25519","description":"Payment Signing Key","cborHex":"58204a6ae978d1656381cfe8d9316c7262dd96d72a0c2ce6368ad8559b392170aa0e"},"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"],"changeAddress":"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"}}
+✔ Tx submitted: 8911b6bd9453571cfd1c60f34bd5a52b6c8b2637e69f89969846e4d63ae13c22
+ℹ Waiting for tx completion: 8911b6bd9453571cfd1c60f34bd5a52b6c8b2637e69f89969846e4d63ae13c22
+✔ Tx completed

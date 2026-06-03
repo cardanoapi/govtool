@@ -1,0 +1,7 @@
+wallet balance 100022
+wallet address addr_test1qz9jd7r063mtnj3qp8se7nz6d775pck3k20g7ehfacvfa7a49qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0xx4cq
+✖ Failed to load resource: the server responded with a status of 404 ()
+Username is already set
+3
+✔ Uploaded vulgo metadata to bucket
+✖ Failed to load resource: the server responded with a status of 400 ()

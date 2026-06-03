@@ -1,0 +1,7 @@
+wallet balance 100022
+wallet address addr_test1qzsxmm06h825txtj99h9x68da46up3uh8n3plnszfsrlaka49qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q4dglud
+✖ Failed to load resource: the server responded with a status of 404 ()
+Username is already set
+0
+✔ Uploaded solus metadata to bucket
+✖ Failed to load resource: the server responded with a status of 400 ()

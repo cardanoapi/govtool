@@ -1,0 +1,154 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 9-outcomes/outcomes.spec.ts >> Outcome details >> 9G_1. Should display correct vote counts on outcome details page in disconnect state
+- Location: tests/9-outcomes/outcomes.spec.ts:88:7
+
+# Error details
+
+```
+TimeoutError: page.waitForResponse: Timeout 120000ms exceeded while waiting for event "response"
+```
+
+# Test source
+
+```ts
+  480 |             idSearchOutcomeCards.length == 0 && "No governance actions found",
+  481 |         }).toBeGreaterThan(0);
+  482 |         for (const outcomeCard of idSearchOutcomeCards) {
+  483 |           const id = await outcomeCard
+  484 |             .locator('[data-testid$="-CIP-105-id"]')
+  485 |             .textContent();
+  486 |           expect(id.replace(/^.*ID/, "")).toContain(governanceActionId);
+  487 |         }
+  488 |       },
+  489 |       { name: "search by id" }
+  490 |     );
+  491 |   }
+  492 | 
+  493 |   async searchOutcomesByTitle(governanceActionTitle: string) {
+  494 |     await this.searchInput.fill(governanceActionTitle);
+  495 |     try {
+  496 |       await expect(
+  497 |         this.page.getByRole("progressbar").getByRole("img")
+  498 |       ).toBeVisible();
+  499 |     } catch (error) {
+  500 |       // Handle the case where the progress bar is not visible
+  501 |       console.warn("Progress bar not visible, proceeding with search.");
+  502 |     }
+  503 | 
+  504 |     await functionWaitedAssert(
+  505 |       async () => {
+  506 |         const titleSearchOutcomeCards = await this.getAllOutcomes();
+  507 |         expect(titleSearchOutcomeCards.length, {
+  508 |           message:
+  509 |             titleSearchOutcomeCards.length == 0 &&
+  510 |             "No governance actions found",
+  511 |         }).toBeGreaterThan(0);
+  512 |         for (const outcomeCard of titleSearchOutcomeCards) {
+  513 |           const title = await outcomeCard
+  514 |             .locator('[data-testid$="-card-title"]')
+  515 |             .textContent();
+  516 |           expect(title.toLowerCase()).toContain(
+  517 |             governanceActionTitle.toLowerCase()
+  518 |           );
+  519 |         }
+  520 |       },
+  521 |       { name: "search by title" }
+  522 |     );
+  523 |   }
+  524 | 
+  525 |   async shouldCopyGovernanceActionId(governanceActionId: string) {
+  526 |     await this.searchInput.fill(governanceActionId);
+  527 | 
+  528 |     await this.page
+  529 |       .getByTestId(`${governanceActionId}-CIP-105-id`)
+  530 |       .getByTestId("copy-button")
+  531 |       .click();
+  532 |     await expect(this.page.getByText("Copied to clipboard")).toBeVisible({
+  533 |       timeout: 60_000,
+  534 |     });
+  535 |     const copiedTextDRepDirectory = await this.page.evaluate(() =>
+  536 |       navigator.clipboard.readText()
+  537 |     );
+  538 |     expect(copiedTextDRepDirectory).toEqual(governanceActionId);
+  539 |   }
+  540 | 
+  541 |   async navigateToFilteredProposalDetail(
+  542 |     browser: Browser,
+  543 |     filterKey: string,
+  544 |     isLoggedIn: boolean
+  545 |   ) {
+  546 |     let page: Page;
+  547 |     if (!isLoggedIn) {
+  548 |       page = await browser.newPage();
+  549 |     } else {
+  550 |       page = await createNewPageWithWallet(browser, {
+  551 |         storageState: user01AuthFile,
+  552 |         wallet: user01Wallet,
+  553 |       });
+  554 |     }
+  555 |     injectLogger(page);
+  556 | 
+  557 |     const outcomeListResponsePromise = page.waitForResponse(
+  558 |       (response) =>
+  559 |         response
+  560 |           .url()
+  561 |           .includes(`governance-actions?search=&filters=${filterKey}`),
+  562 |       { timeout: 60_000 }
+  563 |     );
+  564 | 
+  565 |     const outcomePage = new OutComesPage(page);
+  566 |     await outcomePage.goto({ filter: filterKey });
+  567 | 
+  568 |     const outcomeListResponse = await outcomeListResponsePromise;
+  569 |     const proposals = await outcomeListResponse.json();
+  570 | 
+  571 |     if (proposals.length === 0) {
+  572 |       expect(true, "No proposals found!").toBeTruthy();
+  573 |       return {
+  574 |         govActionDetailsPage: null,
+  575 |         outcomeResponsePromise: null,
+  576 |         metricsResponsePromise: null,
+  577 |       };
+  578 |     }
+  579 | 
+> 580 |     const metricsResponsePromise = page.waitForResponse(
+      |                                         ^ TimeoutError: page.waitForResponse: Timeout 120000ms exceeded while waiting for event "response"
+  581 |       (response) => response.url().includes(`/misc/network/metrics?epoch`),
+  582 |       { timeout: 120_000 }
+  583 |     );
+  584 | 
+  585 |     expect(
+  586 |       proposals.length,
+  587 |       proposals.length == 0 && "No proposals found!"
+  588 |     ).toBeGreaterThan(0);
+  589 | 
+  590 |     const { index: governanceActionIndex, tx_hash: governanceTransactionHash } =
+  591 |       proposals[0];
+  592 | 
+  593 |     const outcomeResponsePromise = page.waitForResponse(
+  594 |       (response) =>
+  595 |         response
+  596 |           .url()
+  597 |           .includes(
+  598 |             `governance-actions/${governanceTransactionHash}?index=${governanceActionIndex}`
+  599 |           ),
+  600 |       { timeout: 120_000 }
+  601 |     );
+  602 | 
+  603 |     const govActionDetailsPage = await outcomePage.viewFirstOutcomes();
+  604 |     return {
+  605 |       govActionDetailsPage,
+  606 |       outcomeResponsePromise,
+  607 |       metricsResponsePromise,
+  608 |     };
+  609 |   }
+  610 | }
+  611 | 
+```

@@ -1,0 +1,8 @@
+wallet balance 100022
+wallet address addr_test1qpnv3c6r9hcwuy75m24feueeexs085xgpf6d03ax7jkmhsa49qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998qsylck2
+✖ Failed to load resource: the server responded with a status of 404 ()
+Username is already set
+✔ Uploaded guardrail-script metadata to bucket
+2
+✔ Uploaded nihil metadata to bucket
+✖ Failed to load resource: the server responded with a status of 400 ()
