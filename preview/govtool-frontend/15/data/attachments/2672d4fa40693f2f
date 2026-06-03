@@ -1,0 +1,172 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 9-outcomes/outcomes.spec.ts >> Outcome details >> Invalid Outcome Metadata >> 9H_4A: Should display "Data Missing" message in outcomes when metadata hash and URL do not match and is incorrect ga format in disconnect state
+- Location: tests/9-outcomes/outcomes.spec.ts:98:11
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/outcomes?sort=newestFirst
+Call log:
+  - navigating to "https://preview.dev.gov.tools/outcomes?sort=newestFirst", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1   | import environments from "@constants/environments";
+  2   | import { outcomeStatusType } from "@constants/index";
+  3   | import { toCamelCase } from "@helpers/string";
+  4   | import { functionWaitedAssert, waitedLoop } from "@helpers/waitedLoop";
+  5   | import { Browser, expect, Locator, Page } from "@playwright/test";
+  6   | import { outcomeMetadata, outcomeProposal, outcomeType } from "@types";
+  7   | import OutcomeDetailsPage from "./outcomeDetailsPage";
+  8   | import { isMobile } from "@helpers/mobile";
+  9   | import extractExpiryDateFromText from "@helpers/extractExpiryDateFromText";
+  10  | import { createNewPageWithWallet, injectLogger } from "@helpers/page";
+  11  | import { createTempUserAuth } from "@datafactory/createAuth";
+  12  | import { user01Wallet } from "@constants/staticWallets";
+  13  | import { user01AuthFile } from "@constants/auth";
+  14  | 
+  15  | const status = ["Expired", "Ratified", "Enacted", "Live"];
+  16  | 
+  17  | enum SortOption {
+  18  |   SoonToExpire = "Soon to expire",
+  19  |   NewestFirst = "Newest first",
+  20  |   OldestFirst = "Oldest first",
+  21  |   HighestAmountYesVote = "Highest amount of yes votes",
+  22  | }
+  23  | 
+  24  | export default class OutComesPage {
+  25  |   // Buttons
+  26  |   readonly filterBtn = this.page.getByTestId("filters-button");
+  27  |   readonly sortBtn = this.page.getByTestId("sort-button");
+  28  |   readonly showMoreBtn = this.page.getByTestId("show-more-button");
+  29  |   readonly metadataErrorLearnMoreBtn = this.page.getByTestId(
+  30  |     "metadata-error-learn-more"
+  31  |   );
+  32  | 
+  33  |   //inputs
+  34  |   readonly searchInput = this.page.getByTestId("search-input");
+  35  | 
+  36  |   readonly title = this.page.getByTestId("single-action-title");
+  37  | 
+  38  |   constructor(private readonly page: Page) {}
+  39  | 
+  40  |   async goto(params: { filter?: string; sort?: string } = {}): Promise<void> {
+  41  |     const { filter, sort = "newestFirst" } = params;
+  42  |     const url = new URL(`${environments.frontendUrl}/outcomes`);
+  43  |     url.searchParams.append("sort", sort);
+  44  |     if (filter) {
+  45  |       url.searchParams.append("type", filter);
+  46  |     }
+> 47  |     await this.page.goto(url.toString());
+      |                     ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/outcomes?sort=newestFirst
+  48  |   }
+  49  | 
+  50  |   async getAllListedCIP105GovernanceIds(): Promise<string[]> {
+  51  |     const dRepCards = await this.getAllOutcomes();
+  52  |     const dRepIds = [];
+  53  | 
+  54  |     for (const dRep of dRepCards) {
+  55  |       const dRepIdTextContent = await dRep
+  56  |         .locator('[data-testid$="-CIP-105-id"]')
+  57  |         .textContent();
+  58  |       dRepIds.push(dRepIdTextContent.replace(/^.*ID/, ""));
+  59  |     }
+  60  | 
+  61  |     return dRepIds;
+  62  |   }
+  63  | 
+  64  |   async viewFirstOutcomes(): Promise<OutcomeDetailsPage> {
+  65  |     await this.page.locator('[data-testid$="-view-details"]').first().click();
+  66  |     return new OutcomeDetailsPage(this.page);
+  67  |   }
+  68  | 
+  69  |   async getAllOutcomes(): Promise<Locator[]> {
+  70  |     await waitedLoop(async () => {
+  71  |       return (
+  72  |         (await this.page.locator('[data-testid$="-outcome-card"]').count()) >
+  73  |           0 ||
+  74  |         (await this.page.getByText("No governance actions found").isVisible())
+  75  |       );
+  76  |     });
+  77  |     return await this.page.locator('[data-testid$="-outcome-card"]').all();
+  78  |   }
+  79  | 
+  80  |   async clickCheckboxByNames(names: string[]) {
+  81  |     const formattedNames = names.map((name) =>
+  82  |       name === "Info Action" ? "Info" : name
+  83  |     );
+  84  |     for (const name of formattedNames) {
+  85  |       const testId = name.toLowerCase().replace(/ /g, "-");
+  86  |       await this.page.getByTestId(`${testId}-checkbox`).click();
+  87  |     }
+  88  |   }
+  89  | 
+  90  |   async filterProposalByNames(names: string[]) {
+  91  |     await this.clickCheckboxByNames(names);
+  92  |   }
+  93  | 
+  94  |   async unFilterProposalByNames(names: string[]) {
+  95  |     await this.clickCheckboxByNames(names);
+  96  |   }
+  97  | 
+  98  |   async applyAndValidateFilters(
+  99  |     filters: string[],
+  100 |     validateFunction: (proposalCard: any, filters: string[]) => Promise<boolean>
+  101 |   ) {
+  102 |     await this.page.waitForTimeout(4_000); // wait for the proposals to load
+  103 |     // single filter
+  104 |     for (const filter of filters) {
+  105 |       await this.filterProposalByNames([filter]);
+  106 |       await this.validateFilters([filter], validateFunction);
+  107 |       await this.unFilterProposalByNames([filter]);
+  108 |     }
+  109 | 
+  110 |     // multiple filter
+  111 |     const multipleFilters = [...filters];
+  112 |     while (multipleFilters.length > 1) {
+  113 |       await this.filterProposalByNames(multipleFilters);
+  114 |       await this.validateFilters(multipleFilters, validateFunction);
+  115 |       await this.unFilterProposalByNames(multipleFilters);
+  116 |       multipleFilters.pop();
+  117 |     }
+  118 |   }
+  119 | 
+  120 |   async validateFilters(
+  121 |     filters: string[],
+  122 |     validateFunction: (proposalCard: any, filters: string[]) => Promise<boolean>
+  123 |   ) {
+  124 |     await functionWaitedAssert(
+  125 |       async () => {
+  126 |         const proposalCards = await this.getAllOutcomes();
+  127 |         for (const proposalCard of proposalCards) {
+  128 |           if (await proposalCard.isVisible()) {
+  129 |             const type = await proposalCard
+  130 |               .locator('[data-testid$="-type"]')
+  131 |               .textContent();
+  132 |             const outcomeType = type.replace(/^.*Type/, "");
+  133 |             const hasFilter = await validateFunction(proposalCard, filters);
+  134 |             if (!hasFilter) {
+  135 |               const errorMessage = `An outcome type ${outcomeType} does not contain on ${filters}`;
+  136 |               throw errorMessage;
+  137 |             }
+  138 |             expect(hasFilter).toBe(true);
+  139 |           }
+  140 |         }
+  141 |       },
+  142 |       {
+  143 |         name: "validateFilters",
+  144 |       }
+  145 |     );
+  146 |   }
+  147 | 
+```

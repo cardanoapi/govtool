@@ -1,0 +1,45 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 3-drep-registration/editDRep.dRep.spec.ts >> Validation of edit dRep Form >> 3M_1. Should accept valid data in edit dRep form
+- Location: tests/3-drep-registration/editDRep.dRep.spec.ts:24:7
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/edit_dRep
+Call log:
+  - navigating to "https://preview.dev.gov.tools/edit_dRep", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1  | import environments from "@constants/environments";
+  2  | import { Page } from "@playwright/test";
+  3  | import DRepForm from "../forms/dRepForm";
+  4  | 
+  5  | export default class EditDRepPage extends DRepForm {
+  6  |   readonly registerBtn = this.page.getByTestId("register-button");
+  7  |   readonly confirmBtn = this.page.getByTestId("confirm-modal-button");
+  8  |   readonly registrationSuccessModal = this.page.getByTestId(
+  9  |     "governance-action-submitted-modal"
+  10 |   );
+  11 | 
+  12 |   constructor(private readonly page: Page) {
+  13 |     super(page);
+  14 |   }
+  15 | 
+  16 |   async goto() {
+> 17 |     await this.page.goto(`${environments.frontendUrl}/edit_dRep`);
+     |                     ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/edit_dRep
+  18 |   }
+  19 | }
+  20 | 
+```

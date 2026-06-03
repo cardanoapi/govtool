@@ -1,8 +1,0 @@
-wallet balance 100022
-wallet address addr_test1qrdws6nn4y4r9fugc83rzn20mqz6sr3533ageg2669r67ed49qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998qra36sr
-✖ Failed to load resource: the server responded with a status of 406 ()
-Username is already set
-3
-✔ Uploaded deputo metadata to bucket
-✖ Failed to load resource: the server responded with a status of 400 ()
-✖ Failed to load resource: the server responded with a status of 429 ()

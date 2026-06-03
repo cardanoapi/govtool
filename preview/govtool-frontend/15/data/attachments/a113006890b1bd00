@@ -1,0 +1,233 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 8-proposal-discussion/proposalDiscussion.spec.ts >> 8C. Should search the list of proposed governance actions.
+- Location: tests/8-proposal-discussion/proposalDiscussion.spec.ts:116:5
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/proposal_discussion
+Call log:
+  - navigating to "https://preview.dev.gov.tools/proposal_discussion", waiting until "load"
+
+```
+
+```
+Error: page.waitForResponse: Test ended.
+=========================== logs ===========================
+waiting for response "**/api/proposals?**"
+============================================================
+```
+
+# Test source
+
+```ts
+  40  | test.describe("Filter and sort proposals", () => {
+  41  |   let proposalDiscussionPage: ProposalDiscussionPage;
+  42  | 
+  43  |   test.beforeEach(async ({ page }) => {
+  44  |     proposalDiscussionPage = new ProposalDiscussionPage(page);
+  45  |     await proposalDiscussionPage.goto();
+  46  |   });
+  47  | 
+  48  |   test("8B_1. Should filter the list of proposed governance actions.", async () => {
+  49  |     test.slow();
+  50  | 
+  51  |     await proposalDiscussionPage.filterBtn.click();
+  52  | 
+  53  |     // unselect active proposal
+  54  |     await proposalDiscussionPage.activeProposalWrapper.click();
+  55  |     const isBootStraping = await isBootStrapingPhase();
+  56  | 
+  57  |     // proposal type filter
+  58  |     await proposalDiscussionPage.applyAndValidateFilters(
+  59  |       isBootStraping ? BOOTSTRAP_PROPOSAL_TYPE_FILTERS : getProposalType(),
+  60  |       proposalDiscussionPage._validateTypeFiltersInProposalCard
+  61  |     );
+  62  | 
+  63  |     // proposal status filter
+  64  |     await proposalDiscussionPage.applyAndValidateFilters(
+  65  |       PROPOSAL_STATUS_FILTER,
+  66  |       proposalDiscussionPage._validateStatusFiltersInProposalCard
+  67  |     );
+  68  |   });
+  69  | 
+  70  |   test("8B_2. Should sort the list of proposed governance actions.", async () => {
+  71  |     test.slow();
+  72  |     const sortOptions = {
+  73  |       Oldest: (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  74  |         p1.attributes.content.attributes.createdAt <=
+  75  |         p2.attributes.content.attributes.createdAt,
+  76  |       Newest: (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  77  |         p1.attributes.content.attributes.createdAt >=
+  78  |         p2.attributes.content.attributes.createdAt,
+  79  |       "Most likes": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  80  |         p1.attributes.prop_likes >= p2.attributes.prop_likes,
+  81  |       "Least likes": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  82  |         p1.attributes.prop_likes <= p2.attributes.prop_likes,
+  83  |       "Most dislikes": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  84  |         p1.attributes.prop_dislikes >= p2.attributes.prop_dislikes,
+  85  |       "Least dislikes": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  86  |         p1.attributes.prop_dislikes <= p2.attributes.prop_dislikes,
+  87  |       "Most comments": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  88  |         p1.attributes.prop_comments_number >=
+  89  |         p2.attributes.prop_comments_number,
+  90  |       "Least comments": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  91  |         p1.attributes.prop_comments_number <=
+  92  |         p2.attributes.prop_comments_number,
+  93  |       "Name A-Z": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  94  |         p1.attributes.content.attributes.prop_name
+  95  |           .replace(/ /g, "")
+  96  |           .localeCompare(
+  97  |             p2.attributes.content.attributes.prop_name.replace(/ /g, "")
+  98  |           ) <= 0,
+  99  |       "Name Z-A": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  100 |         p1.attributes.content.attributes.prop_name
+  101 |           .replace(/ /g, "")
+  102 |           .localeCompare(
+  103 |             p2.attributes.content.attributes.prop_name.replace(/ /g, "")
+  104 |           ) >= 0,
+  105 |     };
+  106 | 
+  107 |     for (const [sortOption, sortFunction] of Object.entries(sortOptions)) {
+  108 |       await proposalDiscussionPage.sortAndValidate(
+  109 |         sortOption as ProposalDiscussionFilterTypes,
+  110 |         sortFunction
+  111 |       );
+  112 |     }
+  113 |   });
+  114 | });
+  115 | 
+  116 | test("8C. Should search the list of proposed governance actions.", async ({
+  117 |   page,
+  118 | }) => {
+  119 |   let proposalName = "Labadie, Stehr and Rosenbaum";
+  120 |   let proposalNameSet = false;
+  121 | 
+  122 |   await page.route("**/api/proposals?**", async (route) => {
+  123 |     const response = await route.fetch();
+  124 |     const json = await response.json();
+  125 |     if (!proposalNameSet && "data" in json && json["data"].length > 0) {
+  126 |       const randomIndex = Math.floor(Math.random() * json["data"].length);
+  127 |       proposalName =
+  128 |         json["data"][randomIndex]["attributes"]["content"]["attributes"][
+  129 |           "prop_name"
+  130 |         ];
+  131 |       proposalNameSet = true;
+  132 |     }
+  133 |     await route.fulfill({
+  134 |       status: 200,
+  135 |       contentType: "application/json",
+  136 |       body: JSON.stringify(json),
+  137 |     });
+  138 |   });
+  139 | 
+> 140 |   const responsePromise = page.waitForResponse("**/api/proposals?**");
+      |                                ^ Error: page.waitForResponse: Test ended.
+  141 |   const proposalDiscussionPage = new ProposalDiscussionPage(page);
+  142 |   await proposalDiscussionPage.goto();
+  143 | 
+  144 |   await responsePromise;
+  145 | 
+  146 |   await proposalDiscussionPage.searchInput.fill(proposalName);
+  147 | 
+  148 |   await page.waitForTimeout(2000);
+  149 | 
+  150 |   await functionWaitedAssert(
+  151 |     async () => {
+  152 |       const proposalCards = await proposalDiscussionPage.getAllProposals();
+  153 |       for (const proposalCard of proposalCards) {
+  154 |         await expect(proposalCard).toBeVisible();
+  155 |         const proposalTitle = await proposalCard
+  156 |           .locator('[data-testid^="proposal-"][data-testid$="-title"]')
+  157 |           .innerText();
+  158 |         expect(proposalTitle.toLowerCase().trim()).toContain(
+  159 |           proposalName.toLowerCase().trim()
+  160 |         );
+  161 |       }
+  162 |     },
+  163 |     {
+  164 |       message: `A proposal card does not contain the search term ${proposalName}`,
+  165 |     }
+  166 |   );
+  167 | });
+  168 | 
+  169 | test("8D. Should show the view-all categorized proposed governance actions.", async ({
+  170 |   browser,
+  171 | }) => {
+  172 |   await Promise.all(
+  173 |     getProposalType().map(async (proposalType: string) => {
+  174 |       const context = await browser.newContext();
+  175 |       const page = await context.newPage();
+  176 |       injectLogger(page);
+  177 | 
+  178 |       const proposalDiscussionPage = new ProposalDiscussionPage(page);
+  179 |       await proposalDiscussionPage.goto();
+  180 |       const isShowAllButtonVisible = await page
+  181 |         .waitForSelector(
+  182 |           `[data-testid="${proposalType.toLowerCase().replace(/ /g, "-")}-show-all-button"]`,
+  183 |           { timeout: 60_000 }
+  184 |         )
+  185 |         .then(() => true)
+  186 |         .catch(() => false);
+  187 | 
+  188 |       if (isShowAllButtonVisible) {
+  189 |         await page
+  190 |           .getByTestId(
+  191 |             proposalType.toLowerCase().replace(/ /g, "-") + "-show-all-button"
+  192 |           )
+  193 |           .click();
+  194 | 
+  195 |         const proposalCards = await proposalDiscussionPage.getAllProposals();
+  196 | 
+  197 |         for (const proposalCard of proposalCards) {
+  198 |           await expect(
+  199 |             proposalCard.getByTestId("governance-action-type")
+  200 |           ).toHaveText(proposalType, { timeout: 60_000 });
+  201 |         }
+  202 |       } else {
+  203 |         expect(true, `No ${proposalType} found`).toBeTruthy();
+  204 |       }
+  205 |     })
+  206 |   );
+  207 | });
+  208 | 
+  209 | test("8H. Should disable proposal interaction on a disconnected state.", async ({
+  210 |   page,
+  211 | }) => {
+  212 |   const proposalDiscussionPage = new ProposalDiscussionPage(page);
+  213 |   await proposalDiscussionPage.goto();
+  214 | 
+  215 |   const proposalDiscussionDetailsPage =
+  216 |     await proposalDiscussionPage.viewFirstProposal();
+  217 | 
+  218 |   await proposalDiscussionDetailsPage.commentInput.fill(
+  219 |     faker.lorem.paragraph()
+  220 |   );
+  221 | 
+  222 |   await expect(proposalDiscussionDetailsPage.likeBtn).toBeDisabled();
+  223 |   await expect(proposalDiscussionDetailsPage.dislikeBtn).toBeDisabled();
+  224 |   await expect(proposalDiscussionDetailsPage.commentBtn).toBeDisabled();
+  225 | });
+  226 | 
+  227 | test("8S. Should restrict proposal creation on disconnected state", async ({
+  228 |   page,
+  229 | }) => {
+  230 |   const proposalDiscussionPage = new ProposalDiscussionPage(page);
+  231 |   await proposalDiscussionPage.goto();
+  232 | 
+  233 |   await expect(proposalDiscussionPage.proposalCreateBtn).toBeDisabled();
+  234 | });
+  235 | 
+  236 | test("8E. Should share proposed governance action", async ({
+  237 |   page,
+  238 |   context,
+  239 | }) => {
+  240 |   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+```

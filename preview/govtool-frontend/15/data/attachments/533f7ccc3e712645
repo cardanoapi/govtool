@@ -1,0 +1,214 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 11-proposal-budget/proposalBudget.spec.ts >> Restricted access to interact budget proposal >> 11F_1. Should restrict users without wallets from commenting
+- Location: tests/11-proposal-budget/proposalBudget.spec.ts:293:7
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/budget_discussion/49
+Call log:
+  - navigating to "https://preview.dev.gov.tools/budget_discussion/49", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1   | import { formatWithThousandSeparator } from "@helpers/adaFormat";
+  2   | import { expect, Page } from "@playwright/test";
+  3   | import { BudgetProposalProps, CommentResponse } from "@types";
+  4   | import environments from "lib/constants/environments";
+  5   | 
+  6   | export default class BudgetDiscussionDetailsPage {
+  7   |   // buttons
+  8   |   readonly shareBtn = this.page.getByTestId("share-button");
+  9   |   readonly copyLinkBtn = this.page.getByTestId("copy-link");
+  10  |   readonly commentBtn = this.page.getByTestId("comment-button");
+  11  |   readonly replyBtn = this.page.getByTestId("reply-button");
+  12  |   readonly replyCommentBtn = this.page.getByTestId("reply-comment-button");
+  13  |   readonly pollYesBtn = this.page.getByTestId("poll-yes-button");
+  14  |   readonly pollNoBtn = this.page.getByTestId("poll-no-button");
+  15  |   readonly sortCommentsBtn = this.page.getByTestId("sort-comments");
+  16  |   readonly changeVoteBtn = this.page.getByTestId("change-vote-button");
+  17  |   readonly changeVoteYesBtn = this.page.getByTestId(
+  18  |     "change-poll-vote-yes-button"
+  19  |   );
+  20  |   readonly verifyUserLink = this.page.getByTestId("verify-user-link").first();
+  21  |   readonly verifyDRepLink = this.page.getByTestId("verify-drep-link").first();
+  22  |   readonly readMoreBtn = this.page.getByTestId("read-more-button");
+  23  |   readonly menuButton = this.page.getByTestId("menu-button");
+  24  | 
+  25  |   // content
+  26  |   readonly copyLinkText = this.page.getByTestId("copy-link-text");
+  27  |   readonly pollVoteCard = this.page.getByTestId("poll-vote-card");
+  28  |   readonly totalComments = this.page.getByTestId("total-comments");
+  29  |   readonly linkTextContent = this.page.getByTestId("link-0-text-content");
+  30  |   readonly linkUrlContent = this.page.getByTestId("link-0-url-content");
+  31  |   readonly budgetDiscussionTypeContent = this.page
+  32  |     .getByTestId("budget-discussion-type")
+  33  |     .first();
+  34  |   readonly publicProposalChampionContent = this.page.getByTestId(
+  35  |     "public-proposal-champion"
+  36  |   );
+  37  |   readonly socialHandlesContent = this.page.getByTestId("social-handles");
+  38  |   readonly problemStatementContent = this.page.getByTestId("problem-statement");
+  39  |   readonly proposalBenefitsContent = this.page.getByTestId("problem-benefit");
+  40  |   readonly productRoadMapContent = this.page.getByTestId("product-roadmap");
+  41  |   readonly alignProposalComittesContent = this.page.getByTestId(
+  42  |     "align-proposal-committees"
+  43  |   );
+  44  |   readonly evidenceContent = this.page.getByTestId("evidence");
+  45  |   readonly proposalNameContent = this.page.getByTestId("proposal-name");
+  46  |   readonly proposalDescriptionContent = this.page.getByTestId(
+  47  |     "proposal-description"
+  48  |   );
+  49  |   readonly proposalKeyDependenciesContent = this.page.getByTestId(
+  50  |     "proposal-key-dependencies"
+  51  |   );
+  52  |   readonly milestonesContent = this.page.getByTestId("proposal-milestone");
+  53  |   readonly proposalResourcesAndEstimates = this.page.getByTestId(
+  54  |     "proposal-resources-&-duration-estimates"
+  55  |   );
+  56  |   readonly projectExperienceContent =
+  57  |     this.page.getByTestId("project-experience");
+  58  |   readonly proposalContractingContent = this.page.getByTestId(
+  59  |     "proposal-contracting"
+  60  |   );
+  61  |   readonly proposalContractingOtherContent = this.page.getByTestId(
+  62  |     "other-contract-description"
+  63  |   );
+  64  |   readonly costingAmountContent = this.page.getByTestId("costing-amount");
+  65  |   readonly costingConversionRateContent = this.page.getByTestId(
+  66  |     "costing-conversion-rate"
+  67  |   );
+  68  |   readonly constingPreferedCurrencyContent = this.page.getByTestId(
+  69  |     "costing-preferred-currency"
+  70  |   );
+  71  |   readonly costingPreferedCurrencyAmountContent = this.page.getByTestId(
+  72  |     "costing-preferred-currency-amount"
+  73  |   );
+  74  |   readonly costBreakdownContent = this.page.getByTestId("cost-breakdown");
+  75  |   readonly includeAsAuditorContent =
+  76  |     this.page.getByTestId("include-as-auditor");
+  77  | 
+  78  |   // Input
+  79  |   readonly commentInput = this.page.getByTestId("comment-input");
+  80  |   readonly replyInput = this.page.getByTestId("reply-input");
+  81  | 
+  82  |   constructor(private readonly page: Page) {}
+  83  | 
+  84  |   get currentPage(): Page {
+  85  |     return this.page;
+  86  |   }
+  87  | 
+  88  |   async goto(proposalId: number) {
+> 89  |     await this.page.goto(
+      |                     ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/budget_discussion/49
+  90  |       `${environments.frontendUrl}/budget_discussion/${proposalId}`
+  91  |     );
+  92  |   }
+  93  | 
+  94  |   async sortAndValidate(
+  95  |     order: string,
+  96  |     validationFn: (date1: string, date2: string) => boolean
+  97  |   ) {
+  98  |     const responsePromise = this.page.waitForResponse((response) =>
+  99  |       response.url().includes(`&sort[createdAt]=${order}`)
+  100 |     );
+  101 | 
+  102 |     await this.sortCommentsBtn.click();
+  103 |     const response = await responsePromise;
+  104 | 
+  105 |     const comments: CommentResponse[] = (await response.json()).data;
+  106 | 
+  107 |     // API validation
+  108 |     for (let i = 0; i < comments.length - 1; i++) {
+  109 |       const isValid = validationFn(
+  110 |         comments[i].attributes.updatedAt,
+  111 |         comments[i + 1].attributes.updatedAt
+  112 |       );
+  113 |       expect(isValid).toBe(true);
+  114 |     }
+  115 |   }
+  116 | 
+  117 |   async addComment(comment: string) {
+  118 |     await this.commentInput.fill(comment);
+  119 |     await this.commentBtn.click();
+  120 |   }
+  121 | 
+  122 |   async replyComment(reply: string) {
+  123 |     await this.page
+  124 |       .locator('[data-testid^="comment-"][data-testid$="-content-card"]')
+  125 |       .first()
+  126 |       .getByTestId("reply-button")
+  127 |       .click();
+  128 |     await this.replyInput.fill(reply);
+  129 |     await this.replyCommentBtn.click();
+  130 |   }
+  131 | 
+  132 |   async voteOnPoll(vote: string) {
+  133 |     await this.page.getByTestId(`poll-${vote.toLowerCase()}-button`).click();
+  134 |   }
+  135 | 
+  136 |   async changePollVote() {
+  137 |     await this.changeVoteBtn.click();
+  138 |     await this.changeVoteYesBtn.click();
+  139 |   }
+  140 | 
+  141 |   async deleteProposal() {
+  142 |     await this.page.waitForTimeout(2_000);
+  143 | 
+  144 |     await this.menuButton.click();
+  145 |     await this.page.getByTestId("delete-proposal").click();
+  146 |     await this.page.getByTestId("delete-proposal-yes-button").click();
+  147 |   }
+  148 | 
+  149 |   async validateProposalDetails(budgetProposal: BudgetProposalProps) {
+  150 |     await this.readMoreBtn.click();
+  151 | 
+  152 |     // proposal ownership validation
+  153 |     await expect(this.socialHandlesContent).toHaveText(
+  154 |       budgetProposal.proposalOwnership.contactDetails
+  155 |     );
+  156 | 
+  157 |     // problem statement and benefits validation
+  158 |     await expect(this.problemStatementContent).toHaveText(
+  159 |       budgetProposal.problemStatementAndBenefits.problemStatement
+  160 |     );
+  161 |     await expect(this.proposalBenefitsContent).toHaveText(
+  162 |       budgetProposal.problemStatementAndBenefits.proposalBenefits
+  163 |     );
+  164 |     await expect(this.productRoadMapContent).toHaveText(
+  165 |       budgetProposal.problemStatementAndBenefits.roadmapName
+  166 |     );
+  167 |     await expect(this.budgetDiscussionTypeContent).toHaveText(
+  168 |       budgetProposal.problemStatementAndBenefits.budgetDiscussionType
+  169 |     );
+  170 |     await expect(this.alignProposalComittesContent).toHaveText(
+  171 |       budgetProposal.problemStatementAndBenefits.committeeAlignmentType
+  172 |     );
+  173 |     await expect(this.evidenceContent).toHaveText(
+  174 |       budgetProposal.problemStatementAndBenefits.suplimentaryEndorsement
+  175 |     );
+  176 | 
+  177 |     // proposal details validation
+  178 |     await expect(this.proposalNameContent).toHaveText(
+  179 |       budgetProposal.proposalDetails.proposalName
+  180 |     );
+  181 |     await expect(this.proposalDescriptionContent).toHaveText(
+  182 |       budgetProposal.proposalDetails.proposalDescription
+  183 |     );
+  184 |     await expect(this.proposalKeyDependenciesContent).toHaveText(
+  185 |       budgetProposal.proposalDetails.proposalKeyDependencies
+  186 |     );
+  187 |     await expect(this.milestonesContent).toHaveText(
+  188 |       budgetProposal.proposalDetails.milestones
+  189 |     );
+```

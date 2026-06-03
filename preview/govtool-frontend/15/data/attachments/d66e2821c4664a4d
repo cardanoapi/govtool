@@ -1,0 +1,41 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 7-proposal-submission/proposalSubmission.spec.ts >> 7A. Should open wallet connection popup, when propose a governance action in disconnected state.
+- Location: tests/7-proposal-submission/proposalSubmission.spec.ts:9:5
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+Call log:
+  - navigating to "https://preview.dev.gov.tools/", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1  | import { setAllureEpic } from "@helpers/allure";
+  2  | import { expect } from "@playwright/test";
+  3  | import { test } from "@fixtures/walletExtension";
+  4  | 
+  5  | test.beforeEach(async () => {
+  6  |   await setAllureEpic("7. Proposal submission");
+  7  | });
+  8  | 
+  9  | test("7A. Should open wallet connection popup, when propose a governance action in disconnected state.", async ({
+  10 |   page,
+  11 | }) => {
+> 12 |   await page.goto("/");
+     |              ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+  13 |   await page.getByTestId("propose-a-governance-action-button").click();
+  14 |   await expect(page.getByTestId("connect-your-wallet-modal")).toBeVisible();
+  15 | });
+  16 | 
+```

@@ -1,0 +1,5 @@
+✔ Uploaded Lily metadata to bucket
+ℹ Submitting tx: {"lock_id":"5621b4f9e2c014c58a813fb31505f13296cedeae309b8fc21ed156b71cd8b1e7","tx":{"certificates":[{"type":"registerdrep","key":"a121b86a9694f4736b434157405e1aa4e2a86951f20f6a38066754fe","anchor":{"url":"https://metadata-govtool.cardanoapi.io/data/Lily","dataHash":"507568ef64fdc1440498937d20540ea5c41169d1e5aa50c0927af9ead5f73195"}}],"selections":[{"type":"PaymentSigningKeyShelley_ed25519","description":"Stake Signing Key","cborHex":"582094d10da349ffb563257d7a4a24345d26b007abfa0e556d68c3f747d580c632ae"},{"type":"PaymentSigningKeyShelley_ed25519","description":"Payment Signing Key","cborHex":"58204a6ae978d1656381cfe8d9316c7262dd96d72a0c2ce6368ad8559b392170aa0e"},"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"],"changeAddress":"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"}}
+✔ Tx submitted: 82efddfbe7615d5a6ef4385a4a9dc74f529c2c2483f7e2e5d3ab06e447d014b1
+ℹ Waiting for tx completion: 82efddfbe7615d5a6ef4385a4a9dc74f529c2c2483f7e2e5d3ab06e447d014b1
+✔ Tx completed

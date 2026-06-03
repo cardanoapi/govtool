@@ -1,0 +1,226 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 7-proposal-submission/proposalSubmission.loggedin.pd.spec.ts >> Proposal Draft >> 7M_4. Should edit a motion of no confidence proposal draft
+- Location: tests/7-proposal-submission/proposalSubmission.loggedin.pd.spec.ts:472:9
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/proposal_discussion
+Call log:
+  - navigating to "https://preview.dev.gov.tools/proposal_discussion", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  48  |     "propose-a-governance-action-button"
+  49  |   );
+  50  |   readonly registerBtn = this.page.getByTestId("register-button");
+  51  |   readonly skipBtn = this.page.getByTestId("skip-button");
+  52  |   readonly confirmBtn = this.page.getByTestId("confirm-modal-button");
+  53  | 
+  54  |   readonly continueBtn = this.page.getByTestId("continue-button");
+  55  |   readonly addLinkBtn = this.page.getByTestId("add-link-button");
+  56  |   readonly addWithdrawalAddressBtn = this.page.getByTestId(
+  57  |     "add-withdrawal-link-button"
+  58  |   );
+  59  |   readonly infoBtn = this.page.getByTestId("info action-button");
+  60  |   readonly treasuryBtn = this.page.getByTestId("treasury requests-button");
+  61  |   readonly updateTheConstitutionBtn = this.page.getByTestId(
+  62  |     "updates to the constitution-button"
+  63  |   );
+  64  |   readonly motionOfNoConfidenceBtn = this.page.getByTestId(
+  65  |     "motion of no confidence-button"
+  66  |   );
+  67  |   readonly hardForkBtn = this.page.getByTestId("hard fork-button");
+  68  |   readonly editSubmissionButton = this.page.getByTestId(
+  69  |     "edit-submission-button"
+  70  |   );
+  71  |   readonly verifyIdentityBtn = this.page
+  72  |     .getByTestId("verify-user-link")
+  73  |     .first();
+  74  |   readonly governanceActionType = this.page.getByLabel(
+  75  |     "Governance Action Type *"
+  76  |   );
+  77  |   readonly saveDraftBtn = this.page.getByTestId("save-draft-button");
+  78  |   readonly submitBtn = this.page.getByTestId("submit-button");
+  79  |   readonly createNewProposalBtn = this.page.getByTestId(
+  80  |     "create-new-proposal-button"
+  81  |   );
+  82  |   readonly guardrailsScriptCheckbox = this.page.getByTestId(
+  83  |     "chb-prop-have-guardrails-script"
+  84  |   );
+  85  | 
+  86  |   // input fields
+  87  |   readonly titleInput = this.page.getByTestId("title-input");
+  88  |   readonly abstractInput = this.page.getByTestId("abstract-input");
+  89  |   readonly metadataUrlInput = this.page.getByTestId("url-input");
+  90  |   readonly motivationInput = this.page.getByTestId("motivation-input");
+  91  |   readonly rationaleInput = this.page.getByTestId("rationale-input");
+  92  |   readonly receivingAddressInput = this.page.getByTestId(
+  93  |     "receiving-address-0-text-input"
+  94  |   );
+  95  |   readonly amountInput = this.page.getByTestId("amount-0-text-input");
+  96  |   readonly constitutionUrlInput = this.page.getByTestId(
+  97  |     "prop_constitution_url"
+  98  |   );
+  99  |   readonly guardrailsScriptUrlInput = this.page.getByTestId(
+  100 |     "prop-guardrails-script-url-input"
+  101 |   );
+  102 |   readonly guardrailsScriptHashInput = this.page.getByTestId(
+  103 |     "prop-guardrails-script-hash-input"
+  104 |   );
+  105 |   readonly closeDraftSuccessModalBtn = this.page.getByTestId("close-button");
+  106 |   readonly linkTextInput = this.page.getByTestId("link-0-text-input");
+  107 |   readonly linkUrlInput = this.page.getByTestId("link-0-url-input");
+  108 |   readonly previousGAHashInput = this.page.getByTestId(
+  109 |     "previous-ga-hash-input"
+  110 |   );
+  111 |   readonly previousGAIdInput = this.page.getByTestId("previous-ga-id-input");
+  112 |   readonly majorInput = this.page.getByTestId("major-input");
+  113 |   readonly minorInput = this.page.getByTestId("minor-input");
+  114 | 
+  115 |   // content
+  116 |   readonly governanceActionTypeContent = this.page.getByTestId(
+  117 |     "governance-action-type-content"
+  118 |   );
+  119 |   readonly titleContent = this.page.getByTestId("title-content");
+  120 |   readonly abstractContent = this.page.getByTestId("abstract-content");
+  121 |   readonly motivationContent = this.page.getByTestId("motivation-content");
+  122 |   readonly rationaleContent = this.page.getByTestId("rationale-content");
+  123 |   readonly receivingAddressContent = this.page.getByTestId(
+  124 |     "receiving-address-0-content"
+  125 |   );
+  126 |   readonly amountContent = this.page.getByTestId("amount-0-content");
+  127 |   readonly constitutionUrlContent = this.page.getByTestId(
+  128 |     "new-constitution-url-content"
+  129 |   );
+  130 |   readonly guardrailsScriptUrlContent = this.page.getByTestId(
+  131 |     "guardrails-script-url-content"
+  132 |   );
+  133 |   readonly guardrailsScriptHashContent = this.page.getByTestId(
+  134 |     "guardrails-script-hash-content"
+  135 |   );
+  136 |   readonly linkTextContent = this.page.getByTestId("link-0-text-content");
+  137 |   readonly linkUrlContent = this.page.getByTestId("link-0-url-content");
+  138 |   readonly majorVersionContent = this.page.getByTestId("major-version-content");
+  139 |   readonly minorVersionContent = this.page.getByTestId("minor-version-content");
+  140 | 
+  141 |   constructor(private readonly page: Page) {}
+  142 | 
+  143 |   get currentPage(): Page {
+  144 |     return this.page;
+  145 |   }
+  146 | 
+  147 |   async goto() {
+> 148 |     await this.page.goto(`${environments.frontendUrl}/proposal_discussion`);
+      |                     ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/proposal_discussion
+  149 | 
+  150 |     await this.verifyIdentityBtn.click();
+  151 |     await this.proposalCreateBtn.click();
+  152 | 
+  153 |     await this.continueBtn.click();
+  154 |   }
+  155 | 
+  156 |   async fillUpValidMetadata() {
+  157 |     this.page.getByTestId("download-button").click();
+  158 | 
+  159 |     const dRepMetadata = await this.downloadVoteMetadata();
+  160 |     const url = await metadataBucketService.uploadMetadata(
+  161 |       faker.lorem.word({ length: { min: 5, max: 10 } }),
+  162 |       dRepMetadata.data
+  163 |     );
+  164 |     await this.metadataUrlInput.fill(url);
+  165 |     await this.submitBtn.click();
+  166 |   }
+  167 | 
+  168 |   async downloadVoteMetadata() {
+  169 |     const download: Download = await this.page.waitForEvent("download");
+  170 |     return downloadMetadata(download);
+  171 |   }
+  172 | 
+  173 |   async fillupFormWithTypeSelected(governanceProposal: ProposalCreateRequest) {
+  174 |     await this.fillCommonFields(governanceProposal);
+  175 | 
+  176 |     if (governanceProposal.gov_action_type_id === 1) {
+  177 |       await this.fillTreasuryFields(governanceProposal);
+  178 |     }
+  179 | 
+  180 |     if (governanceProposal.gov_action_type_id === 2) {
+  181 |       await this.fillUpdateTheConstitutionFields(governanceProposal);
+  182 |     }
+  183 | 
+  184 |     if (governanceProposal.proposal_links != null) {
+  185 |       await this.fillProposalLinks(governanceProposal.proposal_links);
+  186 |     }
+  187 | 
+  188 |     if (governanceProposal.gov_action_type_id == 4) {
+  189 |       await this.fillHardForkFields(governanceProposal);
+  190 |     }
+  191 |   }
+  192 | 
+  193 |   async fillupForm(governanceProposal: ProposalCreateRequest) {
+  194 |     console.log(governanceProposal.gov_action_type_id);
+  195 |     await this.governanceActionType.click();
+  196 | 
+  197 |     if (governanceProposal.gov_action_type_id === 0) {
+  198 |       await this.infoBtn.click();
+  199 |     } else if (governanceProposal.gov_action_type_id === 1) {
+  200 |       await this.treasuryBtn.click();
+  201 |     } else if (governanceProposal.gov_action_type_id === 2) {
+  202 |       await this.updateTheConstitutionBtn.click();
+  203 |       if (governanceProposal.has_guardrails) {
+  204 |         await this.guardrailsScriptCheckbox.click();
+  205 |       }
+  206 |     } else if (governanceProposal.gov_action_type_id === 3) {
+  207 |       await this.motionOfNoConfidenceBtn.click();
+  208 |     } else {
+  209 |       await this.hardForkBtn.click();
+  210 |     }
+  211 | 
+  212 |     await this.fillupFormWithTypeSelected(governanceProposal);
+  213 |   }
+  214 | 
+  215 |   async fillCommonFields(governanceProposal: ProposalCreateRequest) {
+  216 |     await this.titleInput.fill(governanceProposal.prop_name);
+  217 |     await this.abstractInput.fill(governanceProposal.prop_abstract);
+  218 |     await this.motivationInput.fill(governanceProposal.prop_motivation);
+  219 |     await this.rationaleInput.fill(governanceProposal.prop_rationale);
+  220 |   }
+  221 | 
+  222 |   async fillTreasuryFields(governanceProposal: ProposalCreateRequest) {
+  223 |     await this.receivingAddressInput.fill(
+  224 |       governanceProposal.prop_receiving_address
+  225 |     );
+  226 |     await this.amountInput.fill(governanceProposal.prop_amount);
+  227 |   }
+  228 | 
+  229 |   async fillUpdateTheConstitutionFields(
+  230 |     governanceProposal: ProposalCreateRequest
+  231 |   ) {
+  232 |     await this.constitutionUrlInput.fill(
+  233 |       governanceProposal.prop_constitution_url
+  234 |     );
+  235 | 
+  236 |     if (governanceProposal.has_guardrails) {
+  237 |       await this.guardrailsScriptUrlInput.fill(
+  238 |         governanceProposal.prop_guardrails_script_url
+  239 |       );
+  240 |       await this.guardrailsScriptHashInput.fill(
+  241 |         governanceProposal.prop_guardrails_script_hash
+  242 |       );
+  243 |     }
+  244 |   }
+  245 | 
+  246 |   async fillProposalLinks(proposal_links: Array<ProposalLink>) {
+  247 |     for (let i = 0; i < proposal_links.length; i++) {
+  248 |       if (i > 0) {
+```

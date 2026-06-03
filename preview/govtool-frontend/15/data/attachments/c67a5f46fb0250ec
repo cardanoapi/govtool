@@ -1,0 +1,162 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 8-proposal-discussion/proposalDiscussion.spec.ts >> 8S. Should restrict proposal creation on disconnected state
+- Location: tests/8-proposal-discussion/proposalDiscussion.spec.ts:227:5
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/proposal_discussion
+Call log:
+  - navigating to "https://preview.dev.gov.tools/proposal_discussion", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1   | import { expect, Locator, Page } from "@playwright/test";
+  2   | import {
+  3   |   ProposalCreateRequest,
+  4   |   ProposalDiscussionFilterTypes,
+  5   |   ProposalType,
+  6   |   ProposedGovAction,
+  7   | } from "@types";
+  8   | import environments from "lib/constants/environments";
+  9   | import ProposalDiscussionDetailsPage from "./proposalDiscussionDetailsPage";
+  10  | import { functionWaitedAssert, waitedLoop } from "@helpers/waitedLoop";
+  11  | 
+  12  | export default class ProposalDiscussionPage {
+  13  |   // Buttons
+  14  |   readonly proposalCreateBtn = this.page.getByTestId(
+  15  |     "propose-a-governance-action-button"
+  16  |   );
+  17  |   readonly continueBtn = this.page.getByTestId("continue-button");
+  18  |   readonly filterBtn = this.page.getByTestId("filter-button");
+  19  |   readonly sortBtn = this.page.getByTestId("sort-button");
+  20  |   readonly searchInput = this.page.getByTestId("search-input");
+  21  |   readonly showAllBtn = this.page.getByTestId("show-all-button").first(); //this.page.getByTestId("show-all-button");
+  22  |   readonly verifyIdentityBtn = this.page
+  23  |     .getByTestId("verify-user-link")
+  24  |     .first();
+  25  |   readonly addLinkBtn = this.page.getByTestId("add-link-button");
+  26  |   readonly infoRadio = this.page.getByTestId("info action-radio-wrapper");
+  27  |   readonly treasuryRadio = this.page.getByTestId(
+  28  |     "treasury requests-radio-wrapper"
+  29  |   );
+  30  |   readonly activeProposalWrapper = this.page.getByTestId(
+  31  |     "active-proposal-radio-wrapper"
+  32  |   );
+  33  | 
+  34  |   constructor(private readonly page: Page) {}
+  35  | 
+  36  |   async goto() {
+> 37  |     await this.page.goto(`${environments.frontendUrl}/proposal_discussion`);
+      |                     ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/proposal_discussion
+  38  |     // wait for the proposal cards to load
+  39  |     await this.page.waitForTimeout(2_000);
+  40  |   }
+  41  | 
+  42  |   async viewFirstProposal(): Promise<ProposalDiscussionDetailsPage> {
+  43  |     await this.page
+  44  |       .locator('[data-testid^="proposal-"][data-testid$="-view-details"]')
+  45  |       .first()
+  46  |       .click();
+  47  |     return new ProposalDiscussionDetailsPage(this.page);
+  48  |   }
+  49  | 
+  50  |   async getAllProposals() {
+  51  |     await waitedLoop(async () => {
+  52  |       return (
+  53  |         (await this.page
+  54  |           .locator('[data-testid^="proposal-"][data-testid$="-card"]')
+  55  |           .count()) > 0
+  56  |       );
+  57  |     });
+  58  | 
+  59  |     return this.page
+  60  |       .locator('[data-testid^="proposal-"][data-testid$="-card"]')
+  61  |       .all();
+  62  |   }
+  63  | 
+  64  |   async setUsername(name: string) {
+  65  |     await this.page.getByTestId("username-input").fill(name);
+  66  | 
+  67  |     const proceedBtn = this.page.getByTestId("proceed-button");
+  68  |     await proceedBtn.click();
+  69  |     await proceedBtn.click();
+  70  | 
+  71  |     await this.page.getByTestId("close-button").click();
+  72  |   }
+  73  | 
+  74  |   private async fillForm(data: ProposalCreateRequest) {
+  75  |     await this.page.getByTestId("governance-action-type").click();
+  76  |     await this.page.getByTestId("info-button").click();
+  77  |     await this.page.getByTestId("title-input").fill(data.prop_name);
+  78  |     await this.page.getByTestId("abstract-input").fill(data.prop_abstract);
+  79  |     await this.page.getByTestId("motivation-input").fill(data.prop_motivation);
+  80  |     await this.page.getByTestId("rationale-input").fill(data.prop_rationale);
+  81  | 
+  82  |     for (let index = 0; index < data.proposal_links.length; index++) {
+  83  |       await this.addLinkBtn.click();
+  84  | 
+  85  |       await this.page
+  86  |         .getByTestId(`link-${index}-url-input`)
+  87  |         .fill(data.proposal_links[index].prop_link);
+  88  |       await this.page
+  89  |         .getByTestId(`link-${index}-text-input`)
+  90  |         .fill(data.proposal_links[index].prop_link_text);
+  91  |     }
+  92  |   }
+  93  | 
+  94  |   async applyAndValidateFilters(
+  95  |     filters: string[],
+  96  |     validateFunction: (proposalCard: any, filters: string[]) => Promise<boolean>
+  97  |   ) {
+  98  |     await this.page.waitForTimeout(4_000); // wait for the proposals to load
+  99  |     // single filter
+  100 |     for (const filter of filters) {
+  101 |       await this.filterProposalByNames([filter]);
+  102 |       await this.validateFilters([filter], validateFunction);
+  103 |       await this.unFilterProposalByNames([filter]);
+  104 |     }
+  105 | 
+  106 |     // multiple filter
+  107 |     const multipleFilters = [...filters];
+  108 |     while (multipleFilters.length > 1) {
+  109 |       await this.filterProposalByNames(multipleFilters);
+  110 |       await this.validateFilters(multipleFilters, validateFunction);
+  111 |       await this.unFilterProposalByNames(multipleFilters);
+  112 |       multipleFilters.pop();
+  113 |     }
+  114 |   }
+  115 | 
+  116 |   async clickRadioButtonsByNames(names: string[]) {
+  117 |     for (const name of names) {
+  118 |       const testId = Object.values(ProposalType).includes(name as ProposalType)
+  119 |         ? name.toLowerCase()
+  120 |         : name.toLowerCase().replace(/ /g, "-");
+  121 |       await this.page.getByTestId(`${testId}-radio`).click();
+  122 |     }
+  123 |   }
+  124 | 
+  125 |   async filterProposalByNames(names: string[]) {
+  126 |     await this.clickRadioButtonsByNames(names);
+  127 |   }
+  128 | 
+  129 |   async unFilterProposalByNames(names: string[]) {
+  130 |     await this.clickRadioButtonsByNames(names);
+  131 |   }
+  132 | 
+  133 |   async validateFilters(
+  134 |     filters: string[],
+  135 |     validateFunction: (proposalCard: any, filters: string[]) => Promise<boolean>
+  136 |   ) {
+  137 |     await functionWaitedAssert(async () => {
+```

@@ -1,0 +1,230 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 4-proposal-visibility/proposalVisibility.spec.ts >> 4K. Should display correct vote counts on governance details page for disconnect state
+- Location: tests/4-proposal-visibility/proposalVisibility.spec.ts:225:5
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/governance_actions
+Call log:
+  - navigating to "https://preview.dev.gov.tools/governance_actions", waiting until "load"
+
+```
+
+```
+Error: page.waitForResponse: Test ended.
+```
+
+# Test source
+
+```ts
+  129 |   await govActionsPage.filterProposalByNames([filterOptionNames[choice]]);
+  130 | 
+  131 |   await govActionsPage.sortBtn.click();
+  132 |   await govActionsPage.sortAndValidate(
+  133 |     SortOption.SoonToExpire,
+  134 |     (p1, p2) => p1.expiryDate <= p2.expiryDate,
+  135 |     [removeAllSpaces(filterOptionNames[choice])]
+  136 |   );
+  137 |   await govActionsPage.validateFilters([filterOptionNames[choice]]);
+  138 | });
+  139 | 
+  140 | test("4L. Should search governance actions", async ({ page }) => {
+  141 |   let governanceActionId: string | undefined;
+  142 |   await page.route("**/proposal/list?**", async (route) => {
+  143 |     const response = await route.fetch();
+  144 |     const data = await response.json();
+  145 |     const elementsWithIds = data["elements"].map(
+  146 |       (element) => element["txHash"] + "#" + element["index"]
+  147 |     );
+  148 |     if (elementsWithIds.length !== 0 && governanceActionId === undefined) {
+  149 |       governanceActionId = elementsWithIds[0];
+  150 |     }
+  151 |     await route.fulfill({
+  152 |       status: 200,
+  153 |       contentType: "application/json",
+  154 |       body: JSON.stringify(data),
+  155 |     });
+  156 |   });
+  157 |   const responsePromise = page.waitForResponse("**/proposal/list?**");
+  158 | 
+  159 |   const governanceActionPage = new GovernanceActionsPage(page);
+  160 |   await governanceActionPage.goto();
+  161 | 
+  162 |   await responsePromise;
+  163 | 
+  164 |   await governanceActionPage.searchInput.fill(governanceActionId);
+  165 | 
+  166 |   await functionWaitedAssert(
+  167 |     async () => {
+  168 |       const proposalCards = await governanceActionPage.getAllProposals();
+  169 | 
+  170 |       for (const proposalCard of proposalCards) {
+  171 |         await expect(
+  172 |           proposalCard.getByTestId(`${governanceActionId}-id`)
+  173 |         ).toBeVisible();
+  174 |       }
+  175 |     },
+  176 |     { message: `${governanceActionId} not found` }
+  177 |   );
+  178 | });
+  179 | 
+  180 | test("4M. Should show categorized governance actions", async ({
+  181 |   page,
+  182 | }) => {
+  183 |   await page.route("**/proposal/list?**", async (route) =>
+  184 |     route.fulfill({
+  185 |       body: JSON.stringify(infoTypeProposal),
+  186 |     })
+  187 |   );
+  188 | 
+  189 |   const governanceActionPage = new GovernanceActionsPage(page);
+  190 |   await governanceActionPage.goto();
+  191 | 
+  192 |   const proposalCards = await governanceActionPage.getAllProposals();
+  193 | 
+  194 |   expect(proposalCards.length).toBeGreaterThan(0);
+  195 | 
+  196 |   for (const proposalCard of proposalCards) {
+  197 |     await expect(
+  198 |       proposalCard.getByTestId("InfoAction-type")
+  199 |     ).toBeVisible();
+  200 |   }
+  201 | });
+  202 | 
+  203 | test("4H. Should verify none of the displayed governance actions have expired", async ({
+  204 |   page,
+  205 | }) => {
+  206 |   const govActionsPage = new GovernanceActionsPage(page);
+  207 |   await govActionsPage.goto();
+  208 | 
+  209 |   await functionWaitedAssert(
+  210 |     async () => {
+  211 |       const proposalCards = await govActionsPage.getAllProposals();
+  212 |       for (const proposalCard of proposalCards) {
+  213 |         await expect(proposalCard).toBeVisible();
+  214 |         const expiryDateEl = proposalCard.getByTestId("expiry-date");
+  215 |         const expiryDateTxt = await expiryDateEl.innerText();
+  216 |         const expiryDate = extractExpiryDateFromText(expiryDateTxt);
+  217 |         const today = new Date();
+  218 |         expect(today <= expiryDate).toBeTruthy();
+  219 |       }
+  220 |     },
+  221 |     { name: "verify none expired governance actions" }
+  222 |   );
+  223 | });
+  224 | 
+  225 | test("4K. Should display correct vote counts on governance details page for disconnect state", async ({
+  226 |   page,
+  227 |   browser,
+  228 | }) => {
+> 229 |  const responsePromise = page.waitForResponse((response) =>
+      |                               ^ Error: page.waitForResponse: Test ended.
+  230 |   response.url().includes("/proposal/list")
+  231 | );
+  232 | const governanceActionsPage = new GovernanceActionsPage(page);
+  233 | await governanceActionsPage.goto();
+  234 | 
+  235 | const response = await responsePromise;
+  236 | const data = await response.json();
+  237 | const proposals: IProposal[] = data.elements;
+  238 | 
+  239 | 
+  240 |   expect(proposals.length, "No proposals found!").toBeGreaterThan(0);
+  241 | 
+  242 |   const uniqueProposalTypes = Array.from(
+  243 |     new Map(proposals.map((proposal) => [proposal.type, proposal])).values()
+  244 |   );
+  245 | 
+  246 |   await Promise.all(
+  247 |     uniqueProposalTypes.map(async (proposalToCheck) => {
+  248 |       const newPage = await browser.newPage();
+  249 |       injectLogger(newPage);
+  250 |       const totalStakeResponsePromise = newPage.waitForResponse((response) =>
+  251 |         response.url().includes(`network/total-stake`)
+  252 |       );
+  253 |       const govActionDetailsPage = new GovernanceActionDetailsPage(newPage);
+  254 |       await govActionDetailsPage.goto(
+  255 |         `${proposalToCheck.txHash}#${proposalToCheck.index}`
+  256 |       );
+  257 | 
+  258 |       const dRepTotalAbstainVote =
+  259 |         await govActionDetailsPage.getDRepTotalAbstainVoted(
+  260 |           proposalToCheck,
+  261 |           totalStakeResponsePromise
+  262 |         );
+  263 | 
+  264 |       // check dRep votes
+  265 |       if (await areDRepVoteTotalsDisplayed(proposalToCheck)) {
+  266 |         await expect(govActionDetailsPage.dRepYesVotes).toHaveText(
+  267 |           `₳ ${correctVoteAdaFormat(proposalToCheck.dRepYesVotes)}`
+  268 |         );
+  269 |         await expect(govActionDetailsPage.dRepAbstainVotes).toHaveText(
+  270 |           `₳ ${correctVoteAdaFormat(dRepTotalAbstainVote)}`
+  271 |         );
+  272 |         await expect(govActionDetailsPage.dRepNoVotes).toHaveText(
+  273 |           `₳ ${correctVoteAdaFormat(proposalToCheck.dRepNoVotes)}`
+  274 |         );
+  275 |       }
+  276 |       // check sPos votes
+  277 |       if (await areSPOVoteTotalsDisplayed(proposalToCheck)) {
+  278 |         await expect(govActionDetailsPage.sPosYesVotes).toHaveText(
+  279 |           `₳ ${correctVoteAdaFormat(proposalToCheck.poolYesVotes)}`
+  280 |         );
+  281 |         await expect(govActionDetailsPage.sPosAbstainVotes).toHaveText(
+  282 |           `₳ ${correctVoteAdaFormat(proposalToCheck.poolAbstainVotes)}`
+  283 |         );
+  284 |         await expect(govActionDetailsPage.sPosNoVotes).toHaveText(
+  285 |           `₳ ${correctVoteAdaFormat(proposalToCheck.poolNoVotes)}`
+  286 |         );
+  287 |       }
+  288 | 
+  289 |       // check ccCommittee votes
+  290 |       if (areCCVoteTotalsDisplayed(proposalToCheck)) {
+  291 |         await expect(govActionDetailsPage.ccCommitteeYesVotes).toHaveText(
+  292 |           `${proposalToCheck.ccYesVotes}`
+  293 |         );
+  294 |         await expect(govActionDetailsPage.ccCommitteeAbstainVotes).toHaveText(
+  295 |           `${proposalToCheck.ccAbstainVotes}`
+  296 |         );
+  297 |         await expect(govActionDetailsPage.ccCommitteeNoVotes).toHaveText(
+  298 |           `${proposalToCheck.ccNoVotes}`
+  299 |         );
+  300 |       }
+  301 |     })
+  302 |   );
+  303 | });
+  304 | 
+  305 | test.describe("Invalid Live voting Metadata", () => {
+  306 |   InvalidMetadata.forEach(({ type, reason, url, hash }, index) => {
+  307 |     test(`4P_${index + 1}: Should display ${type} message in live voting when ${reason}`, async ({
+  308 |       page,
+  309 |     }) => {
+  310 |       const proposal: IProposal = {
+  311 |         ...infoTypeProposal.elements[0],
+  312 |         url,
+  313 |         metadataHash: hash,
+  314 |       };
+  315 |       const liveProposalResponse: PaginatedLiveProposal = {
+  316 |         ...infoTypeProposal,
+  317 |         elements: [proposal],
+  318 |       };
+  319 | 
+  320 |       await page.route("**/proposal/list?**", async (route) =>
+  321 |         route.fulfill({
+  322 |           body: JSON.stringify(liveProposalResponse),
+  323 |         })
+  324 |       );
+  325 | 
+  326 |       const governanceActionPage = new GovernanceActionsPage(page);
+  327 |       await governanceActionPage.goto();
+  328 |       await governanceActionPage.viewFirstProposal();
+  329 | 
+```

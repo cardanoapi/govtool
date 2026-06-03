@@ -1,0 +1,44 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 5-proposal-functionality/proposalFunctionality.loggedin.spec.ts >> 5J. Should hide retirement option for non-registered DRep
+- Location: tests/5-proposal-functionality/proposalFunctionality.loggedin.spec.ts:13:5
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+Call log:
+  - navigating to "https://preview.dev.gov.tools/", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1  | import { user01AuthFile } from "@constants/auth";
+  2  | import { user01Wallet } from "@constants/staticWallets";
+  3  | import { test } from "@fixtures/walletExtension";
+  4  | import { setAllureEpic } from "@helpers/allure";
+  5  | import { expect } from "@playwright/test";
+  6  | 
+  7  | test.use({ storageState: user01AuthFile, wallet: user01Wallet });
+  8  | 
+  9  | test.beforeEach(async () => {
+  10 |   await setAllureEpic("5. Proposal functionality");
+  11 | });
+  12 | 
+  13 | test("5J. Should hide retirement option for non-registered DRep", async ({
+  14 |   page,
+  15 | }) => {
+> 16 |   await page.goto("/");
+     |              ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+  17 |   await expect(page.getByTestId("retire-button")).not.toBeVisible();
+  18 | });
+  19 | 
+```

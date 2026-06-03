@@ -1,0 +1,164 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 7-proposal-submission/proposalSubmission.loggedin.pd.spec.ts >> Proposal created logged state >> 7B. Should access proposal creation page
+- Location: tests/7-proposal-submission/proposalSubmission.loggedin.pd.spec.ts:38:7
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+Call log:
+  - navigating to "https://preview.dev.gov.tools/", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1   | import {
+  2   |   proposal01AuthFile,
+  3   |   proposal03AuthFile,
+  4   |   proposal04AuthFile,
+  5   |   proposal06AuthFile,
+  6   | } from "@constants/auth";
+  7   | import environments from "@constants/environments";
+  8   | import {
+  9   |   proposal01Wallet,
+  10  |   proposal03Wallet,
+  11  |   proposal04Wallet,
+  12  |   proposal06Wallet,
+  13  | } from "@constants/staticWallets";
+  14  | import { faker } from "@faker-js/faker";
+  15  | import { test } from "@fixtures/proposal";
+  16  | import { setAllureEpic } from "@helpers/allure";
+  17  | import { getDraftProposalWalletAndState } from "@helpers/auth";
+  18  | import {
+  19  |   skipIfNotInfoAndBootstrapping,
+  20  |   isBootStrapingPhase,
+  21  |   skipIfMainnet,
+  22  | } from "@helpers/cardano";
+  23  | import { ShelleyWallet } from "@helpers/crypto";
+  24  | import { getProposalType } from "@helpers/index";
+  25  | import { createNewPageWithWallet } from "@helpers/page";
+  26  | import { rewardAddressBech32 } from "@helpers/shellyWallet";
+  27  | import ProposalDiscussionDetailsPage from "@pages/proposalDiscussionDetailsPage";
+  28  | import ProposalSubmissionPage from "@pages/proposalSubmissionPage";
+  29  | import { expect } from "@playwright/test";
+  30  | import { ProposalCreateRequest, ProposalType } from "@types";
+  31  | 
+  32  | test.beforeEach(async () => {
+  33  |   await setAllureEpic("7. Proposal submission");
+  34  | });
+  35  | 
+  36  | test.describe("Proposal created logged state", () => {
+  37  |   test.use({ storageState: proposal01AuthFile, wallet: proposal01Wallet });
+  38  |   test("7B. Should access proposal creation page", async ({ page }) => {
+> 39  |     await page.goto("/");
+      |                ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+  40  |     await page.getByTestId("proposal-discussion-link").click();
+  41  | 
+  42  |     await expect(page.getByText("Proposals", { exact: true })).toHaveCount(2);
+  43  |   });
+  44  | 
+  45  |   test.describe("Accept valid data", () => {
+  46  |     getProposalType().map((type: ProposalType, index) => {
+  47  |       test(`7E_${index + 1}. Should accept valid data in ${type.toLowerCase()} proposal form`, async ({
+  48  |         page,
+  49  |       }) => {
+  50  |         await skipIfNotInfoAndBootstrapping(type);
+  51  | 
+  52  | 
+  53  |         test.slow(); // Brute-force testing with 50 random data
+  54  | 
+  55  |         const proposalSubmissionPage = new ProposalSubmissionPage(page);
+  56  | 
+  57  |         await proposalSubmissionPage.goto();
+  58  | 
+  59  |         await proposalSubmissionPage.governanceActionType.click();
+  60  |         await page.getByTestId(`${type.toLocaleLowerCase()}-button`).click();
+  61  |         await proposalSubmissionPage.addLinkBtn.click();
+  62  | 
+  63  |         if (type === ProposalType.updatesToTheConstitution) {
+  64  |           await proposalSubmissionPage.guardrailsScriptCheckbox.click();
+  65  |         }
+  66  | 
+  67  |         for (let i = 0; i < 50; i++) {
+  68  |           const rewardAddressBech32 = (
+  69  |             await ShelleyWallet.generate()
+  70  |           ).rewardAddressBech32(environments.networkId);
+  71  |           const formFields: ProposalCreateRequest =
+  72  |             await proposalSubmissionPage.generateValidProposalFormFields({
+  73  |               proposalType: type,
+  74  |               receivingAddress: rewardAddressBech32,
+  75  |               forValidation: true,
+  76  |             });
+  77  |           await proposalSubmissionPage.validateForm(formFields);
+  78  |         }
+  79  | 
+  80  |         if (type === ProposalType.treasury) {
+  81  |           for (let i = 0; i < 9; i++) {
+  82  |             await expect(
+  83  |               proposalSubmissionPage.addWithdrawalAddressBtn
+  84  |             ).toBeVisible();
+  85  |             await proposalSubmissionPage.addWithdrawalAddressBtn.click();
+  86  |           }
+  87  |         }
+  88  | 
+  89  |         await expect(
+  90  |           proposalSubmissionPage.addWithdrawalAddressBtn
+  91  |         ).toBeHidden();
+  92  | 
+  93  |         for (let i = 0; i < 6; i++) {
+  94  |           await expect(proposalSubmissionPage.addLinkBtn).toBeVisible();
+  95  |           await proposalSubmissionPage.addLinkBtn.click();
+  96  |         }
+  97  | 
+  98  |         await expect(proposalSubmissionPage.addLinkBtn).toBeHidden();
+  99  |       });
+  100 |     });
+  101 |   });
+  102 | 
+  103 |   test.describe("Reject invalid  data", () => {
+  104 |     getProposalType().map((type: ProposalType, index) => {
+  105 |       test(`7F_${index + 1}. Should reject invalid data in ${type.toLowerCase()} Proposal form`, async ({
+  106 |         page,
+  107 |       }) => {
+  108 |         await skipIfNotInfoAndBootstrapping(type);
+  109 | 
+  110 |         test.slow(); // Brute-force testing with 50 random data
+  111 | 
+  112 |         const proposalSubmissionPage = new ProposalSubmissionPage(page);
+  113 |         await proposalSubmissionPage.goto();
+  114 | 
+  115 |         await proposalSubmissionPage.governanceActionType.click();
+  116 |         await page.getByTestId(`${type.toLocaleLowerCase()}-button`).click();
+  117 |         await proposalSubmissionPage.addLinkBtn.click();
+  118 | 
+  119 |         if (type === ProposalType.updatesToTheConstitution) {
+  120 |           await proposalSubmissionPage.guardrailsScriptCheckbox.click();
+  121 |         }
+  122 | 
+  123 |         for (let i = 0; i < 50; i++) {
+  124 |           const formFields: ProposalCreateRequest =
+  125 |             proposalSubmissionPage.generateInValidProposalFormFields(type);
+  126 |           await proposalSubmissionPage.inValidateForm(formFields);
+  127 |         }
+  128 |       });
+  129 |     });
+  130 |   });
+  131 | 
+  132 |   test.describe("Create a proposal with proper data", () => {
+  133 |     getProposalType().map((type: ProposalType, index) => {
+  134 |       test(`7G_${index + 1}. Should create a proposal with proper ${type.toLowerCase()} data`, async ({
+  135 |         page,
+  136 |         wallet,
+  137 |       }) => {
+  138 |         await skipIfMainnet();
+  139 |         await skipIfNotInfoAndBootstrapping(type);
+```

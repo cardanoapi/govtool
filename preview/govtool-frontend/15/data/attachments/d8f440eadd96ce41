@@ -1,0 +1,226 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 9-outcomes/outcomes.spec.ts >> Outcomes page >> 9A_1. Should access Outcomes page in disconnect state
+- Location: tests/9-outcomes/outcomes.spec.ts:20:7
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+Call log:
+  - navigating to "https://preview.dev.gov.tools/", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  155 | 
+  156 |   getSortTestId(sortOption: string) {
+  157 |     const sortType = this.getSortType(sortOption);
+  158 |     return sortType.toLowerCase().replace(/[\s.]/g, "") + "-radio";
+  159 |   }
+  160 | 
+  161 |   async sortAndValidate(
+  162 |     sortOption: string,
+  163 |     validationFn: (p1: outcomeProposal, p2: outcomeProposal) => boolean,
+  164 |     filterKey?: string
+  165 |   ) {
+  166 |     const sortType = this.getSortType(sortOption);
+  167 |     const responsePromise = this.page.waitForResponse((response) =>
+  168 |       response
+  169 |         .url()
+  170 |         .includes(
+  171 |           filterKey
+  172 |             ? `&filters=${filterKey}&sort=${sortType}`
+  173 |             : `&sort=${sortType}`
+  174 |         )
+  175 |     );
+  176 | 
+  177 |     await this.page.getByTestId(this.getSortTestId(sortOption)).click();
+  178 | 
+  179 |     const response = await responsePromise;
+  180 |     const outcomeProposalList: outcomeProposal[] = await response.json();
+  181 | 
+  182 |     // API validation
+  183 |     if (outcomeProposalList.length <= 1) return;
+  184 | 
+  185 |     for (let i = 0; i <= outcomeProposalList.length - 2; i++) {
+  186 |       const isValid = validationFn(
+  187 |         outcomeProposalList[i],
+  188 |         outcomeProposalList[i + 1]
+  189 |       );
+  190 |       expect(isValid).toBe(true);
+  191 |     }
+  192 | 
+  193 |     await expect(
+  194 |       this.page.getByRole("progressbar").getByRole("img")
+  195 |     ).toBeHidden({ timeout: 20_000 });
+  196 | 
+  197 |     await functionWaitedAssert(
+  198 |       async () => {
+  199 |         const outcomeCards = await this.getAllOutcomes();
+  200 |         for (const [index, outcomeCard] of outcomeCards.entries()) {
+  201 |           const outcomeProposalFromAPI = outcomeProposalList[index];
+  202 |           const proposalTypeFromUI = await outcomeCard
+  203 |             .locator('[data-testid$="-type"]')
+  204 |             .textContent();
+  205 |           const proposalTypeFromApi = outcomeType[outcomeProposalFromAPI.type];
+  206 | 
+  207 |           const cip105IdFromUI = await outcomeCard
+  208 |             .locator('[data-testid$="-CIP-105-id"]')
+  209 |             .textContent();
+  210 |           const cip105IdFromApi = `${outcomeProposalFromAPI.tx_hash}#${outcomeProposalFromAPI.index}`;
+  211 | 
+  212 |           expect(proposalTypeFromUI.replace(/^.*Type/, "")).toContain(
+  213 |             proposalTypeFromApi
+  214 |           );
+  215 | 
+  216 |           expect(cip105IdFromUI.replace(/^.*ID/, "")).toContain(
+  217 |             cip105IdFromApi
+  218 |           );
+  219 |         }
+  220 |       },
+  221 |       {
+  222 |         name: `frontend sort validation of ${sortOption} and filter ${filterKey}`,
+  223 |       }
+  224 |     );
+  225 |   }
+  226 | 
+  227 |   async _validateFiltersInOutcomeCard(
+  228 |     proposalCard: Locator,
+  229 |     filters: string[]
+  230 |   ): Promise<boolean> {
+  231 |     const type = await proposalCard
+  232 |       .locator('[data-testid$="-type"]')
+  233 |       .textContent();
+  234 |     const outcomeType = type.replace(/^.*Type/, "");
+  235 |     return filters.includes(outcomeType);
+  236 |   }
+  237 | 
+  238 |   async _validateStatusFiltersInOutcomeCard(
+  239 |     proposalCard: Locator,
+  240 |     filters: string[]
+  241 |   ): Promise<boolean> {
+  242 |     const status = await proposalCard
+  243 |       .locator('[data-testid$="-status"]')
+  244 |       .textContent();
+  245 |     const outcomeStatus = outcomeStatusType.filter((statusType) => {
+  246 |       if (statusType === "Live") {
+  247 |         return "In Progress";
+  248 |       }
+  249 |       return status.includes(statusType);
+  250 |     });
+  251 |     return outcomeStatus.some((status) => filters.includes(status));
+  252 |   }
+  253 | 
+  254 |   async shouldAccessPage(isLoggedIn = false) {
+> 255 |     await this.page.goto("/");
+      |                     ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+  256 | 
+  257 |     if (isMobile(this.page)) {
+  258 |       await this.page.getByTestId("open-drawer-button").click();
+  259 |     } else {
+  260 |       if (!isLoggedIn) {
+  261 |         await this.page.getByTestId("governance-actions").click();
+  262 |       }
+  263 |     }
+  264 |     await this.page.getByTestId("governance-actions-outcomes-link").click();
+  265 | 
+  266 |     if (!isMobile(this.page) && !isLoggedIn) {
+  267 |       await this.page.getByTestId("governance-actions").click();
+  268 |     }
+  269 | 
+  270 |     await expect(this.page.getByText(/outcomes/i)).toHaveCount(2);
+  271 |   }
+  272 | 
+  273 |   async filterOutcomes() {
+  274 |     await this.filterBtn.click();
+  275 |     const filterOptionNames = Object.values(outcomeType);
+  276 | 
+  277 |     // proposal type filter
+  278 |     await this.applyAndValidateFilters(
+  279 |       filterOptionNames,
+  280 |       this._validateFiltersInOutcomeCard
+  281 |     );
+  282 | 
+  283 |     // proposal status filter
+  284 |     await this.applyAndValidateFilters(
+  285 |       status,
+  286 |       this._validateStatusFiltersInOutcomeCard
+  287 |     );
+  288 |   }
+  289 | 
+  290 |   async sortOutcomes() {
+  291 |     await this.sortBtn.click();
+  292 | 
+  293 |     await this.sortAndValidate(
+  294 |       SortOption.NewestFirst,
+  295 |       (p1, p2) => p1.expiry_date >= p2.time
+  296 |     );
+  297 | 
+  298 |     await this.sortAndValidate(
+  299 |       SortOption.OldestFirst,
+  300 |       (p1, p2) => p1.expiry_date <= p2.expiry_date
+  301 |     );
+  302 | 
+  303 |     await this.sortAndValidate(
+  304 |       SortOption.HighestAmountYesVote,
+  305 |       (p1, p2) => parseInt(p1.yes_votes) >= parseInt(p2.yes_votes)
+  306 |     );
+  307 |   }
+  308 | 
+  309 |   async filterAndSortOutcomes() {
+  310 |     const filterOptionKeys = Object.keys(outcomeType);
+  311 |     const filterOptionNames = Object.values(outcomeType);
+  312 | 
+  313 |     const choice = Math.floor(Math.random() * filterOptionKeys.length);
+  314 |     await this.goto({ filter: filterOptionKeys[choice] });
+  315 |     await this.sortBtn.click();
+  316 | 
+  317 |     await this.sortAndValidate(
+  318 |       SortOption.OldestFirst,
+  319 |       (p1, p2) => p1.expiry_date <= p2.expiry_date
+  320 |     );
+  321 | 
+  322 |     await this.validateFilters(
+  323 |       [filterOptionNames[choice]],
+  324 |       this._validateFiltersInOutcomeCard
+  325 |     );
+  326 |   }
+  327 | 
+  328 |   async verifyAllOutcomesAreExpired() {
+  329 |     const proposalCards = await this.getAllOutcomes();
+  330 | 
+  331 |     for (const proposalCard of proposalCards) {
+  332 |       const expiryDateEl = proposalCard.locator(
+  333 |         '[data-testid$="-Expired-date"]'
+  334 |       );
+  335 |       const expiryDateTxt = await expiryDateEl.innerText();
+  336 |       const expiryDate = extractExpiryDateFromText(expiryDateTxt);
+  337 |       const today = new Date();
+  338 |       expect(today >= expiryDate).toBeTruthy();
+  339 |     }
+  340 |   }
+  341 | 
+  342 |   async VerifyLoadMoreOutcomes() {
+  343 |     const responsePromise = this.page.waitForResponse((response) =>
+  344 |       response
+  345 |         .url()
+  346 |         .includes(`governance-actions?search=&filters=&sort=newestFirst&page=2`)
+  347 |     );
+  348 |     await this.goto();
+  349 | 
+  350 |     let governanceActionIdsBefore: String[];
+  351 |     let governanceActionIdsAfter: String[];
+  352 | 
+  353 |     await functionWaitedAssert(
+  354 |       async () => {
+  355 |         governanceActionIdsBefore =
+```

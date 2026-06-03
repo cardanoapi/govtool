@@ -1,0 +1,42 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 3-drep-registration/dRepRegistration.spec.ts >> 3C. Should open wallet connection popup on DRep registration in disconnected state
+- Location: tests/3-drep-registration/dRepRegistration.spec.ts:9:5
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+Call log:
+  - navigating to "https://preview.dev.gov.tools/", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1  | import { setAllureEpic } from "@helpers/allure";
+  2  | import { expect } from "@playwright/test";
+  3  | import { test } from "@fixtures/walletExtension";
+  4  | 
+  5  | test.beforeEach(async () => {
+  6  |   await setAllureEpic("3. DRep registration");
+  7  | });
+  8  | 
+  9  | test("3C. Should open wallet connection popup on DRep registration in disconnected state", async ({
+  10 |   page,
+  11 | }) => {
+> 12 |   await page.goto("/");
+     |              ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+  13 | 
+  14 |   await page.getByTestId("register-connect-wallet-button").click();
+  15 |   await expect(page.getByTestId("connect-your-wallet-modal")).toBeVisible();
+  16 | });
+  17 | 
+```

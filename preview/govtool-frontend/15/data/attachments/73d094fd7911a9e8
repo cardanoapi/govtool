@@ -1,0 +1,48 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 3-drep-registration/dRepRegistration.loggedin.spec.ts >> Validation of dRep Registration Form >> 3E_2. Should reject invalid data in DRep form
+- Location: tests/3-drep-registration/dRepRegistration.loggedin.spec.ts:82:7
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/register_drep
+Call log:
+  - navigating to "https://preview.dev.gov.tools/register_drep", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1  | import environments from "@constants/environments";
+  2  | import { Page } from "@playwright/test";
+  3  | import DRepForm from "../forms/dRepForm";
+  4  | 
+  5  | export default class DRepRegistrationPage extends DRepForm {
+  6  |   readonly registerBtn = this.page.getByTestId("register-button");
+  7  |   readonly confirmBtn = this.page.getByTestId("confirm-modal-button");
+  8  | 
+  9  |   readonly registrationSuccessModal = this.page.getByTestId(
+  10 |     "governance-action-submitted-modal"
+  11 |   );
+  12 |   readonly metadataErrorModal = this.page.getByTestId("modal");
+  13 | 
+  14 |   constructor(private readonly page: Page) {
+  15 |     super(page);
+  16 |   }
+  17 | 
+  18 |   async goto() {
+> 19 |     await this.page.goto(`${environments.frontendUrl}/register_drep`);
+     |                     ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/register_drep
+  20 |     await this.continueBtn.click(); // BUG: testId -> continue-register-button
+  21 |   }
+  22 | }
+  23 | 
+```

@@ -1,0 +1,178 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 2-delegation/delegation.loggedin.spec.ts >> 2X_1. Should include info button and voting power on the Abstain card
+- Location: tests/2-delegation/delegation.loggedin.spec.ts:47:5
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/connected/drep_directory
+Call log:
+  - navigating to "https://preview.dev.gov.tools/connected/drep_directory", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1   | import { convertDRep } from "@helpers/dRep";
+  2   | import { functionWaitedAssert, waitedLoop } from "@helpers/waitedLoop";
+  3   | import { Locator, Page, expect } from "@playwright/test";
+  4   | import { IDRep } from "@types";
+  5   | import environments from "lib/constants/environments";
+  6   | import { withTxConfirmation } from "lib/transaction.decorator";
+  7   | 
+  8   | export default class DRepDirectoryPage {
+  9   |   readonly otherOptionsBtn = this.page.getByText("Other options");
+  10  |   readonly nextStepBtn = this.page.getByTestId("next-step-button");
+  11  |   readonly dRepInput = this.page.getByRole("textbox");
+  12  |   readonly searchInput = this.page.getByTestId("search-input");
+  13  |   readonly filterBtn = this.page.getByTestId("filters-button");
+  14  |   readonly sortBtn = this.page.getByTestId("sort-button");
+  15  |   readonly showMoreBtn = this.page.getByTestId("show-more-button");
+  16  |   readonly abstainInfoButton = this.page.getByTestId(
+  17  |     "abstain-from-every-vote-info-button"
+  18  |   );
+  19  | 
+  20  |   readonly signalNoConfidenceInfoButton = this.page.getByTestId(
+  21  |     "signal-no-confidence-on-every-vote-info-button"
+  22  |   );
+  23  | 
+  24  |   readonly automaticDelegationOptionsDropdown = this.page.getByTestId(
+  25  |     "automated-voting-options-accordion"
+  26  |   );
+  27  | 
+  28  |   readonly delegateToDRepCard = this.page.getByTestId("delegate-to-drep-card");
+  29  |   readonly signalNoConfidenceCard = this.page.getByTestId(
+  30  |     "no-confidence-delegation-card"
+  31  |   );
+  32  |   readonly abstainDelegationCard = this.page.getByTestId(
+  33  |     "abstain-delegation-card"
+  34  |   );
+  35  | 
+  36  |   readonly delegationErrorModal = this.page.getByTestId(
+  37  |     "delegate-transaction-error-modal"
+  38  |   );
+  39  | 
+  40  |   readonly delegateBtns = this.page.locator(
+  41  |     '[data-testid$="-delegate-button"]'
+  42  |   );
+  43  | 
+  44  |   readonly NoDRepText = this.page.getByText("No DReps found");
+  45  | 
+  46  |   constructor(private readonly page: Page) {}
+  47  | 
+  48  |   get currentPage(): Page {
+  49  |     return this.page;
+  50  |   }
+  51  | 
+  52  |   async goto() {
+> 53  |     await this.page.goto(
+      |                     ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/connected/drep_directory
+  54  |       `${environments.frontendUrl}/connected/drep_directory`
+  55  |     );
+  56  |   }
+  57  | 
+  58  |   @withTxConfirmation
+  59  |   async delegateToDRep(dRepId: string) {
+  60  |     await this.searchInput.fill(dRepId);
+  61  |     const delegateBtn = this.page.getByTestId(`${dRepId}-delegate-button`);
+  62  |     await expect(delegateBtn).toBeVisible();
+  63  |     await this.page.getByTestId(`${dRepId}-delegate-button`).click();
+  64  |   }
+  65  | 
+  66  |   async resetDRepForm() {
+  67  |     if (await this.delegationErrorModal.isVisible()) {
+  68  |       await this.page.getByTestId("confirm-modal-button").click();
+  69  |     }
+  70  |     await this.dRepInput.clear();
+  71  |   }
+  72  |   async filterDReps(filterOptions: string[]) {
+  73  |     for (const option of filterOptions) {
+  74  |       await this.page.getByTestId(`${option}-checkbox`).click();
+  75  |     }
+  76  |   }
+  77  | 
+  78  |   async unFilterDReps(filterOptions: string[]) {
+  79  |     for (const option of filterOptions) {
+  80  |       await this.page.getByTestId(`${option}-checkbox`).click();
+  81  |     }
+  82  |   }
+  83  | 
+  84  |   async validateFilters(filters: string[], filterOptions: string[]) {
+  85  |     await functionWaitedAssert(async () => {
+  86  |       const excludedFilters = filterOptions.filter(
+  87  |         (filter) => !filters.includes(filter)
+  88  |       );
+  89  | 
+  90  |       const dRepList = await this.getAllListedDReps();
+  91  | 
+  92  |       for (const filter of excludedFilters) {
+  93  |         await expect(this.page.getByTestId(`${filter}-checkbox`)).toHaveCount(
+  94  |           1
+  95  |         );
+  96  |       }
+  97  | 
+  98  |       for (const dRep of dRepList) {
+  99  |         if (await dRep.isVisible()) {
+  100 |           const hasFilter = await this._validateTypeFiltersInDRep(
+  101 |             dRep,
+  102 |             filters
+  103 |           );
+  104 |           const actualFilter = await dRep
+  105 |             .locator('[data-testid$="-pill"]')
+  106 |             .textContent();
+  107 |           if (!hasFilter) {
+  108 |             const errorMessage = `${actualFilter} pill does not match with any of the ${filters}`;
+  109 |             throw new Error(errorMessage);
+  110 |           }
+  111 |           expect(hasFilter).toBe(true);
+  112 |         }
+  113 |       }
+  114 |     });
+  115 |   }
+  116 | 
+  117 |   async _validateTypeFiltersInDRep(
+  118 |     dRepCard: Locator,
+  119 |     filters: string[]
+  120 |   ): Promise<boolean> {
+  121 |     const dRepType = await dRepCard
+  122 |       .locator('[data-testid$="-pill"]')
+  123 |       .textContent();
+  124 | 
+  125 |     return filters.includes(dRepType);
+  126 |   }
+  127 | 
+  128 |   async sortDRep(option: string) {}
+  129 | 
+  130 |   async getDRepsResponseFromApi(option: string): Promise<IDRep[]> {
+  131 |     const responsePromise = this.page.waitForResponse((response) =>
+  132 |       response.url().includes(`&sort=${option}`)
+  133 |     );
+  134 | 
+  135 |     await this.page.getByTestId(`${option}-radio`).click();
+  136 |     const response = await responsePromise;
+  137 | 
+  138 |     return (await response.json()).elements;
+  139 |   }
+  140 | 
+  141 |   async sortAndValidate(
+  142 |     option: string,
+  143 |     validationFn: (p1: IDRep, p2: IDRep) => boolean
+  144 |   ) {
+  145 |     const dRepList = await this.getDRepsResponseFromApi(option);
+  146 | 
+  147 |     // API validation
+  148 |     for (let i = 0; i <= dRepList.length - 2; i++) {
+  149 |       const isValid = validationFn(dRepList[i], dRepList[i + 1]);
+  150 |       expect(isValid).toBe(true);
+  151 |     }
+  152 | 
+  153 |     await functionWaitedAssert(
+```

@@ -1,0 +1,48 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 12-proposal-budget-submission/proposalBudgetSubmission.spec.ts >> 12A. Should restrict from creating a budget proposal in disconnect state
+- Location: tests/12-proposal-budget-submission/proposalBudgetSubmission.spec.ts:10:5
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+Call log:
+  - navigating to "https://preview.dev.gov.tools/", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1  | import { test } from "@fixtures/walletExtension";
+  2  | import { setAllureEpic } from "@helpers/allure";
+  3  | import { isMobile } from "@helpers/mobile";
+  4  | import { expect } from "@playwright/test";
+  5  | 
+  6  | test.beforeEach(async ({}) => {
+  7  |   await setAllureEpic("12. Proposal Budget Submission");
+  8  | });
+  9  | 
+  10 | test("12A. Should restrict from creating a budget proposal in disconnect state", async ({
+  11 |   page,
+  12 | }) => {
+> 13 |   await page.goto("/");
+     |              ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+  14 |   if (isMobile(page)) {
+  15 |     await page.getByTestId("open-drawer-button").click();
+  16 |   }
+  17 |   await page.getByTestId("budget-discussion-link").click();
+  18 |   await expect(page.getByTestId("verify-user-link")).not.toBeVisible();
+  19 |   await expect(
+  20 |     page.getByTestId("propose-a-budget-discussion-button")
+  21 |   ).not.toBeVisible();
+  22 | });
+  23 | 
+```

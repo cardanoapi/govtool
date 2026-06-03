@@ -1,0 +1,97 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 5-proposal-functionality/proposalFunctionality.dRep.spec.ts >> Perform voting >> 5E. Should re-vote with change vote on an already voted governance action
+- Location: tests/5-proposal-functionality/proposalFunctionality.dRep.spec.ts:172:7
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+Call log:
+  - navigating to "https://preview.dev.gov.tools/", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1  | import {
+  2  |   CIP30Instance,
+  3  |   Cip95Instance,
+  4  | } from "@cardanoapi/cardano-test-wallet/types";
+  5  | import { isMobile, openDrawer } from "@helpers/mobile";
+  6  | import { Page, expect } from "@playwright/test";
+  7  | 
+  8  | export default class LoginPage {
+  9  |   readonly connectWalletBtn = this.page.getByTestId("connect-wallet-button");
+  10 |   readonly demosWalletBtn = this.page.getByTestId("demos-wallet-button");
+  11 |   readonly acceptSanchoNetInfoBtn = this.page
+  12 |     .getByTestId("confirm-modal-button")
+  13 |     .nth(0);
+  14 |   readonly disconnectWalletBtn = this.page.getByTestId("disconnect-button");
+  15 |   readonly dRepIdDisplay = this.page.getByTestId("dRep-id-display");
+  16 | 
+  17 |   constructor(private readonly page: Page) {}
+  18 | 
+  19 |   async goto() {
+> 20 |     await this.page.goto("/");
+     |                     ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+  21 |   }
+  22 | 
+  23 |   async login() {
+  24 |     await this.goto();
+  25 | 
+  26 |     await this.connectWalletBtn.click();
+  27 |     await this.demosWalletBtn.click({ force: true });
+  28 | 
+  29 |     await this.acceptSanchoNetInfoBtn.click({ force: true });
+  30 | 
+  31 |     const { stakeKeys, rewardAddresses } = await this.page.evaluate(
+  32 |       async () => {
+  33 |         const walletInstance: CIP30Instance | Cip95Instance =
+  34 |           await window["cardano"]["demos"].enable();
+  35 | 
+  36 |         let stakeKeys = [];
+  37 |         let rewardAddresses = [];
+  38 |         if ("cip95" in walletInstance) {
+  39 |           stakeKeys = await walletInstance.cip95.getRegisteredPubStakeKeys();
+  40 |           rewardAddresses = await walletInstance.getRewardAddresses();
+  41 |         }
+  42 | 
+  43 |         return { stakeKeys, rewardAddresses };
+  44 |       }
+  45 |     );
+  46 | 
+  47 |     // Handle multiple stake keys
+  48 |     if (stakeKeys.length > 1) {
+  49 |       await this.page
+  50 |         .getByTestId(`${rewardAddresses[0]}-radio`)
+  51 |         .locator("div")
+  52 |         .first()
+  53 |         .click({ force: true });
+  54 |       await this.page.getByTestId("select-button").click();
+  55 |     }
+  56 |   }
+  57 | 
+  58 |   async logout() {
+  59 |     if (isMobile(this.page)) {
+  60 |       await openDrawer(this.page);
+  61 |     }
+  62 |     await this.disconnectWalletBtn.click();
+  63 |   }
+  64 | 
+  65 |   async isLoggedIn() {
+  66 |     if (isMobile(this.page)) {
+  67 |       await openDrawer(this.page);
+  68 |     }
+  69 |     await expect(this.disconnectWalletBtn).toBeVisible();
+  70 |   }
+  71 | }
+  72 | 
+```

@@ -1,0 +1,147 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 5-proposal-functionality/proposalFunctionality.spec.ts >> Bad Proposals >> 5H. Should open a new tab in Bad governance action proposal, when external URL is opened
+- Location: tests/5-proposal-functionality/proposalFunctionality.spec.ts:33:7
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/governance_actions
+Call log:
+  - navigating to "https://preview.dev.gov.tools/governance_actions", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1   | import removeAllSpaces from "@helpers/removeAllSpaces";
+  2   | import { Locator, Page, expect } from "@playwright/test";
+  3   | import { GovernanceActionType, IProposal } from "@types";
+  4   | import environments from "lib/constants/environments";
+  5   | import GovernanceActionDetailsPage from "./governanceActionDetailsPage";
+  6   | import { getEnumKeyByValue } from "@helpers/enum";
+  7   | import { functionWaitedAssert, waitedLoop } from "@helpers/waitedLoop";
+  8   | 
+  9   | const MAX_SLIDES_DISPLAY_PER_TYPE = 6;
+  10  | 
+  11  | export default class GovernanceActionsPage {
+  12  |   readonly filterBtn = this.page.getByTestId("filters-button");
+  13  |   readonly sortBtn = this.page.getByTestId("sort-button");
+  14  |   readonly votedTab = this.page.getByTestId("voted-tab");
+  15  |   readonly searchInput = this.page.getByTestId("search-input");
+  16  | 
+  17  |   readonly actionsLoading = this.page.getByRole("progressbar").getByRole("img");
+  18  | 
+  19  |   constructor(private readonly page: Page) {}
+  20  | 
+  21  |   async goto() {
+> 22  |     await this.page.goto(`${environments.frontendUrl}/governance_actions`);
+      |                     ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/governance_actions
+  23  |     await this.page.waitForTimeout(2_000); // Waits to ensure the alert-success popup does not interfere
+  24  |   }
+  25  | 
+  26  |   get currentPage(): Page {
+  27  |     return this.page;
+  28  |   }
+  29  | 
+  30  |   async viewProposal(
+  31  |     proposal: IProposal
+  32  |   ): Promise<GovernanceActionDetailsPage> {
+  33  |     const proposalId = `govaction-${proposal.txHash}#${proposal.index}-view-detail`;
+  34  |     await this.page.getByTestId(proposalId).click();
+  35  | 
+  36  |     return new GovernanceActionDetailsPage(this.page);
+  37  |   }
+  38  | 
+  39  |   async viewFirstProposal(): Promise<GovernanceActionDetailsPage> {
+  40  |     await this.page
+  41  |       .locator('[data-testid^="govaction-"][data-testid$="-view-detail"]')
+  42  |       .first()
+  43  |       .click();
+  44  |     return new GovernanceActionDetailsPage(this.page);
+  45  |   }
+  46  | 
+  47  |   async viewFirstVotedProposal(): Promise<GovernanceActionDetailsPage> {
+  48  |     await this.page
+  49  |       .locator('[data-testid^="govaction-"][data-testid$="-change-your-vote"]')
+  50  |       .first()
+  51  |       .click();
+  52  |     return new GovernanceActionDetailsPage(this.page);
+  53  |   }
+  54  | 
+  55  |   async viewFirstProposalByGovernanceAction(
+  56  |     governanceAction: GovernanceActionType
+  57  |   ): Promise<GovernanceActionDetailsPage> {
+  58  |      const proposalCard = this.page
+  59  |           .locator('[data-testid^="govaction-"][data-testid$="-card"]')
+  60  |           .first();
+  61  | 
+  62  |     const isVisible = await proposalCard.isVisible();
+  63  | 
+  64  |     if (isVisible) {
+  65  |       await proposalCard
+  66  |         .locator('[data-testid^="govaction-"][data-testid$="-view-detail"]')
+  67  |         .first()
+  68  |         .click();
+  69  | 
+  70  |       return new GovernanceActionDetailsPage(this.page);
+  71  |     } else {
+  72  |       console.warn(
+  73  |         `Governance action details page for "${governanceAction}" was not found.`
+  74  |       );
+  75  |       return null;
+  76  |     }
+  77  |   }
+  78  | 
+  79  |   async getFirstProposal(
+  80  |   ) {
+  81  |     await functionWaitedAssert(
+  82  |       async () => {
+  83  |         const proposalCard = this.page
+  84  |           .locator('[data-testid^="govaction-"][data-testid$="-card"]')
+  85  |           .first();
+  86  | 
+  87  |         await expect(proposalCard
+  88  |           .locator('[data-testid^="govaction-"][data-testid$="-view-detail"]')
+  89  |           .first()).toBeVisible()
+  90  |       }, { name: "Retrying to get the first proposal" });
+  91  |   }
+  92  | 
+  93  |   async viewVotedProposal(
+  94  |     proposal: IProposal
+  95  |   ): Promise<GovernanceActionDetailsPage> {
+  96  |     const proposalId = `govaction-${proposal.txHash}#${proposal.index}-change-your-vote`;
+  97  |     await this.page.getByTestId(proposalId).click();
+  98  | 
+  99  |     return new GovernanceActionDetailsPage(this.page);
+  100 |   }
+  101 | 
+  102 |   async filterProposalByNames(names: string[]) {
+  103 |     for (const name of names) {
+  104 |       const sanitizedProposalName = removeAllSpaces(name);
+  105 |       await this.page.getByTestId(`${sanitizedProposalName}-checkbox`).click();
+  106 |     }
+  107 |   }
+  108 | 
+  109 |   async unFilterProposalByNames(names: string[]) {
+  110 |     for (const name of names) {
+  111 |       const sanitizedProposalName = removeAllSpaces(name);
+  112 |       await this.page.getByTestId(`${sanitizedProposalName}-checkbox`).click();
+  113 |     }
+  114 |   }
+  115 | 
+  116 |   async getAllProposals(): Promise<Locator[]> {
+  117 |     await waitedLoop(async () => {
+  118 |       return (
+  119 |         (await this.page.locator('[data-testid$="-card"]').count()) > 0 ||
+  120 |         (await this.page.getByText("No results for the search.").isVisible())
+  121 |       );
+  122 |     });
+```

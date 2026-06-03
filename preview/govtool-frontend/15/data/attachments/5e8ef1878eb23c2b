@@ -1,0 +1,226 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 3-drep-registration/dRepRegistration.dRep.spec.ts >> Logged in DReps >> 3S. Should restrict dRep registration for dRep
+- Location: tests/3-drep-registration/dRepRegistration.dRep.spec.ts:101:7
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/register_drep
+Call log:
+  - navigating to "https://preview.dev.gov.tools/register_drep", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  2   | import { dRep01Wallet } from "@constants/staticWallets";
+  3   | import { createTempDRepAuth } from "@datafactory/createAuth";
+  4   | import { faker } from "@faker-js/faker";
+  5   | import { test } from "@fixtures/walletExtension";
+  6   | import { setAllureEpic } from "@helpers/allure";
+  7   | import { ShelleyWallet } from "@helpers/crypto";
+  8   | import {
+  9   |   skipIfMainnet,
+  10  |   skipIfTemporyWalletIsNotAvailable,
+  11  | } from "@helpers/cardano";
+  12  | import { createNewPageWithWallet } from "@helpers/page";
+  13  | import { waitForTxConfirmation } from "@helpers/transaction";
+  14  | import DRepRegistrationPage from "@pages/dRepRegistrationPage";
+  15  | import GovernanceActionsPage from "@pages/governanceActionsPage";
+  16  | import { expect } from "@playwright/test";
+  17  | import walletManager from "lib/walletManager";
+  18  | import DRepDirectoryPage from "@pages/dRepDirectoryPage";
+  19  | import { GovernanceActionType } from "@types";
+  20  | import { dRep01AuthFile } from "@constants/auth";
+  21  | 
+  22  | test.beforeEach(async () => {
+  23  |   await setAllureEpic("3. DRep registration");
+  24  |   await skipIfMainnet();
+  25  |   await skipIfTemporyWalletIsNotAvailable("registerDRepCopyWallets.json");
+  26  | });
+  27  | 
+  28  | test.describe("Logged in DReps", () => {
+  29  |   test.use({
+  30  |     storageState: dRep01AuthFile,
+  31  |     wallet: dRep01Wallet,
+  32  |     enableDRepSigning: true,
+  33  |     enableStakeSigning: false,
+  34  |   });
+  35  | 
+  36  |   test("3A. Should show dRepId on dashboard and enable voting on governance actions after connecting registered dRep Wallet", async ({
+  37  |     page,
+  38  |   }) => {
+  39  |     await page.goto("/");
+  40  | 
+  41  |     await expect(page.getByTestId("voting-power-chips")).toBeVisible({
+  42  |       timeout: 60_000,
+  43  |     });
+  44  | 
+  45  |     
+  46  |     const governanceActionsPage = new GovernanceActionsPage(page);
+  47  |     
+  48  |     await governanceActionsPage.goto();
+  49  |     
+  50  |     await governanceActionsPage.getFirstProposal();
+  51  |     const governanceActionDetailsPage =
+  52  |       await governanceActionsPage.viewFirstProposalByGovernanceAction(
+  53  |         GovernanceActionType.InfoAction
+  54  |       );
+  55  | 
+  56  |     await expect(governanceActionDetailsPage.voteBtn).toBeVisible({
+  57  |       timeout: 60_000,
+  58  |     });
+  59  |   });
+  60  | 
+  61  |   test("3H. Should Update DRep data", async ({ page }, testInfo) => {
+  62  |     test.setTimeout(testInfo.timeout + environments.txTimeOut);
+  63  | 
+  64  |     await page.goto("/");
+  65  | 
+  66  |     // Add an assertion to prevent clicking on "View Your dRep Details".
+  67  |     await expect(
+  68  |       page.getByTestId("dRep-id-display-card-dashboard")
+  69  |     ).toContainText(dRep01Wallet.dRepId, { timeout: 20_000 });
+  70  | 
+  71  |     await page.getByTestId("view-drep-details-button").click();
+  72  |     await page.getByTestId("edit-drep-data-button").click();
+  73  |     const editDRepPage = new DRepRegistrationPage(page);
+  74  | 
+  75  |     const newDRepName = faker.person.firstName();
+  76  | 
+  77  |     await editDRepPage.register({
+  78  |       name: newDRepName,
+  79  |       objectives: faker.lorem.paragraph(2),
+  80  |       motivations: faker.lorem.paragraph(2),
+  81  |       qualifications: faker.lorem.paragraph(2),
+  82  |       paymentAddress: (await ShelleyWallet.generate()).addressBech32(
+  83  |         environments.networkId
+  84  |       ),
+  85  |       linksReferenceLinks: [
+  86  |         {
+  87  |           url: faker.internet.url(),
+  88  |           description: faker.internet.displayName(),
+  89  |         },
+  90  |       ],
+  91  |       identityReferenceLinks: [
+  92  |         {
+  93  |           url: faker.internet.url(),
+  94  |           description: faker.internet.displayName(),
+  95  |         },
+  96  |       ],
+  97  |     });
+  98  |     await page.getByTestId("confirm-modal-button").click();
+  99  |   });
+  100 | 
+  101 |   test("3S. Should restrict dRep registration for dRep", async ({ page }) => {
+> 102 |     await page.goto(`${environments.frontendUrl}/register_drep`);
+      |                ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/register_drep
+  103 | 
+  104 |     await expect(page.getByText("You already are a DRep")).toBeVisible({
+  105 |       timeout: 60_000,
+  106 |     });
+  107 |     await expect(page.getByTestId("name-input")).not.toBeVisible();
+  108 |   });
+  109 | });
+  110 | 
+  111 | test.describe("Temporary DReps", () => {
+  112 |   test("3G. Should show confirmation message with link to view transaction, when DRep registration txn is submitted", async ({
+  113 |     page,
+  114 |     browser,
+  115 |   }, testInfo) => {
+  116 |     test.setTimeout(testInfo.timeout + environments.txTimeOut);
+  117 | 
+  118 |     const wallet = await walletManager.popWallet("registerDRep");
+  119 | 
+  120 |     const tempDRepAuth = await createTempDRepAuth(page, wallet);
+  121 |     const dRepPage = await createNewPageWithWallet(browser, {
+  122 |       storageState: tempDRepAuth,
+  123 |       wallet,
+  124 |       enableDRepSigning: true,
+  125 |       enableStakeSigning: true,
+  126 |     });
+  127 | 
+  128 |     const dRepRegistrationPage = new DRepRegistrationPage(dRepPage);
+  129 |     await dRepRegistrationPage.goto();
+  130 |     await dRepRegistrationPage.register({ name: faker.person.firstName() });
+  131 | 
+  132 |     await expect(dRepRegistrationPage.registrationSuccessModal).toBeVisible();
+  133 |     await expect(
+  134 |       dRepRegistrationPage.registrationSuccessModal.getByText("this link")
+  135 |     ).toBeVisible();
+  136 |   });
+  137 | 
+  138 |   test("3Q Should not list dRep in the dRep directory when 'doNotList' is checked during registration", async ({
+  139 |     page,
+  140 |     browser,
+  141 |   }, testInfo) => {
+  142 |     test.setTimeout(testInfo.timeout + environments.txTimeOut);
+  143 | 
+  144 |     const wallet = await walletManager.popWallet("registerDRep");
+  145 | 
+  146 |     const tempDRepAuth = await createTempDRepAuth(page, wallet);
+  147 |     const dRepPage = await createNewPageWithWallet(browser, {
+  148 |       storageState: tempDRepAuth,
+  149 |       wallet,
+  150 |       enableStakeSigning: true,
+  151 |       enableDRepSigning: true,
+  152 |     });
+  153 | 
+  154 |     const dRepRegistrationPage = new DRepRegistrationPage(dRepPage);
+  155 |     await dRepRegistrationPage.goto();
+  156 |     await dRepRegistrationPage.register({
+  157 |       name: faker.person.firstName(),
+  158 |       donNotList: true,
+  159 |     });
+  160 | 
+  161 |     await dRepRegistrationPage.confirmBtn.click();
+  162 | 
+  163 |     await expect(dRepPage.getByTestId("d-rep-in-progress")).not.toBeVisible({
+  164 |       timeout: 60_000,
+  165 |     });
+  166 | 
+  167 |     // connected state
+  168 |     const dRepDirectoryPage = new DRepDirectoryPage(page);
+  169 |     await dRepDirectoryPage.verifyDRepInList(wallet.dRepId);
+  170 | 
+  171 |     // disconnected state
+  172 |     await page.getByTestId("disconnect-button").click();
+  173 |     await dRepDirectoryPage.verifyDRepInList(wallet.dRepId);
+  174 |   });
+  175 | 
+  176 |   test("3J. Should verify retire as DRep", async ({ page, browser }) => {
+  177 |     test.slow(); // Due to queue in pop wallets
+  178 | 
+  179 |     const wallet = await walletManager.popWallet("registeredDRep");
+  180 |     await walletManager.removeCopyWallet(wallet, "registeredDRepCopy");
+  181 | 
+  182 |     const tempDRepAuth = await createTempDRepAuth(page, wallet);
+  183 |     const dRepPage = await createNewPageWithWallet(browser, {
+  184 |       storageState: tempDRepAuth,
+  185 |       wallet,
+  186 |       enableDRepSigning: true,
+  187 |     });
+  188 | 
+  189 |     await dRepPage.goto("/");
+  190 |     await dRepPage.getByTestId("retire-button").click();
+  191 |     await dRepPage.getByTestId("continue-retirement-button").click();
+  192 | 
+  193 |     await expect(
+  194 |       dRepPage.getByTestId("retirement-transaction-submitted-modal")
+  195 |     ).toBeVisible({ timeout: 15_000 });
+  196 |   });
+  197 | 
+  198 |   test("3K. Verify DRep behavior in retired state", async ({
+  199 |     page,
+  200 |     browser,
+  201 |   }, testInfo) => {
+  202 |     test.setTimeout(testInfo.timeout + environments.txTimeOut);
+```

@@ -1,0 +1,102 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 1-wallet-connect/walletConnect.spec.ts >> 1E. Should hide incompatible wallets when connecting
+- Location: tests/1-wallet-connect/walletConnect.spec.ts:63:5
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+Call log:
+  - navigating to "https://preview.dev.gov.tools/", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1  | import environments from "@constants/environments";
+  2  | import createWallet from "@fixtures/createWallet";
+  3  | import { test } from "@fixtures/walletExtension";
+  4  | import { setAllureEpic } from "@helpers/allure";
+  5  | import convertBufferToHex from "@helpers/convertBufferToHex";
+  6  | import { ShelleyWallet } from "@helpers/crypto";
+  7  | import { createNewPageWithWallet } from "@helpers/page";
+  8  | import LoginPage from "@pages/loginPage";
+  9  | import { expect } from "@playwright/test";
+  10 | 
+  11 | test.beforeEach(async () => {
+  12 |   await setAllureEpic("1. Wallet connect");
+  13 | });
+  14 | 
+  15 | test("1A. Should connect wallet and choose stake-key to use", async ({
+  16 |   page,
+  17 | }) => {
+  18 |   const shellyWallet = await ShelleyWallet.generate();
+  19 |   const extraPubStakeKey = convertBufferToHex(shellyWallet.stakeKey.public);
+  20 |   const extraRewardAddress = convertBufferToHex(
+  21 |     shellyWallet.rewardAddressRawBytes(environments.networkId)
+  22 |   );
+  23 | 
+  24 |   await createWallet(page, {
+  25 |     extraRegisteredPubStakeKeys: [extraPubStakeKey],
+  26 |     extraRewardAddresses: [extraRewardAddress],
+  27 |     networkId: environments.networkId,
+  28 |   });
+  29 | 
+  30 |   const loginPage = new LoginPage(page);
+  31 |   await loginPage.login();
+  32 | });
+  33 | 
+  34 | test("1C. Should disconnect Wallet When connected", async ({ page }) => {
+  35 |   await createWallet(page, {
+  36 |     networkId: environments.networkId,
+  37 |   });
+  38 | 
+  39 |   const loginPage = new LoginPage(page);
+  40 |   await loginPage.login();
+  41 | 
+  42 |   await loginPage.logout();
+  43 | });
+  44 | 
+  45 | test("1D. Should reject wallet connection if on different network", async ({
+  46 |   page,
+  47 | }) => {
+  48 |   const wrongNetworkId = environments.networkId == 0 ? 1 : 0;
+  49 |   await createWallet(page, {
+  50 |     networkId: wrongNetworkId,
+  51 |   });
+  52 | 
+  53 |   await page.goto("/");
+  54 | 
+  55 |   await page.getByTestId("connect-wallet-button").click();
+  56 |   await page.getByTestId("demos-wallet-button").click();
+  57 | 
+  58 |   await expect(page.getByTestId("wallet-connection-error-modal")).toHaveText(
+  59 |     /You are trying to connect/
+  60 |   );
+  61 | });
+  62 | 
+  63 | test("1E. Should hide incompatible wallets when connecting", async ({
+  64 |   browser,
+  65 | }) => {
+  66 |   const wallet = (await ShelleyWallet.generate()).json();
+  67 |   const newPage = await createNewPageWithWallet(browser, {
+  68 |     wallet,
+  69 |     supportedExtensions: [],
+  70 |   });
+  71 | 
+> 72 |   await newPage.goto("/");
+     |                 ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+  73 |   await newPage.getByTestId("connect-wallet-button").click();
+  74 | 
+  75 |   await expect(newPage.getByTestId("demos-wallet-button")).not.toBeVisible();
+  76 | });
+  77 | 
+```

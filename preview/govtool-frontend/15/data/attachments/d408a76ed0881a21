@@ -1,0 +1,144 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 2-delegation/delegation.loggedin.spec.ts >> 2B. Should access DRep Directory page
+- Location: tests/2-delegation/delegation.loggedin.spec.ts:18:5
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+Call log:
+  - navigating to "https://preview.dev.gov.tools/", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1   | import { user01AuthFile } from "@constants/auth";
+  2   | import { user01Wallet } from "@constants/staticWallets";
+  3   | import { test } from "@fixtures/walletExtension";
+  4   | import { setAllureEpic } from "@helpers/allure";
+  5   | import { ShelleyWallet } from "@helpers/crypto";
+  6   | import { fetchFirstActiveDRepDetails } from "@helpers/dRep";
+  7   | import { isMobile } from "@helpers/mobile";
+  8   | import extractDRepFromWallet from "@helpers/shellyWallet";
+  9   | import DRepDirectoryPage from "@pages/dRepDirectoryPage";
+  10  | import { expect } from "@playwright/test";
+  11  | 
+  12  | test.use({ storageState: user01AuthFile, wallet: user01Wallet });
+  13  | 
+  14  | test.beforeEach(async () => {
+  15  |   await setAllureEpic("2. Delegation");
+  16  | });
+  17  | 
+  18  | test("2B. Should access DRep Directory page", async ({ page }) => {
+> 19  |   await page.goto("/");
+      |              ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+  20  | 
+  21  |   await page.getByTestId("view-drep-directory-button").click();
+  22  |   if (isMobile(page)) {
+  23  |     await expect(page.getByText("DRep Directory")).toBeVisible();
+  24  |   } else {
+  25  |     await expect(
+  26  |       page.getByRole("navigation").getByText("DRep Directory")
+  27  |     ).toBeVisible();
+  28  |   }
+  29  | });
+  30  | 
+  31  | test("2D. Should show delegation options in connected state", async ({
+  32  |   page,
+  33  | }) => {
+  34  |   const dRepDirectoryPage = new DRepDirectoryPage(page);
+  35  |   await dRepDirectoryPage.goto();
+  36  | 
+  37  |   // Verifying automatic delegation options
+  38  |   await dRepDirectoryPage.automaticDelegationOptionsDropdown.click();
+  39  |   await expect(dRepDirectoryPage.abstainDelegationCard).toBeVisible();
+  40  |   await expect(dRepDirectoryPage.signalNoConfidenceCard).toBeVisible();
+  41  | 
+  42  |   expect(await dRepDirectoryPage.delegateBtns.count()).toBeGreaterThanOrEqual(
+  43  |     2
+  44  |   );
+  45  | });
+  46  | 
+  47  | test("2X_1. Should include info button and voting power on the Abstain card", async ({
+  48  |   page,
+  49  | }) => {
+  50  |   const dRepDirectoryPage = new DRepDirectoryPage(page);
+  51  |   await dRepDirectoryPage.goto();
+  52  | 
+  53  |   await dRepDirectoryPage.automaticDelegationOptionsDropdown.click();
+  54  | 
+  55  |   await expect(
+  56  |     dRepDirectoryPage.abstainDelegationCard.getByText("₳")
+  57  |   ).toBeVisible();
+  58  | 
+  59  |   await expect(dRepDirectoryPage.abstainInfoButton).toBeVisible();
+  60  | });
+  61  | 
+  62  | test("2X_2. Should include info button and voting power on the Signal-No-Confidence card", async ({
+  63  |   page,
+  64  | }) => {
+  65  |   const dRepDirectoryPage = new DRepDirectoryPage(page);
+  66  |   await dRepDirectoryPage.goto();
+  67  | 
+  68  |   await dRepDirectoryPage.automaticDelegationOptionsDropdown.click();
+  69  | 
+  70  |   await expect(
+  71  |     dRepDirectoryPage.signalNoConfidenceCard.getByText("₳")
+  72  |   ).toBeVisible();
+  73  | 
+  74  |   await expect(dRepDirectoryPage.signalNoConfidenceInfoButton).toBeVisible();
+  75  | });
+  76  | 
+  77  | test.describe("DRep dependent tests", () => {
+  78  |   let dRepGivenName: string;
+  79  |   let dRepId: string;
+  80  |   let dRepDirectoryPage: DRepDirectoryPage;
+  81  | 
+  82  |   test.beforeEach(async ({ page }) => {
+  83  |     ({ dRepDirectoryPage, dRepId, dRepGivenName } =
+  84  |       await fetchFirstActiveDRepDetails(page));
+  85  |   });
+  86  | 
+  87  |   test("2T. Should show warning message on delegation when insufficient funds", async ({
+  88  |     page,
+  89  |   }) => {
+  90  |     await dRepDirectoryPage.searchInput.fill(dRepId);
+  91  |     await page.getByTestId(`${dRepId}-delegate-button`).click();
+  92  | 
+  93  |     await expect(dRepDirectoryPage.delegationErrorModal).toBeVisible({
+  94  |       timeout: 60_000,
+  95  |     });
+  96  |     await expect(dRepDirectoryPage.delegationErrorModal).toHaveText(
+  97  |       /UTxO Balance Insufficient/
+  98  |     );
+  99  |   });
+  100 | 
+  101 |   test("2I. Should check validity of DRep Id", async () => {
+  102 |     await dRepDirectoryPage.searchInput.fill(dRepId);
+  103 |     await expect(dRepDirectoryPage.getDRepCard(dRepId)).toBeVisible({
+  104 |       timeout: 60_000,
+  105 |     });
+  106 | 
+  107 |     const wallet = await ShelleyWallet.generate();
+  108 |     const invalidDRepId = extractDRepFromWallet(wallet);
+  109 | 
+  110 |     await dRepDirectoryPage.searchInput.fill(invalidDRepId);
+  111 | 
+  112 |     await expect(dRepDirectoryPage.NoDRepText).toBeVisible();
+  113 |     await expect(
+  114 |       dRepDirectoryPage.getDRepCard(invalidDRepId)
+  115 |     ).not.toBeVisible();
+  116 |   });
+  117 | 
+  118 |   test("2J. Should search by DRep id and DRep givenname", async () => {
+  119 |     // search by dRep Id
+```

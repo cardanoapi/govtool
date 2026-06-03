@@ -1,0 +1,233 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 9-outcomes/outcomes.loggedin.spec.ts >> Outcomes page >> Outcome details dependent test >> 9B_2. Should search outcomes proposal by title and id
+- Location: tests/9-outcomes/outcomes.loggedin.spec.ts:76:9
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/outcomes?sort=newestFirst
+Call log:
+  - navigating to "https://preview.dev.gov.tools/outcomes?sort=newestFirst", waiting until "load"
+
+```
+
+```
+Error: page.waitForResponse: Test ended.
+=========================== logs ===========================
+waiting for response "**/governance-actions?search=&filters=&sort=**"
+============================================================
+```
+
+# Test source
+
+```ts
+  343 |     const responsePromise = this.page.waitForResponse((response) =>
+  344 |       response
+  345 |         .url()
+  346 |         .includes(`governance-actions?search=&filters=&sort=newestFirst&page=2`)
+  347 |     );
+  348 |     await this.goto();
+  349 | 
+  350 |     let governanceActionIdsBefore: String[];
+  351 |     let governanceActionIdsAfter: String[];
+  352 | 
+  353 |     await functionWaitedAssert(
+  354 |       async () => {
+  355 |         governanceActionIdsBefore =
+  356 |           await this.getAllListedCIP105GovernanceIds();
+  357 |         await this.showMoreBtn.click();
+  358 |       },
+  359 |       { message: "Show more button not visible" }
+  360 |     );
+  361 | 
+  362 |     const response = await responsePromise;
+  363 |     const governanceActionListAfter = await response.json();
+  364 | 
+  365 |     await functionWaitedAssert(
+  366 |       async () => {
+  367 |         governanceActionIdsAfter = await this.getAllListedCIP105GovernanceIds();
+  368 |         expect(governanceActionIdsAfter.length).toBeGreaterThan(
+  369 |           governanceActionIdsBefore.length
+  370 |         );
+  371 |       },
+  372 |       { message: "Outcomes not loaded after clicking show more" }
+  373 |     );
+  374 | 
+  375 |     if (governanceActionListAfter.length >= governanceActionIdsBefore.length) {
+  376 |       await expect(this.showMoreBtn).toBeVisible();
+  377 |       expect(true).toBeTruthy();
+  378 |     } else {
+  379 |       await expect(this.showMoreBtn).not.toBeVisible();
+  380 |     }
+  381 |   }
+  382 | 
+  383 |   async fetchOutcomeIdAndTitleFromNetwork(
+  384 |     governanceActionId?: string,
+  385 |     governanceActionTitle?: string
+  386 |   ): Promise<{ governanceActionId: string; governanceActionTitle: string }> {
+  387 |     let updatedGovernanceActionId = governanceActionId;
+  388 |     let updatedGovernanceActionTitle = governanceActionTitle;
+  389 | 
+  390 |     await this.page.route(
+  391 |       "**/governance-actions?search=&filters=&sort=**",
+  392 |       async (route) => {
+  393 |         const response = await route.fetch();
+  394 |         const data: outcomeProposal[] = await response.json();
+  395 | 
+  396 |         if (!updatedGovernanceActionId && data.length > 0) {
+  397 |           const randomIndex = Math.floor(Math.random() * data.length);
+  398 |           updatedGovernanceActionId = `${data[randomIndex].tx_hash}#${data[randomIndex].index}`;
+  399 |         }
+  400 | 
+  401 |         if (!updatedGovernanceActionTitle) {
+  402 |           const itemWithTitle = data.find((item) => item.title != null);
+  403 |           if (itemWithTitle) {
+  404 |             updatedGovernanceActionTitle = itemWithTitle.title;
+  405 |           }
+  406 |         }
+  407 | 
+  408 |         await route.fulfill({
+  409 |           status: 200,
+  410 |           contentType: "application/json",
+  411 |           body: JSON.stringify(data),
+  412 |         });
+  413 |       }
+  414 |     );
+  415 | 
+  416 |     await this.page.route(
+  417 |       "**/governance-actions/metadata?**",
+  418 |       async (route) => {
+  419 |         try {
+  420 |           const response = await route.fetch();
+  421 |           if (response.status() !== 200) {
+  422 |             await route.continue();
+  423 |             return;
+  424 |           }
+  425 | 
+  426 |           const data: outcomeMetadata = await response.json();
+  427 |           if (!updatedGovernanceActionTitle && data.data.title) {
+  428 |             updatedGovernanceActionTitle = data.data.title;
+  429 |           }
+  430 | 
+  431 |           await route.fulfill({
+  432 |             status: 200,
+  433 |             contentType: "application/json",
+  434 |             body: JSON.stringify(data),
+  435 |           });
+  436 |         } catch (error) {
+  437 |           // Just return without handling the error
+  438 |           return;
+  439 |         }
+  440 |       }
+  441 |     );
+  442 | 
+> 443 |     const actionsResponsePromise = this.page.waitForResponse(
+      |                                              ^ Error: page.waitForResponse: Test ended.
+  444 |       "**/governance-actions?search=&filters=&sort=**"
+  445 |     );
+  446 | 
+  447 |     await this.goto();
+  448 |     await actionsResponsePromise;
+  449 | 
+  450 |     const needMetadataForTitle = !updatedGovernanceActionTitle;
+  451 |     const metadataResponsePromise = needMetadataForTitle
+  452 |       ? this.page.waitForResponse("**/governance-actions/metadata?**")
+  453 |       : Promise.resolve(null);
+  454 |     if (needMetadataForTitle) {
+  455 |       await metadataResponsePromise;
+  456 |     }
+  457 | 
+  458 |     return {
+  459 |       governanceActionId: updatedGovernanceActionId,
+  460 |       governanceActionTitle: updatedGovernanceActionTitle,
+  461 |     };
+  462 |   }
+  463 | 
+  464 |   async searchOutcomesById(governanceActionId: string) {
+  465 |     await this.searchInput.fill(governanceActionId);
+  466 | 
+  467 |     try {
+  468 |       await expect(
+  469 |         this.page.getByRole("progressbar").getByRole("img")
+  470 |       ).toBeVisible();
+  471 |     } catch (error) {
+  472 |       // Handle the case where the progress bar is not visible
+  473 |       console.warn("Progress bar not visible, proceeding with search.");
+  474 |     }
+  475 |     await functionWaitedAssert(
+  476 |       async () => {
+  477 |         const idSearchOutcomeCards = await this.getAllOutcomes();
+  478 |         expect(idSearchOutcomeCards.length, {
+  479 |           message:
+  480 |             idSearchOutcomeCards.length == 0 && "No governance actions found",
+  481 |         }).toBeGreaterThan(0);
+  482 |         for (const outcomeCard of idSearchOutcomeCards) {
+  483 |           const id = await outcomeCard
+  484 |             .locator('[data-testid$="-CIP-105-id"]')
+  485 |             .textContent();
+  486 |           expect(id.replace(/^.*ID/, "")).toContain(governanceActionId);
+  487 |         }
+  488 |       },
+  489 |       { name: "search by id" }
+  490 |     );
+  491 |   }
+  492 | 
+  493 |   async searchOutcomesByTitle(governanceActionTitle: string) {
+  494 |     await this.searchInput.fill(governanceActionTitle);
+  495 |     try {
+  496 |       await expect(
+  497 |         this.page.getByRole("progressbar").getByRole("img")
+  498 |       ).toBeVisible();
+  499 |     } catch (error) {
+  500 |       // Handle the case where the progress bar is not visible
+  501 |       console.warn("Progress bar not visible, proceeding with search.");
+  502 |     }
+  503 | 
+  504 |     await functionWaitedAssert(
+  505 |       async () => {
+  506 |         const titleSearchOutcomeCards = await this.getAllOutcomes();
+  507 |         expect(titleSearchOutcomeCards.length, {
+  508 |           message:
+  509 |             titleSearchOutcomeCards.length == 0 &&
+  510 |             "No governance actions found",
+  511 |         }).toBeGreaterThan(0);
+  512 |         for (const outcomeCard of titleSearchOutcomeCards) {
+  513 |           const title = await outcomeCard
+  514 |             .locator('[data-testid$="-card-title"]')
+  515 |             .textContent();
+  516 |           expect(title.toLowerCase()).toContain(
+  517 |             governanceActionTitle.toLowerCase()
+  518 |           );
+  519 |         }
+  520 |       },
+  521 |       { name: "search by title" }
+  522 |     );
+  523 |   }
+  524 | 
+  525 |   async shouldCopyGovernanceActionId(governanceActionId: string) {
+  526 |     await this.searchInput.fill(governanceActionId);
+  527 | 
+  528 |     await this.page
+  529 |       .getByTestId(`${governanceActionId}-CIP-105-id`)
+  530 |       .getByTestId("copy-button")
+  531 |       .click();
+  532 |     await expect(this.page.getByText("Copied to clipboard")).toBeVisible({
+  533 |       timeout: 60_000,
+  534 |     });
+  535 |     const copiedTextDRepDirectory = await this.page.evaluate(() =>
+  536 |       navigator.clipboard.readText()
+  537 |     );
+  538 |     expect(copiedTextDRepDirectory).toEqual(governanceActionId);
+  539 |   }
+  540 | 
+  541 |   async navigateToFilteredProposalDetail(
+  542 |     browser: Browser,
+  543 |     filterKey: string,
+```

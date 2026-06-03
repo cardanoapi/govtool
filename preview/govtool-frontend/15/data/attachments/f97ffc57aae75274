@@ -1,0 +1,226 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 12-proposal-budget-submission/proposalBudgetSubmission.loggedin.pb.spec.ts >> Budget proposal 01 wallet >> Budget proposal with proposalSubmissionPageNavigation >> Budget proposal field verification >> 12D_4. Should verify all field of “costing” section
+- Location: tests/12-proposal-budget-submission/proposalBudgetSubmission.loggedin.pb.spec.ts:163:11
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/budget_discussion
+Call log:
+  - navigating to "https://preview.dev.gov.tools/budget_discussion", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  153 |   readonly linkTextContent = this.page.getByTestId("link-0-text-content");
+  154 |   readonly linkUrlContent = this.page.getByTestId("link-0-url-content");
+  155 | 
+  156 |   // contact information
+  157 |   readonly beneficiaryFullNameContent = this.page.getByTestId(
+  158 |     "beneficiary-full-name-content"
+  159 |   );
+  160 |   readonly beneficiaryCountryOfResidenceContent = this.page.getByTestId(
+  161 |     "beneficiary-country-of-residence-content"
+  162 |   );
+  163 | 
+  164 |   // proposal ownership
+  165 |   readonly companyTypeContent = this.page.getByTestId(
+  166 |     "submited-on-behalf-content"
+  167 |   );
+  168 |   readonly groupNameContent = this.page.getByTestId("group-name-content");
+  169 |   readonly groupTypeContent = this.page.getByTestId("group-type-content");
+  170 |   readonly groupKeyIdentityContent = this.page.getByTestId(
+  171 |     "group-identity-information-content"
+  172 |   );
+  173 |   readonly companyNameContent = this.page.getByTestId("company-name-content");
+  174 |   readonly companyDomainNameContent = this.page.getByTestId(
+  175 |     "company-domain-name-content"
+  176 |   );
+  177 |   readonly countryOfIncorporationContent = this.page.getByTestId(
+  178 |     "country-of-incorporation-content"
+  179 |   );
+  180 |   readonly providePreferredContent = this.page.getByTestId(
+  181 |     "provide-preferred-content"
+  182 |   );
+  183 |   readonly socialHandlesContent = this.page.getByTestId(
+  184 |     "social-handles-content"
+  185 |   );
+  186 | 
+  187 |   // problem statements and benefits
+  188 |   readonly problemStatementContent = this.page.getByTestId(
+  189 |     "problem-statement-content"
+  190 |   );
+  191 |   readonly proposalBenefitsContent = this.page.getByTestId(
+  192 |     "proposal-benefit-content"
+  193 |   );
+  194 |   readonly roadmapContent = this.page.getByTestId("roadmap-content");
+  195 |   readonly budgetCategoryContent = this.page.getByTestId(
+  196 |     "budget-category-content"
+  197 |   );
+  198 |   readonly committeeContent = this.page.getByTestId("committee-content");
+  199 |   readonly endorsementContent = this.page.getByTestId("endorsement-content");
+  200 | 
+  201 |   // proposal details
+  202 |   readonly proposalNameContent = this.page.getByTestId("proposal-name-content");
+  203 |   readonly proposalDescriptionContent = this.page.getByTestId(
+  204 |     "proposal-description-content"
+  205 |   );
+  206 |   readonly proposalKeyDependenciesContent = this.page.getByTestId(
+  207 |     "key-dependencies-content"
+  208 |   );
+  209 |   readonly proposalMaintainAndSupportContent = this.page.getByTestId(
+  210 |     "maintain-and-support-content"
+  211 |   );
+  212 |   readonly proposalDeliverablesContent = this.page.getByTestId(
+  213 |     "key-proposal-deliverables-content"
+  214 |   );
+  215 |   readonly resourcingDurationEstimatesContent = this.page.getByTestId(
+  216 |     "resourcing-duration-estimates-content"
+  217 |   );
+  218 |   readonly experienceContent = this.page.getByTestId("experience-content");
+  219 |   readonly contractingContent = this.page.getByTestId(
+  220 |     "contracting-type-name-content"
+  221 |   );
+  222 |   readonly contractingOtherContent = this.page.getByTestId(
+  223 |     "other-contract-description"
+  224 |   );
+  225 | 
+  226 |   // costing
+  227 |   readonly adaAmountContent = this.page.getByTestId("ada-amount-content");
+  228 |   readonly usdToAdaConversionRateContent = this.page.getByTestId(
+  229 |     "usd-to-ada-conversion-rate-content"
+  230 |   );
+  231 |   readonly preferredCurrencyContent = this.page.getByTestId(
+  232 |     "preferred-currency-content"
+  233 |   );
+  234 |   readonly preferredCurrencyAmountContent = this.page.getByTestId(
+  235 |     "amount-in-preferred-currency-content"
+  236 |   );
+  237 |   readonly costBreakdownContent = this.page.getByTestId(
+  238 |     "cost-breakdown-content"
+  239 |   );
+  240 | 
+  241 |   // administration and auditing
+  242 |   readonly intersectAdministrationContent = this.page.getByTestId(
+  243 |     "intersect-named-administrator-content"
+  244 |   );
+  245 | 
+  246 |   constructor(private readonly page: Page) {}
+  247 | 
+  248 |   get currentPage(): Page {
+  249 |     return this.page;
+  250 |   }
+  251 | 
+  252 |   async goto() {
+> 253 |     await this.page.goto(`${environments.frontendUrl}/budget_discussion`);
+      |                     ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/budget_discussion
+  254 | 
+  255 |     await this.verifyIdentityBtn.click();
+  256 |     await this.createBudgetProposalBtn.click();
+  257 | 
+  258 |     await this.continueBtn.click();
+  259 |   }
+  260 | 
+  261 |   async fillupProposalOwnershipForm(
+  262 |     proposalOwnership: BudgetProposalOwnershipProps,
+  263 |     isNaviagted = true
+  264 |   ) {
+  265 |     await this.proposalCommittee.click();
+  266 |     await this.page
+  267 |       .getByTestId(`${proposalOwnership.companyType.toLowerCase()}-submission`)
+  268 |       .click();
+  269 | 
+  270 |     await this.contactDetailsInput.fill(proposalOwnership.contactDetails);
+  271 | 
+  272 |     if (proposalOwnership.companyType === "Group") {
+  273 |       await this.groupNameInput.fill(proposalOwnership.groupName);
+  274 |       await this.groupTypeInput.fill(proposalOwnership.groupType);
+  275 |       await this.keyInformationOfGroupInput.fill(
+  276 |         proposalOwnership.groupKeyIdentity
+  277 |       );
+  278 |     }
+  279 |     if (proposalOwnership.companyType === "Company") {
+  280 |       await this.companyNameInput.fill(proposalOwnership.companyName);
+  281 |       await this.companyDomainNameInput.fill(
+  282 |         proposalOwnership.companyDomainName
+  283 |       );
+  284 |       await this.countryOfIncorporationBtn.click();
+  285 |       await this.page
+  286 |         .getByTestId(
+  287 |           `${proposalOwnership.countryOfIncorportation.toLowerCase().replace(/ /g, "-")}-country-of-incorporation-button`
+  288 |         )
+  289 |         .click();
+  290 |     }
+  291 | 
+  292 |     if (isNaviagted) {
+  293 |       await this.agreeCheckbox.click();
+  294 |       await this.continueBtn.click();
+  295 |     }
+  296 |   }
+  297 | 
+  298 |   async fillupProblemStatementAndBenefitsForm(
+  299 |     problemStatementAndBenefits: BudgetProposalProblemStatementAndBenefitProps,
+  300 |     isNaviagated = true
+  301 |   ) {
+  302 |     await this.problemStatementInput.fill(
+  303 |       problemStatementAndBenefits.problemStatement
+  304 |     );
+  305 |     await this.proposalBenefitInput.fill(
+  306 |       problemStatementAndBenefits.proposalBenefits
+  307 |     );
+  308 |     await this.suplimentaryEndorsementInput.fill(
+  309 |       problemStatementAndBenefits.suplimentaryEndorsement
+  310 |     );
+  311 | 
+  312 |     await this.roadmapNameSelect.click();
+  313 |     await this.page
+  314 |       .getByTestId(
+  315 |         `${problemStatementAndBenefits.roadmapName.toLowerCase()}-button`
+  316 |       )
+  317 |       .click();
+  318 | 
+  319 |     if (
+  320 |       problemStatementAndBenefits.roadmapName ===
+  321 |       "It supports the product roadmap"
+  322 |     ) {
+  323 |       await this.productRoadmapDescriptionInput.fill(
+  324 |         problemStatementAndBenefits.productRoadmapDescription
+  325 |       );
+  326 |     }
+  327 | 
+  328 |     await this.budgetDiscussionTypeSelect.click();
+  329 |     await this.page
+  330 |       .getByTestId(
+  331 |         `${problemStatementAndBenefits.budgetDiscussionType.toLowerCase()}-button`
+  332 |       )
+  333 |       .click();
+  334 | 
+  335 |     await this.committeeAlignmentTypeSelect.click();
+  336 |     await this.page
+  337 |       .getByTestId(
+  338 |         `${problemStatementAndBenefits.committeeAlignmentType.toLowerCase()}-button`
+  339 |       )
+  340 |       .click();
+  341 | 
+  342 |     if (isNaviagated) {
+  343 |       await this.continueBtn.click();
+  344 |     }
+  345 |   }
+  346 | 
+  347 |   async fillupProposalDetailsFormWithoutContractingType(
+  348 |     proposalDetails: BudgetProposalDetailsProps
+  349 |   ) {
+  350 |     await this.proposalNameInput.fill(proposalDetails.proposalName);
+  351 |     await this.proposalDescriptionInput.fill(
+  352 |       proposalDetails.proposalDescription
+  353 |     );
+```

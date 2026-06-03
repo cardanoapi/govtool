@@ -1,8 +1,0 @@
-wallet balance 100022
-wallet address addr_test1qr7uaefes0tt907vxq8vrgkt98jfsgvqc87u0d945v7gp6a49qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998qwqdwmr
-✖ Failed to load resource: the server responded with a status of 406 ()
-Username is already set
-1
-✔ Uploaded sopor metadata to bucket
-✖ Failed to load resource: the server responded with a status of 400 ()
-✖ Failed to load resource: the server responded with a status of 429 ()

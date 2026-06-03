@@ -1,0 +1,161 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 6-miscellaneous/miscellaneous.loggedin.spec.ts >> Logged in user >> 6E. Should open Sanchonet docs in a new tab when clicking `Learn More` on dashboards in connected state.
+- Location: tests/6-miscellaneous/miscellaneous.loggedin.spec.ts:32:7
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+Call log:
+  - navigating to "https://preview.dev.gov.tools/", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1   | import { user01AuthFile } from "@constants/auth";
+  2   | import {
+  3   |   ABSTAIN_VOTE_DOC_URL,
+  4   |   DELEGATION_DOC_URL,
+  5   |   DIRECT_VOTER_DOC_URL,
+  6   |   GOVERNANCE_ACTION_DOC_URL,
+  7   |   PROPOSE_GOVERNANCE_ACTION_DOC_URL,
+  8   |   REGISTER_DREP_DOC_URL,
+  9   |   SIGNAL_NO_CONFIDENCE_VOTE_DOC_URL,
+  10  | } from "@constants/docsUrl";
+  11  | import { user01Wallet } from "@constants/staticWallets";
+  12  | import { createTempUserAuth } from "@datafactory/createAuth";
+  13  | import { test } from "@fixtures/walletExtension";
+  14  | import { setAllureEpic } from "@helpers/allure";
+  15  | import { ShelleyWallet } from "@helpers/crypto";
+  16  | import { createNewPageWithWallet } from "@helpers/page";
+  17  | import { invalid as mockInvalid, valid as mockValid } from "@mock/index";
+  18  | import DRepDirectoryPage from "@pages/dRepDirectoryPage";
+  19  | import ProposalDiscussionPage from "@pages/proposalDiscussionPage";
+  20  | import { Page, expect } from "@playwright/test";
+  21  | 
+  22  | test.beforeEach(async () => {
+  23  |   await setAllureEpic("6. Miscellaneous");
+  24  | });
+  25  | 
+  26  | test.describe("Logged in user", () => {
+  27  |   test.use({
+  28  |     storageState: user01AuthFile,
+  29  |     wallet: user01Wallet,
+  30  |   });
+  31  | 
+  32  |   test("6E. Should open Sanchonet docs in a new tab when clicking `Learn More` on dashboards in connected state.", async ({
+  33  |     page,
+  34  |     context,
+  35  |   }) => {
+> 36  |     await page.goto("/");
+      |                ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+  37  | 
+  38  |     const [delegationLearnMorepage] = await Promise.all([
+  39  |       context.waitForEvent("page"),
+  40  |       page.getByTestId("delegate-learn-more-button").click(),
+  41  |     ]);
+  42  |     await expect(delegationLearnMorepage).toHaveURL(DELEGATION_DOC_URL);
+  43  | 
+  44  |     const [registerLearnMorepage] = await Promise.all([
+  45  |       context.waitForEvent("page"),
+  46  |       page.getByTestId("d-rep-learn-more-button").click(),
+  47  |     ]);
+  48  |     await expect(registerLearnMorepage).toHaveURL(REGISTER_DREP_DOC_URL);
+  49  | 
+  50  |     const [directVoterLearnMorepage] = await Promise.all([
+  51  |       context.waitForEvent("page"),
+  52  |       page.getByTestId("direct-voter-learn-more-button").first().click(),
+  53  |     ]);
+  54  |     await expect(directVoterLearnMorepage).toHaveURL(DIRECT_VOTER_DOC_URL);
+  55  | 
+  56  |     const [GA_LearnMorepage] = await Promise.all([
+  57  |       context.waitForEvent("page"),
+  58  |       page.getByTestId("list-gov-actions-learn-more-button").click(),
+  59  |     ]);
+  60  |     await expect(GA_LearnMorepage).toHaveURL(GOVERNANCE_ACTION_DOC_URL);
+  61  | 
+  62  |     const [proposed_GA_VoterLearnMorepage] = await Promise.all([
+  63  |       context.waitForEvent("page"),
+  64  |       page.getByTestId("propose-gov-action-learn-more-button").click(),
+  65  |     ]);
+  66  |     await expect(proposed_GA_VoterLearnMorepage).toHaveURL(
+  67  |       PROPOSE_GOVERNANCE_ACTION_DOC_URL
+  68  |     );
+  69  |   });
+  70  | 
+  71  |   test("6F. Should open sanchonet docs in a new tab when clicking `info` button of abstain and signal-no-confidence card", async ({
+  72  |     page,
+  73  |     context,
+  74  |   }) => {
+  75  |     const dRepDirectoryPage = new DRepDirectoryPage(page);
+  76  |     await dRepDirectoryPage.goto();
+  77  | 
+  78  |     await dRepDirectoryPage.automaticDelegationOptionsDropdown.click();
+  79  | 
+  80  |     const [abstain_Info_Page] = await Promise.all([
+  81  |       context.waitForEvent("page"),
+  82  |       dRepDirectoryPage.abstainInfoButton.click(),
+  83  |     ]);
+  84  |     await expect(abstain_Info_Page).toHaveURL(ABSTAIN_VOTE_DOC_URL);
+  85  | 
+  86  |     const [signal_No_Confidence_Info_Page] = await Promise.all([
+  87  |       context.waitForEvent("page"),
+  88  |       dRepDirectoryPage.signalNoConfidenceInfoButton.click(),
+  89  |     ]);
+  90  |     await expect(signal_No_Confidence_Info_Page).toHaveURL(
+  91  |       SIGNAL_NO_CONFIDENCE_VOTE_DOC_URL
+  92  |     );
+  93  |   });
+  94  | 
+  95  |   test("6I. Should prompt for a username after clicking on proposal discussion link if username is not set", async ({
+  96  |     page,
+  97  |   }) => {
+  98  |     await page.goto("/");
+  99  |     await page.getByTestId("proposal-discussion-link").click();
+  100 |     await page.getByTestId("verify-user-link").first().click();
+  101 | 
+  102 |     await expect(page.getByTestId("setup-username-modal")).toBeVisible();
+  103 |     await expect(page.getByTestId("username-input")).toBeVisible();
+  104 |   });
+  105 | });
+  106 | 
+  107 | test.describe("Temporary user", () => {
+  108 |   let userPage: Page;
+  109 |   let proposalDiscussionPage: ProposalDiscussionPage;
+  110 | 
+  111 |   test.beforeEach(async ({ page, browser }) => {
+  112 |     const wallet = (await ShelleyWallet.generate()).json();
+  113 |     const tempUserAuth = await createTempUserAuth(page, wallet);
+  114 |     userPage = await createNewPageWithWallet(browser, {
+  115 |       storageState: tempUserAuth,
+  116 |       wallet,
+  117 |     });
+  118 | 
+  119 |     proposalDiscussionPage = new ProposalDiscussionPage(userPage);
+  120 |     await proposalDiscussionPage.goto();
+  121 |     await proposalDiscussionPage.verifyIdentityBtn.click();
+  122 |   });
+  123 | 
+  124 |   test("6J. Should add a username.", async () => {
+  125 |     await proposalDiscussionPage.setUsername(mockValid.username());
+  126 |   });
+  127 | 
+  128 |   test("6K. Should accept valid username.", async () => {
+  129 |     for (let i = 0; i < 100; i++) {
+  130 |       await userPage.getByTestId("username-input").fill(mockValid.username());
+  131 | 
+  132 |       await expect(
+  133 |         userPage.getByTestId("username-error-text")
+  134 |       ).not.toBeVisible();
+  135 |       await expect(userPage.getByTestId("proceed-button")).toBeEnabled();
+  136 |     }
+```

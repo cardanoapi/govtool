@@ -1,0 +1,253 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 1-wallet-connect/walletConnect.spec.ts >> 1D. Should reject wallet connection if on different network
+- Location: tests/1-wallet-connect/walletConnect.spec.ts:45:5
+
+# Error details
+
+```
+Error: expect(locator).toHaveText(expected) failed
+
+Locator: getByTestId('wallet-connection-error-modal')
+Expected pattern: /You are trying to connect/
+Received string:  "Oops!Confirm"
+Timeout: 5000ms
+
+Call log:
+  - Expect "toHaveText" with timeout 5000ms
+  - waiting for getByTestId('wallet-connection-error-modal')
+    5 × locator resolved to <div class="css-1vtddf4" data-testid="wallet-connection-error-modal">…</div>
+      - unexpected value "Oops!Confirm"
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: "Network: Preview"
+      - generic [ref=e7]: "|"
+      - link [ref=e8] [cursor=pointer]:
+        - /url: https://gov.tools/
+        - text: Go to Mainnet
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+        - button [ref=e14] [cursor=pointer]:
+          - img [ref=e15]
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - link [ref=e20] [cursor=pointer]:
+            - /url: https://gov.tools/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+            - text: The Info Action
+          - text: has passed — thank you for your support!
+        - generic [ref=e21]:
+          - text: We have now submitted a
+          - link [ref=e22] [cursor=pointer]:
+            - /url: https://gov.tools/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+            - text: Treasury Withdrawal
+          - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+    - img [ref=e23]
+    - banner [ref=e25]:
+      - generic [ref=e26]:
+        - link [ref=e27] [cursor=pointer]:
+          - /url: /
+          - img [ref=e28]
+        - navigation [ref=e29]:
+          - generic [ref=e30]:
+            - link [ref=e32] [cursor=pointer]:
+              - /url: /
+              - paragraph [ref=e33]: Home
+            - link [ref=e35] [cursor=pointer]:
+              - /url: /drep_directory
+              - paragraph [ref=e36]: DRep Directory
+            - link [ref=e38] [cursor=pointer]:
+              - /url: /budget_discussion
+              - paragraph [ref=e39]: Budget Proposals
+            - paragraph [ref=e41] [cursor=pointer]:
+              - generic [ref=e42]:
+                - text: Governance Actions
+                - img [ref=e43]
+            - link [ref=e45] [cursor=pointer]:
+              - /url: /
+              - paragraph [ref=e46]: Guides
+            - link [ref=e48] [cursor=pointer]:
+              - /url: /
+              - paragraph [ref=e49]: FAQs
+            - button [ref=e51] [cursor=pointer]: Connect Wallet
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - generic [ref=e54]:
+          - paragraph [ref=e55]: Cardano Governance Tool
+          - paragraph [ref=e56]: Cardano Governance lets Ada holders have a say in the network's future. You can vote directly, find someone to represent you, or become a representative for others. You can also propose changes in the network yourself, put these up for discussion and eventually, a vote. Learn more about governance in the guide, or have a look around the app and see Cardano Governance in action.
+          - button [ref=e57] [cursor=pointer]:
+            - text: Participate now
+            - img [ref=e59]
+        - img [ref=e62]
+      - generic [ref=e63]:
+        - generic [ref=e64]:
+          - generic [ref=e65]:
+            - generic [ref=e66]:
+              - img [ref=e67]
+              - paragraph [ref=e68]: Delegate your Voting Power
+              - paragraph [ref=e69]: Find a DRep to vote on your behalf.
+            - generic [ref=e70]:
+              - button [ref=e71] [cursor=pointer]: View DRep Directory
+              - button [ref=e72] [cursor=pointer]: Learn more
+          - generic [ref=e73]:
+            - generic [ref=e74]:
+              - img [ref=e75]
+              - paragraph [ref=e76]: Become a DRep
+              - paragraph [ref=e77]: Accept delegated voting power from other Ada holders, and combine it with your own voting power. Vote with the accumulated Power on Governance Actions.
+            - generic [ref=e78]:
+              - button [ref=e79] [cursor=pointer]: Connect to Register
+              - button [ref=e80] [cursor=pointer]: Learn more
+          - generic [ref=e81]:
+            - generic [ref=e82]:
+              - img [ref=e83]
+              - paragraph [ref=e84]: Become a Direct Voter
+              - paragraph [ref=e85]: Vote on Governance Actions using your own voting power
+            - generic [ref=e86]:
+              - button [ref=e87] [cursor=pointer]: Connect to Register
+              - button [ref=e88] [cursor=pointer]: Learn more
+          - generic [ref=e89]:
+            - generic [ref=e90]:
+              - img [ref=e91]
+              - paragraph [ref=e92]: View Governance Actions
+              - paragraph [ref=e93]: See all the Governance Actions submitted on chain.
+            - button [ref=e95] [cursor=pointer]: View Governance Actions
+          - generic [ref=e96]:
+            - generic [ref=e97]:
+              - img [ref=e98]
+              - paragraph [ref=e99]: Propose a Governance Action
+              - paragraph [ref=e100]: Submit your proposal for a Governance Action.
+            - generic [ref=e101]:
+              - button [ref=e102] [cursor=pointer]: Connect to Propose
+              - button [ref=e103] [cursor=pointer]: View Proposals
+        - generic [ref=e104]:
+          - paragraph [ref=e105]: Useful links
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - paragraph [ref=e108]: Check the Constitutional Committee Portal
+              - paragraph [ref=e109]: See Interim Cardano Constitution and Constitutional committee votes rationales
+              - link [ref=e110] [cursor=pointer]:
+                - /url: https://constitution.gov.tools
+                - paragraph [ref=e111]: CC Portal
+                - img [ref=e112]
+            - generic [ref=e113]:
+              - paragraph [ref=e114]: Intersect website
+              - paragraph [ref=e115]: Intersect is a member-based organization for the Cardano ecosystem — putting the community at the center of Cardano’s development
+              - link [ref=e116] [cursor=pointer]:
+                - /url: https://www.intersectmbo.org/
+                - paragraph [ref=e117]: Intersect website
+                - img [ref=e118]
+      - contentinfo [ref=e119]:
+        - paragraph [ref=e120]: © 2026 GovTool
+        - generic [ref=e121]:
+          - generic [ref=e122] [cursor=pointer]: Privacy policy
+          - generic [ref=e123] [cursor=pointer]: Terms of Use
+        - generic [ref=e124]:
+          - button [ref=e125] [cursor=pointer]:
+            - img [ref=e127]
+            - text: Help
+          - button [ref=e128] [cursor=pointer]: Feedback
+    - img [ref=e129]
+  - generic [ref=e132]:
+    - img "close" [ref=e133] [cursor=pointer]
+    - img "Status icon" [ref=e134]
+    - paragraph [ref=e135]: Oops!
+    - generic:
+      - paragraph
+    - button "Confirm" [ref=e136] [cursor=pointer]: Confirm
+```
+
+# Test source
+
+```ts
+  1  | import environments from "@constants/environments";
+  2  | import createWallet from "@fixtures/createWallet";
+  3  | import { test } from "@fixtures/walletExtension";
+  4  | import { setAllureEpic } from "@helpers/allure";
+  5  | import convertBufferToHex from "@helpers/convertBufferToHex";
+  6  | import { ShelleyWallet } from "@helpers/crypto";
+  7  | import { createNewPageWithWallet } from "@helpers/page";
+  8  | import LoginPage from "@pages/loginPage";
+  9  | import { expect } from "@playwright/test";
+  10 | 
+  11 | test.beforeEach(async () => {
+  12 |   await setAllureEpic("1. Wallet connect");
+  13 | });
+  14 | 
+  15 | test("1A. Should connect wallet and choose stake-key to use", async ({
+  16 |   page,
+  17 | }) => {
+  18 |   const shellyWallet = await ShelleyWallet.generate();
+  19 |   const extraPubStakeKey = convertBufferToHex(shellyWallet.stakeKey.public);
+  20 |   const extraRewardAddress = convertBufferToHex(
+  21 |     shellyWallet.rewardAddressRawBytes(environments.networkId)
+  22 |   );
+  23 | 
+  24 |   await createWallet(page, {
+  25 |     extraRegisteredPubStakeKeys: [extraPubStakeKey],
+  26 |     extraRewardAddresses: [extraRewardAddress],
+  27 |     networkId: environments.networkId,
+  28 |   });
+  29 | 
+  30 |   const loginPage = new LoginPage(page);
+  31 |   await loginPage.login();
+  32 | });
+  33 | 
+  34 | test("1C. Should disconnect Wallet When connected", async ({ page }) => {
+  35 |   await createWallet(page, {
+  36 |     networkId: environments.networkId,
+  37 |   });
+  38 | 
+  39 |   const loginPage = new LoginPage(page);
+  40 |   await loginPage.login();
+  41 | 
+  42 |   await loginPage.logout();
+  43 | });
+  44 | 
+  45 | test("1D. Should reject wallet connection if on different network", async ({
+  46 |   page,
+  47 | }) => {
+  48 |   const wrongNetworkId = environments.networkId == 0 ? 1 : 0;
+  49 |   await createWallet(page, {
+  50 |     networkId: wrongNetworkId,
+  51 |   });
+  52 | 
+  53 |   await page.goto("/");
+  54 | 
+  55 |   await page.getByTestId("connect-wallet-button").click();
+  56 |   await page.getByTestId("demos-wallet-button").click();
+  57 | 
+> 58 |   await expect(page.getByTestId("wallet-connection-error-modal")).toHaveText(
+     |                                                                   ^ Error: expect(locator).toHaveText(expected) failed
+  59 |     /You are trying to connect/
+  60 |   );
+  61 | });
+  62 | 
+  63 | test("1E. Should hide incompatible wallets when connecting", async ({
+  64 |   browser,
+  65 | }) => {
+  66 |   const wallet = (await ShelleyWallet.generate()).json();
+  67 |   const newPage = await createNewPageWithWallet(browser, {
+  68 |     wallet,
+  69 |     supportedExtensions: [],
+  70 |   });
+  71 | 
+  72 |   await newPage.goto("/");
+  73 |   await newPage.getByTestId("connect-wallet-button").click();
+  74 | 
+  75 |   await expect(newPage.getByTestId("demos-wallet-button")).not.toBeVisible();
+  76 | });
+  77 | 
+```

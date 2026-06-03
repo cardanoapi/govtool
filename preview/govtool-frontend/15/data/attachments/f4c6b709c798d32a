@@ -1,0 +1,177 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 2-delegation/delegation.spec.ts >> DRep dependent tests >> 2Q. Should include DRep status and voting power on the DRep card
+- Location: tests/2-delegation/delegation.spec.ts:194:7
+
+# Error details
+
+```
+Error: DRep not found
+
+expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: false
+```
+
+```
+Error: page.waitForResponse: Test ended.
+=========================== logs ===========================
+waiting for response "**/drep/list?page=0&pageSize=5&sort=Activity&**"
+============================================================
+```
+
+# Test source
+
+```ts
+  1   | import DRepDirectoryPage from "@pages/dRepDirectoryPage";
+  2   | import { expect, Page } from "@playwright/test";
+  3   | import { IDRep, IDRepInfo } from "@types";
+  4   | import { bech32 } from "bech32";
+  5   | import * as crypto from "crypto";
+  6   | import { functionWaitedAssert } from "./waitedLoop";
+  7   | import {
+  8   |   invalid,
+  9   |   invalid as mockInvalid,
+  10  |   valid as mockValid,
+  11  | } from "@mock/index";
+  12  | import { faker } from "@faker-js/faker";
+  13  | import { ShelleyWallet } from "./crypto";
+  14  | import environments from "@constants/environments";
+  15  | 
+  16  | export async function fetchFirstActiveDRepDetails(page: Page) {
+  17  |   let dRepGivenName: string;
+  18  |   let dRepId: string;
+  19  |   let dRepDirectoryPage: DRepDirectoryPage;
+  20  |   let routePath = "**/drep/list?page=0&pageSize=5&sort=Activity&**";
+  21  |   await page.route(
+  22  |     routePath,
+  23  |     async (route) => {
+  24  |       const response = await route.fetch();
+  25  |       const json = await response.json();
+  26  |       const elements = json["elements"].filter(
+  27  |         (element: IDRep) =>
+  28  |           element.givenName != null &&
+  29  |           !element.isScriptBased &&
+  30  |           element.status == "Active"
+  31  |       );
+  32  |       dRepGivenName =
+  33  |         elements[Math.floor(Math.random() * elements.length)]["givenName"];
+  34  |       dRepId = json["elements"][0]["view"];
+  35  |       await route.fulfill({
+  36  |         status: 200,
+  37  |         contentType: "application/json",
+  38  |         body: JSON.stringify(json),
+  39  |       });
+  40  |     }
+  41  |   );
+  42  | 
+> 43  |   const responsePromise = page.waitForResponse(
+      |                                ^ Error: page.waitForResponse: Test ended.
+  44  |     routePath
+  45  |   );
+  46  | 
+  47  |   await functionWaitedAssert(
+  48  |     async () => {
+  49  |       dRepDirectoryPage = new DRepDirectoryPage(page);
+  50  |       await dRepDirectoryPage.goto();
+  51  |       await responsePromise;
+  52  | 
+  53  |       await dRepDirectoryPage.searchInput.click();
+  54  |       await dRepDirectoryPage.searchInput.fill(dRepId);
+  55  |       await expect(page.getByTestId(`${dRepId}-copy-id-button`)).toBeVisible({
+  56  |         timeout: 20_000,
+  57  |       });
+  58  |     },
+  59  |     {
+  60  |       name: "because the selected dRep ID has the 'doNotList' flag set to true",
+  61  |       message: "DRep not found",
+  62  |     }
+  63  |   );
+  64  |   return { dRepGivenName, dRepId, dRepDirectoryPage };
+  65  | }
+  66  | 
+  67  | export async function calculateImageSHA256(imageUrl: string) {
+  68  |   const toHex = (buffer: ArrayBuffer) => {
+  69  |     return Array.from(new Uint8Array(buffer))
+  70  |       .map((byte) => byte.toString(16).padStart(2, "0"))
+  71  |       .join("");
+  72  |   };
+  73  |   try {
+  74  |     if (imageUrl == "") {
+  75  |       return "";
+  76  |     }
+  77  |     const response = await fetch(imageUrl);
+  78  |     if (!response.ok) {
+  79  |       throw new Error(`Failed to fetch image: ${response.statusText}`);
+  80  |     }
+  81  |     const arrayBuffer = await response.arrayBuffer();
+  82  |     const hashBuffer = await crypto.subtle.digest("SHA-256", arrayBuffer);
+  83  |     return toHex(hashBuffer);
+  84  |   } catch (error) {
+  85  |     console.error("Error calculating SHA256:", error);
+  86  |     return null;
+  87  |   }
+  88  | }
+  89  | 
+  90  | export function fromHex(prefix: string, hex: string) {
+  91  |   return bech32.encode(prefix, bech32.toWords(Buffer.from(hex, "hex")));
+  92  | }
+  93  | 
+  94  | export function tohex(drepId: string) {
+  95  |   return Buffer.from(
+  96  |     bech32.fromWords(bech32.decode(drepId, 100).words)
+  97  |   ).toString("hex");
+  98  | }
+  99  | 
+  100 | export function convertDRep(
+  101 |   drepId: string,
+  102 |   script = false
+  103 | ): { cip129: string; cip105: string } {
+  104 |   const hexPattern = /^[0-9a-fA-F]+$/;
+  105 |   let cip129DRep: string;
+  106 |   let cip129DrepHex: string;
+  107 |   let cip105DRep: string;
+  108 |   const prefix = script ? "23" : "22";
+  109 |   const addPrefix = (hex: string) => {
+  110 |     if (hex.length === 56) {
+  111 |       return prefix + hex;
+  112 |     } else if (hex.length === 58) {
+  113 |       return hex;
+  114 |     } else {
+  115 |       throw new Error("Invalid DRep hex length");
+  116 |     }
+  117 |   };
+  118 |   const drepIdFromHex = (prefix: string, hex: string) => {
+  119 |     return fromHex(prefix, hex);
+  120 |   };
+  121 |   if (hexPattern.test(drepId)) {
+  122 |     cip129DrepHex = addPrefix(drepId);
+  123 |   } else {
+  124 |     try {
+  125 |       const decodedHex = tohex(drepId);
+  126 |       cip129DrepHex = addPrefix(decodedHex);
+  127 |     } catch (error: any) {
+  128 |       throw new Error("Invalid DRep Bech32 format");
+  129 |     }
+  130 |   }
+  131 |   cip105DRep = drepIdFromHex(
+  132 |     cip129DrepHex.slice(0, 2) == "22" ? "drep" : "drep_script",
+  133 |     cip129DrepHex.slice(-56)
+  134 |   );
+  135 |   cip129DRep = drepIdFromHex("drep", cip129DrepHex);
+  136 |   return { cip129: cip129DRep, cip105: cip105DRep };
+  137 | }
+  138 | 
+  139 | export async function generateValidDRepInfo(): Promise<IDRepInfo> {
+  140 |   return {
+  141 |     name: mockValid.name(),
+  142 |     objectives: faker.lorem.paragraph(2),
+  143 |     motivations: faker.lorem.paragraph(2),
+```

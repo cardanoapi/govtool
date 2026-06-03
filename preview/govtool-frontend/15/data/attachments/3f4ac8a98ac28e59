@@ -1,0 +1,135 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 10-user-snap/userSnap.spec.ts >> 10C. Should verify feature form
+- Location: tests/10-user-snap/userSnap.spec.ts:60:5
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+Call log:
+  - navigating to "https://preview.dev.gov.tools/", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1   | import { faker } from "@faker-js/faker";
+  2   | import { test } from "@fixtures/walletExtension";
+  3   | import { setAllureEpic } from "@helpers/allure";
+  4   | import { isMobile } from "@helpers/mobile";
+  5   | import { expect, Page } from "@playwright/test";
+  6   | import { randomUUID } from "crypto";
+  7   | 
+  8   | test.beforeEach(async ({ page }) => {
+  9   |   await setAllureEpic("10. User Snap");
+> 10  |   await page.goto("/");
+      |              ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+  11  |   await page.waitForTimeout(2_000); // wait until page load properly
+  12  | 
+  13  |   await page.getByTestId("feedback-footer-button").click();
+  14  | });
+  15  | 
+  16  | test("10A. Should open feedback modal", async ({ page }) => {
+  17  |   await expect(page.getByLabel("Usersnap widget")).toBeVisible();
+  18  |   await expect(
+  19  |     page.getByRole("button", {
+  20  |       name: "Report an issue Something",
+  21  |     })
+  22  |   ).toBeVisible();
+  23  |   await expect(
+  24  |     page.getByRole("button", { name: "Send an idea Let us know what" })
+  25  |   ).toBeVisible();
+  26  | });
+  27  | 
+  28  | test("10B. Should verify a bug report form", async ({ page }) => {
+  29  |   await page
+  30  |     .getByRole("button", {
+  31  |       name: "Report an issue Something",
+  32  |     })
+  33  |     .click();
+  34  |   await expect(
+  35  |     page.getByRole("button", { name: "Close annotation" })
+  36  |   ).toBeVisible();
+  37  | 
+  38  |   if (isMobile(page)) {
+  39  |     await expect(
+  40  |       page.getByRole("button", { name: "Add screenshot" })
+  41  |     ).toBeVisible();
+  42  |     await page.getByRole("button", { name: "Close annotation" }).click();
+  43  |     await expect(page.getByLabel("Take screenshot")).toBeVisible();
+  44  |   }
+  45  | 
+  46  |   await expect(
+  47  |     page.getByRole("heading", { name: "Report a bug" })
+  48  |   ).toBeVisible();
+  49  |   await expect(page.getByPlaceholder("Add description")).toBeVisible();
+  50  |   await expect(page.getByLabel("Record")).toBeVisible();
+  51  |   await expect(page.getByRole("button", { name: "Submit" })).toBeVisible();
+  52  | 
+  53  |   // check record action
+  54  |   await page.getByLabel("Record").click();
+  55  |   await expect(
+  56  |     page.getByRole("button", { name: "Cancel recording" })
+  57  |   ).toBeVisible();
+  58  | });
+  59  | 
+  60  | test("10C. Should verify feature form", async ({ page }) => {
+  61  |   await page
+  62  |     .getByRole("button", { name: "Send an idea Let us know what" })
+  63  |     .click();
+  64  | 
+  65  |   await expect(
+  66  |     page.getByRole("heading", { name: "Feature Request" })
+  67  |   ).toBeVisible();
+  68  |   await expect(page.getByPlaceholder("Feature description")).toBeVisible();
+  69  |   await expect(page.getByPlaceholder("Please add some context")).toBeVisible();
+  70  |   await expect(page.getByLabel("Take screenshot")).toBeVisible();
+  71  |   await expect(page.getByLabel("Record")).toBeVisible();
+  72  |   await expect(
+  73  |     page.getByRole("button", { name: "Request Feature" })
+  74  |   ).toBeVisible();
+  75  | 
+  76  |   // check screenshot action
+  77  |   await page.getByLabel("Take screenshot").click();
+  78  |   await expect(
+  79  |     page.getByRole("button", { name: "Close annotation" })
+  80  |   ).toBeVisible();
+  81  |   await expect(
+  82  |     page.getByRole("button", { name: "Add screenshot" })
+  83  |   ).toBeVisible();
+  84  |   await page.getByRole("button", { name: "Close annotation" }).click();
+  85  | 
+  86  |   // check record action
+  87  |   await page.getByLabel("Record").click();
+  88  |   await expect(
+  89  |     page.getByRole("button", { name: "Cancel recording" })
+  90  |   ).toBeVisible();
+  91  | });
+  92  | 
+  93  | test.describe("Submit Usersnap", () => {
+  94  |   const feedbackApiUrl =
+  95  |     "https://widget.usersnap.com/api/widget/xhrrpc?submit_feedback";
+  96  |   const bucketUrl = "https://s3.eu-central-1.amazonaws.com/upload.usersnap.com";
+  97  | 
+  98  |   const interceptBucket = async (page: Page) => {
+  99  |     await page.route(bucketUrl, async (route) =>
+  100 |       route.fulfill({
+  101 |         status: 204,
+  102 |       })
+  103 |     );
+  104 |   };
+  105 | 
+  106 |   const interceptUsersnap = async (page: Page) => {
+  107 |     await page.route(feedbackApiUrl, async (route) =>
+  108 |       route.fulfill({
+  109 |         status: 200,
+  110 |         body: JSON.stringify({
+```

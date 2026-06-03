@@ -1,7 +1,0 @@
-✖ Failed to load resource: the server responded with a status of 406 ()
-✖ Failed to load resource: the server responded with a status of 406 ()
-✖ Failed to load resource: the server responded with a status of 406 ()
-✖ Failed to load resource: the server responded with a status of 429 ()
-ℹ Waiting for tx completion: 92c0faa0d5e410db737a8c38b40bf8d45052c4409545a9493b4f96873b5f3aab
-✔ Tx completed
-✖ Failed to load resource: the server responded with a status of 406 ()

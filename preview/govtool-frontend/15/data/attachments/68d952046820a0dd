@@ -1,0 +1,147 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 3-drep-registration/dRepRegistration.loggedin.spec.ts >> 3B. Should access DRep registration page
+- Location: tests/3-drep-registration/dRepRegistration.loggedin.spec.ts:21:5
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+Call log:
+  - navigating to "https://preview.dev.gov.tools/", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1   | import { user01Wallet } from "@constants/staticWallets";
+  2   | import { faker } from "@faker-js/faker";
+  3   | import { test } from "@fixtures/walletExtension";
+  4   | import { setAllureEpic } from "@helpers/allure";
+  5   | import { invalid as mockInvalid, valid as mockValid } from "@mock/index";
+  6   | import DRepRegistrationPage from "@pages/dRepRegistrationPage";
+  7   | import { expect } from "@playwright/test";
+  8   | import { user01AuthFile } from "@constants/auth";
+  9   | import EditDRepPage from "@pages/editDRepPage";
+  10  | import { generateInvalidDRepInfo, generateValidDRepInfo } from "@helpers/dRep";
+  11  | 
+  12  | test.use({
+  13  |   storageState: user01AuthFile,
+  14  |   wallet: user01Wallet,
+  15  | });
+  16  | 
+  17  | test.beforeEach(async () => {
+  18  |   await setAllureEpic("3. DRep registration");
+  19  | });
+  20  | 
+  21  | test("3B. Should access DRep registration page", async ({ page }) => {
+> 22  |   await page.goto("/");
+      |              ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+  23  | 
+  24  |   await page.getByTestId("register-button").click();
+  25  |   await expect(page.getByText("Become a DRep")).toBeVisible();
+  26  | });
+  27  | 
+  28  | test("3D. Verify DRep registration form", async ({ page }) => {
+  29  |   const dRepRegistrationPage = new DRepRegistrationPage(page);
+  30  |   await dRepRegistrationPage.goto();
+  31  | 
+  32  |   await expect(dRepRegistrationPage.nameInput).toBeVisible();
+  33  |   await expect(dRepRegistrationPage.objectivesInput).toBeVisible();
+  34  |   await expect(dRepRegistrationPage.motivationsInput).toBeVisible();
+  35  |   await expect(dRepRegistrationPage.qualificationsInput).toBeVisible();
+  36  |   await expect(dRepRegistrationPage.paymentAddressInput).toBeVisible();
+  37  |   await expect(dRepRegistrationPage.addIdentityReferenceBtn).toBeVisible();
+  38  |   await expect(dRepRegistrationPage.addLinkReferenceBtn).toBeVisible();
+  39  |   await expect(
+  40  |     dRepRegistrationPage.linkRefrenceFirstDescriptionInput
+  41  |   ).toBeVisible();
+  42  |   await expect(dRepRegistrationPage.linkRefrenceFirstUrlInput).toBeVisible();
+  43  |   await expect(
+  44  |     dRepRegistrationPage.identityReferenceFirstDescriptionInput
+  45  |   ).toBeVisible();
+  46  |   await expect(
+  47  |     dRepRegistrationPage.identityReferenceFirstUrlInput
+  48  |   ).toBeVisible();
+  49  |   await expect(dRepRegistrationPage.doNotListCheckBox).toBeVisible();
+  50  | 
+  51  |   await expect(dRepRegistrationPage.continueBtn).toBeVisible();
+  52  | });
+  53  | 
+  54  | test.describe("Validation of dRep Registration Form", () => {
+  55  |   test("3E_1. Should accept valid data in DRep form", async ({ page }) => {
+  56  |     test.slow();
+  57  | 
+  58  |     const dRepRegistrationPage = new DRepRegistrationPage(page);
+  59  |     await dRepRegistrationPage.goto();
+  60  | 
+  61  |     await expect(page.getByTestId("alert-success")).not.toBeVisible();
+  62  | 
+  63  |     for (let i = 0; i < 100; i++) {
+  64  |       const validDRepInfo = await generateValidDRepInfo();
+  65  |       await dRepRegistrationPage.validateForm(validDRepInfo);
+  66  |     }
+  67  | 
+  68  |     for (let i = 0; i < 6; i++) {
+  69  |       await expect(dRepRegistrationPage.addLinkReferenceBtn).toBeVisible();
+  70  |       await dRepRegistrationPage.addLinkReferenceBtn.click();
+  71  |     }
+  72  | 
+  73  |     for (let i = 0; i < 6; i++) {
+  74  |       await expect(dRepRegistrationPage.addIdentityReferenceBtn).toBeVisible();
+  75  |       await dRepRegistrationPage.addIdentityReferenceBtn.click();
+  76  |     }
+  77  | 
+  78  |     await expect(dRepRegistrationPage.addLinkReferenceBtn).toBeHidden();
+  79  |     await expect(dRepRegistrationPage.addIdentityReferenceBtn).toBeHidden();
+  80  |   });
+  81  | 
+  82  |   test("3E_2. Should reject invalid data in DRep form", async ({ page }) => {
+  83  |     test.slow();
+  84  | 
+  85  |     const dRepRegistrationPage = new DRepRegistrationPage(page);
+  86  |     await dRepRegistrationPage.goto();
+  87  |     await expect(page.getByTestId("alert-success")).not.toBeVisible();
+  88  | 
+  89  |     for (let i = 0; i < 100; i++) {
+  90  |       const invalidDRepInfo = generateInvalidDRepInfo();
+  91  |       await dRepRegistrationPage.inValidateForm(invalidDRepInfo);
+  92  |     }
+  93  |   });
+  94  | 
+  95  |   test("3L_1. Should accept valid metadata anchor on create dRep", async ({
+  96  |     page,
+  97  |   }) => {
+  98  |     const dRepRegistrationPage = new DRepRegistrationPage(page);
+  99  |     await dRepRegistrationPage.goto();
+  100 | 
+  101 |     const dRepName = "Test_DRep";
+  102 |     await dRepRegistrationPage.nameInput.fill(dRepName);
+  103 | 
+  104 |     await dRepRegistrationPage.continueBtn.click();
+  105 |     await page.getByRole("checkbox").click();
+  106 |     await dRepRegistrationPage.registerBtn.click();
+  107 | 
+  108 |     for (let i = 0; i < 100; i++) {
+  109 |       await dRepRegistrationPage.metadataUrlInput.fill(mockValid.url());
+  110 |       await expect(page.getByTestId("invalid-url-error")).toBeHidden();
+  111 |     }
+  112 |   });
+  113 | 
+  114 |   test("3L_2. Should reject invalid dRep metadata anchor on create dRep", async ({
+  115 |     page,
+  116 |   }) => {
+  117 |     const dRepRegistrationPage = new DRepRegistrationPage(page);
+  118 |     await dRepRegistrationPage.goto();
+  119 | 
+  120 |     const dRepName = "Test_DRep";
+  121 |     await dRepRegistrationPage.nameInput.fill(dRepName);
+  122 | 
+```

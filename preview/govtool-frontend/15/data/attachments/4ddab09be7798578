@@ -1,0 +1,171 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 12-proposal-budget-submission/proposalBudgetSubmission.loggedin.pb.spec.ts >> Budget proposal 01 wallet >> 12B. Should access proposal creation page in connected state
+- Location: tests/12-proposal-budget-submission/proposalBudgetSubmission.loggedin.pb.spec.ts:43:7
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+Call log:
+  - navigating to "https://preview.dev.gov.tools/", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1   | import {
+  2   |   budgetProposal01AuthFile,
+  3   |   budgetProposal02AuthFile,
+  4   |   budgetProposal03AuthFile,
+  5   |   budgetProposal04AuthFile,
+  6   |   budgetProposal05AuthFile,
+  7   | } from "@constants/auth";
+  8   | import {
+  9   |   budgetProposal01Wallet,
+  10  |   budgetProposal02Wallet,
+  11  |   budgetProposal03Wallet,
+  12  |   budgetProposal04Wallet,
+  13  |   budgetProposal05Wallet,
+  14  | } from "@constants/staticWallets";
+  15  | import { faker } from "@faker-js/faker";
+  16  | import { test } from "@fixtures/budgetProposal";
+  17  | import { setAllureEpic } from "@helpers/allure";
+  18  | import { skipIfMainnet } from "@helpers/cardano";
+  19  | import { createNewPageWithWallet } from "@helpers/page";
+  20  | import BudgetDiscussionDetailsPage from "@pages/budgetDiscussionDetailsPage";
+  21  | import BudgetDiscussionPage from "@pages/budgetDiscussionPage";
+  22  | import BudgetDiscussionSubmissionPage from "@pages/budgetDiscussionSubmissionPage";
+  23  | import { expect } from "@playwright/test";
+  24  | import {
+  25  |   BudgetProposalOwnershipProps,
+  26  |   BudgetProposalProps,
+  27  |   BudgetProposalStageEnum,
+  28  |   CompanyEnum,
+  29  |   PreferredCurrencyEnum,
+  30  |   ProposalContractingEnum,
+  31  | } from "@types";
+  32  | 
+  33  | test.beforeEach(async () => {
+  34  |   await setAllureEpic("12. Proposal Budget Submission");
+  35  | });
+  36  | 
+  37  | test.describe("Budget proposal 01 wallet", () => {
+  38  |   test.use({
+  39  |     storageState: budgetProposal01AuthFile,
+  40  |     wallet: budgetProposal01Wallet,
+  41  |   });
+  42  | 
+  43  |   test("12B. Should access proposal creation page in connected state", async ({
+  44  |     page,
+  45  |   }) => {
+> 46  |     await page.goto("/");
+      |                ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/
+  47  |     await page.getByTestId("budget-discussion-link").click();
+  48  |     await page.getByTestId("verify-user-link").first().click();
+  49  | 
+  50  |     await expect(
+  51  |       page.getByTestId("propose-a-budget-discussion-button")
+  52  |     ).toBeVisible({ timeout: 60_000 });
+  53  |   });
+  54  | 
+  55  |   test.describe("Budget proposal with proposalSubmissionPageNavigation", () => {
+  56  |     let budgetProposalSubmissionPage: BudgetDiscussionSubmissionPage;
+  57  |     test.beforeEach(async ({ page }) => {
+  58  |       budgetProposalSubmissionPage = new BudgetDiscussionSubmissionPage(page);
+  59  |       await budgetProposalSubmissionPage.goto();
+  60  |     });
+  61  | 
+  62  |     test.describe("Budget proposal field verification", () => {
+  63  |       test("12D_1. Should verify all field of “proposal ownership” section", async () => {
+  64  |         // default field
+  65  |         await expect(
+  66  |           budgetProposalSubmissionPage.proposalCommittee
+  67  |         ).toBeVisible();
+  68  | 
+  69  |         await expect(
+  70  |           budgetProposalSubmissionPage.contactDetailsInput
+  71  |         ).toBeVisible();
+  72  | 
+  73  |         // company type field
+  74  |         await budgetProposalSubmissionPage.proposalCommittee.click();
+  75  |         await budgetProposalSubmissionPage.currentPage
+  76  |           .getByTestId("company-submission")
+  77  |           .click();
+  78  | 
+  79  |         await expect(
+  80  |           budgetProposalSubmissionPage.companyNameInput
+  81  |         ).toBeVisible();
+  82  |         await expect(
+  83  |           budgetProposalSubmissionPage.companyDomainNameInput
+  84  |         ).toBeVisible();
+  85  |         await expect(
+  86  |           budgetProposalSubmissionPage.countryOfIncorporationBtn
+  87  |         ).toBeVisible();
+  88  | 
+  89  |         // group type field
+  90  |         await budgetProposalSubmissionPage.proposalCommittee.click();
+  91  |         await budgetProposalSubmissionPage.currentPage
+  92  |           .getByTestId("group-submission")
+  93  |           .click();
+  94  |         await expect(budgetProposalSubmissionPage.groupNameInput).toBeVisible();
+  95  |         await expect(budgetProposalSubmissionPage.groupTypeInput).toBeVisible();
+  96  |         await expect(
+  97  |           budgetProposalSubmissionPage.keyInformationOfGroupInput
+  98  |         ).toBeVisible();
+  99  | 
+  100 |         await expect(budgetProposalSubmissionPage.continueBtn).toBeDisabled();
+  101 |       });
+  102 | 
+  103 |       test("12D_2. Should verify all field of “problem statements and proposal benefits” section", async () => {
+  104 |         const proposalOwnership =
+  105 |           budgetProposalSubmissionPage.generateValidProposalOwnerShip();
+  106 |         await budgetProposalSubmissionPage.fillupProposalOwnershipForm(
+  107 |           proposalOwnership
+  108 |         );
+  109 | 
+  110 |         await expect(
+  111 |           budgetProposalSubmissionPage.problemStatementInput
+  112 |         ).toBeVisible();
+  113 |         await expect(
+  114 |           budgetProposalSubmissionPage.proposalBenefitInput
+  115 |         ).toBeVisible();
+  116 |         await expect(
+  117 |           budgetProposalSubmissionPage.roadmapNameSelect
+  118 |         ).toBeVisible();
+  119 |         await expect(
+  120 |           budgetProposalSubmissionPage.budgetDiscussionTypeSelect
+  121 |         ).toBeVisible();
+  122 |         await expect(
+  123 |           budgetProposalSubmissionPage.committeeAlignmentTypeSelect
+  124 |         ).toBeVisible();
+  125 |         await expect(
+  126 |           budgetProposalSubmissionPage.suplimentaryEndorsementInput
+  127 |         ).toBeVisible();
+  128 |         await expect(budgetProposalSubmissionPage.continueBtn).toBeDisabled();
+  129 |       });
+  130 | 
+  131 |       test("12D_3. Should verify all field of “proposal details” section", async () => {
+  132 |         const proposalInformation =
+  133 |           budgetProposalSubmissionPage.generateValidBudgetProposalInformation();
+  134 |         await budgetProposalSubmissionPage.fillupForm(
+  135 |           proposalInformation,
+  136 |           BudgetProposalStageEnum.ProblemStatementAndBenefits
+  137 |         );
+  138 | 
+  139 |         await expect(
+  140 |           budgetProposalSubmissionPage.proposalNameInput
+  141 |         ).toBeVisible();
+  142 |         await expect(
+  143 |           budgetProposalSubmissionPage.proposalDescriptionInput
+  144 |         ).toBeVisible();
+  145 |         await expect(
+  146 |           budgetProposalSubmissionPage.proposalKeyDependenciesInput
+```

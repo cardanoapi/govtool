@@ -1,0 +1,130 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 8-proposal-discussion/proposalDiscussion.spec.ts >> Mocked proposal >> 8I. Should disable poll voting functionality.
+- Location: tests/8-proposal-discussion/proposalDiscussion.spec.ts:287:7
+
+# Error details
+
+```
+Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/proposal_discussion/128
+Call log:
+  - navigating to "https://preview.dev.gov.tools/proposal_discussion/128", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1   | import environments from "@constants/environments";
+  2   | import { Page, expect } from "@playwright/test";
+  3   | import { CommentResponse } from "@types";
+  4   | 
+  5   | export default class ProposalDiscussionDetailsPage {
+  6   |   // Buttons
+  7   |   readonly likeBtn = this.page.getByTestId("like-button");
+  8   |   readonly dislikeBtn = this.page.getByTestId("dislike-button");
+  9   |   readonly commentBtn = this.page.getByTestId("comment-button");
+  10  |   readonly replyCommentBtn = this.page.getByTestId("reply-comment-button");
+  11  |   readonly addPollBtn = this.page.getByTestId("add-poll-button");
+  12  |   readonly SubmitBtn = this.page.getByTestId("submit-button");
+  13  |   readonly menuBtn = this.page.getByTestId("menu-button");
+  14  |   readonly editProposalBtn = this.page.getByTestId("edit-proposal");
+  15  |   readonly deleteProposalBtn = this.page.getByTestId("delete-proposal");
+  16  |   readonly reviewVersionsBtn = this.page.getByTestId("review-versions");
+  17  |   readonly closePollBtn = this.page.getByTestId("close-poll-button");
+  18  |   readonly sortBtn = this.page.getByTestId("sort-comments");
+  19  |   readonly proposeGovernanceAction = this.page.getByTestId("propose-GA-button");
+  20  |   readonly replyBtn = this.page.getByTestId("reply-button");
+  21  |   readonly pollYesBtn = this.page.getByTestId("poll-yes-button");
+  22  |   readonly pollNoBtn = this.page.getByTestId("poll-no-button");
+  23  |   readonly showReplyBtn = this.page.getByTestId("show-more-reply");
+  24  |   readonly closePollYesBtn = this.page.getByTestId("close-the-poll-button");
+  25  |   readonly changeVoteBtn = this.page.getByTestId("change-vote-button");
+  26  |   readonly verifyIdentityBtn = this.page
+  27  |     .getByTestId("verify-user-link")
+  28  |     .first();
+  29  |   readonly submitAsGABtn = this.page.getByTestId("submit-as-GA-button");
+  30  | 
+  31  |   // Indicators
+  32  |   readonly likeCount = this.likeBtn.getByTestId("like-count");
+  33  |   readonly dislikeCount = this.dislikeBtn.getByTestId("dislike-count");
+  34  |   readonly commentCount = this.page.getByTestId("comment-count");
+  35  | 
+  36  |   // Cards
+  37  |   readonly pollVoteCard = this.page.getByTestId("poll-vote-card");
+  38  |   readonly pollResultCard = this.page.getByTestId("poll-result-card");
+  39  | 
+  40  |   //inputs
+  41  |   readonly commentInput = this.page.getByTestId("comment-input");
+  42  | 
+  43  |   constructor(private readonly page: Page) {}
+  44  | 
+  45  |   async goto(proposalId: number) {
+> 46  |     await this.page.goto(
+      |                     ^ Error: page.goto: net::ERR_CERT_COMMON_NAME_INVALID at https://preview.dev.gov.tools/proposal_discussion/128
+  47  |       `${environments.frontendUrl}/proposal_discussion/${proposalId}`
+  48  |     );
+  49  |   }
+  50  | 
+  51  |   async closeUsernamePrompt() {
+  52  |     await this.page
+  53  |       .locator("div")
+  54  |       .filter({ hasText: /^Hey, setup your username$/ })
+  55  |       .getByRole("button")
+  56  |       .click();
+  57  |   }
+  58  | 
+  59  |   async addComment(comment: string) {
+  60  |     await this.commentInput.fill(comment);
+  61  |     await this.commentBtn.click();
+  62  |   }
+  63  | 
+  64  |   async replyComment(reply: string) {
+  65  |     await this.replyBtn.click();
+  66  |     await this.page.getByTestId("reply-input").fill(reply);
+  67  |     await this.replyCommentBtn.click();
+  68  |   }
+  69  | 
+  70  |   async sortAndValidate(
+  71  |     order: string,
+  72  |     validationFn: (date1: string, date2: string) => boolean
+  73  |   ) {
+  74  |     const responsePromise = this.page.waitForResponse((response) =>
+  75  |       response.url().includes(`&sort[createdAt]=${order}`)
+  76  |     );
+  77  | 
+  78  |     await this.sortBtn.click();
+  79  |     const response = await responsePromise;
+  80  | 
+  81  |     const comments: CommentResponse[] = (await response.json()).data;
+  82  | 
+  83  |     // API validation
+  84  |     for (let i = 0; i < comments.length - 1; i++) {
+  85  |       const isValid = validationFn(
+  86  |         comments[i].attributes.updatedAt,
+  87  |         comments[i + 1].attributes.updatedAt
+  88  |       );
+  89  |       expect(isValid).toBe(true);
+  90  |     }
+  91  |   }
+  92  | 
+  93  |   async voteOnPoll(vote: string) {
+  94  |     await this.page.getByTestId(`poll-${vote.toLowerCase()}-button`).click();
+  95  |   }
+  96  | 
+  97  |   async deleteProposal() {
+  98  |     await this.page.waitForTimeout(2_000);
+  99  | 
+  100 |     await this.page.getByTestId("menu-button").click();
+  101 |     await this.page.getByTestId("delete-proposal").click();
+  102 |     await this.page.getByTestId("delete-proposal-yes-button").click();
+  103 |   }
+  104 | }
+  105 | 
+```
