@@ -1,0 +1,5 @@
+✔ Uploaded Eloisa metadata to bucket
+ℹ Submitting tx: {"lock_id":"62ccbf2c26d4f5252192e69faf3dacae119e4fc023e59df4db652ca712ba1a50","tx":{"certificates":[{"type":"registerdrep","key":"d1026eafc5167dda9b32658024038ab9db4ad2c3c8f6c3641ea6b3c7","anchor":{"url":"https://metadata-govtool.cardanoapi.io/data/Eloisa","dataHash":"b91db5df4ed773f69c8296908e3bb3966a3603f284533080abb233c124877b87"}}],"selections":[{"type":"PaymentSigningKeyShelley_ed25519","description":"Stake Signing Key","cborHex":"5820d79170391db90511eba3367240be67e5dbedd7c7d315784b45b8d0e445c4710e"},{"type":"PaymentSigningKeyShelley_ed25519","description":"Payment Signing Key","cborHex":"58204a6ae978d1656381cfe8d9316c7262dd96d72a0c2ce6368ad8559b392170aa0e"},"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"],"changeAddress":"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"}}
+✔ Tx submitted: 6651cdeb135ba78074d830e3098a97cca340240a0baf0440a18c4acb1021e548
+ℹ Waiting for tx completion: 6651cdeb135ba78074d830e3098a97cca340240a0baf0440a18c4acb1021e548
+✔ Tx completed

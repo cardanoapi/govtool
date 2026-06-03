@@ -1,5 +1,0 @@
-✔ Uploaded Robin metadata to bucket
-ℹ Submitting tx: {"lock_id":"86270db81e2ba11378c8c02e75907e96580e422f85dd51f24508b6a0f8216c45","tx":{"certificates":[{"type":"registerdrep","key":"0f8e33ca39da61376b007126a90efdee184ca2a3e69af043c16f5822","anchor":{"url":"https://metadata-govtool.cardanoapi.io/data/Robin","dataHash":"2d4b8e83626c1bb0c8d20ae4f8b00de2504c1cc2a2d0a097a33f661f6377e4bb"}}],"selections":[{"type":"PaymentSigningKeyShelley_ed25519","description":"Stake Signing Key","cborHex":"58209256d96256c166188f4e8c06cabec0ad53c0c3d1a1aeb54ffe62d2943ce18216"},{"type":"PaymentSigningKeyShelley_ed25519","description":"Payment Signing Key","cborHex":"58204a6ae978d1656381cfe8d9316c7262dd96d72a0c2ce6368ad8559b392170aa0e"},"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"],"changeAddress":"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"}}
-✔ Tx submitted: 0cd81451320ec079421c2e9f1cadd2221cfe20f96457af9fb6513771245aca70
-ℹ Waiting for tx completion: 0cd81451320ec079421c2e9f1cadd2221cfe20f96457af9fb6513771245aca70
-✔ Tx completed

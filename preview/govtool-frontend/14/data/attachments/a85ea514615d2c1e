@@ -1,0 +1,260 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 10-user-snap/userSnap.spec.ts >> Submit Usersnap >> 10E. Should submit an idea or new feature
+- Location: tests/10-user-snap/userSnap.spec.ts:166:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: 'Send an idea Let us know what' })
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+      - button [ref=e14] [cursor=pointer]:
+        - img [ref=e15]
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - link "The Info Action" [ref=e20] [cursor=pointer]:
+          - /url: https://gov.tools/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+        - text: has passed — thank you for your support!
+      - generic [ref=e21]:
+        - text: We have now submitted a
+        - link "Treasury Withdrawal" [ref=e22] [cursor=pointer]:
+          - /url: https://gov.tools/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+        - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+  - img "bg-orange" [ref=e23]
+  - banner [ref=e25]:
+    - generic [ref=e26]:
+      - link "app-logo" [ref=e27] [cursor=pointer]:
+        - /url: /
+        - img "app-logo" [ref=e28]
+      - generic [ref=e29]:
+        - button "Connect" [ref=e30] [cursor=pointer]: Connect
+        - img "drawer-icon" [ref=e31]
+  - generic [ref=e33]:
+    - generic [ref=e34]:
+      - generic [ref=e35]:
+        - paragraph [ref=e36]: Cardano Governance Tool
+        - paragraph [ref=e37]: Cardano Governance lets Ada holders have a say in the network's future. You can vote directly, find someone to represent you, or become a representative for others. You can also propose changes in the network yourself, put these up for discussion and eventually, a vote. Learn more about governance in the guide, or have a look around the app and see Cardano Governance in action.
+        - button "Participate now" [ref=e38] [cursor=pointer]:
+          - text: Participate now
+          - img [ref=e40]
+      - img "hero" [ref=e43]
+    - generic [ref=e44]:
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - generic [ref=e47]:
+            - img "action-card" [ref=e48]
+            - paragraph [ref=e49]: Delegate your Voting Power
+            - paragraph [ref=e50]: Find a DRep to vote on your behalf.
+          - generic [ref=e51]:
+            - button "View DRep Directory" [ref=e52] [cursor=pointer]: View DRep Directory
+            - button "Learn more" [ref=e53] [cursor=pointer]: Learn more
+        - generic [ref=e54]:
+          - generic [ref=e55]:
+            - img "action-card" [ref=e56]
+            - paragraph [ref=e57]: Become a DRep
+            - paragraph [ref=e58]: Accept delegated voting power from other Ada holders, and combine it with your own voting power. Vote with the accumulated Power on Governance Actions.
+          - generic [ref=e59]:
+            - button "Connect to Register" [ref=e60] [cursor=pointer]: Connect to Register
+            - button "Learn more" [ref=e61] [cursor=pointer]: Learn more
+        - generic [ref=e62]:
+          - generic [ref=e63]:
+            - img "action-card" [ref=e64]
+            - paragraph [ref=e65]: Become a Direct Voter
+            - paragraph [ref=e66]: Vote on Governance Actions using your own voting power
+          - generic [ref=e67]:
+            - button "Connect to Register" [ref=e68] [cursor=pointer]: Connect to Register
+            - button "Learn more" [ref=e69] [cursor=pointer]: Learn more
+        - generic [ref=e70]:
+          - generic [ref=e71]:
+            - img "action-card" [ref=e72]
+            - paragraph [ref=e73]: View Governance Actions
+            - paragraph [ref=e74]: See all the Governance Actions submitted on chain.
+          - button "View Governance Actions" [ref=e76] [cursor=pointer]: View Governance Actions
+        - generic [ref=e77]:
+          - generic [ref=e78]:
+            - img "action-card" [ref=e79]
+            - paragraph [ref=e80]: Propose a Governance Action
+            - paragraph [ref=e81]: Submit your proposal for a Governance Action.
+          - generic [ref=e82]:
+            - button "Connect to Propose" [ref=e83] [cursor=pointer]: Connect to Propose
+            - button "View Proposals" [ref=e84] [cursor=pointer]: View Proposals
+      - generic [ref=e85]:
+        - paragraph [ref=e86]: Useful links
+        - generic [ref=e87]:
+          - generic [ref=e88]:
+            - paragraph [ref=e89]: Check the Constitutional Committee Portal
+            - paragraph [ref=e90]: See Interim Cardano Constitution and Constitutional committee votes rationales
+            - link "CC Portal link" [ref=e91] [cursor=pointer]:
+              - /url: https://constitution.gov.tools
+              - paragraph [ref=e92]: CC Portal
+              - img "link" [ref=e93]
+          - generic [ref=e94]:
+            - paragraph [ref=e95]: Intersect website
+            - paragraph [ref=e96]: Intersect is a member-based organization for the Cardano ecosystem — putting the community at the center of Cardano’s development
+            - link "Intersect website link" [ref=e97] [cursor=pointer]:
+              - /url: https://www.intersectmbo.org/
+              - paragraph [ref=e98]: Intersect website
+              - img "link" [ref=e99]
+    - contentinfo [ref=e100]:
+      - paragraph [ref=e101]: © 2026 GovTool
+      - generic [ref=e102]:
+        - generic [ref=e103] [cursor=pointer]: Privacy policy
+        - generic [ref=e104] [cursor=pointer]: Terms of Use
+      - generic [ref=e105]:
+        - button "helpIcon Help" [ref=e106] [cursor=pointer]:
+          - img "helpIcon" [ref=e108]
+          - text: Help
+        - button "Feedback" [active] [ref=e109] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e110]
+```
+
+# Test source
+
+```ts
+  73  |     page.getByRole("button", { name: "Request Feature" })
+  74  |   ).toBeVisible();
+  75  | 
+  76  |   // check screenshot action
+  77  |   await page.getByLabel("Take screenshot").click();
+  78  |   await expect(
+  79  |     page.getByRole("button", { name: "Close annotation" })
+  80  |   ).toBeVisible();
+  81  |   await expect(
+  82  |     page.getByRole("button", { name: "Add screenshot" })
+  83  |   ).toBeVisible();
+  84  |   await page.getByRole("button", { name: "Close annotation" }).click();
+  85  | 
+  86  |   // check record action
+  87  |   await page.getByLabel("Record").click();
+  88  |   await expect(
+  89  |     page.getByRole("button", { name: "Cancel recording" })
+  90  |   ).toBeVisible();
+  91  | });
+  92  | 
+  93  | test.describe("Submit Usersnap", () => {
+  94  |   const feedbackApiUrl =
+  95  |     "https://widget.usersnap.com/api/widget/xhrrpc?submit_feedback";
+  96  |   const bucketUrl = "https://s3.eu-central-1.amazonaws.com/upload.usersnap.com";
+  97  | 
+  98  |   const interceptBucket = async (page: Page) => {
+  99  |     await page.route(bucketUrl, async (route) =>
+  100 |       route.fulfill({
+  101 |         status: 204,
+  102 |       })
+  103 |     );
+  104 |   };
+  105 | 
+  106 |   const interceptUsersnap = async (page: Page) => {
+  107 |     await page.route(feedbackApiUrl, async (route) =>
+  108 |       route.fulfill({
+  109 |         status: 200,
+  110 |         body: JSON.stringify({
+  111 |           status: true,
+  112 |           data: {
+  113 |             feedback: {
+  114 |               feedback_id: randomUUID(),
+  115 |               assignee_id: randomUUID(),
+  116 |               labels: [],
+  117 |             },
+  118 |             screen_recording_url: null,
+  119 |             attachment_urls: [
+  120 |               {
+  121 |                 url: bucketUrl,
+  122 |                 fields: {
+  123 |                   "Content-Type": "image/png",
+  124 |                   key: randomUUID(),
+  125 |                 },
+  126 |               },
+  127 |             ],
+  128 |           },
+  129 |         }),
+  130 |       })
+  131 |     );
+  132 |   };
+  133 | 
+  134 |   test("10D. Should report an issue", async ({ page }) => {
+  135 |     // Intercept Usersnap submit API
+  136 |     await interceptUsersnap(page);
+  137 |     await interceptBucket(page);
+  138 |     await page
+  139 |       .getByRole("button", {
+  140 |         name: "Report an issue Something",
+  141 |       })
+  142 |       .click();
+  143 | 
+  144 |     if (isMobile(page)) {
+  145 |       await page.getByRole("button", { name: "Add screenshot" }).click();
+  146 |     } else {
+  147 |       // Draw rectangle
+  148 |       await page
+  149 |         .locator('[class^="jt-container-"] > svg')
+  150 |         .first()
+  151 |         .evaluate((element) => {
+  152 |           const rectangleSvg = `<g class="root-0-0-11 highlight" data-drawing="true" stroke-width="2" stroke="#fed200" x="147" y="16" width="1091" height="653"><rect width="1091" height="653" fill-opacity="0" x="147" y="16"></rect></g>`;
+  153 |           element.innerHTML = rectangleSvg;
+  154 |         });
+  155 |     }
+  156 | 
+  157 |     await page
+  158 |       .getByPlaceholder("Add description")
+  159 |       .fill(faker.lorem.paragraph(2));
+  160 | 
+  161 |     await page.getByRole("button", { name: "Submit" }).click();
+  162 | 
+  163 |     await expect(page.getByText("Thank you!")).toBeVisible();
+  164 |   });
+  165 | 
+  166 |   test("10E. Should submit an idea or new feature", async ({ page }) => {
+  167 |     // Intercept Usersnap submit API
+  168 |     await interceptUsersnap(page);
+  169 |     await interceptBucket(page);
+  170 | 
+  171 |     await page
+  172 |       .getByRole("button", { name: "Send an idea Let us know what" })
+> 173 |       .click();
+      |        ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  174 | 
+  175 |     await page
+  176 |       .getByPlaceholder("Feature description")
+  177 |       .fill(faker.lorem.words(4));
+  178 |     await page
+  179 |       .getByPlaceholder("Please add some context")
+  180 |       .fill(faker.lorem.paragraph(2));
+  181 | 
+  182 |     // add screenshot
+  183 |     await page.getByLabel("Take screenshot").click();
+  184 |     await page.getByRole("button", { name: "Add screenshot" }).click();
+  185 | 
+  186 |     await page.getByRole("button", { name: "Request Feature" }).click();
+  187 | 
+  188 |     await expect(page.getByText("Thank you!")).toBeVisible();
+  189 |   });
+  190 | });
+  191 | 
+```

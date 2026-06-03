@@ -1,0 +1,3529 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 12-proposal-budget-submission/proposalBudgetSubmission.loggedin.pb.spec.ts >> Budget proposal 01 wallet >> Budget proposal with proposalSubmissionPageNavigation >> Budget proposal field verification >> 12D_7. Should verify all field of “Submit” section
+- Location: tests/12-proposal-budget-submission/proposalBudgetSubmission.loggedin.pb.spec.ts:214:11
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded while running "beforeEach" hook.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByTestId('propose-a-budget-discussion-button')
+    - locator resolved to <button disabled tabindex="-1" type="button" data-testid="propose-a-budget-discussion-button" class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-161ht83">Submit proposal for Cardano budget</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    312 × waiting for element to be visible, enabled and stable
+        - element is not enabled
+      - retrying click action
+        - waiting 500ms
+    - waiting for element to be visible, enabled and stable
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: "Network: Preview"
+      - generic [ref=e7]: "|"
+      - link [ref=e8] [cursor=pointer]:
+        - /url: https://gov.tools/
+        - text: Go to Mainnet
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+        - button [ref=e14] [cursor=pointer]:
+          - img [ref=e15]
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - link [ref=e20] [cursor=pointer]:
+            - /url: https://gov.tools/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+            - text: The Info Action
+          - text: has passed — thank you for your support!
+        - generic [ref=e21]:
+          - text: We have now submitted a
+          - link [ref=e22] [cursor=pointer]:
+            - /url: https://gov.tools/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+            - text: Treasury Withdrawal
+          - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+    - img [ref=e23]
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - link [ref=e26] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e27]
+        - generic [ref=e28]:
+          - link [ref=e30] [cursor=pointer]:
+            - /url: /dashboard
+            - generic [ref=e31]:
+              - img [ref=e32]
+              - paragraph [ref=e33]: Home
+          - link [ref=e35] [cursor=pointer]:
+            - /url: /connected/drep_directory
+            - generic [ref=e36]:
+              - img [ref=e37]
+              - paragraph [ref=e38]: DRep Directory
+          - link [ref=e40] [cursor=pointer]:
+            - /url: /budget_discussion
+            - generic [ref=e41]:
+              - img [ref=e42]
+              - paragraph [ref=e43]: Budget Proposals
+          - generic [ref=e44]:
+            - link [ref=e45] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e46]:
+                - img [ref=e47]
+                - paragraph [ref=e48]: Governance Actions
+            - generic [ref=e49]:
+              - link [ref=e50] [cursor=pointer]:
+                - /url: /proposal_discussion
+                - generic [ref=e51]:
+                  - img [ref=e53]
+                  - paragraph [ref=e55]: Proposals
+              - link [ref=e56] [cursor=pointer]:
+                - /url: /connected/governance_actions
+                - generic [ref=e57]:
+                  - img [ref=e58]
+                  - paragraph [ref=e59]: Live Voting
+              - link [ref=e60] [cursor=pointer]:
+                - /url: /outcomes
+                - generic [ref=e61]:
+                  - img [ref=e62]
+                  - paragraph [ref=e63]: Outcomes
+          - link [ref=e65] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e66]:
+              - img [ref=e67]
+              - paragraph [ref=e68]: Guides
+          - link [ref=e70] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e71]:
+              - img [ref=e72]
+              - paragraph [ref=e73]: FAQs
+        - generic [ref=e76]:
+          - paragraph [ref=e77]: "Connected Wallet:"
+          - generic [ref=e78]:
+            - paragraph [ref=e79]: 0062caae021ca795167fc7149400464da01c87eb5bf92e7bb3bd73b60cadb401aa01e79bc42e7efb8711661dd017468db5fff73dd594804b2b
+            - button [ref=e80] [cursor=pointer]: Disconnect
+      - generic [ref=e81]:
+        - navigation [ref=e82]:
+          - paragraph [ref=e84]: Budget Proposals
+        - generic [ref=e89]:
+          - generic [ref=e92]:
+            - generic [ref=e94]:
+              - button [disabled]: Submit proposal for Cardano budget
+              - generic [ref=e96]:
+                - paragraph [ref=e97]: To submit a budget proposal, you need to
+                - paragraph [ref=e98]:
+                  - generic [ref=e99] [cursor=pointer]: create a GovTool Display Name
+            - generic [ref=e102]:
+              - img [ref=e104]
+              - textbox [ref=e106]:
+                - /placeholder: Search...
+              - group
+            - generic [ref=e108]:
+              - button [ref=e109] [cursor=pointer]:
+                - text: "Filter:"
+                - img [ref=e111]
+              - button [ref=e113] [cursor=pointer]:
+                - text: "Sort: Newest"
+                - img [ref=e115]
+          - generic [ref=e117]:
+            - generic [ref=e119]:
+              - generic [ref=e120]:
+                - generic [ref=e121]:
+                  - heading [level=2] [ref=e122]: Core
+                  - button [ref=e123] [cursor=pointer]: Show all
+                - generic [ref=e124]:
+                  - button [ref=e125] [cursor=pointer]:
+                    - img [ref=e126]
+                  - button [ref=e128] [cursor=pointer]:
+                    - img [ref=e129]
+              - generic [ref=e134]:
+                - generic [ref=e140]:
+                  - generic [ref=e141]:
+                    - generic [ref=e143]:
+                      - heading [level=3] [ref=e144]: cresco veritatis substantia
+                      - heading [level=5] [ref=e145]: "@cecilia44_1780458944038"
+                    - button [ref=e147] [cursor=pointer]:
+                      - img [ref=e148]
+                  - generic [ref=e150]:
+                    - generic [ref=e151]:
+                      - generic [ref=e152]:
+                        - paragraph [ref=e153]: Budget category
+                        - paragraph [ref=e154]: Core
+                      - generic [ref=e155]:
+                        - paragraph [ref=e156]: Proposal benefit
+                        - paragraph [ref=e159]: Doloribus amita nam peior animus adeo deprecator desolo. Adiuvo beneficium distinctio tripudio tepidus nihil nostrum stips.
+                      - generic [ref=e160]:
+                        - paragraph [ref=e161]: Budget Requested
+                        - paragraph [ref=e162]: ₳ 3,496
+                    - generic [ref=e163]:
+                      - generic [ref=e164]:
+                        - img [ref=e166]
+                        - paragraph [ref=e168]: "Proposed on: 3 June 2026"
+                      - generic [ref=e169]:
+                        - generic [ref=e171]:
+                          - button [disabled]:
+                            - generic: "1"
+                            - img
+                        - link [ref=e173] [cursor=pointer]:
+                          - /url: /budget_discussion/3240
+                          - button [ref=e174]: View Details
+                - generic [ref=e180]:
+                  - generic [ref=e181]:
+                    - generic [ref=e183]:
+                      - heading [level=3] [ref=e184]: validus careo cena
+                      - heading [level=5] [ref=e185]: "@lukas_bradtke_1780458928217"
+                    - button [ref=e187] [cursor=pointer]:
+                      - img [ref=e188]
+                  - generic [ref=e190]:
+                    - generic [ref=e191]:
+                      - generic [ref=e192]:
+                        - paragraph [ref=e193]: Budget category
+                        - paragraph [ref=e194]: Core
+                      - generic [ref=e195]:
+                        - paragraph [ref=e196]: Proposal benefit
+                        - paragraph [ref=e199]: Cruentus aeneus vita suscipit decumbo aetas thesis. Benevolentia crepusculum aggero viridis architecto.
+                      - generic [ref=e200]:
+                        - paragraph [ref=e201]: Budget Requested
+                        - paragraph [ref=e202]: ₳ 5,449
+                    - generic [ref=e203]:
+                      - generic [ref=e204]:
+                        - img [ref=e206]
+                        - paragraph [ref=e208]: "Proposed on: 3 June 2026"
+                      - generic [ref=e209]:
+                        - generic [ref=e211]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e213] [cursor=pointer]:
+                          - /url: /budget_discussion/3239
+                          - button [ref=e214]: View Details
+                - generic [ref=e220]:
+                  - generic [ref=e221]:
+                    - generic [ref=e223]:
+                      - heading [level=3] [ref=e224]: usque soleo crastinus
+                      - heading [level=5] [ref=e225]: "@jennings_dach9_1780288383096"
+                    - button [ref=e227] [cursor=pointer]:
+                      - img [ref=e228]
+                  - generic [ref=e230]:
+                    - generic [ref=e231]:
+                      - generic [ref=e232]:
+                        - paragraph [ref=e233]: Budget category
+                        - paragraph [ref=e234]: Core
+                      - generic [ref=e235]:
+                        - paragraph [ref=e236]: Proposal benefit
+                        - paragraph [ref=e239]: Acer colo arto dedecor ciminatio accommodo adeo cresco. Exercitationem umquam denuncio spes verecundia adicio placeat pariatur.
+                      - generic [ref=e240]:
+                        - paragraph [ref=e241]: Budget Requested
+                        - paragraph [ref=e242]: ₳ 5,317
+                    - generic [ref=e243]:
+                      - generic [ref=e244]:
+                        - img [ref=e246]
+                        - paragraph [ref=e248]: "Proposed on: 1 June 2026"
+                      - generic [ref=e249]:
+                        - generic [ref=e251]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e253] [cursor=pointer]:
+                          - /url: /budget_discussion/3236
+                          - button [ref=e254]: View Details
+                - generic [ref=e260]:
+                  - generic [ref=e261]:
+                    - generic [ref=e263]:
+                      - heading [level=3] [ref=e264]: speculum doloremque hic
+                      - heading [level=5] [ref=e265]: "@jacques.heaney_1777607461021"
+                    - button [ref=e267] [cursor=pointer]:
+                      - img [ref=e268]
+                  - generic [ref=e270]:
+                    - generic [ref=e271]:
+                      - generic [ref=e272]:
+                        - paragraph [ref=e273]: Budget category
+                        - paragraph [ref=e274]: Core
+                      - generic [ref=e275]:
+                        - paragraph [ref=e276]: Proposal benefit
+                        - paragraph [ref=e279]: Auctor claudeo suscipio. Vir vesper carbo magnam vobis depraedor patruus.
+                      - generic [ref=e280]:
+                        - paragraph [ref=e281]: Budget Requested
+                        - paragraph [ref=e282]: ₳ 267
+                    - generic [ref=e283]:
+                      - generic [ref=e284]:
+                        - img [ref=e286]
+                        - paragraph [ref=e288]: "Proposed on: 1 May 2026"
+                      - generic [ref=e289]:
+                        - generic [ref=e291]:
+                          - button [disabled]:
+                            - generic: "14"
+                            - img
+                        - link [ref=e293] [cursor=pointer]:
+                          - /url: /budget_discussion/3229
+                          - button [ref=e294]: View Details
+                - generic [ref=e300]:
+                  - generic [ref=e301]:
+                    - generic [ref=e303]:
+                      - heading [level=3] [ref=e304]: titulus tamquam aetas
+                      - heading [level=5] [ref=e305]: "@grant_schiller_1777014050765"
+                    - button [ref=e307] [cursor=pointer]:
+                      - img [ref=e308]
+                  - generic [ref=e310]:
+                    - generic [ref=e311]:
+                      - generic [ref=e312]:
+                        - paragraph [ref=e313]: Budget category
+                        - paragraph [ref=e314]: Core
+                      - generic [ref=e315]:
+                        - paragraph [ref=e316]: Proposal benefit
+                        - paragraph [ref=e319]: Nisi cubitum catena defleo cauda. Tibi anser aegre alveus arguo validus molestiae astrum calamitas suasoria.
+                      - generic [ref=e320]:
+                        - paragraph [ref=e321]: Budget Requested
+                        - paragraph [ref=e322]: ₳ 1,176
+                    - generic [ref=e323]:
+                      - generic [ref=e324]:
+                        - img [ref=e326]
+                        - paragraph [ref=e328]: "Proposed on: 24 April 2026"
+                      - generic [ref=e329]:
+                        - generic [ref=e331]:
+                          - button [disabled]:
+                            - generic: "16"
+                            - img
+                        - link [ref=e333] [cursor=pointer]:
+                          - /url: /budget_discussion/3216
+                          - button [ref=e334]: View Details
+                - generic [ref=e340]:
+                  - generic [ref=e341]:
+                    - generic [ref=e343]:
+                      - heading [level=3] [ref=e344]: tremo valeo caelum
+                      - heading [level=5] [ref=e345]: "@kelvin_little13_1777008108060"
+                    - button [ref=e347] [cursor=pointer]:
+                      - img [ref=e348]
+                  - generic [ref=e350]:
+                    - generic [ref=e351]:
+                      - generic [ref=e352]:
+                        - paragraph [ref=e353]: Budget category
+                        - paragraph [ref=e354]: Core
+                      - generic [ref=e355]:
+                        - paragraph [ref=e356]: Proposal benefit
+                        - paragraph [ref=e359]: Cras brevis velum crux aperte non corroboro. Accusantium alii adfectus copia attero nostrum torqueo tyrannus vindico vulnus.
+                      - generic [ref=e360]:
+                        - paragraph [ref=e361]: Budget Requested
+                        - paragraph [ref=e362]: ₳ 9,003
+                    - generic [ref=e363]:
+                      - generic [ref=e364]:
+                        - img [ref=e366]
+                        - paragraph [ref=e368]: "Proposed on: 24 April 2026"
+                      - generic [ref=e369]:
+                        - generic [ref=e371]:
+                          - button [disabled]:
+                            - generic: "7"
+                            - img
+                        - link [ref=e373] [cursor=pointer]:
+                          - /url: /budget_discussion/3212
+                          - button [ref=e374]: View Details
+                - generic [ref=e380]:
+                  - generic [ref=e381]:
+                    - generic [ref=e383]:
+                      - heading [level=3] [ref=e384]: ratione cursus ab
+                      - heading [level=5] [ref=e385]: "@chanelle.doyle15_1776938577694"
+                    - button [ref=e387] [cursor=pointer]:
+                      - img [ref=e388]
+                  - generic [ref=e390]:
+                    - generic [ref=e391]:
+                      - generic [ref=e392]:
+                        - paragraph [ref=e393]: Budget category
+                        - paragraph [ref=e394]: Core
+                      - generic [ref=e395]:
+                        - paragraph [ref=e396]: Proposal benefit
+                        - paragraph [ref=e399]: Auxilium tamisium voluptatum antepono assumenda crastinus ventus certe. Usitas cotidie cui conscendo delectus aestas caries certe.
+                      - generic [ref=e400]:
+                        - paragraph [ref=e401]: Budget Requested
+                        - paragraph [ref=e402]: ₳ 9,084
+                    - generic [ref=e403]:
+                      - generic [ref=e404]:
+                        - img [ref=e406]
+                        - paragraph [ref=e408]: "Proposed on: 23 April 2026"
+                      - generic [ref=e409]:
+                        - generic [ref=e411]:
+                          - button [disabled]:
+                            - generic: "8"
+                            - img
+                        - link [ref=e413] [cursor=pointer]:
+                          - /url: /budget_discussion/3210
+                          - button [ref=e414]: View Details
+                - generic [ref=e420]:
+                  - generic [ref=e421]:
+                    - generic [ref=e423]:
+                      - heading [level=3] [ref=e424]: arcus candidus bonus
+                      - heading [level=5] [ref=e425]: "@rodrigo50_1776938584516"
+                    - button [ref=e427] [cursor=pointer]:
+                      - img [ref=e428]
+                  - generic [ref=e430]:
+                    - generic [ref=e431]:
+                      - generic [ref=e432]:
+                        - paragraph [ref=e433]: Budget category
+                        - paragraph [ref=e434]: Core
+                      - generic [ref=e435]:
+                        - paragraph [ref=e436]: Proposal benefit
+                        - paragraph [ref=e439]: Ademptio patrocinor denuo curriculum quae. Magnam crinis considero cena.
+                      - generic [ref=e440]:
+                        - paragraph [ref=e441]: Budget Requested
+                        - paragraph [ref=e442]: ₳ 6,630
+                    - generic [ref=e443]:
+                      - generic [ref=e444]:
+                        - img [ref=e446]
+                        - paragraph [ref=e448]: "Proposed on: 23 April 2026"
+                      - generic [ref=e449]:
+                        - generic [ref=e451]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e453] [cursor=pointer]:
+                          - /url: /budget_discussion/3208
+                          - button [ref=e454]: View Details
+                - generic [ref=e460]:
+                  - generic [ref=e461]:
+                    - generic [ref=e463]:
+                      - heading [level=3] [ref=e464]: adstringo sopor acceptus
+                      - heading [level=5] [ref=e465]: "@ebba92_1776938601917"
+                    - button [ref=e467] [cursor=pointer]:
+                      - img [ref=e468]
+                  - generic [ref=e470]:
+                    - generic [ref=e471]:
+                      - generic [ref=e472]:
+                        - paragraph [ref=e473]: Budget category
+                        - paragraph [ref=e474]: Core
+                      - generic [ref=e475]:
+                        - paragraph [ref=e476]: Proposal benefit
+                        - paragraph [ref=e479]: Sol allatus repellat vitae. Agnosco via xiphias advoco quis accendo appello audax.
+                      - generic [ref=e480]:
+                        - paragraph [ref=e481]: Budget Requested
+                        - paragraph [ref=e482]: ₳ 6,278
+                    - generic [ref=e483]:
+                      - generic [ref=e484]:
+                        - img [ref=e486]
+                        - paragraph [ref=e488]: "Proposed on: 23 April 2026"
+                      - generic [ref=e489]:
+                        - generic [ref=e491]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e493] [cursor=pointer]:
+                          - /url: /budget_discussion/3207
+                          - button [ref=e494]: View Details
+                - generic [ref=e500]:
+                  - generic [ref=e501]:
+                    - generic [ref=e503]:
+                      - heading [level=3] [ref=e504]: demulceo occaecati nostrum
+                      - heading [level=5] [ref=e505]: "@ezekiel.swift_1776938586686"
+                    - button [ref=e507] [cursor=pointer]:
+                      - img [ref=e508]
+                  - generic [ref=e510]:
+                    - generic [ref=e511]:
+                      - generic [ref=e512]:
+                        - paragraph [ref=e513]: Budget category
+                        - paragraph [ref=e514]: Core
+                      - generic [ref=e515]:
+                        - paragraph [ref=e516]: Proposal benefit
+                        - paragraph [ref=e519]: Dolorum adflicto ut doloremque sulum caritas ante. Strenuus ante pax adicio vester vapulus.
+                      - generic [ref=e520]:
+                        - paragraph [ref=e521]: Budget Requested
+                        - paragraph [ref=e522]: ₳ 1,062
+                    - generic [ref=e523]:
+                      - generic [ref=e524]:
+                        - img [ref=e526]
+                        - paragraph [ref=e528]: "Proposed on: 23 April 2026"
+                      - generic [ref=e529]:
+                        - generic [ref=e531]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e533] [cursor=pointer]:
+                          - /url: /budget_discussion/3206
+                          - button [ref=e534]: View Details
+                - generic [ref=e540]:
+                  - generic [ref=e541]:
+                    - generic [ref=e543]:
+                      - heading [level=3] [ref=e544]: tam sum angelus
+                      - heading [level=5] [ref=e545]: "@river42_1776913100828"
+                    - button [ref=e547] [cursor=pointer]:
+                      - img [ref=e548]
+                  - generic [ref=e550]:
+                    - generic [ref=e551]:
+                      - generic [ref=e552]:
+                        - paragraph [ref=e553]: Budget category
+                        - paragraph [ref=e554]: Core
+                      - generic [ref=e555]:
+                        - paragraph [ref=e556]: Proposal benefit
+                        - paragraph [ref=e559]: Tonsor curso bonus tergo. At urbanus cultura deporto adfero officiis ultra excepturi cohors solium.
+                      - generic [ref=e560]:
+                        - paragraph [ref=e561]: Budget Requested
+                        - paragraph [ref=e562]: ₳ 5,043
+                    - generic [ref=e563]:
+                      - generic [ref=e564]:
+                        - img [ref=e566]
+                        - paragraph [ref=e568]: "Proposed on: 23 April 2026"
+                      - generic [ref=e569]:
+                        - generic [ref=e571]:
+                          - button [disabled]:
+                            - generic: "8"
+                            - img
+                        - link [ref=e573] [cursor=pointer]:
+                          - /url: /budget_discussion/3203
+                          - button [ref=e574]: View Details
+                - generic [ref=e580]:
+                  - generic [ref=e581]:
+                    - generic [ref=e583]:
+                      - heading [level=3] [ref=e584]: subnecto avarus audacia
+                      - heading [level=5] [ref=e585]: "@isom82_1776832513082"
+                    - button [ref=e587] [cursor=pointer]:
+                      - img [ref=e588]
+                  - generic [ref=e590]:
+                    - generic [ref=e591]:
+                      - generic [ref=e592]:
+                        - paragraph [ref=e593]: Budget category
+                        - paragraph [ref=e594]: Core
+                      - generic [ref=e595]:
+                        - paragraph [ref=e596]: Proposal benefit
+                        - paragraph [ref=e599]: Stips asperiores cohaero tabernus crapula. Tabgo provident despecto tubineus sustineo defero trepide thesaurus.
+                      - generic [ref=e600]:
+                        - paragraph [ref=e601]: Budget Requested
+                        - paragraph [ref=e602]: ₳ 9,663
+                    - generic [ref=e603]:
+                      - generic [ref=e604]:
+                        - img [ref=e606]
+                        - paragraph [ref=e608]: "Proposed on: 22 April 2026"
+                      - generic [ref=e609]:
+                        - generic [ref=e611]:
+                          - button [disabled]:
+                            - generic: "8"
+                            - img
+                        - link [ref=e613] [cursor=pointer]:
+                          - /url: /budget_discussion/3197
+                          - button [ref=e614]: View Details
+                - generic [ref=e620]:
+                  - generic [ref=e621]:
+                    - generic [ref=e623]:
+                      - heading [level=3] [ref=e624]: surculus doloremque dicta
+                      - heading [level=5] [ref=e625]: "@columbus.treutel_1775012714551"
+                    - button [ref=e627] [cursor=pointer]:
+                      - img [ref=e628]
+                  - generic [ref=e630]:
+                    - generic [ref=e631]:
+                      - generic [ref=e632]:
+                        - paragraph [ref=e633]: Budget category
+                        - paragraph [ref=e634]: Core
+                      - generic [ref=e635]:
+                        - paragraph [ref=e636]: Proposal benefit
+                        - paragraph [ref=e639]: Congregatio ara subiungo. Cunae degusto audio compello conatus cubitum.
+                      - generic [ref=e640]:
+                        - paragraph [ref=e641]: Budget Requested
+                        - paragraph [ref=e642]: ₳ 4,016
+                    - generic [ref=e643]:
+                      - generic [ref=e644]:
+                        - img [ref=e646]
+                        - paragraph [ref=e648]: "Proposed on: 1 April 2026"
+                      - generic [ref=e649]:
+                        - generic [ref=e651]:
+                          - button [disabled]:
+                            - generic: "7"
+                            - img
+                        - link [ref=e653] [cursor=pointer]:
+                          - /url: /budget_discussion/3193
+                          - button [ref=e654]: View Details
+                - generic [ref=e660]:
+                  - generic [ref=e661]:
+                    - generic [ref=e663]:
+                      - heading [level=3] [ref=e664]: callide condico corrigo
+                      - heading [level=5] [ref=e665]: "@dayana_lesch_1774834343522"
+                    - button [ref=e667] [cursor=pointer]:
+                      - img [ref=e668]
+                  - generic [ref=e670]:
+                    - generic [ref=e671]:
+                      - generic [ref=e672]:
+                        - paragraph [ref=e673]: Budget category
+                        - paragraph [ref=e674]: Core
+                      - generic [ref=e675]:
+                        - paragraph [ref=e676]: Proposal benefit
+                        - paragraph [ref=e679]: Valeo deficio ipsam audio autus cresco carcer tredecim. Facilis desidero terror veritas tero comis sordeo odio terror.
+                      - generic [ref=e680]:
+                        - paragraph [ref=e681]: Budget Requested
+                        - paragraph [ref=e682]: ₳ 3,857
+                    - generic [ref=e683]:
+                      - generic [ref=e684]:
+                        - img [ref=e686]
+                        - paragraph [ref=e688]: "Proposed on: 30 March 2026"
+                      - generic [ref=e689]:
+                        - generic [ref=e691]:
+                          - button [disabled]:
+                            - generic: "7"
+                            - img
+                        - link [ref=e693] [cursor=pointer]:
+                          - /url: /budget_discussion/3190
+                          - button [ref=e694]: View Details
+                - generic [ref=e700]:
+                  - generic [ref=e701]:
+                    - generic [ref=e703]:
+                      - heading [level=3] [ref=e704]: texo amo utroque
+                      - heading [level=5] [ref=e705]: "@dayana_lesch_1774834343522"
+                    - button [ref=e707] [cursor=pointer]:
+                      - img [ref=e708]
+                  - generic [ref=e710]:
+                    - generic [ref=e711]:
+                      - generic [ref=e712]:
+                        - paragraph [ref=e713]: Budget category
+                        - paragraph [ref=e714]: Core
+                      - generic [ref=e715]:
+                        - paragraph [ref=e716]: Proposal benefit
+                        - paragraph [ref=e719]: Pariatur umquam congregatio colo sapiente vulnus audentia. Suscipit adipiscor allatus torqueo animus.
+                      - generic [ref=e720]:
+                        - paragraph [ref=e721]: Budget Requested
+                        - paragraph [ref=e722]: ₳ 6,654
+                    - generic [ref=e723]:
+                      - generic [ref=e724]:
+                        - img [ref=e726]
+                        - paragraph [ref=e728]: "Proposed on: 30 March 2026"
+                      - generic [ref=e729]:
+                        - generic [ref=e731]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e733] [cursor=pointer]:
+                          - /url: /budget_discussion/3189
+                          - button [ref=e734]: View Details
+                - generic [ref=e740]:
+                  - generic [ref=e741]:
+                    - generic [ref=e743]:
+                      - heading [level=3] [ref=e744]: cras corpus cura
+                      - heading [level=5] [ref=e745]: "@florian_schultz86_177483440130"
+                    - button [ref=e747] [cursor=pointer]:
+                      - img [ref=e748]
+                  - generic [ref=e750]:
+                    - generic [ref=e751]:
+                      - generic [ref=e752]:
+                        - paragraph [ref=e753]: Budget category
+                        - paragraph [ref=e754]: Core
+                      - generic [ref=e755]:
+                        - paragraph [ref=e756]: Proposal benefit
+                        - paragraph [ref=e759]: Molestias sto doloribus corrumpo aequitas. Verus argentum congregatio cunabula speciosus tabella toties charisma solum.
+                      - generic [ref=e760]:
+                        - paragraph [ref=e761]: Budget Requested
+                        - paragraph [ref=e762]: ₳ 3,143
+                    - generic [ref=e763]:
+                      - generic [ref=e764]:
+                        - img [ref=e766]
+                        - paragraph [ref=e768]: "Proposed on: 30 March 2026"
+                      - generic [ref=e769]:
+                        - generic [ref=e771]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e773] [cursor=pointer]:
+                          - /url: /budget_discussion/3188
+                          - button [ref=e774]: View Details
+                - generic [ref=e780]:
+                  - generic [ref=e781]:
+                    - generic [ref=e783]:
+                      - heading [level=3] [ref=e784]: vinitor corona volup
+                      - heading [level=5] [ref=e785]: "@rahsaan.aufderhar_177483439386"
+                    - button [ref=e787] [cursor=pointer]:
+                      - img [ref=e788]
+                  - generic [ref=e790]:
+                    - generic [ref=e791]:
+                      - generic [ref=e792]:
+                        - paragraph [ref=e793]: Budget category
+                        - paragraph [ref=e794]: Core
+                      - generic [ref=e795]:
+                        - paragraph [ref=e796]: Proposal benefit
+                        - paragraph [ref=e799]: Iste tabesco arbitro. Apparatus vesica laudantium cogo deinde quasi.
+                      - generic [ref=e800]:
+                        - paragraph [ref=e801]: Budget Requested
+                        - paragraph [ref=e802]: ₳ 149
+                    - generic [ref=e803]:
+                      - generic [ref=e804]:
+                        - img [ref=e806]
+                        - paragraph [ref=e808]: "Proposed on: 30 March 2026"
+                      - generic [ref=e809]:
+                        - generic [ref=e811]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e813] [cursor=pointer]:
+                          - /url: /budget_discussion/3187
+                          - button [ref=e814]: View Details
+                - generic [ref=e820]:
+                  - generic [ref=e821]:
+                    - generic [ref=e823]:
+                      - heading [level=3] [ref=e824]: atavus utor arbustum
+                      - heading [level=5] [ref=e825]: "@ivah_kilback_1774747868865"
+                    - button [ref=e827] [cursor=pointer]:
+                      - img [ref=e828]
+                  - generic [ref=e830]:
+                    - generic [ref=e831]:
+                      - generic [ref=e832]:
+                        - paragraph [ref=e833]: Budget category
+                        - paragraph [ref=e834]: Core
+                      - generic [ref=e835]:
+                        - paragraph [ref=e836]: Proposal benefit
+                        - paragraph [ref=e839]: Surgo atqui aggero cubitum. Venustas iusto cupiditas arx umbra adversus corporis capitulus facilis.
+                      - generic [ref=e840]:
+                        - paragraph [ref=e841]: Budget Requested
+                        - paragraph [ref=e842]: ₳ 6,254
+                    - generic [ref=e843]:
+                      - generic [ref=e844]:
+                        - img [ref=e846]
+                        - paragraph [ref=e848]: "Proposed on: 29 March 2026"
+                      - generic [ref=e849]:
+                        - generic [ref=e851]:
+                          - button [disabled]:
+                            - generic: "7"
+                            - img
+                        - link [ref=e853] [cursor=pointer]:
+                          - /url: /budget_discussion/3184
+                          - button [ref=e854]: View Details
+                - generic [ref=e860]:
+                  - generic [ref=e861]:
+                    - generic [ref=e863]:
+                      - heading [level=3] [ref=e864]: colligo cura conturbo
+                      - heading [level=5] [ref=e865]: "@emmitt_romaguera_1774747906927"
+                    - button [ref=e867] [cursor=pointer]:
+                      - img [ref=e868]
+                  - generic [ref=e870]:
+                    - generic [ref=e871]:
+                      - generic [ref=e872]:
+                        - paragraph [ref=e873]: Budget category
+                        - paragraph [ref=e874]: Core
+                      - generic [ref=e875]:
+                        - paragraph [ref=e876]: Proposal benefit
+                        - paragraph [ref=e879]: Speciosus bellum facilis cavus adstringo alienus. Aliquid vacuus via universe cognomen.
+                      - generic [ref=e880]:
+                        - paragraph [ref=e881]: Budget Requested
+                        - paragraph [ref=e882]: ₳ 394
+                    - generic [ref=e883]:
+                      - generic [ref=e884]:
+                        - img [ref=e886]
+                        - paragraph [ref=e888]: "Proposed on: 29 March 2026"
+                      - generic [ref=e889]:
+                        - generic [ref=e891]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e893] [cursor=pointer]:
+                          - /url: /budget_discussion/3183
+                          - button [ref=e894]: View Details
+                - generic [ref=e900]:
+                  - generic [ref=e901]:
+                    - generic [ref=e903]:
+                      - heading [level=3] [ref=e904]: necessitatibus torrens quos
+                      - heading [level=5] [ref=e905]: "@bulah_zemlak_1774747890439"
+                    - button [ref=e907] [cursor=pointer]:
+                      - img [ref=e908]
+                  - generic [ref=e910]:
+                    - generic [ref=e911]:
+                      - generic [ref=e912]:
+                        - paragraph [ref=e913]: Budget category
+                        - paragraph [ref=e914]: Core
+                      - generic [ref=e915]:
+                        - paragraph [ref=e916]: Proposal benefit
+                        - paragraph [ref=e919]: Tumultus placeat bos velociter civis terga constans vorago libero territo. Audio timidus utique defleo verumtamen calamitas carbo celer talio.
+                      - generic [ref=e920]:
+                        - paragraph [ref=e921]: Budget Requested
+                        - paragraph [ref=e922]: ₳ 4,037
+                    - generic [ref=e923]:
+                      - generic [ref=e924]:
+                        - img [ref=e926]
+                        - paragraph [ref=e928]: "Proposed on: 29 March 2026"
+                      - generic [ref=e929]:
+                        - generic [ref=e931]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e933] [cursor=pointer]:
+                          - /url: /budget_discussion/3182
+                          - button [ref=e934]: View Details
+                - generic [ref=e940]:
+                  - generic [ref=e941]:
+                    - generic [ref=e943]:
+                      - heading [level=3] [ref=e944]: xiphias creber deorsum
+                      - heading [level=5] [ref=e945]: "@ally11_1774574839604"
+                    - button [ref=e947] [cursor=pointer]:
+                      - img [ref=e948]
+                  - generic [ref=e950]:
+                    - generic [ref=e951]:
+                      - generic [ref=e952]:
+                        - paragraph [ref=e953]: Budget category
+                        - paragraph [ref=e954]: Core
+                      - generic [ref=e955]:
+                        - paragraph [ref=e956]: Proposal benefit
+                        - paragraph [ref=e959]: Aetas cur alo bardus illo aureus. Nobis molestias tabgo celebrer inventore contego vero acsi.
+                      - generic [ref=e960]:
+                        - paragraph [ref=e961]: Budget Requested
+                        - paragraph [ref=e962]: ₳ 7,347
+                    - generic [ref=e963]:
+                      - generic [ref=e964]:
+                        - img [ref=e966]
+                        - paragraph [ref=e968]: "Proposed on: 27 March 2026"
+                      - generic [ref=e969]:
+                        - generic [ref=e971]:
+                          - button [disabled]:
+                            - generic: "14"
+                            - img
+                        - link [ref=e973] [cursor=pointer]:
+                          - /url: /budget_discussion/3174
+                          - button [ref=e974]: View Details
+                - generic [ref=e980]:
+                  - generic [ref=e981]:
+                    - generic [ref=e983]:
+                      - heading [level=3] [ref=e984]: studio vinitor atrocitas
+                      - heading [level=5] [ref=e985]: "@imogene.breitenbergtorp_177233"
+                    - button [ref=e987] [cursor=pointer]:
+                      - img [ref=e988]
+                  - generic [ref=e990]:
+                    - generic [ref=e991]:
+                      - generic [ref=e992]:
+                        - paragraph [ref=e993]: Budget category
+                        - paragraph [ref=e994]: Core
+                      - generic [ref=e995]:
+                        - paragraph [ref=e996]: Proposal benefit
+                        - paragraph [ref=e999]: Vestrum ustilo amo suffoco uterque clarus cura patior solus mollitia. Coadunatio appono attero ater.
+                      - generic [ref=e1000]:
+                        - paragraph [ref=e1001]: Budget Requested
+                        - paragraph [ref=e1002]: ₳ 638
+                    - generic [ref=e1003]:
+                      - generic [ref=e1004]:
+                        - img [ref=e1006]
+                        - paragraph [ref=e1008]: "Proposed on: 1 March 2026"
+                      - generic [ref=e1009]:
+                        - generic [ref=e1011]:
+                          - button [disabled]:
+                            - generic: "7"
+                            - img
+                        - link [ref=e1013] [cursor=pointer]:
+                          - /url: /budget_discussion/3170
+                          - button [ref=e1014]: View Details
+                - generic [ref=e1020]:
+                  - generic [ref=e1021]:
+                    - generic [ref=e1023]:
+                      - heading [level=3] [ref=e1024]: comitatus deduco casso
+                      - heading [level=5] [ref=e1025]: "@imogene.breitenbergtorp_177233"
+                    - button [ref=e1027] [cursor=pointer]:
+                      - img [ref=e1028]
+                  - generic [ref=e1030]:
+                    - generic [ref=e1031]:
+                      - generic [ref=e1032]:
+                        - paragraph [ref=e1033]: Budget category
+                        - paragraph [ref=e1034]: Core
+                      - generic [ref=e1035]:
+                        - paragraph [ref=e1036]: Proposal benefit
+                        - paragraph [ref=e1039]: Admitto tres civis solus una desolo communis statim. Audeo ab clarus cultura vos labore caecus tredecim tamen.
+                      - generic [ref=e1040]:
+                        - paragraph [ref=e1041]: Budget Requested
+                        - paragraph [ref=e1042]: ₳ 8,993
+                    - generic [ref=e1043]:
+                      - generic [ref=e1044]:
+                        - img [ref=e1046]
+                        - paragraph [ref=e1048]: "Proposed on: 1 March 2026"
+                      - generic [ref=e1049]:
+                        - generic [ref=e1051]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1053] [cursor=pointer]:
+                          - /url: /budget_discussion/3169
+                          - button [ref=e1054]: View Details
+                - generic [ref=e1060]:
+                  - generic [ref=e1061]:
+                    - generic [ref=e1063]:
+                      - heading [level=3] [ref=e1064]: solum tamen odio
+                      - heading [level=5] [ref=e1065]: "@jazlyn_hintz_1772333298475"
+                    - button [ref=e1067] [cursor=pointer]:
+                      - img [ref=e1068]
+                  - generic [ref=e1070]:
+                    - generic [ref=e1071]:
+                      - generic [ref=e1072]:
+                        - paragraph [ref=e1073]: Budget category
+                        - paragraph [ref=e1074]: Core
+                      - generic [ref=e1075]:
+                        - paragraph [ref=e1076]: Proposal benefit
+                        - paragraph [ref=e1079]: Creber velit demo contego earum vacuus coruscus iste allatus. Appositus uberrime tandem ducimus repudiandae apostolus voluptatem.
+                      - generic [ref=e1080]:
+                        - paragraph [ref=e1081]: Budget Requested
+                        - paragraph [ref=e1082]: ₳ 9,391
+                    - generic [ref=e1083]:
+                      - generic [ref=e1084]:
+                        - img [ref=e1086]
+                        - paragraph [ref=e1088]: "Proposed on: 1 March 2026"
+                      - generic [ref=e1089]:
+                        - generic [ref=e1091]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1093] [cursor=pointer]:
+                          - /url: /budget_discussion/3168
+                          - button [ref=e1094]: View Details
+                - generic [ref=e1100]:
+                  - generic [ref=e1101]:
+                    - generic [ref=e1103]:
+                      - heading [level=3] [ref=e1104]: suffoco amita corona
+                      - heading [level=5] [ref=e1105]: "@zachary_mueller_1771382335751"
+                    - button [ref=e1107] [cursor=pointer]:
+                      - img [ref=e1108]
+                  - generic [ref=e1110]:
+                    - generic [ref=e1111]:
+                      - generic [ref=e1112]:
+                        - paragraph [ref=e1113]: Budget category
+                        - paragraph [ref=e1114]: Core
+                      - generic [ref=e1115]:
+                        - paragraph [ref=e1116]: Proposal benefit
+                        - paragraph [ref=e1119]: Adsum talis vulticulus ciminatio cubitum tergo tondeo coniuratio aurum. Tertius calco audio facilis commemoro.
+                      - generic [ref=e1120]:
+                        - paragraph [ref=e1121]: Budget Requested
+                        - paragraph [ref=e1122]: ₳ 855
+                    - generic [ref=e1123]:
+                      - generic [ref=e1124]:
+                        - img [ref=e1126]
+                        - paragraph [ref=e1128]: "Proposed on: 18 February 2026"
+                      - generic [ref=e1129]:
+                        - generic [ref=e1131]:
+                          - button [disabled]:
+                            - generic: "14"
+                            - img
+                        - link [ref=e1133] [cursor=pointer]:
+                          - /url: /budget_discussion/3159
+                          - button [ref=e1134]: View Details
+            - generic [ref=e1142]:
+              - generic [ref=e1143]:
+                - generic [ref=e1144]:
+                  - heading [level=2] [ref=e1145]: Research
+                  - button [ref=e1146] [cursor=pointer]: Show all
+                - generic [ref=e1147]:
+                  - button [ref=e1148] [cursor=pointer]:
+                    - img [ref=e1149]
+                  - button [ref=e1151] [cursor=pointer]:
+                    - img [ref=e1152]
+              - generic [ref=e1157]:
+                - generic [ref=e1163]:
+                  - generic [ref=e1164]:
+                    - generic [ref=e1166]:
+                      - heading [level=3] [ref=e1167]: maxime ducimus bellicus
+                      - heading [level=5] [ref=e1168]: "@kurt.rutherford_1780288310261"
+                    - button [ref=e1170] [cursor=pointer]:
+                      - img [ref=e1171]
+                  - generic [ref=e1173]:
+                    - generic [ref=e1174]:
+                      - generic [ref=e1175]:
+                        - paragraph [ref=e1176]: Budget category
+                        - paragraph [ref=e1177]: Research
+                      - generic [ref=e1178]:
+                        - paragraph [ref=e1179]: Proposal benefit
+                        - paragraph [ref=e1182]: Clibanus apostolus deleo demo. Contra beatae administratio denuncio at ter.
+                      - generic [ref=e1183]:
+                        - paragraph [ref=e1184]: Budget Requested
+                        - paragraph [ref=e1185]: ₳ 5,439
+                    - generic [ref=e1186]:
+                      - generic [ref=e1187]:
+                        - img [ref=e1189]
+                        - paragraph [ref=e1191]: "Proposed on: 1 June 2026"
+                      - generic [ref=e1192]:
+                        - generic [ref=e1194]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1196] [cursor=pointer]:
+                          - /url: /budget_discussion/3237
+                          - button [ref=e1197]: View Details
+                - generic [ref=e1203]:
+                  - generic [ref=e1204]:
+                    - generic [ref=e1206]:
+                      - heading [level=3] [ref=e1207]: delinquo labore exercitationem
+                      - heading [level=5] [ref=e1208]: "@everett.crona_1777607537142"
+                    - button [ref=e1210] [cursor=pointer]:
+                      - img [ref=e1211]
+                  - generic [ref=e1213]:
+                    - generic [ref=e1214]:
+                      - generic [ref=e1215]:
+                        - paragraph [ref=e1216]: Budget category
+                        - paragraph [ref=e1217]: Research
+                      - generic [ref=e1218]:
+                        - paragraph [ref=e1219]: Proposal benefit
+                        - paragraph [ref=e1222]: Benevolentia vae fuga verto bonus certe amo. Corrupti cauda tredecim claustrum cauda pecus ipsa vetus.
+                      - generic [ref=e1223]:
+                        - paragraph [ref=e1224]: Budget Requested
+                        - paragraph [ref=e1225]: ₳ 3,937
+                    - generic [ref=e1226]:
+                      - generic [ref=e1227]:
+                        - img [ref=e1229]
+                        - paragraph [ref=e1231]: "Proposed on: 1 May 2026"
+                      - generic [ref=e1232]:
+                        - generic [ref=e1234]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1236] [cursor=pointer]:
+                          - /url: /budget_discussion/3228
+                          - button [ref=e1237]: View Details
+                - generic [ref=e1243]:
+                  - generic [ref=e1244]:
+                    - generic [ref=e1246]:
+                      - heading [level=3] [ref=e1247]: communis labore beatae
+                      - heading [level=5] [ref=e1248]: "@dejon49_1777083615633"
+                    - button [ref=e1250] [cursor=pointer]:
+                      - img [ref=e1251]
+                  - generic [ref=e1253]:
+                    - generic [ref=e1254]:
+                      - generic [ref=e1255]:
+                        - paragraph [ref=e1256]: Budget category
+                        - paragraph [ref=e1257]: Research
+                      - generic [ref=e1258]:
+                        - paragraph [ref=e1259]: Proposal benefit
+                        - paragraph [ref=e1262]: Chirographum cetera adversus assentator appello. Officiis animus degero nisi valens ducimus absens soleo.
+                      - generic [ref=e1263]:
+                        - paragraph [ref=e1264]: Budget Requested
+                        - paragraph [ref=e1265]: ₳ 1,723
+                    - generic [ref=e1266]:
+                      - generic [ref=e1267]:
+                        - img [ref=e1269]
+                        - paragraph [ref=e1271]: "Proposed on: 25 April 2026"
+                      - generic [ref=e1272]:
+                        - generic [ref=e1274]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1276] [cursor=pointer]:
+                          - /url: /budget_discussion/3222
+                          - button [ref=e1277]: View Details
+                - generic [ref=e1283]:
+                  - generic [ref=e1284]:
+                    - generic [ref=e1286]:
+                      - heading [level=3] [ref=e1287]: corrupti tener verto
+                      - heading [level=5] [ref=e1288]: "@kathlyn_howell33_1776913099031"
+                    - button [ref=e1290] [cursor=pointer]:
+                      - img [ref=e1291]
+                  - generic [ref=e1293]:
+                    - generic [ref=e1294]:
+                      - generic [ref=e1295]:
+                        - paragraph [ref=e1296]: Budget category
+                        - paragraph [ref=e1297]: Research
+                      - generic [ref=e1298]:
+                        - paragraph [ref=e1299]: Proposal benefit
+                        - paragraph [ref=e1302]: Fugiat debitis texo utroque supra labore civis vorago viriliter. Truculenter canis ater urbanus alter sopor.
+                      - generic [ref=e1303]:
+                        - paragraph [ref=e1304]: Budget Requested
+                        - paragraph [ref=e1305]: ₳ 6,608
+                    - generic [ref=e1306]:
+                      - generic [ref=e1307]:
+                        - img [ref=e1309]
+                        - paragraph [ref=e1311]: "Proposed on: 23 April 2026"
+                      - generic [ref=e1312]:
+                        - generic [ref=e1314]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1316] [cursor=pointer]:
+                          - /url: /budget_discussion/3201
+                          - button [ref=e1317]: View Details
+                - generic [ref=e1323]:
+                  - generic [ref=e1324]:
+                    - generic [ref=e1326]:
+                      - heading [level=3] [ref=e1327]: quisquam temeritas deleniti
+                      - heading [level=5] [ref=e1328]: "@porter29_1776832498273"
+                    - button [ref=e1330] [cursor=pointer]:
+                      - img [ref=e1331]
+                  - generic [ref=e1333]:
+                    - generic [ref=e1334]:
+                      - generic [ref=e1335]:
+                        - paragraph [ref=e1336]: Budget category
+                        - paragraph [ref=e1337]: Research
+                      - generic [ref=e1338]:
+                        - paragraph [ref=e1339]: Proposal benefit
+                        - paragraph [ref=e1342]: Nulla terreo turbo pel dignissimos contabesco tabella. Ipsam amiculum demo territo cerno aequitas assentator unde.
+                      - generic [ref=e1343]:
+                        - paragraph [ref=e1344]: Budget Requested
+                        - paragraph [ref=e1345]: ₳ 3,462
+                    - generic [ref=e1346]:
+                      - generic [ref=e1347]:
+                        - img [ref=e1349]
+                        - paragraph [ref=e1351]: "Proposed on: 22 April 2026"
+                      - generic [ref=e1352]:
+                        - generic [ref=e1354]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1356] [cursor=pointer]:
+                          - /url: /budget_discussion/3196
+                          - button [ref=e1357]: View Details
+                - generic [ref=e1363]:
+                  - generic [ref=e1364]:
+                    - generic [ref=e1366]:
+                      - heading [level=3] [ref=e1367]: decimus cupio quasi
+                      - heading [level=5] [ref=e1368]: "@michale.leuschke71_17746609437"
+                    - button [ref=e1370] [cursor=pointer]:
+                      - img [ref=e1371]
+                  - generic [ref=e1373]:
+                    - generic [ref=e1374]:
+                      - generic [ref=e1375]:
+                        - paragraph [ref=e1376]: Budget category
+                        - paragraph [ref=e1377]: Research
+                      - generic [ref=e1378]:
+                        - paragraph [ref=e1379]: Proposal benefit
+                        - paragraph [ref=e1382]: Custodia teneo adsidue curso suppono. Tyrannus conservo umerus tui.
+                      - generic [ref=e1383]:
+                        - paragraph [ref=e1384]: Budget Requested
+                        - paragraph [ref=e1385]: ₳ 7,041
+                    - generic [ref=e1386]:
+                      - generic [ref=e1387]:
+                        - img [ref=e1389]
+                        - paragraph [ref=e1391]: "Proposed on: 28 March 2026"
+                      - generic [ref=e1392]:
+                        - generic [ref=e1394]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1396] [cursor=pointer]:
+                          - /url: /budget_discussion/3177
+                          - button [ref=e1397]: View Details
+                - generic [ref=e1403]:
+                  - generic [ref=e1404]:
+                    - generic [ref=e1406]:
+                      - heading [level=3] [ref=e1407]: socius admoveo accusantium
+                      - heading [level=5] [ref=e1408]: "@ally11_1774574839604"
+                    - button [ref=e1410] [cursor=pointer]:
+                      - img [ref=e1411]
+                  - generic [ref=e1413]:
+                    - generic [ref=e1414]:
+                      - generic [ref=e1415]:
+                        - paragraph [ref=e1416]: Budget category
+                        - paragraph [ref=e1417]: Research
+                      - generic [ref=e1418]:
+                        - paragraph [ref=e1419]: Proposal benefit
+                        - paragraph [ref=e1422]: Vereor usque argumentum complectus compello comedo adopto cogo. Temperantia ventus eligendi cogito minima aperte.
+                      - generic [ref=e1423]:
+                        - paragraph [ref=e1424]: Budget Requested
+                        - paragraph [ref=e1425]: ₳ 4,990
+                    - generic [ref=e1426]:
+                      - generic [ref=e1427]:
+                        - img [ref=e1429]
+                        - paragraph [ref=e1431]: "Proposed on: 27 March 2026"
+                      - generic [ref=e1432]:
+                        - generic [ref=e1434]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1436] [cursor=pointer]:
+                          - /url: /budget_discussion/3175
+                          - button [ref=e1437]: View Details
+                - generic [ref=e1443]:
+                  - generic [ref=e1444]:
+                    - generic [ref=e1446]:
+                      - heading [level=3] [ref=e1447]: cui nobis depopulo
+                      - heading [level=5] [ref=e1448]: "@aurelio50_1774574875678"
+                    - button [ref=e1450] [cursor=pointer]:
+                      - img [ref=e1451]
+                  - generic [ref=e1453]:
+                    - generic [ref=e1454]:
+                      - generic [ref=e1455]:
+                        - paragraph [ref=e1456]: Budget category
+                        - paragraph [ref=e1457]: Research
+                      - generic [ref=e1458]:
+                        - paragraph [ref=e1459]: Proposal benefit
+                        - paragraph [ref=e1462]: Damnatio error officiis currus defaeco ter. Aspicio bene umbra cupiditate optio ab statim.
+                      - generic [ref=e1463]:
+                        - paragraph [ref=e1464]: Budget Requested
+                        - paragraph [ref=e1465]: ₳ 8,155
+                    - generic [ref=e1466]:
+                      - generic [ref=e1467]:
+                        - img [ref=e1469]
+                        - paragraph [ref=e1471]: "Proposed on: 27 March 2026"
+                      - generic [ref=e1472]:
+                        - generic [ref=e1474]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1476] [cursor=pointer]:
+                          - /url: /budget_discussion/3172
+                          - button [ref=e1477]: View Details
+                - generic [ref=e1483]:
+                  - generic [ref=e1484]:
+                    - generic [ref=e1486]:
+                      - heading [level=3] [ref=e1487]: usus aetas certe
+                      - heading [level=5] [ref=e1488]: "@stanford_walter_1771468681373"
+                    - button [ref=e1490] [cursor=pointer]:
+                      - img [ref=e1491]
+                  - generic [ref=e1493]:
+                    - generic [ref=e1494]:
+                      - generic [ref=e1495]:
+                        - paragraph [ref=e1496]: Budget category
+                        - paragraph [ref=e1497]: Research
+                      - generic [ref=e1498]:
+                        - paragraph [ref=e1499]: Proposal benefit
+                        - paragraph [ref=e1502]: Vehemens tero compono coadunatio vulgo voco. Territo sit textus absque patruus celebrer aequitas.
+                      - generic [ref=e1503]:
+                        - paragraph [ref=e1504]: Budget Requested
+                        - paragraph [ref=e1505]: ₳ 1,333
+                    - generic [ref=e1506]:
+                      - generic [ref=e1507]:
+                        - img [ref=e1509]
+                        - paragraph [ref=e1511]: "Proposed on: 19 February 2026"
+                      - generic [ref=e1512]:
+                        - generic [ref=e1514]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1516] [cursor=pointer]:
+                          - /url: /budget_discussion/3164
+                          - button [ref=e1517]: View Details
+                - generic [ref=e1523]:
+                  - generic [ref=e1524]:
+                    - generic [ref=e1526]:
+                      - heading [level=3] [ref=e1527]: aequus illo triumphus
+                      - heading [level=5] [ref=e1528]: "@wendell.brekke13_1771468719804"
+                    - button [ref=e1530] [cursor=pointer]:
+                      - img [ref=e1531]
+                  - generic [ref=e1533]:
+                    - generic [ref=e1534]:
+                      - generic [ref=e1535]:
+                        - paragraph [ref=e1536]: Budget category
+                        - paragraph [ref=e1537]: Research
+                      - generic [ref=e1538]:
+                        - paragraph [ref=e1539]: Proposal benefit
+                        - paragraph [ref=e1542]: Cinis tubineus cattus accedo vulgo supplanto tabesco. Dolorum cariosus adipisci verbera vespillo tero.
+                      - generic [ref=e1543]:
+                        - paragraph [ref=e1544]: Budget Requested
+                        - paragraph [ref=e1545]: ₳ 2,775
+                    - generic [ref=e1546]:
+                      - generic [ref=e1547]:
+                        - img [ref=e1549]
+                        - paragraph [ref=e1551]: "Proposed on: 19 February 2026"
+                      - generic [ref=e1552]:
+                        - generic [ref=e1554]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1556] [cursor=pointer]:
+                          - /url: /budget_discussion/3162
+                          - button [ref=e1557]: View Details
+                - generic [ref=e1563]:
+                  - generic [ref=e1564]:
+                    - generic [ref=e1566]:
+                      - heading [level=3] [ref=e1567]: itaque vilitas tactus
+                      - heading [level=5] [ref=e1568]: "@vada25_1769214368742"
+                    - button [ref=e1570] [cursor=pointer]:
+                      - img [ref=e1571]
+                  - generic [ref=e1573]:
+                    - generic [ref=e1574]:
+                      - generic [ref=e1575]:
+                        - paragraph [ref=e1576]: Budget category
+                        - paragraph [ref=e1577]: Research
+                      - generic [ref=e1578]:
+                        - paragraph [ref=e1579]: Proposal benefit
+                        - paragraph [ref=e1582]: Eligendi stips conservo aranea depromo. Curatio conatus acidus reiciendis cernuus.
+                      - generic [ref=e1583]:
+                        - paragraph [ref=e1584]: Budget Requested
+                        - paragraph [ref=e1585]: ₳ 4,093
+                    - generic [ref=e1586]:
+                      - generic [ref=e1587]:
+                        - img [ref=e1589]
+                        - paragraph [ref=e1591]: "Proposed on: 24 January 2026"
+                      - generic [ref=e1592]:
+                        - generic [ref=e1594]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1596] [cursor=pointer]:
+                          - /url: /budget_discussion/3155
+                          - button [ref=e1597]: View Details
+                - generic [ref=e1603]:
+                  - generic [ref=e1604]:
+                    - generic [ref=e1606]:
+                      - heading [level=3] [ref=e1607]: thema damno ab
+                      - heading [level=5] [ref=e1608]: "@cooper.kreiger40_1769128051385"
+                    - button [ref=e1610] [cursor=pointer]:
+                      - img [ref=e1611]
+                  - generic [ref=e1613]:
+                    - generic [ref=e1614]:
+                      - generic [ref=e1615]:
+                        - paragraph [ref=e1616]: Budget category
+                        - paragraph [ref=e1617]: Research
+                      - generic [ref=e1618]:
+                        - paragraph [ref=e1619]: Proposal benefit
+                        - paragraph [ref=e1622]: Turpis adopto deripio timidus. Casso adversus colligo uxor amplus.
+                      - generic [ref=e1623]:
+                        - paragraph [ref=e1624]: Budget Requested
+                        - paragraph [ref=e1625]: ₳ 785
+                    - generic [ref=e1626]:
+                      - generic [ref=e1627]:
+                        - img [ref=e1629]
+                        - paragraph [ref=e1631]: "Proposed on: 23 January 2026"
+                      - generic [ref=e1632]:
+                        - generic [ref=e1634]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1636] [cursor=pointer]:
+                          - /url: /budget_discussion/3150
+                          - button [ref=e1637]: View Details
+                - generic [ref=e1643]:
+                  - generic [ref=e1644]:
+                    - generic [ref=e1646]:
+                      - heading [level=3] [ref=e1647]: alius atrocitas acidus
+                      - heading [level=5] [ref=e1648]: "@jeanette_wunsch14_176904165506"
+                    - button [ref=e1650] [cursor=pointer]:
+                      - img [ref=e1651]
+                  - generic [ref=e1653]:
+                    - generic [ref=e1654]:
+                      - generic [ref=e1655]:
+                        - paragraph [ref=e1656]: Budget category
+                        - paragraph [ref=e1657]: Research
+                      - generic [ref=e1658]:
+                        - paragraph [ref=e1659]: Proposal benefit
+                        - paragraph [ref=e1662]: Ambulo tendo tego sui articulus depraedor vilitas sapiente coepi. Conduco vilicus cresco appositus.
+                      - generic [ref=e1663]:
+                        - paragraph [ref=e1664]: Budget Requested
+                        - paragraph [ref=e1665]: ₳ 3,763
+                    - generic [ref=e1666]:
+                      - generic [ref=e1667]:
+                        - img [ref=e1669]
+                        - paragraph [ref=e1671]: "Proposed on: 22 January 2026"
+                      - generic [ref=e1672]:
+                        - generic [ref=e1674]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1676] [cursor=pointer]:
+                          - /url: /budget_discussion/3144
+                          - button [ref=e1677]: View Details
+                - generic [ref=e1683]:
+                  - generic [ref=e1684]:
+                    - generic [ref=e1686]:
+                      - heading [level=3] [ref=e1687]: certus pel tot
+                      - heading [level=5] [ref=e1688]: "@trever.hudson_1768955295531"
+                    - button [ref=e1690] [cursor=pointer]:
+                      - img [ref=e1691]
+                  - generic [ref=e1693]:
+                    - generic [ref=e1694]:
+                      - generic [ref=e1695]:
+                        - paragraph [ref=e1696]: Budget category
+                        - paragraph [ref=e1697]: Research
+                      - generic [ref=e1698]:
+                        - paragraph [ref=e1699]: Proposal benefit
+                        - paragraph [ref=e1702]: Conforto conicio colligo claustrum territo. Aedificium reiciendis vinco voco.
+                      - generic [ref=e1703]:
+                        - paragraph [ref=e1704]: Budget Requested
+                        - paragraph [ref=e1705]: ₳ 6,296
+                    - generic [ref=e1706]:
+                      - generic [ref=e1707]:
+                        - img [ref=e1709]
+                        - paragraph [ref=e1711]: "Proposed on: 21 January 2026"
+                      - generic [ref=e1712]:
+                        - generic [ref=e1714]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1716] [cursor=pointer]:
+                          - /url: /budget_discussion/3140
+                          - button [ref=e1717]: View Details
+                - generic [ref=e1723]:
+                  - generic [ref=e1724]:
+                    - generic [ref=e1726]:
+                      - heading [level=3] [ref=e1727]: crapula autus cubitum
+                      - heading [level=5] [ref=e1728]: "@delpha.wizafunk_1768955312755"
+                    - button [ref=e1730] [cursor=pointer]:
+                      - img [ref=e1731]
+                  - generic [ref=e1733]:
+                    - generic [ref=e1734]:
+                      - generic [ref=e1735]:
+                        - paragraph [ref=e1736]: Budget category
+                        - paragraph [ref=e1737]: Research
+                      - generic [ref=e1738]:
+                        - paragraph [ref=e1739]: Proposal benefit
+                        - paragraph [ref=e1742]: Suasoria pariatur dolores confugo suppellex conforto. Adaugeo alo amaritudo voluptas.
+                      - generic [ref=e1743]:
+                        - paragraph [ref=e1744]: Budget Requested
+                        - paragraph [ref=e1745]: ₳ 2,268
+                    - generic [ref=e1746]:
+                      - generic [ref=e1747]:
+                        - img [ref=e1749]
+                        - paragraph [ref=e1751]: "Proposed on: 21 January 2026"
+                      - generic [ref=e1752]:
+                        - generic [ref=e1754]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1756] [cursor=pointer]:
+                          - /url: /budget_discussion/3137
+                          - button [ref=e1757]: View Details
+                - generic [ref=e1763]:
+                  - generic [ref=e1764]:
+                    - generic [ref=e1766]:
+                      - heading [level=3] [ref=e1767]: summisse tum ver
+                      - heading [level=5] [ref=e1768]: "@shane_olson_1768868785792"
+                    - button [ref=e1770] [cursor=pointer]:
+                      - img [ref=e1771]
+                  - generic [ref=e1773]:
+                    - generic [ref=e1774]:
+                      - generic [ref=e1775]:
+                        - paragraph [ref=e1776]: Budget category
+                        - paragraph [ref=e1777]: Research
+                      - generic [ref=e1778]:
+                        - paragraph [ref=e1779]: Proposal benefit
+                        - paragraph [ref=e1782]: Supplanto vomer terreo iste auxilium cuius. Aureus audax debeo dolorum sortitus vere necessitatibus.
+                      - generic [ref=e1783]:
+                        - paragraph [ref=e1784]: Budget Requested
+                        - paragraph [ref=e1785]: ₳ 1,466
+                    - generic [ref=e1786]:
+                      - generic [ref=e1787]:
+                        - img [ref=e1789]
+                        - paragraph [ref=e1791]: "Proposed on: 20 January 2026"
+                      - generic [ref=e1792]:
+                        - generic [ref=e1794]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1796] [cursor=pointer]:
+                          - /url: /budget_discussion/3135
+                          - button [ref=e1797]: View Details
+                - generic [ref=e1803]:
+                  - generic [ref=e1804]:
+                    - generic [ref=e1806]:
+                      - heading [level=3] [ref=e1807]: blandior cilicium dens
+                      - heading [level=5] [ref=e1808]: "@marcel_dickens_1768696099264"
+                    - button [ref=e1810] [cursor=pointer]:
+                      - img [ref=e1811]
+                  - generic [ref=e1813]:
+                    - generic [ref=e1814]:
+                      - generic [ref=e1815]:
+                        - paragraph [ref=e1816]: Budget category
+                        - paragraph [ref=e1817]: Research
+                      - generic [ref=e1818]:
+                        - paragraph [ref=e1819]: Proposal benefit
+                        - paragraph [ref=e1822]: Doloremque solum verumtamen alter convoco culpo combibo. Celebrer ascit praesentium ratione suus aeternus delectus quae tabgo.
+                      - generic [ref=e1823]:
+                        - paragraph [ref=e1824]: Budget Requested
+                        - paragraph [ref=e1825]: ₳ 6,852
+                    - generic [ref=e1826]:
+                      - generic [ref=e1827]:
+                        - img [ref=e1829]
+                        - paragraph [ref=e1831]: "Proposed on: 18 January 2026"
+                      - generic [ref=e1832]:
+                        - generic [ref=e1834]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1836] [cursor=pointer]:
+                          - /url: /budget_discussion/3119
+                          - button [ref=e1837]: View Details
+                - generic [ref=e1843]:
+                  - generic [ref=e1844]:
+                    - generic [ref=e1846]:
+                      - heading [level=3] [ref=e1847]: asper cometes vulnus
+                      - heading [level=5] [ref=e1848]: "@kylie18_1768609731048"
+                    - button [ref=e1850] [cursor=pointer]:
+                      - img [ref=e1851]
+                  - generic [ref=e1853]:
+                    - generic [ref=e1854]:
+                      - generic [ref=e1855]:
+                        - paragraph [ref=e1856]: Budget category
+                        - paragraph [ref=e1857]: Research
+                      - generic [ref=e1858]:
+                        - paragraph [ref=e1859]: Proposal benefit
+                        - paragraph [ref=e1862]: Cotidie curtus delego amicitia cultura bis. Eius consectetur demens compello patruus.
+                      - generic [ref=e1863]:
+                        - paragraph [ref=e1864]: Budget Requested
+                        - paragraph [ref=e1865]: ₳ 1,265
+                    - generic [ref=e1866]:
+                      - generic [ref=e1867]:
+                        - img [ref=e1869]
+                        - paragraph [ref=e1871]: "Proposed on: 17 January 2026"
+                      - generic [ref=e1872]:
+                        - generic [ref=e1874]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1876] [cursor=pointer]:
+                          - /url: /budget_discussion/3112
+                          - button [ref=e1877]: View Details
+                - generic [ref=e1883]:
+                  - generic [ref=e1884]:
+                    - generic [ref=e1886]:
+                      - heading [level=3] [ref=e1887]: beatus occaecati defungo
+                      - heading [level=5] [ref=e1888]: "@chadd.jast46_1768523374724"
+                    - button [ref=e1890] [cursor=pointer]:
+                      - img [ref=e1891]
+                  - generic [ref=e1893]:
+                    - generic [ref=e1894]:
+                      - generic [ref=e1895]:
+                        - paragraph [ref=e1896]: Budget category
+                        - paragraph [ref=e1897]: Research
+                      - generic [ref=e1898]:
+                        - paragraph [ref=e1899]: Proposal benefit
+                        - paragraph [ref=e1902]: Tibi casso timidus suffoco tondeo ipsum vitium currus. Aperiam aperio supra angelus.
+                      - generic [ref=e1903]:
+                        - paragraph [ref=e1904]: Budget Requested
+                        - paragraph [ref=e1905]: ₳ 7,446
+                    - generic [ref=e1906]:
+                      - generic [ref=e1907]:
+                        - img [ref=e1909]
+                        - paragraph [ref=e1911]: "Proposed on: 16 January 2026"
+                      - generic [ref=e1912]:
+                        - generic [ref=e1914]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1916] [cursor=pointer]:
+                          - /url: /budget_discussion/3102
+                          - button [ref=e1917]: View Details
+                - generic [ref=e1923]:
+                  - generic [ref=e1924]:
+                    - generic [ref=e1926]:
+                      - heading [level=3] [ref=e1927]: victoria infit verbera
+                      - heading [level=5] [ref=e1928]: "@malachi64_1768436909190"
+                    - button [ref=e1930] [cursor=pointer]:
+                      - img [ref=e1931]
+                  - generic [ref=e1933]:
+                    - generic [ref=e1934]:
+                      - generic [ref=e1935]:
+                        - paragraph [ref=e1936]: Budget category
+                        - paragraph [ref=e1937]: Research
+                      - generic [ref=e1938]:
+                        - paragraph [ref=e1939]: Proposal benefit
+                        - paragraph [ref=e1942]: Sollicito derelinquo unus summisse spectaculum atavus quia assumenda pax. Tantillus ante amplexus.
+                      - generic [ref=e1943]:
+                        - paragraph [ref=e1944]: Budget Requested
+                        - paragraph [ref=e1945]: ₳ 7,187
+                    - generic [ref=e1946]:
+                      - generic [ref=e1947]:
+                        - img [ref=e1949]
+                        - paragraph [ref=e1951]: "Proposed on: 15 January 2026"
+                      - generic [ref=e1952]:
+                        - generic [ref=e1954]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1956] [cursor=pointer]:
+                          - /url: /budget_discussion/3092
+                          - button [ref=e1957]: View Details
+                - generic [ref=e1963]:
+                  - generic [ref=e1964]:
+                    - generic [ref=e1966]:
+                      - heading [level=3] [ref=e1967]: uredo antepono umbra
+                      - heading [level=5] [ref=e1968]: "@ubaldo7_1768436770200"
+                    - button [ref=e1970] [cursor=pointer]:
+                      - img [ref=e1971]
+                  - generic [ref=e1973]:
+                    - generic [ref=e1974]:
+                      - generic [ref=e1975]:
+                        - paragraph [ref=e1976]: Budget category
+                        - paragraph [ref=e1977]: Research
+                      - generic [ref=e1978]:
+                        - paragraph [ref=e1979]: Proposal benefit
+                        - paragraph [ref=e1982]: Deprecator texo culpa stabilis subnecto deficio valeo brevis deludo. Terreo demitto sonitus cibus.
+                      - generic [ref=e1983]:
+                        - paragraph [ref=e1984]: Budget Requested
+                        - paragraph [ref=e1985]: ₳ 3,958
+                    - generic [ref=e1986]:
+                      - generic [ref=e1987]:
+                        - img [ref=e1989]
+                        - paragraph [ref=e1991]: "Proposed on: 15 January 2026"
+                      - generic [ref=e1992]:
+                        - generic [ref=e1994]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e1996] [cursor=pointer]:
+                          - /url: /budget_discussion/3089
+                          - button [ref=e1997]: View Details
+                - generic [ref=e2003]:
+                  - generic [ref=e2004]:
+                    - generic [ref=e2006]:
+                      - heading [level=3] [ref=e2007]: texo tutamen desolo
+                      - heading [level=5] [ref=e2008]: "@jaylan22_1768436806294"
+                    - button [ref=e2010] [cursor=pointer]:
+                      - img [ref=e2011]
+                  - generic [ref=e2013]:
+                    - generic [ref=e2014]:
+                      - generic [ref=e2015]:
+                        - paragraph [ref=e2016]: Budget category
+                        - paragraph [ref=e2017]: Research
+                      - generic [ref=e2018]:
+                        - paragraph [ref=e2019]: Proposal benefit
+                        - paragraph [ref=e2022]: Id via occaecati venustas demergo aurum conitor tabella synagoga. Rerum desino adaugeo ad alo suscipit deserunt carmen.
+                      - generic [ref=e2023]:
+                        - paragraph [ref=e2024]: Budget Requested
+                        - paragraph [ref=e2025]: ₳ 8,768
+                    - generic [ref=e2026]:
+                      - generic [ref=e2027]:
+                        - img [ref=e2029]
+                        - paragraph [ref=e2031]: "Proposed on: 15 January 2026"
+                      - generic [ref=e2032]:
+                        - generic [ref=e2034]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2036] [cursor=pointer]:
+                          - /url: /budget_discussion/3088
+                          - button [ref=e2037]: View Details
+                - generic [ref=e2043]:
+                  - generic [ref=e2044]:
+                    - generic [ref=e2046]:
+                      - heading [level=3] [ref=e2047]: soleo crux suggero
+                      - heading [level=5] [ref=e2048]: "@davin_wehner86_1768350611607"
+                    - button [ref=e2050] [cursor=pointer]:
+                      - img [ref=e2051]
+                  - generic [ref=e2053]:
+                    - generic [ref=e2054]:
+                      - generic [ref=e2055]:
+                        - paragraph [ref=e2056]: Budget category
+                        - paragraph [ref=e2057]: Research
+                      - generic [ref=e2058]:
+                        - paragraph [ref=e2059]: Proposal benefit
+                        - paragraph [ref=e2062]: Adeptio caelum solio considero patrocinor celer beatae. Anser auditor acerbitas.
+                      - generic [ref=e2063]:
+                        - paragraph [ref=e2064]: Budget Requested
+                        - paragraph [ref=e2065]: ₳ 9,185
+                    - generic [ref=e2066]:
+                      - generic [ref=e2067]:
+                        - img [ref=e2069]
+                        - paragraph [ref=e2071]: "Proposed on: 14 January 2026"
+                      - generic [ref=e2072]:
+                        - generic [ref=e2074]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2076] [cursor=pointer]:
+                          - /url: /budget_discussion/3083
+                          - button [ref=e2077]: View Details
+                - generic [ref=e2083]:
+                  - generic [ref=e2084]:
+                    - generic [ref=e2086]:
+                      - heading [level=3] [ref=e2087]: cumque dignissimos tracto
+                      - heading [level=5] [ref=e2088]: "@enrique_harris79_1768177750890"
+                    - button [ref=e2090] [cursor=pointer]:
+                      - img [ref=e2091]
+                  - generic [ref=e2093]:
+                    - generic [ref=e2094]:
+                      - generic [ref=e2095]:
+                        - paragraph [ref=e2096]: Budget category
+                        - paragraph [ref=e2097]: Research
+                      - generic [ref=e2098]:
+                        - paragraph [ref=e2099]: Proposal benefit
+                        - paragraph [ref=e2102]: Officiis doloremque confero. Neque suppellex cotidie ustilo vomer tempus.
+                      - generic [ref=e2103]:
+                        - paragraph [ref=e2104]: Budget Requested
+                        - paragraph [ref=e2105]: ₳ 7,431
+                    - generic [ref=e2106]:
+                      - generic [ref=e2107]:
+                        - img [ref=e2109]
+                        - paragraph [ref=e2111]: "Proposed on: 12 January 2026"
+                      - generic [ref=e2112]:
+                        - generic [ref=e2114]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2116] [cursor=pointer]:
+                          - /url: /budget_discussion/3058
+                          - button [ref=e2117]: View Details
+                - generic [ref=e2123]:
+                  - generic [ref=e2124]:
+                    - generic [ref=e2126]:
+                      - heading [level=3] [ref=e2127]: velociter decens cruentus
+                      - heading [level=5] [ref=e2128]: "@pasquale43_1768091561748"
+                    - button [ref=e2130] [cursor=pointer]:
+                      - img [ref=e2131]
+                  - generic [ref=e2133]:
+                    - generic [ref=e2134]:
+                      - generic [ref=e2135]:
+                        - paragraph [ref=e2136]: Budget category
+                        - paragraph [ref=e2137]: Research
+                      - generic [ref=e2138]:
+                        - paragraph [ref=e2139]: Proposal benefit
+                        - paragraph [ref=e2142]: Conor spiculum aestivus. Aperio torqueo aliquid strenuus arbor distinctio utpote colo debeo.
+                      - generic [ref=e2143]:
+                        - paragraph [ref=e2144]: Budget Requested
+                        - paragraph [ref=e2145]: ₳ 5,382
+                    - generic [ref=e2146]:
+                      - generic [ref=e2147]:
+                        - img [ref=e2149]
+                        - paragraph [ref=e2151]: "Proposed on: 11 January 2026"
+                      - generic [ref=e2152]:
+                        - generic [ref=e2154]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2156] [cursor=pointer]:
+                          - /url: /budget_discussion/3052
+                          - button [ref=e2157]: View Details
+            - generic [ref=e2165]:
+              - generic [ref=e2166]:
+                - generic [ref=e2167]:
+                  - heading [level=2] [ref=e2168]: Governance Support
+                  - button [ref=e2169] [cursor=pointer]: Show all
+                - generic [ref=e2170]:
+                  - button [ref=e2171] [cursor=pointer]:
+                    - img [ref=e2172]
+                  - button [ref=e2174] [cursor=pointer]:
+                    - img [ref=e2175]
+              - generic [ref=e2180]:
+                - generic [ref=e2186]:
+                  - generic [ref=e2187]:
+                    - generic [ref=e2189]:
+                      - heading [level=3] [ref=e2190]: clibanus tibi aedificium
+                      - heading [level=5] [ref=e2191]: "@jude.cassin_1780458943188"
+                    - button [ref=e2193] [cursor=pointer]:
+                      - img [ref=e2194]
+                  - generic [ref=e2196]:
+                    - generic [ref=e2197]:
+                      - generic [ref=e2198]:
+                        - paragraph [ref=e2199]: Budget category
+                        - paragraph [ref=e2200]: Governance Support
+                      - generic [ref=e2201]:
+                        - paragraph [ref=e2202]: Proposal benefit
+                        - paragraph [ref=e2205]: Thymum tergo vicissitudo audio administratio atque tendo utilis. Vulnus voco conventus nemo caute venia.
+                      - generic [ref=e2206]:
+                        - paragraph [ref=e2207]: Budget Requested
+                        - paragraph [ref=e2208]: ₳ 394
+                    - generic [ref=e2209]:
+                      - generic [ref=e2210]:
+                        - img [ref=e2212]
+                        - paragraph [ref=e2214]: "Proposed on: 3 June 2026"
+                      - generic [ref=e2215]:
+                        - generic [ref=e2217]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2219] [cursor=pointer]:
+                          - /url: /budget_discussion/3241
+                          - button [ref=e2220]: View Details
+                - generic [ref=e2226]:
+                  - generic [ref=e2227]:
+                    - generic [ref=e2229]:
+                      - heading [level=3] [ref=e2230]: reiciendis denuo conscendo
+                      - heading [level=5] [ref=e2231]: "@kurt.rutherford_1780288310261"
+                    - button [ref=e2233] [cursor=pointer]:
+                      - img [ref=e2234]
+                  - generic [ref=e2236]:
+                    - generic [ref=e2237]:
+                      - generic [ref=e2238]:
+                        - paragraph [ref=e2239]: Budget category
+                        - paragraph [ref=e2240]: Governance Support
+                      - generic [ref=e2241]:
+                        - paragraph [ref=e2242]: Proposal benefit
+                        - paragraph [ref=e2245]: Delectatio tristis turbo audio cattus vallum aut. Vix solutio vulpes vallum trans depopulo.
+                      - generic [ref=e2246]:
+                        - paragraph [ref=e2247]: Budget Requested
+                        - paragraph [ref=e2248]: ₳ 3,889
+                    - generic [ref=e2249]:
+                      - generic [ref=e2250]:
+                        - img [ref=e2252]
+                        - paragraph [ref=e2254]: "Proposed on: 1 June 2026"
+                      - generic [ref=e2255]:
+                        - generic [ref=e2257]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2259] [cursor=pointer]:
+                          - /url: /budget_discussion/3238
+                          - button [ref=e2260]: View Details
+                - generic [ref=e2266]:
+                  - generic [ref=e2267]:
+                    - generic [ref=e2269]:
+                      - heading [level=3] [ref=e2270]: atqui avaritia advenio
+                      - heading [level=5] [ref=e2271]: "@jade.stokes26_1778209020597"
+                    - button [ref=e2273] [cursor=pointer]:
+                      - img [ref=e2274]
+                  - generic [ref=e2276]:
+                    - generic [ref=e2277]:
+                      - generic [ref=e2278]:
+                        - paragraph [ref=e2279]: Budget category
+                        - paragraph [ref=e2280]: Governance Support
+                      - generic [ref=e2281]:
+                        - paragraph [ref=e2282]: Proposal benefit
+                        - paragraph [ref=e2285]: Voluptate tabernus caste. Alias cognomen studio.
+                      - generic [ref=e2286]:
+                        - paragraph [ref=e2287]: Budget Requested
+                        - paragraph [ref=e2288]: ₳ 3,101
+                    - generic [ref=e2289]:
+                      - generic [ref=e2290]:
+                        - img [ref=e2292]
+                        - paragraph [ref=e2294]: "Proposed on: 8 May 2026"
+                      - generic [ref=e2295]:
+                        - generic [ref=e2297]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2299] [cursor=pointer]:
+                          - /url: /budget_discussion/3231
+                          - button [ref=e2300]: View Details
+                - generic [ref=e2306]:
+                  - generic [ref=e2307]:
+                    - generic [ref=e2309]:
+                      - heading [level=3] [ref=e2310]: consequuntur demo talus
+                      - heading [level=5] [ref=e2311]: "@roel.collins_1777014066079"
+                    - button [ref=e2313] [cursor=pointer]:
+                      - img [ref=e2314]
+                  - generic [ref=e2316]:
+                    - generic [ref=e2317]:
+                      - generic [ref=e2318]:
+                        - paragraph [ref=e2319]: Budget category
+                        - paragraph [ref=e2320]: Governance Support
+                      - generic [ref=e2321]:
+                        - paragraph [ref=e2322]: Proposal benefit
+                        - paragraph [ref=e2325]: Adsum assumenda celo comminor arma administratio aspicio tabesco. Ascisco vetus antea truculenter abundans.
+                      - generic [ref=e2326]:
+                        - paragraph [ref=e2327]: Budget Requested
+                        - paragraph [ref=e2328]: ₳ 5,482
+                    - generic [ref=e2329]:
+                      - generic [ref=e2330]:
+                        - img [ref=e2332]
+                        - paragraph [ref=e2334]: "Proposed on: 24 April 2026"
+                      - generic [ref=e2335]:
+                        - generic [ref=e2337]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2339] [cursor=pointer]:
+                          - /url: /budget_discussion/3218
+                          - button [ref=e2340]: View Details
+                - generic [ref=e2346]:
+                  - generic [ref=e2347]:
+                    - generic [ref=e2349]:
+                      - heading [level=3] [ref=e2350]: audentia fugit super
+                      - heading [level=5] [ref=e2351]: "@chanelle.doyle15_1776938577694"
+                    - button [ref=e2353] [cursor=pointer]:
+                      - img [ref=e2354]
+                  - generic [ref=e2356]:
+                    - generic [ref=e2357]:
+                      - generic [ref=e2358]:
+                        - paragraph [ref=e2359]: Budget category
+                        - paragraph [ref=e2360]: Governance Support
+                      - generic [ref=e2361]:
+                        - paragraph [ref=e2362]: Proposal benefit
+                        - paragraph [ref=e2365]: Cariosus verumtamen advenio caecus aut terra umquam sortitus. Brevis territo neque corpus argentum ara.
+                      - generic [ref=e2366]:
+                        - paragraph [ref=e2367]: Budget Requested
+                        - paragraph [ref=e2368]: ₳ 1,789
+                    - generic [ref=e2369]:
+                      - generic [ref=e2370]:
+                        - img [ref=e2372]
+                        - paragraph [ref=e2374]: "Proposed on: 23 April 2026"
+                      - generic [ref=e2375]:
+                        - generic [ref=e2377]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2379] [cursor=pointer]:
+                          - /url: /budget_discussion/3209
+                          - button [ref=e2380]: View Details
+                - generic [ref=e2386]:
+                  - generic [ref=e2387]:
+                    - generic [ref=e2389]:
+                      - heading [level=3] [ref=e2390]: doloremque artificiose delego
+                      - heading [level=5] [ref=e2391]: "@julius.gorczany_1775012612535"
+                    - button [ref=e2393] [cursor=pointer]:
+                      - img [ref=e2394]
+                  - generic [ref=e2396]:
+                    - generic [ref=e2397]:
+                      - generic [ref=e2398]:
+                        - paragraph [ref=e2399]: Budget category
+                        - paragraph [ref=e2400]: Governance Support
+                      - generic [ref=e2401]:
+                        - paragraph [ref=e2402]: Proposal benefit
+                        - paragraph [ref=e2405]: Vaco thesis corrumpo. Vita ademptio ventus cogo abbas.
+                      - generic [ref=e2406]:
+                        - paragraph [ref=e2407]: Budget Requested
+                        - paragraph [ref=e2408]: ₳ 5,617
+                    - generic [ref=e2409]:
+                      - generic [ref=e2410]:
+                        - img [ref=e2412]
+                        - paragraph [ref=e2414]: "Proposed on: 1 April 2026"
+                      - generic [ref=e2415]:
+                        - generic [ref=e2417]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2419] [cursor=pointer]:
+                          - /url: /budget_discussion/3195
+                          - button [ref=e2420]: View Details
+                - generic [ref=e2426]:
+                  - generic [ref=e2427]:
+                    - generic [ref=e2429]:
+                      - heading [level=3] [ref=e2430]: pax curso calcar
+                      - heading [level=5] [ref=e2431]: "@cassandre46_1774660906276"
+                    - button [ref=e2433] [cursor=pointer]:
+                      - img [ref=e2434]
+                  - generic [ref=e2436]:
+                    - generic [ref=e2437]:
+                      - generic [ref=e2438]:
+                        - paragraph [ref=e2439]: Budget category
+                        - paragraph [ref=e2440]: Governance Support
+                      - generic [ref=e2441]:
+                        - paragraph [ref=e2442]: Proposal benefit
+                        - paragraph [ref=e2445]: Cum commemoro ventito deleniti votum pel sortitus. Vigor fugit maiores.
+                      - generic [ref=e2446]:
+                        - paragraph [ref=e2447]: Budget Requested
+                        - paragraph [ref=e2448]: ₳ 7,024
+                    - generic [ref=e2449]:
+                      - generic [ref=e2450]:
+                        - img [ref=e2452]
+                        - paragraph [ref=e2454]: "Proposed on: 28 March 2026"
+                      - generic [ref=e2455]:
+                        - generic [ref=e2457]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2459] [cursor=pointer]:
+                          - /url: /budget_discussion/3180
+                          - button [ref=e2460]: View Details
+                - generic [ref=e2466]:
+                  - generic [ref=e2467]:
+                    - generic [ref=e2469]:
+                      - heading [level=3] [ref=e2470]: facilis auditor confugo
+                      - heading [level=5] [ref=e2471]: "@cassandre46_1774660906276"
+                    - button [ref=e2473] [cursor=pointer]:
+                      - img [ref=e2474]
+                  - generic [ref=e2476]:
+                    - generic [ref=e2477]:
+                      - generic [ref=e2478]:
+                        - paragraph [ref=e2479]: Budget category
+                        - paragraph [ref=e2480]: Governance Support
+                      - generic [ref=e2481]:
+                        - paragraph [ref=e2482]: Proposal benefit
+                        - paragraph [ref=e2485]: Soluta corona altus adnuo tyrannus sono tabernus tres creo canto. Beatae allatus vulpes.
+                      - generic [ref=e2486]:
+                        - paragraph [ref=e2487]: Budget Requested
+                        - paragraph [ref=e2488]: ₳ 2,252
+                    - generic [ref=e2489]:
+                      - generic [ref=e2490]:
+                        - img [ref=e2492]
+                        - paragraph [ref=e2494]: "Proposed on: 28 March 2026"
+                      - generic [ref=e2495]:
+                        - generic [ref=e2497]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2499] [cursor=pointer]:
+                          - /url: /budget_discussion/3179
+                          - button [ref=e2500]: View Details
+                - generic [ref=e2506]:
+                  - generic [ref=e2507]:
+                    - generic [ref=e2509]:
+                      - heading [level=3] [ref=e2510]: itaque cibus consequuntur
+                      - heading [level=5] [ref=e2511]: "@golda.marvin_1774660944104"
+                    - button [ref=e2513] [cursor=pointer]:
+                      - img [ref=e2514]
+                  - generic [ref=e2516]:
+                    - generic [ref=e2517]:
+                      - generic [ref=e2518]:
+                        - paragraph [ref=e2519]: Budget category
+                        - paragraph [ref=e2520]: Governance Support
+                      - generic [ref=e2521]:
+                        - paragraph [ref=e2522]: Proposal benefit
+                        - paragraph [ref=e2525]: Et subseco conscendo. Verus sono cubo acquiro abbas adicio circumvenio pariatur summisse.
+                      - generic [ref=e2526]:
+                        - paragraph [ref=e2527]: Budget Requested
+                        - paragraph [ref=e2528]: ₳ 7,318
+                    - generic [ref=e2529]:
+                      - generic [ref=e2530]:
+                        - img [ref=e2532]
+                        - paragraph [ref=e2534]: "Proposed on: 28 March 2026"
+                      - generic [ref=e2535]:
+                        - generic [ref=e2537]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2539] [cursor=pointer]:
+                          - /url: /budget_discussion/3178
+                          - button [ref=e2540]: View Details
+                - generic [ref=e2546]:
+                  - generic [ref=e2547]:
+                    - generic [ref=e2549]:
+                      - heading [level=3] [ref=e2550]: contra alius videlicet
+                      - heading [level=5] [ref=e2551]: "@orion_brekke_1774574893642"
+                    - button [ref=e2553] [cursor=pointer]:
+                      - img [ref=e2554]
+                  - generic [ref=e2556]:
+                    - generic [ref=e2557]:
+                      - generic [ref=e2558]:
+                        - paragraph [ref=e2559]: Budget category
+                        - paragraph [ref=e2560]: Governance Support
+                      - generic [ref=e2561]:
+                        - paragraph [ref=e2562]: Proposal benefit
+                        - paragraph [ref=e2565]: Cimentarius valens compono voluntarius. Utroque basium vehemens admiratio.
+                      - generic [ref=e2566]:
+                        - paragraph [ref=e2567]: Budget Requested
+                        - paragraph [ref=e2568]: ₳ 7,695
+                    - generic [ref=e2569]:
+                      - generic [ref=e2570]:
+                        - img [ref=e2572]
+                        - paragraph [ref=e2574]: "Proposed on: 27 March 2026"
+                      - generic [ref=e2575]:
+                        - generic [ref=e2577]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2579] [cursor=pointer]:
+                          - /url: /budget_discussion/3173
+                          - button [ref=e2580]: View Details
+                - generic [ref=e2586]:
+                  - generic [ref=e2587]:
+                    - generic [ref=e2589]:
+                      - heading [level=3] [ref=e2590]: calcar venio succurro
+                      - heading [level=5] [ref=e2591]: "@stanford_walter_1771468681373"
+                    - button [ref=e2593] [cursor=pointer]:
+                      - img [ref=e2594]
+                  - generic [ref=e2596]:
+                    - generic [ref=e2597]:
+                      - generic [ref=e2598]:
+                        - paragraph [ref=e2599]: Budget category
+                        - paragraph [ref=e2600]: Governance Support
+                      - generic [ref=e2601]:
+                        - paragraph [ref=e2602]: Proposal benefit
+                        - paragraph [ref=e2605]: Sit ambulo summopere strues amplexus. Demo basium dapifer suppono patria cubo capillus valetudo cibus.
+                      - generic [ref=e2606]:
+                        - paragraph [ref=e2607]: Budget Requested
+                        - paragraph [ref=e2608]: ₳ 2,384
+                    - generic [ref=e2609]:
+                      - generic [ref=e2610]:
+                        - img [ref=e2612]
+                        - paragraph [ref=e2614]: "Proposed on: 19 February 2026"
+                      - generic [ref=e2615]:
+                        - generic [ref=e2617]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2619] [cursor=pointer]:
+                          - /url: /budget_discussion/3165
+                          - button [ref=e2620]: View Details
+                - generic [ref=e2626]:
+                  - generic [ref=e2627]:
+                    - generic [ref=e2629]:
+                      - heading [level=3] [ref=e2630]: delinquo ab vobis
+                      - heading [level=5] [ref=e2631]: "@norval.baumbach_1771468719444"
+                    - button [ref=e2633] [cursor=pointer]:
+                      - img [ref=e2634]
+                  - generic [ref=e2636]:
+                    - generic [ref=e2637]:
+                      - generic [ref=e2638]:
+                        - paragraph [ref=e2639]: Budget category
+                        - paragraph [ref=e2640]: Governance Support
+                      - generic [ref=e2641]:
+                        - paragraph [ref=e2642]: Proposal benefit
+                        - paragraph [ref=e2645]: Vigilo vix valetudo dolorum magnam articulus calamitas torqueo eveniet apparatus. Vesper cado conitor sustineo adflicto ex.
+                      - generic [ref=e2646]:
+                        - paragraph [ref=e2647]: Budget Requested
+                        - paragraph [ref=e2648]: ₳ 3,434
+                    - generic [ref=e2649]:
+                      - generic [ref=e2650]:
+                        - img [ref=e2652]
+                        - paragraph [ref=e2654]: "Proposed on: 19 February 2026"
+                      - generic [ref=e2655]:
+                        - generic [ref=e2657]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2659] [cursor=pointer]:
+                          - /url: /budget_discussion/3163
+                          - button [ref=e2660]: View Details
+                - generic [ref=e2666]:
+                  - generic [ref=e2667]:
+                    - generic [ref=e2669]:
+                      - heading [level=3] [ref=e2670]: sum ars sulum
+                      - heading [level=5] [ref=e2671]: "@zachary_mueller_1771382335751"
+                    - button [ref=e2673] [cursor=pointer]:
+                      - img [ref=e2674]
+                  - generic [ref=e2676]:
+                    - generic [ref=e2677]:
+                      - generic [ref=e2678]:
+                        - paragraph [ref=e2679]: Budget category
+                        - paragraph [ref=e2680]: Governance Support
+                      - generic [ref=e2681]:
+                        - paragraph [ref=e2682]: Proposal benefit
+                        - paragraph [ref=e2685]: Textus utor culpa calco patior degenero crudelis. Civis supellex caterva.
+                      - generic [ref=e2686]:
+                        - paragraph [ref=e2687]: Budget Requested
+                        - paragraph [ref=e2688]: ₳ 882
+                    - generic [ref=e2689]:
+                      - generic [ref=e2690]:
+                        - img [ref=e2692]
+                        - paragraph [ref=e2694]: "Proposed on: 18 February 2026"
+                      - generic [ref=e2695]:
+                        - generic [ref=e2697]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2699] [cursor=pointer]:
+                          - /url: /budget_discussion/3160
+                          - button [ref=e2700]: View Details
+                - generic [ref=e2706]:
+                  - generic [ref=e2707]:
+                    - generic [ref=e2709]:
+                      - heading [level=3] [ref=e2710]: aveho aequus amaritudo
+                      - heading [level=5] [ref=e2711]: "@letha_dietrich_1771382368525"
+                    - button [ref=e2713] [cursor=pointer]:
+                      - img [ref=e2714]
+                  - generic [ref=e2716]:
+                    - generic [ref=e2717]:
+                      - generic [ref=e2718]:
+                        - paragraph [ref=e2719]: Budget category
+                        - paragraph [ref=e2720]: Governance Support
+                      - generic [ref=e2721]:
+                        - paragraph [ref=e2722]: Proposal benefit
+                        - paragraph [ref=e2725]: Angulus quisquam atqui aqua atrox sollers. Vulpes non viscus caecus deleniti vulariter cena vae statim veritas.
+                      - generic [ref=e2726]:
+                        - paragraph [ref=e2727]: Budget Requested
+                        - paragraph [ref=e2728]: ₳ 8,539
+                    - generic [ref=e2729]:
+                      - generic [ref=e2730]:
+                        - img [ref=e2732]
+                        - paragraph [ref=e2734]: "Proposed on: 18 February 2026"
+                      - generic [ref=e2735]:
+                        - generic [ref=e2737]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2739] [cursor=pointer]:
+                          - /url: /budget_discussion/3158
+                          - button [ref=e2740]: View Details
+                - generic [ref=e2746]:
+                  - generic [ref=e2747]:
+                    - generic [ref=e2749]:
+                      - heading [level=3] [ref=e2750]: tracto tepidus urbanus
+                      - heading [level=5] [ref=e2751]: "@vada25_1769214368742"
+                    - button [ref=e2753] [cursor=pointer]:
+                      - img [ref=e2754]
+                  - generic [ref=e2756]:
+                    - generic [ref=e2757]:
+                      - generic [ref=e2758]:
+                        - paragraph [ref=e2759]: Budget category
+                        - paragraph [ref=e2760]: Governance Support
+                      - generic [ref=e2761]:
+                        - paragraph [ref=e2762]: Proposal benefit
+                        - paragraph [ref=e2765]: Armarium terminatio adeptio acervus nostrum suffoco complectus. Quod crux attollo tergum consequatur custodia molestias terga.
+                      - generic [ref=e2766]:
+                        - paragraph [ref=e2767]: Budget Requested
+                        - paragraph [ref=e2768]: ₳ 9,868
+                    - generic [ref=e2769]:
+                      - generic [ref=e2770]:
+                        - img [ref=e2772]
+                        - paragraph [ref=e2774]: "Proposed on: 24 January 2026"
+                      - generic [ref=e2775]:
+                        - generic [ref=e2777]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2779] [cursor=pointer]:
+                          - /url: /budget_discussion/3154
+                          - button [ref=e2780]: View Details
+                - generic [ref=e2786]:
+                  - generic [ref=e2787]:
+                    - generic [ref=e2789]:
+                      - heading [level=3] [ref=e2790]: video currus tabula
+                      - heading [level=5] [ref=e2791]: "@edyth_watsica_1769128087733"
+                    - button [ref=e2793] [cursor=pointer]:
+                      - img [ref=e2794]
+                  - generic [ref=e2796]:
+                    - generic [ref=e2797]:
+                      - generic [ref=e2798]:
+                        - paragraph [ref=e2799]: Budget category
+                        - paragraph [ref=e2800]: Governance Support
+                      - generic [ref=e2801]:
+                        - paragraph [ref=e2802]: Proposal benefit
+                        - paragraph [ref=e2805]: Crux magnam tenetur adduco audentia attonbitus vulticulus quam coma teres. Vulariter voveo tutamen verbera decipio.
+                      - generic [ref=e2806]:
+                        - paragraph [ref=e2807]: Budget Requested
+                        - paragraph [ref=e2808]: ₳ 6,928
+                    - generic [ref=e2809]:
+                      - generic [ref=e2810]:
+                        - img [ref=e2812]
+                        - paragraph [ref=e2814]: "Proposed on: 23 January 2026"
+                      - generic [ref=e2815]:
+                        - generic [ref=e2817]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2819] [cursor=pointer]:
+                          - /url: /budget_discussion/3148
+                          - button [ref=e2820]: View Details
+                - generic [ref=e2826]:
+                  - generic [ref=e2827]:
+                    - generic [ref=e2829]:
+                      - heading [level=3] [ref=e2830]: vigilo blanditiis tutamen
+                      - heading [level=5] [ref=e2831]: "@jeanette_wunsch14_176904165506"
+                    - button [ref=e2833] [cursor=pointer]:
+                      - img [ref=e2834]
+                  - generic [ref=e2836]:
+                    - generic [ref=e2837]:
+                      - generic [ref=e2838]:
+                        - paragraph [ref=e2839]: Budget category
+                        - paragraph [ref=e2840]: Governance Support
+                      - generic [ref=e2841]:
+                        - paragraph [ref=e2842]: Proposal benefit
+                        - paragraph [ref=e2845]: Ver blanditiis surculus vitium ascit barba vulgaris. Sordeo titulus verecundia vinitor aliquam soleo cedo uredo aperiam voveo.
+                      - generic [ref=e2846]:
+                        - paragraph [ref=e2847]: Budget Requested
+                        - paragraph [ref=e2848]: ₳ 9,808
+                    - generic [ref=e2849]:
+                      - generic [ref=e2850]:
+                        - img [ref=e2852]
+                        - paragraph [ref=e2854]: "Proposed on: 22 January 2026"
+                      - generic [ref=e2855]:
+                        - generic [ref=e2857]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2859] [cursor=pointer]:
+                          - /url: /budget_discussion/3145
+                          - button [ref=e2860]: View Details
+                - generic [ref=e2866]:
+                  - generic [ref=e2867]:
+                    - generic [ref=e2869]:
+                      - heading [level=3] [ref=e2870]: angustus curto ad
+                      - heading [level=5] [ref=e2871]: "@shane_olson_1768868785792"
+                    - button [ref=e2873] [cursor=pointer]:
+                      - img [ref=e2874]
+                  - generic [ref=e2876]:
+                    - generic [ref=e2877]:
+                      - generic [ref=e2878]:
+                        - paragraph [ref=e2879]: Budget category
+                        - paragraph [ref=e2880]: Governance Support
+                      - generic [ref=e2881]:
+                        - paragraph [ref=e2882]: Proposal benefit
+                        - paragraph [ref=e2885]: Titulus vulpes annus causa cursus adimpleo. Accedo ventito odio.
+                      - generic [ref=e2886]:
+                        - paragraph [ref=e2887]: Budget Requested
+                        - paragraph [ref=e2888]: ₳ 8,690
+                    - generic [ref=e2889]:
+                      - generic [ref=e2890]:
+                        - img [ref=e2892]
+                        - paragraph [ref=e2894]: "Proposed on: 20 January 2026"
+                      - generic [ref=e2895]:
+                        - generic [ref=e2897]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2899] [cursor=pointer]:
+                          - /url: /budget_discussion/3134
+                          - button [ref=e2900]: View Details
+                - generic [ref=e2906]:
+                  - generic [ref=e2907]:
+                    - generic [ref=e2909]:
+                      - heading [level=3] [ref=e2910]: ago animadverto creber
+                      - heading [level=5] [ref=e2911]: "@amely28_1768868821259"
+                    - button [ref=e2913] [cursor=pointer]:
+                      - img [ref=e2914]
+                  - generic [ref=e2916]:
+                    - generic [ref=e2917]:
+                      - generic [ref=e2918]:
+                        - paragraph [ref=e2919]: Budget category
+                        - paragraph [ref=e2920]: Governance Support
+                      - generic [ref=e2921]:
+                        - paragraph [ref=e2922]: Proposal benefit
+                        - paragraph [ref=e2925]: Caries cervus turpis aeger voluptatibus vilitas adeo. Laudantium denuncio trado surgo credo synagoga alii magnam suffragium.
+                      - generic [ref=e2926]:
+                        - paragraph [ref=e2927]: Budget Requested
+                        - paragraph [ref=e2928]: ₳ 4,561
+                    - generic [ref=e2929]:
+                      - generic [ref=e2930]:
+                        - img [ref=e2932]
+                        - paragraph [ref=e2934]: "Proposed on: 20 January 2026"
+                      - generic [ref=e2935]:
+                        - generic [ref=e2937]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2939] [cursor=pointer]:
+                          - /url: /budget_discussion/3133
+                          - button [ref=e2940]: View Details
+                - generic [ref=e2946]:
+                  - generic [ref=e2947]:
+                    - generic [ref=e2949]:
+                      - heading [level=3] [ref=e2950]: vitae vulnus suffoco
+                      - heading [level=5] [ref=e2951]: "@michaela52_1768868821963"
+                    - button [ref=e2953] [cursor=pointer]:
+                      - img [ref=e2954]
+                  - generic [ref=e2956]:
+                    - generic [ref=e2957]:
+                      - generic [ref=e2958]:
+                        - paragraph [ref=e2959]: Budget category
+                        - paragraph [ref=e2960]: Governance Support
+                      - generic [ref=e2961]:
+                        - paragraph [ref=e2962]: Proposal benefit
+                        - paragraph [ref=e2965]: Animus canto cunctatio. Adstringo causa appello corrupti laborum aetas contigo balbus.
+                      - generic [ref=e2966]:
+                        - paragraph [ref=e2967]: Budget Requested
+                        - paragraph [ref=e2968]: ₳ 9,354
+                    - generic [ref=e2969]:
+                      - generic [ref=e2970]:
+                        - img [ref=e2972]
+                        - paragraph [ref=e2974]: "Proposed on: 20 January 2026"
+                      - generic [ref=e2975]:
+                        - generic [ref=e2977]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e2979] [cursor=pointer]:
+                          - /url: /budget_discussion/3132
+                          - button [ref=e2980]: View Details
+                - generic [ref=e2986]:
+                  - generic [ref=e2987]:
+                    - generic [ref=e2989]:
+                      - heading [level=3] [ref=e2990]: contabesco cupiditate decimus
+                      - heading [level=5] [ref=e2991]: "@missouri_leuschkedeckow_176869"
+                    - button [ref=e2993] [cursor=pointer]:
+                      - img [ref=e2994]
+                  - generic [ref=e2996]:
+                    - generic [ref=e2997]:
+                      - generic [ref=e2998]:
+                        - paragraph [ref=e2999]: Budget category
+                        - paragraph [ref=e3000]: Governance Support
+                      - generic [ref=e3001]:
+                        - paragraph [ref=e3002]: Proposal benefit
+                        - paragraph [ref=e3005]: Tempora degusto crur asporto. Studio pecco veniam deleniti perferendis.
+                      - generic [ref=e3006]:
+                        - paragraph [ref=e3007]: Budget Requested
+                        - paragraph [ref=e3008]: ₳ 6,731
+                    - generic [ref=e3009]:
+                      - generic [ref=e3010]:
+                        - img [ref=e3012]
+                        - paragraph [ref=e3014]: "Proposed on: 18 January 2026"
+                      - generic [ref=e3015]:
+                        - generic [ref=e3017]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3019] [cursor=pointer]:
+                          - /url: /budget_discussion/3123
+                          - button [ref=e3020]: View Details
+                - generic [ref=e3026]:
+                  - generic [ref=e3027]:
+                    - generic [ref=e3029]:
+                      - heading [level=3] [ref=e3030]: stella cometes doloremque
+                      - heading [level=5] [ref=e3031]: "@marcel_dickens_1768696099264"
+                    - button [ref=e3033] [cursor=pointer]:
+                      - img [ref=e3034]
+                  - generic [ref=e3036]:
+                    - generic [ref=e3037]:
+                      - generic [ref=e3038]:
+                        - paragraph [ref=e3039]: Budget category
+                        - paragraph [ref=e3040]: Governance Support
+                      - generic [ref=e3041]:
+                        - paragraph [ref=e3042]: Proposal benefit
+                        - paragraph [ref=e3045]: Utpote decor carmen libero teres. Molestiae paulatim ver corpus.
+                      - generic [ref=e3046]:
+                        - paragraph [ref=e3047]: Budget Requested
+                        - paragraph [ref=e3048]: ₳ 6,988
+                    - generic [ref=e3049]:
+                      - generic [ref=e3050]:
+                        - img [ref=e3052]
+                        - paragraph [ref=e3054]: "Proposed on: 18 January 2026"
+                      - generic [ref=e3055]:
+                        - generic [ref=e3057]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3059] [cursor=pointer]:
+                          - /url: /budget_discussion/3120
+                          - button [ref=e3060]: View Details
+                - generic [ref=e3066]:
+                  - generic [ref=e3067]:
+                    - generic [ref=e3069]:
+                      - heading [level=3] [ref=e3070]: demitto demulceo arceo
+                      - heading [level=5] [ref=e3071]: "@brenda.kirlin_1768609543941"
+                    - button [ref=e3073] [cursor=pointer]:
+                      - img [ref=e3074]
+                  - generic [ref=e3076]:
+                    - generic [ref=e3077]:
+                      - generic [ref=e3078]:
+                        - paragraph [ref=e3079]: Budget category
+                        - paragraph [ref=e3080]: Governance Support
+                      - generic [ref=e3081]:
+                        - paragraph [ref=e3082]: Proposal benefit
+                        - paragraph [ref=e3085]: Vulticulus aequitas textus inventore titulus quae campana doloremque. Truculenter aspicio desolo cursim absorbeo vesper vitium vinitor civitas.
+                      - generic [ref=e3086]:
+                        - paragraph [ref=e3087]: Budget Requested
+                        - paragraph [ref=e3088]: ₳ 8,009
+                    - generic [ref=e3089]:
+                      - generic [ref=e3090]:
+                        - img [ref=e3092]
+                        - paragraph [ref=e3094]: "Proposed on: 17 January 2026"
+                      - generic [ref=e3095]:
+                        - generic [ref=e3097]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3099] [cursor=pointer]:
+                          - /url: /budget_discussion/3110
+                          - button [ref=e3100]: View Details
+                - generic [ref=e3106]:
+                  - generic [ref=e3107]:
+                    - generic [ref=e3109]:
+                      - heading [level=3] [ref=e3110]: ambulo ipsam vorago
+                      - heading [level=5] [ref=e3111]: "@verner_lesch28_1768523353286"
+                    - button [ref=e3113] [cursor=pointer]:
+                      - img [ref=e3114]
+                  - generic [ref=e3116]:
+                    - generic [ref=e3117]:
+                      - generic [ref=e3118]:
+                        - paragraph [ref=e3119]: Budget category
+                        - paragraph [ref=e3120]: Governance Support
+                      - generic [ref=e3121]:
+                        - paragraph [ref=e3122]: Proposal benefit
+                        - paragraph [ref=e3125]: Solum defleo aestivus fugiat verto. Vitae clementia recusandae torrens aufero vomer vorago cubo coadunatio.
+                      - generic [ref=e3126]:
+                        - paragraph [ref=e3127]: Budget Requested
+                        - paragraph [ref=e3128]: ₳ 6,941
+                    - generic [ref=e3129]:
+                      - generic [ref=e3130]:
+                        - img [ref=e3132]
+                        - paragraph [ref=e3134]: "Proposed on: 16 January 2026"
+                      - generic [ref=e3135]:
+                        - generic [ref=e3137]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3139] [cursor=pointer]:
+                          - /url: /budget_discussion/3101
+                          - button [ref=e3140]: View Details
+                - generic [ref=e3146]:
+                  - generic [ref=e3147]:
+                    - generic [ref=e3149]:
+                      - heading [level=3] [ref=e3150]: stultus umbra acies
+                      - heading [level=5] [ref=e3151]: "@mario.welch56_1768523231733"
+                    - button [ref=e3153] [cursor=pointer]:
+                      - img [ref=e3154]
+                  - generic [ref=e3156]:
+                    - generic [ref=e3157]:
+                      - generic [ref=e3158]:
+                        - paragraph [ref=e3159]: Budget category
+                        - paragraph [ref=e3160]: Governance Support
+                      - generic [ref=e3161]:
+                        - paragraph [ref=e3162]: Proposal benefit
+                        - paragraph [ref=e3165]: Caveo quam stella utrimque demoror. Ipsam nulla umquam.
+                      - generic [ref=e3166]:
+                        - paragraph [ref=e3167]: Budget Requested
+                        - paragraph [ref=e3168]: ₳ 9,988
+                    - generic [ref=e3169]:
+                      - generic [ref=e3170]:
+                        - img [ref=e3172]
+                        - paragraph [ref=e3174]: "Proposed on: 16 January 2026"
+                      - generic [ref=e3175]:
+                        - generic [ref=e3177]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3179] [cursor=pointer]:
+                          - /url: /budget_discussion/3099
+                          - button [ref=e3180]: View Details
+            - generic [ref=e3188]:
+              - generic [ref=e3189]:
+                - generic [ref=e3190]:
+                  - heading [level=2] [ref=e3191]: Marketing & Innovation
+                  - button [ref=e3192] [cursor=pointer]: Show all
+                - generic [ref=e3193]:
+                  - button [ref=e3194] [cursor=pointer]:
+                    - img [ref=e3195]
+                  - button [ref=e3197] [cursor=pointer]:
+                    - img [ref=e3198]
+              - generic [ref=e3203]:
+                - generic [ref=e3209]:
+                  - generic [ref=e3210]:
+                    - generic [ref=e3212]:
+                      - heading [level=3] [ref=e3213]: custodia commodi aestas
+                      - heading [level=5] [ref=e3214]: "@nelda38_1778209003784"
+                    - button [ref=e3216] [cursor=pointer]:
+                      - img [ref=e3217]
+                  - generic [ref=e3219]:
+                    - generic [ref=e3220]:
+                      - generic [ref=e3221]:
+                        - paragraph [ref=e3222]: Budget category
+                        - paragraph [ref=e3223]: Marketing & Innovation
+                      - generic [ref=e3224]:
+                        - paragraph [ref=e3225]: Proposal benefit
+                        - paragraph [ref=e3228]: Cattus urbanus nemo excepturi campana caritas tergum sapiente vergo dolorem. Villa caveo considero aliquam tolero suffoco cura tempore tenax.
+                      - generic [ref=e3229]:
+                        - paragraph [ref=e3230]: Budget Requested
+                        - paragraph [ref=e3231]: ₳ 161
+                    - generic [ref=e3232]:
+                      - generic [ref=e3233]:
+                        - img [ref=e3235]
+                        - paragraph [ref=e3237]: "Proposed on: 8 May 2026"
+                      - generic [ref=e3238]:
+                        - generic [ref=e3240]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3242] [cursor=pointer]:
+                          - /url: /budget_discussion/3233
+                          - button [ref=e3243]: View Details
+                - generic [ref=e3249]:
+                  - generic [ref=e3250]:
+                    - generic [ref=e3252]:
+                      - heading [level=3] [ref=e3253]: deduco tracto comitatus
+                      - heading [level=5] [ref=e3254]: "@kraig.ohara10_1778209010233"
+                    - button [ref=e3256] [cursor=pointer]:
+                      - img [ref=e3257]
+                  - generic [ref=e3259]:
+                    - generic [ref=e3260]:
+                      - generic [ref=e3261]:
+                        - paragraph [ref=e3262]: Budget category
+                        - paragraph [ref=e3263]: Marketing & Innovation
+                      - generic [ref=e3264]:
+                        - paragraph [ref=e3265]: Proposal benefit
+                        - paragraph [ref=e3268]: Pecco maxime ventito cribro alienus aegre repudiandae casso velociter. Vehemens inventore caterva aveho animi.
+                      - generic [ref=e3269]:
+                        - paragraph [ref=e3270]: Budget Requested
+                        - paragraph [ref=e3271]: ₳ 1,988
+                    - generic [ref=e3272]:
+                      - generic [ref=e3273]:
+                        - img [ref=e3275]
+                        - paragraph [ref=e3277]: "Proposed on: 8 May 2026"
+                      - generic [ref=e3278]:
+                        - generic [ref=e3280]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3282] [cursor=pointer]:
+                          - /url: /budget_discussion/3232
+                          - button [ref=e3283]: View Details
+                - generic [ref=e3289]:
+                  - generic [ref=e3290]:
+                    - generic [ref=e3292]:
+                      - heading [level=3] [ref=e3293]: administratio vespillo degenero
+                      - heading [level=5] [ref=e3294]: "@jacques.heaney_1777607461021"
+                    - button [ref=e3296] [cursor=pointer]:
+                      - img [ref=e3297]
+                  - generic [ref=e3299]:
+                    - generic [ref=e3300]:
+                      - generic [ref=e3301]:
+                        - paragraph [ref=e3302]: Budget category
+                        - paragraph [ref=e3303]: Marketing & Innovation
+                      - generic [ref=e3304]:
+                        - paragraph [ref=e3305]: Proposal benefit
+                        - paragraph [ref=e3308]: Demonstro deinde thesaurus. Uter deporto conventus vulticulus conturbo verumtamen vulgivagus.
+                      - generic [ref=e3309]:
+                        - paragraph [ref=e3310]: Budget Requested
+                        - paragraph [ref=e3311]: ₳ 5,983
+                    - generic [ref=e3312]:
+                      - generic [ref=e3313]:
+                        - img [ref=e3315]
+                        - paragraph [ref=e3317]: "Proposed on: 1 May 2026"
+                      - generic [ref=e3318]:
+                        - generic [ref=e3320]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3322] [cursor=pointer]:
+                          - /url: /budget_discussion/3230
+                          - button [ref=e3323]: View Details
+                - generic [ref=e3329]:
+                  - generic [ref=e3330]:
+                    - generic [ref=e3332]:
+                      - heading [level=3] [ref=e3333]: arbitro armarium pecto
+                      - heading [level=5] [ref=e3334]: "@myra3_1777083604608"
+                    - button [ref=e3336] [cursor=pointer]:
+                      - img [ref=e3337]
+                  - generic [ref=e3339]:
+                    - generic [ref=e3340]:
+                      - generic [ref=e3341]:
+                        - paragraph [ref=e3342]: Budget category
+                        - paragraph [ref=e3343]: Marketing & Innovation
+                      - generic [ref=e3344]:
+                        - paragraph [ref=e3345]: Proposal benefit
+                        - paragraph [ref=e3348]: Antea utroque curia caput tergo civitas. Crur adfero adduco adamo astrum cerno aut.
+                      - generic [ref=e3349]:
+                        - paragraph [ref=e3350]: Budget Requested
+                        - paragraph [ref=e3351]: ₳ 8,746
+                    - generic [ref=e3352]:
+                      - generic [ref=e3353]:
+                        - img [ref=e3355]
+                        - paragraph [ref=e3357]: "Proposed on: 25 April 2026"
+                      - generic [ref=e3358]:
+                        - generic [ref=e3360]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3362] [cursor=pointer]:
+                          - /url: /budget_discussion/3223
+                          - button [ref=e3363]: View Details
+                - generic [ref=e3369]:
+                  - generic [ref=e3370]:
+                    - generic [ref=e3372]:
+                      - heading [level=3] [ref=e3373]: earum tabula stips
+                      - heading [level=5] [ref=e3374]: "@valerie_murraylebsack32_177700"
+                    - button [ref=e3376] [cursor=pointer]:
+                      - img [ref=e3377]
+                  - generic [ref=e3379]:
+                    - generic [ref=e3380]:
+                      - generic [ref=e3381]:
+                        - paragraph [ref=e3382]: Budget category
+                        - paragraph [ref=e3383]: Marketing & Innovation
+                      - generic [ref=e3384]:
+                        - paragraph [ref=e3385]: Proposal benefit
+                        - paragraph [ref=e3388]: Vicinus alius tersus adiuvo celer dens tener una temptatio. Utrimque rerum perspiciatis molestiae currus deprecator congregatio.
+                      - generic [ref=e3389]:
+                        - paragraph [ref=e3390]: Budget Requested
+                        - paragraph [ref=e3391]: ₳ 4,283
+                    - generic [ref=e3392]:
+                      - generic [ref=e3393]:
+                        - img [ref=e3395]
+                        - paragraph [ref=e3397]: "Proposed on: 24 April 2026"
+                      - generic [ref=e3398]:
+                        - generic [ref=e3400]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3402] [cursor=pointer]:
+                          - /url: /budget_discussion/3213
+                          - button [ref=e3403]: View Details
+                - generic [ref=e3409]:
+                  - generic [ref=e3410]:
+                    - generic [ref=e3412]:
+                      - heading [level=3] [ref=e3413]: creber apto deputo
+                      - heading [level=5] [ref=e3414]: "@merlin.balistreri_177691312390"
+                    - button [ref=e3416] [cursor=pointer]:
+                      - img [ref=e3417]
+                  - generic [ref=e3419]:
+                    - generic [ref=e3420]:
+                      - generic [ref=e3421]:
+                        - paragraph [ref=e3422]: Budget category
+                        - paragraph [ref=e3423]: Marketing & Innovation
+                      - generic [ref=e3424]:
+                        - paragraph [ref=e3425]: Proposal benefit
+                        - paragraph [ref=e3428]: Vacuus cotidie deporto. Conitor id atqui attollo validus.
+                      - generic [ref=e3429]:
+                        - paragraph [ref=e3430]: Budget Requested
+                        - paragraph [ref=e3431]: ₳ 7,456
+                    - generic [ref=e3432]:
+                      - generic [ref=e3433]:
+                        - img [ref=e3435]
+                        - paragraph [ref=e3437]: "Proposed on: 23 April 2026"
+                      - generic [ref=e3438]:
+                        - generic [ref=e3440]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3442] [cursor=pointer]:
+                          - /url: /budget_discussion/3202
+                          - button [ref=e3443]: View Details
+                - generic [ref=e3449]:
+                  - generic [ref=e3450]:
+                    - generic [ref=e3452]:
+                      - heading [level=3] [ref=e3453]: denuncio aliquam teres
+                      - heading [level=5] [ref=e3454]: "@demarco_dooley_1776832499202"
+                    - button [ref=e3456] [cursor=pointer]:
+                      - img [ref=e3457]
+                  - generic [ref=e3459]:
+                    - generic [ref=e3460]:
+                      - generic [ref=e3461]:
+                        - paragraph [ref=e3462]: Budget category
+                        - paragraph [ref=e3463]: Marketing & Innovation
+                      - generic [ref=e3464]:
+                        - paragraph [ref=e3465]: Proposal benefit
+                        - paragraph [ref=e3468]: Cena vilicus quod amor thymbra vulgivagus balbus. Tenuis ago decumbo verus sapiente subiungo coadunatio.
+                      - generic [ref=e3469]:
+                        - paragraph [ref=e3470]: Budget Requested
+                        - paragraph [ref=e3471]: ₳ 5,561
+                    - generic [ref=e3472]:
+                      - generic [ref=e3473]:
+                        - img [ref=e3475]
+                        - paragraph [ref=e3477]: "Proposed on: 22 April 2026"
+                      - generic [ref=e3478]:
+                        - generic [ref=e3480]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3482] [cursor=pointer]:
+                          - /url: /budget_discussion/3198
+                          - button [ref=e3483]: View Details
+                - generic [ref=e3489]:
+                  - generic [ref=e3490]:
+                    - generic [ref=e3492]:
+                      - heading [level=3] [ref=e3493]: denique solvo aequitas
+                      - heading [level=5] [ref=e3494]: "@ivah_kilback_1774747868865"
+                    - button [ref=e3496] [cursor=pointer]:
+                      - img [ref=e3497]
+                  - generic [ref=e3499]:
+                    - generic [ref=e3500]:
+                      - generic [ref=e3501]:
+                        - paragraph [ref=e3502]: Budget category
+                        - paragraph [ref=e3503]: Marketing & Innovation
+                      - generic [ref=e3504]:
+                        - paragraph [ref=e3505]: Proposal benefit
+                        - paragraph [ref=e3508]: Theologus aliqua suasoria dolorem timor amoveo approbo. Aut arceo vita vereor.
+                      - generic [ref=e3509]:
+                        - paragraph [ref=e3510]: Budget Requested
+                        - paragraph [ref=e3511]: ₳ 7,402
+                    - generic [ref=e3512]:
+                      - generic [ref=e3513]:
+                        - img [ref=e3515]
+                        - paragraph [ref=e3517]: "Proposed on: 29 March 2026"
+                      - generic [ref=e3518]:
+                        - generic [ref=e3520]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3522] [cursor=pointer]:
+                          - /url: /budget_discussion/3185
+                          - button [ref=e3523]: View Details
+                - generic [ref=e3529]:
+                  - generic [ref=e3530]:
+                    - generic [ref=e3532]:
+                      - heading [level=3] [ref=e3533]: vinum ventus tepidus
+                      - heading [level=5] [ref=e3534]: "@reuben81_1771382367186"
+                    - button [ref=e3536] [cursor=pointer]:
+                      - img [ref=e3537]
+                  - generic [ref=e3539]:
+                    - generic [ref=e3540]:
+                      - generic [ref=e3541]:
+                        - paragraph [ref=e3542]: Budget category
+                        - paragraph [ref=e3543]: Marketing & Innovation
+                      - generic [ref=e3544]:
+                        - paragraph [ref=e3545]: Proposal benefit
+                        - paragraph [ref=e3548]: Sumo trans quos comitatus uxor earum cenaculum dolores dolore. Ciminatio tonsor ter consequatur.
+                      - generic [ref=e3549]:
+                        - paragraph [ref=e3550]: Budget Requested
+                        - paragraph [ref=e3551]: ₳ 1,613
+                    - generic [ref=e3552]:
+                      - generic [ref=e3553]:
+                        - img [ref=e3555]
+                        - paragraph [ref=e3557]: "Proposed on: 18 February 2026"
+                      - generic [ref=e3558]:
+                        - generic [ref=e3560]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3562] [cursor=pointer]:
+                          - /url: /budget_discussion/3157
+                          - button [ref=e3563]: View Details
+                - generic [ref=e3569]:
+                  - generic [ref=e3570]:
+                    - generic [ref=e3572]:
+                      - heading [level=3] [ref=e3573]: uterque catena tabula
+                      - heading [level=5] [ref=e3574]: "@angeline91_1769214405066"
+                    - button [ref=e3576] [cursor=pointer]:
+                      - img [ref=e3577]
+                  - generic [ref=e3579]:
+                    - generic [ref=e3580]:
+                      - generic [ref=e3581]:
+                        - paragraph [ref=e3582]: Budget category
+                        - paragraph [ref=e3583]: Marketing & Innovation
+                      - generic [ref=e3584]:
+                        - paragraph [ref=e3585]: Proposal benefit
+                        - paragraph [ref=e3588]: Combibo credo trucido degenero quidem. Vix adaugeo cogito supra calculus crinis caelestis cenaculum dolor.
+                      - generic [ref=e3589]:
+                        - paragraph [ref=e3590]: Budget Requested
+                        - paragraph [ref=e3591]: ₳ 7,328
+                    - generic [ref=e3592]:
+                      - generic [ref=e3593]:
+                        - img [ref=e3595]
+                        - paragraph [ref=e3597]: "Proposed on: 24 January 2026"
+                      - generic [ref=e3598]:
+                        - generic [ref=e3600]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3602] [cursor=pointer]:
+                          - /url: /budget_discussion/3152
+                          - button [ref=e3603]: View Details
+                - generic [ref=e3609]:
+                  - generic [ref=e3610]:
+                    - generic [ref=e3612]:
+                      - heading [level=3] [ref=e3613]: cruentus decens demum
+                      - heading [level=5] [ref=e3614]: "@cooper.kreiger40_1769128051385"
+                    - button [ref=e3616] [cursor=pointer]:
+                      - img [ref=e3617]
+                  - generic [ref=e3619]:
+                    - generic [ref=e3620]:
+                      - generic [ref=e3621]:
+                        - paragraph [ref=e3622]: Budget category
+                        - paragraph [ref=e3623]: Marketing & Innovation
+                      - generic [ref=e3624]:
+                        - paragraph [ref=e3625]: Proposal benefit
+                        - paragraph [ref=e3628]: Sublime talio apparatus conqueror cubicularis. Sumptus universe repellat cupressus absque volubilis sopor cotidie.
+                      - generic [ref=e3629]:
+                        - paragraph [ref=e3630]: Budget Requested
+                        - paragraph [ref=e3631]: ₳ 7,979
+                    - generic [ref=e3632]:
+                      - generic [ref=e3633]:
+                        - img [ref=e3635]
+                        - paragraph [ref=e3637]: "Proposed on: 23 January 2026"
+                      - generic [ref=e3638]:
+                        - generic [ref=e3640]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3642] [cursor=pointer]:
+                          - /url: /budget_discussion/3149
+                          - button [ref=e3643]: View Details
+                - generic [ref=e3649]:
+                  - generic [ref=e3650]:
+                    - generic [ref=e3652]:
+                      - heading [level=3] [ref=e3653]: deputo sol stultus
+                      - heading [level=5] [ref=e3654]: "@gina_bernhard58_1769041673592"
+                    - button [ref=e3656] [cursor=pointer]:
+                      - img [ref=e3657]
+                  - generic [ref=e3659]:
+                    - generic [ref=e3660]:
+                      - generic [ref=e3661]:
+                        - paragraph [ref=e3662]: Budget category
+                        - paragraph [ref=e3663]: Marketing & Innovation
+                      - generic [ref=e3664]:
+                        - paragraph [ref=e3665]: Proposal benefit
+                        - paragraph [ref=e3668]: Quod aetas aranea admiratio. Decretum crudelis voluptates undique sunt abundans vulgaris.
+                      - generic [ref=e3669]:
+                        - paragraph [ref=e3670]: Budget Requested
+                        - paragraph [ref=e3671]: ₳ 5,255
+                    - generic [ref=e3672]:
+                      - generic [ref=e3673]:
+                        - img [ref=e3675]
+                        - paragraph [ref=e3677]: "Proposed on: 22 January 2026"
+                      - generic [ref=e3678]:
+                        - generic [ref=e3680]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3682] [cursor=pointer]:
+                          - /url: /budget_discussion/3142
+                          - button [ref=e3683]: View Details
+                - generic [ref=e3689]:
+                  - generic [ref=e3690]:
+                    - generic [ref=e3692]:
+                      - heading [level=3] [ref=e3693]: abeo suspendo defungo
+                      - heading [level=5] [ref=e3694]: "@kyla_little49_1768955314902"
+                    - button [ref=e3696] [cursor=pointer]:
+                      - img [ref=e3697]
+                  - generic [ref=e3699]:
+                    - generic [ref=e3700]:
+                      - generic [ref=e3701]:
+                        - paragraph [ref=e3702]: Budget category
+                        - paragraph [ref=e3703]: Marketing & Innovation
+                      - generic [ref=e3704]:
+                        - paragraph [ref=e3705]: Proposal benefit
+                        - paragraph [ref=e3708]: Tabgo congregatio auditor studio. Adficio casus tandem carpo vulgus cura surculus tripudio vir coma.
+                      - generic [ref=e3709]:
+                        - paragraph [ref=e3710]: Budget Requested
+                        - paragraph [ref=e3711]: ₳ 1,814
+                    - generic [ref=e3712]:
+                      - generic [ref=e3713]:
+                        - img [ref=e3715]
+                        - paragraph [ref=e3717]: "Proposed on: 21 January 2026"
+                      - generic [ref=e3718]:
+                        - generic [ref=e3720]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3722] [cursor=pointer]:
+                          - /url: /budget_discussion/3138
+                          - button [ref=e3723]: View Details
+                - generic [ref=e3729]:
+                  - generic [ref=e3730]:
+                    - generic [ref=e3732]:
+                      - heading [level=3] [ref=e3733]: dens at admitto
+                      - heading [level=5] [ref=e3734]: "@emie_corkery8_1768782501381"
+                    - button [ref=e3736] [cursor=pointer]:
+                      - img [ref=e3737]
+                  - generic [ref=e3739]:
+                    - generic [ref=e3740]:
+                      - generic [ref=e3741]:
+                        - paragraph [ref=e3742]: Budget category
+                        - paragraph [ref=e3743]: Marketing & Innovation
+                      - generic [ref=e3744]:
+                        - paragraph [ref=e3745]: Proposal benefit
+                        - paragraph [ref=e3748]: Advoco aestas terreo. Tergeo comis virgo laudantium caterva uter civis adnuo atavus una.
+                      - generic [ref=e3749]:
+                        - paragraph [ref=e3750]: Budget Requested
+                        - paragraph [ref=e3751]: ₳ 4,362
+                    - generic [ref=e3752]:
+                      - generic [ref=e3753]:
+                        - img [ref=e3755]
+                        - paragraph [ref=e3757]: "Proposed on: 19 January 2026"
+                      - generic [ref=e3758]:
+                        - generic [ref=e3760]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3762] [cursor=pointer]:
+                          - /url: /budget_discussion/3130
+                          - button [ref=e3763]: View Details
+                - generic [ref=e3769]:
+                  - generic [ref=e3770]:
+                    - generic [ref=e3772]:
+                      - heading [level=3] [ref=e3773]: temperantia blandior thesis
+                      - heading [level=5] [ref=e3774]: "@emie_corkery8_1768782501381"
+                    - button [ref=e3776] [cursor=pointer]:
+                      - img [ref=e3777]
+                  - generic [ref=e3779]:
+                    - generic [ref=e3780]:
+                      - generic [ref=e3781]:
+                        - paragraph [ref=e3782]: Budget category
+                        - paragraph [ref=e3783]: Marketing & Innovation
+                      - generic [ref=e3784]:
+                        - paragraph [ref=e3785]: Proposal benefit
+                        - paragraph [ref=e3788]: Congregatio summopere demergo valde surgo. Aequus consectetur trans abstergo casus vel deporto voco temperantia.
+                      - generic [ref=e3789]:
+                        - paragraph [ref=e3790]: Budget Requested
+                        - paragraph [ref=e3791]: ₳ 8,774
+                    - generic [ref=e3792]:
+                      - generic [ref=e3793]:
+                        - img [ref=e3795]
+                        - paragraph [ref=e3797]: "Proposed on: 19 January 2026"
+                      - generic [ref=e3798]:
+                        - generic [ref=e3800]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3802] [cursor=pointer]:
+                          - /url: /budget_discussion/3129
+                          - button [ref=e3803]: View Details
+                - generic [ref=e3809]:
+                  - generic [ref=e3810]:
+                    - generic [ref=e3812]:
+                      - heading [level=3] [ref=e3813]: constans necessitatibus comptus
+                      - heading [level=5] [ref=e3814]: "@mason_yundt16_1768782521690"
+                    - button [ref=e3816] [cursor=pointer]:
+                      - img [ref=e3817]
+                  - generic [ref=e3819]:
+                    - generic [ref=e3820]:
+                      - generic [ref=e3821]:
+                        - paragraph [ref=e3822]: Budget category
+                        - paragraph [ref=e3823]: Marketing & Innovation
+                      - generic [ref=e3824]:
+                        - paragraph [ref=e3825]: Proposal benefit
+                        - paragraph [ref=e3828]: Animadverto valeo sponte acidus capio comparo vomer. Atrocitas damnatio vicissitudo curo cresco bibo desino ipsa necessitatibus.
+                      - generic [ref=e3829]:
+                        - paragraph [ref=e3830]: Budget Requested
+                        - paragraph [ref=e3831]: ₳ 2,104
+                    - generic [ref=e3832]:
+                      - generic [ref=e3833]:
+                        - img [ref=e3835]
+                        - paragraph [ref=e3837]: "Proposed on: 19 January 2026"
+                      - generic [ref=e3838]:
+                        - generic [ref=e3840]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3842] [cursor=pointer]:
+                          - /url: /budget_discussion/3127
+                          - button [ref=e3843]: View Details
+                - generic [ref=e3849]:
+                  - generic [ref=e3850]:
+                    - generic [ref=e3852]:
+                      - heading [level=3] [ref=e3853]: celo valeo cultellus
+                      - heading [level=5] [ref=e3854]: "@justice.orn_1768696309910"
+                    - button [ref=e3856] [cursor=pointer]:
+                      - img [ref=e3857]
+                  - generic [ref=e3859]:
+                    - generic [ref=e3860]:
+                      - generic [ref=e3861]:
+                        - paragraph [ref=e3862]: Budget category
+                        - paragraph [ref=e3863]: Marketing & Innovation
+                      - generic [ref=e3864]:
+                        - paragraph [ref=e3865]: Proposal benefit
+                        - paragraph [ref=e3868]: Angulus quaerat antea mollitia. Verecundia cotidie urbanus colligo clementia adfectus caterva vobis vestigium appositus.
+                      - generic [ref=e3869]:
+                        - paragraph [ref=e3870]: Budget Requested
+                        - paragraph [ref=e3871]: ₳ 7,815
+                    - generic [ref=e3872]:
+                      - generic [ref=e3873]:
+                        - img [ref=e3875]
+                        - paragraph [ref=e3877]: "Proposed on: 18 January 2026"
+                      - generic [ref=e3878]:
+                        - generic [ref=e3880]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3882] [cursor=pointer]:
+                          - /url: /budget_discussion/3122
+                          - button [ref=e3883]: View Details
+                - generic [ref=e3889]:
+                  - generic [ref=e3890]:
+                    - generic [ref=e3892]:
+                      - heading [level=3] [ref=e3893]: quaerat convoco clarus
+                      - heading [level=5] [ref=e3894]: "@lenora_lindgren57_176869628857"
+                    - button [ref=e3896] [cursor=pointer]:
+                      - img [ref=e3897]
+                  - generic [ref=e3899]:
+                    - generic [ref=e3900]:
+                      - generic [ref=e3901]:
+                        - paragraph [ref=e3902]: Budget category
+                        - paragraph [ref=e3903]: Marketing & Innovation
+                      - generic [ref=e3904]:
+                        - paragraph [ref=e3905]: Proposal benefit
+                        - paragraph [ref=e3908]: Videlicet optio cibus thesis utpote admoneo umquam adulescens comprehendo cedo. Sono animi uxor caute harum accendo.
+                      - generic [ref=e3909]:
+                        - paragraph [ref=e3910]: Budget Requested
+                        - paragraph [ref=e3911]: ₳ 6,574
+                    - generic [ref=e3912]:
+                      - generic [ref=e3913]:
+                        - img [ref=e3915]
+                        - paragraph [ref=e3917]: "Proposed on: 18 January 2026"
+                      - generic [ref=e3918]:
+                        - generic [ref=e3920]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3922] [cursor=pointer]:
+                          - /url: /budget_discussion/3121
+                          - button [ref=e3923]: View Details
+                - generic [ref=e3929]:
+                  - generic [ref=e3930]:
+                    - generic [ref=e3932]:
+                      - heading [level=3] [ref=e3933]: tergeo uterque nulla
+                      - heading [level=5] [ref=e3934]: "@anjali_stamm_1768609729559"
+                    - button [ref=e3936] [cursor=pointer]:
+                      - img [ref=e3937]
+                  - generic [ref=e3939]:
+                    - generic [ref=e3940]:
+                      - generic [ref=e3941]:
+                        - paragraph [ref=e3942]: Budget category
+                        - paragraph [ref=e3943]: Marketing & Innovation
+                      - generic [ref=e3944]:
+                        - paragraph [ref=e3945]: Proposal benefit
+                        - paragraph [ref=e3948]: Vir vicissitudo arbitro ait amplexus talio administratio vallum. Volva assumenda velut tabernus eaque volubilis spoliatio cursim valetudo.
+                      - generic [ref=e3949]:
+                        - paragraph [ref=e3950]: Budget Requested
+                        - paragraph [ref=e3951]: ₳ 8,060
+                    - generic [ref=e3952]:
+                      - generic [ref=e3953]:
+                        - img [ref=e3955]
+                        - paragraph [ref=e3957]: "Proposed on: 17 January 2026"
+                      - generic [ref=e3958]:
+                        - generic [ref=e3960]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e3962] [cursor=pointer]:
+                          - /url: /budget_discussion/3113
+                          - button [ref=e3963]: View Details
+                - generic [ref=e3969]:
+                  - generic [ref=e3970]:
+                    - generic [ref=e3972]:
+                      - heading [level=3] [ref=e3973]: amet angustus pax
+                      - heading [level=5] [ref=e3974]: "@brenda.kirlin_1768609543941"
+                    - button [ref=e3976] [cursor=pointer]:
+                      - img [ref=e3977]
+                  - generic [ref=e3979]:
+                    - generic [ref=e3980]:
+                      - generic [ref=e3981]:
+                        - paragraph [ref=e3982]: Budget category
+                        - paragraph [ref=e3983]: Marketing & Innovation
+                      - generic [ref=e3984]:
+                        - paragraph [ref=e3985]: Proposal benefit
+                        - paragraph [ref=e3988]: Appositus illum tempore tum. Cado appono aeger sponte.
+                      - generic [ref=e3989]:
+                        - paragraph [ref=e3990]: Budget Requested
+                        - paragraph [ref=e3991]: ₳ 6,058
+                    - generic [ref=e3992]:
+                      - generic [ref=e3993]:
+                        - img [ref=e3995]
+                        - paragraph [ref=e3997]: "Proposed on: 17 January 2026"
+                      - generic [ref=e3998]:
+                        - generic [ref=e4000]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e4002] [cursor=pointer]:
+                          - /url: /budget_discussion/3109
+                          - button [ref=e4003]: View Details
+                - generic [ref=e4009]:
+                  - generic [ref=e4010]:
+                    - generic [ref=e4012]:
+                      - heading [level=3] [ref=e4013]: beatus aptus cui
+                      - heading [level=5] [ref=e4014]: "@cayla_trantow_1768609577270"
+                    - button [ref=e4016] [cursor=pointer]:
+                      - img [ref=e4017]
+                  - generic [ref=e4019]:
+                    - generic [ref=e4020]:
+                      - generic [ref=e4021]:
+                        - paragraph [ref=e4022]: Budget category
+                        - paragraph [ref=e4023]: Marketing & Innovation
+                      - generic [ref=e4024]:
+                        - paragraph [ref=e4025]: Proposal benefit
+                        - paragraph [ref=e4028]: Subvenio eligendi ulciscor asper atavus. Deludo solitudo voluptatum itaque adeptio.
+                      - generic [ref=e4029]:
+                        - paragraph [ref=e4030]: Budget Requested
+                        - paragraph [ref=e4031]: ₳ 5,024
+                    - generic [ref=e4032]:
+                      - generic [ref=e4033]:
+                        - img [ref=e4035]
+                        - paragraph [ref=e4037]: "Proposed on: 17 January 2026"
+                      - generic [ref=e4038]:
+                        - generic [ref=e4040]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e4042] [cursor=pointer]:
+                          - /url: /budget_discussion/3108
+                          - button [ref=e4043]: View Details
+                - generic [ref=e4049]:
+                  - generic [ref=e4050]:
+                    - generic [ref=e4052]:
+                      - heading [level=3] [ref=e4053]: sortitus compono sum
+                      - heading [level=5] [ref=e4054]: "@araceli11_1768523373957"
+                    - button [ref=e4056] [cursor=pointer]:
+                      - img [ref=e4057]
+                  - generic [ref=e4059]:
+                    - generic [ref=e4060]:
+                      - generic [ref=e4061]:
+                        - paragraph [ref=e4062]: Budget category
+                        - paragraph [ref=e4063]: Marketing & Innovation
+                      - generic [ref=e4064]:
+                        - paragraph [ref=e4065]: Proposal benefit
+                        - paragraph [ref=e4068]: Ipsa supra ceno cui conservo adipisci desparatus tubineus pauci. Crepusculum depono strues sequi strenuus.
+                      - generic [ref=e4069]:
+                        - paragraph [ref=e4070]: Budget Requested
+                        - paragraph [ref=e4071]: ₳ 1,370
+                    - generic [ref=e4072]:
+                      - generic [ref=e4073]:
+                        - img [ref=e4075]
+                        - paragraph [ref=e4077]: "Proposed on: 16 January 2026"
+                      - generic [ref=e4078]:
+                        - generic [ref=e4080]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e4082] [cursor=pointer]:
+                          - /url: /budget_discussion/3103
+                          - button [ref=e4083]: View Details
+                - generic [ref=e4089]:
+                  - generic [ref=e4090]:
+                    - generic [ref=e4092]:
+                      - heading [level=3] [ref=e4093]: textilis angelus impedit
+                      - heading [level=5] [ref=e4094]: "@mario.welch56_1768523231733"
+                    - button [ref=e4096] [cursor=pointer]:
+                      - img [ref=e4097]
+                  - generic [ref=e4099]:
+                    - generic [ref=e4100]:
+                      - generic [ref=e4101]:
+                        - paragraph [ref=e4102]: Budget category
+                        - paragraph [ref=e4103]: Marketing & Innovation
+                      - generic [ref=e4104]:
+                        - paragraph [ref=e4105]: Proposal benefit
+                        - paragraph [ref=e4108]: Absens aequus voluptatem video peior tandem deduco maiores. Vesper bene defessus amplexus.
+                      - generic [ref=e4109]:
+                        - paragraph [ref=e4110]: Budget Requested
+                        - paragraph [ref=e4111]: ₳ 2,351
+                    - generic [ref=e4112]:
+                      - generic [ref=e4113]:
+                        - img [ref=e4115]
+                        - paragraph [ref=e4117]: "Proposed on: 16 January 2026"
+                      - generic [ref=e4118]:
+                        - generic [ref=e4120]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e4122] [cursor=pointer]:
+                          - /url: /budget_discussion/3100
+                          - button [ref=e4123]: View Details
+                - generic [ref=e4129]:
+                  - generic [ref=e4130]:
+                    - generic [ref=e4132]:
+                      - heading [level=3] [ref=e4133]: clamo beatae succedo
+                      - heading [level=5] [ref=e4134]: "@alf.sawayn86_1768523267850"
+                    - button [ref=e4136] [cursor=pointer]:
+                      - img [ref=e4137]
+                  - generic [ref=e4139]:
+                    - generic [ref=e4140]:
+                      - generic [ref=e4141]:
+                        - paragraph [ref=e4142]: Budget category
+                        - paragraph [ref=e4143]: Marketing & Innovation
+                      - generic [ref=e4144]:
+                        - paragraph [ref=e4145]: Proposal benefit
+                        - paragraph [ref=e4148]: Depopulo vergo nemo una vobis catena decens defendo. Deripio suasoria compono coepi tollo.
+                      - generic [ref=e4149]:
+                        - paragraph [ref=e4150]: Budget Requested
+                        - paragraph [ref=e4151]: ₳ 8,507
+                    - generic [ref=e4152]:
+                      - generic [ref=e4153]:
+                        - img [ref=e4155]
+                        - paragraph [ref=e4157]: "Proposed on: 16 January 2026"
+                      - generic [ref=e4158]:
+                        - generic [ref=e4160]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e4162] [cursor=pointer]:
+                          - /url: /budget_discussion/3098
+                          - button [ref=e4163]: View Details
+                - generic [ref=e4169]:
+                  - generic [ref=e4170]:
+                    - generic [ref=e4172]:
+                      - heading [level=3] [ref=e4173]: ascit maxime in
+                      - heading [level=5] [ref=e4174]: "@hester_bruen32_1768436906779"
+                    - button [ref=e4176] [cursor=pointer]:
+                      - img [ref=e4177]
+                  - generic [ref=e4179]:
+                    - generic [ref=e4180]:
+                      - generic [ref=e4181]:
+                        - paragraph [ref=e4182]: Budget category
+                        - paragraph [ref=e4183]: Marketing & Innovation
+                      - generic [ref=e4184]:
+                        - paragraph [ref=e4185]: Proposal benefit
+                        - paragraph [ref=e4188]: Ceno demo pariatur corrupti error veniam somniculosus eligendi. Vulariter chirographum dignissimos laudantium copia surculus.
+                      - generic [ref=e4189]:
+                        - paragraph [ref=e4190]: Budget Requested
+                        - paragraph [ref=e4191]: ₳ 5,996
+                    - generic [ref=e4192]:
+                      - generic [ref=e4193]:
+                        - img [ref=e4195]
+                        - paragraph [ref=e4197]: "Proposed on: 15 January 2026"
+                      - generic [ref=e4198]:
+                        - generic [ref=e4200]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e4202] [cursor=pointer]:
+                          - /url: /budget_discussion/3093
+                          - button [ref=e4203]: View Details
+            - generic [ref=e4211]:
+              - generic [ref=e4212]:
+                - generic [ref=e4213]:
+                  - heading [level=2] [ref=e4214]: No category
+                  - button [ref=e4215] [cursor=pointer]: Show all
+                - generic [ref=e4216]:
+                  - button [ref=e4217] [cursor=pointer]:
+                    - img [ref=e4218]
+                  - button [ref=e4220] [cursor=pointer]:
+                    - img [ref=e4221]
+              - generic [ref=e4226]:
+                - generic [ref=e4232]:
+                  - generic [ref=e4233]:
+                    - generic [ref=e4235]:
+                      - heading [level=3] [ref=e4236]: My Proposal
+                      - heading [level=5] [ref=e4237]: "@name_of_the_user_its_my_name"
+                    - button [ref=e4239] [cursor=pointer]:
+                      - img [ref=e4240]
+                  - generic [ref=e4242]:
+                    - generic [ref=e4243]:
+                      - generic [ref=e4244]:
+                        - paragraph [ref=e4245]: Budget category
+                        - paragraph [ref=e4246]: None of these
+                      - generic [ref=e4247]:
+                        - paragraph [ref=e4248]: Proposal benefit
+                        - paragraph [ref=e4251]: This will be really good if it happened. This will be really good if it happened. This will be really good if it happened. This will be really good if it happened. This will be really good if it happened. This will be really good if it happened. This will be really good if it happened. This will be really good if it happened. This will be really good if it happened. This will be really good if it happened. This will be really good if it happened.
+                      - generic [ref=e4252]:
+                        - paragraph [ref=e4253]: Budget Requested
+                        - paragraph [ref=e4254]: ₳ 1,500,000
+                    - generic [ref=e4255]:
+                      - generic [ref=e4256]:
+                        - img [ref=e4258]
+                        - paragraph [ref=e4260]: "Proposed on: 17 June 2025"
+                      - generic [ref=e4261]:
+                        - generic [ref=e4263]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e4265] [cursor=pointer]:
+                          - /url: /budget_discussion/427
+                          - button [ref=e4266]: View Details
+                - generic [ref=e4272]:
+                  - generic [ref=e4273]:
+                    - generic [ref=e4275]:
+                      - heading [level=3] [ref=e4276]: Test 30th April
+                      - heading [level=5] [ref=e4277]: "@boskom123"
+                    - button [ref=e4279] [cursor=pointer]:
+                      - img [ref=e4280]
+                  - generic [ref=e4282]:
+                    - generic [ref=e4283]:
+                      - generic [ref=e4284]:
+                        - paragraph [ref=e4285]: Budget category
+                        - paragraph [ref=e4286]: None of these
+                      - generic [ref=e4287]:
+                        - paragraph [ref=e4288]: Proposal benefit
+                        - paragraph [ref=e4291]: a
+                      - generic [ref=e4292]:
+                        - paragraph [ref=e4293]: Budget Requested
+                        - paragraph [ref=e4294]: ₳ 1
+                    - generic [ref=e4295]:
+                      - generic [ref=e4296]:
+                        - img [ref=e4298]
+                        - paragraph [ref=e4300]: "Proposed on: 29 April 2025"
+                      - generic [ref=e4301]:
+                        - generic [ref=e4303]:
+                          - button [disabled]:
+                            - generic: "0"
+                            - img
+                        - link [ref=e4305] [cursor=pointer]:
+                          - /url: /budget_discussion/135
+                          - button [ref=e4306]: View Details
+                - generic [ref=e4312]:
+                  - generic [ref=e4313]:
+                    - generic [ref=e4315]:
+                      - heading [level=3] [ref=e4316]: My proposal name
+                      - heading [level=5] [ref=e4317]: "@n"
+                    - button [ref=e4319] [cursor=pointer]:
+                      - img [ref=e4320]
+                  - generic [ref=e4322]:
+                    - generic [ref=e4323]:
+                      - generic [ref=e4324]:
+                        - paragraph [ref=e4325]: Budget category
+                        - paragraph [ref=e4326]: None of these
+                      - generic [ref=e4327]:
+                        - paragraph [ref=e4328]: Proposal benefit
+                        - paragraph [ref=e4331]: benefit
+                      - generic [ref=e4332]:
+                        - paragraph [ref=e4333]: Budget Requested
+                        - paragraph [ref=e4334]: ₳ 2,222
+                    - generic [ref=e4335]:
+                      - generic [ref=e4336]:
+                        - img [ref=e4338]
+                        - paragraph [ref=e4340]: "Proposed on: 4 April 2025"
+                      - generic [ref=e4341]:
+                        - generic [ref=e4343]:
+                          - button [disabled]:
+                            - generic: "7"
+                            - img
+                        - link [ref=e4345] [cursor=pointer]:
+                          - /url: /budget_discussion/55
+                          - button [ref=e4346]: View Details
+        - contentinfo [ref=e4353]:
+          - paragraph [ref=e4354]: © 2026 GovTool
+          - generic [ref=e4355]:
+            - generic [ref=e4356] [cursor=pointer]: Privacy policy
+            - generic [ref=e4357] [cursor=pointer]: Terms of Use
+          - generic [ref=e4358]:
+            - button [ref=e4359] [cursor=pointer]:
+              - img [ref=e4361]
+              - text: Help
+            - button [ref=e4362] [cursor=pointer]: Feedback
+    - img [ref=e4363]
+  - generic [ref=e4366]:
+    - generic [ref=e4367]:
+      - heading "Hey, setup your username" [level=3] [ref=e4368]
+      - button [ref=e4369] [cursor=pointer]:
+        - img [ref=e4370]
+    - paragraph [ref=e4372]: By setting up a unique username, you can submit a proposal, participate in discussions, connect with other members and maintains a respectful environment. In the provided text field, please type your desired username.
+    - generic [ref=e4373]:
+      - generic:
+        - text: Username
+        - generic: "*"
+      - generic [ref=e4374]:
+        - textbox "Username" [ref=e4375]
+        - group:
+          - generic: Username *
+    - button "Proceed with this username" [disabled]
+```
+
+# Test source
+
+```ts
+  156 |   // contact information
+  157 |   readonly beneficiaryFullNameContent = this.page.getByTestId(
+  158 |     "beneficiary-full-name-content"
+  159 |   );
+  160 |   readonly beneficiaryCountryOfResidenceContent = this.page.getByTestId(
+  161 |     "beneficiary-country-of-residence-content"
+  162 |   );
+  163 | 
+  164 |   // proposal ownership
+  165 |   readonly companyTypeContent = this.page.getByTestId(
+  166 |     "submited-on-behalf-content"
+  167 |   );
+  168 |   readonly groupNameContent = this.page.getByTestId("group-name-content");
+  169 |   readonly groupTypeContent = this.page.getByTestId("group-type-content");
+  170 |   readonly groupKeyIdentityContent = this.page.getByTestId(
+  171 |     "group-identity-information-content"
+  172 |   );
+  173 |   readonly companyNameContent = this.page.getByTestId("company-name-content");
+  174 |   readonly companyDomainNameContent = this.page.getByTestId(
+  175 |     "company-domain-name-content"
+  176 |   );
+  177 |   readonly countryOfIncorporationContent = this.page.getByTestId(
+  178 |     "country-of-incorporation-content"
+  179 |   );
+  180 |   readonly providePreferredContent = this.page.getByTestId(
+  181 |     "provide-preferred-content"
+  182 |   );
+  183 |   readonly socialHandlesContent = this.page.getByTestId(
+  184 |     "social-handles-content"
+  185 |   );
+  186 | 
+  187 |   // problem statements and benefits
+  188 |   readonly problemStatementContent = this.page.getByTestId(
+  189 |     "problem-statement-content"
+  190 |   );
+  191 |   readonly proposalBenefitsContent = this.page.getByTestId(
+  192 |     "proposal-benefit-content"
+  193 |   );
+  194 |   readonly roadmapContent = this.page.getByTestId("roadmap-content");
+  195 |   readonly budgetCategoryContent = this.page.getByTestId(
+  196 |     "budget-category-content"
+  197 |   );
+  198 |   readonly committeeContent = this.page.getByTestId("committee-content");
+  199 |   readonly endorsementContent = this.page.getByTestId("endorsement-content");
+  200 | 
+  201 |   // proposal details
+  202 |   readonly proposalNameContent = this.page.getByTestId("proposal-name-content");
+  203 |   readonly proposalDescriptionContent = this.page.getByTestId(
+  204 |     "proposal-description-content"
+  205 |   );
+  206 |   readonly proposalKeyDependenciesContent = this.page.getByTestId(
+  207 |     "key-dependencies-content"
+  208 |   );
+  209 |   readonly proposalMaintainAndSupportContent = this.page.getByTestId(
+  210 |     "maintain-and-support-content"
+  211 |   );
+  212 |   readonly proposalDeliverablesContent = this.page.getByTestId(
+  213 |     "key-proposal-deliverables-content"
+  214 |   );
+  215 |   readonly resourcingDurationEstimatesContent = this.page.getByTestId(
+  216 |     "resourcing-duration-estimates-content"
+  217 |   );
+  218 |   readonly experienceContent = this.page.getByTestId("experience-content");
+  219 |   readonly contractingContent = this.page.getByTestId(
+  220 |     "contracting-type-name-content"
+  221 |   );
+  222 |   readonly contractingOtherContent = this.page.getByTestId(
+  223 |     "other-contract-description"
+  224 |   );
+  225 | 
+  226 |   // costing
+  227 |   readonly adaAmountContent = this.page.getByTestId("ada-amount-content");
+  228 |   readonly usdToAdaConversionRateContent = this.page.getByTestId(
+  229 |     "usd-to-ada-conversion-rate-content"
+  230 |   );
+  231 |   readonly preferredCurrencyContent = this.page.getByTestId(
+  232 |     "preferred-currency-content"
+  233 |   );
+  234 |   readonly preferredCurrencyAmountContent = this.page.getByTestId(
+  235 |     "amount-in-preferred-currency-content"
+  236 |   );
+  237 |   readonly costBreakdownContent = this.page.getByTestId(
+  238 |     "cost-breakdown-content"
+  239 |   );
+  240 | 
+  241 |   // administration and auditing
+  242 |   readonly intersectAdministrationContent = this.page.getByTestId(
+  243 |     "intersect-named-administrator-content"
+  244 |   );
+  245 | 
+  246 |   constructor(private readonly page: Page) {}
+  247 | 
+  248 |   get currentPage(): Page {
+  249 |     return this.page;
+  250 |   }
+  251 | 
+  252 |   async goto() {
+  253 |     await this.page.goto(`${environments.frontendUrl}/budget_discussion`);
+  254 | 
+  255 |     await this.verifyIdentityBtn.click();
+> 256 |     await this.createBudgetProposalBtn.click();
+      |                                        ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  257 | 
+  258 |     await this.continueBtn.click();
+  259 |   }
+  260 | 
+  261 |   async fillupProposalOwnershipForm(
+  262 |     proposalOwnership: BudgetProposalOwnershipProps,
+  263 |     isNaviagted = true
+  264 |   ) {
+  265 |     await this.proposalCommittee.click();
+  266 |     await this.page
+  267 |       .getByTestId(`${proposalOwnership.companyType.toLowerCase()}-submission`)
+  268 |       .click();
+  269 | 
+  270 |     await this.contactDetailsInput.fill(proposalOwnership.contactDetails);
+  271 | 
+  272 |     if (proposalOwnership.companyType === "Group") {
+  273 |       await this.groupNameInput.fill(proposalOwnership.groupName);
+  274 |       await this.groupTypeInput.fill(proposalOwnership.groupType);
+  275 |       await this.keyInformationOfGroupInput.fill(
+  276 |         proposalOwnership.groupKeyIdentity
+  277 |       );
+  278 |     }
+  279 |     if (proposalOwnership.companyType === "Company") {
+  280 |       await this.companyNameInput.fill(proposalOwnership.companyName);
+  281 |       await this.companyDomainNameInput.fill(
+  282 |         proposalOwnership.companyDomainName
+  283 |       );
+  284 |       await this.countryOfIncorporationBtn.click();
+  285 |       await this.page
+  286 |         .getByTestId(
+  287 |           `${proposalOwnership.countryOfIncorportation.toLowerCase().replace(/ /g, "-")}-country-of-incorporation-button`
+  288 |         )
+  289 |         .click();
+  290 |     }
+  291 | 
+  292 |     if (isNaviagted) {
+  293 |       await this.agreeCheckbox.click();
+  294 |       await this.continueBtn.click();
+  295 |     }
+  296 |   }
+  297 | 
+  298 |   async fillupProblemStatementAndBenefitsForm(
+  299 |     problemStatementAndBenefits: BudgetProposalProblemStatementAndBenefitProps,
+  300 |     isNaviagated = true
+  301 |   ) {
+  302 |     await this.problemStatementInput.fill(
+  303 |       problemStatementAndBenefits.problemStatement
+  304 |     );
+  305 |     await this.proposalBenefitInput.fill(
+  306 |       problemStatementAndBenefits.proposalBenefits
+  307 |     );
+  308 |     await this.suplimentaryEndorsementInput.fill(
+  309 |       problemStatementAndBenefits.suplimentaryEndorsement
+  310 |     );
+  311 | 
+  312 |     await this.roadmapNameSelect.click();
+  313 |     await this.page
+  314 |       .getByTestId(
+  315 |         `${problemStatementAndBenefits.roadmapName.toLowerCase()}-button`
+  316 |       )
+  317 |       .click();
+  318 | 
+  319 |     if (
+  320 |       problemStatementAndBenefits.roadmapName ===
+  321 |       "It supports the product roadmap"
+  322 |     ) {
+  323 |       await this.productRoadmapDescriptionInput.fill(
+  324 |         problemStatementAndBenefits.productRoadmapDescription
+  325 |       );
+  326 |     }
+  327 | 
+  328 |     await this.budgetDiscussionTypeSelect.click();
+  329 |     await this.page
+  330 |       .getByTestId(
+  331 |         `${problemStatementAndBenefits.budgetDiscussionType.toLowerCase()}-button`
+  332 |       )
+  333 |       .click();
+  334 | 
+  335 |     await this.committeeAlignmentTypeSelect.click();
+  336 |     await this.page
+  337 |       .getByTestId(
+  338 |         `${problemStatementAndBenefits.committeeAlignmentType.toLowerCase()}-button`
+  339 |       )
+  340 |       .click();
+  341 | 
+  342 |     if (isNaviagated) {
+  343 |       await this.continueBtn.click();
+  344 |     }
+  345 |   }
+  346 | 
+  347 |   async fillupProposalDetailsFormWithoutContractingType(
+  348 |     proposalDetails: BudgetProposalDetailsProps
+  349 |   ) {
+  350 |     await this.proposalNameInput.fill(proposalDetails.proposalName);
+  351 |     await this.proposalDescriptionInput.fill(
+  352 |       proposalDetails.proposalDescription
+  353 |     );
+  354 |     await this.proposalKeyDependenciesInput.fill(
+  355 |       proposalDetails.proposalKeyDependencies
+  356 |     );
+```

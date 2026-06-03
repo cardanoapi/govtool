@@ -1,0 +1,7 @@
+wallet balance 100022
+wallet address addr_test1qqnqksu8dr4vw0msdajf2zx5rrawdrs9qnygws3nfs7dka449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998qn4327s
+✖ Failed to load resource: the server responded with a status of 404 ()
+Username is already set
+3
+✔ Uploaded adiuvo metadata to bucket
+✖ Failed to load resource: the server responded with a status of 400 ()

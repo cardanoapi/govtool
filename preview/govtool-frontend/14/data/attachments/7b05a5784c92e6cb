@@ -1,0 +1,308 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 2-delegation/delegation.dRep.spec.ts >> 2N. Should show DRep information on details page
+- Location: tests/2-delegation/delegation.dRep.spec.ts:23:5
+
+# Error details
+
+```
+Error: expect(locator).toContainText(expected) failed
+
+Locator: getByTestId('dRep-id-display-card-dashboard')
+Expected substring: "drep1f3ur9sehmcewcc3cxzm9efgwvdhnp6fmad9ln7np3u2x7279a3u"
+Timeout: 60000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toContainText" with timeout 60000ms
+  - waiting for getByTestId('dRep-id-display-card-dashboard')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+      - button [ref=e14] [cursor=pointer]:
+        - img [ref=e15]
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - link "The Info Action" [ref=e20] [cursor=pointer]:
+          - /url: https://gov.tools/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+        - text: has passed — thank you for your support!
+      - generic [ref=e21]:
+        - text: We have now submitted a
+        - link "Treasury Withdrawal" [ref=e22] [cursor=pointer]:
+          - /url: https://gov.tools/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+        - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+  - img "bg-orange" [ref=e23]
+  - generic [ref=e24]:
+    - generic [ref=e25]:
+      - link "app-logo" [ref=e26] [cursor=pointer]:
+        - /url: /dashboard
+        - img "app-logo" [ref=e27]
+      - generic [ref=e28]:
+        - link "icon Home" [ref=e30] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=e31]:
+            - img "icon" [ref=e32]
+            - paragraph [ref=e33]: Home
+        - link "icon DRep Directory" [ref=e35] [cursor=pointer]:
+          - /url: /connected/drep_directory
+          - generic [ref=e36]:
+            - img "icon" [ref=e37]
+            - paragraph [ref=e38]: DRep Directory
+        - link "icon Budget Proposals" [ref=e40] [cursor=pointer]:
+          - /url: /budget_discussion
+          - generic [ref=e41]:
+            - img "icon" [ref=e42]
+            - paragraph [ref=e43]: Budget Proposals
+        - generic [ref=e44]:
+          - link "icon Governance Actions" [ref=e45] [cursor=pointer]:
+            - /url: /connected/governance_actions
+            - generic [ref=e46]:
+              - img "icon" [ref=e47]
+              - paragraph [ref=e48]: Governance Actions
+          - generic [ref=e49]:
+            - link "Proposals" [ref=e50] [cursor=pointer]:
+              - /url: /proposal_discussion
+              - generic [ref=e51]:
+                - img [ref=e53]
+                - paragraph [ref=e55]: Proposals
+            - link "icon Live Voting" [ref=e56] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e57]:
+                - img "icon" [ref=e58]
+                - paragraph [ref=e59]: Live Voting
+            - link "icon Outcomes" [ref=e60] [cursor=pointer]:
+              - /url: /outcomes
+              - generic [ref=e61]:
+                - img "icon" [ref=e62]
+                - paragraph [ref=e63]: Outcomes
+        - link "icon Guides" [ref=e65] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e66]:
+            - img "icon" [ref=e67]
+            - paragraph [ref=e68]: Guides
+        - link "icon FAQs" [ref=e70] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e71]:
+            - img "icon" [ref=e72]
+            - paragraph [ref=e73]: FAQs
+      - generic [ref=e76]:
+        - paragraph [ref=e77]: "Connected Wallet:"
+        - generic [ref=e78]:
+          - paragraph [ref=e79]: 003df7ecde1e0470696163f043ca08ed9213a480137f7e214beaa1aae92834a9c1eb557473da7d15c5214d0c34c3e44c66c35f3b4edef4884b
+          - button "Disconnect" [ref=e80] [cursor=pointer]: Disconnect
+    - generic [ref=e81]:
+      - navigation [ref=e82]:
+        - paragraph [ref=e84]: Home
+      - generic [ref=e85]:
+        - generic [ref=e86]:
+          - generic [ref=e87]:
+            - generic [ref=e88]:
+              - img "card" [ref=e89]
+              - paragraph [ref=e90]: Delegate your Voting Power
+              - paragraph [ref=e91]: Find a DRep to vote on your behalf.
+            - generic [ref=e92]:
+              - button "View DRep Directory" [ref=e93] [cursor=pointer]: View DRep Directory
+              - button "Learn more" [ref=e94] [cursor=pointer]: Learn more
+          - generic [ref=e95]:
+            - generic [ref=e96]:
+              - img "card" [ref=e97]
+              - paragraph [ref=e98]: Become a DRep
+              - paragraph [ref=e99]: Accept delegated voting power from other Ada holders, and combine it with your own voting power. Vote with the accumulated Power on Governance Actions.
+            - generic [ref=e100]:
+              - button "Register" [ref=e101] [cursor=pointer]: Register
+              - button "Learn more" [ref=e102] [cursor=pointer]: Learn more
+          - generic [ref=e103]:
+            - generic [ref=e104]:
+              - img "card" [ref=e105]
+              - paragraph [ref=e106]: Become a Direct Voter
+              - paragraph [ref=e107]: Register to Vote on Governance Actions.
+            - generic [ref=e108]:
+              - button "Register" [ref=e109] [cursor=pointer]: Register
+              - button "Learn more" [ref=e110] [cursor=pointer]: Learn more
+          - generic [ref=e111]:
+            - generic [ref=e112]:
+              - img "card" [ref=e113]
+              - paragraph [ref=e114]: View Governance Actions
+              - paragraph [ref=e115]: Review governance actions submitted on-chain.
+            - generic [ref=e116]:
+              - button "View Governance Actions" [ref=e117] [cursor=pointer]: View Governance Actions
+              - button "Learn more" [ref=e118] [cursor=pointer]: Learn more
+          - generic [ref=e119]:
+            - generic [ref=e120]:
+              - img "card" [ref=e121]
+              - paragraph [ref=e122]: Propose a Governance Action
+              - paragraph [ref=e123]: Submit your proposal for a Governance Action.
+            - generic [ref=e124]:
+              - button "Propose" [ref=e125] [cursor=pointer]: Propose
+              - button "Learn more" [ref=e126] [cursor=pointer]: Learn more
+        - generic [ref=e127]:
+          - paragraph [ref=e128]: Useful links
+          - generic [ref=e129]:
+            - generic [ref=e130]:
+              - paragraph [ref=e131]: Check the Constitutional Committee Portal
+              - paragraph [ref=e132]: See Interim Cardano Constitution and Constitutional committee votes rationales
+              - link "CC Portal link" [ref=e133] [cursor=pointer]:
+                - /url: https://constitution.gov.tools
+                - paragraph [ref=e134]: CC Portal
+                - img "link" [ref=e135]
+            - generic [ref=e136]:
+              - paragraph [ref=e137]: Intersect website
+              - paragraph [ref=e138]: Intersect is a member-based organization for the Cardano ecosystem — putting the community at the center of Cardano’s development
+              - link "Intersect website link" [ref=e139] [cursor=pointer]:
+                - /url: https://www.intersectmbo.org/
+                - paragraph [ref=e140]: Intersect website
+                - img "link" [ref=e141]
+      - contentinfo [ref=e142]:
+        - paragraph [ref=e143]: © 2026 GovTool
+        - generic [ref=e144]:
+          - generic [ref=e145] [cursor=pointer]: Privacy policy
+          - generic [ref=e146] [cursor=pointer]: Terms of Use
+        - generic [ref=e147]:
+          - button "helpIcon Help" [ref=e148] [cursor=pointer]:
+            - img "helpIcon" [ref=e150]
+            - text: Help
+          - button "Feedback" [ref=e151] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e152]
+```
+
+# Test source
+
+```ts
+  1   | import environments from "@constants/environments";
+  2   | import { createTempDRepAuth } from "@datafactory/createAuth";
+  3   | import { faker } from "@faker-js/faker";
+  4   | import { test } from "@fixtures/walletExtension";
+  5   | import { setAllureEpic } from "@helpers/allure";
+  6   | import {
+  7   |   skipIfMainnet,
+  8   |   skipIfTemporyWalletIsNotAvailable,
+  9   | } from "@helpers/cardano";
+  10  | import { ShelleyWallet } from "@helpers/crypto";
+  11  | import { createNewPageWithWallet } from "@helpers/page";
+  12  | import DRepRegistrationPage from "@pages/dRepRegistrationPage";
+  13  | import { expect } from "@playwright/test";
+  14  | import { LinkType } from "@types";
+  15  | import walletManager from "lib/walletManager";
+  16  | 
+  17  | test.beforeEach(async () => {
+  18  |   await setAllureEpic("2. Delegation");
+  19  |   await skipIfMainnet();
+  20  |   await skipIfTemporyWalletIsNotAvailable("registerDRepCopyWallets.json");
+  21  | });
+  22  | 
+  23  | test("2N. Should show DRep information on details page", async ({
+  24  |   page,
+  25  |   browser,
+  26  | }, testInfo) => {
+  27  |   test.setTimeout(testInfo.timeout + environments.txTimeOut);
+  28  | 
+  29  |   const wallet = await walletManager.popWallet("registerDRep");
+  30  | 
+  31  |   const tempDRepAuth = await createTempDRepAuth(page, wallet);
+  32  |   const dRepPage = await createNewPageWithWallet(browser, {
+  33  |     storageState: tempDRepAuth,
+  34  |     wallet,
+  35  |     enableStakeSigning: true,
+  36  |     enableDRepSigning: true,
+  37  |   });
+  38  | 
+  39  |   const dRepRegistrationPage = new DRepRegistrationPage(dRepPage);
+  40  |   await dRepRegistrationPage.goto();
+  41  | 
+  42  |   const name = faker.person.firstName();
+  43  |   const objectives = faker.lorem.paragraph(2);
+  44  |   const motivations = faker.lorem.paragraph(2);
+  45  |   const qualifications = faker.lorem.paragraph(2);
+  46  |   const paymentAddress = ShelleyWallet.fromJson(wallet).addressBech32(
+  47  |     environments.networkId
+  48  |   );
+  49  |   const linksReferenceLinks: LinkType[] = [
+  50  |     {
+  51  |       url: faker.internet.url(),
+  52  |       description: faker.internet.displayName(),
+  53  |     },
+  54  |   ];
+  55  | 
+  56  |   const identityReferenceLinks: LinkType[] = [
+  57  |     {
+  58  |       url: faker.internet.url(),
+  59  |       description: faker.internet.displayName(),
+  60  |     },
+  61  |   ];
+  62  | 
+  63  |   await expect(dRepPage.getByTestId("alert-success")).not.toBeVisible();
+  64  | 
+  65  |   await dRepRegistrationPage.register({
+  66  |     name,
+  67  |     objectives,
+  68  |     motivations,
+  69  |     qualifications,
+  70  |     paymentAddress,
+  71  |     linksReferenceLinks,
+  72  |     identityReferenceLinks,
+  73  |   });
+  74  | 
+  75  |   await dRepRegistrationPage.confirmBtn.click();
+  76  | 
+  77  |   // Add an assertion to prevent clicking on "View Your dRep Details".
+  78  |   await expect(
+  79  |     dRepPage.getByTestId("dRep-id-display-card-dashboard")
+> 80  |   ).toContainText(wallet.dRepId, { timeout: 60_000 });
+      |     ^ Error: expect(locator).toContainText(expected) failed
+  81  |   await dRepPage.getByTestId("view-drep-details-button").click();
+  82  | 
+  83  |   // Verification
+  84  |   await expect(dRepPage.getByTestId("copy-drep-id-button")).toHaveText(
+  85  |     wallet.dRepId
+  86  |   );
+  87  |   await expect(dRepPage.getByTestId("copy-payment-address-button")).toHaveText(
+  88  |     paymentAddress,
+  89  |     {
+  90  |       timeout: 60_000,
+  91  |     }
+  92  |   );
+  93  |   await expect(dRepPage.getByTestId("Active-pill")).toHaveText("Active");
+  94  |   await expect(dRepPage.getByTestId("voting-power")).toHaveText("₳ 0");
+  95  | 
+  96  |   await expect(
+  97  |     dRepPage.getByTestId("objectives-info-item-description")
+  98  |   ).toHaveText(objectives);
+  99  |   await expect(
+  100 |     dRepPage.getByTestId("motivations-info-item-description")
+  101 |   ).toHaveText(motivations);
+  102 |   await expect(
+  103 |     dRepPage.getByTestId("qualifications-info-item-description")
+  104 |   ).toHaveText(qualifications);
+  105 | 
+  106 |   for (const link of linksReferenceLinks) {
+  107 |     await expect(
+  108 |       dRepPage.getByTestId(`${link.description.toLowerCase()}-link`)
+  109 |     ).toHaveText(link.url);
+  110 |   }
+  111 | 
+  112 |   for (const link of identityReferenceLinks) {
+  113 |     await expect(
+  114 |       dRepPage.getByTestId(`${link.description.toLowerCase()}-link`)
+  115 |     ).toHaveText(link.url);
+  116 |   }
+  117 | });
+  118 | 
+```

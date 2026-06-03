@@ -1,0 +1,293 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 10-user-snap/userSnap.spec.ts >> 10B. Should verify a bug report form
+- Location: tests/10-user-snap/userSnap.spec.ts:28:5
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: 'Report an issue Something' })
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e12]: "💡 Next Step: Treasury Withdrawal based on your feedback has been submitted"
+      - button [ref=e14] [cursor=pointer]:
+        - img [ref=e15]
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - link "The Info Action" [ref=e20] [cursor=pointer]:
+          - /url: https://gov.tools/outcomes/governance_actions/9d213a57684d7ddf6f3350c80d042639ecbed5ccccc4a05bf54959a086593e7b#0
+        - text: has passed — thank you for your support!
+      - generic [ref=e21]:
+        - text: We have now submitted a
+        - link "Treasury Withdrawal" [ref=e22] [cursor=pointer]:
+          - /url: https://gov.tools/governance_actions/d2db60c5307cb517c735e2d0138d2b6f10fc5b221d610fa187719bdc82af9a03#0
+        - text: that reflects the feedback gathered during the voting phase to ensure continued development and maintenance of GovTool as a community-owned governance interface on Cardano.
+  - img "bg-orange" [ref=e23]
+  - banner [ref=e25]:
+    - generic [ref=e26]:
+      - link "app-logo" [ref=e27] [cursor=pointer]:
+        - /url: /
+        - img "app-logo" [ref=e28]
+      - navigation [ref=e29]:
+        - generic [ref=e30]:
+          - link "Home" [ref=e32] [cursor=pointer]:
+            - /url: /
+            - paragraph [ref=e33]: Home
+          - link "DRep Directory" [ref=e35] [cursor=pointer]:
+            - /url: /drep_directory
+            - paragraph [ref=e36]: DRep Directory
+          - link "Budget Proposals" [ref=e38] [cursor=pointer]:
+            - /url: /budget_discussion
+            - paragraph [ref=e39]: Budget Proposals
+          - paragraph [ref=e41] [cursor=pointer]:
+            - generic [ref=e42]:
+              - text: Governance Actions
+              - img "dropdown-icon" [ref=e43]
+          - link "Guides" [ref=e45] [cursor=pointer]:
+            - /url: /
+            - paragraph [ref=e46]: Guides
+          - link "FAQs" [ref=e48] [cursor=pointer]:
+            - /url: /
+            - paragraph [ref=e49]: FAQs
+          - button "Connect Wallet" [ref=e51] [cursor=pointer]: Connect Wallet
+  - generic [ref=e52]:
+    - generic [ref=e53]:
+      - generic [ref=e54]:
+        - paragraph [ref=e55]: Cardano Governance Tool
+        - paragraph [ref=e56]: Cardano Governance lets Ada holders have a say in the network's future. You can vote directly, find someone to represent you, or become a representative for others. You can also propose changes in the network yourself, put these up for discussion and eventually, a vote. Learn more about governance in the guide, or have a look around the app and see Cardano Governance in action.
+        - button "Participate now" [ref=e57] [cursor=pointer]:
+          - text: Participate now
+          - img [ref=e59]
+      - img "hero" [ref=e62]
+    - generic [ref=e63]:
+      - generic [ref=e64]:
+        - generic [ref=e65]:
+          - generic [ref=e66]:
+            - img "action-card" [ref=e67]
+            - paragraph [ref=e68]: Delegate your Voting Power
+            - paragraph [ref=e69]: Find a DRep to vote on your behalf.
+          - generic [ref=e70]:
+            - button "View DRep Directory" [ref=e71] [cursor=pointer]: View DRep Directory
+            - button "Learn more" [ref=e72] [cursor=pointer]: Learn more
+        - generic [ref=e73]:
+          - generic [ref=e74]:
+            - img "action-card" [ref=e75]
+            - paragraph [ref=e76]: Become a DRep
+            - paragraph [ref=e77]: Accept delegated voting power from other Ada holders, and combine it with your own voting power. Vote with the accumulated Power on Governance Actions.
+          - generic [ref=e78]:
+            - button "Connect to Register" [ref=e79] [cursor=pointer]: Connect to Register
+            - button "Learn more" [ref=e80] [cursor=pointer]: Learn more
+        - generic [ref=e81]:
+          - generic [ref=e82]:
+            - img "action-card" [ref=e83]
+            - paragraph [ref=e84]: Become a Direct Voter
+            - paragraph [ref=e85]: Vote on Governance Actions using your own voting power
+          - generic [ref=e86]:
+            - button "Connect to Register" [ref=e87] [cursor=pointer]: Connect to Register
+            - button "Learn more" [ref=e88] [cursor=pointer]: Learn more
+        - generic [ref=e89]:
+          - generic [ref=e90]:
+            - img "action-card" [ref=e91]
+            - paragraph [ref=e92]: View Governance Actions
+            - paragraph [ref=e93]: See all the Governance Actions submitted on chain.
+          - button "View Governance Actions" [ref=e95] [cursor=pointer]: View Governance Actions
+        - generic [ref=e96]:
+          - generic [ref=e97]:
+            - img "action-card" [ref=e98]
+            - paragraph [ref=e99]: Propose a Governance Action
+            - paragraph [ref=e100]: Submit your proposal for a Governance Action.
+          - generic [ref=e101]:
+            - button "Connect to Propose" [ref=e102] [cursor=pointer]: Connect to Propose
+            - button "View Proposals" [ref=e103] [cursor=pointer]: View Proposals
+      - generic [ref=e104]:
+        - paragraph [ref=e105]: Useful links
+        - generic [ref=e106]:
+          - generic [ref=e107]:
+            - paragraph [ref=e108]: Check the Constitutional Committee Portal
+            - paragraph [ref=e109]: See Interim Cardano Constitution and Constitutional committee votes rationales
+            - link "CC Portal link" [ref=e110] [cursor=pointer]:
+              - /url: https://constitution.gov.tools
+              - paragraph [ref=e111]: CC Portal
+              - img "link" [ref=e112]
+          - generic [ref=e113]:
+            - paragraph [ref=e114]: Intersect website
+            - paragraph [ref=e115]: Intersect is a member-based organization for the Cardano ecosystem — putting the community at the center of Cardano’s development
+            - link "Intersect website link" [ref=e116] [cursor=pointer]:
+              - /url: https://www.intersectmbo.org/
+              - paragraph [ref=e117]: Intersect website
+              - img "link" [ref=e118]
+    - contentinfo [ref=e119]:
+      - paragraph [ref=e120]: © 2026 GovTool
+      - generic [ref=e121]:
+        - generic [ref=e122] [cursor=pointer]: Privacy policy
+        - generic [ref=e123] [cursor=pointer]: Terms of Use
+      - generic [ref=e124]:
+        - button "helpIcon Help" [ref=e125] [cursor=pointer]:
+          - img "helpIcon" [ref=e127]
+          - text: Help
+        - button "Feedback" [active] [ref=e128] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e129]
+```
+
+# Test source
+
+```ts
+  1   | import { faker } from "@faker-js/faker";
+  2   | import { test } from "@fixtures/walletExtension";
+  3   | import { setAllureEpic } from "@helpers/allure";
+  4   | import { isMobile } from "@helpers/mobile";
+  5   | import { expect, Page } from "@playwright/test";
+  6   | import { randomUUID } from "crypto";
+  7   | 
+  8   | test.beforeEach(async ({ page }) => {
+  9   |   await setAllureEpic("10. User Snap");
+  10  |   await page.goto("/");
+  11  |   await page.waitForTimeout(2_000); // wait until page load properly
+  12  | 
+  13  |   await page.getByTestId("feedback-footer-button").click();
+  14  | });
+  15  | 
+  16  | test("10A. Should open feedback modal", async ({ page }) => {
+  17  |   await expect(page.getByLabel("Usersnap widget")).toBeVisible();
+  18  |   await expect(
+  19  |     page.getByRole("button", {
+  20  |       name: "Report an issue Something",
+  21  |     })
+  22  |   ).toBeVisible();
+  23  |   await expect(
+  24  |     page.getByRole("button", { name: "Send an idea Let us know what" })
+  25  |   ).toBeVisible();
+  26  | });
+  27  | 
+  28  | test("10B. Should verify a bug report form", async ({ page }) => {
+  29  |   await page
+  30  |     .getByRole("button", {
+  31  |       name: "Report an issue Something",
+  32  |     })
+> 33  |     .click();
+      |      ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  34  |   await expect(
+  35  |     page.getByRole("button", { name: "Close annotation" })
+  36  |   ).toBeVisible();
+  37  | 
+  38  |   if (isMobile(page)) {
+  39  |     await expect(
+  40  |       page.getByRole("button", { name: "Add screenshot" })
+  41  |     ).toBeVisible();
+  42  |     await page.getByRole("button", { name: "Close annotation" }).click();
+  43  |     await expect(page.getByLabel("Take screenshot")).toBeVisible();
+  44  |   }
+  45  | 
+  46  |   await expect(
+  47  |     page.getByRole("heading", { name: "Report a bug" })
+  48  |   ).toBeVisible();
+  49  |   await expect(page.getByPlaceholder("Add description")).toBeVisible();
+  50  |   await expect(page.getByLabel("Record")).toBeVisible();
+  51  |   await expect(page.getByRole("button", { name: "Submit" })).toBeVisible();
+  52  | 
+  53  |   // check record action
+  54  |   await page.getByLabel("Record").click();
+  55  |   await expect(
+  56  |     page.getByRole("button", { name: "Cancel recording" })
+  57  |   ).toBeVisible();
+  58  | });
+  59  | 
+  60  | test("10C. Should verify feature form", async ({ page }) => {
+  61  |   await page
+  62  |     .getByRole("button", { name: "Send an idea Let us know what" })
+  63  |     .click();
+  64  | 
+  65  |   await expect(
+  66  |     page.getByRole("heading", { name: "Feature Request" })
+  67  |   ).toBeVisible();
+  68  |   await expect(page.getByPlaceholder("Feature description")).toBeVisible();
+  69  |   await expect(page.getByPlaceholder("Please add some context")).toBeVisible();
+  70  |   await expect(page.getByLabel("Take screenshot")).toBeVisible();
+  71  |   await expect(page.getByLabel("Record")).toBeVisible();
+  72  |   await expect(
+  73  |     page.getByRole("button", { name: "Request Feature" })
+  74  |   ).toBeVisible();
+  75  | 
+  76  |   // check screenshot action
+  77  |   await page.getByLabel("Take screenshot").click();
+  78  |   await expect(
+  79  |     page.getByRole("button", { name: "Close annotation" })
+  80  |   ).toBeVisible();
+  81  |   await expect(
+  82  |     page.getByRole("button", { name: "Add screenshot" })
+  83  |   ).toBeVisible();
+  84  |   await page.getByRole("button", { name: "Close annotation" }).click();
+  85  | 
+  86  |   // check record action
+  87  |   await page.getByLabel("Record").click();
+  88  |   await expect(
+  89  |     page.getByRole("button", { name: "Cancel recording" })
+  90  |   ).toBeVisible();
+  91  | });
+  92  | 
+  93  | test.describe("Submit Usersnap", () => {
+  94  |   const feedbackApiUrl =
+  95  |     "https://widget.usersnap.com/api/widget/xhrrpc?submit_feedback";
+  96  |   const bucketUrl = "https://s3.eu-central-1.amazonaws.com/upload.usersnap.com";
+  97  | 
+  98  |   const interceptBucket = async (page: Page) => {
+  99  |     await page.route(bucketUrl, async (route) =>
+  100 |       route.fulfill({
+  101 |         status: 204,
+  102 |       })
+  103 |     );
+  104 |   };
+  105 | 
+  106 |   const interceptUsersnap = async (page: Page) => {
+  107 |     await page.route(feedbackApiUrl, async (route) =>
+  108 |       route.fulfill({
+  109 |         status: 200,
+  110 |         body: JSON.stringify({
+  111 |           status: true,
+  112 |           data: {
+  113 |             feedback: {
+  114 |               feedback_id: randomUUID(),
+  115 |               assignee_id: randomUUID(),
+  116 |               labels: [],
+  117 |             },
+  118 |             screen_recording_url: null,
+  119 |             attachment_urls: [
+  120 |               {
+  121 |                 url: bucketUrl,
+  122 |                 fields: {
+  123 |                   "Content-Type": "image/png",
+  124 |                   key: randomUUID(),
+  125 |                 },
+  126 |               },
+  127 |             ],
+  128 |           },
+  129 |         }),
+  130 |       })
+  131 |     );
+  132 |   };
+  133 | 
+```
