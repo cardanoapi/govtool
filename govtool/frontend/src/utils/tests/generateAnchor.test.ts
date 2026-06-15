@@ -20,7 +20,7 @@ describe("generateAnchor function", () => {
 
     expect(URL.new).toHaveBeenCalledWith(url);
     expect(AnchorDataHash.from_hex).toHaveBeenCalledWith(hash);
-    expect(spyForAnchor).toHaveBeenCalledWith(url,hash);
+    expect(spyForAnchor).toHaveBeenCalledWith(url, hash);
     expect(anchor).toBe(expectedAnchor);
 
 spyForAnchor.mockRestore();
