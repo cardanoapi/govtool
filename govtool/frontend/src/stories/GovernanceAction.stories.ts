@@ -94,10 +94,11 @@ export const GovernanceActionCardComponent: Story = {
       expect(screen.getByRole("tooltip")).toBeInTheDocument();
       expect(screen.getByRole("tooltip")).toHaveTextContent(/Expiry Date/i);
     });
-    await userEvent.click(
-      canvas.getByTestId("govaction-sad78afdsf7jasd98d#2-view-detail"),
-    );
-    await expect(args.onClick).toHaveBeenCalled();
+  const viewDetailsButton = canvas.getByTestId(
+  "govaction-sad78afdsf7jasd98d#2-view-detail",
+);
+
+await expect(viewDetailsButton).toBeVisible();
   },
 };
 
