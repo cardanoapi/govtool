@@ -67,7 +67,7 @@ const cip129GovActionId = encodeCIP129Identifier({
 export const GovernanceActionCardComponent: Story = {
   args: commonArgs,
 
-  play: async ({ canvasElement, args }) => {
+  play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(
       canvas.getByTestId(
