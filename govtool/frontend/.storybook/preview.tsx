@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@emotion/react";
-import type { Preview } from "@storybook/react";
+import type { Preview } from "@storybook/react-vite";
 import React from "react";
 import { I18nextProvider } from "react-i18next";
 import { QueryClient, QueryClientProvider } from "react-query";
