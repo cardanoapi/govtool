@@ -7,8 +7,8 @@ import {
   waitFor,
   within,
   fn,
-} from "@storybook/test";
-import type { Meta, StoryObj } from "@storybook/react";
+} from "storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
 import {
   encodeCIP129Identifier,
