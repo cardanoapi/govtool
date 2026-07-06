@@ -1,13 +1,10 @@
-import { Box, Typography, IconButton, Link } from "@mui/material";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { Trans, useTranslation } from "react-i18next";
+import { Box, Typography, Link } from "@mui/material";
+import { Trans } from "react-i18next";
 import { useMaintenanceEndingBannerContext } from "./MaintenanceEndingBannerContext";
 
 export const MaintenanceEndingBanner = () => {
-  const { ref, isExpanded, toggleExpanded } =
+  const { ref, isExpanded } =
     useMaintenanceEndingBannerContext();
-  const { t } = useTranslation();
 
   return (
     <Box
@@ -22,8 +19,6 @@ export const MaintenanceEndingBanner = () => {
         zIndex: 1200,
       }}
     >
-    
-
       {/* Expandable Content */}
       <Box
         sx={{
