@@ -22,41 +22,7 @@ export const MaintenanceEndingBanner = () => {
         zIndex: 1200,
       }}
     >
-      {/* Banner Header */}
-      <Box
-        sx={{
-          px: 2,
-          py: 1,
-          textAlign: "left",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <Typography
-            variant="body2"
-            fontWeight={600}
-            color="common.white"
-            sx={{ display: "flex", alignItems: "center" }}
-          >
-            {t("system.maintenanceEnding.title")}
-          </Typography>
-        </Box>
-        <Box sx={{ display: "flex" }}>
-          <IconButton
-            onClick={toggleExpanded}
-            size="small"
-            data-testid="toggle-maintenance-banner"
-            sx={{
-              color: "white",
-              transition: "transform 0.3s ease",
-            }}
-          >
-            {isExpanded ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-        </Box>
-      </Box>
+    
 
       {/* Expandable Content */}
       <Box
