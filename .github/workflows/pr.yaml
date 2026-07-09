@@ -127,64 +127,105 @@ jobs:
 
           echo "outcome=success" >> $GITHUB_OUTPUT
 
-      - name: Create PR comment
-        if: always()
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const fs = require('fs');
+      - name: Write test summary
+        if: ${{ always() }}
+        run: |
+          python3 - <<'PY'
+          import os
+          import sys
+          import json
+          from pathlib import Path
 
-            const hadolintResult = fs.existsSync('${{ matrix.workdir }}/hadolint_output.json') ? fs.readFileSync('${{ matrix.workdir }}/hadolint_output.json', 'utf8') : 'No output';
-            const codeLintResult = fs.existsSync('${{ matrix.workdir }}/code_lint_output.txt') ? fs.readFileSync('${{ matrix.workdir }}/code_lint_output.txt', 'utf8') : 'No output';
-            const unitTestResult = fs.existsSync('${{ matrix.workdir }}/unit_test_output.txt') ? fs.readFileSync('${{ matrix.workdir }}/unit_test_output.txt', 'utf8') : 'No output';
-            const dockleScanResult = fs.existsSync('${{ matrix.workdir }}/dockle_scan_output.json') ? fs.readFileSync('${{ matrix.workdir }}/dockle_scan_output.json', 'utf8') : 'No output';
+          summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
+          if not summary_path:
+              sys.exit(0)
 
-            const hadolintOutcome = '${{ steps.hadolint.outcome }}';
-            const codeLintOutcome = '${{ steps.code_lint.outcome }}';
-            const unitTestOutcome = '${{ steps.unit_tests.outcome }}';
-            const dockleResult = '${{ steps.dockle.outcome }}';
- 
-            let commentBody = '';
+          workdir = "${{ matrix.workdir }}"
+          name = "${{ matrix.name }}"
+          
+          def md_escape(value):
+              return str(value).replace("|", "\\|").replace("\n", "<br>")
 
-            if (hadolintOutcome !== 'success') {
-              commentBody = `
-              :x: Dockerfile Lint (Hadolint) failed
-              \`\`\`json
-              ${hadolintResult}
-              \`\`\`
-                            `;
-                          } else if (codeLintOutcome !== 'success') {
-                            commentBody = `
-              :x: Code Lint failed
-              \`\`\`
-              ${codeLintResult}
-              \`\`\`
-                            `;
-                          } else if (unitTestOutcome !== 'success') {
-                            commentBody = `
-              :x: Unit Tests failed
-              \`\`\`
-              ${unitTestResult}
-              \`\`\`
-                            `;
-                          } else if (dockleResult !== 'success') {
-                            commentBody = `
-              :x: Docker Image Scan (Dockle) failed
-              \`\`\`json
-              ${dockleScanResult}
-              \`\`\`
-                            `;
-                          } else {
-                            commentBody = ':white_check_mark: All checks succeeded';
-                          }
+          lines = [f"## {name} - Check Results", ""]
 
-                          const { owner, repo } = context.repo;
-                          const issue_number = context.issue.number;
+          # Hadolint Results
+          hadolint_file = Path(f"{workdir}/hadolint_output.json")
+          lines.extend([
+              "### Dockerfile Lint (Hadolint)",
+              f"**Status:** ${{ steps.hadolint.outcome }}",
+              ""
+          ])
+          if hadolint_file.exists():
+              with open(hadolint_file) as f:
+                  content = f.read()
+              lines.extend(["```json", content, "```", ""])
 
-                          await github.rest.issues.createComment({
-                            owner,
-                            repo,
-                            issue_number,
-                            body: commentBody
-                          });
+          # Code Lint Results
+          code_lint_file = Path(f"{workdir}/code_lint_output.txt")
+          lines.extend([
+              "### Code Lint",
+              f"**Status:** ${{ steps.code_lint.outcome }}",
+              ""
+          ])
+          if code_lint_file.exists():
+              with open(code_lint_file) as f:
+                  content = f.read()
+              lines.extend(["```", content, "```", ""])
+
+          # Unit Tests Results
+          unit_test_file = Path(f"{workdir}/unit_test_output.txt")
+          lines.extend([
+              "### Unit Tests",
+              f"**Status:** ${{ steps.unit_tests.outcome }}",
+              ""
+          ])
+          if unit_test_file.exists():
+              with open(unit_test_file) as f:
+                  content = f.read()
+              lines.extend(["```", content, "```", ""])
+
+          # Dockle Scan Results
+          dockle_file = Path(f"{workdir}/dockle_scan_output.json")
+          lines.extend([
+              "### Docker Image Scan (Dockle)",
+              f"**Status:** ${{ steps.dockle.outcome }}",
+              ""
+          ])
+          if dockle_file.exists():
+              with open(dockle_file) as f:
+                  dockle_data = json.load(f)
+              
+              summary = dockle_data.get("summary", {})
+              lines.extend([
+                  "| Metric | Count |",
+                  "| --- | ---: |",
+                  f"| Fatal | {summary.get('fatal', 0)} |",
+                  f"| Warn | {summary.get('warn', 0)} |",
+                  f"| Info | {summary.get('info', 0)} |",
+                  "",
+                  "```json",
+              ])
+              
+              with open(dockle_file) as f:
+                  lines.append(f.read())
+              
+              lines.extend(["```", ""])
+
+          # Metadata
+          lines.extend([
+              "### Metadata",
+              "",
+              "| Key | Value |",
+              "| --- | --- |",
+              f"| Workdir | `{md_escape(workdir)}` |",
+              f"| Event | {md_escape(os.environ.get('GITHUB_EVENT_NAME', 'unknown'))} |",
+              f"| Ref | {md_escape(os.environ.get('GITHUB_REF_NAME', 'unknown'))} |",
+              f"| SHA | `{md_escape(os.environ.get('GITHUB_SHA', 'unknown')[:7])}` |",
+              f"| Actor | {md_escape(os.environ.get('GITHUB_ACTOR', 'unknown'))} |",
+              "",
+          ])
+
+          with open(summary_path, "a", encoding="utf-8") as summary:
+              summary.write("\n".join(lines))
+              summary.write("\n")
+          PY
