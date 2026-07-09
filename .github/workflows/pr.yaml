@@ -13,6 +13,7 @@ permissions:
   pull-requests: write
   issues: write
   packages: write
+  actions: read
 
 jobs:
   static-checks:
@@ -135,6 +136,7 @@ jobs:
           UNIT_TEST_RESULT: ${{ steps.unit_tests.outcome }}
           DOCKLE_RESULT: ${{ steps.dockle.outcome }}
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
 
