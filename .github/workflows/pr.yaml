@@ -157,8 +157,22 @@ jobs:
           ])
           if hadolint_file.exists():
               with open(hadolint_file) as f:
-                  content = f.read()
-              lines.extend(["```json", content, "```", ""])
+                  hadolint_data = json.load(f)
+              
+              if hadolint_data:
+                  lines.extend([
+                      "| Code | Line | Level | Message |",
+                      "| --- | ---: | --- | --- |",
+                  ])
+                  for issue in hadolint_data:
+                      code = md_escape(issue.get("code", ""))
+                      line = issue.get("line", "")
+                      level = md_escape(issue.get("level", ""))
+                      message = md_escape(issue.get("message", ""))
+                      lines.append(f"| {code} | {line} | {level} | {message} |")
+                  lines.append("")
+              else:
+                  lines.extend(["✅ No issues found", ""])
 
           # Code Lint Results
           code_lint_file = Path(f"{workdir}/code_lint_output.txt")
@@ -169,8 +183,11 @@ jobs:
           ])
           if code_lint_file.exists():
               with open(code_lint_file) as f:
-                  content = f.read()
-              lines.extend(["```", content, "```", ""])
+                  content = f.read().strip()
+              if content and content != "lint skipped":
+                  lines.extend(["```", content, "```", ""])
+              else:
+                  lines.extend(["✅ Lint skipped or passed", ""])
 
           # Unit Tests Results
           unit_test_file = Path(f"{workdir}/unit_test_output.txt")
@@ -181,8 +198,11 @@ jobs:
           ])
           if unit_test_file.exists():
               with open(unit_test_file) as f:
-                  content = f.read()
-              lines.extend(["```", content, "```", ""])
+                  content = f.read().strip()
+              if content and content != "unit tests skipped":
+                  lines.extend(["```", content, "```", ""])
+              else:
+                  lines.extend(["✅ Unit tests skipped or passed", ""])
 
           # Dockle Scan Results
           dockle_file = Path(f"{workdir}/dockle_scan_output.json")
@@ -197,19 +217,35 @@ jobs:
               
               summary = dockle_data.get("summary", {})
               lines.extend([
+                  "#### Summary",
+                  "",
                   "| Metric | Count |",
                   "| --- | ---: |",
                   f"| Fatal | {summary.get('fatal', 0)} |",
                   f"| Warn | {summary.get('warn', 0)} |",
                   f"| Info | {summary.get('info', 0)} |",
+                  f"| Passed | {summary.get('pass', 0)} |",
                   "",
-                  "```json",
               ])
               
-              with open(dockle_file) as f:
-                  lines.append(f.read())
-              
-              lines.extend(["```", ""])
+              details = dockle_data.get("details", [])
+              if details:
+                  lines.extend([
+                      "#### Details",
+                      "",
+                      "| Code | Title | Level | Alert |",
+                      "| --- | --- | --- | --- |",
+                  ])
+                  for detail in details:
+                      code = md_escape(detail.get("code", ""))
+                      title = md_escape(detail.get("title", ""))
+                      level = md_escape(detail.get("level", ""))
+                      alerts = detail.get("alerts", [])
+                      alert_text = md_escape(", ".join(alerts[:3]))  # Limit to 3 alerts per row
+                      if len(alerts) > 3:
+                          alert_text += f", +{len(alerts)-3} more"
+                      lines.append(f"| {code} | {title} | {level} | {alert_text} |")
+                  lines.append("")
 
           # Metadata
           lines.extend([
