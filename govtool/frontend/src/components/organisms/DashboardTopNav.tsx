@@ -31,7 +31,6 @@ export const DashboardTopNav = ({
   const { voter } = useGetVoterInfo();
   const { dRepVotingPower } = useGetDRepVotingPowerQuery(voter);
 
-
   const openDrawer = () => {
     setIsDrawerOpen(true);
   };
@@ -56,7 +55,7 @@ export const DashboardTopNav = ({
           alignItems: "center",
           backdropFilter: "blur(10px)",
           backgroundColor:
-            windowScroll > POSITION_TO_BLUR 
+            windowScroll > POSITION_TO_BLUR
               ? "rgba(256, 256, 256, 0.7)"
               : isMobile
               ? "#FBFBFF59"
@@ -68,7 +67,7 @@ export const DashboardTopNav = ({
           minHeight: isMobile ? 36 : 48,
           px: isMobile ? 2 : 5,
           py: 3,
-          top:  0,
+          top: 0,
           width: "fill-available",
           zIndex: 100,
         }}

@@ -9,7 +9,6 @@ import { useScreenDimension, useTranslation } from "@hooks";
 import { openInNewTab } from "@utils";
 import { DrawerMobile } from "./DrawerMobile";
 
-
 const POSITION_TO_BLUR = 80;
 
 const isNavMenuItem = (item: NavItem | NavMenuItem): item is NavMenuItem =>
@@ -24,8 +23,6 @@ export const TopNav = ({ isConnectButton = true }) => {
   const { isEnabled, disconnectWallet, stakeKey } = useCardano();
   const navigate = useNavigate();
   const { t } = useTranslation();
-
-
 
   useEffect(() => {
     const onScroll = () => {

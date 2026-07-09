@@ -4,7 +4,6 @@ import { Trans, useTranslation } from "react-i18next";
 import { useAppContext } from "@/context";
 import { LINKS } from "@/consts/links";
 
-
 export const TopBanners = ({ children }: PropsWithChildren) => {
   const { isMainnet, networkName, isInBootstrapPhase, isAppInitializing } =
     useAppContext();
@@ -47,9 +46,6 @@ export const TopBanners = ({ children }: PropsWithChildren) => {
           </Box>
         )}
       </Box>
-
-      {/* GOVTOOL MAINTENANCE ENDING SOON BANNER */}
-     
 
       {/* BOOTSTRAPPING BANNER */}
       <Box>

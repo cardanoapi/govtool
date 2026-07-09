@@ -8,14 +8,13 @@ import { useGetVoterInfo } from "@hooks";
 import { WalletInfoCard, DRepInfoCard } from "@molecules";
 import { openInNewTab } from "@utils";
 
-
 export const Drawer = () => {
   const {
     isProposalDiscussionForumEnabled,
     isGovernanceOutcomesPillarEnabled,
   } = useFeatureFlag();
   const { voter } = useGetVoterInfo();
- 
+
   return (
     <Box
       sx={{
@@ -25,7 +24,7 @@ export const Drawer = () => {
         height: "100vh",
         position: "sticky",
         width: `${DRAWER_WIDTH}px`,
-        top:  0,
+        top: 0,
         overflowY: "auto",
         maxHeight: `calc(100vh - ${0}px)`,
       }}

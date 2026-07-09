@@ -9,8 +9,6 @@ import { GovernanceActionProvider } from "./governanceAction";
 import { AdaHandleProvider } from "./adaHandle";
 import { ProposalDiscussionProvider } from "./proposalDiscussion";
 
-
-
 interface Props {
   children: React.ReactNode;
 }
@@ -26,7 +24,7 @@ const ContextProviders = ({ children }: Props) => (
                 <DataActionsBarProvider>
                   <PaginationProvider>
                     <CardanoProvider>
-                        {children}
+                      {children}
                     </CardanoProvider>
                   </PaginationProvider>
                 </DataActionsBarProvider>
