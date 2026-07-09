@@ -129,12 +129,7 @@ jobs:
 
       - name: Create PR comment
         if: always()
-        uses: actions/github-script@v6
-        env:
-          HADOLINT_RESULT: ${{ steps.hadolint.outcome }}
-          CODE_LINT_RESULT: ${{ steps.code_lint.outcome }}
-          UNIT_TEST_RESULT: ${{ steps.unit_tests.outcome }}
-          DOCKLE_RESULT: ${{ steps.dockle.outcome }}
+        uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -145,30 +140,35 @@ jobs:
             const unitTestResult = fs.existsSync('${{ matrix.workdir }}/unit_test_output.txt') ? fs.readFileSync('${{ matrix.workdir }}/unit_test_output.txt', 'utf8') : 'No output';
             const dockleScanResult = fs.existsSync('${{ matrix.workdir }}/dockle_scan_output.json') ? fs.readFileSync('${{ matrix.workdir }}/dockle_scan_output.json', 'utf8') : 'No output';
 
+            const hadolintOutcome = '${{ steps.hadolint.outcome }}';
+            const codeLintOutcome = '${{ steps.code_lint.outcome }}';
+            const unitTestOutcome = '${{ steps.unit_tests.outcome }}';
+            const dockleResult = '${{ steps.dockle.outcome }}';
+ 
             let commentBody = '';
 
-            if (process.env.HADOLINT_RESULT !== 'success') {
+            if (hadolintOutcome !== 'success') {
               commentBody = `
               :x: Dockerfile Lint (Hadolint) failed
               \`\`\`json
               ${hadolintResult}
               \`\`\`
                             `;
-                          } else if (process.env.CODE_LINT_RESULT !== 'success') {
+                          } else if (codeLintOutcome !== 'success') {
                             commentBody = `
               :x: Code Lint failed
               \`\`\`
               ${codeLintResult}
               \`\`\`
                             `;
-                          } else if (process.env.UNIT_TEST_RESULT !== 'success') {
+                          } else if (unitTestOutcome !== 'success') {
                             commentBody = `
               :x: Unit Tests failed
               \`\`\`
               ${unitTestResult}
               \`\`\`
                             `;
-                          } else if (process.env.DOCKLE_RESULT !== 'success') {
+                          } else if (dockleResult !== 'success') {
                             commentBody = `
               :x: Docker Image Scan (Dockle) failed
               \`\`\`json
