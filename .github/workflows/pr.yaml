@@ -229,7 +229,7 @@ jobs:
               info = summary.get('info', 0)
               passed = summary.get('pass', 0)
               
-              fatal_icon = "❌" if fatal > 0 else "✅"
+              fatal_icon = "❌" if fatal >= 0 else "✅"
               warn_icon = "⚠️" if warn > 0 else "✅"
               info_icon = "ℹ️" if info > 0 else "✅"
               
