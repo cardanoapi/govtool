@@ -9,7 +9,7 @@ import { GovernanceActionProvider } from "./governanceAction";
 import { AdaHandleProvider } from "./adaHandle";
 import { ProposalDiscussionProvider } from "./proposalDiscussion";
 
-import { MaintenanceEndingBannerProvider } from "@/components/organisms/MaintenanceEndingBanner/MaintenanceEndingBannerContext";
+
 
 interface Props {
   children: React.ReactNode;
@@ -26,9 +26,7 @@ const ContextProviders = ({ children }: Props) => (
                 <DataActionsBarProvider>
                   <PaginationProvider>
                     <CardanoProvider>
-                      <MaintenanceEndingBannerProvider>
                         {children}
-                      </MaintenanceEndingBannerProvider>
                     </CardanoProvider>
                   </PaginationProvider>
                 </DataActionsBarProvider>

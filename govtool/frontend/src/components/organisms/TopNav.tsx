@@ -8,7 +8,7 @@ import { useCardano, useFeatureFlag, useModal } from "@context";
 import { useScreenDimension, useTranslation } from "@hooks";
 import { openInNewTab } from "@utils";
 import { DrawerMobile } from "./DrawerMobile";
-import { useMaintenanceEndingBannerContext } from "./MaintenanceEndingBanner";
+
 
 const POSITION_TO_BLUR = 80;
 
@@ -25,8 +25,7 @@ export const TopNav = ({ isConnectButton = true }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const { height: maintenanceEndingBannerHeight } =
-    useMaintenanceEndingBannerContext();
+
 
   useEffect(() => {
     const onScroll = () => {
@@ -141,7 +140,6 @@ export const TopNav = ({ isConnectButton = true }) => {
     <Box
       sx={{
         position: "sticky",
-        top: maintenanceEndingBannerHeight,
         zIndex: 100,
         width: "100%",
       }}
