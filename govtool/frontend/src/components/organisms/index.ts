@@ -31,4 +31,3 @@ export * from "./VoteContext";
 export * from "./VoteContext/VoteContextChoice";
 export * from "./VoteContext/VoteContextGovTool";
 export * from "./WrongRouteInfo";
-export * from "./MaintenanceEndingBanner";

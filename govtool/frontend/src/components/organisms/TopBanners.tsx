@@ -3,7 +3,6 @@ import { Box, Link, Typography } from "@mui/material";
 import { Trans, useTranslation } from "react-i18next";
 import { useAppContext } from "@/context";
 import { LINKS } from "@/consts/links";
-import { MaintenanceEndingBanner } from "./MaintenanceEndingBanner";
 
 export const TopBanners = ({ children }: PropsWithChildren) => {
   const { isMainnet, networkName, isInBootstrapPhase, isAppInitializing } =
@@ -47,9 +46,6 @@ export const TopBanners = ({ children }: PropsWithChildren) => {
           </Box>
         )}
       </Box>
-
-      {/* GOVTOOL MAINTENANCE ENDING SOON BANNER */}
-      <MaintenanceEndingBanner />
 
       {/* BOOTSTRAPPING BANNER */}
       <Box>
