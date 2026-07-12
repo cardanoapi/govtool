@@ -5,6 +5,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Button, InfoText, Spacer, Typography } from "@atoms";
 import { GOVERNANCE_ACTION_FIELDS, Placeholders } from "@consts";
 import { useCreateGovernanceActionForm, useTranslation } from "@hooks";
+import { useFeatureFlag } from "@context";
 import { CenteredBoxBottomButtons, Field } from "@molecules";
 import { URL_REGEX, testIdFromLabel } from "@/utils";
 import {
@@ -24,6 +25,7 @@ export const CreateGovernanceActionForm = ({
   setStep,
 }: CreateGovernanceActionFormProps) => {
   const { t } = useTranslation();
+  const { isCip179Enabled } = useFeatureFlag();
   const { control, errors, getValues, register, reset, watch } =
     useCreateGovernanceActionForm();
 
@@ -159,6 +161,23 @@ export const CreateGovernanceActionForm = ({
       />
       <Spacer y={3} />
       {renderGovernanceActionField()}
+      {isCip179Enabled && (
+        <ControlledField.Input
+          {...register("surveyTxId")}
+          errors={errors}
+          helpfulText={t("createGovernanceAction.surveyTxIdHelp")}
+          label={t("createGovernanceAction.surveyTxId")}
+          layoutStyles={{ mb: 3 }}
+          name="surveyTxId"
+          placeholder={t("createGovernanceAction.surveyTxIdPlaceholder")}
+          rules={{
+            pattern: {
+              value: /^[0-9a-fA-F]{64}$/,
+              message: t("createGovernanceAction.surveyTxIdInvalid"),
+            },
+          }}
+        />
+      )}
       <InfoText label={t("optional")} sx={{ mb: 0.75, textAlign: "center" }} />
       <Typography sx={{ textAlign: "center" }} variant="headline4">
         {t("createGovernanceAction.references")}
