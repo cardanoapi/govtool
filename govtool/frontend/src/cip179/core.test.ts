@@ -148,6 +148,23 @@ describe("CIP-179 integration helpers", () => {
     ).toBeNull();
   });
 
+  it("rejects an empty rating answer instead of encoding an empty pair list", () => {
+    expect(
+      buildAnswer(
+        {
+          type: "rating",
+          prompt: "Impact",
+          options: { type: "options", labels: ["A", "B"] },
+          scale: { type: "numeric", constraints: { min: 1n, max: 5n } },
+          requireAll: false,
+        },
+        0,
+        [null, null],
+        true,
+      ),
+    ).toBeNull();
+  });
+
   it("rejects fractional points allocations before response validation", () => {
     expect(
       buildAnswer(
