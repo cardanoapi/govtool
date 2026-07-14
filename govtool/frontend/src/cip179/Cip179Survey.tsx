@@ -101,7 +101,13 @@ export const buildAnswer = (
         return null;
       }
     case "pointsAllocation":
-      return Array.isArray(value)
+      return Array.isArray(value) &&
+        value.every(
+          (points) =>
+            typeof points === "number" &&
+            Number.isSafeInteger(points) &&
+            points >= 0,
+        )
         ? {
             type: "pointsAllocation",
             questionIndex,
@@ -221,10 +227,13 @@ export const Cip179Survey = ({
     if (!/^[0-9a-fA-F]{56}$/.test(dRepId)) {
       return { participating, valid: false, response: null, definition };
     }
-    const answers = definition.questions.flatMap((question, index) => {
-      const answer = buildAnswer(question, index, values[index], touched.has(index));
-      return answer ? [answer] : [];
-    });
+    const builtAnswers = definition.questions.map((question, index) =>
+      buildAnswer(question, index, values[index], touched.has(index)),
+    );
+    const answers = builtAnswers.flatMap((answer) => (answer ? [answer] : []));
+    const hasInvalidTouchedAnswer = builtAnswers.some(
+      (answer, index) => touched.has(index) && answer === null,
+    );
     const response: SurveyResponse = {
       specVersion: SPEC_VERSION,
       surveyRef: {
@@ -250,6 +259,7 @@ export const Cip179Survey = ({
         : definition;
     const valid =
       answers.length > 0 &&
+      !hasInvalidTouchedAnswer &&
       validateResponse(validationDefinition, response).length === 0;
     return { participating, valid, response: valid ? response : null, definition };
   }, [dRepId, definition, link, participating, touched, values]);

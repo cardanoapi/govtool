@@ -4,6 +4,7 @@ import {
   TransactionMetadatum,
 } from "@emurgo/cardano-serialization-lib-asmjs";
 import {
+  decodePayload,
   encodeMetadata,
   Role,
   type Metadatum,
@@ -12,6 +13,7 @@ import {
 
 import {
   buildAuxiliaryData,
+  fromTransactionMetadatum,
   metadatumCodec,
   toTransactionMetadatum,
 } from "./csl";
@@ -57,6 +59,11 @@ describe("CIP-179 CSL adapter", () => {
     const encoded = encodeMetadata({ type: "responses", responses: [response] });
     if (!(encoded instanceof Map)) throw new Error("Expected metadata map");
     const auxiliaryData = buildAuxiliaryData(encoded);
-    expect(auxiliaryData.metadata()?.get(BigNum.from_str("17"))).toBeDefined();
+    const label17 = auxiliaryData.metadata()?.get(BigNum.from_str("17"));
+    expect(label17).toBeDefined();
+    expect(decodePayload(fromTransactionMetadatum(label17!))).toEqual({
+      type: "responses",
+      responses: [response],
+    });
   });
 });

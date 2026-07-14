@@ -147,4 +147,20 @@ describe("CIP-179 integration helpers", () => {
       ),
     ).toBeNull();
   });
+
+  it("rejects fractional points allocations before response validation", () => {
+    expect(
+      buildAnswer(
+        {
+          type: "pointsAllocation",
+          prompt: "Allocate",
+          options: { type: "options", labels: ["A", "B"] },
+          budget: 10,
+        },
+        0,
+        [1.5, 8.5],
+        true,
+      ),
+    ).toBeNull();
+  });
 });
