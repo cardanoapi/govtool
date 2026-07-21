@@ -1,0 +1,69 @@
+services:
+    govtool-backend:
+        image: ghcr.io/intersectmbo/govtool-backend:8f242130c1a8f5dee52fd6562f9b0424dc944afd
+        build:
+            context: ../govtool/backend
+        volumes:
+         - ../govtool/backend/example-config.json:/config.json:ro
+        entrypoint:
+        - sh
+        - -c
+        - vva-be -c /config.json start-app
+        ports:
+         - "9999:9999"
+        
+    metadata-validation:
+        image: ghcr.io/intersectmbo/govtool-metadata-validation:8f242130c1a8f5dee52fd6562f9b0424dc944afd
+        build: 
+            context: ../govtool/metadata-validation
+            dockerfile: Dockerfile
+        environment:
+            - PORT=3000
+        env_file:
+            - ../govtool/metadata-validation/.env
+        
+        ports:
+            - "3000:3000"
+
+    outcomes:
+        image: ghcr.io/intersectmbo/govtool-outcomes-pillar-backend:acf1032dae36691f8bc6af2b8e90a9b7917a557e-91
+        env_file:
+            - ./.env
+        environment:
+            DATABASE_HOST: ${DBSYNC_POSTGRES_HOST}
+            DATABASE_PORT: ${DBSYNC_POSTGRES_PORT:-5432}
+            DATABASE_NAME: ${DBSYNC_DATABASE}
+            DATABASE_USER: ${DBSYNC_POSTGRES_USER}
+            DATABASE_PASSWORD: ${DBSYNC_POSTGRES_PASSWORD}
+            IPFS_GATEWAY: ${IPFS_GATEWAY}
+            PDF_API_URL: ${PDF_API_URL}    
+        ports:
+            - "3001:3000"     
+
+    govtool-frontend:
+        image: ghcr.io/intersectmbo/govtool-frontend:8f242130c1a8f5dee52fd6562f9b0424dc944afd
+        build: 
+            context: ../govtool/frontend
+            dockerfile: Dockerfile
+        env_file:
+            - ./.envs
+        environment:
+            VITE_BASE_URL: ${BASE_URL}
+            VITE_SENTRY_DSN: ${SENTRY_DSN_FRONTEND:-}
+            VITE_APP_ENV: ${APP_ENV:-test}
+            VITE_NETWORK_FLAG: ${VITE_NETWORK_FLAG:-0}
+            VITE_USERSNAP_SPACE_API_KEY: ${USERSNAP_SPACE_API_KEY:-}
+            VITE_IS_PROPOSAL_DISCUSSION_FORUM_ENABLED: 'true'
+            VITE_METADATA_API_URL: ${METADATA_API_URL}
+            VITE_GTM_ID: ${GTM_ID:-}
+            VITE_PDF_API_URL: ${PDF_API_URL:-}
+            VITE_OUTCOMES_API_URL: ${OUTCOMES_API_URL:-}
+            VITE_IPFS_GATEWAY: ${IPFS_GATEWAY:-https://ipfs.io/ipfs}
+            VITE_IPFS_PROJECT_ID: ${IPFS_PROJECT_ID:-}
+            VITE_IS_GOVERNANCE_OUTCOMES_PILLAR_ENABLED: 'true'
+        ports:
+            - "80:80"
+        depends_on:
+            - govtool-backend
+            - metadata-validation
+            
