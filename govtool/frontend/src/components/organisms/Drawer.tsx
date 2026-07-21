@@ -13,7 +13,6 @@ import { useFeatureFlag } from "@context";
 import { useGetVoterInfo } from "@hooks";
 import { WalletInfoCard, DRepInfoCard } from "@molecules";
 import { openInNewTab } from "@utils";
-import { useMaintenanceEndingBannerContext } from "./MaintenanceEndingBanner";
 
 export const Drawer = () => {
   const {
@@ -21,8 +20,6 @@ export const Drawer = () => {
     isGovernanceOutcomesPillarEnabled,
   } = useFeatureFlag();
   const { voter } = useGetVoterInfo();
-  const { height: maintenanceEndingBannerHeight } =
-    useMaintenanceEndingBannerContext();
 
   return (
     <Box
@@ -33,9 +30,9 @@ export const Drawer = () => {
         height: "100vh",
         position: "sticky",
         width: `${DRAWER_WIDTH}px`,
-        top: maintenanceEndingBannerHeight || 0,
+        top: 0,
         overflowY: "auto",
-        maxHeight: `calc(100vh - ${maintenanceEndingBannerHeight || 0}px)`,
+        maxHeight: `calc(100vh - ${0}px)`,
       }}
     >
       <NavLink
