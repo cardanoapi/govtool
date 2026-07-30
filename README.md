@@ -55,6 +55,48 @@ The API exposes endpoints making the querying of governance related data from DB
 GovTool frontend web app communicates with the backend over a REST interface, reading and displaying on-chain governance data.
 Frontend is able to connect to Cardano wallets over the [CIP-30](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0030/README.md) and [CIP-95](https://github.com/cardano-foundation/CIPs/blob/master/CIP-0095/README.md) standards.
 
+## 🐳 Running locally with docker
+
+This repository includes a Docker Compose setup for running GovTool services locally.
+
+### Prerequisites
+- Docker and Docker Compose
+- A reachable db-sync Postgres instance
+
+### Configure environment
+Copy the example environment file and fill in the db-sync details and required URLs. Also create env files for the frontend and metadata-validation services from their examples, and make sure the backend config file is present.
+
+```bash
+cp docker/.env.example docker/.env
+```
+
+Edit docker/.env with the required values for:
+- DBSYNC_POSTGRES_HOST
+- DBSYNC_POSTGRES_PORT
+- DBSYNC_DATABASE
+- DBSYNC_POSTGRES_USER
+- DBSYNC_POSTGRES_PASSWORD
+- IPFS_GATEWAY
+- PDF_API_URL
+
+### Start services
+From the repo root:
+
+```bash
+cd docker
+```
+
+Option A: build locally (uses Dockerfiles)
+```bash
+docker compose up -d --build
+```
+
+Option B: use images only (no build)
+```bash
+docker compose pull
+docker compose up -d --no-build
+```
+
 ## 🤝 Contributing
 
 Thanks for considering contributing and helping us on creating GovTool! 😎
