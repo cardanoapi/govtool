@@ -65,11 +65,11 @@
     "rehype-katex": "^7.0.1",
     "remark-gfm": "^4.0.1",
     "remark-math": "^6.0.0",
+    "sass": "^1.102.0",
     "storybook-addon-manual-mocks": "^1.0.3",
     "storybook-addon-module-mock": "^1.6.2",
     "unidiff": "^1.0.4",
-    "yup": "^1.3.2",
-    "sass": "^1.102.0"
+    "yup": "^1.3.2"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.24.7",
@@ -82,10 +82,10 @@
     "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.3",
+    "@types/jsonld": "^1.5.13",
     "@types/node": "^22.20.1",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
-    "@types/jsonld": "^1.5.13",
     "@types/react-gtm-module": "^2.0.2",
     "@typescript-eslint/eslint-plugin": "^8.66.0",
     "@typescript-eslint/parser": "^8.66.0",
