@@ -1,6 +1,6 @@
 services:
     govtool-backend:
-        image: ghcr.io/intersectmbo/govtool-backend:8f242130c1a8f5dee52fd6562f9b0424dc944afd
+        image: ghcr.io/intersectmbo/govtool-backend:dev
         build:
             context: ../govtool/backend
         volumes:
@@ -13,7 +13,7 @@ services:
          - "9999:9999"
         
     metadata-validation:
-        image: ghcr.io/intersectmbo/govtool-metadata-validation:8f242130c1a8f5dee52fd6562f9b0424dc944afd
+        image: ghcr.io/intersectmbo/govtool-metadata-validation:dev
         build: 
             context: ../govtool/metadata-validation
             dockerfile: Dockerfile
@@ -41,7 +41,7 @@ services:
             - "3001:3000"     
 
     govtool-frontend:
-        image: ghcr.io/intersectmbo/govtool-frontend:8f242130c1a8f5dee52fd6562f9b0424dc944afd
+        image: ghcr.io/intersectmbo/govtool-frontend:dev
         build: 
             context: ../govtool/frontend
             dockerfile: Dockerfile
