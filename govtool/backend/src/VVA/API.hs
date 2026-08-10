@@ -13,7 +13,7 @@ import           Control.Exception        (throw, throwIO)
 import           Control.Monad.Except     (runExceptT, throwError)
 import           Control.Monad.Reader
 
-import           Data.Aeson               (Array, ToJSON, Value (..), decode, toJSON)
+import           Data.Aeson               (Array, ToJSON, Value (..), decode, object, toJSON, (.=))
 import           Data.Bool                (Bool)
 import           Data.ByteString.Lazy     (ByteString)
 import qualified Data.ByteString.Lazy     as BSL
@@ -50,6 +50,7 @@ import qualified VVA.Epoch                as Epoch
 import qualified VVA.Ipfs                 as Ipfs
 import           VVA.Network              as Network
 import qualified VVA.Proposal             as Proposal
+import qualified VVA.Survey               as Survey
 import qualified VVA.Transaction          as Transaction
 import qualified VVA.Types                as Types
 import           VVA.Types                (App, AppEnv (..),
@@ -89,6 +90,7 @@ type VVAApi =
                     :> QueryParam "search" Text
                     :> Get '[JSON] ListProposalsResponse
     :<|> "proposal" :> "get" :> Capture "proposalId" GovActionId :> QueryParam "drepId" HexText :> Get '[JSON] GetProposalResponse
+    :<|> "survey" :> "definition" :> Capture "txId" HexText :> Capture "index" Natural :> Get '[JSON] (Headers '[Header "Cache-Control" Text] AnyValue)
     :<|> "proposal" :> "enacted-details" :> QueryParam "type" GovernanceActionType :> Get '[JSON] (Maybe EnactedProposalDetailsResponse)
     :<|> "epoch" :> "params" :> Get '[JSON] GetCurrentEpochParamsResponse
     :<|> "transaction" :> "status" :> Capture "transactionId" HexText :> Get '[JSON] GetTransactionStatusResponse
@@ -109,6 +111,7 @@ server = upload
     :<|> getStakeKeyVotingPower
     :<|> listProposals
     :<|> getProposal
+    :<|> getSurveyDefinition
     :<|> getEnactedProposalDetails
     :<|> getCurrentEpochParams
     :<|> getTransactionStatus
@@ -117,6 +120,19 @@ server = upload
     :<|> getNetworkInfo
     :<|> getNetworkTotalStake
     :<|> getAccountInfo
+
+getSurveyDefinition :: App m => HexText -> Natural -> m (Headers '[Header "Cache-Control" Text] AnyValue)
+getSurveyDefinition (unHexText -> txId) surveyIndex = do
+  when (Text.length txId /= 64) $
+    throwError $ ValidationError "txId must be a 64-character hex string"
+  payloadCborHex <- Survey.getSurveyDefinition txId
+  pure $ addHeader "public, max-age=31536000, immutable" $ AnyValue $ Just $
+    object
+      [ "txId" .= Text.toLower txId
+      , "surveyIndex" .= surveyIndex
+      , "metadataLabel" .= (17 :: Integer)
+      , "payloadCborHex" .= payloadCborHex
+      ]
 
 upload :: App m => Maybe Text -> Text -> m UploadResponse
 upload mFileName fileContentText = do
