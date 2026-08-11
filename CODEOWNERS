@@ -2,7 +2,7 @@
 
 # These owners will be the default owners for everything in the repository.
 
-* @mesudip @spannercode
+* @mesudip @sireto-sandip @dquadrantdev
 
 # Frontend assets templates
 govtool/frontend/*                                                          
