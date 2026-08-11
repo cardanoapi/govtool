@@ -2,7 +2,7 @@
 
 # These owners will be the default owners for everything in the repository.
 
-* @mesudip @sireto-sandip @dquadrantdev
+* @mesudip @sireto-sandip @kusssal
 
 # Frontend assets templates
 govtool/frontend/*                                                          
@@ -14,7 +14,7 @@ govtool/frontend/*
 govtool/backend/*                                                           
 
 # DevOps
-.github/workflows/* @aron                                                        
+.github/workflows/*
 config/govtool/*                                                            
 infra/terraform/*                                                           
 
