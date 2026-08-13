@@ -6,16 +6,21 @@ This folder contains a compose file for running GovTool services locally.
 - Docker and Docker Compose
 - A reachable db-sync Postgres instance
 
-## Configure outcomes environment
-Copy the example file and fill in the db-sync details and required URLs. Also create env files for the frontend and metadata-validation services from their examples. Make sure the backend config file is present.
-
-Note: The .env.example in this foler is for outcomes service only.
+## Configure environment
+From the repo root
 
 ```bash
-cp docker/.env.example docker/.env
+cd docker
+cp .env.example .env
 ```
+> [!NOTE]
+> Update the backend config file used by the `govtool-backend` service in `../govtool/backend/example-config.json` before starting the stack.
 
-Edit docker/.env with real values:
+Also fill in the db-sync details and required URLs in the outcomes env file. Create env files for the frontend and metadata-validation services from their examples if they are not already present.
+
+Note: The `.env.example` in this folder is for the outcomes service only.
+
+Edit `docker/.env` with real values:
 - DBSYNC_POSTGRES_HOST
 - DBSYNC_POSTGRES_PORT
 - DBSYNC_DATABASE
@@ -25,11 +30,6 @@ Edit docker/.env with real values:
 - PDF_API_URL
 
 ## Start services
-From the repo root:
-
-```bash
-cd docker
-```
 
 Option A: build locally (uses Dockerfiles)
 ```bash 
