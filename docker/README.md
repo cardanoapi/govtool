@@ -14,7 +14,7 @@ cd docker
 cp .env.example .env
 ```
 > [!NOTE]
-> Update the backend config file used by the `govtool-backend` service in `../govtool/backend/example-config.json` before starting the stack.
+> Update the backend config file used by the `govtool-backend` service in [`example-config.json`](../govtool/backend/example-config.json) before starting the stack.
 
 Also fill in the db-sync details and required URLs in the outcomes env file. Create env files for the frontend and metadata-validation services from their examples if they are not already present.
 
@@ -47,5 +47,4 @@ docker compose up -d --no-build
 - Backend API: http://localhost:9999
 - Metadata validation: http://localhost:3000
 - Outcomes API: http://localhost:3001
-
 
