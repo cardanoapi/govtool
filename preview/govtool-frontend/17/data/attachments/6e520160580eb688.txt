@@ -1,0 +1,5 @@
+✔ Uploaded Porter metadata to bucket
+ℹ Submitting tx: {"lock_id":"42d4d9ef998d7d47baae639afbdc7854a6368ba193b3d7f4269ce51d190ab34b","tx":{"certificates":[{"type":"registerdrep","key":"eb92bdc7cbb749b256ebe57b054baf6c838e1fc9a5694a4b0f6c10b4","anchor":{"url":"https://metadata-govtool.cardanoapi.io/data/Porter","dataHash":"87275429e5b584c3c3b6f14f3dda38dba51730b47eb0010db68c29433a0d832c"}}],"selections":[{"type":"PaymentSigningKeyShelley_ed25519","description":"Stake Signing Key","cborHex":"5820b4402eaac2c5b6fc3b221d138c87a46527368b1478ea1e4917421e2a112cc50f"},{"type":"PaymentSigningKeyShelley_ed25519","description":"Payment Signing Key","cborHex":"58204a6ae978d1656381cfe8d9316c7262dd96d72a0c2ce6368ad8559b392170aa0e"},"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"],"changeAddress":"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"}}
+✔ Tx submitted: edb0c9c2ab9f385829683a1c3248a2bbf29f58bdbfac54fcfa190b4c0a311815
+ℹ Waiting for tx completion: edb0c9c2ab9f385829683a1c3248a2bbf29f58bdbfac54fcfa190b4c0a311815
+✔ Tx completed

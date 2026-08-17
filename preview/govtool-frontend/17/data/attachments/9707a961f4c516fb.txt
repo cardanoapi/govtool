@@ -1,0 +1,8 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 429 ()
+✔ Uploaded Laury.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: f04c897d0c85009d0110b8c234ae146e44324de469168d38835ec4bd88750554
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

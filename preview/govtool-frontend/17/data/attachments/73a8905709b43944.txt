@@ -1,0 +1,5 @@
+wallet balance 1022
+wallet address addr_test1qpvj5qsxgcmh03crz2avsfuepwjjd4g5fnv3r4st0t8sjd449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998qxnn9g4
+✖ Failed to load resource: the server responded with a status of 404 ()
+Username is already set
+3

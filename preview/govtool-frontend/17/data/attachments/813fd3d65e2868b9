@@ -1,0 +1,246 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 10-user-snap/userSnap.spec.ts >> 10A. Should open feedback modal
+- Location: tests/10-user-snap/userSnap.spec.ts:16:5
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByLabel('Usersnap widget')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for getByLabel('Usersnap widget')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - banner [ref=e11]:
+    - generic [ref=e12]:
+      - link "app-logo" [ref=e13] [cursor=pointer]:
+        - /url: /
+        - img "app-logo" [ref=e14]
+      - generic [ref=e15]:
+        - button "Connect" [ref=e16] [cursor=pointer]: Connect
+        - img "drawer-icon" [ref=e17]
+  - generic [ref=e19]:
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - paragraph [ref=e22]: Cardano Governance Tool
+        - paragraph [ref=e23]: Cardano Governance lets Ada holders have a say in the network's future. You can vote directly, find someone to represent you, or become a representative for others. You can also propose changes in the network yourself, put these up for discussion and eventually, a vote. Learn more about governance in the guide, or have a look around the app and see Cardano Governance in action.
+        - button "Participate now" [ref=e24] [cursor=pointer]:
+          - text: Participate now
+          - img [ref=e26]
+      - img "hero" [ref=e29]
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - generic [ref=e33]:
+            - img "action-card" [ref=e34]
+            - paragraph [ref=e35]: Delegate your Voting Power
+            - paragraph [ref=e36]: Find a DRep to vote on your behalf.
+          - generic [ref=e37]:
+            - button "View DRep Directory" [ref=e38] [cursor=pointer]: View DRep Directory
+            - button "Learn more" [ref=e39] [cursor=pointer]: Learn more
+        - generic [ref=e40]:
+          - generic [ref=e41]:
+            - img "action-card" [ref=e42]
+            - paragraph [ref=e43]: Become a DRep
+            - paragraph [ref=e44]: Accept delegated voting power from other Ada holders, and combine it with your own voting power. Vote with the accumulated Power on Governance Actions.
+          - generic [ref=e45]:
+            - button "Connect to Register" [ref=e46] [cursor=pointer]: Connect to Register
+            - button "Learn more" [ref=e47] [cursor=pointer]: Learn more
+        - generic [ref=e48]:
+          - generic [ref=e49]:
+            - img "action-card" [ref=e50]
+            - paragraph [ref=e51]: Become a Direct Voter
+            - paragraph [ref=e52]: Vote on Governance Actions using your own voting power
+          - generic [ref=e53]:
+            - button "Connect to Register" [ref=e54] [cursor=pointer]: Connect to Register
+            - button "Learn more" [ref=e55] [cursor=pointer]: Learn more
+        - generic [ref=e56]:
+          - generic [ref=e57]:
+            - img "action-card" [ref=e58]
+            - paragraph [ref=e59]: View Governance Actions
+            - paragraph [ref=e60]: See all the Governance Actions submitted on chain.
+          - button "View Governance Actions" [ref=e62] [cursor=pointer]: View Governance Actions
+        - generic [ref=e63]:
+          - generic [ref=e64]:
+            - img "action-card" [ref=e65]
+            - paragraph [ref=e66]: Propose a Governance Action
+            - paragraph [ref=e67]: Submit your proposal for a Governance Action.
+          - generic [ref=e68]:
+            - button "Connect to Propose" [ref=e69] [cursor=pointer]: Connect to Propose
+            - button "View Proposals" [ref=e70] [cursor=pointer]: View Proposals
+      - generic [ref=e71]:
+        - paragraph [ref=e72]: Useful links
+        - generic [ref=e73]:
+          - generic [ref=e74]:
+            - paragraph [ref=e75]: Check the Constitutional Committee Portal
+            - paragraph [ref=e76]: See Interim Cardano Constitution and Constitutional committee votes rationales
+            - link "CC Portal link" [ref=e77] [cursor=pointer]:
+              - /url: https://constitution.gov.tools
+              - paragraph [ref=e78]: CC Portal
+              - img "link" [ref=e79]
+          - generic [ref=e80]:
+            - paragraph [ref=e81]: Intersect website
+            - paragraph [ref=e82]: Intersect is a member-based organization for the Cardano ecosystem — putting the community at the center of Cardano’s development
+            - link "Intersect website link" [ref=e83] [cursor=pointer]:
+              - /url: https://www.intersectmbo.org/
+              - paragraph [ref=e84]: Intersect website
+              - img "link" [ref=e85]
+    - contentinfo [ref=e86]:
+      - paragraph [ref=e87]: © 2026 GovTool
+      - generic [ref=e88]:
+        - generic [ref=e89] [cursor=pointer]: Privacy policy
+        - generic [ref=e90] [cursor=pointer]: Terms of Use
+      - generic [ref=e91]:
+        - button "helpIcon Help" [ref=e92] [cursor=pointer]:
+          - img "helpIcon" [ref=e94]
+          - text: Help
+        - button "Feedback" [active] [ref=e95] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e96]
+```
+
+# Test source
+
+```ts
+  1   | import { faker } from "@faker-js/faker";
+  2   | import { test } from "@fixtures/walletExtension";
+  3   | import { setAllureEpic } from "@helpers/allure";
+  4   | import { isMobile } from "@helpers/mobile";
+  5   | import { expect, Page } from "@playwright/test";
+  6   | import { randomUUID } from "crypto";
+  7   | 
+  8   | test.beforeEach(async ({ page }) => {
+  9   |   await setAllureEpic("10. User Snap");
+  10  |   await page.goto("/");
+  11  |   await page.waitForTimeout(2_000); // wait until page load properly
+  12  | 
+  13  |   await page.getByTestId("feedback-footer-button").click();
+  14  | });
+  15  | 
+  16  | test("10A. Should open feedback modal", async ({ page }) => {
+> 17  |   await expect(page.getByLabel("Usersnap widget")).toBeVisible();
+      |                                                    ^ Error: expect(locator).toBeVisible() failed
+  18  |   await expect(
+  19  |     page.getByRole("button", {
+  20  |       name: "Report an issue Something",
+  21  |     })
+  22  |   ).toBeVisible();
+  23  |   await expect(
+  24  |     page.getByRole("button", { name: "Send an idea Let us know what" })
+  25  |   ).toBeVisible();
+  26  | });
+  27  | 
+  28  | test("10B. Should verify a bug report form", async ({ page }) => {
+  29  |   await page
+  30  |     .getByRole("button", {
+  31  |       name: "Report an issue Something",
+  32  |     })
+  33  |     .click();
+  34  |   await expect(
+  35  |     page.getByRole("button", { name: "Close annotation" })
+  36  |   ).toBeVisible();
+  37  | 
+  38  |   if (isMobile(page)) {
+  39  |     await expect(
+  40  |       page.getByRole("button", { name: "Add screenshot" })
+  41  |     ).toBeVisible();
+  42  |     await page.getByRole("button", { name: "Close annotation" }).click();
+  43  |     await expect(page.getByLabel("Take screenshot")).toBeVisible();
+  44  |   }
+  45  | 
+  46  |   await expect(
+  47  |     page.getByRole("heading", { name: "Report a bug" })
+  48  |   ).toBeVisible();
+  49  |   await expect(page.getByPlaceholder("Add description")).toBeVisible();
+  50  |   await expect(page.getByLabel("Record")).toBeVisible();
+  51  |   await expect(page.getByRole("button", { name: "Submit" })).toBeVisible();
+  52  | 
+  53  |   // check record action
+  54  |   await page.getByLabel("Record").click();
+  55  |   await expect(
+  56  |     page.getByRole("button", { name: "Cancel recording" })
+  57  |   ).toBeVisible();
+  58  | });
+  59  | 
+  60  | test("10C. Should verify feature form", async ({ page }) => {
+  61  |   await page
+  62  |     .getByRole("button", { name: "Send an idea Let us know what" })
+  63  |     .click();
+  64  | 
+  65  |   await expect(
+  66  |     page.getByRole("heading", { name: "Feature Request" })
+  67  |   ).toBeVisible();
+  68  |   await expect(page.getByPlaceholder("Feature description")).toBeVisible();
+  69  |   await expect(page.getByPlaceholder("Please add some context")).toBeVisible();
+  70  |   await expect(page.getByLabel("Take screenshot")).toBeVisible();
+  71  |   await expect(page.getByLabel("Record")).toBeVisible();
+  72  |   await expect(
+  73  |     page.getByRole("button", { name: "Request Feature" })
+  74  |   ).toBeVisible();
+  75  | 
+  76  |   // check screenshot action
+  77  |   await page.getByLabel("Take screenshot").click();
+  78  |   await expect(
+  79  |     page.getByRole("button", { name: "Close annotation" })
+  80  |   ).toBeVisible();
+  81  |   await expect(
+  82  |     page.getByRole("button", { name: "Add screenshot" })
+  83  |   ).toBeVisible();
+  84  |   await page.getByRole("button", { name: "Close annotation" }).click();
+  85  | 
+  86  |   // check record action
+  87  |   await page.getByLabel("Record").click();
+  88  |   await expect(
+  89  |     page.getByRole("button", { name: "Cancel recording" })
+  90  |   ).toBeVisible();
+  91  | });
+  92  | 
+  93  | test.describe("Submit Usersnap", () => {
+  94  |   const feedbackApiUrl =
+  95  |     "https://widget.usersnap.com/api/widget/xhrrpc?submit_feedback";
+  96  |   const bucketUrl = "https://s3.eu-central-1.amazonaws.com/upload.usersnap.com";
+  97  | 
+  98  |   const interceptBucket = async (page: Page) => {
+  99  |     await page.route(bucketUrl, async (route) =>
+  100 |       route.fulfill({
+  101 |         status: 204,
+  102 |       })
+  103 |     );
+  104 |   };
+  105 | 
+  106 |   const interceptUsersnap = async (page: Page) => {
+  107 |     await page.route(feedbackApiUrl, async (route) =>
+  108 |       route.fulfill({
+  109 |         status: 200,
+  110 |         body: JSON.stringify({
+  111 |           status: true,
+  112 |           data: {
+  113 |             feedback: {
+  114 |               feedback_id: randomUUID(),
+  115 |               assignee_id: randomUUID(),
+  116 |               labels: [],
+  117 |             },
+```

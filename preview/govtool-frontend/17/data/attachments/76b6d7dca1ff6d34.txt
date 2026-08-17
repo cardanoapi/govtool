@@ -1,0 +1,6 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Uploaded Angeline.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 7d9a54d4b5c48dc9b8dfb2a6090bf3de658ea4d861b7ac87a52117fda0f50c5c
+✔ Tx completed

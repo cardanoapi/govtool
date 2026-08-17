@@ -1,0 +1,301 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 4-proposal-visibility/proposalVisibility.spec.ts >> 4C_3. Should filter and sort Governance Action Type on governance actions page
+- Location: tests/4-proposal-visibility/proposalVisibility.spec.ts:118:5
+
+# Error details
+
+```
+Test timeout of 540000ms exceeded.
+```
+
+```
+Error: page.waitForResponse: Test timeout of 540000ms exceeded.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - banner [ref=e12]:
+      - generic [ref=e13]:
+        - link "app-logo" [ref=e14] [cursor=pointer]:
+          - /url: /
+          - img "app-logo" [ref=e15]
+        - navigation [ref=e16]:
+          - generic [ref=e17]:
+            - link "Home" [ref=e19] [cursor=pointer]:
+              - /url: /
+              - paragraph [ref=e20]: Home
+            - link "DRep Directory" [ref=e22] [cursor=pointer]:
+              - /url: /drep_directory
+              - paragraph [ref=e23]: DRep Directory
+            - link "Budget Proposals" [ref=e25] [cursor=pointer]:
+              - /url: /budget_discussion
+              - paragraph [ref=e26]: Budget Proposals
+            - paragraph [ref=e28] [cursor=pointer]:
+              - generic [ref=e29]:
+                - text: Governance Actions
+                - img "dropdown-icon" [ref=e30]
+            - link "Guides" [ref=e32] [cursor=pointer]:
+              - /url: /governance_actions
+              - paragraph [ref=e33]: Guides
+            - link "FAQs" [ref=e35] [cursor=pointer]:
+              - /url: /governance_actions
+              - paragraph [ref=e36]: FAQs
+            - button "Connect Wallet" [ref=e38] [cursor=pointer]: Connect Wallet
+    - generic [ref=e39]:
+      - paragraph [ref=e40]: Live Voting
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]:
+            - generic [ref=e44]:
+              - img [ref=e45]
+              - textbox "Search..." [ref=e47]
+            - generic [ref=e49]:
+              - generic [ref=e50] [cursor=pointer]:
+                - img "filter" [ref=e51]
+                - paragraph [ref=e52]: Filter
+                - paragraph [ref=e54]: "1"
+              - generic [ref=e55] [cursor=pointer]:
+                - img "sort" [ref=e56]
+                - paragraph [ref=e57]: "Sort by: Soon to expire"
+              - generic [ref=e59]:
+                - generic [ref=e60]:
+                  - paragraph [ref=e61]: Sort by
+                  - paragraph [ref=e63] [cursor=pointer]: Clear
+                - radiogroup [ref=e64]:
+                  - generic [ref=e65] [cursor=pointer]:
+                    - generic [ref=e66]:
+                      - radio "Soon to expire" [checked] [active] [ref=e67]
+                      - generic [ref=e68]:
+                        - img [ref=e69]
+                        - img [ref=e71]
+                    - generic [ref=e73]: Soon to expire
+                  - generic [ref=e74] [cursor=pointer]:
+                    - generic [ref=e75]:
+                      - radio "Newest first" [ref=e76]
+                      - img [ref=e78]
+                    - generic [ref=e80]: Newest first
+                  - generic [ref=e81] [cursor=pointer]:
+                    - generic [ref=e82]:
+                      - radio "Highest amount of 'Yes' votes" [ref=e83]
+                      - img [ref=e85]
+                    - generic [ref=e87]: Highest amount of 'Yes' votes
+          - button "No Confidence" [ref=e89]:
+            - generic [ref=e90]: No Confidence
+            - button [ref=e91] [cursor=pointer]:
+              - img [ref=e92]
+        - paragraph [ref=e95]: No results for the search.
+    - contentinfo [ref=e96]:
+      - paragraph [ref=e97]: © 2026 GovTool
+      - generic [ref=e98]:
+        - generic [ref=e99] [cursor=pointer]: Privacy policy
+        - generic [ref=e100] [cursor=pointer]: Terms of Use
+      - generic [ref=e101]:
+        - button "helpIcon Help" [ref=e102] [cursor=pointer]:
+          - img "helpIcon" [ref=e104]
+          - text: Help
+        - button "Feedback" [ref=e105] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e106]
+```
+
+# Test source
+
+```ts
+  57  |   ): Promise<GovernanceActionDetailsPage> {
+  58  |      const proposalCard = this.page
+  59  |           .locator('[data-testid^="govaction-"][data-testid$="-card"]')
+  60  |           .first();
+  61  | 
+  62  |     const isVisible = await proposalCard.isVisible();
+  63  | 
+  64  |     if (isVisible) {
+  65  |       await proposalCard
+  66  |         .locator('[data-testid^="govaction-"][data-testid$="-view-detail"]')
+  67  |         .first()
+  68  |         .click();
+  69  | 
+  70  |       return new GovernanceActionDetailsPage(this.page);
+  71  |     } else {
+  72  |       console.warn(
+  73  |         `Governance action details page for "${governanceAction}" was not found.`
+  74  |       );
+  75  |       return null;
+  76  |     }
+  77  |   }
+  78  | 
+  79  |   async getFirstProposal(
+  80  |   ) {
+  81  |     await functionWaitedAssert(
+  82  |       async () => {
+  83  |         const proposalCard = this.page
+  84  |           .locator('[data-testid^="govaction-"][data-testid$="-card"]')
+  85  |           .first();
+  86  | 
+  87  |         await expect(proposalCard
+  88  |           .locator('[data-testid^="govaction-"][data-testid$="-view-detail"]')
+  89  |           .first()).toBeVisible()
+  90  |       }, { name: "Retrying to get the first proposal" });
+  91  |   }
+  92  | 
+  93  |   async viewVotedProposal(
+  94  |     proposal: IProposal
+  95  |   ): Promise<GovernanceActionDetailsPage> {
+  96  |     const proposalId = `govaction-${proposal.txHash}#${proposal.index}-change-your-vote`;
+  97  |     await this.page.getByTestId(proposalId).click();
+  98  | 
+  99  |     return new GovernanceActionDetailsPage(this.page);
+  100 |   }
+  101 | 
+  102 |   async filterProposalByNames(names: string[]) {
+  103 |     for (const name of names) {
+  104 |       const sanitizedProposalName = removeAllSpaces(name);
+  105 |       await this.page.getByTestId(`${sanitizedProposalName}-checkbox`).click();
+  106 |     }
+  107 |   }
+  108 | 
+  109 |   async unFilterProposalByNames(names: string[]) {
+  110 |     for (const name of names) {
+  111 |       const sanitizedProposalName = removeAllSpaces(name);
+  112 |       await this.page.getByTestId(`${sanitizedProposalName}-checkbox`).click();
+  113 |     }
+  114 |   }
+  115 | 
+  116 |   async getAllProposals(): Promise<Locator[]> {
+  117 |     await waitedLoop(async () => {
+  118 |       return (
+  119 |         (await this.page.locator('[data-testid$="-card"]').count()) > 0 ||
+  120 |         (await this.page.getByText("No results for the search.").isVisible())
+  121 |       );
+  122 |     });
+  123 |     return this.page.locator('[data-testid$="-card"]').all();
+  124 |   }
+  125 | 
+  126 |   async validateFilters(filters: string[]) {
+  127 |     await functionWaitedAssert(async () => {
+  128 |       const proposalCards = await this.getAllProposals();
+  129 | 
+  130 |       for (const proposalCard of proposalCards) {
+  131 |         if (await proposalCard.locator('[data-testid$="-type"]').isVisible()) {
+  132 |           const hasFilter = await this._validateFiltersInProposalCard(
+  133 |             proposalCard,
+  134 |             filters
+  135 |           );
+  136 |           expect(
+  137 |             hasFilter,
+  138 |             hasFilter == false &&
+  139 |             `A proposal card does not contain any of the ${filters}`
+  140 |           ).toBe(true);
+  141 |         }
+  142 |       }
+  143 |     });
+  144 |   }
+  145 | 
+  146 |   async sortProposal(option: string) {
+  147 |     await this.page.getByTestId(`${option}-radio`).check();
+  148 |   }
+  149 | 
+  150 |   async sortAndValidate(
+  151 |     sortOption: string,
+  152 |     validationFn: (p1: IProposal, p2: IProposal) => boolean,
+  153 |     filterKeys = Object.keys(GovernanceActionType)
+  154 |   ) {
+  155 |     const responsesPromise = Promise.all(
+  156 |       filterKeys.map((filterKey) =>
+> 157 |         this.page.waitForResponse((response) =>
+      |                   ^ Error: page.waitForResponse: Test timeout of 540000ms exceeded.
+  158 |           response
+  159 |             .url()
+  160 |             .includes(
+  161 |               `&type[]=${GovernanceActionType[filterKey]}&sort=${sortOption}`
+  162 |             )
+  163 |         )
+  164 |       )
+  165 |     );
+  166 | 
+  167 |     await this.sortProposal(sortOption);
+  168 |     const responses = await responsesPromise;
+  169 | 
+  170 |     let proposalData: IProposal[][] = await Promise.all(
+  171 |       responses.map(async (response) => {
+  172 |         const { elements } = await response.json();
+  173 |         return elements.length ? elements : null;
+  174 |       })
+  175 |     );
+  176 |     const proposalsByType = proposalData.filter(Boolean);
+  177 | 
+  178 |     // API validation
+  179 |     proposalsByType.forEach(async (proposalList) => {
+  180 |       if (proposalList.length <= 1) return;
+  181 | 
+  182 |       const proposals = proposalList;
+  183 |       for (let i = 0; i <= proposals.length - 2; i++) {
+  184 |         const isValid = validationFn(proposals[i], proposals[i + 1]);
+  185 |         expect(isValid).toBe(true);
+  186 |       }
+  187 |     });
+  188 | 
+  189 |     await expect(
+  190 |       this.page.getByRole("progressbar").getByRole("img")
+  191 |     ).toBeHidden({ timeout: 20_000 });
+  192 | 
+  193 |     await functionWaitedAssert(
+  194 |       async () => {
+  195 |         // Frontend validation
+  196 |         for (let dIdx = 0; dIdx <= proposalsByType.length - 1; dIdx++) {
+  197 |           const proposals = proposalsByType[0] as IProposal[];
+  198 |           const filterOptionKey = getEnumKeyByValue(
+  199 |             GovernanceActionType,
+  200 |             proposals[0].type
+  201 |           );
+  202 | 
+  203 |           const slides = await this.page
+  204 |             .locator(`[data-testid="govaction-${filterOptionKey}-card"]`)
+  205 |             .all();
+  206 | 
+  207 |           const actualSlidesInDisplay =
+  208 |             proposals.length > MAX_SLIDES_DISPLAY_PER_TYPE
+  209 |               ? MAX_SLIDES_DISPLAY_PER_TYPE
+  210 |               : proposals.length;
+  211 | 
+  212 |           expect(slides).toHaveLength(actualSlidesInDisplay);
+  213 | 
+  214 |           for (let i = 0; i <= slides.length - 1; i++) {
+  215 |             await expect(slides[i]).toContainText(`${proposals[i].txHash}`);
+  216 |           }
+  217 |         }
+  218 |       },
+  219 |       {
+  220 |         name: `frontend sort validation of ${sortOption} and filter ${filterKeys}`,
+  221 |       }
+  222 |     );
+  223 |   }
+  224 | 
+  225 |   async _validateFiltersInProposalCard(
+  226 |     proposalCard: Locator,
+  227 |     filters: string[]
+  228 |   ): Promise<boolean> {
+  229 |     const govActionTypeTextContent = await proposalCard
+  230 |       .locator('[data-testid$="-type"]')
+  231 |       .textContent();
+  232 |     const govActionType = govActionTypeTextContent.split(":")[1];
+  233 | 
+  234 |     return filters.includes(govActionType);
+  235 |   }
+  236 | }
+  237 | 
+```
