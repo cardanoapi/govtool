@@ -59,3 +59,9 @@ Frontend is able to connect to Cardano wallets over the [CIP-30](https://github.
 
 This repository includes a Docker Compose setup for running GovTool services locally.
 For local setup instructions, see the [Docker Compose README](docker/README.md).
+
+## 🤝 Contributing
+
+Thanks for considering contributing and helping us on creating GovTool! 😎
+
+Please checkout our [Contributing Documentation](./CONTRIBUTING.md).
