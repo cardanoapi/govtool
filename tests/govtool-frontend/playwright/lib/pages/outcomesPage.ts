@@ -81,9 +81,22 @@ export default class OutComesPage {
     const formattedNames = names.map((name) =>
       name === "Info Action" ? "Info" : name
     );
+
     for (const name of formattedNames) {
       const testId = name.toLowerCase().replace(/ /g, "-");
-      await this.page.getByTestId(`${testId}-checkbox`).click();
+
+      if (!(await this.page.getByTestId("filters-menu").isVisible())) {
+        await this.filterBtn.click();
+        await expect(this.page.getByTestId("filters-menu")).toBeVisible();
+      }
+
+      const checkboxWrapper = this.page.getByTestId(
+        `${testId}-checkbox-wrapper`
+      );
+
+      await checkboxWrapper.scrollIntoViewIfNeeded();
+      await expect(checkboxWrapper).toBeVisible();
+      await checkboxWrapper.click();
     }
   }
 

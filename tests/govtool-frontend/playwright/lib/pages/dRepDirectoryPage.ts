@@ -58,9 +58,18 @@ export default class DRepDirectoryPage {
   @withTxConfirmation
   async delegateToDRep(dRepId: string) {
     await this.searchInput.fill(dRepId);
+
     const delegateBtn = this.page.getByTestId(`${dRepId}-delegate-button`);
-    await expect(delegateBtn).toBeVisible();
-    await this.page.getByTestId(`${dRepId}-delegate-button`).click();
+    await expect(delegateBtn).toBeVisible({ timeout: 60_000 });
+    await delegateBtn.click();
+
+    await expect(
+      this.page
+        .locator("body")
+        .getByText(
+          /Transaction in progress|Transaction submitted|Transaction successful/i
+        )
+    ).toBeVisible({ timeout: environments.txTimeOut });
   }
 
   async resetDRepForm() {

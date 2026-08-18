@@ -276,32 +276,36 @@ test.describe("Perform voting", () => {
       govActionDetailsPage.currentPage
     );
 
-    await governanceActionsPage.getFirstProposal();
+    await expect(async () => {
+      await governanceActionsPage.currentPage.reload();
+      await governanceActionsPage.votedTab.click();
 
-    await governanceActionsPage.votedTab.click();
-    await expect(
-      govActionDetailsPage.currentPage.getByTestId("my-vote").getByText("Yes")
-    ).toBeVisible();
+      await expect(
+        governanceActionsPage.currentPage.getByTestId("my-vote")
+      ).toContainText(/yes/i);
+    }).toPass({
+      timeout: environments.txTimeOut,
+    });
   });
 
    const verifyVoteWithMetadata = async (testInfo: any, useGovToolIPFS: boolean = false) => {
     test.setTimeout(testInfo.timeout + environments.txTimeOut);
     const fakerContext = faker.lorem.sentence(200);
-    
+
     if (useGovToolIPFS) {
       await govActionDetailsPage.vote(fakerContext, false, true);
     } else {
       await govActionDetailsPage.vote(fakerContext);
     }
-    
+
     await dRepPage.reload();
     await dRepPage.waitForTimeout(5_000);
     await govActionsPage.votedTab.click();
-    
+
     const votedGovActionDetailsPage = await govActionsPage.viewFirstVotedProposal();
     await votedGovActionDetailsPage.currentPage.getByTestId("show-more-button").click();
     await votedGovActionDetailsPage.currentPage.waitForTimeout(2000);
-    
+
     const voteRationaleContext = await votedGovActionDetailsPage.currentPage.getByTestId("vote-rationale-context");
     await expect(voteRationaleContext).toContainText(fakerContext);
   };

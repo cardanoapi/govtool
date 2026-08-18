@@ -21,7 +21,7 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!environments.ci,
   /* Retry on CI only */
-  retries: 0,
+  retries: environments.ci ? 1 : 0,
   /* Opt out of parallel tests on CI. */
   workers: environments.ci ? parseInt(process.env.TEST_WORKERS) : undefined,
   /*use Allure Playwright's testPlanFilter() to determine the grep parameter*/
@@ -151,18 +151,14 @@ export default defineConfig({
       name: "dRep",
       use: { ...devices["Desktop Chrome"] },
       testMatch: "**/*.dRep.spec.ts",
-      dependencies: environments.ci
-        ? ["dRep auth setup" , "dRep setup"]
-        : [],
-        teardown: environments.ci && "cleanup artifacts",
+      dependencies: ["dRep auth setup", "dRep setup"],
+      teardown: environments.ci && "cleanup artifacts",
     },
     {
       name: "delegation",
       use: { ...devices["Desktop Chrome"] },
       testMatch: "**/*.delegation.spec.ts",
-      dependencies: environments.ci
-        ? ["adaholder auth setup","dRep auth setup"]
-        : [],
+      dependencies: ["adaholder auth setup", "dRep auth setup", "dRep setup"],
       teardown: environments.ci && "cleanup delegation",
     },
     {

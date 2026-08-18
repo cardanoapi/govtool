@@ -21,6 +21,37 @@ export type TxSubmitResponse = {
   lockInfo?: LockInterceptorInfo;
 };
 
+type MergeUtXosBatchOptions = {
+  batchSize?: number;
+  continueOnError?: boolean;
+  onBatchSubmitted?: (
+    result: TxSubmitResponse,
+    context: {
+      batchNumber: number;
+      totalBatches: number;
+      wallets: StaticWallet[];
+    }
+  ) => Promise<void> | void;
+};
+
+type MergeUtXosBatchError = {
+  batchNumber: number;
+  totalBatches: number;
+  wallets: StaticWallet[];
+  error: unknown;
+};
+
+type MergeUtXosBatchResult = {
+  results: Array<
+    TxSubmitResponse & {
+      batchNumber: number;
+      totalBatches: number;
+      wallets: StaticWallet[];
+    }
+  >;
+  errors: MergeUtXosBatchError[];
+};
+
 type KuberBalanceResponse = {
   txin: string;
   value: KuberValue;
@@ -91,7 +122,8 @@ class Kuber {
     };
     return LockInterceptor.intercept<TxSubmitResponse>(
       this.walletAddr,
-      submitTxCallback
+      submitTxCallback,
+      lockId
     );
   }
 
@@ -114,6 +146,19 @@ class Kuber {
       txId: submittedTxHash,
     };
   }
+}
+
+const DEFAULT_MERGE_UTXO_BATCH_SIZE = 5;
+
+function chunkItems<T>(items: T[], chunkSize: number): T[][] {
+  const normalizedChunkSize = Math.max(1, chunkSize);
+  const chunks: T[][] = [];
+
+  for (let index = 0; index < items.length; index += normalizedChunkSize) {
+    chunks.push(items.slice(index, index + normalizedChunkSize));
+  }
+
+  return chunks;
 }
 
 const kuberService = {
@@ -183,6 +228,64 @@ const kuberService = {
       selections,
       changeAddress: getWalletConfigForFaucet().address,
     });
+  },
+
+  async mergeUtXosInBatches(
+    wallets: StaticWallet[],
+    options: MergeUtXosBatchOptions = {}
+  ): Promise<MergeUtXosBatchResult> {
+    const {
+      batchSize = DEFAULT_MERGE_UTXO_BATCH_SIZE,
+      continueOnError = true,
+      onBatchSubmitted,
+    } = options;
+    const walletBatches = chunkItems(wallets, batchSize);
+    const results: MergeUtXosBatchResult["results"] = [];
+    const errors: MergeUtXosBatchResult["errors"] = [];
+
+    for (const [index, walletBatch] of walletBatches.entries()) {
+      const batchNumber = index + 1;
+      const totalBatches = walletBatches.length;
+
+      try {
+        Logger.info(
+          `Merging faucet UTXOs batch ${batchNumber}/${totalBatches} with ${walletBatch.length} wallet(s)`
+        );
+        const result = await this.mergeUtXos(walletBatch);
+        const batchResult = {
+          ...result,
+          batchNumber,
+          totalBatches,
+          wallets: walletBatch,
+        };
+
+        results.push(batchResult);
+
+        if (onBatchSubmitted) {
+          await onBatchSubmitted(result, {
+            batchNumber,
+            totalBatches,
+            wallets: walletBatch,
+          });
+        }
+      } catch (error) {
+        Logger.fail(
+          `Failed to merge faucet UTXOs batch ${batchNumber}/${totalBatches}: ${error}`
+        );
+        errors.push({
+          batchNumber,
+          totalBatches,
+          wallets: walletBatch,
+          error,
+        });
+
+        if (!continueOnError) {
+          break;
+        }
+      }
+    }
+
+    return { results, errors };
   },
 
   transferADA: (receiverAddressList: string[], ADA = 20) => {

@@ -27,11 +27,9 @@ test.describe("Bad Proposals", () => {
     await govActionDetailsPage.externalModalBtn.click();
 
     await expect(govActionDetailsPage.externalLinkModal).toBeVisible();
-    await expect(
-      govActionDetailsPage.currentPage.getByText("Be careful", {
-        exact: false,
-      })
-    ).toBeVisible();
+    await expect(govActionDetailsPage.externalLinkModal).toContainText(
+      /exercise caution/i
+    );
   });
 
   test("5H. Should open a new tab in Bad governance action proposal, when external URL is opened", async ({

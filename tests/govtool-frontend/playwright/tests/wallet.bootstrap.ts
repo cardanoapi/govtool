@@ -23,7 +23,12 @@ setup("Initialize static wallets", async () => {
     await pollTransaction(res.txId);
   } catch (err) {
     if (err.status === 400 && err.message.includes("StakeKeyRegisteredDELEG")) {
-      expect(true, "Wallets already initialized").toBeTruthy();
+      const refillRes = await kuberService.transferADA(
+        totalWalletsToInitialize.map((wallet) => wallet.address),
+        20
+      );
+      await pollTransaction(refillRes.txId, refillRes.lockInfo);
+      expect(true, "Wallets already initialized and refilled").toBeTruthy();
     } else {
       throw Error(err);
     }
