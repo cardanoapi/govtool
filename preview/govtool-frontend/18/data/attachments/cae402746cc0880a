@@ -1,0 +1,158 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 8-proposal-discussion/proposalDiscussion.loggedin.pd.spec.ts >> Proposal created logged in state >> 8J. Should sort the proposed governance action comments.
+- Location: tests/8-proposal-discussion/proposalDiscussion.loggedin.pd.spec.ts:52:7
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByTestId('submit-as-GA-button')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for getByTestId('submit-as-GA-button')
+
+```
+
+# Test source
+
+```ts
+  535 |           prop_link_text: faker.internet.domainWord(),
+  536 |         },
+  537 |       ],
+  538 |       gov_action_type_id: Object.values(ProposalType).indexOf(proposalType),
+  539 |       has_guardrails: hasGuardrails,
+  540 |       is_draft: !!is_draft,
+  541 |     };
+  542 | 
+  543 |     if (proposalType === ProposalType.treasury) {
+  544 |       (proposal.prop_receiving_address = receivingAddress),
+  545 |         (proposal.prop_amount = faker.number
+  546 |           .int({ min: 100, max: 1000 })
+  547 |           .toString());
+  548 |     }
+  549 |     if (proposalType === ProposalType.updatesToTheConstitution) {
+  550 |       proposal.prop_constitution_url = forValidation
+  551 |         ? valid.url()
+  552 |         : environments.metadataBucketUrl + "/data.jsonId";
+  553 | 
+  554 |       if (hasGuardrails) {
+  555 |         if (!forValidation) {
+  556 |           const url = await uploadScriptAndGenerateUrl(guardrailsScript);
+  557 |           proposal.prop_guardrails_script_url = url;
+  558 |           proposal.prop_guardrails_script_hash = guardrailsScriptHash;
+  559 |         } else {
+  560 |           proposal.prop_guardrails_script_url = valid.url();
+  561 |           proposal.prop_guardrails_script_hash = faker.string.alphanumeric(64);
+  562 |         }
+  563 |       }
+  564 |     }
+  565 |     if (proposalType == ProposalType.hardFork) {
+  566 |       proposal.prop_min_version = faker.number
+  567 |         .float({ min: 0, max: 100 })
+  568 |         .toString();
+  569 |       proposal.prop_major_version = faker.number
+  570 |         .float({ min: 0, max: 100 })
+  571 |         .toString();
+  572 |     }
+  573 | 
+  574 |     return proposal;
+  575 |   }
+  576 | 
+  577 |   generateInValidProposalFormFields(
+  578 |     proposalType: ProposalType,
+  579 |     hasGuardrails: boolean = true
+  580 |   ) {
+  581 |     const proposal: ProposalCreateRequest = {
+  582 |       prop_name: invalid.proposalTitle(),
+  583 |       prop_abstract: invalid.paragraph(2510),
+  584 |       prop_motivation: invalid.paragraph(12020),
+  585 |       prop_rationale: invalid.paragraph(12020),
+  586 | 
+  587 |       proposal_links: [
+  588 |         {
+  589 |           prop_link: invalid.url(),
+  590 |           prop_link_text: invalid.name(),
+  591 |         },
+  592 |       ],
+  593 |       gov_action_type_id: Object.values(ProposalType).indexOf(proposalType),
+  594 |       has_guardrails: hasGuardrails,
+  595 |       is_draft: false,
+  596 |     };
+  597 | 
+  598 |     if (proposalType === ProposalType.treasury) {
+  599 |       (proposal.prop_receiving_address = faker.location.streetAddress()),
+  600 |         (proposal.prop_amount = invalid.amount());
+  601 |     }
+  602 | 
+  603 |     if (proposalType === ProposalType.updatesToTheConstitution) {
+  604 |       proposal.prop_constitution_url = invalid.constitutionUrl();
+  605 |       proposal.prop_guardrails_script_url = invalid.url();
+  606 |       proposal.prop_guardrails_script_hash = faker.string.alphanumeric(64);
+  607 |     }
+  608 | 
+  609 |     if (proposalType === ProposalType.hardFork) {
+  610 |       proposal.prop_min_version = invalid.amount();
+  611 |       proposal.prop_major_version = invalid.amount();
+  612 |     }
+  613 | 
+  614 |     return proposal;
+  615 |   }
+  616 | 
+  617 |   async createProposal(
+  618 |     receivingAddress: string,
+  619 |     proposalType: ProposalType = getProposalType()[
+  620 |       Math.floor(Math.random() * getProposalType().length)
+  621 |     ]
+  622 |   ): Promise<number> {
+  623 |     await this.addLinkBtn.click();
+  624 |     const proposalRequest: ProposalCreateRequest =
+  625 |       await this.generateValidProposalFormFields({
+  626 |         proposalType: (await isBootStrapingPhase())
+  627 |           ? ProposalType.info
+  628 |           : proposalType,
+  629 |         receivingAddress,
+  630 |       });
+  631 |     await this.fillupForm(proposalRequest);
+  632 |     await this.continueBtn.click();
+  633 |     await this.submitBtn.click();
+  634 | 
+> 635 |     await expect(this.page.getByTestId("submit-as-GA-button")).toBeVisible();
+      |                                                                ^ Error: expect(locator).toBeVisible() failed
+  636 |     const currentPageUrl = this.page.url();
+  637 |     return extractProposalIdFromUrl(currentPageUrl);
+  638 |   }
+  639 | 
+  640 |   async createDraft(proposalType: ProposalType) {
+  641 |     await this.goto();
+  642 |     await this.addLinkBtn.click();
+  643 | 
+  644 |     const proposalFormValue = await this.generateValidProposalFormFields({
+  645 |       proposalType: proposalType,
+  646 |       is_draft: true,
+  647 |       receivingAddress: ShelleyWallet.fromJson(
+  648 |         proposal04Wallet
+  649 |       ).rewardAddressBech32(environments.networkId),
+  650 |     });
+  651 |     await this.fillupForm(proposalFormValue);
+  652 | 
+  653 |     await this.saveDraftBtn.click();
+  654 |     await this.closeDraftSuccessModalBtn.click();
+  655 | 
+  656 |     await this.proposalCreateBtn.click();
+  657 |     return { proposalFormValue };
+  658 |   }
+  659 | }
+  660 | 
+```

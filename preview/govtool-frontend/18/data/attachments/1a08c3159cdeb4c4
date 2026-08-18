@@ -1,0 +1,392 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 5-proposal-functionality/proposalFunctionality.dRep.spec.ts >> Perform voting >> 5F. Should show notification of casted vote after vote
+- Location: tests/5-proposal-functionality/proposalFunctionality.dRep.spec.ts:222:7
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByTestId('alert-success')
+Expected: visible
+Timeout: 60000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 60000ms
+  - waiting for getByTestId('alert-success')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - generic [ref=e11]:
+      - link "app-logo" [ref=e12] [cursor=pointer]:
+        - /url: /dashboard
+        - img "app-logo" [ref=e13]
+      - generic [ref=e14]:
+        - link "icon Home" [ref=e16] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=e17]:
+            - img "icon" [ref=e18]
+            - paragraph [ref=e19]: Home
+        - link "icon DRep Directory" [ref=e21] [cursor=pointer]:
+          - /url: /connected/drep_directory
+          - generic [ref=e22]:
+            - img "icon" [ref=e23]
+            - paragraph [ref=e24]: DRep Directory
+        - link "icon Budget Proposals" [ref=e26] [cursor=pointer]:
+          - /url: /budget_discussion
+          - generic [ref=e27]:
+            - img "icon" [ref=e28]
+            - paragraph [ref=e29]: Budget Proposals
+        - generic [ref=e30]:
+          - link "icon Governance Actions" [ref=e31] [cursor=pointer]:
+            - /url: /connected/governance_actions
+            - generic [ref=e32]:
+              - img "icon" [ref=e33]
+              - paragraph [ref=e34]: Governance Actions
+          - generic [ref=e35]:
+            - link "Proposals" [ref=e36] [cursor=pointer]:
+              - /url: /proposal_discussion
+              - generic [ref=e37]:
+                - img [ref=e39]
+                - paragraph [ref=e41]: Proposals
+            - link "icon Live Voting" [ref=e42] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e43]:
+                - img "icon" [ref=e44]
+                - paragraph [ref=e45]: Live Voting
+            - link "icon Outcomes" [ref=e46] [cursor=pointer]:
+              - /url: /outcomes
+              - generic [ref=e47]:
+                - img "icon" [ref=e48]
+                - paragraph [ref=e49]: Outcomes
+        - link "icon Guides" [ref=e51] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e52]:
+            - img "icon" [ref=e53]
+            - paragraph [ref=e54]: Guides
+        - link "icon FAQs" [ref=e56] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e57]:
+            - img "icon" [ref=e58]
+            - paragraph [ref=e59]: FAQs
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - generic [ref=e62]:
+            - paragraph [ref=e63]: "My DRep ID:"
+            - img "copy" [ref=e64] [cursor=pointer]
+          - paragraph [ref=e66]: drep1lcnkncp8s23awa5ste06huye8kxfu4339l75932evcmuxc556sd
+        - generic [ref=e68]:
+          - paragraph [ref=e69]: "Connected Wallet:"
+          - generic [ref=e70]:
+            - paragraph [ref=e71]: 00f3a30d63ba0a139d2a23b23d92704f45813dc932afc1dea2d1440b060d48c3fd708b40e37798526fc67801ce340bf2f218a5927d8e6bf519
+            - button "Disconnect" [ref=e72] [cursor=pointer]: Disconnect
+    - generic [ref=e73]:
+      - navigation [ref=e74]:
+        - paragraph [ref=e76]: Home
+        - generic [ref=e78]:
+          - img [ref=e79]
+          - paragraph [ref=e81]: "Voting power:"
+          - paragraph [ref=e82]: ₳ 0
+      - generic [ref=e83]:
+        - generic [ref=e84]:
+          - generic [ref=e85]:
+            - generic [ref=e86]:
+              - img "card" [ref=e87]
+              - paragraph [ref=e88]: Delegate your Voting Power
+              - paragraph [ref=e89]: Find a DRep to vote on your behalf.
+            - generic [ref=e90]:
+              - button "View DRep Directory" [ref=e91] [cursor=pointer]: View DRep Directory
+              - button "Learn more" [ref=e92] [cursor=pointer]: Learn more
+          - generic [ref=e93]:
+            - generic [ref=e94]:
+              - img "card" [ref=e95]
+              - paragraph [ref=e96]: You are Registered as a DRep
+              - paragraph [ref=e97]: You can Vote using your own Voting Power combined with any Voting Power delegated to you.
+              - generic [ref=e98]:
+                - paragraph [ref=e99]: Your DRep ID
+                - generic [ref=e100]:
+                  - paragraph [ref=e101]: drep1lcnkncp8s23awa5ste06huye8kxfu4339l75932evcmuxc556sd
+                  - img "copy" [ref=e102] [cursor=pointer]
+              - button "Show Transaction" [ref=e103] [cursor=pointer]: Show Transaction
+            - generic [ref=e104]:
+              - button "View your DRep details" [ref=e105] [cursor=pointer]: View your DRep details
+              - button "Retire as a DRep" [ref=e106] [cursor=pointer]: Retire as a DRep
+          - generic [ref=e107]:
+            - generic [ref=e108]:
+              - img "card" [ref=e109]
+              - paragraph [ref=e110]: Become a Direct Voter
+              - paragraph [ref=e111]: Register to Vote on Governance Actions.
+            - generic [ref=e112]:
+              - button "Register" [ref=e113] [cursor=pointer]: Register
+              - button "Learn more" [ref=e114] [cursor=pointer]: Learn more
+          - generic [ref=e115]:
+            - generic [ref=e116]:
+              - img "card" [ref=e117]
+              - paragraph [ref=e118]: View Governance Actions
+              - paragraph [ref=e119]: Review governance actions submitted on-chain.
+            - generic [ref=e120]:
+              - button "View Governance Actions" [ref=e121] [cursor=pointer]: View Governance Actions
+              - button "Learn more" [ref=e122] [cursor=pointer]: Learn more
+          - generic [ref=e123]:
+            - generic [ref=e124]:
+              - img "card" [ref=e125]
+              - paragraph [ref=e126]: Propose a Governance Action
+              - paragraph [ref=e127]: Submit your proposal for a Governance Action.
+            - generic [ref=e128]:
+              - button "Propose" [ref=e129] [cursor=pointer]: Propose
+              - button "Learn more" [ref=e130] [cursor=pointer]: Learn more
+        - generic [ref=e131]:
+          - paragraph [ref=e132]: Useful links
+          - generic [ref=e133]:
+            - generic [ref=e134]:
+              - paragraph [ref=e135]: Check the Constitutional Committee Portal
+              - paragraph [ref=e136]: See Interim Cardano Constitution and Constitutional committee votes rationales
+              - link "CC Portal link" [ref=e137] [cursor=pointer]:
+                - /url: https://constitution.gov.tools
+                - paragraph [ref=e138]: CC Portal
+                - img "link" [ref=e139]
+            - generic [ref=e140]:
+              - paragraph [ref=e141]: Intersect website
+              - paragraph [ref=e142]: Intersect is a member-based organization for the Cardano ecosystem — putting the community at the center of Cardano’s development
+              - link "Intersect website link" [ref=e143] [cursor=pointer]:
+                - /url: https://www.intersectmbo.org/
+                - paragraph [ref=e144]: Intersect website
+                - img "link" [ref=e145]
+      - contentinfo [ref=e146]:
+        - paragraph [ref=e147]: © 2026 GovTool
+        - generic [ref=e148]:
+          - generic [ref=e149] [cursor=pointer]: Privacy policy
+          - generic [ref=e150] [cursor=pointer]: Terms of Use
+        - generic [ref=e151]:
+          - button "helpIcon Help" [ref=e152] [cursor=pointer]:
+            - img "helpIcon" [ref=e154]
+            - text: Help
+          - button "Feedback" [ref=e155] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e156]
+```
+
+# Test source
+
+```ts
+  125 | 
+  126 |       await expect(govActionDetailsPage.contextInput).toBeVisible();
+  127 | 
+  128 |       for (let i = 0; i < 100; i++) {
+  129 |         const randomContext = faker.string.fromCharacters(characters, 10001);
+  130 |         await govActionDetailsPage.contextInput.fill(randomContext);
+  131 |         expect(
+  132 |           await govActionDetailsPage.contextInput.textContent()
+  133 |         ).not.toEqual(randomContext);
+  134 |       }
+  135 |     });
+  136 |   });
+  137 | });
+  138 | 
+  139 | test.describe("Perform voting", () => {
+  140 |   let govActionDetailsPage: GovernanceActionDetailsPage;
+  141 |   let dRepPage: Page;
+  142 |   let govActionsPage: GovernanceActionsPage;
+  143 | 
+  144 |   test.beforeEach(async ({ page, browser }) => {
+  145 |     test.slow(); // Due to queue in pop wallets
+  146 | 
+  147 |     const wallet = await walletManager.popWallet("registeredDRep");
+  148 | 
+  149 |     const tempDRepAuth = await createTempDRepAuth(page, wallet);
+  150 | 
+  151 |     dRepPage = await createNewPageWithWallet(browser, {
+  152 |       storageState: tempDRepAuth,
+  153 |       wallet,
+  154 |       enableDRepSigning: true,
+  155 |     });
+  156 | 
+  157 |     govActionsPage = new GovernanceActionsPage(dRepPage);
+  158 |     govActionsPage.goto();
+  159 | 
+  160 |     // assert to wait until the loading button is hidden
+  161 |     await expect(dRepPage.getByTestId("to-vote-tab")).toBeVisible({
+  162 |       timeout: 60_000,
+  163 |     });
+  164 | 
+  165 |     govActionDetailsPage = (await isBootStrapingPhase())
+  166 |       ? await govActionsPage.viewFirstProposalByGovernanceAction(
+  167 |           GovernanceActionType.InfoAction
+  168 |         )
+  169 |       : await govActionsPage.viewFirstProposal();
+  170 |   });
+  171 | 
+  172 |   test("5E. Should re-vote with change vote on an already voted governance action", async ({}, testInfo) => {
+  173 |     test.setTimeout(testInfo.timeout + 2 * environments.txTimeOut);
+  174 | 
+  175 |     await govActionDetailsPage.vote();
+  176 | 
+  177 |     const governanceActionsPage = new GovernanceActionsPage(
+  178 |       govActionDetailsPage.currentPage
+  179 |     );
+  180 | 
+  181 |     await governanceActionsPage.currentPage.reload();
+  182 | 
+  183 |     await governanceActionsPage.votedTab.click();
+  184 | 
+  185 |     await govActionDetailsPage.currentPage.evaluate(() =>
+  186 |       window.scrollTo(0, 500)
+  187 |     );
+  188 | 
+  189 |     await expect(
+  190 |       govActionDetailsPage.currentPage.getByTestId("my-vote").getByText("Yes")
+  191 |     ).toBeVisible({ timeout: 60_000 });
+  192 | 
+  193 |     govActionDetailsPage = await governanceActionsPage.viewFirstVotedProposal();
+  194 |     await govActionDetailsPage.reVote();
+  195 | 
+  196 |     await govActionDetailsPage.currentPage.reload();
+  197 | 
+  198 |     await governanceActionsPage.votedTab.click();
+  199 | 
+  200 |     const isNoVoteVisible = await govActionDetailsPage.currentPage
+  201 |       .getByTestId("my-vote")
+  202 |       .getByText("No")
+  203 |       .isVisible();
+  204 | 
+  205 |     const textContent = await govActionDetailsPage.currentPage
+  206 |       .getByTestId("my-vote")
+  207 |       .textContent();
+  208 | 
+  209 |     await govActionDetailsPage.currentPage.evaluate(() =>
+  210 |       window.scrollTo(0, 500)
+  211 |     );
+  212 |     await expect(
+  213 |       govActionDetailsPage.currentPage.getByTestId("my-vote").getByText("No"),
+  214 |       {
+  215 |         message:
+  216 |           !isNoVoteVisible &&
+  217 |           `"No" vote not visible, current vote status: ${textContent.match(/My Vote:(Yes|No)/)[1]}`,
+  218 |       }
+  219 |     ).toBeVisible({ timeout: 60_000 });
+  220 |   });
+  221 | 
+  222 |   test("5F. Should show notification of casted vote after vote", async ({}, testInfo) => {
+  223 |     test.setTimeout(testInfo.timeout + environments.txTimeOut);
+  224 |     await govActionDetailsPage.vote();
+> 225 |     await expect(govActionDetailsPage.voteSuccessModal).toBeVisible({
+      |                                                         ^ Error: expect(locator).toBeVisible() failed
+  226 |       timeout: 60_000,
+  227 |     });
+  228 |   });
+  229 | 
+  230 |   test("5L. Should update context on an already voted governance action without changing the vote", async ({}, testInfo) => {
+  231 |     test.setTimeout(testInfo.timeout + 2 * environments.txTimeOut);
+  232 | 
+  233 |     await govActionDetailsPage.vote();
+  234 | 
+  235 |     const governanceActionsPage = new GovernanceActionsPage(
+  236 |       govActionDetailsPage.currentPage
+  237 |     );
+  238 | 
+  239 |     await governanceActionsPage.currentPage.reload();
+  240 | 
+  241 |     await governanceActionsPage.votedTab.click();
+  242 | 
+  243 |     await govActionDetailsPage.currentPage.evaluate(() =>
+  244 |       window.scrollTo(0, 500)
+  245 |     );
+  246 | 
+  247 |     await expect(
+  248 |       govActionDetailsPage.currentPage.getByTestId("my-vote").getByText("Yes")
+  249 |     ).toBeVisible();
+  250 | 
+  251 |     govActionDetailsPage = await governanceActionsPage.viewFirstVotedProposal();
+  252 | 
+  253 |     const fakerContext = faker.lorem.sentence(200)
+  254 |     await govActionDetailsPage.vote(fakerContext, true);
+  255 | 
+  256 |     await govActionDetailsPage.currentPage.reload();
+  257 | 
+  258 |     await governanceActionsPage.votedTab.click();
+  259 | 
+  260 |     govActionDetailsPage = await governanceActionsPage.viewFirstVotedProposal();
+  261 |     
+  262 |         
+  263 |     await govActionDetailsPage.currentPage.getByTestId("yes-radio").isVisible();
+  264 |     
+  265 |     const voteRationaleContext = await govActionDetailsPage.currentPage.getByTestId("vote-rationale-context").textContent();
+  266 | 
+  267 |     expect(voteRationaleContext).toEqual(fakerContext);
+  268 |   });
+  269 | 
+  270 |   test("5I. Should view the vote details,when viewing governance action already voted by the DRep", async ({}, testInfo) => {
+  271 |     test.setTimeout(testInfo.timeout + environments.txTimeOut);
+  272 | 
+  273 |     await govActionDetailsPage.vote();
+  274 | 
+  275 |     const governanceActionsPage = new GovernanceActionsPage(
+  276 |       govActionDetailsPage.currentPage
+  277 |     );
+  278 | 
+  279 |     await expect(async () => {
+  280 |       await governanceActionsPage.currentPage.reload();
+  281 |       await governanceActionsPage.votedTab.click();
+  282 | 
+  283 |       await expect(
+  284 |         governanceActionsPage.currentPage.getByTestId("my-vote")
+  285 |       ).toContainText(/yes/i);
+  286 |     }).toPass({
+  287 |       timeout: environments.txTimeOut,
+  288 |     });
+  289 |   });
+  290 | 
+  291 |    const verifyVoteWithMetadata = async (testInfo: any, useGovToolIPFS: boolean = false) => {
+  292 |     test.setTimeout(testInfo.timeout + environments.txTimeOut);
+  293 |     const fakerContext = faker.lorem.sentence(200);
+  294 | 
+  295 |     if (useGovToolIPFS) {
+  296 |       await govActionDetailsPage.vote(fakerContext, false, true);
+  297 |     } else {
+  298 |       await govActionDetailsPage.vote(fakerContext);
+  299 |     }
+  300 | 
+  301 |     await dRepPage.reload();
+  302 |     await dRepPage.waitForTimeout(5_000);
+  303 |     await govActionsPage.votedTab.click();
+  304 | 
+  305 |     const votedGovActionDetailsPage = await govActionsPage.viewFirstVotedProposal();
+  306 |     await votedGovActionDetailsPage.currentPage.getByTestId("show-more-button").click();
+  307 |     await votedGovActionDetailsPage.currentPage.waitForTimeout(2000);
+  308 | 
+  309 |     const voteRationaleContext = await votedGovActionDetailsPage.currentPage.getByTestId("vote-rationale-context");
+  310 |     await expect(voteRationaleContext).toContainText(fakerContext);
+  311 |   };
+  312 | 
+  313 |   test("5M_1. Should vote with Context (Download and store yourself)", async ({}, testInfo) => {
+  314 |     await verifyVoteWithMetadata(testInfo, false);
+  315 |   });
+  316 | 
+  317 |   test("5M_2. Should vote with Context (GovTool pins data to IPFS)", async ({}, testInfo) => {
+  318 |     await verifyVoteWithMetadata(testInfo, true );
+  319 |   });
+  320 | });
+  321 | 
+  322 | test.describe("Check voting power", () => {
+  323 |   test("5K. Should return deposit on DRep retirement", async ({
+  324 |     page,
+  325 |     browser,
+```

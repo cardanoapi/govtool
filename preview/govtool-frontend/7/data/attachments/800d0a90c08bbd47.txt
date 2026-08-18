@@ -1,7 +1,0 @@
-✖ Failed to load resource: the server responded with a status of 404 ()
-✖ Failed to load resource: the server responded with a status of 404 ()
-✔ Uploaded Dawson.jsonld metadata to bucket
-✖ Failed to load resource: the server responded with a status of 404 ()
-ℹ Waiting for tx completion: 3cc217f2935a7ab6719abceca9deb2a3b2a12ee52d9deadd4d857777970d398a
-✔ Tx completed
-✖ Failed to load resource: the server responded with a status of 404 ()

@@ -1,0 +1,7 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Uploaded Cristina.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: cd5d2064a7c66fc73ec7bc50cc7926d0a022abb4c6a0ddb9c5d5f1b2d9691d36
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

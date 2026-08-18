@@ -1,0 +1,739 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 9-outcomes/outcomes.loggedin.spec.ts >> Outcomes page >> outcome sorting and filtering >> 9C_1B. Should filter Governance Action Type on governance actions page
+- Location: tests/9-outcomes/outcomes.loggedin.spec.ts:31:9
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: false
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: "Network: Preview"
+      - generic [ref=e7]: "|"
+      - link [ref=e8] [cursor=pointer]:
+        - /url: https://gov.tools/
+        - text: Go to Mainnet
+    - img [ref=e9]
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - link [ref=e12] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e13]
+        - generic [ref=e14]:
+          - link [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+            - generic [ref=e17]:
+              - img [ref=e18]
+              - paragraph [ref=e19]: Home
+          - link [ref=e21] [cursor=pointer]:
+            - /url: /connected/drep_directory
+            - generic [ref=e22]:
+              - img [ref=e23]
+              - paragraph [ref=e24]: DRep Directory
+          - link [ref=e26] [cursor=pointer]:
+            - /url: /budget_discussion
+            - generic [ref=e27]:
+              - img [ref=e28]
+              - paragraph [ref=e29]: Budget Proposals
+          - generic [ref=e30]:
+            - link [ref=e31] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e32]:
+                - img [ref=e33]
+                - paragraph [ref=e34]: Governance Actions
+            - generic [ref=e35]:
+              - link [ref=e36] [cursor=pointer]:
+                - /url: /proposal_discussion
+                - generic [ref=e37]:
+                  - img [ref=e39]
+                  - paragraph [ref=e41]: Proposals
+              - link [ref=e42] [cursor=pointer]:
+                - /url: /connected/governance_actions
+                - generic [ref=e43]:
+                  - img [ref=e44]
+                  - paragraph [ref=e45]: Live Voting
+              - link [ref=e46] [cursor=pointer]:
+                - /url: /outcomes
+                - generic [ref=e47]:
+                  - img [ref=e48]
+                  - paragraph [ref=e49]: Outcomes
+          - link [ref=e51] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e52]:
+              - img [ref=e53]
+              - paragraph [ref=e54]: Guides
+          - link [ref=e56] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e57]:
+              - img [ref=e58]
+              - paragraph [ref=e59]: FAQs
+        - generic [ref=e62]:
+          - paragraph [ref=e63]: "Connected Wallet:"
+          - generic [ref=e64]:
+            - paragraph [ref=e65]: 00b910a0fcee3e1516c5d65423e41ca3c5ac2c63e8bb7fb91bf63be96fb092a3e76d60768c5e7c5bc4ccc992b168a47159e7270454c9a292c3
+            - button [ref=e66] [cursor=pointer]: Disconnect
+      - generic [ref=e67]:
+        - navigation [ref=e68]:
+          - paragraph [ref=e70]: Outcomes
+        - img [ref=e71]
+        - generic [ref=e76]:
+          - generic [ref=e77]:
+            - generic [ref=e78]:
+              - generic [ref=e79]:
+                - img [ref=e80]
+                - textbox [ref=e82]:
+                  - /placeholder: Search Action...
+              - generic [ref=e83]:
+                - button [expanded] [ref=e85] [cursor=pointer]:
+                  - generic [ref=e87]:
+                    - paragraph [ref=e88]: Filters
+                    - img [ref=e90]
+                - button [ref=e93] [cursor=pointer]:
+                  - generic [ref=e94]:
+                    - paragraph [ref=e95]: "Sort: Newest first"
+                    - img [ref=e97]
+            - generic [ref=e99]:
+              - button [ref=e100]:
+                - generic [ref=e101]: Info Action
+                - button [ref=e102] [cursor=pointer]:
+                  - img [ref=e103]
+              - button [ref=e105]:
+                - generic [ref=e106]: Treasury Withdrawals
+                - button [ref=e107] [cursor=pointer]:
+                  - img [ref=e108]
+          - generic [ref=e111]:
+            - generic [ref=e112]:
+              - generic [ref=e114]:
+                - generic [ref=e115]:
+                  - paragraph [ref=e117]: Dijkstra-era Hard Fork CIP Shortlist
+                  - generic [ref=e119]:
+                    - generic [ref=e120]:
+                      - paragraph [ref=e121]: "Submitted: Tue Jul 14, 2026"
+                      - generic [ref=e122]:
+                        - paragraph [ref=e123]: (Epoch 1358)
+                        - img [ref=e125]
+                    - generic [ref=e127]:
+                      - paragraph [ref=e128]: "Expired: Thu Jan 01, 1970"
+                      - generic [ref=e129]:
+                        - paragraph [ref=e130]: (Epoch 1389)
+                        - img [ref=e132]
+                  - generic [ref=e135]:
+                    - paragraph [ref=e136]: Abstract
+                    - paragraph [ref=e138]: This Info Action presents a list of possible Cardano Improvement Proposals (CIPs) to be included in the scope of the Dijkstra-era hard fork (expected as Protocol Version 12). The linked survey will capture dRep preferences on each of these items for voting and prioritization. Note that voting for/against this action as a whole indicates approval/disapproval of the process, not of the associated changes.
+                  - generic [ref=e139]:
+                    - generic [ref=e140]:
+                      - paragraph [ref=e141]: Governance Action Type
+                      - paragraph [ref=e142]: Info Action
+                    - generic [ref=e143]:
+                      - paragraph [ref=e144]: Status
+                      - generic [ref=e145]:
+                        - generic [ref=e147]: Expired
+                        - generic [ref=e149]: Not Ratified
+                    - generic [ref=e150]:
+                      - paragraph [ref=e151]: Governance Action ID
+                      - generic [ref=e152]:
+                        - paragraph [ref=e153]: c9491b897330bc5ef4b46d7e2642214e8c0499b158c6b56780b05d98002652a5#0
+                        - button [ref=e154] [cursor=pointer]:
+                          - img [ref=e155]
+                    - generic [ref=e159]:
+                      - paragraph [ref=e160]: (CIP-129) Governance Action ID
+                      - generic [ref=e161]:
+                        - paragraph [ref=e162]: gov_action1e9y3hztnxz79aa95d4lzvs3pf6xqfxd3trrt2euqkpwesqpx22jsqnkn3yp
+                        - button [ref=e163] [cursor=pointer]:
+                          - img [ref=e164]
+                - link [ref=e169] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/c9491b897330bc5ef4b46d7e2642214e8c0499b158c6b56780b05d98002652a5#0
+                  - button [ref=e170]: View Details
+              - generic [ref=e172]:
+                - generic [ref=e173]:
+                  - paragraph [ref=e175]: Very important survey
+                  - generic [ref=e177]:
+                    - generic [ref=e178]:
+                      - paragraph [ref=e179]: "Submitted: Sat Jul 11, 2026"
+                      - generic [ref=e180]:
+                        - paragraph [ref=e181]: (Epoch 1355)
+                        - img [ref=e183]
+                    - generic [ref=e185]:
+                      - paragraph [ref=e186]: "Expired: Tue Aug 11, 2026"
+                      - generic [ref=e187]:
+                        - paragraph [ref=e188]: (Epoch 1386)
+                        - img [ref=e190]
+                  - generic [ref=e193]:
+                    - paragraph [ref=e194]: Abstract
+                    - paragraph [ref=e196]: Vote on this very important question.
+                  - generic [ref=e197]:
+                    - generic [ref=e198]:
+                      - paragraph [ref=e199]: Governance Action Type
+                      - paragraph [ref=e200]: Info Action
+                    - generic [ref=e201]:
+                      - paragraph [ref=e202]: Status
+                      - generic [ref=e203]:
+                        - generic [ref=e205]: Expired
+                        - generic [ref=e207]: Not Ratified
+                    - generic [ref=e208]:
+                      - paragraph [ref=e209]: Governance Action ID
+                      - generic [ref=e210]:
+                        - paragraph [ref=e211]: ffe97836ba74139aef5e4d170a852f4a1c2ff27e41cbc3e656834ae7ede55f33#0
+                        - button [ref=e212] [cursor=pointer]:
+                          - img [ref=e213]
+                    - generic [ref=e217]:
+                      - paragraph [ref=e218]: (CIP-129) Governance Action ID
+                      - generic [ref=e219]:
+                        - paragraph [ref=e220]: gov_action1ll5hsd46wsfe4m67f5ts4pf0fgwzlun7g89u8ejksd9w0m09tuesqf05mqh
+                        - button [ref=e221] [cursor=pointer]:
+                          - img [ref=e222]
+                - link [ref=e227] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/ffe97836ba74139aef5e4d170a852f4a1c2ff27e41cbc3e656834ae7ede55f33#0
+                  - button [ref=e228]: View Details
+              - generic [ref=e230]:
+                - generic [ref=e231]:
+                  - paragraph [ref=e233]: Withdraw 120,000,000 ada for AlphaGrowth’s Cardano PRIME
+                  - generic [ref=e235]:
+                    - generic [ref=e236]:
+                      - paragraph [ref=e237]: "Submitted: Thu Jul 09, 2026"
+                      - generic [ref=e238]:
+                        - paragraph [ref=e239]: (Epoch 1353)
+                        - img [ref=e241]
+                    - generic [ref=e243]:
+                      - paragraph [ref=e244]: "Expired: Sun Aug 09, 2026"
+                      - generic [ref=e245]:
+                        - paragraph [ref=e246]: (Epoch 1384)
+                        - img [ref=e248]
+                  - generic [ref=e251]:
+                    - paragraph [ref=e252]: Abstract
+                    - paragraph [ref=e254]: This Treasury Withdrawal funds Cardano PRIME, a 12-month community-overseen program to improve DeFi protocol readiness, responsibly activate incentives, and grow durable liquidity across Cardano markets. The withdrawal requests ₳120,000,000, with USD figures included only as planning references at the $0.16/ADA assumption.
+                  - generic [ref=e255]:
+                    - generic [ref=e256]:
+                      - paragraph [ref=e257]: Governance Action Type
+                      - paragraph [ref=e258]: Info Action
+                    - generic [ref=e259]:
+                      - paragraph [ref=e260]: Status
+                      - generic [ref=e261]:
+                        - generic [ref=e263]: Expired
+                        - generic [ref=e265]: Not Ratified
+                    - generic [ref=e266]:
+                      - paragraph [ref=e267]: Governance Action ID
+                      - generic [ref=e268]:
+                        - paragraph [ref=e269]: 03ef209ac8d788ba2c4ca3e0f2612fc6da053a318a1fc09e5bff7d573985c829#0
+                        - button [ref=e270] [cursor=pointer]:
+                          - img [ref=e271]
+                    - generic [ref=e275]:
+                      - paragraph [ref=e276]: (CIP-129) Governance Action ID
+                      - generic [ref=e277]:
+                        - paragraph [ref=e278]: gov_action1q0hjpxkg67yt5tzv50s0ycf0cmdq2w333g0up8jmla74wwv9eq5sqfspj5r
+                        - button [ref=e279] [cursor=pointer]:
+                          - img [ref=e280]
+                - link [ref=e285] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/03ef209ac8d788ba2c4ca3e0f2612fc6da053a318a1fc09e5bff7d573985c829#0
+                  - button [ref=e286]: View Details
+              - generic [ref=e288]:
+                - generic [ref=e289]:
+                  - paragraph [ref=e291]: Withdraw 120,000,000 ada for AlphaGrowth’s Cardano PRIME
+                  - generic [ref=e293]:
+                    - generic [ref=e294]:
+                      - paragraph [ref=e295]: "Submitted: Wed Jul 08, 2026"
+                      - generic [ref=e296]:
+                        - paragraph [ref=e297]: (Epoch 1352)
+                        - img [ref=e299]
+                    - generic [ref=e301]:
+                      - paragraph [ref=e302]: "Expired: Sat Aug 08, 2026"
+                      - generic [ref=e303]:
+                        - paragraph [ref=e304]: (Epoch 1383)
+                        - img [ref=e306]
+                  - generic [ref=e309]:
+                    - paragraph [ref=e310]: Abstract
+                    - paragraph [ref=e312]: This Treasury Withdrawal funds Cardano PRIME, a 12-month community-overseen program to improve DeFi protocol readiness, responsibly activate incentives, and grow durable liquidity across Cardano markets. The withdrawal requests ₳120,000,000, with USD figures included only as planning references at the $0.16/ADA assumption.
+                  - generic [ref=e313]:
+                    - generic [ref=e314]:
+                      - paragraph [ref=e315]: Governance Action Type
+                      - paragraph [ref=e316]: Info Action
+                    - generic [ref=e317]:
+                      - paragraph [ref=e318]: Status
+                      - generic [ref=e319]:
+                        - generic [ref=e321]: Expired
+                        - generic [ref=e323]: Not Ratified
+                    - generic [ref=e324]:
+                      - paragraph [ref=e325]: Governance Action ID
+                      - generic [ref=e326]:
+                        - paragraph [ref=e327]: fe8344d8e027504d7a3575fd9e331dfbdfe872b1ec9f45e16da0920db66eb2c0#0
+                        - button [ref=e328] [cursor=pointer]:
+                          - img [ref=e329]
+                    - generic [ref=e333]:
+                      - paragraph [ref=e334]: (CIP-129) Governance Action ID
+                      - generic [ref=e335]:
+                        - paragraph [ref=e336]: gov_action1l6p5fk8qyagy6734wh7euvcal007su43aj05tctd5zfqmdnwktqqqs9u2e8
+                        - button [ref=e337] [cursor=pointer]:
+                          - img [ref=e338]
+                - link [ref=e343] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/fe8344d8e027504d7a3575fd9e331dfbdfe872b1ec9f45e16da0920db66eb2c0#0
+                  - button [ref=e344]: View Details
+              - generic [ref=e346]:
+                - generic [ref=e347]:
+                  - paragraph [ref=e349]: "[TEST] Sample Info Action Proposal #3"
+                  - generic [ref=e351]:
+                    - generic [ref=e352]:
+                      - paragraph [ref=e353]: "Submitted: Wed Jul 08, 2026"
+                      - generic [ref=e354]:
+                        - paragraph [ref=e355]: (Epoch 1352)
+                        - img [ref=e357]
+                    - generic [ref=e359]:
+                      - paragraph [ref=e360]: "Expired: Sat Aug 08, 2026"
+                      - generic [ref=e361]:
+                        - paragraph [ref=e362]: (Epoch 1383)
+                        - img [ref=e364]
+                  - generic [ref=e367]:
+                    - paragraph [ref=e368]: Abstract
+                    - paragraph [ref=e370]: This is a demo Info Action proposal for testing the CoSponsor platform. It has a future expiry date so you can test sponsoring and withdrawing.
+                  - generic [ref=e371]:
+                    - generic [ref=e372]:
+                      - paragraph [ref=e373]: Governance Action Type
+                      - paragraph [ref=e374]: Info Action
+                    - generic [ref=e375]:
+                      - paragraph [ref=e376]: Status
+                      - generic [ref=e377]:
+                        - generic [ref=e379]: Expired
+                        - generic [ref=e381]: Not Ratified
+                    - generic [ref=e382]:
+                      - paragraph [ref=e383]: Governance Action ID
+                      - generic [ref=e384]:
+                        - paragraph [ref=e385]: 1044101b3777042057a71246f7d55df251880b2994698a31e962fde051513fbe#0
+                        - button [ref=e386] [cursor=pointer]:
+                          - img [ref=e387]
+                    - generic [ref=e391]:
+                      - paragraph [ref=e392]: (CIP-129) Governance Action ID
+                      - generic [ref=e393]:
+                        - paragraph [ref=e394]: gov_action1zpzpqxehwuzzq4a8zfr0042a7fgcszefj35c5v0fvt77q52387lqqrcvwt2
+                        - button [ref=e395] [cursor=pointer]:
+                          - img [ref=e396]
+                - link [ref=e401] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/1044101b3777042057a71246f7d55df251880b2994698a31e962fde051513fbe#0
+                  - button [ref=e402]: View Details
+              - generic [ref=e404]:
+                - generic [ref=e405]:
+                  - generic [ref=e406]:
+                    - paragraph [ref=e407]: Data Formatted Incorrectly
+                    - img [ref=e409]
+                  - generic [ref=e412]:
+                    - generic [ref=e413]:
+                      - paragraph [ref=e414]: "Submitted: Wed Jul 08, 2026"
+                      - generic [ref=e415]:
+                        - paragraph [ref=e416]: (Epoch 1352)
+                        - img [ref=e418]
+                    - generic [ref=e420]:
+                      - paragraph [ref=e421]: "Expired: Sat Aug 08, 2026"
+                      - generic [ref=e422]:
+                        - paragraph [ref=e423]: (Epoch 1383)
+                        - img [ref=e425]
+                  - generic [ref=e427]:
+                    - generic [ref=e428]:
+                      - paragraph [ref=e429]: Governance Action Type
+                      - paragraph [ref=e430]: Info Action
+                    - generic [ref=e431]:
+                      - paragraph [ref=e432]: Status
+                      - generic [ref=e433]:
+                        - generic [ref=e435]: Expired
+                        - generic [ref=e437]: Not Ratified
+                    - generic [ref=e438]:
+                      - paragraph [ref=e439]: Governance Action ID
+                      - generic [ref=e440]:
+                        - paragraph [ref=e441]: 2edd36f897ab74a298a4329a1a1f5946ccb35b26f478d18003e4c72eb41dbdbb#0
+                        - button [ref=e442] [cursor=pointer]:
+                          - img [ref=e443]
+                    - generic [ref=e447]:
+                      - paragraph [ref=e448]: (CIP-129) Governance Action ID
+                      - generic [ref=e449]:
+                        - paragraph [ref=e450]: gov_action19mwnd7yh4d629x9yx2dp586egmxtxkex73udrqqrunrjadqahkasqg6eeyd
+                        - button [ref=e451] [cursor=pointer]:
+                          - img [ref=e452]
+                - link [ref=e457] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/2edd36f897ab74a298a4329a1a1f5946ccb35b26f478d18003e4c72eb41dbdbb#0
+                  - button [ref=e458]: View Details
+              - generic [ref=e460]:
+                - generic [ref=e461]:
+                  - generic [ref=e462]:
+                    - paragraph [ref=e463]: Data Formatted Incorrectly
+                    - img [ref=e465]
+                  - generic [ref=e468]:
+                    - generic [ref=e469]:
+                      - paragraph [ref=e470]: "Submitted: Wed Jul 08, 2026"
+                      - generic [ref=e471]:
+                        - paragraph [ref=e472]: (Epoch 1352)
+                        - img [ref=e474]
+                    - generic [ref=e476]:
+                      - paragraph [ref=e477]: "Expired: Sat Aug 08, 2026"
+                      - generic [ref=e478]:
+                        - paragraph [ref=e479]: (Epoch 1383)
+                        - img [ref=e481]
+                  - generic [ref=e483]:
+                    - generic [ref=e484]:
+                      - paragraph [ref=e485]: Governance Action Type
+                      - paragraph [ref=e486]: Info Action
+                    - generic [ref=e487]:
+                      - paragraph [ref=e488]: Status
+                      - generic [ref=e489]:
+                        - generic [ref=e491]: Expired
+                        - generic [ref=e493]: Not Ratified
+                    - generic [ref=e494]:
+                      - paragraph [ref=e495]: Governance Action ID
+                      - generic [ref=e496]:
+                        - paragraph [ref=e497]: 3b457abc9238a5ff47bcd57b1f4dc8a234cc5205338b7707b9a192b8897c2edb#0
+                        - button [ref=e498] [cursor=pointer]:
+                          - img [ref=e499]
+                    - generic [ref=e503]:
+                      - paragraph [ref=e504]: (CIP-129) Governance Action ID
+                      - generic [ref=e505]:
+                        - paragraph [ref=e506]: gov_action18dzh40yj8zjl73au64a37nwg5g6vc5s9xw9hwpae5xft3ztu9mdsqcc99m3
+                        - button [ref=e507] [cursor=pointer]:
+                          - img [ref=e508]
+                - link [ref=e513] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/3b457abc9238a5ff47bcd57b1f4dc8a234cc5205338b7707b9a192b8897c2edb#0
+                  - button [ref=e514]: View Details
+              - generic [ref=e516]:
+                - generic [ref=e517]:
+                  - paragraph [ref=e519]: "CIP-0169 Example: Treasury Withdrawal (Preview)"
+                  - generic [ref=e521]:
+                    - generic [ref=e522]:
+                      - paragraph [ref=e523]: "Submitted: Mon Jul 06, 2026"
+                      - generic [ref=e524]:
+                        - paragraph [ref=e525]: (Epoch 1350)
+                        - img [ref=e527]
+                    - generic [ref=e529]:
+                      - paragraph [ref=e530]: "Expired: Thu Aug 06, 2026"
+                      - generic [ref=e531]:
+                        - paragraph [ref=e532]: (Epoch 1381)
+                        - img [ref=e534]
+                  - generic [ref=e537]:
+                    - paragraph [ref=e538]: Abstract
+                    - paragraph [ref=e540]: Withdraw 100,000 test ada on Preview to demonstrate CIP-0169 on-chain binding of a treasury withdrawal.
+                  - generic [ref=e541]:
+                    - generic [ref=e542]:
+                      - paragraph [ref=e543]: Governance Action Type
+                      - paragraph [ref=e544]: Treasury Withdrawals
+                    - generic [ref=e545]:
+                      - paragraph [ref=e546]: Status
+                      - generic [ref=e547]:
+                        - generic [ref=e549]: Expired
+                        - generic [ref=e551]: Not Ratified
+                    - generic [ref=e552]:
+                      - paragraph [ref=e553]: Governance Action ID
+                      - generic [ref=e554]:
+                        - paragraph [ref=e555]: c0efa6a3419b67769001f5446ee34bdf779f707b0abe53593da933ab674b4b07#0
+                        - button [ref=e556] [cursor=pointer]:
+                          - img [ref=e557]
+                    - generic [ref=e561]:
+                      - paragraph [ref=e562]: (CIP-129) Governance Action ID
+                      - generic [ref=e563]:
+                        - paragraph [ref=e564]: gov_action1crh6dg6pndnhdyqp74zxac6tmame7urmp2l9xkfa4ye6ke6tfvrsqfjanrz
+                        - button [ref=e565] [cursor=pointer]:
+                          - img [ref=e566]
+                - link [ref=e571] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/c0efa6a3419b67769001f5446ee34bdf779f707b0abe53593da933ab674b4b07#0
+                  - button [ref=e572]: View Details
+              - generic [ref=e574]:
+                - generic [ref=e575]:
+                  - paragraph [ref=e577]: CoSponsor tooling test - Treasury Withdrawal (please ignore)
+                  - generic [ref=e579]:
+                    - generic [ref=e580]:
+                      - paragraph [ref=e581]: "Submitted: Mon Jul 06, 2026"
+                      - generic [ref=e582]:
+                        - paragraph [ref=e583]: (Epoch 1350)
+                        - img [ref=e585]
+                    - generic [ref=e587]:
+                      - paragraph [ref=e588]: "Expired: Thu Aug 06, 2026"
+                      - generic [ref=e589]:
+                        - paragraph [ref=e590]: (Epoch 1381)
+                        - img [ref=e592]
+                  - generic [ref=e595]:
+                    - paragraph [ref=e596]: Abstract
+                    - paragraph [ref=e598]: "[INFO]: This proposal is not supposed to pass and purely posted to test new CoSponsor tooling. Please feel free to either downvote or ignore this proposal."
+                  - generic [ref=e599]:
+                    - generic [ref=e600]:
+                      - paragraph [ref=e601]: Governance Action Type
+                      - paragraph [ref=e602]: Treasury Withdrawals
+                    - generic [ref=e603]:
+                      - paragraph [ref=e604]: Status
+                      - generic [ref=e605]:
+                        - generic [ref=e607]: Expired
+                        - generic [ref=e609]: Not Ratified
+                    - generic [ref=e610]:
+                      - paragraph [ref=e611]: Governance Action ID
+                      - generic [ref=e612]:
+                        - paragraph [ref=e613]: 3481a13f15dde994c1425d8d839af4dcb5f21a0932d6178625b53a9263d46e5c#0
+                        - button [ref=e614] [cursor=pointer]:
+                          - img [ref=e615]
+                    - generic [ref=e619]:
+                      - paragraph [ref=e620]: (CIP-129) Governance Action ID
+                      - generic [ref=e621]:
+                        - paragraph [ref=e622]: gov_action1xjq6z0c4mh5efs2ztkxc8xh5mj6lyxsfxttp0p39k5afyc75dewqq965uvv
+                        - button [ref=e623] [cursor=pointer]:
+                          - img [ref=e624]
+                - link [ref=e629] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/3481a13f15dde994c1425d8d839af4dcb5f21a0932d6178625b53a9263d46e5c#0
+                  - button [ref=e630]: View Details
+              - generic [ref=e632]:
+                - generic [ref=e633]:
+                  - paragraph [ref=e635]: CoSponsor tooling test - Info Action (please ignore)
+                  - generic [ref=e637]:
+                    - generic [ref=e638]:
+                      - paragraph [ref=e639]: "Submitted: Sun Jul 05, 2026"
+                      - generic [ref=e640]:
+                        - paragraph [ref=e641]: (Epoch 1349)
+                        - img [ref=e643]
+                    - generic [ref=e645]:
+                      - paragraph [ref=e646]: "Expired: Wed Aug 05, 2026"
+                      - generic [ref=e647]:
+                        - paragraph [ref=e648]: (Epoch 1380)
+                        - img [ref=e650]
+                  - generic [ref=e653]:
+                    - paragraph [ref=e654]: Abstract
+                    - paragraph [ref=e656]: "[INFO]: This proposal is not supposed to pass and purely posted to test new CoSponsor tooling. Please feel free to either downvote or ignore this proposal."
+                  - generic [ref=e657]:
+                    - generic [ref=e658]:
+                      - paragraph [ref=e659]: Governance Action Type
+                      - paragraph [ref=e660]: Info Action
+                    - generic [ref=e661]:
+                      - paragraph [ref=e662]: Status
+                      - generic [ref=e663]:
+                        - generic [ref=e665]: Expired
+                        - generic [ref=e667]: Not Ratified
+                    - generic [ref=e668]:
+                      - paragraph [ref=e669]: Governance Action ID
+                      - generic [ref=e670]:
+                        - paragraph [ref=e671]: 25d0c137be9ec2d7d1150aa8ee4732489bd08fa61b6e673957c17e642c56a760#0
+                        - button [ref=e672] [cursor=pointer]:
+                          - img [ref=e673]
+                    - generic [ref=e677]:
+                      - paragraph [ref=e678]: (CIP-129) Governance Action ID
+                      - generic [ref=e679]:
+                        - paragraph [ref=e680]: gov_action1yhgvzda7nmpd05g4p25wu3ejfzdapraxrdhxww2hc9lxgtzk5asqq3sx2rk
+                        - button [ref=e681] [cursor=pointer]:
+                          - img [ref=e682]
+                - link [ref=e687] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/25d0c137be9ec2d7d1150aa8ee4732489bd08fa61b6e673957c17e642c56a760#0
+                  - button [ref=e688]: View Details
+              - generic [ref=e690]:
+                - generic [ref=e691]:
+                  - generic [ref=e692]:
+                    - paragraph [ref=e693]: Data Missing
+                    - img [ref=e695]
+                  - generic [ref=e698]:
+                    - generic [ref=e699]:
+                      - paragraph [ref=e700]: "Submitted: Sun Jul 05, 2026"
+                      - generic [ref=e701]:
+                        - paragraph [ref=e702]: (Epoch 1349)
+                        - img [ref=e704]
+                    - generic [ref=e706]:
+                      - paragraph [ref=e707]: "Expired: Wed Aug 05, 2026"
+                      - generic [ref=e708]:
+                        - paragraph [ref=e709]: (Epoch 1380)
+                        - img [ref=e711]
+                  - generic [ref=e713]:
+                    - generic [ref=e714]:
+                      - paragraph [ref=e715]: Governance Action Type
+                      - paragraph [ref=e716]: Info Action
+                    - generic [ref=e717]:
+                      - paragraph [ref=e718]: Status
+                      - generic [ref=e719]:
+                        - generic [ref=e721]: Expired
+                        - generic [ref=e723]: Not Ratified
+                    - generic [ref=e724]:
+                      - paragraph [ref=e725]: Governance Action ID
+                      - generic [ref=e726]:
+                        - paragraph [ref=e727]: 277badabcf4a1aa5421c0314a7794b7381a4ac3f54c65c2d4b41f4ffd960cd74#0
+                        - button [ref=e728] [cursor=pointer]:
+                          - img [ref=e729]
+                    - generic [ref=e733]:
+                      - paragraph [ref=e734]: (CIP-129) Governance Action ID
+                      - generic [ref=e735]:
+                        - paragraph [ref=e736]: gov_action1yaa6m270fgd22ssuqv22w72twwq6ftpl2nr9ct2tg860lktqe46qqk624rp
+                        - button [ref=e737] [cursor=pointer]:
+                          - img [ref=e738]
+                - link [ref=e743] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/277badabcf4a1aa5421c0314a7794b7381a4ac3f54c65c2d4b41f4ffd960cd74#0
+                  - button [ref=e744]: View Details
+              - generic [ref=e746]:
+                - generic [ref=e747]:
+                  - generic [ref=e748]:
+                    - paragraph [ref=e749]: Data Missing
+                    - img [ref=e751]
+                  - generic [ref=e754]:
+                    - generic [ref=e755]:
+                      - paragraph [ref=e756]: "Submitted: Sat Jul 04, 2026"
+                      - generic [ref=e757]:
+                        - paragraph [ref=e758]: (Epoch 1348)
+                        - img [ref=e760]
+                    - generic [ref=e762]:
+                      - paragraph [ref=e763]: "Expired: Tue Aug 04, 2026"
+                      - generic [ref=e764]:
+                        - paragraph [ref=e765]: (Epoch 1379)
+                        - img [ref=e767]
+                  - generic [ref=e769]:
+                    - generic [ref=e770]:
+                      - paragraph [ref=e771]: Governance Action Type
+                      - paragraph [ref=e772]: Info Action
+                    - generic [ref=e773]:
+                      - paragraph [ref=e774]: Status
+                      - generic [ref=e775]:
+                        - generic [ref=e777]: Expired
+                        - generic [ref=e779]: Not Ratified
+                    - generic [ref=e780]:
+                      - paragraph [ref=e781]: Governance Action ID
+                      - generic [ref=e782]:
+                        - paragraph [ref=e783]: 4c02db3325f839ca6d6cf289b2eb6047434ca52ad68aab17acfb0fb9f64cdc96#0
+                        - button [ref=e784] [cursor=pointer]:
+                          - img [ref=e785]
+                    - generic [ref=e789]:
+                      - paragraph [ref=e790]: (CIP-129) Governance Action ID
+                      - generic [ref=e791]:
+                        - paragraph [ref=e792]: gov_action1fspdkve9lquu5mtv72ym96mqgap5eff26692k9avlv8mnajvmjtqq76sz4h
+                        - button [ref=e793] [cursor=pointer]:
+                          - img [ref=e794]
+                - link [ref=e799] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/4c02db3325f839ca6d6cf289b2eb6047434ca52ad68aab17acfb0fb9f64cdc96#0
+                  - button [ref=e800]: View Details
+            - button [ref=e802] [cursor=pointer]: Show More Actions
+        - img [ref=e803]
+        - contentinfo [ref=e804]:
+          - paragraph [ref=e805]: © 2026 GovTool
+          - generic [ref=e806]:
+            - generic [ref=e807] [cursor=pointer]: Privacy policy
+            - generic [ref=e808] [cursor=pointer]: Terms of Use
+          - generic [ref=e809]:
+            - button [ref=e810] [cursor=pointer]:
+              - img [ref=e812]
+              - text: Help
+            - button [ref=e813] [cursor=pointer]: Feedback
+    - img [ref=e814]
+  - menu [ref=e817]:
+    - generic [ref=e818]:
+      - paragraph [ref=e819]: Governance Action Type
+      - button "Clear" [ref=e820] [cursor=pointer]:
+        - paragraph [ref=e821]: Clear
+    - separator [ref=e822]
+    - generic [ref=e824] [cursor=pointer]:
+      - generic [ref=e825]:
+        - checkbox "Info Action" [checked] [ref=e826]
+        - img [ref=e827]
+      - generic [ref=e829]: Info Action
+    - generic [ref=e831] [cursor=pointer]:
+      - generic [ref=e832]:
+        - checkbox "Treasury Withdrawals" [checked] [active] [ref=e833]
+        - img [ref=e834]
+      - generic [ref=e836]: Treasury Withdrawals
+    - generic [ref=e838] [cursor=pointer]:
+      - generic [ref=e839]:
+        - checkbox "Hard-Fork Initiation" [ref=e840]
+        - img [ref=e841]
+      - generic [ref=e843]: Hard-Fork Initiation
+    - generic [ref=e845] [cursor=pointer]:
+      - generic [ref=e846]:
+        - checkbox "Update Committee" [ref=e847]
+        - img [ref=e848]
+      - generic [ref=e850]: Update Committee
+    - generic [ref=e852] [cursor=pointer]:
+      - generic [ref=e853]:
+        - checkbox "Motion of no Confidence" [ref=e854]
+        - img [ref=e855]
+      - generic [ref=e857]: Motion of no Confidence
+    - generic [ref=e859] [cursor=pointer]:
+      - generic [ref=e860]:
+        - checkbox "New Constitution" [ref=e861]
+        - img [ref=e862]
+      - generic [ref=e864]: New Constitution
+    - generic [ref=e866] [cursor=pointer]:
+      - generic [ref=e867]:
+        - checkbox "Protocol Parameter Change" [ref=e868]
+        - img [ref=e869]
+      - generic [ref=e871]: Protocol Parameter Change
+    - paragraph [ref=e873]: Governance Action Status
+    - separator [ref=e874]
+    - generic [ref=e876] [cursor=pointer]:
+      - generic [ref=e877]:
+        - checkbox "Live" [ref=e878]
+        - img [ref=e879]
+      - generic [ref=e881]: Live
+    - generic [ref=e883] [cursor=pointer]:
+      - generic [ref=e884]:
+        - checkbox "Enacted" [ref=e885]
+        - img [ref=e886]
+      - generic [ref=e888]: Enacted
+    - generic [ref=e890] [cursor=pointer]:
+      - generic [ref=e891]:
+        - checkbox "Ratified" [ref=e892]
+        - img [ref=e893]
+      - generic [ref=e895]: Ratified
+    - generic [ref=e897] [cursor=pointer]:
+      - generic [ref=e898]:
+        - checkbox "Expired" [ref=e899]
+        - img [ref=e900]
+      - generic [ref=e902]: Expired
+```
+
+# Test source
+
+```ts
+  1  | import { expect } from "@playwright/test";
+  2  | import { Logger } from "./logger";
+  3  | 
+  4  | export async function waitedLoop(
+  5  |   conditionFn,
+  6  |   timeout = 60000,
+  7  |   interval = 2000
+  8  | ) {
+  9  |   const startTime = Date.now();
+  10 |   while (Date.now() - startTime < timeout) {
+  11 |     if (await conditionFn()) return true;
+  12 |     Logger.info("Retrying the function");
+  13 |     await new Promise((resolve) => setTimeout(resolve, interval));
+  14 |   }
+  15 |   return false;
+  16 | }
+  17 | 
+  18 | export async function functionWaitedAssert(
+  19 |   fn,
+  20 |   options: {
+  21 |     timeout?: number;
+  22 |     interval?: number;
+  23 |     message?: string;
+  24 |     name?: string;
+  25 |   } = {}
+  26 | ) {
+  27 |   const startTime = Date.now();
+  28 |   const timeout = options.timeout || 60000;
+  29 |   const interval = options.interval || 2000;
+  30 |   const name = options.name || "";
+  31 | 
+  32 |   while (true) {
+  33 |     try {
+  34 |       await fn();
+  35 |       return true;
+  36 |     } catch (error) {
+  37 |       if (Date.now() - startTime >= timeout) {
+  38 |         const errorMessage = options.message || error.message;
+  39 |         console.log(errorMessage);
+> 40 |         expect(false, { message: errorMessage }).toBe(true);
+     |                                                  ^ Error: expect(received).toBe(expected) // Object.is equality
+  41 |       }
+  42 |       Logger.info(`Retrying the function ${name}`);
+  43 |       await new Promise((resolve) => setTimeout(resolve, interval));
+  44 |     }
+  45 |   }
+  46 | }
+  47 | 
+```

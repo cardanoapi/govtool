@@ -1,0 +1,5 @@
+✔ Uploaded Evie metadata to bucket
+ℹ Submitting tx: {"lock_id":"4bc6f667befb2b9b2f556a8f2c22099844b547f5725c761e3310a2904e8325d7","tx":{"certificates":[{"type":"registerdrep","key":"09b914d15f15454dede126c53bf4e23e609e2c967f8b5356e1e4f278","anchor":{"url":"https://metadata-govtool.cardanoapi.io/data/Evie","dataHash":"554291bfece2ce8d350ba7d163510ae4a97f3504a8cb81fe93b3d9c474079670"}}],"selections":[{"type":"PaymentSigningKeyShelley_ed25519","description":"Stake Signing Key","cborHex":"582061f8a8706690affdfa9d78781bab08ad26a420d001f52a8cf10fe029db299ee0"},{"type":"PaymentSigningKeyShelley_ed25519","description":"Payment Signing Key","cborHex":"58204a6ae978d1656381cfe8d9316c7262dd96d72a0c2ce6368ad8559b392170aa0e"},"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"],"changeAddress":"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"}}
+✔ Tx submitted: 323fd51a740406c84c0a7805eacbb81ae7084cb94911d358bb12b130c921a74a
+ℹ Waiting for tx completion: 323fd51a740406c84c0a7805eacbb81ae7084cb94911d358bb12b130c921a74a
+✔ Tx completed

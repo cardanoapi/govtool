@@ -1,0 +1,6 @@
+wallet balance 1022
+wallet address addr_test1qzgnsy7djau3qtnp8nwq7nxtnmw5uchak28tq9ew843m32a49qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998qhf50q7
+✖ Failed to load resource: the server responded with a status of 404 ()
+Username is already set
+✔ Uploaded guardrail-script metadata to bucket
+2

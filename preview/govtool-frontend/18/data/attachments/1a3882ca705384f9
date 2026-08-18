@@ -1,0 +1,753 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 9-outcomes/outcomes.loggedin.spec.ts >> Outcomes page >> outcome sorting and filtering >> 9C_1B. Should filter Governance Action Type on governance actions page
+- Location: tests/9-outcomes/outcomes.loggedin.spec.ts:31:9
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: false
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: "Network: Preview"
+      - generic [ref=e7]: "|"
+      - link [ref=e8] [cursor=pointer]:
+        - /url: https://gov.tools/
+        - text: Go to Mainnet
+    - img [ref=e9]
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - link [ref=e12] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e13]
+        - generic [ref=e14]:
+          - link [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+            - generic [ref=e17]:
+              - img [ref=e18]
+              - paragraph [ref=e19]: Home
+          - link [ref=e21] [cursor=pointer]:
+            - /url: /connected/drep_directory
+            - generic [ref=e22]:
+              - img [ref=e23]
+              - paragraph [ref=e24]: DRep Directory
+          - link [ref=e26] [cursor=pointer]:
+            - /url: /budget_discussion
+            - generic [ref=e27]:
+              - img [ref=e28]
+              - paragraph [ref=e29]: Budget Proposals
+          - generic [ref=e30]:
+            - link [ref=e31] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e32]:
+                - img [ref=e33]
+                - paragraph [ref=e34]: Governance Actions
+            - generic [ref=e35]:
+              - link [ref=e36] [cursor=pointer]:
+                - /url: /proposal_discussion
+                - generic [ref=e37]:
+                  - img [ref=e39]
+                  - paragraph [ref=e41]: Proposals
+              - link [ref=e42] [cursor=pointer]:
+                - /url: /connected/governance_actions
+                - generic [ref=e43]:
+                  - img [ref=e44]
+                  - paragraph [ref=e45]: Live Voting
+              - link [ref=e46] [cursor=pointer]:
+                - /url: /outcomes
+                - generic [ref=e47]:
+                  - img [ref=e48]
+                  - paragraph [ref=e49]: Outcomes
+          - link [ref=e51] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e52]:
+              - img [ref=e53]
+              - paragraph [ref=e54]: Guides
+          - link [ref=e56] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e57]:
+              - img [ref=e58]
+              - paragraph [ref=e59]: FAQs
+        - generic [ref=e62]:
+          - paragraph [ref=e63]: "Connected Wallet:"
+          - generic [ref=e64]:
+            - paragraph [ref=e65]: 00b910a0fcee3e1516c5d65423e41ca3c5ac2c63e8bb7fb91bf63be96fb092a3e76d60768c5e7c5bc4ccc992b168a47159e7270454c9a292c3
+            - button [ref=e66] [cursor=pointer]: Disconnect
+      - generic [ref=e67]:
+        - navigation [ref=e68]:
+          - paragraph [ref=e70]: Outcomes
+        - img [ref=e71]
+        - generic [ref=e76]:
+          - generic [ref=e77]:
+            - generic [ref=e78]:
+              - generic [ref=e79]:
+                - img [ref=e80]
+                - textbox [ref=e82]:
+                  - /placeholder: Search Action...
+              - generic [ref=e83]:
+                - button [expanded] [ref=e85] [cursor=pointer]:
+                  - generic [ref=e87]:
+                    - paragraph [ref=e88]: Filters
+                    - img [ref=e90]
+                - button [ref=e93] [cursor=pointer]:
+                  - generic [ref=e94]:
+                    - paragraph [ref=e95]: "Sort: Newest first"
+                    - img [ref=e97]
+            - generic [ref=e99]:
+              - button [ref=e100]:
+                - generic [ref=e101]: Update Committee
+                - button [ref=e102] [cursor=pointer]:
+                  - img [ref=e103]
+              - button [ref=e105]:
+                - generic [ref=e106]: Hard-Fork Initiation
+                - button [ref=e107] [cursor=pointer]:
+                  - img [ref=e108]
+          - generic [ref=e111]:
+            - generic [ref=e112]:
+              - generic [ref=e114]:
+                - generic [ref=e115]:
+                  - paragraph [ref=e117]: Remove Expired Constitutional Committee Members
+                  - generic [ref=e119]:
+                    - generic [ref=e120]:
+                      - paragraph [ref=e121]: "Submitted: Fri Jul 24, 2026"
+                      - generic [ref=e122]:
+                        - paragraph [ref=e123]: (Epoch 1368)
+                        - img [ref=e125]
+                    - generic [ref=e127]:
+                      - paragraph [ref=e128]: "Expired: Mon Aug 24, 2026"
+                      - generic [ref=e129]:
+                        - paragraph [ref=e130]: (Epoch 1399)
+                        - img [ref=e132]
+                  - generic [ref=e135]:
+                    - paragraph [ref=e136]: Abstract
+                    - paragraph [ref=e138]: Remove expired constitutional committee members.
+                  - generic [ref=e139]:
+                    - generic [ref=e140]:
+                      - paragraph [ref=e141]: Governance Action Type
+                      - paragraph [ref=e142]: Update Committee
+                    - generic [ref=e143]:
+                      - paragraph [ref=e144]: Status
+                      - generic [ref=e145]:
+                        - generic [ref=e147]: Ratified
+                        - generic [ref=e149]: Enacted
+                    - generic [ref=e150]:
+                      - paragraph [ref=e151]: Governance Action ID
+                      - generic [ref=e152]:
+                        - paragraph [ref=e153]: 06dcb60f4b6ee78024bd4c7978e8e093437903198cf06c3c5d34bf825129bc73#0
+                        - button [ref=e154] [cursor=pointer]:
+                          - img [ref=e155]
+                    - generic [ref=e159]:
+                      - paragraph [ref=e160]: (CIP-129) Governance Action ID
+                      - generic [ref=e161]:
+                        - paragraph [ref=e162]: gov_action1qmwtvr6tdmncqf9af3uh368qjdphjqce3ncxc0zaxjlcy5ffh3esqspcnu4
+                        - button [ref=e163] [cursor=pointer]:
+                          - img [ref=e164]
+                - link [ref=e169] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/06dcb60f4b6ee78024bd4c7978e8e093437903198cf06c3c5d34bf825129bc73#0
+                  - button [ref=e170]: View Details
+              - generic [ref=e172]:
+                - generic [ref=e173]:
+                  - paragraph [ref=e175]: Restore the Preview Constitutional Committee After Term Expiry
+                  - generic [ref=e177]:
+                    - generic [ref=e178]:
+                      - paragraph [ref=e179]: "Submitted: Wed Jul 15, 2026"
+                      - generic [ref=e180]:
+                        - paragraph [ref=e181]: (Epoch 1359)
+                        - img [ref=e183]
+                    - generic [ref=e185]:
+                      - paragraph [ref=e186]: "Expired: Sat Aug 15, 2026"
+                      - generic [ref=e187]:
+                        - paragraph [ref=e188]: (Epoch 1390)
+                        - img [ref=e190]
+                  - generic [ref=e193]:
+                    - paragraph [ref=e194]: Abstract
+                    - paragraph [ref=e196]: Re-add the three previously active committee members with term until epoch 1720, restoring minimum committee size of 3.
+                  - generic [ref=e197]:
+                    - generic [ref=e198]:
+                      - paragraph [ref=e199]: Governance Action Type
+                      - paragraph [ref=e200]: Update Committee
+                    - generic [ref=e201]:
+                      - paragraph [ref=e202]: Status
+                      - generic [ref=e203]:
+                        - generic [ref=e205]: Ratified
+                        - generic [ref=e207]: Enacted
+                    - generic [ref=e208]:
+                      - paragraph [ref=e209]: Governance Action ID
+                      - generic [ref=e210]:
+                        - paragraph [ref=e211]: 65c41d163aceb2be0b821b79fa71ee1ead7ecd13bd1ae812baddf5c962c9d62b#0
+                        - button [ref=e212] [cursor=pointer]:
+                          - img [ref=e213]
+                    - generic [ref=e217]:
+                      - paragraph [ref=e218]: (CIP-129) Governance Action ID
+                      - generic [ref=e219]:
+                        - paragraph [ref=e220]: gov_action1vhzp6936e6etuzuzrdul5u0wr6khangnh5dwsy46mh6ujckf6c4sqfxgtdl
+                        - button [ref=e221] [cursor=pointer]:
+                          - img [ref=e222]
+                - link [ref=e227] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/65c41d163aceb2be0b821b79fa71ee1ead7ecd13bd1ae812baddf5c962c9d62b#0
+                  - button [ref=e228]: View Details
+              - generic [ref=e230]:
+                - generic [ref=e231]:
+                  - paragraph [ref=e233]: CoSponsor tooling test - Committee Update (please ignore)
+                  - generic [ref=e235]:
+                    - generic [ref=e236]:
+                      - paragraph [ref=e237]: "Submitted: Mon Jul 06, 2026"
+                      - generic [ref=e238]:
+                        - paragraph [ref=e239]: (Epoch 1350)
+                        - img [ref=e241]
+                    - generic [ref=e243]:
+                      - paragraph [ref=e244]: "Expired: Thu Aug 06, 2026"
+                      - generic [ref=e245]:
+                        - paragraph [ref=e246]: (Epoch 1381)
+                        - img [ref=e248]
+                  - generic [ref=e251]:
+                    - paragraph [ref=e252]: Abstract
+                    - paragraph [ref=e254]: "[INFO]: This proposal is not supposed to pass and purely posted to test new CoSponsor tooling. Please feel free to either downvote or ignore this proposal."
+                  - generic [ref=e255]:
+                    - generic [ref=e256]:
+                      - paragraph [ref=e257]: Governance Action Type
+                      - paragraph [ref=e258]: Update Committee
+                    - generic [ref=e259]:
+                      - paragraph [ref=e260]: Status
+                      - generic [ref=e262]: Not Ratified
+                    - generic [ref=e263]:
+                      - paragraph [ref=e264]: Governance Action ID
+                      - generic [ref=e265]:
+                        - paragraph [ref=e266]: 2c3657d09e194507a4b120c3aeed4616818ad3875382ba68b4e668e6d3d5d625#0
+                        - button [ref=e267] [cursor=pointer]:
+                          - img [ref=e268]
+                    - generic [ref=e272]:
+                      - paragraph [ref=e273]: (CIP-129) Governance Action ID
+                      - generic [ref=e274]:
+                        - paragraph [ref=e275]: gov_action19sm905y7r9zs0f93yrp6am2xz6qc45u82wpt5695ue5wd5746cjsqrjnxrs
+                        - button [ref=e276] [cursor=pointer]:
+                          - img [ref=e277]
+                - link [ref=e282] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/2c3657d09e194507a4b120c3aeed4616818ad3875382ba68b4e668e6d3d5d625#0
+                  - button [ref=e283]: View Details
+              - generic [ref=e285]:
+                - generic [ref=e286]:
+                  - paragraph [ref=e288]: Hard Fork to Protocol Version 11 ("van Rossem" Hard Fork)
+                  - generic [ref=e290]:
+                    - generic [ref=e291]:
+                      - paragraph [ref=e292]: "Submitted: Tue May 05, 2026"
+                      - generic [ref=e293]:
+                        - paragraph [ref=e294]: (Epoch 1288)
+                        - img [ref=e296]
+                    - generic [ref=e298]:
+                      - paragraph [ref=e299]: "Expired: Fri Jun 05, 2026"
+                      - generic [ref=e300]:
+                        - paragraph [ref=e301]: (Epoch 1319)
+                        - img [ref=e303]
+                  - generic [ref=e306]:
+                    - paragraph [ref=e307]: Abstract
+                    - paragraph [ref=e309]: "We propose to upgrade Cardano preview to Protocol Version 11. This upgrade will be achieved via an intra-era Hard Fork (called \"van Rossem\"). Following the upgrade:"
+                  - generic [ref=e310]:
+                    - generic [ref=e311]:
+                      - paragraph [ref=e312]: Governance Action Type
+                      - paragraph [ref=e313]: Hard-Fork Initiation
+                    - generic [ref=e314]:
+                      - paragraph [ref=e315]: Status
+                      - generic [ref=e316]:
+                        - generic [ref=e318]: Ratified
+                        - generic [ref=e320]: Enacted
+                    - generic [ref=e321]:
+                      - paragraph [ref=e322]: Governance Action ID
+                      - generic [ref=e323]:
+                        - paragraph [ref=e324]: fa2b252c9d645b376ee68f94ea87764dad6510e201726921e0cb733161ca6ef8#0
+                        - button [ref=e325] [cursor=pointer]:
+                          - img [ref=e326]
+                    - generic [ref=e330]:
+                      - paragraph [ref=e331]: (CIP-129) Governance Action ID
+                      - generic [ref=e332]:
+                        - paragraph [ref=e333]: gov_action1lg4j2tyav3dnwmhx372w4pmkfkkk2y8zq9exjg0qedenzcw2dmuqql0r99d
+                        - button [ref=e334] [cursor=pointer]:
+                          - img [ref=e335]
+                - link [ref=e340] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/fa2b252c9d645b376ee68f94ea87764dad6510e201726921e0cb733161ca6ef8#0
+                  - button [ref=e341]: View Details
+              - generic [ref=e343]:
+                - generic [ref=e344]:
+                  - paragraph [ref=e346]: "[TEST #5] Replace committee with new members"
+                  - generic [ref=e348]:
+                    - generic [ref=e349]:
+                      - paragraph [ref=e350]: "Submitted: Wed Apr 08, 2026"
+                      - generic [ref=e351]:
+                        - paragraph [ref=e352]: (Epoch 1261)
+                        - img [ref=e354]
+                    - generic [ref=e356]:
+                      - paragraph [ref=e357]: "Expired: Sat May 09, 2026"
+                      - generic [ref=e358]:
+                        - paragraph [ref=e359]: (Epoch 1292)
+                        - img [ref=e361]
+                  - generic [ref=e364]:
+                    - paragraph [ref=e365]: Abstract
+                    - paragraph [ref=e367]: "Test UpdateCommittee proposal used to exercise the conflict-badge UI on Preview. Shares CommitteePurpose with TEST #4 — they should be marked as competing, and both as 'Delaying'."
+                  - generic [ref=e368]:
+                    - generic [ref=e369]:
+                      - paragraph [ref=e370]: Governance Action Type
+                      - paragraph [ref=e371]: Update Committee
+                    - generic [ref=e372]:
+                      - paragraph [ref=e373]: Status
+                      - generic [ref=e374]:
+                        - generic [ref=e376]: Expired
+                        - generic [ref=e378]: Not Ratified
+                    - generic [ref=e379]:
+                      - paragraph [ref=e380]: Governance Action ID
+                      - generic [ref=e381]:
+                        - paragraph [ref=e382]: c56341f6dc25de1b89c79310a0caef12e9b038810d8b5913d910df423be17f37#1
+                        - button [ref=e383] [cursor=pointer]:
+                          - img [ref=e384]
+                    - generic [ref=e388]:
+                      - paragraph [ref=e389]: (CIP-129) Governance Action ID
+                      - generic [ref=e390]:
+                        - paragraph [ref=e391]: gov_action1c435rakuyh0phzw8jvg2pjh0zt5mqwyppk94jy7ezr05ywlp0umszxl2ylj
+                        - button [ref=e392] [cursor=pointer]:
+                          - img [ref=e393]
+                - link [ref=e398] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/c56341f6dc25de1b89c79310a0caef12e9b038810d8b5913d910df423be17f37#1
+                  - button [ref=e399]: View Details
+              - generic [ref=e401]:
+                - generic [ref=e402]:
+                  - paragraph [ref=e404]: Add Constitutional Committee Member - Christina
+                  - generic [ref=e406]:
+                    - generic [ref=e407]:
+                      - paragraph [ref=e408]: "Submitted: Mon Dec 15, 2025"
+                      - generic [ref=e409]:
+                        - paragraph [ref=e410]: (Epoch 1147)
+                        - img [ref=e412]
+                    - generic [ref=e414]:
+                      - paragraph [ref=e415]: "Expired: Thu Jan 15, 2026"
+                      - generic [ref=e416]:
+                        - paragraph [ref=e417]: (Epoch 1178)
+                        - img [ref=e419]
+                  - generic [ref=e422]:
+                    - paragraph [ref=e423]: Abstract
+                    - paragraph [ref=e425]: This governance action proposes to add an additional Constitutional Committee member through a community-initiated Update Committee action.
+                  - generic [ref=e426]:
+                    - generic [ref=e427]:
+                      - paragraph [ref=e428]: Governance Action Type
+                      - paragraph [ref=e429]: Update Committee
+                    - generic [ref=e430]:
+                      - paragraph [ref=e431]: Status
+                      - generic [ref=e432]:
+                        - generic [ref=e434]: Expired
+                        - generic [ref=e436]: Not Ratified
+                    - generic [ref=e437]:
+                      - paragraph [ref=e438]: Governance Action ID
+                      - generic [ref=e439]:
+                        - paragraph [ref=e440]: f5d8fbd0688b967299ac988333dbc8171b57930537b7fe265967447c1d9ac69d#0
+                        - button [ref=e441] [cursor=pointer]:
+                          - img [ref=e442]
+                    - generic [ref=e446]:
+                      - paragraph [ref=e447]: (CIP-129) Governance Action ID
+                      - generic [ref=e448]:
+                        - paragraph [ref=e449]: gov_action17hv0h5rg3wt89xdvnzpn8k7gzud40yc9x7mlufjevaz8c8v6c6wsqyykxtf
+                        - button [ref=e450] [cursor=pointer]:
+                          - img [ref=e451]
+                - link [ref=e456] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/f5d8fbd0688b967299ac988333dbc8171b57930537b7fe265967447c1d9ac69d#0
+                  - button [ref=e457]: View Details
+              - generic [ref=e459]:
+                - generic [ref=e460]:
+                  - paragraph [ref=e462]: Add Constitutional Committee Member
+                  - generic [ref=e464]:
+                    - generic [ref=e465]:
+                      - paragraph [ref=e466]: "Submitted: Tue Dec 09, 2025"
+                      - generic [ref=e467]:
+                        - paragraph [ref=e468]: (Epoch 1141)
+                        - img [ref=e470]
+                    - generic [ref=e472]:
+                      - paragraph [ref=e473]: "Expired: Fri Jan 09, 2026"
+                      - generic [ref=e474]:
+                        - paragraph [ref=e475]: (Epoch 1172)
+                        - img [ref=e477]
+                  - generic [ref=e480]:
+                    - paragraph [ref=e481]: Abstract
+                    - paragraph [ref=e483]:
+                      - text: This governance action proposes to add a new Constitutional Committee member selected by participating DReps during the
+                      - link [ref=e484] [cursor=pointer]:
+                        - /url: https://docs.intersectmbo.org/cardano-facilitation-services/cardano-governance/2025-cc-snap-election-overview
+                        - text: Intersect hosted snap-election process
+                      - text: from 26th of November to 5th of December.
+                  - generic [ref=e485]:
+                    - generic [ref=e486]:
+                      - paragraph [ref=e487]: Governance Action Type
+                      - paragraph [ref=e488]: Update Committee
+                    - generic [ref=e489]:
+                      - paragraph [ref=e490]: Status
+                      - generic [ref=e491]:
+                        - generic [ref=e493]: Expired
+                        - generic [ref=e495]: Not Ratified
+                    - generic [ref=e496]:
+                      - paragraph [ref=e497]: Governance Action ID
+                      - generic [ref=e498]:
+                        - paragraph [ref=e499]: 013697228a40606a64691a47b34467d0e1aed84b81151f0729b8572ac624da3d#0
+                        - button [ref=e500] [cursor=pointer]:
+                          - img [ref=e501]
+                    - generic [ref=e505]:
+                      - paragraph [ref=e506]: (CIP-129) Governance Action ID
+                      - generic [ref=e507]:
+                        - paragraph [ref=e508]: gov_action1qymfwg52gpsx5erfrfrmx3r86rs6akztsy237pefhptj433ymg7sqhc5yfy
+                        - button [ref=e509] [cursor=pointer]:
+                          - img [ref=e510]
+                - link [ref=e515] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/013697228a40606a64691a47b34467d0e1aed84b81151f0729b8572ac624da3d#0
+                  - button [ref=e516]: View Details
+              - generic [ref=e518]:
+                - generic [ref=e519]:
+                  - paragraph [ref=e521]: Add Constitutional Committee Member
+                  - generic [ref=e523]:
+                    - generic [ref=e524]:
+                      - paragraph [ref=e525]: "Submitted: Tue Dec 09, 2025"
+                      - generic [ref=e526]:
+                        - paragraph [ref=e527]: (Epoch 1141)
+                        - img [ref=e529]
+                    - generic [ref=e531]:
+                      - paragraph [ref=e532]: "Expired: Fri Jan 09, 2026"
+                      - generic [ref=e533]:
+                        - paragraph [ref=e534]: (Epoch 1172)
+                        - img [ref=e536]
+                  - generic [ref=e539]:
+                    - paragraph [ref=e540]: Abstract
+                    - paragraph [ref=e542]:
+                      - text: This governance action proposes to add a new Constitutional Committee member selected by participating DReps during the
+                      - link [ref=e543] [cursor=pointer]:
+                        - /url: https://docs.intersectmbo.org/cardano-facilitation-services/cardano-governance/2025-cc-snap-election-overview
+                        - text: Intersect hosted snap-election process
+                      - text: from 26th of November to 5th of December.
+                  - generic [ref=e544]:
+                    - generic [ref=e545]:
+                      - paragraph [ref=e546]: Governance Action Type
+                      - paragraph [ref=e547]: Update Committee
+                    - generic [ref=e548]:
+                      - paragraph [ref=e549]: Status
+                      - generic [ref=e550]:
+                        - generic [ref=e552]: Expired
+                        - generic [ref=e554]: Not Ratified
+                    - generic [ref=e555]:
+                      - paragraph [ref=e556]: Governance Action ID
+                      - generic [ref=e557]:
+                        - paragraph [ref=e558]: 5bdc2eb61c045dba198b310d1d99fa63fa1e01fbbabe2e1fc32eb8f6489f00af#0
+                        - button [ref=e559] [cursor=pointer]:
+                          - img [ref=e560]
+                    - generic [ref=e564]:
+                      - paragraph [ref=e565]: (CIP-129) Governance Action ID
+                      - generic [ref=e566]:
+                        - paragraph [ref=e567]: gov_action1t0wzadsuq3wm5xvtxyx3mx06v0apuq0mh2lzu87r96u0vjylqzhsqurt93w
+                        - button [ref=e568] [cursor=pointer]:
+                          - img [ref=e569]
+                - link [ref=e574] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/5bdc2eb61c045dba198b310d1d99fa63fa1e01fbbabe2e1fc32eb8f6489f00af#0
+                  - button [ref=e575]: View Details
+              - generic [ref=e577]:
+                - generic [ref=e578]:
+                  - paragraph [ref=e580]: Add Constitutional Committee Member
+                  - generic [ref=e582]:
+                    - generic [ref=e583]:
+                      - paragraph [ref=e584]: "Submitted: Fri Dec 05, 2025"
+                      - generic [ref=e585]:
+                        - paragraph [ref=e586]: (Epoch 1137)
+                        - img [ref=e588]
+                    - generic [ref=e590]:
+                      - paragraph [ref=e591]: "Expired: Mon Jan 05, 2026"
+                      - generic [ref=e592]:
+                        - paragraph [ref=e593]: (Epoch 1168)
+                        - img [ref=e595]
+                  - generic [ref=e598]:
+                    - paragraph [ref=e599]: Abstract
+                    - paragraph [ref=e601]:
+                      - text: This governance action proposes to add a new Constitutional Committee member selected by participating DReps during the
+                      - link [ref=e602] [cursor=pointer]:
+                        - /url: https://docs.intersectmbo.org/cardano-facilitation-services/cardano-governance/2025-cc-snap-election-overview
+                        - text: Intersect hosted snap-election process
+                      - text: from 26th of November to 5th of December.
+                  - generic [ref=e603]:
+                    - generic [ref=e604]:
+                      - paragraph [ref=e605]: Governance Action Type
+                      - paragraph [ref=e606]: Update Committee
+                    - generic [ref=e607]:
+                      - paragraph [ref=e608]: Status
+                      - generic [ref=e609]:
+                        - generic [ref=e611]: Expired
+                        - generic [ref=e613]: Not Ratified
+                    - generic [ref=e614]:
+                      - paragraph [ref=e615]: Governance Action ID
+                      - generic [ref=e616]:
+                        - paragraph [ref=e617]: 3b358242ac29243181668172a5c110c66d77a89904f251356892e126f0db1896#0
+                        - button [ref=e618] [cursor=pointer]:
+                          - img [ref=e619]
+                    - generic [ref=e623]:
+                      - paragraph [ref=e624]: (CIP-129) Governance Action ID
+                      - generic [ref=e625]:
+                        - paragraph [ref=e626]: gov_action18v6cys4v9yjrrqtxs9e2tsgscekh02yeqne9zdtgjtsjduxmrztqqc8q5pd
+                        - button [ref=e627] [cursor=pointer]:
+                          - img [ref=e628]
+                - link [ref=e633] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/3b358242ac29243181668172a5c110c66d77a89904f251356892e126f0db1896#0
+                  - button [ref=e634]: View Details
+              - generic [ref=e636]:
+                - generic [ref=e637]:
+                  - generic [ref=e638]:
+                    - paragraph [ref=e639]: Data Missing
+                    - img [ref=e641]
+                  - generic [ref=e644]:
+                    - generic [ref=e645]:
+                      - paragraph [ref=e646]: "Submitted: Thu Oct 09, 2025"
+                      - generic [ref=e647]:
+                        - paragraph [ref=e648]: (Epoch 1080)
+                        - img [ref=e650]
+                    - generic [ref=e652]:
+                      - paragraph [ref=e653]: "Expired: Sun Nov 09, 2025"
+                      - generic [ref=e654]:
+                        - paragraph [ref=e655]: (Epoch 1111)
+                        - img [ref=e657]
+                  - generic [ref=e659]:
+                    - generic [ref=e660]:
+                      - paragraph [ref=e661]: Governance Action Type
+                      - paragraph [ref=e662]: Update Committee
+                    - generic [ref=e663]:
+                      - paragraph [ref=e664]: Status
+                      - generic [ref=e665]:
+                        - generic [ref=e667]: Expired
+                        - generic [ref=e669]: Not Ratified
+                    - generic [ref=e670]:
+                      - paragraph [ref=e671]: Governance Action ID
+                      - generic [ref=e672]:
+                        - paragraph [ref=e673]: 69a0a474f84a0513ed2c4e27ecf673522c03accca68aa190c2b1b7ab5f6485e7#0
+                        - button [ref=e674] [cursor=pointer]:
+                          - img [ref=e675]
+                    - generic [ref=e679]:
+                      - paragraph [ref=e680]: (CIP-129) Governance Action ID
+                      - generic [ref=e681]:
+                        - paragraph [ref=e682]: gov_action1dxs2ga8cfgz38mfvfcn7eann2gkq8txv5692ryxzkxm6khmyshnsqnhkezs
+                        - button [ref=e683] [cursor=pointer]:
+                          - img [ref=e684]
+                - link [ref=e689] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/69a0a474f84a0513ed2c4e27ecf673522c03accca68aa190c2b1b7ab5f6485e7#0
+                  - button [ref=e690]: View Details
+              - generic [ref=e692]:
+                - generic [ref=e693]:
+                  - generic [ref=e694]:
+                    - paragraph [ref=e695]: Data Missing
+                    - img [ref=e697]
+                  - generic [ref=e700]:
+                    - generic [ref=e701]:
+                      - paragraph [ref=e702]: "Submitted: Thu Oct 09, 2025"
+                      - generic [ref=e703]:
+                        - paragraph [ref=e704]: (Epoch 1080)
+                        - img [ref=e706]
+                    - generic [ref=e708]:
+                      - paragraph [ref=e709]: "Expired: Sun Nov 09, 2025"
+                      - generic [ref=e710]:
+                        - paragraph [ref=e711]: (Epoch 1111)
+                        - img [ref=e713]
+                  - generic [ref=e715]:
+                    - generic [ref=e716]:
+                      - paragraph [ref=e717]: Governance Action Type
+                      - paragraph [ref=e718]: Update Committee
+                    - generic [ref=e719]:
+                      - paragraph [ref=e720]: Status
+                      - generic [ref=e721]:
+                        - generic [ref=e723]: Expired
+                        - generic [ref=e725]: Not Ratified
+                    - generic [ref=e726]:
+                      - paragraph [ref=e727]: Governance Action ID
+                      - generic [ref=e728]:
+                        - paragraph [ref=e729]: 275ab070e511c463cdf5556eee5968623679b118081184b43c7be3c14690d9d5#0
+                        - button [ref=e730] [cursor=pointer]:
+                          - img [ref=e731]
+                    - generic [ref=e735]:
+                      - paragraph [ref=e736]: (CIP-129) Governance Action ID
+                      - generic [ref=e737]:
+                        - paragraph [ref=e738]: gov_action1yadtqu89z8zx8n0424hwuktgvgm8nvgcpqgcfdpu003uz35sm82sqvp42vl
+                        - button [ref=e739] [cursor=pointer]:
+                          - img [ref=e740]
+                - link [ref=e745] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/275ab070e511c463cdf5556eee5968623679b118081184b43c7be3c14690d9d5#0
+                  - button [ref=e746]: View Details
+              - generic [ref=e748]:
+                - generic [ref=e749]:
+                  - generic [ref=e750]:
+                    - paragraph [ref=e751]: Data Missing
+                    - img [ref=e753]
+                  - generic [ref=e756]:
+                    - generic [ref=e757]:
+                      - paragraph [ref=e758]: "Submitted: Thu Oct 09, 2025"
+                      - generic [ref=e759]:
+                        - paragraph [ref=e760]: (Epoch 1080)
+                        - img [ref=e762]
+                    - generic [ref=e764]:
+                      - paragraph [ref=e765]: "Expired: Sun Nov 09, 2025"
+                      - generic [ref=e766]:
+                        - paragraph [ref=e767]: (Epoch 1111)
+                        - img [ref=e769]
+                  - generic [ref=e771]:
+                    - generic [ref=e772]:
+                      - paragraph [ref=e773]: Governance Action Type
+                      - paragraph [ref=e774]: Update Committee
+                    - generic [ref=e775]:
+                      - paragraph [ref=e776]: Status
+                      - generic [ref=e777]:
+                        - generic [ref=e779]: Expired
+                        - generic [ref=e781]: Not Ratified
+                    - generic [ref=e782]:
+                      - paragraph [ref=e783]: Governance Action ID
+                      - generic [ref=e784]:
+                        - paragraph [ref=e785]: 1b1e6416384201bae65836cffbf23dc62e195fb8fbf177c50c0926e17a9dec99#0
+                        - button [ref=e786] [cursor=pointer]:
+                          - img [ref=e787]
+                    - generic [ref=e791]:
+                      - paragraph [ref=e792]: (CIP-129) Governance Action ID
+                      - generic [ref=e793]:
+                        - paragraph [ref=e794]: gov_action1rv0xg93cggqm4ejcxm8lhu3acchpjhacl0ch03gvpynwz75aajvsqwr8hfn
+                        - button [ref=e795] [cursor=pointer]:
+                          - img [ref=e796]
+                - link [ref=e801] [cursor=pointer]:
+                  - /url: /outcomes/governance_actions/1b1e6416384201bae65836cffbf23dc62e195fb8fbf177c50c0926e17a9dec99#0
+                  - button [ref=e802]: View Details
+            - button [ref=e804] [cursor=pointer]: Show More Actions
+        - img [ref=e805]
+        - contentinfo [ref=e806]:
+          - paragraph [ref=e807]: © 2026 GovTool
+          - generic [ref=e808]:
+            - generic [ref=e809] [cursor=pointer]: Privacy policy
+            - generic [ref=e810] [cursor=pointer]: Terms of Use
+          - generic [ref=e811]:
+            - button [ref=e812] [cursor=pointer]:
+              - img [ref=e814]
+              - text: Help
+            - button [ref=e815] [cursor=pointer]: Feedback
+    - img [ref=e816]
+  - menu [ref=e819]:
+    - generic [ref=e820]:
+      - paragraph [ref=e821]: Governance Action Type
+      - button "Clear" [ref=e822] [cursor=pointer]:
+        - paragraph [ref=e823]: Clear
+    - separator [ref=e824]
+    - generic [ref=e826] [cursor=pointer]:
+      - generic [ref=e827]:
+        - checkbox "Info Action" [ref=e828]
+        - img [ref=e829]
+      - generic [ref=e831]: Info Action
+    - generic [ref=e833] [cursor=pointer]:
+      - generic [ref=e834]:
+        - checkbox "Treasury Withdrawals" [ref=e835]
+        - img [ref=e836]
+      - generic [ref=e838]: Treasury Withdrawals
+    - generic [ref=e840] [cursor=pointer]:
+      - generic [ref=e841]:
+        - checkbox "Hard-Fork Initiation" [checked] [active] [ref=e842]
+        - img [ref=e843]
+      - generic [ref=e845]: Hard-Fork Initiation
+    - generic [ref=e847] [cursor=pointer]:
+      - generic [ref=e848]:
+        - checkbox "Update Committee" [checked] [ref=e849]
+        - img [ref=e850]
+      - generic [ref=e852]: Update Committee
+    - generic [ref=e854] [cursor=pointer]:
+      - generic [ref=e855]:
+        - checkbox "Motion of no Confidence" [ref=e856]
+        - img [ref=e857]
+      - generic [ref=e859]: Motion of no Confidence
+    - generic [ref=e861] [cursor=pointer]:
+      - generic [ref=e862]:
+        - checkbox "New Constitution" [ref=e863]
+        - img [ref=e864]
+      - generic [ref=e866]: New Constitution
+    - generic [ref=e868] [cursor=pointer]:
+      - generic [ref=e869]:
+        - checkbox "Protocol Parameter Change" [ref=e870]
+        - img [ref=e871]
+      - generic [ref=e873]: Protocol Parameter Change
+    - paragraph [ref=e875]: Governance Action Status
+    - separator [ref=e876]
+    - generic [ref=e878] [cursor=pointer]:
+      - generic [ref=e879]:
+        - checkbox "Live" [ref=e880]
+        - img [ref=e881]
+      - generic [ref=e883]: Live
+    - generic [ref=e885] [cursor=pointer]:
+      - generic [ref=e886]:
+        - checkbox "Enacted" [ref=e887]
+        - img [ref=e888]
+      - generic [ref=e890]: Enacted
+    - generic [ref=e892] [cursor=pointer]:
+      - generic [ref=e893]:
+        - checkbox "Ratified" [ref=e894]
+        - img [ref=e895]
+      - generic [ref=e897]: Ratified
+    - generic [ref=e899] [cursor=pointer]:
+      - generic [ref=e900]:
+        - checkbox "Expired" [ref=e901]
+        - img [ref=e902]
+      - generic [ref=e904]: Expired
+```
+
+# Test source
+
+```ts
+  1  | import { expect } from "@playwright/test";
+  2  | import { Logger } from "./logger";
+  3  | 
+  4  | export async function waitedLoop(
+  5  |   conditionFn,
+  6  |   timeout = 60000,
+  7  |   interval = 2000
+  8  | ) {
+  9  |   const startTime = Date.now();
+  10 |   while (Date.now() - startTime < timeout) {
+  11 |     if (await conditionFn()) return true;
+  12 |     Logger.info("Retrying the function");
+  13 |     await new Promise((resolve) => setTimeout(resolve, interval));
+  14 |   }
+  15 |   return false;
+  16 | }
+  17 | 
+  18 | export async function functionWaitedAssert(
+  19 |   fn,
+  20 |   options: {
+  21 |     timeout?: number;
+  22 |     interval?: number;
+  23 |     message?: string;
+  24 |     name?: string;
+  25 |   } = {}
+  26 | ) {
+  27 |   const startTime = Date.now();
+  28 |   const timeout = options.timeout || 60000;
+  29 |   const interval = options.interval || 2000;
+  30 |   const name = options.name || "";
+  31 | 
+  32 |   while (true) {
+  33 |     try {
+  34 |       await fn();
+  35 |       return true;
+  36 |     } catch (error) {
+  37 |       if (Date.now() - startTime >= timeout) {
+  38 |         const errorMessage = options.message || error.message;
+  39 |         console.log(errorMessage);
+> 40 |         expect(false, { message: errorMessage }).toBe(true);
+     |                                                  ^ Error: expect(received).toBe(expected) // Object.is equality
+  41 |       }
+  42 |       Logger.info(`Retrying the function ${name}`);
+  43 |       await new Promise((resolve) => setTimeout(resolve, interval));
+  44 |     }
+  45 |   }
+  46 | }
+  47 | 
+```

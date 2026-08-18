@@ -1,6 +1,0 @@
-✖ Failed to load resource: the server responded with a status of 404 ()
-✖ Failed to load resource: the server responded with a status of 404 ()
-✔ Uploaded Kristofer.jsonld metadata to bucket
-✖ Failed to load resource: the server responded with a status of 404 ()
-ℹ Waiting for tx completion: c33dc3bc8c7c3e946461fb4f1b0ead38310057fe5927bbe4960b8dcb44e671ce
-✔ Tx completed

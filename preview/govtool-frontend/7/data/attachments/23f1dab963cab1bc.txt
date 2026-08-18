@@ -1,5 +1,0 @@
-✔ Uploaded Vicenta metadata to bucket
-ℹ Submitting tx: {"lock_id":"b48025f5bbf00c92012d2ecb3018531c9c144db3af64b09144f00a2ff6134788","tx":{"certificates":[{"type":"registerdrep","key":"dc4fe8e9d568a40947031c814af274353b7f09a0ca3972beb92f1d11","anchor":{"url":"https://metadata-govtool.cardanoapi.io/data/Vicenta","dataHash":"978cab7511f4ed7511f621cdb4257f95b38baded099546b16fe1c2f2bb61b6fc"}}],"selections":[{"type":"PaymentSigningKeyShelley_ed25519","description":"Stake Signing Key","cborHex":"582012471ddd4e8a8e103b0a7b329b1d108e0d386929f3867b6fdff33d105d320c11"},{"type":"PaymentSigningKeyShelley_ed25519","description":"Payment Signing Key","cborHex":"58204a6ae978d1656381cfe8d9316c7262dd96d72a0c2ce6368ad8559b392170aa0e"},"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"],"changeAddress":"addr_test1qztgpv63dtwpl22vp2gul9fk9ewgddh6duql8vqt2ggcxu449qdpyqaqq98zul2ythsyx4ez9t5d0xc08rqjpa9s998q0gqt2k"}}
-✔ Tx submitted: dd87c3a3f519e5d344b493eb72547163dfcf44951a253a309626b67f84a9be76
-ℹ Waiting for tx completion: dd87c3a3f519e5d344b493eb72547163dfcf44951a253a309626b67f84a9be76
-✔ Tx completed

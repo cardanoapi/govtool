@@ -1,0 +1,9 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: bfc97fcad83a558d10ad00b7d3a721fdfe1b1b3993b2c6ba7a26fccaa5ed4035
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Uploaded Vote_Context.jsonld metadata to bucket
+ℹ Waiting for tx completion: 64b3f828ca6864b34bcbc8582995c6c31be943567a0db8e8c2e4ef49b2debbf7
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()
