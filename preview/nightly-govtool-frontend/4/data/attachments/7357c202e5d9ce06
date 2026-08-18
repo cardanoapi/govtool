@@ -1,0 +1,339 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 7-proposal-submission/proposalSubmission.loggedin.pd.spec.ts >> Proposal created logged state >> 7O. Should display insufficient balance modal when submitting proposal with insufficient funds
+- Location: tests/7-proposal-submission/proposalSubmission.loggedin.pd.spec.ts:339:7
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByTestId('submit-as-GA-button')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for getByTestId('submit-as-GA-button')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - generic [ref=e11]:
+      - link "app-logo" [ref=e12] [cursor=pointer]:
+        - /url: /dashboard
+        - img "app-logo" [ref=e13]
+      - generic [ref=e14]:
+        - link "icon Home" [ref=e16] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=e17]:
+            - img "icon" [ref=e18]
+            - paragraph [ref=e19]: Home
+        - link "icon DRep Directory" [ref=e21] [cursor=pointer]:
+          - /url: /connected/drep_directory
+          - generic [ref=e22]:
+            - img "icon" [ref=e23]
+            - paragraph [ref=e24]: DRep Directory
+        - link "icon Budget Proposals" [ref=e26] [cursor=pointer]:
+          - /url: /budget_discussion
+          - generic [ref=e27]:
+            - img "icon" [ref=e28]
+            - paragraph [ref=e29]: Budget Proposals
+        - generic [ref=e30]:
+          - link "icon Governance Actions" [ref=e31] [cursor=pointer]:
+            - /url: /connected/governance_actions
+            - generic [ref=e32]:
+              - img "icon" [ref=e33]
+              - paragraph [ref=e34]: Governance Actions
+          - generic [ref=e35]:
+            - link "Proposals" [ref=e36] [cursor=pointer]:
+              - /url: /proposal_discussion
+              - generic [ref=e37]:
+                - img [ref=e39]
+                - paragraph [ref=e41]: Proposals
+            - link "icon Live Voting" [ref=e42] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e43]:
+                - img "icon" [ref=e44]
+                - paragraph [ref=e45]: Live Voting
+            - link "icon Outcomes" [ref=e46] [cursor=pointer]:
+              - /url: /outcomes
+              - generic [ref=e47]:
+                - img "icon" [ref=e48]
+                - paragraph [ref=e49]: Outcomes
+        - link "icon Guides" [ref=e51] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e52]:
+            - img "icon" [ref=e53]
+            - paragraph [ref=e54]: Guides
+        - link "icon FAQs" [ref=e56] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e57]:
+            - img "icon" [ref=e58]
+            - paragraph [ref=e59]: FAQs
+      - generic [ref=e62]:
+        - paragraph [ref=e63]: "Connected Wallet:"
+        - generic [ref=e64]:
+          - paragraph [ref=e65]: 004b9242373d913e49aea8d9d8c97a3bcbd102cd19a17c8f09f68401488c283a704f82e8ac476cb4d69cd89fc5addd7e2c7ec0811d7ae99494
+          - button "Disconnect" [ref=e66] [cursor=pointer]: Disconnect
+    - generic [ref=e67]:
+      - navigation [ref=e68]:
+        - paragraph [ref=e70]: Proposals
+      - paragraph [ref=e75]:
+        - generic [ref=e76]:
+          - button "Back" [ref=e78] [cursor=pointer]:
+            - img [ref=e80]
+            - text: Back
+          - generic [ref=e84]:
+            - generic [ref=e85]:
+              - generic [ref=e86]:
+                - heading "Omnis accusamus valetudo spiculum ante adinventitias." [level=2] [ref=e87]
+                - heading "@alfreda_tillman84_178701513964" [level=5] [ref=e88]
+              - generic [ref=e89]:
+                - button [ref=e90] [cursor=pointer]:
+                  - img [ref=e91]
+                - button [ref=e94] [cursor=pointer]:
+                  - img [ref=e95]
+            - generic [ref=e97]:
+              - text: Governance Action Type
+              - paragraph [ref=e98]: Updates to the Constitution
+            - generic [ref=e99]:
+              - generic [ref=e100]:
+                - text: "Proposed on:"
+                - paragraph [ref=e101]: 18 August 2026
+              - generic [ref=e102]: Submit as Governance Action
+            - generic [ref=e103]:
+              - generic [ref=e104]:
+                - text: "Last Edit:"
+                - paragraph [ref=e105]: 18 August 2026
+              - generic [ref=e106]:
+                - text: Review Versions
+                - paragraph
+            - generic [ref=e107]:
+              - text: Abstract
+              - paragraph [ref=e109]: aegre claustrum cerno doloremque alveus
+            - generic [ref=e110]:
+              - text: Motivation
+              - paragraph [ref=e113]: tametsi brevis ademptio acquiro pectus
+            - generic [ref=e114]:
+              - text: Rationale
+              - paragraph [ref=e117]: altus umquam adduco eveniet video
+            - generic [ref=e118]:
+              - generic [ref=e119]:
+                - text: New constitution URL
+                - paragraph [ref=e121]: https://metadata-govtool.cardanoapi.io/data/data.jsonId
+              - generic [ref=e122]:
+                - generic [ref=e123]:
+                  - text: Guardrails script URL
+                  - paragraph [ref=e125]: https://metadata-govtool.cardanoapi.io/data/guardrail-script
+                - generic [ref=e126]:
+                  - text: Guardrails script hash
+                  - paragraph [ref=e128]: 914d97d63e2b7113465739faddd82362b1deaeedbcc4d01016c35c6e
+            - generic [ref=e129]:
+              - text: Supporting links
+              - button "plain-owner" [ref=e131] [cursor=pointer]:
+                - img [ref=e133]
+                - paragraph [ref=e135]: plain-owner
+            - generic [ref=e136]:
+              - generic "Total comments number" [ref=e137]:
+                - generic [ref=e138]:
+                  - button "proposal comments" [disabled]:
+                    - generic "proposal comments":
+                      - generic: "0"
+                    - img
+              - generic [ref=e140]:
+                - generic [ref=e141]:
+                  - button "proposal likes" [disabled]:
+                    - generic "proposal likes":
+                      - generic: "0"
+                    - img
+                - generic [ref=e142]:
+                  - button "proposal dislikes" [disabled]:
+                    - generic "proposal dislikes":
+                      - generic: "0"
+                    - img
+          - generic [ref=e145]:
+            - paragraph [ref=e146]: Do you want to check if your proposal is ready to be submitted as a Governance Action?
+            - paragraph [ref=e147]: The poll will be pinned to the top of your comments list, and you can close it whenever you like. Opening a new poll will automatically close the previous one, which will then appear as a comment in the comments feed.
+            - button "Add Poll" [ref=e149] [cursor=pointer]: Add Poll
+          - generic [ref=e150]:
+            - heading "Comments" [level=3] [ref=e151]
+            - button [ref=e152] [cursor=pointer]:
+              - img [ref=e153]
+          - generic [ref=e157]:
+            - heading "Submit a comment" [level=6] [ref=e158]
+            - generic [ref=e159]:
+              - generic [ref=e160]:
+                - textbox [ref=e161]
+                - group
+              - paragraph [ref=e162]:
+                - generic [ref=e163]: 0/15000
+            - generic [ref=e164]:
+              - button "Comment" [disabled]:
+                - text: Comment
+                - generic:
+                  - img
+          - generic [ref=e167]:
+            - heading "No Comments yet" [level=6] [ref=e168]
+            - paragraph [ref=e169]: Be the first to share your thoughts on this proposal.
+      - contentinfo [ref=e170]:
+        - paragraph [ref=e171]: © 2026 GovTool
+        - generic [ref=e172]:
+          - generic [ref=e173] [cursor=pointer]: Privacy policy
+          - generic [ref=e174] [cursor=pointer]: Terms of Use
+        - generic [ref=e175]:
+          - button "helpIcon Help" [ref=e176] [cursor=pointer]:
+            - img "helpIcon" [ref=e178]
+            - text: Help
+          - button "Feedback" [ref=e179] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e180]
+```
+
+# Test source
+
+```ts
+  535 |           prop_link_text: faker.internet.domainWord(),
+  536 |         },
+  537 |       ],
+  538 |       gov_action_type_id: Object.values(ProposalType).indexOf(proposalType),
+  539 |       has_guardrails: hasGuardrails,
+  540 |       is_draft: !!is_draft,
+  541 |     };
+  542 | 
+  543 |     if (proposalType === ProposalType.treasury) {
+  544 |       (proposal.prop_receiving_address = receivingAddress),
+  545 |         (proposal.prop_amount = faker.number
+  546 |           .int({ min: 100, max: 1000 })
+  547 |           .toString());
+  548 |     }
+  549 |     if (proposalType === ProposalType.updatesToTheConstitution) {
+  550 |       proposal.prop_constitution_url = forValidation
+  551 |         ? valid.url()
+  552 |         : environments.metadataBucketUrl + "/data.jsonId";
+  553 | 
+  554 |       if (hasGuardrails) {
+  555 |         if (!forValidation) {
+  556 |           const url = await uploadScriptAndGenerateUrl(guardrailsScript);
+  557 |           proposal.prop_guardrails_script_url = url;
+  558 |           proposal.prop_guardrails_script_hash = guardrailsScriptHash;
+  559 |         } else {
+  560 |           proposal.prop_guardrails_script_url = valid.url();
+  561 |           proposal.prop_guardrails_script_hash = faker.string.alphanumeric(64);
+  562 |         }
+  563 |       }
+  564 |     }
+  565 |     if (proposalType == ProposalType.hardFork) {
+  566 |       proposal.prop_min_version = faker.number
+  567 |         .float({ min: 0, max: 100 })
+  568 |         .toString();
+  569 |       proposal.prop_major_version = faker.number
+  570 |         .float({ min: 0, max: 100 })
+  571 |         .toString();
+  572 |     }
+  573 | 
+  574 |     return proposal;
+  575 |   }
+  576 | 
+  577 |   generateInValidProposalFormFields(
+  578 |     proposalType: ProposalType,
+  579 |     hasGuardrails: boolean = true
+  580 |   ) {
+  581 |     const proposal: ProposalCreateRequest = {
+  582 |       prop_name: invalid.proposalTitle(),
+  583 |       prop_abstract: invalid.paragraph(2510),
+  584 |       prop_motivation: invalid.paragraph(12020),
+  585 |       prop_rationale: invalid.paragraph(12020),
+  586 | 
+  587 |       proposal_links: [
+  588 |         {
+  589 |           prop_link: invalid.url(),
+  590 |           prop_link_text: invalid.name(),
+  591 |         },
+  592 |       ],
+  593 |       gov_action_type_id: Object.values(ProposalType).indexOf(proposalType),
+  594 |       has_guardrails: hasGuardrails,
+  595 |       is_draft: false,
+  596 |     };
+  597 | 
+  598 |     if (proposalType === ProposalType.treasury) {
+  599 |       (proposal.prop_receiving_address = faker.location.streetAddress()),
+  600 |         (proposal.prop_amount = invalid.amount());
+  601 |     }
+  602 | 
+  603 |     if (proposalType === ProposalType.updatesToTheConstitution) {
+  604 |       proposal.prop_constitution_url = invalid.constitutionUrl();
+  605 |       proposal.prop_guardrails_script_url = invalid.url();
+  606 |       proposal.prop_guardrails_script_hash = faker.string.alphanumeric(64);
+  607 |     }
+  608 | 
+  609 |     if (proposalType === ProposalType.hardFork) {
+  610 |       proposal.prop_min_version = invalid.amount();
+  611 |       proposal.prop_major_version = invalid.amount();
+  612 |     }
+  613 | 
+  614 |     return proposal;
+  615 |   }
+  616 | 
+  617 |   async createProposal(
+  618 |     receivingAddress: string,
+  619 |     proposalType: ProposalType = getProposalType()[
+  620 |       Math.floor(Math.random() * getProposalType().length)
+  621 |     ]
+  622 |   ): Promise<number> {
+  623 |     await this.addLinkBtn.click();
+  624 |     const proposalRequest: ProposalCreateRequest =
+  625 |       await this.generateValidProposalFormFields({
+  626 |         proposalType: (await isBootStrapingPhase())
+  627 |           ? ProposalType.info
+  628 |           : proposalType,
+  629 |         receivingAddress,
+  630 |       });
+  631 |     await this.fillupForm(proposalRequest);
+  632 |     await this.continueBtn.click();
+  633 |     await this.submitBtn.click();
+  634 | 
+> 635 |     await expect(this.page.getByTestId("submit-as-GA-button")).toBeVisible();
+      |                                                                ^ Error: expect(locator).toBeVisible() failed
+  636 |     const currentPageUrl = this.page.url();
+  637 |     return extractProposalIdFromUrl(currentPageUrl);
+  638 |   }
+  639 | 
+  640 |   async createDraft(proposalType: ProposalType) {
+  641 |     await this.goto();
+  642 |     await this.addLinkBtn.click();
+  643 | 
+  644 |     const proposalFormValue = await this.generateValidProposalFormFields({
+  645 |       proposalType: proposalType,
+  646 |       is_draft: true,
+  647 |       receivingAddress: ShelleyWallet.fromJson(
+  648 |         proposal04Wallet
+  649 |       ).rewardAddressBech32(environments.networkId),
+  650 |     });
+  651 |     await this.fillupForm(proposalFormValue);
+  652 | 
+  653 |     await this.saveDraftBtn.click();
+  654 |     await this.closeDraftSuccessModalBtn.click();
+  655 | 
+  656 |     await this.proposalCreateBtn.click();
+  657 |     return { proposalFormValue };
+  658 |   }
+  659 | }
+  660 | 
+```

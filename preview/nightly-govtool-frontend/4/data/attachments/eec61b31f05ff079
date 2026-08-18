@@ -1,0 +1,295 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 10-user-snap/userSnap.spec.ts >> Submit Usersnap >> 10D. Should report an issue
+- Location: tests/10-user-snap/userSnap.spec.ts:134:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByRole('button', { name: 'Report an issue Something' })
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - banner [ref=e11]:
+    - generic [ref=e12]:
+      - link "app-logo" [ref=e13] [cursor=pointer]:
+        - /url: /
+        - img "app-logo" [ref=e14]
+      - navigation [ref=e15]:
+        - generic [ref=e16]:
+          - link "Home" [ref=e18] [cursor=pointer]:
+            - /url: /
+            - paragraph [ref=e19]: Home
+          - link "DRep Directory" [ref=e21] [cursor=pointer]:
+            - /url: /drep_directory
+            - paragraph [ref=e22]: DRep Directory
+          - link "Budget Proposals" [ref=e24] [cursor=pointer]:
+            - /url: /budget_discussion
+            - paragraph [ref=e25]: Budget Proposals
+          - paragraph [ref=e27] [cursor=pointer]:
+            - generic [ref=e28]:
+              - text: Governance Actions
+              - img "dropdown-icon" [ref=e29]
+          - link "Guides" [ref=e31] [cursor=pointer]:
+            - /url: /
+            - paragraph [ref=e32]: Guides
+          - link "FAQs" [ref=e34] [cursor=pointer]:
+            - /url: /
+            - paragraph [ref=e35]: FAQs
+          - button "Connect Wallet" [ref=e37] [cursor=pointer]: Connect Wallet
+  - generic [ref=e38]:
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - paragraph [ref=e41]: Cardano Governance Tool
+        - paragraph [ref=e42]: Cardano Governance lets Ada holders have a say in the network's future. You can vote directly, find someone to represent you, or become a representative for others. You can also propose changes in the network yourself, put these up for discussion and eventually, a vote. Learn more about governance in the guide, or have a look around the app and see Cardano Governance in action.
+        - button "Participate now" [ref=e43] [cursor=pointer]:
+          - text: Participate now
+          - img [ref=e45]
+      - img "hero" [ref=e48]
+    - generic [ref=e49]:
+      - generic [ref=e50]:
+        - generic [ref=e51]:
+          - generic [ref=e52]:
+            - img "action-card" [ref=e53]
+            - paragraph [ref=e54]: Delegate your Voting Power
+            - paragraph [ref=e55]: Find a DRep to vote on your behalf.
+          - generic [ref=e56]:
+            - button "View DRep Directory" [ref=e57] [cursor=pointer]: View DRep Directory
+            - button "Learn more" [ref=e58] [cursor=pointer]: Learn more
+        - generic [ref=e59]:
+          - generic [ref=e60]:
+            - img "action-card" [ref=e61]
+            - paragraph [ref=e62]: Become a DRep
+            - paragraph [ref=e63]: Accept delegated voting power from other Ada holders, and combine it with your own voting power. Vote with the accumulated Power on Governance Actions.
+          - generic [ref=e64]:
+            - button "Connect to Register" [ref=e65] [cursor=pointer]: Connect to Register
+            - button "Learn more" [ref=e66] [cursor=pointer]: Learn more
+        - generic [ref=e67]:
+          - generic [ref=e68]:
+            - img "action-card" [ref=e69]
+            - paragraph [ref=e70]: Become a Direct Voter
+            - paragraph [ref=e71]: Vote on Governance Actions using your own voting power
+          - generic [ref=e72]:
+            - button "Connect to Register" [ref=e73] [cursor=pointer]: Connect to Register
+            - button "Learn more" [ref=e74] [cursor=pointer]: Learn more
+        - generic [ref=e75]:
+          - generic [ref=e76]:
+            - img "action-card" [ref=e77]
+            - paragraph [ref=e78]: View Governance Actions
+            - paragraph [ref=e79]: See all the Governance Actions submitted on chain.
+          - button "View Governance Actions" [ref=e81] [cursor=pointer]: View Governance Actions
+        - generic [ref=e82]:
+          - generic [ref=e83]:
+            - img "action-card" [ref=e84]
+            - paragraph [ref=e85]: Propose a Governance Action
+            - paragraph [ref=e86]: Submit your proposal for a Governance Action.
+          - generic [ref=e87]:
+            - button "Connect to Propose" [ref=e88] [cursor=pointer]: Connect to Propose
+            - button "View Proposals" [ref=e89] [cursor=pointer]: View Proposals
+      - generic [ref=e90]:
+        - paragraph [ref=e91]: Useful links
+        - generic [ref=e92]:
+          - generic [ref=e93]:
+            - paragraph [ref=e94]: Check the Constitutional Committee Portal
+            - paragraph [ref=e95]: See Interim Cardano Constitution and Constitutional committee votes rationales
+            - link "CC Portal link" [ref=e96] [cursor=pointer]:
+              - /url: https://constitution.gov.tools
+              - paragraph [ref=e97]: CC Portal
+              - img "link" [ref=e98]
+          - generic [ref=e99]:
+            - paragraph [ref=e100]: Intersect website
+            - paragraph [ref=e101]: Intersect is a member-based organization for the Cardano ecosystem — putting the community at the center of Cardano’s development
+            - link "Intersect website link" [ref=e102] [cursor=pointer]:
+              - /url: https://www.intersectmbo.org/
+              - paragraph [ref=e103]: Intersect website
+              - img "link" [ref=e104]
+    - contentinfo [ref=e105]:
+      - paragraph [ref=e106]: © 2026 GovTool
+      - generic [ref=e107]:
+        - generic [ref=e108] [cursor=pointer]: Privacy policy
+        - generic [ref=e109] [cursor=pointer]: Terms of Use
+      - generic [ref=e110]:
+        - button "helpIcon Help" [ref=e111] [cursor=pointer]:
+          - img "helpIcon" [ref=e113]
+          - text: Help
+        - button "Feedback" [active] [ref=e114] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e115]
+```
+
+# Test source
+
+```ts
+  42  |     await page.getByRole("button", { name: "Close annotation" }).click();
+  43  |     await expect(page.getByLabel("Take screenshot")).toBeVisible();
+  44  |   }
+  45  | 
+  46  |   await expect(
+  47  |     page.getByRole("heading", { name: "Report a bug" })
+  48  |   ).toBeVisible();
+  49  |   await expect(page.getByPlaceholder("Add description")).toBeVisible();
+  50  |   await expect(page.getByLabel("Record")).toBeVisible();
+  51  |   await expect(page.getByRole("button", { name: "Submit" })).toBeVisible();
+  52  | 
+  53  |   // check record action
+  54  |   await page.getByLabel("Record").click();
+  55  |   await expect(
+  56  |     page.getByRole("button", { name: "Cancel recording" })
+  57  |   ).toBeVisible();
+  58  | });
+  59  | 
+  60  | test("10C. Should verify feature form", async ({ page }) => {
+  61  |   await page
+  62  |     .getByRole("button", { name: "Send an idea Let us know what" })
+  63  |     .click();
+  64  | 
+  65  |   await expect(
+  66  |     page.getByRole("heading", { name: "Feature Request" })
+  67  |   ).toBeVisible();
+  68  |   await expect(page.getByPlaceholder("Feature description")).toBeVisible();
+  69  |   await expect(page.getByPlaceholder("Please add some context")).toBeVisible();
+  70  |   await expect(page.getByLabel("Take screenshot")).toBeVisible();
+  71  |   await expect(page.getByLabel("Record")).toBeVisible();
+  72  |   await expect(
+  73  |     page.getByRole("button", { name: "Request Feature" })
+  74  |   ).toBeVisible();
+  75  | 
+  76  |   // check screenshot action
+  77  |   await page.getByLabel("Take screenshot").click();
+  78  |   await expect(
+  79  |     page.getByRole("button", { name: "Close annotation" })
+  80  |   ).toBeVisible();
+  81  |   await expect(
+  82  |     page.getByRole("button", { name: "Add screenshot" })
+  83  |   ).toBeVisible();
+  84  |   await page.getByRole("button", { name: "Close annotation" }).click();
+  85  | 
+  86  |   // check record action
+  87  |   await page.getByLabel("Record").click();
+  88  |   await expect(
+  89  |     page.getByRole("button", { name: "Cancel recording" })
+  90  |   ).toBeVisible();
+  91  | });
+  92  | 
+  93  | test.describe("Submit Usersnap", () => {
+  94  |   const feedbackApiUrl =
+  95  |     "https://widget.usersnap.com/api/widget/xhrrpc?submit_feedback";
+  96  |   const bucketUrl = "https://s3.eu-central-1.amazonaws.com/upload.usersnap.com";
+  97  | 
+  98  |   const interceptBucket = async (page: Page) => {
+  99  |     await page.route(bucketUrl, async (route) =>
+  100 |       route.fulfill({
+  101 |         status: 204,
+  102 |       })
+  103 |     );
+  104 |   };
+  105 | 
+  106 |   const interceptUsersnap = async (page: Page) => {
+  107 |     await page.route(feedbackApiUrl, async (route) =>
+  108 |       route.fulfill({
+  109 |         status: 200,
+  110 |         body: JSON.stringify({
+  111 |           status: true,
+  112 |           data: {
+  113 |             feedback: {
+  114 |               feedback_id: randomUUID(),
+  115 |               assignee_id: randomUUID(),
+  116 |               labels: [],
+  117 |             },
+  118 |             screen_recording_url: null,
+  119 |             attachment_urls: [
+  120 |               {
+  121 |                 url: bucketUrl,
+  122 |                 fields: {
+  123 |                   "Content-Type": "image/png",
+  124 |                   key: randomUUID(),
+  125 |                 },
+  126 |               },
+  127 |             ],
+  128 |           },
+  129 |         }),
+  130 |       })
+  131 |     );
+  132 |   };
+  133 | 
+  134 |   test("10D. Should report an issue", async ({ page }) => {
+  135 |     // Intercept Usersnap submit API
+  136 |     await interceptUsersnap(page);
+  137 |     await interceptBucket(page);
+  138 |     await page
+  139 |       .getByRole("button", {
+  140 |         name: "Report an issue Something",
+  141 |       })
+> 142 |       .click();
+      |        ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  143 | 
+  144 |     if (isMobile(page)) {
+  145 |       await page.getByRole("button", { name: "Add screenshot" }).click();
+  146 |     } else {
+  147 |       // Draw rectangle
+  148 |       await page
+  149 |         .locator('[class^="jt-container-"] > svg')
+  150 |         .first()
+  151 |         .evaluate((element) => {
+  152 |           const rectangleSvg = `<g class="root-0-0-11 highlight" data-drawing="true" stroke-width="2" stroke="#fed200" x="147" y="16" width="1091" height="653"><rect width="1091" height="653" fill-opacity="0" x="147" y="16"></rect></g>`;
+  153 |           element.innerHTML = rectangleSvg;
+  154 |         });
+  155 |     }
+  156 | 
+  157 |     await page
+  158 |       .getByPlaceholder("Add description")
+  159 |       .fill(faker.lorem.paragraph(2));
+  160 | 
+  161 |     await page.getByRole("button", { name: "Submit" }).click();
+  162 | 
+  163 |     await expect(page.getByText("Thank you!")).toBeVisible();
+  164 |   });
+  165 | 
+  166 |   test("10E. Should submit an idea or new feature", async ({ page }) => {
+  167 |     // Intercept Usersnap submit API
+  168 |     await interceptUsersnap(page);
+  169 |     await interceptBucket(page);
+  170 | 
+  171 |     await page
+  172 |       .getByRole("button", { name: "Send an idea Let us know what" })
+  173 |       .click();
+  174 | 
+  175 |     await page
+  176 |       .getByPlaceholder("Feature description")
+  177 |       .fill(faker.lorem.words(4));
+  178 |     await page
+  179 |       .getByPlaceholder("Please add some context")
+  180 |       .fill(faker.lorem.paragraph(2));
+  181 | 
+  182 |     // add screenshot
+  183 |     await page.getByLabel("Take screenshot").click();
+  184 |     await page.getByRole("button", { name: "Add screenshot" }).click();
+  185 | 
+  186 |     await page.getByRole("button", { name: "Request Feature" }).click();
+  187 | 
+  188 |     await expect(page.getByText("Thank you!")).toBeVisible();
+  189 |   });
+  190 | });
+  191 | 
+```
