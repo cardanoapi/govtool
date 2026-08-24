@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import TagManager from "react-gtm-module";
 import { ThemeProvider } from "@emotion/react";
 import * as Sentry from "@sentry/react";
 
@@ -26,14 +25,6 @@ const queryClient = new QueryClient({
   },
 });
 
-const tagManagerArgs = {
-  gtmId: env.VITE_GTM_ID,
-};
-
-if (env.VITE_GTM_ID) {
-  TagManager.initialize(tagManagerArgs);
-}
-
 if (env.VITE_SENTRY_DSN) {
   Sentry.init({
   dsn: env.VITE_SENTRY_DSN,
@@ -46,16 +37,6 @@ if (env.VITE_SENTRY_DSN) {
   tracesSampleRate: 1.0,
   replaysSessionSampleRate: 0.1,
   replaysOnErrorSampleRate: 1.0,
-  beforeSend(event) {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "sentryEvent",
-      sentryEventId: event?.event_id || "default_event_id",
-      sentryErrorMessage:
-        event?.exception?.values?.[0]?.value || "Unknown Error",
-    });
-    return event;
-  },
 });
 }
 
