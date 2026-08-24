@@ -1,0 +1,68 @@
+version: "3.9"
+networks:
+  frontend:
+    external: true
+configs:
+  config.json:
+    x-template-file: ./configs_template/backend_config.json
+services:
+  backend:
+    image: ${REGISTRY_HOST}/govtool-backend:${GOVTOOL_TAG}
+    entrypoint:
+      - sh
+      - -c
+      - vva-be -c /config.json start-app
+    environment:
+      APP_ENV: ${APP_ENV:-test}
+      VIRTUAL_HOST: https://${BASE_DOMAIN}/api/ -> :8080/
+      VIRTUAL_HOST_2: https://${BASE_DOMAIN}/swagger -> :8080/swagger
+    networks:
+      - frontend
+    configs:
+      - config.json
+    deploy:
+      restart_policy:
+        delay: "30s"
+      placement:
+        constraints:
+          - node.labels.mainnet==true
+  frontend:
+    image: ${REGISTRY_HOST}/govtool-frontend:${GOVTOOL_TAG}
+    environment:
+      VIRTUAL_HOST: https://${BASE_DOMAIN}
+      VITE_BASE_URL: /api
+      VITE_SENTRY_DSN: ${SENTRY_DSN_FRONTEND:-}
+      VITE_APP_ENV: ${APP_ENV:-test}
+      VITE_NETWORK_FLAG: ${VITE_NETWORK_FLAG:-0}
+      VITE_USERSNAP_SPACE_API_KEY: ${USERSNAP_SPACE_API_KEY:-}
+      VITE_IS_PROPOSAL_DISCUSSION_FORUM_ENABLED: 'true'
+      VITE_METADATA_API_URL: https://${BASE_DOMAIN}/metadata-validation
+      VITE_GTM_ID: ${GTM_ID:-}
+      VITE_PDF_API_URL: ${PDF_API_URL:-}
+      VITE_OUTCOMES_API_URL: ${OUTCOMES_API_URL:-}
+      VITE_IPFS_GATEWAY: ${IPFS_GATEWAY:-https://ipfs.io/ipfs}
+      VITE_IPFS_PROJECT_ID: ${IPFS_PROJECT_ID:-}
+      VITE_IS_GOVERNANCE_OUTCOMES_PILLAR_ENABLED: 'true'
+    networks:
+      - frontend
+    deploy:
+      restart_policy:
+        delay: "30s"
+      placement:
+        constraints:
+          - node.labels.mainnet==true
+  metadata-validation:
+    image: ${REGISTRY_HOST}/govtool-metadata-validation:${GOVTOOL_TAG}
+    environment:
+      VIRTUAL_HOST: https://${BASE_DOMAIN}/metadata-validation/ -> :3000/
+      PORT: "3000"
+      IPFS_GATEWAY: ${IPFS_GATEWAY}
+      IPFS_PROJECT_ID: ${IPFS_PROJECT_ID}
+    networks:
+      - frontend
+    deploy:
+      restart_policy:
+        delay: "30s"
+      placement:
+        constraints:
+          - node.labels.mainnet==true

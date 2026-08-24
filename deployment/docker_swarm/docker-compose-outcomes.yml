@@ -1,0 +1,25 @@
+version: "3.9"
+networks:
+  frontend:
+    external: true
+
+services:
+  outcomes:
+    image: ghcr.io/intersectmbo/govtool-outcomes-pillar-backend:acf1032dae36691f8bc6af2b8e90a9b7917a557e-91
+    environment:
+      VIRTUAL_HOST: https://outcomes.${BASE_DOMAIN} -> :3000
+      DATABASE_HOST: ${DBSYNC_POSTGRES_HOST}
+      DATABASE_PORT: ${DBSYNC_POSTGRES_PORT:-5432}
+      DATABASE_NAME: ${DBSYNC_DATABASE}
+      DATABASE_USER: ${DBSYNC_POSTGRES_USER}
+      DATABASE_PASSWORD: ${DBSYNC_POSTGRES_PASSWORD}
+      IPFS_GATEWAY: ${IPFS_GATEWAY}
+      PDF_API_URL: ${PDF_API_URL}
+    networks:
+      - frontend
+    deploy:
+      restart_policy:
+        delay: "30s"
+      placement:
+        constraints:
+          - node.labels.mainnet==true

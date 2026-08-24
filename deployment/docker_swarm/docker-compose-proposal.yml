@@ -1,0 +1,70 @@
+version: "3.9"
+volumes:
+  postgres:
+networks:
+  frontend:
+    external: true
+  postgres:
+    attachable: true
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: ${PROPOSAL_POSTGRES_DATABASE:-proposal_pillar}
+      POSTGRES_USER: ${PROPOSAL_POSTGRES_USER:-proposal}
+      POSTGRES_PASSWORD: ${PROPOSAL_POSTGRES_PASSWORD}
+    networks:
+      - postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PROPOSAL_POSTGRES_USER:-proposal} -d ${PROPOSAL_POSTGRES_DATABASE:-proposal_pillar}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      restart_policy:
+        delay: "30s"
+      placement:
+        constraints:
+          - node.labels.mainnet==true
+
+  strapi:
+    image: ghcr.io/intersectmbo/govtool-proposal-pillar-backend:dev-0c26f0741ddfb29ed3d5436afede9962f6e72bfc-385
+    environment:
+      VIRTUAL_HOST: https://pdf.${BASE_DOMAIN} -> :1337
+      HOST: 0.0.0.0
+      PORT: "1337"
+      NODE_ENV: production
+      APP_ENV: ${APP_ENV:-test}
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: postgres
+      DATABASE_PORT: "5432"
+      DATABASE_NAME: ${PROPOSAL_POSTGRES_DATABASE:-proposal_pillar}
+      DATABASE_USERNAME: ${PROPOSAL_POSTGRES_USER:-proposal}
+      DATABASE_PASSWORD: ${PROPOSAL_POSTGRES_PASSWORD}
+      DATABASE_SSL: "false"
+      APP_KEYS: ${PROPOSAL_APP_KEYS}
+      API_TOKEN_SALT: ${PROPOSAL_API_TOKEN_SALT}
+      ADMIN_JWT_SECRET: ${PROPOSAL_ADMIN_JWT_SECRET}
+      TRANSFER_TOKEN_SALT: ${PROPOSAL_TRANSFER_TOKEN_SALT}
+      JWT_SECRET: ${PROPOSAL_JWT_SECRET}
+      SENTRY_DSN: ${PROPOSAL_SENTRY_DSN:-}
+      AWS_SES_KEY: ${PROPOSAL_AWS_SES_KEY:-}
+      AWS_SES_SECRET: ${PROPOSAL_AWS_SES_SECRET:-}
+      AWS_SES_ENDPOINT: ${PROPOSAL_AWS_SES_ENDPOINT:-}
+      AWS_SES_FROM: ${PROPOSAL_AWS_SES_FROM:-}
+      AWS_SES_REPLYTO: ${PROPOSAL_AWS_SES_REPLYTO:-}
+      REFRESH_SECRET: ${PROPOSAL_REFRESH_SECRET}
+      REFRESH_TOKEN_EXPIRES: ${PROPOSAL_REFRESH_TOKEN_EXPIRES}
+      JWT_SECRET_EXPIRES: ${PROPOSAL_JWT_SECRET_EXPIRES}
+    networks:
+      - frontend
+      - postgres
+    deploy:
+      restart_policy:
+        delay: "30s"
+      placement:
+        constraints:
+          - node.labels.mainnet==true
