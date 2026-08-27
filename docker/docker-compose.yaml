@@ -58,6 +58,8 @@ services:
             UMAMI_URL: ${UMAMI_URL:-}
             UMAMI_WEBSITE_ID: ${UMAMI_WEBSITE_ID:-}
             UMAMI_SSL_VERIFY: ${UMAMI_SSL_VERIFY:-true}
+            TRUSTED_PROXY_CIDRS: ${TRUSTED_PROXY_CIDRS:-}
+            REAL_IP_HEADER: ${REAL_IP_HEADER:-X-Forwarded-For}
             VITE_PDF_API_URL: ${PDF_API_URL:-}
             VITE_OUTCOMES_API_URL: ${OUTCOMES_API_URL:-}
             VITE_IPFS_GATEWAY: ${IPFS_GATEWAY:-https://ipfs.io/ipfs}

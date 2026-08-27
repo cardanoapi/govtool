@@ -9,6 +9,31 @@ html_escape() {
   jq -Rnr --arg value "${1:-}" '$value | @html'
 }
 
+TRUSTED_PROXY_CIDRS_VALUE="${TRUSTED_PROXY_CIDRS:-}"
+REAL_IP_HEADER_VALUE="${REAL_IP_HEADER:-X-Forwarded-For}"
+REAL_IP_CONFIG=""
+
+if [ -n "$TRUSTED_PROXY_CIDRS_VALUE" ]; then
+  if ! printf '%s' "$REAL_IP_HEADER_VALUE" | grep -Eq '^[A-Za-z0-9-]+$'; then
+    echo "WARNING: Real IP resolution is disabled because REAL_IP_HEADER contains unsupported characters." >&2
+  else
+    SET_REAL_IP_FROM_DIRECTIVES=""
+    for TRUSTED_PROXY_CIDR in $(printf '%s' "$TRUSTED_PROXY_CIDRS_VALUE" | tr ',' ' '); do
+      if printf '%s' "$TRUSTED_PROXY_CIDR" | grep -Eq '^[0-9A-Fa-f:.]+(/[0-9]{1,3})?$'; then
+        SET_REAL_IP_FROM_DIRECTIVES="${SET_REAL_IP_FROM_DIRECTIVES}  set_real_ip_from ${TRUSTED_PROXY_CIDR};
+"
+      else
+        echo "WARNING: Ignoring TRUSTED_PROXY_CIDRS entry with unsupported characters: ${TRUSTED_PROXY_CIDR}" >&2
+      fi
+    done
+
+    if [ -n "$SET_REAL_IP_FROM_DIRECTIVES" ]; then
+      REAL_IP_CONFIG="${SET_REAL_IP_FROM_DIRECTIVES}  real_ip_header ${REAL_IP_HEADER_VALUE};
+  real_ip_recursive on;"
+    fi
+  fi
+fi
+
 UMAMI_URL_VALUE="${UMAMI_URL:-}"
 UMAMI_WEBSITE_ID_VALUE="${UMAMI_WEBSITE_ID:-}"
 UMAMI_SSL_VERIFY_VALUE="$(printf '%s' "${UMAMI_SSL_VERIFY:-true}" | tr '[:upper:]' '[:lower:]')"
@@ -142,10 +167,16 @@ mv /tmp/index.html /usr/share/nginx/html/index.html
 
 rm -f /usr/share/nginx/html/index.html.br /usr/share/nginx/html/index.html.gz
 
-awk -v umami_upstream="$UMAMI_UPSTREAM_CONFIG" -v umami_proxy="$UMAMI_PROXY_CONFIG" '
+awk -v umami_upstream="$UMAMI_UPSTREAM_CONFIG" -v umami_proxy="$UMAMI_PROXY_CONFIG" -v real_ip="$REAL_IP_CONFIG" '
   /# UMAMI_UPSTREAM_CONFIG/ {
     if (umami_upstream != "") {
       print umami_upstream
+    }
+    next
+  }
+  /# REAL_IP_CONFIG/ {
+    if (real_ip != "") {
+      print real_ip
     }
     next
   }
