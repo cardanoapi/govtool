@@ -6,7 +6,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ThemeProvider } from "@emotion/react";
 import * as Sentry from "@sentry/react";
 
-import { ContextProviders, UsersnapProvider } from "@context";
+import { ContextProviders, ChatwootProvider } from "@context";
 
 import App from "./App.tsx";
 import { theme } from "./theme.ts";
@@ -50,13 +50,13 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
-        <UsersnapProvider>
+        <ChatwootProvider>
           <BrowserRouter>
             <ContextProviders>
               <App />
             </ContextProviders>
           </BrowserRouter>
-        </UsersnapProvider>
+        </ChatwootProvider>
       </ThemeProvider>
       {env.VITE_IS_DEV && (
         <ReactQueryDevtools initialIsOpen={false} />
