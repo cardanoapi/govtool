@@ -9,6 +9,42 @@ html_escape() {
   jq -Rnr --arg value "${1:-}" '$value | @html'
 }
 
+TRUSTED_PROXY_CIDRS_VALUE="${TRUSTED_PROXY_CIDRS:-}"
+REAL_IP_HEADER_VALUE="${REAL_IP_HEADER:-X-Forwarded-For}"
+REAL_IP_CONFIG=""
+
+# Real IP resolution applies only to the Umami proxy location, so
+# $remote_addr stays the direct peer everywhere else. Unset means trust
+# the private ranges reverse proxies normally connect from; internet
+# clients cannot spoof these as a source address. Set
+# TRUSTED_PROXY_CIDRS=none to disable real IP resolution entirely.
+if [ -z "$TRUSTED_PROXY_CIDRS_VALUE" ]; then
+  TRUSTED_PROXY_CIDRS_VALUE="10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 fc00::/7"
+elif [ "$(printf '%s' "$TRUSTED_PROXY_CIDRS_VALUE" | tr '[:upper:]' '[:lower:]')" = "none" ]; then
+  TRUSTED_PROXY_CIDRS_VALUE=""
+fi
+
+if [ -n "$TRUSTED_PROXY_CIDRS_VALUE" ]; then
+  if ! printf '%s' "$REAL_IP_HEADER_VALUE" | grep -Eq '^[A-Za-z0-9-]+$'; then
+    echo "WARNING: Real IP resolution is disabled because REAL_IP_HEADER contains unsupported characters." >&2
+  else
+    SET_REAL_IP_FROM_DIRECTIVES=""
+    for TRUSTED_PROXY_CIDR in $(printf '%s' "$TRUSTED_PROXY_CIDRS_VALUE" | tr ',' ' '); do
+      if printf '%s' "$TRUSTED_PROXY_CIDR" | grep -Eq '^[0-9A-Fa-f:.]+(/[0-9]{1,3})?$'; then
+        SET_REAL_IP_FROM_DIRECTIVES="${SET_REAL_IP_FROM_DIRECTIVES}    set_real_ip_from ${TRUSTED_PROXY_CIDR};
+"
+      else
+        echo "WARNING: Ignoring TRUSTED_PROXY_CIDRS entry with unsupported characters: ${TRUSTED_PROXY_CIDR}" >&2
+      fi
+    done
+
+    if [ -n "$SET_REAL_IP_FROM_DIRECTIVES" ]; then
+      REAL_IP_CONFIG="${SET_REAL_IP_FROM_DIRECTIVES}    real_ip_header ${REAL_IP_HEADER_VALUE};
+    real_ip_recursive on;"
+    fi
+  fi
+fi
+
 UMAMI_URL_VALUE="${UMAMI_URL:-}"
 UMAMI_WEBSITE_ID_VALUE="${UMAMI_WEBSITE_ID:-}"
 UMAMI_SSL_VERIFY_VALUE="$(printf '%s' "${UMAMI_SSL_VERIFY:-true}" | tr '[:upper:]' '[:lower:]')"
@@ -99,6 +135,7 @@ upstream umami_backend {
       esac
 
       UMAMI_PROXY_CONFIG="  location /x/ {
+${REAL_IP_CONFIG}
     proxy_pass ${UMAMI_SCHEME}://umami_backend${UMAMI_BASE_PATH}/;
     proxy_set_header Host ${UMAMI_AUTHORITY};
     proxy_set_header X-Real-IP \$remote_addr;
