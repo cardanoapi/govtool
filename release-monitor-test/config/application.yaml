@@ -1,0 +1,3 @@
+# Release monitor integration-test configuration.
+RELEASE_MONITOR_TEST_ENABLED: true
+RELEASE_MONITOR_TEST_MODE: migration
