@@ -9,7 +9,7 @@ elif [[ "$DEPLOYMENT" == "preview.gov.tools" || "$DEPLOYMENT" == "be.preview.gov
     GROUP_NAME="preview"
 elif [[ "$DEPLOYMENT" == "gov.tools" || "$DEPLOYMENT" == "be.gov.tools" ]]; then
     GROUP_NAME="mainnet"
-elif [[ "$DEPLOYMENT" == "p80-z78acf3c2-zded6a792-gtw.z937eb260.rustrocks.fr" || "$DEPLOYMENT" == "z78acf3c2-z5575152b-gtw.z937eb260.rustrocks.fr" ]]; then
+elif [[ "$DEPLOYMENT" == "p80-z78acf3c2-zded6a792-gtw.z937eb260.rustrocks.fr" || "$DEPLOYMENT" == "z78acf3c2-z5575152b-gtw.z937eb260.rustrocks.fr" || "$DEPLOYMENT" == "dev.gov.tools"]]; then
     GROUP_NAME="dev"
 else
     GROUP_NAME="qa"

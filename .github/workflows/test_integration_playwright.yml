@@ -20,6 +20,7 @@ on:
           - "preview.gov.tools"
           - "gov.tools"
           - "p80-z78acf3c2-zded6a792-gtw.z937eb260.rustrocks.fr"
+          - "dev.gov.tools"
       network:
         required: true
         type: choice
