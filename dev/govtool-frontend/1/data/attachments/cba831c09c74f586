@@ -1,0 +1,382 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 6-miscellaneous/miscellaneous.spec.ts >> 6C. Navigation within the dApp
+- Location: tests/6-miscellaneous/miscellaneous.spec.ts:22:5
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByTestId('budget-discussion-link')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - banner [ref=e12]:
+      - generic [ref=e13]:
+        - link "app-logo" [ref=e14] [cursor=pointer]:
+          - /url: /
+          - img "app-logo" [ref=e15]
+        - navigation [ref=e16]:
+          - generic [ref=e17]:
+            - link "Home" [ref=e19] [cursor=pointer]:
+              - /url: /
+              - paragraph [ref=e20]: Home
+            - link "DRep Directory" [ref=e22] [cursor=pointer]:
+              - /url: /drep_directory
+              - paragraph [ref=e23]: DRep Directory
+            - paragraph [ref=e25] [cursor=pointer]:
+              - generic [ref=e26]:
+                - text: Governance Actions
+                - img "dropdown-icon" [ref=e27]
+            - link "Guides" [ref=e29] [cursor=pointer]:
+              - /url: /
+              - paragraph [ref=e30]: Guides
+            - link "FAQs" [ref=e32] [cursor=pointer]:
+              - /url: /
+              - paragraph [ref=e33]: FAQs
+            - button "Connect Wallet" [ref=e35] [cursor=pointer]: Connect Wallet
+    - paragraph [ref=e38]: DRep Directory
+    - generic [ref=e41]:
+      - paragraph [ref=e42]: Find a DRep
+      - generic [ref=e43]:
+        - generic [ref=e44]:
+          - generic [ref=e45]:
+            - img [ref=e46]
+            - textbox "Search for a DRep name or ID" [ref=e48]
+          - generic [ref=e50]:
+            - generic [ref=e51] [cursor=pointer]:
+              - img "filter" [ref=e52]
+              - paragraph [ref=e53]: Filter
+              - paragraph [ref=e55]: "1"
+            - generic [ref=e56] [cursor=pointer]:
+              - img "sort" [ref=e57]
+              - paragraph [ref=e58]: "Sort by: Registration date"
+        - button "Active" [ref=e60]:
+          - generic [ref=e61]: Active
+          - button [ref=e62] [cursor=pointer]:
+            - img [ref=e63]
+      - list [ref=e65]:
+        - listitem [ref=e66]:
+          - generic [ref=e70]:
+            - generic [ref=e72]:
+              - generic [ref=e73]:
+                - img "drep-image" [ref=e75]
+                - generic [ref=e76]:
+                  - paragraph [ref=e77]: TestName
+                  - generic [ref=e78]:
+                    - button "drep1ygpknf98nzyy5qhkc9hr73nzc5w8zwsk37pvpzu6y8x5a0c0z2slx" [ref=e79] [cursor=pointer]:
+                      - paragraph [ref=e80]: drep1ygpknf98nzyy5qhkc9hr73nzc5w8zwsk37pvpzu6y8x5a0c0z2slx
+                    - button "(CIP-105) drep1qd56ffuc3p9q9akpdcl5vck9r3cn5950stqghx3pe48t79f5cw0" [ref=e81] [cursor=pointer]:
+                      - paragraph [ref=e82]: (CIP-105) drep1qd56ffuc3p9q9akpdcl5vck9r3cn5950stqghx3pe48t79f5cw0
+              - generic [ref=e83]:
+                - generic [ref=e84]:
+                  - paragraph [ref=e85]: Voting power
+                  - paragraph [ref=e86]: ₳ 9,497
+                - separator [ref=e87]
+                - generic [ref=e88]:
+                  - paragraph [ref=e89]: Status
+                  - generic [ref=e92]: Active
+            - generic [ref=e93]:
+              - button "View details" [ref=e94] [cursor=pointer]: View details
+              - button "Connect to delegate" [ref=e95] [cursor=pointer]: Connect to delegate
+        - listitem [ref=e96]:
+          - generic [ref=e100]:
+            - generic [ref=e102]:
+              - generic [ref=e103]:
+                - img "drep-image" [ref=e105]
+                - generic [ref=e106]:
+                  - paragraph [ref=e107]: Data URL Blocked
+                  - generic [ref=e108]:
+                    - button "drep1yt4yxkeefr7m8h9jd85l7900rakqcgsdl6sgrj6gl0rl0qqttehf5" [ref=e109] [cursor=pointer]:
+                      - paragraph [ref=e110]: drep1yt4yxkeefr7m8h9jd85l7900rakqcgsdl6sgrj6gl0rl0qqttehf5
+                    - button "(CIP-105) drep1afp4kw2glkeaevnfa8l3tmcldsxzyr075zqukj8mclmcqj9vuyz" [ref=e111] [cursor=pointer]:
+                      - paragraph [ref=e112]: (CIP-105) drep1afp4kw2glkeaevnfa8l3tmcldsxzyr075zqukj8mclmcqj9vuyz
+              - generic [ref=e113]:
+                - generic [ref=e114]:
+                  - paragraph [ref=e115]: Voting power
+                  - paragraph [ref=e116]: ₳ 98
+                - separator [ref=e117]
+                - generic [ref=e118]:
+                  - paragraph [ref=e119]: Status
+                  - generic [ref=e122]: Active
+            - generic [ref=e123]:
+              - button "View details" [ref=e124] [cursor=pointer]: View details
+              - button "Connect to delegate" [ref=e125] [cursor=pointer]: Connect to delegate
+        - listitem [ref=e126]:
+          - generic [ref=e130]:
+            - generic [ref=e132]:
+              - generic [ref=e133]:
+                - img "drep-image" [ref=e135]
+                - generic [ref=e136]:
+                  - paragraph [ref=e137]: Data URL Blocked
+                  - generic [ref=e138]:
+                    - button "drep1ygajk53cspf2wqzzfulh0d04t5qkmnz233yn0ykwtec4q6shevzv6" [ref=e139] [cursor=pointer]:
+                      - paragraph [ref=e140]: drep1ygajk53cspf2wqzzfulh0d04t5qkmnz233yn0ykwtec4q6shevzv6
+                    - button "(CIP-105) drep18v44ywyq22nsqsj08ammta2aq9kucj5vfyme9nj7w9gx5gdkfcf" [ref=e141] [cursor=pointer]:
+                      - paragraph [ref=e142]: (CIP-105) drep18v44ywyq22nsqsj08ammta2aq9kucj5vfyme9nj7w9gx5gdkfcf
+              - generic [ref=e143]:
+                - generic [ref=e144]:
+                  - paragraph [ref=e145]: Voting power
+                  - paragraph [ref=e146]: ₳ 98
+                - separator [ref=e147]
+                - generic [ref=e148]:
+                  - paragraph [ref=e149]: Status
+                  - generic [ref=e152]: Active
+            - generic [ref=e153]:
+              - button "View details" [ref=e154] [cursor=pointer]: View details
+              - button "Connect to delegate" [ref=e155] [cursor=pointer]: Connect to delegate
+        - listitem [ref=e156]:
+          - generic [ref=e160]:
+            - generic [ref=e162]:
+              - generic [ref=e163]:
+                - img "drep-image" [ref=e165]
+                - generic [ref=e166]:
+                  - paragraph [ref=e167]: Data URL Blocked
+                  - generic [ref=e168]:
+                    - button "drep1y2g63tpd7jdjh3ywdtvdamaq0zldfj3e3t7ev2evsdwyaxqmj2d7p" [ref=e169] [cursor=pointer]:
+                      - paragraph [ref=e170]: drep1y2g63tpd7jdjh3ywdtvdamaq0zldfj3e3t7ev2evsdwyaxqmj2d7p
+                    - button "(CIP-105) drep1jx52ct05nv4ufrn2mr0wlgrchm2v5wv2lktzktyrt38fsxfhucp" [ref=e171] [cursor=pointer]:
+                      - paragraph [ref=e172]: (CIP-105) drep1jx52ct05nv4ufrn2mr0wlgrchm2v5wv2lktzktyrt38fsxfhucp
+              - generic [ref=e173]:
+                - generic [ref=e174]:
+                  - paragraph [ref=e175]: Voting power
+                  - paragraph [ref=e176]: ₳ 0
+                - separator [ref=e177]
+                - generic [ref=e178]:
+                  - paragraph [ref=e179]: Status
+                  - generic [ref=e182]: Active
+            - generic [ref=e183]:
+              - button "View details" [ref=e184] [cursor=pointer]: View details
+              - button "Connect to delegate" [ref=e185] [cursor=pointer]: Connect to delegate
+        - listitem [ref=e186]:
+          - generic [ref=e190]:
+            - generic [ref=e192]:
+              - generic [ref=e193]:
+                - img "drep-image" [ref=e195]
+                - generic [ref=e196]:
+                  - paragraph [ref=e197]: Data URL Blocked
+                  - generic [ref=e198]:
+                    - button "drep1y2eem7gxjput4nsygqfhszdp4zhkpv0rc7l344q4e9l68agyh3quq" [ref=e199] [cursor=pointer]:
+                      - paragraph [ref=e200]: drep1y2eem7gxjput4nsygqfhszdp4zhkpv0rc7l344q4e9l68agyh3quq
+                    - button "(CIP-105) drep1kwwljp5s0zavupzqzduqngdg4astrc78huddg9wf073l204drhx" [ref=e201] [cursor=pointer]:
+                      - paragraph [ref=e202]: (CIP-105) drep1kwwljp5s0zavupzqzduqngdg4astrc78huddg9wf073l204drhx
+              - generic [ref=e203]:
+                - generic [ref=e204]:
+                  - paragraph [ref=e205]: Voting power
+                  - paragraph [ref=e206]: ₳ 0
+                - separator [ref=e207]
+                - generic [ref=e208]:
+                  - paragraph [ref=e209]: Status
+                  - generic [ref=e212]: Active
+            - generic [ref=e213]:
+              - button "View details" [ref=e214] [cursor=pointer]: View details
+              - button "Connect to delegate" [ref=e215] [cursor=pointer]: Connect to delegate
+      - generic [ref=e217]:
+        - generic [ref=e218]:
+          - paragraph [ref=e219]: "Rows per page:"
+          - generic [ref=e220]:
+            - combobox [ref=e221] [cursor=pointer]:
+              - generic [ref=e222]: "5"
+            - textbox: "5"
+            - img [ref=e223] [cursor=pointer]
+        - paragraph [ref=e225]: 1-5 of 164
+        - generic [ref=e226]:
+          - button "Previous page" [disabled]:
+            - img
+          - paragraph [ref=e227]: "1"
+          - button "Next page" [ref=e228] [cursor=pointer]:
+            - img [ref=e229]
+    - contentinfo [ref=e231]:
+      - paragraph [ref=e232]: © 2026 GovTool
+      - generic [ref=e233]:
+        - generic [ref=e234] [cursor=pointer]: Privacy policy
+        - generic [ref=e235] [cursor=pointer]: Terms of Use
+      - generic [ref=e236]:
+        - button "helpIcon Help" [ref=e237] [cursor=pointer]:
+          - img "helpIcon" [ref=e239]
+          - text: Help
+        - button "Subscribe to updates" [ref=e240] [cursor=pointer]: Subscribe to updates
+        - button "Feedback" [ref=e241] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e242]
+```
+
+# Test source
+
+```ts
+  1   | import {
+  2   |   BOOTSTRAP_DOC_URL,
+  3   |   DELEGATION_DOC_URL,
+  4   |   DIRECT_VOTER_DOC_URL,
+  5   |   FAQS_DOC_URL,
+  6   |   GUIDES_DOC_URL,
+  7   |   HELP_DOC_URL,
+  8   |   PRIVACY_POLICY,
+  9   |   REGISTER_DREP_DOC_URL,
+  10  |   TERMS_AND_CONDITIONS,
+  11  | } from "@constants/docsUrl";
+  12  | import { test } from "@fixtures/walletExtension";
+  13  | import { setAllureEpic } from "@helpers/allure";
+  14  | import { isMobile, openDrawer } from "@helpers/mobile";
+  15  | import { expect, Page } from "@playwright/test";
+  16  | import environments from "lib/constants/environments";
+  17  | 
+  18  | test.beforeEach(async () => {
+  19  |   await setAllureEpic("6. Miscellaneous");
+  20  | });
+  21  | 
+  22  | test("6C. Navigation within the dApp", async ({ page, context }) => {
+  23  |   await page.goto("/");
+  24  | 
+  25  |   const navbarLinks = [
+  26  |     { testId: "dashboard-link", url: `${environments.frontendUrl}/` },
+  27  |     { testId: "drep-directory-link", urlPattern: /\/drep_directory/ },
+  28  |     { testId: "budget-discussion-link", urlPattern: /\/budget_discussion/ },
+  29  |     {
+  30  |       testId: "proposed-governance-actions-link",
+  31  |       urlPattern: /\/proposal_discussion/,
+  32  |       isDropdownContent: true,
+  33  |     },
+  34  |     {
+  35  |       testId: "governance-actions-link",
+  36  |       urlPattern: /\/governance_actions/,
+  37  |       isDropdownContent: true,
+  38  |     },
+  39  |     {
+  40  |       testId: "governance-actions-governance-actions-link",
+  41  |       urlPattern: /\/governance_actions\/history/,
+  42  |       isDropdownContent: true,
+  43  |     },
+  44  |   ];
+  45  | 
+  46  |   for (const link of navbarLinks) {
+  47  |     if (isMobile(page)) {
+  48  |       await openDrawer(page);
+  49  |     }
+  50  | 
+  51  |     if (!isMobile(page) && !!link.isDropdownContent) {
+  52  |       await page.getByTestId("governance-actions").click();
+  53  |     }
+> 54  |     await page.getByTestId(link.testId).click();
+      |                                         ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  55  | 
+  56  |     if (link.url) {
+  57  |       expect(page.url()).toEqual(link.url);
+  58  |     } else {
+  59  |       await expect(page).toHaveURL(link.urlPattern);
+  60  |     }
+  61  |   }
+  62  | 
+  63  |   const externalLinks = [
+  64  |     { testId: "guides-link", url: GUIDES_DOC_URL },
+  65  |     { testId: "faqs-link", url: FAQS_DOC_URL },
+  66  |   ];
+  67  | 
+  68  |   for (const link of externalLinks) {
+  69  |     if (isMobile(page)) {
+  70  |       await openDrawer(page);
+  71  |     }
+  72  |     const [newPage] = await Promise.all([
+  73  |       context.waitForEvent("page"),
+  74  |       page.getByTestId(link.testId).click(),
+  75  |     ]);
+  76  |     await expect(newPage).toHaveURL(link.url);
+  77  |   }
+  78  | });
+  79  | 
+  80  | test("6D. Should open Sanchonet docs in a new tab when clicking `Learn More` on dashboards in disconnected state.", async ({
+  81  |   page,
+  82  |   context,
+  83  | }) => {
+  84  |   await page.goto("/");
+  85  | 
+  86  |   const [delegationLearnMorepage] = await Promise.all([
+  87  |     context.waitForEvent("page"),
+  88  |     page.getByTestId("delegate-learn-more-button").click(),
+  89  |   ]);
+  90  |   await expect(delegationLearnMorepage).toHaveURL(DELEGATION_DOC_URL);
+  91  | 
+  92  |   const [registerLearnMorepage] = await Promise.all([
+  93  |     context.waitForEvent("page"),
+  94  |     page.getByTestId("d-rep-learn-more-button").click(),
+  95  |   ]);
+  96  |   await expect(registerLearnMorepage).toHaveURL(REGISTER_DREP_DOC_URL);
+  97  | 
+  98  |   const [directVoterLearnMorepage] = await Promise.all([
+  99  |     context.waitForEvent("page"),
+  100 |     page.getByTestId("direct-voter-learn-more-button").click(),
+  101 |   ]);
+  102 |   await expect(directVoterLearnMorepage).toHaveURL(DIRECT_VOTER_DOC_URL);
+  103 | });
+  104 | 
+  105 | test("6M. Should navigate between footer links", async ({ page, context }) => {
+  106 |   await page.goto("/");
+  107 | 
+  108 |   const [privacyPolicy] = await Promise.all([
+  109 |     context.waitForEvent("page"),
+  110 |     page.getByTestId("privacy-policy-footer-link").click(),
+  111 |   ]);
+  112 |   await expect(privacyPolicy).toHaveURL(PRIVACY_POLICY);
+  113 | 
+  114 |   const [termsAndConditions] = await Promise.all([
+  115 |     context.waitForEvent("page"),
+  116 |     page.getByTestId("terms-of-use-footer-link").click(),
+  117 |   ]);
+  118 |   await expect(termsAndConditions).toHaveURL(TERMS_AND_CONDITIONS);
+  119 | 
+  120 |   const [helpUrl] = await Promise.all([
+  121 |     context.waitForEvent("page"),
+  122 |     page.getByTestId("help-footer-button").click(),
+  123 |   ]);
+  124 |   await expect(helpUrl).toHaveURL(HELP_DOC_URL);
+  125 | });
+  126 | 
+  127 | test("6O. Should display proper network name", async ({ page }) => {
+  128 |   await page.route("**/network/info", async (route) => {
+  129 |     // Fetch the original response from the server
+  130 |     const response = await route.fetch();
+  131 |     const json = await response.json();
+  132 | 
+  133 |     const networkNames = ["sanchonet", "preview"];
+  134 |     // update network name
+  135 |     json["networkName"] =
+  136 |       networkNames[Math.floor(Math.random() * networkNames.length)];
+  137 |     await route.fulfill({
+  138 |       status: 200,
+  139 |       contentType: "application/json",
+  140 |       body: JSON.stringify(json),
+  141 |     });
+  142 |   });
+  143 |   const responsePromise = page.waitForResponse("**/network/info");
+  144 |   await page.goto("/");
+  145 | 
+  146 |   const response = await responsePromise;
+  147 |   const responseBody = await response.json();
+  148 | 
+  149 |   await expect(page.getByTestId("system-network-name")).toHaveText(
+  150 |     new RegExp(responseBody["networkName"], "i")
+  151 |   );
+  152 | });
+  153 | 
+```

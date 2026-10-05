@@ -1,0 +1,196 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 8-proposal-discussion/proposalDiscussion.spec.ts >> 8E. Should share proposed governance action
+- Location: tests/8-proposal-discussion/proposalDiscussion.spec.ts:236:5
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for locator('[data-testid^="proposal-"][data-testid$="-view-details"]').first()
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - generic [ref=e11]:
+      - paragraph [ref=e12]: Whoops!
+      - paragraph [ref=e13]: This page is not available
+      - paragraph [ref=e14]: Error 404
+      - button "Back to homepage" [ref=e15] [cursor=pointer]: Back to homepage
+    - img "error-page" [ref=e17]
+  - img "bg-blue" [ref=e18]
+```
+
+# Test source
+
+```ts
+  1   | import { expect, Locator, Page } from "@playwright/test";
+  2   | import {
+  3   |   ProposalCreateRequest,
+  4   |   ProposalDiscussionFilterTypes,
+  5   |   ProposalType,
+  6   |   ProposedGovAction,
+  7   | } from "@types";
+  8   | import environments from "lib/constants/environments";
+  9   | import ProposalDiscussionDetailsPage from "./proposalDiscussionDetailsPage";
+  10  | import { functionWaitedAssert, waitedLoop } from "@helpers/waitedLoop";
+  11  | import { setPdfUsername, setUsernameIfPrompted } from "./pdfUsername";
+  12  | 
+  13  | export default class ProposalDiscussionPage {
+  14  |   // Buttons
+  15  |   readonly proposalCreateBtn = this.page.getByTestId(
+  16  |     "propose-a-governance-action-button"
+  17  |   );
+  18  |   readonly continueBtn = this.page.getByTestId("continue-button");
+  19  |   readonly filterBtn = this.page.getByTestId("filter-button");
+  20  |   readonly sortBtn = this.page.getByTestId("sort-button");
+  21  |   readonly searchInput = this.page.getByTestId("search-input");
+  22  |   readonly showAllBtn = this.page.getByTestId("show-all-button").first(); //this.page.getByTestId("show-all-button");
+  23  |   readonly verifyIdentityBtn = this.page
+  24  |     .getByTestId("verify-user-link")
+  25  |     .first();
+  26  |   readonly addLinkBtn = this.page.getByTestId("add-link-button");
+  27  |   readonly infoRadio = this.page.getByTestId("info action-radio-wrapper");
+  28  |   readonly treasuryRadio = this.page.getByTestId(
+  29  |     "treasury requests-radio-wrapper"
+  30  |   );
+  31  |   readonly activeProposalWrapper = this.page.getByTestId(
+  32  |     "active-proposal-radio-wrapper"
+  33  |   );
+  34  | 
+  35  |   constructor(private readonly page: Page) {}
+  36  | 
+  37  |   async goto() {
+  38  |     await this.page.goto(`${environments.frontendUrl}/proposal_discussion`);
+  39  |     // wait for the proposal cards to load
+  40  |     await this.page.waitForTimeout(2_000);
+  41  |   }
+  42  | 
+  43  |   async viewFirstProposal(): Promise<ProposalDiscussionDetailsPage> {
+  44  |     await this.page
+  45  |       .locator('[data-testid^="proposal-"][data-testid$="-view-details"]')
+  46  |       .first()
+> 47  |       .click();
+      |        ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  48  |     return new ProposalDiscussionDetailsPage(this.page);
+  49  |   }
+  50  | 
+  51  |   async getAllProposals() {
+  52  |     await waitedLoop(async () => {
+  53  |       return (
+  54  |         (await this.page
+  55  |           .locator('[data-testid^="proposal-"][data-testid$="-card"]')
+  56  |           .count()) > 0
+  57  |       );
+  58  |     });
+  59  | 
+  60  |     return this.page
+  61  |       .locator('[data-testid^="proposal-"][data-testid$="-card"]')
+  62  |       .all();
+  63  |   }
+  64  | 
+  65  |   async setUsername(name: string) {
+  66  |     await setPdfUsername(this.page, name);
+  67  |   }
+  68  | 
+  69  |   /** Signs in to pdf and sets a username if pdf-ui asks for one. */
+  70  |   async verifyIdentity() {
+  71  |     await this.verifyIdentityBtn.click();
+  72  |     await setUsernameIfPrompted(this.page);
+  73  |   }
+  74  | 
+  75  |   private async fillForm(data: ProposalCreateRequest) {
+  76  |     await this.page.getByTestId("governance-action-type").click();
+  77  |     await this.page.getByTestId("info-button").click();
+  78  |     await this.page.getByTestId("title-input").fill(data.prop_name);
+  79  |     await this.page.getByTestId("abstract-input").fill(data.prop_abstract);
+  80  |     await this.page.getByTestId("motivation-input").fill(data.prop_motivation);
+  81  |     await this.page.getByTestId("rationale-input").fill(data.prop_rationale);
+  82  | 
+  83  |     for (let index = 0; index < data.proposal_links.length; index++) {
+  84  |       await this.addLinkBtn.click();
+  85  | 
+  86  |       await this.page
+  87  |         .getByTestId(`link-${index}-url-input`)
+  88  |         .fill(data.proposal_links[index].prop_link);
+  89  |       await this.page
+  90  |         .getByTestId(`link-${index}-text-input`)
+  91  |         .fill(data.proposal_links[index].prop_link_text);
+  92  |     }
+  93  |   }
+  94  | 
+  95  |   async applyAndValidateFilters(
+  96  |     filters: string[],
+  97  |     validateFunction: (proposalCard: any, filters: string[]) => Promise<boolean>
+  98  |   ) {
+  99  |     await this.page.waitForTimeout(4_000); // wait for the proposals to load
+  100 |     // single filter
+  101 |     for (const filter of filters) {
+  102 |       await this.filterProposalByNames([filter]);
+  103 |       await this.validateFilters([filter], validateFunction);
+  104 |       await this.unFilterProposalByNames([filter]);
+  105 |     }
+  106 | 
+  107 |     // multiple filter
+  108 |     const multipleFilters = [...filters];
+  109 |     while (multipleFilters.length > 1) {
+  110 |       await this.filterProposalByNames(multipleFilters);
+  111 |       await this.validateFilters(multipleFilters, validateFunction);
+  112 |       await this.unFilterProposalByNames(multipleFilters);
+  113 |       multipleFilters.pop();
+  114 |     }
+  115 |   }
+  116 | 
+  117 |   async clickRadioButtonsByNames(names: string[]) {
+  118 |     for (const name of names) {
+  119 |       const testId = Object.values(ProposalType).includes(name as ProposalType)
+  120 |         ? name.toLowerCase()
+  121 |         : name.toLowerCase().replace(/ /g, "-");
+  122 |       await this.page.getByTestId(`${testId}-radio`).click();
+  123 |     }
+  124 |   }
+  125 | 
+  126 |   async filterProposalByNames(names: string[]) {
+  127 |     await this.clickRadioButtonsByNames(names);
+  128 |   }
+  129 | 
+  130 |   async unFilterProposalByNames(names: string[]) {
+  131 |     await this.clickRadioButtonsByNames(names);
+  132 |   }
+  133 | 
+  134 |   async validateFilters(
+  135 |     filters: string[],
+  136 |     validateFunction: (proposalCard: any, filters: string[]) => Promise<boolean>
+  137 |   ) {
+  138 |     await functionWaitedAssert(async () => {
+  139 |       const proposalCards = await this.getAllProposals();
+  140 | 
+  141 |       for (const proposalCard of proposalCards) {
+  142 |         if (await proposalCard.isVisible()) {
+  143 |           const type = await proposalCard
+  144 |             .getByTestId("governance-action-type")
+  145 |             .textContent();
+  146 |           const hasFilter = await validateFunction(proposalCard, filters);
+  147 |           if (!hasFilter) {
+```

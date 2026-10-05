@@ -1,0 +1,193 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 8-proposal-discussion/proposalDiscussion.spec.ts >> Filter and sort proposals >> 8B_2. Should sort the list of proposed governance actions.
+- Location: tests/8-proposal-discussion/proposalDiscussion.spec.ts:70:7
+
+# Error details
+
+```
+Test timeout of 540000ms exceeded.
+```
+
+```
+Error: page.waitForResponse: Test timeout of 540000ms exceeded.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - generic [ref=e11]:
+      - paragraph [ref=e12]: Whoops!
+      - paragraph [ref=e13]: This page is not available
+      - paragraph [ref=e14]: Error 404
+      - button "Back to homepage" [ref=e15] [cursor=pointer]: Back to homepage
+    - img "error-page" [ref=e17]
+  - img "bg-blue" [ref=e18]
+```
+
+# Test source
+
+```ts
+  76  |     await this.page.getByTestId("governance-action-type").click();
+  77  |     await this.page.getByTestId("info-button").click();
+  78  |     await this.page.getByTestId("title-input").fill(data.prop_name);
+  79  |     await this.page.getByTestId("abstract-input").fill(data.prop_abstract);
+  80  |     await this.page.getByTestId("motivation-input").fill(data.prop_motivation);
+  81  |     await this.page.getByTestId("rationale-input").fill(data.prop_rationale);
+  82  | 
+  83  |     for (let index = 0; index < data.proposal_links.length; index++) {
+  84  |       await this.addLinkBtn.click();
+  85  | 
+  86  |       await this.page
+  87  |         .getByTestId(`link-${index}-url-input`)
+  88  |         .fill(data.proposal_links[index].prop_link);
+  89  |       await this.page
+  90  |         .getByTestId(`link-${index}-text-input`)
+  91  |         .fill(data.proposal_links[index].prop_link_text);
+  92  |     }
+  93  |   }
+  94  | 
+  95  |   async applyAndValidateFilters(
+  96  |     filters: string[],
+  97  |     validateFunction: (proposalCard: any, filters: string[]) => Promise<boolean>
+  98  |   ) {
+  99  |     await this.page.waitForTimeout(4_000); // wait for the proposals to load
+  100 |     // single filter
+  101 |     for (const filter of filters) {
+  102 |       await this.filterProposalByNames([filter]);
+  103 |       await this.validateFilters([filter], validateFunction);
+  104 |       await this.unFilterProposalByNames([filter]);
+  105 |     }
+  106 | 
+  107 |     // multiple filter
+  108 |     const multipleFilters = [...filters];
+  109 |     while (multipleFilters.length > 1) {
+  110 |       await this.filterProposalByNames(multipleFilters);
+  111 |       await this.validateFilters(multipleFilters, validateFunction);
+  112 |       await this.unFilterProposalByNames(multipleFilters);
+  113 |       multipleFilters.pop();
+  114 |     }
+  115 |   }
+  116 | 
+  117 |   async clickRadioButtonsByNames(names: string[]) {
+  118 |     for (const name of names) {
+  119 |       const testId = Object.values(ProposalType).includes(name as ProposalType)
+  120 |         ? name.toLowerCase()
+  121 |         : name.toLowerCase().replace(/ /g, "-");
+  122 |       await this.page.getByTestId(`${testId}-radio`).click();
+  123 |     }
+  124 |   }
+  125 | 
+  126 |   async filterProposalByNames(names: string[]) {
+  127 |     await this.clickRadioButtonsByNames(names);
+  128 |   }
+  129 | 
+  130 |   async unFilterProposalByNames(names: string[]) {
+  131 |     await this.clickRadioButtonsByNames(names);
+  132 |   }
+  133 | 
+  134 |   async validateFilters(
+  135 |     filters: string[],
+  136 |     validateFunction: (proposalCard: any, filters: string[]) => Promise<boolean>
+  137 |   ) {
+  138 |     await functionWaitedAssert(async () => {
+  139 |       const proposalCards = await this.getAllProposals();
+  140 | 
+  141 |       for (const proposalCard of proposalCards) {
+  142 |         if (await proposalCard.isVisible()) {
+  143 |           const type = await proposalCard
+  144 |             .getByTestId("governance-action-type")
+  145 |             .textContent();
+  146 |           const hasFilter = await validateFunction(proposalCard, filters);
+  147 |           if (!hasFilter) {
+  148 |             const errorMessage = `A governance action type ${type} does not contain on ${filters}`;
+  149 |             throw errorMessage;
+  150 |           }
+  151 |           expect(hasFilter).toBe(true);
+  152 |         }
+  153 |       }
+  154 |     });
+  155 |   }
+  156 | 
+  157 |   async sortAndValidate(
+  158 |     type: ProposalDiscussionFilterTypes,
+  159 |     validationFn: (p1: ProposedGovAction, p2: ProposedGovAction) => boolean
+  160 |   ) {
+  161 |     const sortMappings = {
+  162 |       "Name A-Z": "&sort[prop_name]=ASC",
+  163 |       "Name Z-A": "&sort[prop_name]=DESC",
+  164 |       "Most comments": "&sort[proposal][prop_comments_number]=DESC",
+  165 |       "Least comments": "&sort[proposal][prop_comments_number]=ASC",
+  166 |       "Most likes": "&sort[proposal][prop_likes]=DESC",
+  167 |       "Least likes": "&sort[proposal][prop_likes]=ASC",
+  168 |       "Most dislikes": "&sort[proposal][prop_dislikes]=DESC",
+  169 |       "Least dislikes": "&sort[proposal][prop_dislikes]=ASC",
+  170 |       Oldest: "&sort[createdAt]=ASC",
+  171 |       Newest: "&sort[createdAt]=DESC",
+  172 |     };
+  173 | 
+  174 |     const urlParam = sortMappings[type];
+  175 |     const populateParam = "&populate[0]=proposal_links";
+> 176 |     const responsePromise = this.page.waitForResponse((response) =>
+      |                                       ^ Error: page.waitForResponse: Test timeout of 540000ms exceeded.
+  177 |       response.url().includes(`${urlParam}${populateParam}`)
+  178 |     );
+  179 | 
+  180 |     await this.sortBtn.click();
+  181 |     await this.page.getByTestId(`${type}-sort-option`).click();
+  182 |     const response = await responsePromise;
+  183 | 
+  184 |     let proposals: ProposedGovAction[] = (await response.json()).data;
+  185 | 
+  186 |     // API validation
+  187 |     for (let i = 0; i <= proposals.length - 2; i++) {
+  188 |       const isValid = validationFn(proposals[i], proposals[i + 1]);
+  189 |       expect(isValid, {
+  190 |         message:
+  191 |           !isValid &&
+  192 |           `Failed on sorting ${type} with proposals: ${proposals[i].id} and ${proposals[i + 1].id}`,
+  193 |       }).toBe(true);
+  194 |     }
+  195 |   }
+  196 | 
+  197 |   async _validateTypeFiltersInProposalCard(
+  198 |     proposalCard: Locator,
+  199 |     filters: string[]
+  200 |   ): Promise<boolean> {
+  201 |     const govActionType = await proposalCard
+  202 |       .getByTestId("governance-action-type")
+  203 |       .textContent();
+  204 | 
+  205 |     return filters.includes(govActionType);
+  206 |   }
+  207 | 
+  208 |   async _validateStatusFiltersInProposalCard(
+  209 |     proposalCard: Locator,
+  210 |     filters: string[]
+  211 |   ): Promise<boolean> {
+  212 |     let govActionType = await proposalCard
+  213 |       .locator('[data-testid^="proposal-"][data-testid$="-status"]')
+  214 |       .textContent();
+  215 |     if (govActionType === "Active") {
+  216 |       govActionType = "Active proposal";
+  217 |     }
+  218 | 
+  219 |     return filters.includes(govActionType);
+  220 |   }
+  221 | }
+  222 | 
+```

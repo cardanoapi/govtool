@@ -1,0 +1,196 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 11-proposal-budget/proposalBudget.spec.ts >> 11D. Should share budget proposal
+- Location: tests/11-proposal-budget/proposalBudget.spec.ts:209:5
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for locator('[data-testid^="budget-discussion-"][data-testid$="-view-details"]').first()
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - generic [ref=e11]:
+      - paragraph [ref=e12]: Whoops!
+      - paragraph [ref=e13]: This page is not available
+      - paragraph [ref=e14]: Error 404
+      - button "Back to homepage" [ref=e15] [cursor=pointer]: Back to homepage
+    - img "error-page" [ref=e17]
+  - img "bg-blue" [ref=e18]
+```
+
+# Test source
+
+```ts
+  1   | import { functionWaitedAssert, waitedLoop } from "@helpers/waitedLoop";
+  2   | import { expect, Locator, Page } from "@playwright/test";
+  3   | import {
+  4   |   BudgetDiscussionEnum,
+  5   |   BudgetProposalFilterTypes,
+  6   |   ProposedGovAction,
+  7   | } from "@types";
+  8   | import environments from "lib/constants/environments";
+  9   | import BudgetDiscussionDetailsPage from "./budgetDiscussionDetailsPage";
+  10  | import { setPdfUsername, setUsernameIfPrompted } from "./pdfUsername";
+  11  | 
+  12  | export default class BudgetDiscussionPage {
+  13  |   // Buttons
+  14  |   readonly drawerBtn = this.page.getByTestId("open-drawer-button");
+  15  |   readonly proposalBudgetDiscussionBtn = this.page.getByTestId(
+  16  |     "propose-a-budget-discussion-button"
+  17  |   );
+  18  |   readonly verifyUserLink = this.page.getByTestId("verify-user-link").first();
+  19  |   readonly verifyDRepLink = this.page.getByTestId("verify-drep-link").first();
+  20  |   readonly filterBtn = this.page.getByTestId("filter-button");
+  21  |   readonly sortBtn = this.page.getByTestId("sort-button");
+  22  |   readonly myProposalBtn = this.page.getByTestId(
+  23  |     "My Proposals-owner-filter-option"
+  24  |   );
+  25  | 
+  26  |   // input
+  27  |   readonly searchInput = this.page.getByTestId("search-input");
+  28  | 
+  29  |   constructor(private readonly page: Page) {}
+  30  | 
+  31  |   get currentPage(): Page {
+  32  |     return this.page;
+  33  |   }
+  34  | 
+  35  |   async goto() {
+  36  |     await this.page.goto(`${environments.frontendUrl}/budget_discussion`);
+  37  |     // wait for the proposal cards to load
+  38  |     await this.page.waitForTimeout(2_000);
+  39  |   }
+  40  | 
+  41  |   async viewFirstProposal(): Promise<BudgetDiscussionDetailsPage> {
+  42  |     await this.page
+  43  |       .locator(
+  44  |         '[data-testid^="budget-discussion-"][data-testid$="-view-details"]'
+  45  |       )
+  46  |       .first()
+> 47  |       .click();
+      |        ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  48  |     return new BudgetDiscussionDetailsPage(this.page);
+  49  |   }
+  50  | 
+  51  |   async getAllProposals() {
+  52  |     const proposalCardSelector =
+  53  |       '[data-testid^="budget-discussion-"][data-testid$="-card"]';
+  54  | 
+  55  |     await waitedLoop(async () => {
+  56  |       const count = await this.page.locator(proposalCardSelector).count();
+  57  |       return count > 0;
+  58  |     });
+  59  |     const proposalCards = await this.page.locator(proposalCardSelector).all();
+  60  | 
+  61  |     expect(
+  62  |       true,
+  63  |       proposalCards.length === 0 && "No budget proposals found."
+  64  |     ).toBeTruthy();
+  65  | 
+  66  |     return proposalCards;
+  67  |   }
+  68  | 
+  69  |   async clickRadioButtonsByNames(names: string[]) {
+  70  |     for (const name of names) {
+  71  |       const budgetProposalValue = Object.values(BudgetDiscussionEnum).includes(
+  72  |         name as BudgetDiscussionEnum
+  73  |       );
+  74  |       if (budgetProposalValue) {
+  75  |         await this.page.getByLabel(name).click();
+  76  |       }
+  77  |     }
+  78  |   }
+  79  | 
+  80  |   async filterProposalByNames(names: string[]) {
+  81  |     await this.clickRadioButtonsByNames(names);
+  82  |   }
+  83  | 
+  84  |   async unFilterProposalByNames(names: string[]) {
+  85  |     await this.clickRadioButtonsByNames(names);
+  86  |   }
+  87  | 
+  88  |   async applyAndValidateFilters(
+  89  |     filters: string[],
+  90  |     validateFunction: (proposalCard: any, filters: string[]) => Promise<boolean>
+  91  |   ) {
+  92  |     await this.page.waitForTimeout(4_000); // wait for the proposals to load
+  93  |     // single filter
+  94  |     for (const filter of filters) {
+  95  |       await this.filterProposalByNames([filter]);
+  96  |       await this.validateFilters([filter], validateFunction);
+  97  |       await this.unFilterProposalByNames([filter]);
+  98  |     }
+  99  | 
+  100 |     // multiple filter
+  101 |     const multipleFilters = [...filters];
+  102 |     while (multipleFilters.length > 1) {
+  103 |       await this.filterProposalByNames(multipleFilters);
+  104 |       await this.validateFilters(multipleFilters, validateFunction);
+  105 |       await this.unFilterProposalByNames(multipleFilters);
+  106 |       multipleFilters.pop();
+  107 |     }
+  108 |   }
+  109 | 
+  110 |   async validateFilters(
+  111 |     filters: string[],
+  112 |     validateFunction: (proposalCard: any, filters: string[]) => Promise<boolean>
+  113 |   ) {
+  114 |     await functionWaitedAssert(async () => {
+  115 |       const proposalCards = await this.getAllProposals();
+  116 | 
+  117 |       for (const proposalCard of proposalCards) {
+  118 |         if (await proposalCard.isVisible()) {
+  119 |           const type = await proposalCard
+  120 |             .getByTestId("budget-discussion-type")
+  121 |             .textContent();
+  122 |           const hasFilter = await validateFunction(proposalCard, filters);
+  123 | 
+  124 |           expect(
+  125 |             hasFilter,
+  126 |             !hasFilter &&
+  127 |               `A budget proposal type ${type} does not contain on ${filters}`
+  128 |           ).toBe(true);
+  129 |         }
+  130 |       }
+  131 |     });
+  132 |   }
+  133 | 
+  134 |   async _validateTypeFiltersInProposalCard(
+  135 |     proposalCard: Locator,
+  136 |     filters: string[]
+  137 |   ): Promise<boolean> {
+  138 |     const govActionType = await proposalCard
+  139 |       .getByTestId("budget-discussion-type")
+  140 |       .textContent();
+  141 | 
+  142 |     if (govActionType === "None of these") {
+  143 |       return filters.includes(BudgetDiscussionEnum.NoCategory);
+  144 |     }
+  145 |     return filters.includes(govActionType);
+  146 |   }
+  147 | 
+```

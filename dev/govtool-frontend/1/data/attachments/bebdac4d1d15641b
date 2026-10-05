@@ -1,0 +1,192 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 6-miscellaneous/miscellaneous.loggedin.spec.ts >> Temporary user >> 6K. Should accept valid username.
+- Location: tests/6-miscellaneous/miscellaneous.loggedin.spec.ts:118:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded while running "beforeEach" hook.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByTestId('verify-user-link').first()
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - generic [ref=e11]:
+      - paragraph [ref=e12]: Whoops!
+      - paragraph [ref=e13]: This page is not available
+      - paragraph [ref=e14]: Error 404
+      - button "Back to dashboard" [ref=e15] [cursor=pointer]: Back to dashboard
+    - img "error-page" [ref=e17]
+  - img "bg-blue" [ref=e18]
+```
+
+# Test source
+
+```ts
+  11  | import { setAllureEpic } from "@helpers/allure";
+  12  | import { invalid as mockInvalid, valid as mockValid } from "@mock/index";
+  13  | import DRepDirectoryPage from "@pages/dRepDirectoryPage";
+  14  | import ProposalDiscussionPage from "@pages/proposalDiscussionPage";
+  15  | import { Page, expect } from "@playwright/test";
+  16  | import { connectTestWallet } from "lib/wallet/pageWallet";
+  17  | import { randomWallet } from "lib/wallet/testWallets";
+  18  | 
+  19  | test.beforeEach(async () => {
+  20  |   await setAllureEpic("6. Miscellaneous");
+  21  | });
+  22  | 
+  23  | test.describe("Logged in user", () => {
+  24  |   test.use({ walletName: "user01", walletFundsAda: 0 });
+  25  | 
+  26  |   test("6E. Should open Sanchonet docs in a new tab when clicking `Learn More` on dashboards in connected state.", async ({
+  27  |     page,
+  28  |     context,
+  29  |   }) => {
+  30  |     await page.goto("/");
+  31  | 
+  32  |     const [delegationLearnMorepage] = await Promise.all([
+  33  |       context.waitForEvent("page"),
+  34  |       page.getByTestId("delegate-learn-more-button").click(),
+  35  |     ]);
+  36  |     await expect(delegationLearnMorepage).toHaveURL(DELEGATION_DOC_URL);
+  37  | 
+  38  |     const [registerLearnMorepage] = await Promise.all([
+  39  |       context.waitForEvent("page"),
+  40  |       page.getByTestId("d-rep-learn-more-button").click(),
+  41  |     ]);
+  42  |     await expect(registerLearnMorepage).toHaveURL(REGISTER_DREP_DOC_URL);
+  43  | 
+  44  |     const [directVoterLearnMorepage] = await Promise.all([
+  45  |       context.waitForEvent("page"),
+  46  |       page.getByTestId("direct-voter-learn-more-button").first().click(),
+  47  |     ]);
+  48  |     await expect(directVoterLearnMorepage).toHaveURL(DIRECT_VOTER_DOC_URL);
+  49  | 
+  50  |     const [GA_LearnMorepage] = await Promise.all([
+  51  |       context.waitForEvent("page"),
+  52  |       page.getByTestId("list-gov-actions-learn-more-button").click(),
+  53  |     ]);
+  54  |     await expect(GA_LearnMorepage).toHaveURL(GOVERNANCE_ACTION_DOC_URL);
+  55  | 
+  56  |     const [proposed_GA_VoterLearnMorepage] = await Promise.all([
+  57  |       context.waitForEvent("page"),
+  58  |       page.getByTestId("propose-gov-action-learn-more-button").click(),
+  59  |     ]);
+  60  |     await expect(proposed_GA_VoterLearnMorepage).toHaveURL(
+  61  |       PROPOSE_GOVERNANCE_ACTION_DOC_URL
+  62  |     );
+  63  |   });
+  64  | 
+  65  |   test("6F. Should open sanchonet docs in a new tab when clicking `info` button of abstain and signal-no-confidence card", async ({
+  66  |     page,
+  67  |     context,
+  68  |   }) => {
+  69  |     const dRepDirectoryPage = new DRepDirectoryPage(page);
+  70  |     await dRepDirectoryPage.goto();
+  71  | 
+  72  |     await dRepDirectoryPage.automaticDelegationOptionsDropdown.click();
+  73  | 
+  74  |     const [abstain_Info_Page] = await Promise.all([
+  75  |       context.waitForEvent("page"),
+  76  |       dRepDirectoryPage.abstainInfoButton.click(),
+  77  |     ]);
+  78  |     await expect(abstain_Info_Page).toHaveURL(ABSTAIN_VOTE_DOC_URL);
+  79  | 
+  80  |     const [signal_No_Confidence_Info_Page] = await Promise.all([
+  81  |       context.waitForEvent("page"),
+  82  |       dRepDirectoryPage.signalNoConfidenceInfoButton.click(),
+  83  |     ]);
+  84  |     await expect(signal_No_Confidence_Info_Page).toHaveURL(
+  85  |       SIGNAL_NO_CONFIDENCE_VOTE_DOC_URL
+  86  |     );
+  87  |   });
+  88  | 
+  89  |   test("6I. Should prompt for a username after clicking on proposal discussion link if username is not set", async ({
+  90  |     page,
+  91  |   }) => {
+  92  |     await page.goto("/");
+  93  |     await page.getByTestId("proposal-discussion-link").click();
+  94  |     await page.getByTestId("verify-user-link").first().click();
+  95  | 
+  96  |     await expect(page.getByTestId("setup-username-modal")).toBeVisible();
+  97  |     await expect(page.getByTestId("username-input")).toBeVisible();
+  98  |   });
+  99  | });
+  100 | 
+  101 | test.describe("Temporary user", () => {
+  102 |   let userPage: Page;
+  103 |   let proposalDiscussionPage: ProposalDiscussionPage;
+  104 | 
+  105 |   test.beforeEach(async ({ page }) => {
+  106 |     await connectTestWallet(page, await randomWallet());
+  107 |     userPage = page;
+  108 | 
+  109 |     proposalDiscussionPage = new ProposalDiscussionPage(userPage);
+  110 |     await proposalDiscussionPage.goto();
+> 111 |     await proposalDiscussionPage.verifyIdentityBtn.click();
+      |                                                    ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  112 |   });
+  113 | 
+  114 |   test("6J. Should add a username.", async () => {
+  115 |     await proposalDiscussionPage.setUsername(mockValid.username());
+  116 |   });
+  117 | 
+  118 |   test("6K. Should accept valid username.", async () => {
+  119 |     for (let i = 0; i < 100; i++) {
+  120 |       await userPage.getByTestId("username-input").fill(mockValid.username());
+  121 | 
+  122 |       await expect(
+  123 |         userPage.getByTestId("username-error-text")
+  124 |       ).not.toBeVisible();
+  125 |       await expect(userPage.getByTestId("proceed-button")).toBeEnabled();
+  126 |     }
+  127 |   });
+  128 | 
+  129 |   test("6L. Should reject invalid username.", async () => {
+  130 |     for (let i = 0; i < 100; i++) {
+  131 |       await userPage.getByTestId("username-input").fill(mockInvalid.username());
+  132 | 
+  133 |       await expect(userPage.getByTestId("username-error-text")).toBeVisible();
+  134 |       await expect(userPage.getByTestId("proceed-button")).toBeDisabled();
+  135 |     }
+  136 |   });
+  137 | });
+  138 | 
+  139 | test.describe("Temporary budget discussion user", () => {
+  140 |   test("6P. Should prompt for a username after clicking on budget discussion link if username is not set", async ({
+  141 |     page,
+  142 |   }) => {
+  143 |     await connectTestWallet(page, await randomWallet());
+  144 | 
+  145 |     await page.goto("/");
+  146 |     await page.getByTestId("budget-discussion-link").click();
+  147 |     await page.getByTestId("verify-user-link").first().click();
+  148 | 
+  149 |     await expect(page.getByTestId("setup-username-modal")).toBeVisible();
+  150 |     await expect(page.getByTestId("username-input")).toBeVisible();
+  151 |   });
+  152 | });
+  153 | 
+```

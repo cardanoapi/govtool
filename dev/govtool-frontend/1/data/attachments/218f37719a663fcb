@@ -1,0 +1,165 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 11-proposal-budget/proposalBudget.spec.ts >> Restricted access to interact budget proposal >> 11F_1. Should restrict users without wallets from commenting
+- Location: tests/11-proposal-budget/proposalBudget.spec.ts:293:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.fill: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByTestId('comment-input')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - generic [ref=e11]:
+      - paragraph [ref=e12]: Whoops!
+      - paragraph [ref=e13]: This page is not available
+      - paragraph [ref=e14]: Error 404
+      - button "Back to homepage" [ref=e15] [cursor=pointer]: Back to homepage
+    - img "error-page" [ref=e17]
+  - img "bg-blue" [ref=e18]
+```
+
+# Test source
+
+```ts
+  194 |           const ExpectedProposalType =
+  195 |             proposalType === BudgetDiscussionEnum.NoCategory
+  196 |               ? "None of these"
+  197 |               : proposalType;
+  198 |           await expect(
+  199 |             proposalCard.getByTestId("budget-discussion-type")
+  200 |           ).toHaveText(ExpectedProposalType, { timeout: 60_000 });
+  201 |         }
+  202 |       } else {
+  203 |         expect(true, `No ${proposalType} found`).toBeTruthy();
+  204 |       }
+  205 |     })
+  206 |   );
+  207 | });
+  208 | 
+  209 | test("11D. Should share budget proposal", async ({ page, context }) => {
+  210 |   await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  211 |   const budgetDiscussionPage = new BudgetDiscussionPage(page);
+  212 |   await budgetDiscussionPage.goto();
+  213 | 
+  214 |   const budgetDiscussionDetailsPage =
+  215 |     await budgetDiscussionPage.viewFirstProposal();
+  216 | 
+  217 |   const currentPageUrl = page.url();
+  218 |   const proposalId = extractProposalIdFromUrl(currentPageUrl);
+  219 | 
+  220 |   await budgetDiscussionDetailsPage.shareBtn.click();
+  221 |   await budgetDiscussionDetailsPage.copyLinkBtn.click();
+  222 |   await expect(budgetDiscussionDetailsPage.copyLinkText).toBeVisible();
+  223 | 
+  224 |   const copiedTextDRepDirectory = await page.evaluate(() =>
+  225 |     navigator.clipboard.readText()
+  226 |   );
+  227 |   const expectedCopyUrl = `${environments.frontendUrl}/budget_discussion/${proposalId}`;
+  228 | 
+  229 |   expect(copiedTextDRepDirectory).toEqual(expectedCopyUrl);
+  230 | });
+  231 | 
+  232 | test("11E. Should view comments with count indications on a budget proposal", async ({
+  233 |   page,
+  234 | }) => {
+  235 |   let responsePromise = page.waitForResponse((response) =>
+  236 |     response.url().includes(`/api/bds/`)
+  237 |   );
+  238 | 
+  239 |   const budgetDiscussionPage = new BudgetDiscussionPage(page);
+  240 |   await budgetDiscussionPage.goto();
+  241 | 
+  242 |   const budgetDiscussionDetailsPage =
+  243 |     await budgetDiscussionPage.viewFirstProposal();
+  244 |   const response = await responsePromise;
+  245 | 
+  246 |   const proposalResponse = await response.json();
+  247 | 
+  248 |   const actualTotalComments =
+  249 |     await budgetDiscussionDetailsPage.totalComments.textContent();
+  250 |   let expectedTotalComments =
+  251 |     proposalResponse.data.attributes.prop_comments_number;
+  252 |   const isEqual = actualTotalComments === expectedTotalComments;
+  253 | 
+  254 |   const currentPageUrl = budgetDiscussionDetailsPage.currentPage.url();
+  255 | 
+  256 |   const proposalId = extractProposalIdFromUrl(currentPageUrl);
+  257 |   if (expectedTotalComments > 99) {
+  258 |     expectedTotalComments = "99+";
+  259 |   }
+  260 | 
+  261 |   await expect(
+  262 |     budgetDiscussionDetailsPage.totalComments,
+  263 |     !isEqual &&
+  264 |       `Total comments do not match in ${environments.frontendUrl}/budget_discussion/${proposalId}`
+  265 |   ).toHaveText(expectedTotalComments.toString());
+  266 | });
+  267 | 
+  268 | test.describe("Restricted access to interact budget proposal", () => {
+  269 |   let budgetDiscussionDetailsPage: BudgetDiscussionDetailsPage;
+  270 | 
+  271 |   test.beforeEach(async ({ page }) => {
+  272 |     await page.route("**/api/bds/**", async (route) =>
+  273 |       route.fulfill({
+  274 |         body: JSON.stringify(mockBudgetProposal),
+  275 |       })
+  276 |     );
+  277 | 
+  278 |     await page.route("**/api/bd-polls**", async (route) =>
+  279 |       route.fulfill({
+  280 |         body: JSON.stringify(mockPoll),
+  281 |       })
+  282 |     );
+  283 | 
+  284 |     await page.route("**/api/comments**", async (route) =>
+  285 |       route.fulfill({
+  286 |         body: JSON.stringify(mockComments),
+  287 |       })
+  288 |     );
+  289 | 
+  290 |     budgetDiscussionDetailsPage = new BudgetDiscussionDetailsPage(page);
+  291 |     await budgetDiscussionDetailsPage.goto(mockBudgetProposal.data.id);
+  292 |   });
+  293 |   test("11F_1. Should restrict users without wallets from commenting", async () => {
+> 294 |     await budgetDiscussionDetailsPage.commentInput.fill(
+      |                                                    ^ Error: locator.fill: Test timeout of 180000ms exceeded.
+  295 |       faker.lorem.paragraph()
+  296 |     );
+  297 | 
+  298 |     await expect(budgetDiscussionDetailsPage.commentBtn).toBeDisabled();
+  299 |   });
+  300 |   test("11F_2. Should restrict users without wallets from voting", async () => {
+  301 |     // wait for the page to load
+  302 |     await budgetDiscussionDetailsPage.currentPage.waitForTimeout(5_000);
+  303 |     await expect(budgetDiscussionDetailsPage.pollVoteCard).not.toBeVisible();
+  304 |     await expect(budgetDiscussionDetailsPage.pollYesBtn).not.toBeVisible();
+  305 | 
+  306 |     await expect(budgetDiscussionDetailsPage.pollNoBtn).not.toBeVisible();
+  307 |   });
+  308 | });
+  309 | 
+```

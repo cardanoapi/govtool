@@ -1,0 +1,200 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 8-proposal-discussion/proposalDiscussion.spec.ts >> Filter and sort proposals >> 8B_1. Should filter the list of proposed governance actions.
+- Location: tests/8-proposal-discussion/proposalDiscussion.spec.ts:48:7
+
+# Error details
+
+```
+Test timeout of 540000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 540000ms exceeded.
+Call log:
+  - waiting for getByTestId('filter-button')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - generic [ref=e11]:
+      - paragraph [ref=e12]: Whoops!
+      - paragraph [ref=e13]: This page is not available
+      - paragraph [ref=e14]: Error 404
+      - button "Back to homepage" [ref=e15] [cursor=pointer]: Back to homepage
+    - img "error-page" [ref=e17]
+  - img "bg-blue" [ref=e18]
+```
+
+# Test source
+
+```ts
+  1   | import environments from "@constants/environments";
+  2   | import {
+  3   |   BOOTSTRAP_PROPOSAL_TYPE_FILTERS,
+  4   |   PROPOSAL_STATUS_FILTER,
+  5   | } from "@constants/index";
+  6   | import { faker } from "@faker-js/faker";
+  7   | import { test } from "@fixtures/proposal";
+  8   | import { setAllureEpic } from "@helpers/allure";
+  9   | import { isBootStrapingPhase } from "@helpers/cardano";
+  10  | import { getProposalType } from "@helpers/index";
+  11  | import { injectLogger } from "@helpers/page";
+  12  | import { extractProposalIdFromUrl } from "@helpers/string";
+  13  | import { functionWaitedAssert } from "@helpers/waitedLoop";
+  14  | import ProposalDiscussionDetailsPage from "@pages/proposalDiscussionDetailsPage";
+  15  | import ProposalDiscussionPage from "@pages/proposalDiscussionPage";
+  16  | import { expect } from "@playwright/test";
+  17  | import {
+  18  |   ProposalDiscussionFilterTypes,
+  19  |   ProposalType,
+  20  |   ProposedGovAction,
+  21  | } from "@types";
+  22  | 
+  23  | const mockProposal = require("../../lib/_mock/proposal.json");
+  24  | const mockPoll = require("../../lib/_mock/proposalPoll.json");
+  25  | const mockComments = require("../../lib/_mock/proposalComments.json");
+  26  | 
+  27  | test.beforeEach(async () => {
+  28  |   await setAllureEpic("8. Proposal Discussion Forum");
+  29  | });
+  30  | 
+  31  | test("8A. Should access proposed governance actions in disconnected state", async ({
+  32  |   page,
+  33  | }) => {
+  34  |   const proposalDiscussionPage = new ProposalDiscussionPage(page);
+  35  |   await proposalDiscussionPage.goto();
+  36  | 
+  37  |   await expect(page.getByText(/Proposed Governance Actions/i)).toHaveCount(1);
+  38  | });
+  39  | 
+  40  | test.describe("Filter and sort proposals", () => {
+  41  |   let proposalDiscussionPage: ProposalDiscussionPage;
+  42  | 
+  43  |   test.beforeEach(async ({ page }) => {
+  44  |     proposalDiscussionPage = new ProposalDiscussionPage(page);
+  45  |     await proposalDiscussionPage.goto();
+  46  |   });
+  47  | 
+  48  |   test("8B_1. Should filter the list of proposed governance actions.", async () => {
+  49  |     test.slow();
+  50  | 
+> 51  |     await proposalDiscussionPage.filterBtn.click();
+      |                                            ^ Error: locator.click: Test timeout of 540000ms exceeded.
+  52  | 
+  53  |     // unselect active proposal
+  54  |     await proposalDiscussionPage.activeProposalWrapper.click();
+  55  |     const isBootStraping = await isBootStrapingPhase();
+  56  | 
+  57  |     // proposal type filter
+  58  |     await proposalDiscussionPage.applyAndValidateFilters(
+  59  |       isBootStraping ? BOOTSTRAP_PROPOSAL_TYPE_FILTERS : getProposalType(),
+  60  |       proposalDiscussionPage._validateTypeFiltersInProposalCard
+  61  |     );
+  62  | 
+  63  |     // proposal status filter
+  64  |     await proposalDiscussionPage.applyAndValidateFilters(
+  65  |       PROPOSAL_STATUS_FILTER,
+  66  |       proposalDiscussionPage._validateStatusFiltersInProposalCard
+  67  |     );
+  68  |   });
+  69  | 
+  70  |   test("8B_2. Should sort the list of proposed governance actions.", async () => {
+  71  |     test.slow();
+  72  |     const sortOptions = {
+  73  |       Oldest: (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  74  |         p1.attributes.content.attributes.createdAt <=
+  75  |         p2.attributes.content.attributes.createdAt,
+  76  |       Newest: (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  77  |         p1.attributes.content.attributes.createdAt >=
+  78  |         p2.attributes.content.attributes.createdAt,
+  79  |       "Most likes": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  80  |         p1.attributes.prop_likes >= p2.attributes.prop_likes,
+  81  |       "Least likes": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  82  |         p1.attributes.prop_likes <= p2.attributes.prop_likes,
+  83  |       "Most dislikes": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  84  |         p1.attributes.prop_dislikes >= p2.attributes.prop_dislikes,
+  85  |       "Least dislikes": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  86  |         p1.attributes.prop_dislikes <= p2.attributes.prop_dislikes,
+  87  |       "Most comments": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  88  |         p1.attributes.prop_comments_number >=
+  89  |         p2.attributes.prop_comments_number,
+  90  |       "Least comments": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  91  |         p1.attributes.prop_comments_number <=
+  92  |         p2.attributes.prop_comments_number,
+  93  |       "Name A-Z": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  94  |         p1.attributes.content.attributes.prop_name
+  95  |           .replace(/ /g, "")
+  96  |           .localeCompare(
+  97  |             p2.attributes.content.attributes.prop_name.replace(/ /g, "")
+  98  |           ) <= 0,
+  99  |       "Name Z-A": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  100 |         p1.attributes.content.attributes.prop_name
+  101 |           .replace(/ /g, "")
+  102 |           .localeCompare(
+  103 |             p2.attributes.content.attributes.prop_name.replace(/ /g, "")
+  104 |           ) >= 0,
+  105 |     };
+  106 | 
+  107 |     for (const [sortOption, sortFunction] of Object.entries(sortOptions)) {
+  108 |       await proposalDiscussionPage.sortAndValidate(
+  109 |         sortOption as ProposalDiscussionFilterTypes,
+  110 |         sortFunction
+  111 |       );
+  112 |     }
+  113 |   });
+  114 | });
+  115 | 
+  116 | test("8C. Should search the list of proposed governance actions.", async ({
+  117 |   page,
+  118 | }) => {
+  119 |   let proposalName = "Labadie, Stehr and Rosenbaum";
+  120 |   let proposalNameSet = false;
+  121 | 
+  122 |   await page.route("**/api/proposals?**", async (route) => {
+  123 |     const response = await route.fetch();
+  124 |     const json = await response.json();
+  125 |     if (!proposalNameSet && "data" in json && json["data"].length > 0) {
+  126 |       const randomIndex = Math.floor(Math.random() * json["data"].length);
+  127 |       proposalName =
+  128 |         json["data"][randomIndex]["attributes"]["content"]["attributes"][
+  129 |           "prop_name"
+  130 |         ];
+  131 |       proposalNameSet = true;
+  132 |     }
+  133 |     await route.fulfill({
+  134 |       status: 200,
+  135 |       contentType: "application/json",
+  136 |       body: JSON.stringify(json),
+  137 |     });
+  138 |   });
+  139 | 
+  140 |   const responsePromise = page.waitForResponse("**/api/proposals?**");
+  141 |   const proposalDiscussionPage = new ProposalDiscussionPage(page);
+  142 |   await proposalDiscussionPage.goto();
+  143 | 
+  144 |   await responsePromise;
+  145 | 
+  146 |   await proposalDiscussionPage.searchInput.fill(proposalName);
+  147 | 
+  148 |   await page.waitForTimeout(2000);
+  149 | 
+  150 |   await functionWaitedAssert(
+  151 |     async () => {
+```
