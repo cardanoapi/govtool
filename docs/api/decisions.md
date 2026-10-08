@@ -5657,3 +5657,26 @@ review"), and OPEN-48.
   real survey transactions (including a batch of two or more definitions) decoding to the same value
   on all three, and a public response submitted with a vote on preview. A Koios instance without CBOR
   retention, or a Blockfrost endpoint without the route, keeps that deployment's gate closed.
+
+## D165 — The Swarm stack runs the pdf backend under /pdf
+
+**Date:** 2026-10-06
+**Amends:** none. Strapi is no longer deployed alongside GovTool
+
+- `docker/swarm-stack` runs `govtool-pdf-backend` as `pdf`, at `https://${BASE_DOMAIN}/pdf/`, on
+  the frontend's origin. It replaces the Strapi stack; the existing Strapi data is copied in
+  separately.
+- Its database is a `pdf` database and role on the Postgres that `metadata` uses.
+- `DATABASE_URL`, `JWT_SECRET` and `REFRESH_SECRET` are Swarm secrets, read from
+  `/run/secrets/<lowercase name>` when unset, as in govtool-backend and govtool-metadata-service.
+
+## D166 — The Swarm stack runs its own Postgres
+
+**Date:** 2026-10-07
+**Amends:** D165 (where the pdf database lives).
+
+- `docker/swarm-stack` runs a `postgres` service holding the `metadata` and `pdf` databases, so
+  no environment depends on another stack's Postgres. `postgres-init.sh` creates one role per app
+  on an empty volume.
+- The same `docker-stack.yml` serves every environment; only `.env` and the exported secrets
+  differ.
