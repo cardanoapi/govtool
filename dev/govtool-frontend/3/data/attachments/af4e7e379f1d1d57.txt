@@ -1,0 +1,5 @@
+✔ Uploaded Santa-0b972d00 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 38580033297ecdaeab0e600100bc6313222eb8d78645167eb8e0c6920f14f13f
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

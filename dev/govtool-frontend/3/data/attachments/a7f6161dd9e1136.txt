@@ -1,0 +1,4 @@
+✔ Uploaded Jarod-bc0247d8 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 3a1902d9d2ca86c065f6da8b6ebf6cb56292eee11dacd9f3d813e4b947e6a32f
+✔ Tx completed

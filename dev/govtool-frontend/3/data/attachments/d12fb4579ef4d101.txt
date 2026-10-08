@@ -1,0 +1,6 @@
+✔ Uploaded Delphine-182d2424 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: e8827c44b95f4322440449a17f6da21280edc29c75cfc440bc7a78e5c2bf7021
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

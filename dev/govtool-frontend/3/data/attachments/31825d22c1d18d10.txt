@@ -1,0 +1,6 @@
+✔ Uploaded Jasmin-aa3914c9 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 8d0254f6d151d85beeed641db7faec2d935037840738f4b930648bfd949aac9d
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

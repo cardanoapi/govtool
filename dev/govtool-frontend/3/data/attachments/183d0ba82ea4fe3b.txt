@@ -1,0 +1,9 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Retrying the function download metadata
+✔ Uploaded Lia.jsonld metadata to bucket
+ℹ Waiting for tx completion: 96b416191d1ba1c34a302cddd84736b19bbe92300b7c47dbbe394d70d17d2826
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()

@@ -1,0 +1,432 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 2-delegation/delegation.spec.ts >> 2K_2. Should sort DReps
+- Location: tests/2-delegation/delegation.spec.ts:30:5
+
+# Error details
+
+```
+Test timeout of 540000ms exceeded.
+```
+
+```
+Error: page.waitForResponse: Test timeout of 540000ms exceeded.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - banner [ref=e12]:
+      - generic [ref=e13]:
+        - link "app-logo" [ref=e14] [cursor=pointer]:
+          - /url: /
+          - img "app-logo" [ref=e15]
+        - generic [ref=e16]:
+          - button "Connect" [ref=e17] [cursor=pointer]: Connect
+          - img "drawer-icon" [ref=e18]
+    - paragraph [ref=e22]: DRep Directory
+    - generic [ref=e25]:
+      - paragraph [ref=e26]: Find a DRep
+      - generic [ref=e27]:
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - img [ref=e30]
+            - textbox "Search for a DRep name or ID" [ref=e32]
+          - generic [ref=e34]:
+            - generic [ref=e35] [cursor=pointer]:
+              - img "filter" [ref=e36]
+              - paragraph [ref=e38]: "1"
+            - img "sort" [ref=e40] [cursor=pointer]
+            - generic [ref=e42]:
+              - generic [ref=e43]:
+                - paragraph [ref=e44]: Sort by
+                - paragraph [ref=e46] [cursor=pointer]: Clear
+              - radiogroup [ref=e47]:
+                - generic [ref=e48] [cursor=pointer]:
+                  - generic [ref=e49]:
+                    - radio "Registration date" [checked] [active] [ref=e50]
+                    - generic [ref=e51]:
+                      - img [ref=e52]
+                      - img [ref=e54]
+                  - generic [ref=e56]: Registration date
+                - generic [ref=e57] [cursor=pointer]:
+                  - generic [ref=e58]:
+                    - radio "Voting power" [ref=e59]
+                    - img [ref=e61]
+                  - generic [ref=e63]: Voting power
+                - generic [ref=e64] [cursor=pointer]:
+                  - generic [ref=e65]:
+                    - radio "Status" [ref=e66]
+                    - img [ref=e68]
+                  - generic [ref=e70]: Status
+                - generic [ref=e71] [cursor=pointer]:
+                  - generic [ref=e72]:
+                    - radio "Random" [ref=e73]
+                    - img [ref=e75]
+                  - generic [ref=e77]: Random
+        - button "Active" [ref=e79]:
+          - generic [ref=e80]: Active
+          - button [ref=e81] [cursor=pointer]:
+            - img [ref=e82]
+      - list [ref=e84]:
+        - listitem [ref=e85]:
+          - generic [ref=e89]:
+            - generic [ref=e91]:
+              - generic [ref=e92]:
+                - img "drep-image" [ref=e94]
+                - generic [ref=e95]:
+                  - paragraph [ref=e96]: Jayne
+                  - generic [ref=e97]:
+                    - button "drep1yghmwss3wynw4zauel5gjg0r5r5qzcwykkxa5wsyrlcr2csyp9pq8" [ref=e98] [cursor=pointer]:
+                      - paragraph [ref=e99]: drep1yghmwss3wynw4zauel5gjg0r5r5qzcwykkxa5wsyrlcr2csyp9pq8
+                    - button "(CIP-105) drep197m5yyt3ym4gh0x0azyjrcaqaqqkr3943hdr5pql7q6kynmn7vr" [ref=e100] [cursor=pointer]:
+                      - paragraph [ref=e101]: (CIP-105) drep197m5yyt3ym4gh0x0azyjrcaqaqqkr3943hdr5pql7q6kynmn7vr
+              - generic [ref=e102]:
+                - generic [ref=e103]:
+                  - paragraph [ref=e104]: Voting power
+                  - paragraph [ref=e105]: ₳ 0
+                - separator [ref=e106]
+                - generic [ref=e107]:
+                  - paragraph [ref=e108]: Status
+                  - generic [ref=e111]: Active
+            - generic [ref=e112]:
+              - button "View details" [ref=e113] [cursor=pointer]: View details
+              - button "Connect to delegate" [ref=e114] [cursor=pointer]: Connect to delegate
+        - listitem [ref=e115]:
+          - generic [ref=e119]:
+            - generic [ref=e121]:
+              - generic [ref=e122]:
+                - img "drep-image" [ref=e124]
+                - generic [ref=e125]:
+                  - paragraph [ref=e126]: Shea
+                  - generic [ref=e127]:
+                    - button "drep1ytl4mfpth9y42mu5lwcvssy6c59pl94qx4zhkzhldc76tsgaj5d3x" [ref=e128] [cursor=pointer]:
+                      - paragraph [ref=e129]: drep1ytl4mfpth9y42mu5lwcvssy6c59pl94qx4zhkzhldc76tsgaj5d3x
+                    - button "(CIP-105) drep1law6g2aef92kl98mkryypxk9pg0edgp4g4as4lmw8kjuzy0p896" [ref=e130] [cursor=pointer]:
+                      - paragraph [ref=e131]: (CIP-105) drep1law6g2aef92kl98mkryypxk9pg0edgp4g4as4lmw8kjuzy0p896
+              - generic [ref=e132]:
+                - generic [ref=e133]:
+                  - paragraph [ref=e134]: Voting power
+                  - paragraph [ref=e135]: ₳ 0
+                - separator [ref=e136]
+                - generic [ref=e137]:
+                  - paragraph [ref=e138]: Status
+                  - generic [ref=e141]: Active
+            - generic [ref=e142]:
+              - button "View details" [ref=e143] [cursor=pointer]: View details
+              - button "Connect to delegate" [ref=e144] [cursor=pointer]: Connect to delegate
+        - listitem [ref=e145]:
+          - generic [ref=e149]:
+            - generic [ref=e151]:
+              - generic [ref=e152]:
+                - img "drep-image" [ref=e154]
+                - generic [ref=e155]:
+                  - paragraph [ref=e156]: TestName
+                  - generic [ref=e157]:
+                    - button "drep1ygpknf98nzyy5qhkc9hr73nzc5w8zwsk37pvpzu6y8x5a0c0z2slx" [ref=e158] [cursor=pointer]:
+                      - paragraph [ref=e159]: drep1ygpknf98nzyy5qhkc9hr73nzc5w8zwsk37pvpzu6y8x5a0c0z2slx
+                    - button "(CIP-105) drep1qd56ffuc3p9q9akpdcl5vck9r3cn5950stqghx3pe48t79f5cw0" [ref=e160] [cursor=pointer]:
+                      - paragraph [ref=e161]: (CIP-105) drep1qd56ffuc3p9q9akpdcl5vck9r3cn5950stqghx3pe48t79f5cw0
+              - generic [ref=e162]:
+                - generic [ref=e163]:
+                  - paragraph [ref=e164]: Voting power
+                  - paragraph [ref=e165]: ₳ 9,497
+                - separator [ref=e166]
+                - generic [ref=e167]:
+                  - paragraph [ref=e168]: Status
+                  - generic [ref=e171]: Active
+            - generic [ref=e172]:
+              - button "View details" [ref=e173] [cursor=pointer]: View details
+              - button "Connect to delegate" [ref=e174] [cursor=pointer]: Connect to delegate
+        - listitem [ref=e175]:
+          - generic [ref=e179]:
+            - generic [ref=e181]:
+              - generic [ref=e182]:
+                - img "drep-image" [ref=e184]
+                - generic [ref=e185]:
+                  - paragraph [ref=e186]: Data URL Blocked
+                  - generic [ref=e187]:
+                    - button "drep1yt4yxkeefr7m8h9jd85l7900rakqcgsdl6sgrj6gl0rl0qqttehf5" [ref=e188] [cursor=pointer]:
+                      - paragraph [ref=e189]: drep1yt4yxkeefr7m8h9jd85l7900rakqcgsdl6sgrj6gl0rl0qqttehf5
+                    - button "(CIP-105) drep1afp4kw2glkeaevnfa8l3tmcldsxzyr075zqukj8mclmcqj9vuyz" [ref=e190] [cursor=pointer]:
+                      - paragraph [ref=e191]: (CIP-105) drep1afp4kw2glkeaevnfa8l3tmcldsxzyr075zqukj8mclmcqj9vuyz
+              - generic [ref=e192]:
+                - generic [ref=e193]:
+                  - paragraph [ref=e194]: Voting power
+                  - paragraph [ref=e195]: ₳ 98
+                - separator [ref=e196]
+                - generic [ref=e197]:
+                  - paragraph [ref=e198]: Status
+                  - generic [ref=e201]: Active
+            - generic [ref=e202]:
+              - button "View details" [ref=e203] [cursor=pointer]: View details
+              - button "Connect to delegate" [ref=e204] [cursor=pointer]: Connect to delegate
+        - listitem [ref=e205]:
+          - generic [ref=e209]:
+            - generic [ref=e211]:
+              - generic [ref=e212]:
+                - img "drep-image" [ref=e214]
+                - generic [ref=e215]:
+                  - paragraph [ref=e216]: Data URL Blocked
+                  - generic [ref=e217]:
+                    - button "drep1ygajk53cspf2wqzzfulh0d04t5qkmnz233yn0ykwtec4q6shevzv6" [ref=e218] [cursor=pointer]:
+                      - paragraph [ref=e219]: drep1ygajk53cspf2wqzzfulh0d04t5qkmnz233yn0ykwtec4q6shevzv6
+                    - button "(CIP-105) drep18v44ywyq22nsqsj08ammta2aq9kucj5vfyme9nj7w9gx5gdkfcf" [ref=e220] [cursor=pointer]:
+                      - paragraph [ref=e221]: (CIP-105) drep18v44ywyq22nsqsj08ammta2aq9kucj5vfyme9nj7w9gx5gdkfcf
+              - generic [ref=e222]:
+                - generic [ref=e223]:
+                  - paragraph [ref=e224]: Voting power
+                  - paragraph [ref=e225]: ₳ 98
+                - separator [ref=e226]
+                - generic [ref=e227]:
+                  - paragraph [ref=e228]: Status
+                  - generic [ref=e231]: Active
+            - generic [ref=e232]:
+              - button "View details" [ref=e233] [cursor=pointer]: View details
+              - button "Connect to delegate" [ref=e234] [cursor=pointer]: Connect to delegate
+      - generic [ref=e236]:
+        - generic [ref=e237]:
+          - paragraph [ref=e238]: "Rows per page:"
+          - generic [ref=e239]:
+            - combobox [ref=e240] [cursor=pointer]:
+              - generic [ref=e241]: "5"
+            - textbox: "5"
+            - img [ref=e242] [cursor=pointer]
+        - paragraph [ref=e244]: 1-5 of 166
+        - generic [ref=e245]:
+          - button "Previous page" [disabled]:
+            - img
+          - paragraph [ref=e246]: "1"
+          - button "Next page" [ref=e247] [cursor=pointer]:
+            - img [ref=e248]
+    - contentinfo [ref=e250]:
+      - paragraph [ref=e251]: © 2026 GovTool
+      - generic [ref=e252]:
+        - generic [ref=e253] [cursor=pointer]: Privacy policy
+        - generic [ref=e254] [cursor=pointer]: Terms of Use
+      - generic [ref=e255]:
+        - button "helpIcon Help" [ref=e256] [cursor=pointer]:
+          - img "helpIcon" [ref=e258]
+          - text: Help
+        - button "Subscribe to updates" [ref=e259] [cursor=pointer]: Subscribe to updates
+        - button "Feedback" [ref=e260] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e261]
+```
+
+# Test source
+
+```ts
+  31  |   );
+  32  |   readonly abstainDelegationCard = this.page.getByTestId(
+  33  |     "abstain-delegation-card"
+  34  |   );
+  35  | 
+  36  |   readonly delegationErrorModal = this.page.getByTestId(
+  37  |     "delegate-transaction-error-modal"
+  38  |   );
+  39  | 
+  40  |   readonly delegateBtns = this.page.locator(
+  41  |     '[data-testid$="-delegate-button"]'
+  42  |   );
+  43  | 
+  44  |   readonly NoDRepText = this.page.getByText("No DReps found");
+  45  | 
+  46  |   constructor(private readonly page: Page) {}
+  47  | 
+  48  |   get currentPage(): Page {
+  49  |     return this.page;
+  50  |   }
+  51  | 
+  52  |   async goto() {
+  53  |     await this.page.goto(
+  54  |       `${environments.frontendUrl}/connected/drep_directory`
+  55  |     );
+  56  |   }
+  57  | 
+  58  |   @withTxConfirmation
+  59  |   async delegateToDRep(dRepId: string) {
+  60  |     await this.searchInput.fill(dRepId);
+  61  |     const delegateBtn = this.page.getByTestId(`${dRepId}-delegate-button`);
+  62  |     await expect(delegateBtn).toBeVisible();
+  63  |     await this.page.getByTestId(`${dRepId}-delegate-button`).click();
+  64  |   }
+  65  | 
+  66  |   async resetDRepForm() {
+  67  |     if (await this.delegationErrorModal.isVisible()) {
+  68  |       await this.page.getByTestId("confirm-modal-button").click();
+  69  |     }
+  70  |     await this.dRepInput.clear();
+  71  |   }
+  72  |   async filterDReps(filterOptions: string[]) {
+  73  |     for (const option of filterOptions) {
+  74  |       await this.page.getByTestId(`${option}-checkbox`).click();
+  75  |     }
+  76  |   }
+  77  | 
+  78  |   async unFilterDReps(filterOptions: string[]) {
+  79  |     for (const option of filterOptions) {
+  80  |       await this.page.getByTestId(`${option}-checkbox`).click();
+  81  |     }
+  82  |   }
+  83  | 
+  84  |   async validateFilters(filters: string[], filterOptions: string[]) {
+  85  |     await functionWaitedAssert(async () => {
+  86  |       const excludedFilters = filterOptions.filter(
+  87  |         (filter) => !filters.includes(filter)
+  88  |       );
+  89  | 
+  90  |       const dRepList = await this.getAllListedDReps();
+  91  | 
+  92  |       for (const filter of excludedFilters) {
+  93  |         await expect(this.page.getByTestId(`${filter}-checkbox`)).toHaveCount(
+  94  |           1
+  95  |         );
+  96  |       }
+  97  | 
+  98  |       for (const dRep of dRepList) {
+  99  |         if (await dRep.isVisible()) {
+  100 |           const hasFilter = await this._validateTypeFiltersInDRep(
+  101 |             dRep,
+  102 |             filters
+  103 |           );
+  104 |           const actualFilter = await dRep
+  105 |             .locator('[data-testid$="-pill"]')
+  106 |             .textContent();
+  107 |           if (!hasFilter) {
+  108 |             const errorMessage = `${actualFilter} pill does not match with any of the ${filters}`;
+  109 |             throw new Error(errorMessage);
+  110 |           }
+  111 |           expect(hasFilter).toBe(true);
+  112 |         }
+  113 |       }
+  114 |     });
+  115 |   }
+  116 | 
+  117 |   async _validateTypeFiltersInDRep(
+  118 |     dRepCard: Locator,
+  119 |     filters: string[]
+  120 |   ): Promise<boolean> {
+  121 |     const dRepType = await dRepCard
+  122 |       .locator('[data-testid$="-pill"]')
+  123 |       .textContent();
+  124 | 
+  125 |     return filters.includes(dRepType);
+  126 |   }
+  127 | 
+  128 |   async sortDRep(option: string) {}
+  129 | 
+  130 |   async getDRepsResponseFromApi(option: string): Promise<IDRep[]> {
+> 131 |     const responsePromise = this.page.waitForResponse((response) =>
+      |                                       ^ Error: page.waitForResponse: Test timeout of 540000ms exceeded.
+  132 |       response.url().includes(`&sort=${option}`)
+  133 |     );
+  134 | 
+  135 |     await this.page.getByTestId(`${option}-radio`).click();
+  136 |     const response = await responsePromise;
+  137 | 
+  138 |     return (await response.json()).elements;
+  139 |   }
+  140 | 
+  141 |   async sortAndValidate(
+  142 |     option: string,
+  143 |     validationFn: (p1: IDRep, p2: IDRep) => boolean
+  144 |   ) {
+  145 |     const dRepList = await this.getDRepsResponseFromApi(option);
+  146 | 
+  147 |     // API validation
+  148 |     for (let i = 0; i <= dRepList.length - 2; i++) {
+  149 |       const isValid = validationFn(dRepList[i], dRepList[i + 1]);
+  150 |       expect(isValid).toBe(true);
+  151 |     }
+  152 | 
+  153 |     await functionWaitedAssert(
+  154 |       async () => {
+  155 |         // Frontend validation
+  156 |         const cip105DRepListFE = await this.getAllListedCIP105DRepIds();
+  157 |         const cip129DRepListFE = await this.getAllListedCIP129DRepIds();
+  158 | 
+  159 |         const cip129DRepListApi = dRepList.map(
+  160 |           (dRep) => convertDRep(dRep.drepId, dRep.isScriptBased).cip129
+  161 |         );
+  162 | 
+  163 |         const cip105DRepListApi = dRepList.map(
+  164 |           (dRep) => convertDRep(dRep.drepId, dRep.isScriptBased).cip105
+  165 |         );
+  166 | 
+  167 |         for (let i = 0; i <= cip105DRepListFE.length - 1; i++) {
+  168 |           await expect(cip129DRepListFE[i], {
+  169 |             message: `Cip129 dRep Id from Api:${cip129DRepListApi[i]} is not equal to ${await cip129DRepListFE[i].textContent()} on sort ${option}`,
+  170 |           }).toHaveText(cip129DRepListApi[i]);
+  171 |           await expect(cip105DRepListFE[i], {
+  172 |             message: `Cip105 dRep Id from Api:${cip105DRepListApi} is not equal to ${await cip105DRepListFE[i].textContent()}  on sort ${option}`,
+  173 |           }).toHaveText(`(CIP-105) ${cip105DRepListApi[i]}`);
+  174 |         }
+  175 |       },
+  176 |       { name: `frontend sort validation of ${option}` }
+  177 |     );
+  178 |   }
+  179 |   getDRepCard(dRepId: string) {
+  180 |     return this.page.getByTestId(`${dRepId}-drep-card`);
+  181 |   }
+  182 | 
+  183 |   async getAllListedCIP105DRepIds() {
+  184 |     const dRepCards = await this.getAllListedDReps();
+  185 | 
+  186 |     return dRepCards.map((dRep) =>
+  187 |       dRep.locator('[data-testid$="-copy-id-button"]').last()
+  188 |     );
+  189 |   }
+  190 | 
+  191 |   async getAllListedCIP129DRepIds() {
+  192 |     const dRepCards = await this.getAllListedDReps();
+  193 | 
+  194 |     return dRepCards.map((dRep) =>
+  195 |       dRep.locator('[data-testid$="-copy-id-button"]').first()
+  196 |     );
+  197 |   }
+  198 | 
+  199 |   async getAllListedDReps() {
+  200 |     await expect(this.searchInput).toBeVisible({ timeout: 60_000 });
+  201 | 
+  202 |     await waitedLoop(async () => {
+  203 |       return (
+  204 |         (await this.page.locator('[data-testid$="-drep-card"]').count()) > 0
+  205 |       );
+  206 |     });
+  207 | 
+  208 |     return this.page.locator('[data-testid$="-drep-card"]').all();
+  209 |   }
+  210 | 
+  211 |   async verifyDRepInList(dRepId: string) {
+  212 |     await this.goto();
+  213 | 
+  214 |     await this.searchInput.fill(dRepId);
+  215 |     const isEmptyContainerVisible = await this.page
+  216 |       .getByText("No DReps found")
+  217 |       .isVisible();
+  218 | 
+  219 |     await expect(this.page.getByText("No DReps found"), {
+  220 |       message:
+  221 |         !isEmptyContainerVisible &&
+  222 |         `DRep with id ${dRepId} is found in the list`,
+  223 |     }).toBeVisible({
+  224 |       timeout: 60_000,
+  225 |     });
+  226 |   }
+  227 | }
+  228 | 
+```

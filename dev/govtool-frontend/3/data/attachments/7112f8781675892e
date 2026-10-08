@@ -1,0 +1,213 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 3-drep-registration/editDRep.dRep.spec.ts >> 3P. Should reject invalid edit dRep metadata
+- Location: tests/3-drep-registration/editDRep.dRep.spec.ts:116:5
+
+# Error details
+
+```
+Error: expect(locator).toHaveText(expected) failed
+
+Locator: getByTestId('modal')
+Expected pattern: /your external data does not/i
+Received string:  "Your External Data Is Not in the Expected FormatGovTool checked the file at the URL you entered, and it does not follow the metadata standard for this kind of data. Make sure the URL serves the exact JSON file generated in GovTool, then try again.Show detailsGo to Data Edit ScreenCancel RegistrationFeedback"
+Timeout: 5000ms
+
+Call log:
+  - Expect "toHaveText" with timeout 5000ms
+  - waiting for getByTestId('modal')
+    5 × locator resolved to <div data-testid="modal" class="css-1vtddf4">…</div>
+      - unexpected value "Your External Data Is Not in the Expected FormatGovTool checked the file at the URL you entered, and it does not follow the metadata standard for this kind of data. Make sure the URL serves the exact JSON file generated in GovTool, then try again.Show detailsGo to Data Edit ScreenCancel RegistrationFeedback"
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: "Network: Preview"
+      - generic [ref=e7]: "|"
+      - link [ref=e8] [cursor=pointer]:
+        - /url: https://gov.tools/
+        - text: Go to Mainnet
+    - img [ref=e9]
+    - generic [ref=e10]:
+      - navigation [ref=e11]:
+        - paragraph [ref=e13]: Edit DRep Info
+        - generic [ref=e15]:
+          - img [ref=e16]
+          - paragraph [ref=e18]: "Voting power:"
+          - paragraph [ref=e19]: ₳ 0
+      - generic [ref=e20]:
+        - generic [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+          - paragraph [ref=e24]: Back to dashboard
+        - generic [ref=e25]:
+          - paragraph [ref=e26]: Information Storage Steps
+          - button [ref=e27] [cursor=pointer]:
+            - text: Read full guide
+            - img [ref=e29]
+          - paragraph [ref=e31]: Download your file, save it to your chosen location, and enter the URL of that location in step 3
+          - generic [ref=e32]:
+            - generic [ref=e33]:
+              - paragraph [ref=e35]: "1"
+              - generic [ref=e36]:
+                - paragraph [ref=e37]: Download this file
+                - button [ref=e38] [cursor=pointer]:
+                  - img [ref=e40]
+                  - text: Test_DRe....jsonld
+            - generic [ref=e42]:
+              - paragraph [ref=e44]: "2"
+              - paragraph [ref=e46]: Save this file in a location that provides a public URL (e.g. github)
+            - generic [ref=e48]:
+              - paragraph [ref=e50]: "3"
+              - generic [ref=e51]:
+                - paragraph [ref=e52]: Paste the URL here
+                - textbox [ref=e55]:
+                  - /placeholder: URL
+                  - text: https://www.google.com
+          - generic [ref=e56]:
+            - button [ref=e57] [cursor=pointer]: Back
+            - button [ref=e58] [cursor=pointer]: Submit
+      - contentinfo [ref=e59]:
+        - paragraph [ref=e60]: © 2026 GovTool
+        - generic [ref=e61]:
+          - generic [ref=e62] [cursor=pointer]: Privacy policy
+          - generic [ref=e63] [cursor=pointer]: Terms of Use
+        - generic [ref=e64]:
+          - button [ref=e65] [cursor=pointer]:
+            - img [ref=e67]
+            - text: Help
+          - button [ref=e68] [cursor=pointer]: Subscribe to updates
+          - button [ref=e69] [cursor=pointer]: Feedback
+    - img [ref=e70]
+  - generic [ref=e73]:
+    - img "close" [ref=e74] [cursor=pointer]
+    - img "Status icon" [ref=e75]
+    - paragraph [ref=e76]: Your External Data Is Not in the Expected Format
+    - generic [ref=e77]:
+      - paragraph [ref=e78]: GovTool checked the file at the URL you entered, and it does not follow the metadata standard for this kind of data. Make sure the URL serves the exact JSON file generated in GovTool, then try again.
+      - button "Show details" [ref=e82] [cursor=pointer]: Show details
+    - button "Go to Data Edit Screen" [ref=e83] [cursor=pointer]: Go to Data Edit Screen
+    - button "Cancel Registration" [ref=e84] [cursor=pointer]: Cancel Registration
+    - button "Feedback" [ref=e85] [cursor=pointer]: Feedback
+```
+
+# Test source
+
+```ts
+  31  |     // wait until wallet alert close
+  32  |     await expect(page.getByTestId("alert-success")).not.toBeVisible();
+  33  | 
+  34  |     for (let i = 0; i < 100; i++) {
+  35  |       const validDRepInfo = await generateValidDRepInfo();
+  36  |       await editDRepPage.validateForm(validDRepInfo);
+  37  |     }
+  38  | 
+  39  |     for (let i = 0; i < 6; i++) {
+  40  |       await expect(editDRepPage.addLinkReferenceBtn).toBeVisible();
+  41  |       await editDRepPage.addLinkReferenceBtn.click();
+  42  |     }
+  43  | 
+  44  |     for (let i = 0; i < 6; i++) {
+  45  |       await expect(editDRepPage.addIdentityReferenceBtn).toBeVisible();
+  46  |       await editDRepPage.addIdentityReferenceBtn.click();
+  47  |     }
+  48  | 
+  49  |     await expect(editDRepPage.addLinkReferenceBtn).toBeHidden();
+  50  |     await expect(editDRepPage.addIdentityReferenceBtn).toBeHidden();
+  51  |   });
+  52  | 
+  53  |   test("3M_2. Should reject invalid data in edit dRep form", async ({
+  54  |     page,
+  55  |   }) => {
+  56  |     test.slow();
+  57  | 
+  58  |     const editDRepPage = new EditDRepPage(page);
+  59  |     await editDRepPage.goto();
+  60  | 
+  61  |     await expect(page.getByTestId("alert-success")).not.toBeVisible();
+  62  | 
+  63  |     for (let i = 0; i < 100; i++) {
+  64  |       const invalidDRepInfo = generateInvalidDRepInfo();
+  65  |       await editDRepPage.inValidateForm(invalidDRepInfo);
+  66  |     }
+  67  |   });
+  68  | 
+  69  |   test.describe("Metadata anchor Validation", () => {
+  70  |     let editDRepPage: EditDRepPage;
+  71  |     test.beforeEach(async ({ page }) => {
+  72  |       editDRepPage = new EditDRepPage(page);
+  73  |       await editDRepPage.goto();
+  74  | 
+  75  |       const dRepName = faker.person.firstName();
+  76  |       await editDRepPage.nameInput.fill(dRepName);
+  77  | 
+  78  |       await editDRepPage.continueBtn.click();
+  79  |       await page.getByRole("checkbox").click();
+  80  |       await editDRepPage.registerBtn.click();
+  81  |     });
+  82  |     test("3N_1. Should accept valid metadata anchor on edit dRep", async ({
+  83  |       page,
+  84  |     }) => {
+  85  |       for (let i = 0; i < 100; i++) {
+  86  |         await editDRepPage.metadataUrlInput.fill(mockValid.url());
+  87  |         await expect(page.getByTestId("invalid-url-error")).toBeHidden();
+  88  |       }
+  89  |     });
+  90  | 
+  91  |     test("3N_2. Should reject invalid dRep metadata anchor on edit dRep", async ({
+  92  |       page,
+  93  |     }) => {
+  94  |       for (let i = 0; i < 100; i++) {
+  95  |         const invalidUrl = mockInvalid.url(false);
+  96  |         const sentenceWithoutSpace = faker.lorem
+  97  |           .sentence({ min: 128, max: 500 })
+  98  |           .replace(/[\s.]/g, "");
+  99  |         const metadataAnchorGreaterThan128Bytes =
+  100 |           faker.internet.url({ appendSlash: true }) + sentenceWithoutSpace;
+  101 |         const checkedUrl =
+  102 |           Math.random() > 0.5 ? invalidUrl : metadataAnchorGreaterThan128Bytes;
+  103 |         await editDRepPage.metadataUrlInput.fill(checkedUrl);
+  104 |         if (checkedUrl.length <= 128) {
+  105 |           await expect(page.getByTestId("invalid-url-error")).toBeVisible();
+  106 |         } else {
+  107 |           await expect(
+  108 |             page.getByTestId("url-must-be-less-than-128-bytes-error")
+  109 |           ).toBeVisible();
+  110 |         }
+  111 |       }
+  112 |     });
+  113 |   });
+  114 | });
+  115 | 
+  116 | test("3P. Should reject invalid edit dRep metadata", async ({ page }) => {
+  117 |   const editDRepPage = new EditDRepPage(page);
+  118 |   await editDRepPage.goto();
+  119 | 
+  120 |   const dRepName = "Test_DRep";
+  121 |   await editDRepPage.nameInput.fill(dRepName);
+  122 | 
+  123 |   await editDRepPage.continueBtn.click();
+  124 |   await page.getByRole("checkbox").click();
+  125 |   await editDRepPage.registerBtn.click();
+  126 | 
+  127 |   const invalidMetadataAnchor = "https://www.google.com";
+  128 |   await editDRepPage.metadataUrlInput.fill(invalidMetadataAnchor);
+  129 |   await editDRepPage.submitBtn.click();
+  130 | 
+> 131 |   await expect(page.getByTestId("modal")).toHaveText(
+      |                                           ^ Error: expect(locator).toHaveText(expected) failed
+  132 |     /your external data does not/i
+  133 |   );
+  134 | });
+  135 | 
+```

@@ -1,0 +1,6 @@
+✔ Uploaded Dorris-b2e05808 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: b7e873a24b1eb5467780615bdd59fac6bff874f83434ddc2a4ceb43d5d21bf70
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

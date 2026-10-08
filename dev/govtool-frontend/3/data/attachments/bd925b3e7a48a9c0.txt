@@ -1,0 +1,2 @@
+✔ Uploaded Erin-19faa97a metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()

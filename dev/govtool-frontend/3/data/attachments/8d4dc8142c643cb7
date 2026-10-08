@@ -1,0 +1,280 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 2-delegation/delegation.spec.ts >> DRep dependent tests >> 2C. Should open wallet connection popup on delegate in disconnected state
+- Location: tests/2-delegation/delegation.spec.ts:206:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded while running "beforeEach" hook.
+```
+
+```
+Error: DRep not found
+
+expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: false
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - banner [ref=e12]:
+      - generic [ref=e13]:
+        - link "app-logo" [ref=e14] [cursor=pointer]:
+          - /url: /
+          - img "app-logo" [ref=e15]
+        - navigation [ref=e16]:
+          - generic [ref=e17]:
+            - link "Home" [ref=e19] [cursor=pointer]:
+              - /url: /
+              - paragraph [ref=e20]: Home
+            - link "DRep Directory" [ref=e22] [cursor=pointer]:
+              - /url: /drep_directory
+              - paragraph [ref=e23]: DRep Directory
+            - paragraph [ref=e25] [cursor=pointer]:
+              - generic [ref=e26]:
+                - text: Governance Actions
+                - img "dropdown-icon" [ref=e27]
+            - link "Guides" [ref=e29] [cursor=pointer]:
+              - /url: /
+              - paragraph [ref=e30]: Guides
+            - link "FAQs" [ref=e32] [cursor=pointer]:
+              - /url: /
+              - paragraph [ref=e33]: FAQs
+            - button "Connect Wallet" [ref=e35] [cursor=pointer]: Connect Wallet
+    - paragraph [ref=e38]: DRep Directory
+    - generic [ref=e41]:
+      - paragraph [ref=e42]: Find a DRep
+      - generic [ref=e43]:
+        - generic [ref=e44]:
+          - generic [ref=e45]:
+            - img [ref=e46]
+            - textbox "Search for a DRep name or ID" [ref=e48]
+          - generic [ref=e50]:
+            - generic [ref=e51] [cursor=pointer]:
+              - img "filter" [ref=e52]
+              - paragraph [ref=e53]: Filter
+              - paragraph [ref=e55]: "1"
+            - generic [ref=e56] [cursor=pointer]:
+              - img "sort" [ref=e57]
+              - paragraph [ref=e58]: "Sort by: Registration date"
+        - button "Active" [ref=e60]:
+          - generic [ref=e61]: Active
+          - button [ref=e62] [cursor=pointer]:
+            - img [ref=e63]
+      - list [ref=e65]:
+        - listitem [ref=e66]:
+          - generic [ref=e70]:
+            - generic [ref=e72]:
+              - generic [ref=e73]:
+                - img "drep-image" [ref=e75]
+                - generic [ref=e76]:
+                  - paragraph [ref=e77]: Jayne
+                  - generic [ref=e78]:
+                    - button "drep1yghmwss3wynw4zauel5gjg0r5r5qzcwykkxa5wsyrlcr2csyp9pq8" [ref=e79] [cursor=pointer]:
+                      - paragraph [ref=e80]: drep1yghmwss3wynw4zauel5gjg0r5r5qzcwykkxa5wsyrlcr2csyp9pq8
+                    - button "(CIP-105) drep197m5yyt3ym4gh0x0azyjrcaqaqqkr3943hdr5pql7q6kynmn7vr" [ref=e81] [cursor=pointer]:
+                      - paragraph [ref=e82]: (CIP-105) drep197m5yyt3ym4gh0x0azyjrcaqaqqkr3943hdr5pql7q6kynmn7vr
+              - generic [ref=e83]:
+                - generic [ref=e84]:
+                  - paragraph [ref=e85]: Voting power
+                  - paragraph [ref=e86]: ₳ 0
+                - separator [ref=e87]
+                - generic [ref=e88]:
+                  - paragraph [ref=e89]: Status
+                  - generic [ref=e92]: Active
+            - generic [ref=e93]:
+              - button "View details" [ref=e94] [cursor=pointer]: View details
+              - button "Connect to delegate" [ref=e95] [cursor=pointer]: Connect to delegate
+        - listitem [ref=e96]:
+          - generic [ref=e100]:
+            - generic [ref=e102]:
+              - generic [ref=e103]:
+                - img "drep-image" [ref=e105]
+                - generic [ref=e106]:
+                  - paragraph [ref=e107]: Shea
+                  - generic [ref=e108]:
+                    - button "drep1ytl4mfpth9y42mu5lwcvssy6c59pl94qx4zhkzhldc76tsgaj5d3x" [ref=e109] [cursor=pointer]:
+                      - paragraph [ref=e110]: drep1ytl4mfpth9y42mu5lwcvssy6c59pl94qx4zhkzhldc76tsgaj5d3x
+                    - button "(CIP-105) drep1law6g2aef92kl98mkryypxk9pg0edgp4g4as4lmw8kjuzy0p896" [ref=e111] [cursor=pointer]:
+                      - paragraph [ref=e112]: (CIP-105) drep1law6g2aef92kl98mkryypxk9pg0edgp4g4as4lmw8kjuzy0p896
+              - generic [ref=e113]:
+                - generic [ref=e114]:
+                  - paragraph [ref=e115]: Voting power
+                  - paragraph [ref=e116]: ₳ 0
+                - separator [ref=e117]
+                - generic [ref=e118]:
+                  - paragraph [ref=e119]: Status
+                  - generic [ref=e122]: Active
+            - generic [ref=e123]:
+              - button "View details" [ref=e124] [cursor=pointer]: View details
+              - button "Connect to delegate" [ref=e125] [cursor=pointer]: Connect to delegate
+        - listitem [ref=e126]:
+          - generic [ref=e130]:
+            - generic [ref=e132]:
+              - generic [ref=e133]:
+                - img "drep-image" [ref=e135]
+                - generic [ref=e136]:
+                  - paragraph [ref=e137]: TestName
+                  - generic [ref=e138]:
+                    - button "drep1ygpknf98nzyy5qhkc9hr73nzc5w8zwsk37pvpzu6y8x5a0c0z2slx" [ref=e139] [cursor=pointer]:
+                      - paragraph [ref=e140]: drep1ygpknf98nzyy5qhkc9hr73nzc5w8zwsk37pvpzu6y8x5a0c0z2slx
+                    - button "(CIP-105) drep1qd56ffuc3p9q9akpdcl5vck9r3cn5950stqghx3pe48t79f5cw0" [ref=e141] [cursor=pointer]:
+                      - paragraph [ref=e142]: (CIP-105) drep1qd56ffuc3p9q9akpdcl5vck9r3cn5950stqghx3pe48t79f5cw0
+              - generic [ref=e143]:
+                - generic [ref=e144]:
+                  - paragraph [ref=e145]: Voting power
+                  - paragraph [ref=e146]: ₳ 9,497
+                - separator [ref=e147]
+                - generic [ref=e148]:
+                  - paragraph [ref=e149]: Status
+                  - generic [ref=e152]: Active
+            - generic [ref=e153]:
+              - button "View details" [ref=e154] [cursor=pointer]: View details
+              - button "Connect to delegate" [ref=e155] [cursor=pointer]: Connect to delegate
+        - listitem [ref=e156]:
+          - generic [ref=e160]:
+            - generic [ref=e162]:
+              - generic [ref=e163]:
+                - img "drep-image" [ref=e165]
+                - generic [ref=e166]:
+                  - paragraph [ref=e167]: Data URL Blocked
+                  - generic [ref=e168]:
+                    - button "drep1yt4yxkeefr7m8h9jd85l7900rakqcgsdl6sgrj6gl0rl0qqttehf5" [ref=e169] [cursor=pointer]:
+                      - paragraph [ref=e170]: drep1yt4yxkeefr7m8h9jd85l7900rakqcgsdl6sgrj6gl0rl0qqttehf5
+                    - button "(CIP-105) drep1afp4kw2glkeaevnfa8l3tmcldsxzyr075zqukj8mclmcqj9vuyz" [ref=e171] [cursor=pointer]:
+                      - paragraph [ref=e172]: (CIP-105) drep1afp4kw2glkeaevnfa8l3tmcldsxzyr075zqukj8mclmcqj9vuyz
+              - generic [ref=e173]:
+                - generic [ref=e174]:
+                  - paragraph [ref=e175]: Voting power
+                  - paragraph [ref=e176]: ₳ 98
+                - separator [ref=e177]
+                - generic [ref=e178]:
+                  - paragraph [ref=e179]: Status
+                  - generic [ref=e182]: Active
+            - generic [ref=e183]:
+              - button "View details" [ref=e184] [cursor=pointer]: View details
+              - button "Connect to delegate" [ref=e185] [cursor=pointer]: Connect to delegate
+        - listitem [ref=e186]:
+          - generic [ref=e190]:
+            - generic [ref=e192]:
+              - generic [ref=e193]:
+                - img "drep-image" [ref=e195]
+                - generic [ref=e196]:
+                  - paragraph [ref=e197]: Data URL Blocked
+                  - generic [ref=e198]:
+                    - button "drep1ygajk53cspf2wqzzfulh0d04t5qkmnz233yn0ykwtec4q6shevzv6" [ref=e199] [cursor=pointer]:
+                      - paragraph [ref=e200]: drep1ygajk53cspf2wqzzfulh0d04t5qkmnz233yn0ykwtec4q6shevzv6
+                    - button "(CIP-105) drep18v44ywyq22nsqsj08ammta2aq9kucj5vfyme9nj7w9gx5gdkfcf" [ref=e201] [cursor=pointer]:
+                      - paragraph [ref=e202]: (CIP-105) drep18v44ywyq22nsqsj08ammta2aq9kucj5vfyme9nj7w9gx5gdkfcf
+              - generic [ref=e203]:
+                - generic [ref=e204]:
+                  - paragraph [ref=e205]: Voting power
+                  - paragraph [ref=e206]: ₳ 98
+                - separator [ref=e207]
+                - generic [ref=e208]:
+                  - paragraph [ref=e209]: Status
+                  - generic [ref=e212]: Active
+            - generic [ref=e213]:
+              - button "View details" [ref=e214] [cursor=pointer]: View details
+              - button "Connect to delegate" [ref=e215] [cursor=pointer]: Connect to delegate
+      - generic [ref=e217]:
+        - generic [ref=e218]:
+          - paragraph [ref=e219]: "Rows per page:"
+          - generic [ref=e220]:
+            - combobox [ref=e221] [cursor=pointer]:
+              - generic [ref=e222]: "5"
+            - textbox: "5"
+            - img [ref=e223] [cursor=pointer]
+        - paragraph [ref=e225]: 1-5 of 166
+        - generic [ref=e226]:
+          - button "Previous page" [disabled]:
+            - img
+          - paragraph [ref=e227]: "1"
+          - button "Next page" [ref=e228] [cursor=pointer]:
+            - img [ref=e229]
+    - contentinfo [ref=e231]:
+      - paragraph [ref=e232]: © 2026 GovTool
+      - generic [ref=e233]:
+        - generic [ref=e234] [cursor=pointer]: Privacy policy
+        - generic [ref=e235] [cursor=pointer]: Terms of Use
+      - generic [ref=e236]:
+        - button "helpIcon Help" [ref=e237] [cursor=pointer]:
+          - img "helpIcon" [ref=e239]
+          - text: Help
+        - button "Subscribe to updates" [ref=e240] [cursor=pointer]: Subscribe to updates
+        - button "Feedback" [ref=e241] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e242]
+```
+
+# Test source
+
+```ts
+  1  | import { expect } from "@playwright/test";
+  2  | import { Logger } from "./logger";
+  3  | 
+  4  | export async function waitedLoop(
+  5  |   conditionFn,
+  6  |   timeout = 60000,
+  7  |   interval = 2000
+  8  | ) {
+  9  |   const startTime = Date.now();
+  10 |   while (Date.now() - startTime < timeout) {
+  11 |     if (await conditionFn()) return true;
+  12 |     Logger.info("Retrying the function");
+  13 |     await new Promise((resolve) => setTimeout(resolve, interval));
+  14 |   }
+  15 |   return false;
+  16 | }
+  17 | 
+  18 | export async function functionWaitedAssert(
+  19 |   fn,
+  20 |   options: {
+  21 |     timeout?: number;
+  22 |     interval?: number;
+  23 |     message?: string;
+  24 |     name?: string;
+  25 |   } = {}
+  26 | ) {
+  27 |   const startTime = Date.now();
+  28 |   const timeout = options.timeout || 60000;
+  29 |   const interval = options.interval || 2000;
+  30 |   const name = options.name || "";
+  31 | 
+  32 |   while (true) {
+  33 |     try {
+  34 |       await fn();
+  35 |       return true;
+  36 |     } catch (error) {
+  37 |       if (Date.now() - startTime >= timeout) {
+  38 |         // Callers throw strings as well as Errors; keep either's text.
+  39 |         const errorMessage =
+  40 |           options.message || (error instanceof Error ? error.message : String(error));
+  41 |         console.log(errorMessage);
+> 42 |         expect(false, { message: errorMessage }).toBe(true);
+     |                                                  ^ Error: DRep not found
+  43 |       }
+  44 |       Logger.info(`Retrying the function ${name}`);
+  45 |       await new Promise((resolve) => setTimeout(resolve, interval));
+  46 |     }
+  47 |   }
+  48 | }
+  49 | 
+```

@@ -1,0 +1,7 @@
+wallet balance 1019.819495
+wallet address addr_test1qqjpxt6cd3htuhup64f4x7qwpfdw0yksfnz2zfc4mc6cfgzqnt9v6a7c5u7s2r6m7grpd3zwngz35fwknwc8al3yp8xqea0kst
+✔ Uploaded guardrail-script metadata to bucket
+2
+✔ Uploaded annus metadata to bucket
+ℹ Waiting for tx completion: 8dfa52bb22599763bb4ece03eee63d29c252c8a104922f58ba666dcda0f31241
+✔ Tx completed

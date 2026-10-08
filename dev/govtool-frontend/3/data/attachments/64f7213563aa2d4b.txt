@@ -1,0 +1,7 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Retrying the function download metadata
+✔ Uploaded Brycen.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 5879af0adb871af67767bfa2c9b861a2927a85ae93fe0a2ffbe9737c4b8269ed
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

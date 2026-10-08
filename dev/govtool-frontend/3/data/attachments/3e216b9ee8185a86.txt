@@ -1,0 +1,6 @@
+wallet balance 1019.819495
+wallet address addr_test1qq9rkmvhnk8ycz8zrkafxlk9qr6s0yfsdalyld9dat3wxaedsy3h6474m7d037wrzk5s9qfsrx47r02mrx5smdvuagaqrp0jqk
+1
+✔ Uploaded audio metadata to bucket
+ℹ Waiting for tx completion: 6e0238d5c0e47d77121856f6b44e91fbcfdd909cb14365f382639fcaafd59894
+✔ Tx completed

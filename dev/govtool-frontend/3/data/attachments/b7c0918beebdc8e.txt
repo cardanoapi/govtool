@@ -1,0 +1,4 @@
+✔ Uploaded Roy-f6783f85 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 3501cb30aa796a67a4f47d9ecbafaf8a794d7dc225f5ed5ce3c934e9d140ac73
+✔ Tx completed

@@ -1,0 +1,431 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 6-miscellaneous/miscellaneous.loggedin.spec.ts >> Logged in user >> 6F. Should open sanchonet docs in a new tab when clicking `info` button of abstain and signal-no-confidence card
+- Location: tests/6-miscellaneous/miscellaneous.loggedin.spec.ts:65:7
+
+# Error details
+
+```
+Error: expect(page).toHaveURL(expected) failed
+
+Expected: "https://docs.gov.tools/cardano-govtool/using-govtool/delegating/abstain-from-every-vote"
+Received: "https://docs.gov.tools/cardano-govtool/using-govtool/delegating/abstain-from-every-vote/"
+Timeout:  5000ms
+
+Call log:
+  - Expect "toHaveURL" with timeout 5000ms
+    9 × unexpected value "https://docs.gov.tools/cardano-govtool/using-govtool/delegating/abstain-from-every-vote/"
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - generic [ref=e11]:
+      - link "app-logo" [ref=e12] [cursor=pointer]:
+        - /url: /dashboard
+        - img "app-logo" [ref=e13]
+      - generic [ref=e14]:
+        - link "icon Home" [ref=e16] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=e17]:
+            - img "icon" [ref=e18]
+            - paragraph [ref=e19]: Home
+        - link "icon DRep Directory" [ref=e21] [cursor=pointer]:
+          - /url: /connected/drep_directory
+          - generic [ref=e22]:
+            - img "icon" [ref=e23]
+            - paragraph [ref=e24]: DRep Directory
+        - generic [ref=e25]:
+          - link "icon Governance Actions" [ref=e26] [cursor=pointer]:
+            - /url: /connected/governance_actions
+            - generic [ref=e27]:
+              - img "icon" [ref=e28]
+              - paragraph [ref=e29]: Governance Actions
+          - generic [ref=e30]:
+            - link "Proposals" [ref=e31] [cursor=pointer]:
+              - /url: /proposal_discussion
+              - generic [ref=e32]:
+                - img [ref=e34]
+                - paragraph [ref=e36]: Proposals
+            - link "icon Live Voting" [ref=e37] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e38]:
+                - img "icon" [ref=e39]
+                - paragraph [ref=e40]: Live Voting
+            - link "icon Governance action history" [ref=e41] [cursor=pointer]:
+              - /url: /governance_actions/history
+              - generic [ref=e42]:
+                - img "icon" [ref=e43]
+                - paragraph [ref=e44]: Governance action history
+        - link "icon Guides" [ref=e46] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e47]:
+            - img "icon" [ref=e48]
+            - paragraph [ref=e49]: Guides
+        - link "icon FAQs" [ref=e51] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e52]:
+            - img "icon" [ref=e53]
+            - paragraph [ref=e54]: FAQs
+      - generic [ref=e57]:
+        - paragraph [ref=e58]: "Connected Wallet:"
+        - generic [ref=e59]:
+          - paragraph [ref=e60]: 00959d719e83202cd1c35055fa102b629f23d64ddc9b6f03d2496844857c9056320c97f04e473a6090e5e19101d750d000921fbaa5aaaa5477
+          - button "Disconnect" [ref=e61] [cursor=pointer]: Disconnect
+    - generic [ref=e62]:
+      - navigation [ref=e63]:
+        - paragraph [ref=e65]: DRep Directory
+      - generic [ref=e67]:
+        - generic [ref=e68]:
+          - paragraph [ref=e69]: Delegation Options
+          - generic [ref=e70]:
+            - button "Automated Voting Options arrow" [expanded] [ref=e71] [cursor=pointer]:
+              - paragraph [ref=e73]: Automated Voting Options
+              - img "arrow" [ref=e75]
+            - region [ref=e79]:
+              - generic [ref=e81]:
+                - generic [ref=e82]:
+                  - generic [ref=e83]:
+                    - paragraph [ref=e84]: Abstain from Every Vote
+                    - paragraph [ref=e85]: Select this to vote ABSTAIN to every vote.
+                  - separator [ref=e86]
+                  - generic [ref=e87]:
+                    - paragraph [ref=e88]: Voting Power
+                    - paragraph [ref=e89]: ₳ 143,636,731
+                  - separator [ref=e90]
+                  - generic [ref=e91]:
+                    - button "Info" [active] [ref=e92] [cursor=pointer]: Info
+                    - button "Delegate" [ref=e93] [cursor=pointer]: Delegate
+                - generic [ref=e94]:
+                  - generic [ref=e95]:
+                    - paragraph [ref=e96]: Signal No Confidence on Every Vote
+                    - paragraph [ref=e97]: Select this to signal no confidence in the current constitutional committee by voting NO on every proposal and voting YES to no confidence proposals
+                  - separator [ref=e98]
+                  - generic [ref=e99]:
+                    - paragraph [ref=e100]: Voting Power
+                    - paragraph [ref=e101]: ₳ 3,763,392
+                  - separator [ref=e102]
+                  - generic [ref=e103]:
+                    - button "Info" [ref=e104] [cursor=pointer]: Info
+                    - button "Delegate" [ref=e105] [cursor=pointer]: Delegate
+        - paragraph [ref=e106]: Find a DRep
+        - generic [ref=e107]:
+          - generic [ref=e108]:
+            - generic [ref=e109]:
+              - img [ref=e110]
+              - textbox "Search for a DRep name or ID" [ref=e112]
+            - generic [ref=e114]:
+              - generic [ref=e115] [cursor=pointer]:
+                - img "filter" [ref=e116]
+                - paragraph [ref=e117]: Filter
+                - paragraph [ref=e119]: "1"
+              - generic [ref=e120] [cursor=pointer]:
+                - img "sort" [ref=e121]
+                - paragraph [ref=e122]: "Sort by: Registration date"
+          - button "Active" [ref=e124]:
+            - generic [ref=e125]: Active
+            - button [ref=e126] [cursor=pointer]:
+              - img [ref=e127]
+        - list [ref=e129]:
+          - listitem [ref=e130]:
+            - generic [ref=e134]:
+              - generic [ref=e136]:
+                - generic [ref=e137]:
+                  - img "drep-image" [ref=e139]
+                  - generic [ref=e140]:
+                    - paragraph [ref=e141]: Jayne
+                    - generic [ref=e142]:
+                      - button "drep1yghmwss3wynw4zauel5gjg0r5r5qzcwykkxa5wsyrlcr2csyp9pq8" [ref=e143] [cursor=pointer]:
+                        - paragraph [ref=e144]: drep1yghmwss3wynw4zauel5gjg0r5r5qzcwykkxa5wsyrlcr2csyp9pq8
+                      - button "(CIP-105) drep197m5yyt3ym4gh0x0azyjrcaqaqqkr3943hdr5pql7q6kynmn7vr" [ref=e145] [cursor=pointer]:
+                        - paragraph [ref=e146]: (CIP-105) drep197m5yyt3ym4gh0x0azyjrcaqaqqkr3943hdr5pql7q6kynmn7vr
+                - generic [ref=e147]:
+                  - generic [ref=e148]:
+                    - paragraph [ref=e149]: Voting power
+                    - paragraph [ref=e150]: ₳ 0
+                  - separator [ref=e151]
+                  - generic [ref=e152]:
+                    - paragraph [ref=e153]: Status
+                    - generic [ref=e156]: Active
+              - generic [ref=e157]:
+                - button "View details" [ref=e158] [cursor=pointer]: View details
+                - button "Delegate" [ref=e159] [cursor=pointer]: Delegate
+          - listitem [ref=e160]:
+            - generic [ref=e164]:
+              - generic [ref=e166]:
+                - generic [ref=e167]:
+                  - img "drep-image" [ref=e169]
+                  - generic [ref=e170]:
+                    - paragraph [ref=e171]: Shea
+                    - generic [ref=e172]:
+                      - button "drep1ytl4mfpth9y42mu5lwcvssy6c59pl94qx4zhkzhldc76tsgaj5d3x" [ref=e173] [cursor=pointer]:
+                        - paragraph [ref=e174]: drep1ytl4mfpth9y42mu5lwcvssy6c59pl94qx4zhkzhldc76tsgaj5d3x
+                      - button "(CIP-105) drep1law6g2aef92kl98mkryypxk9pg0edgp4g4as4lmw8kjuzy0p896" [ref=e175] [cursor=pointer]:
+                        - paragraph [ref=e176]: (CIP-105) drep1law6g2aef92kl98mkryypxk9pg0edgp4g4as4lmw8kjuzy0p896
+                - generic [ref=e177]:
+                  - generic [ref=e178]:
+                    - paragraph [ref=e179]: Voting power
+                    - paragraph [ref=e180]: ₳ 0
+                  - separator [ref=e181]
+                  - generic [ref=e182]:
+                    - paragraph [ref=e183]: Status
+                    - generic [ref=e186]: Active
+              - generic [ref=e187]:
+                - button "View details" [ref=e188] [cursor=pointer]: View details
+                - button "Delegate" [ref=e189] [cursor=pointer]: Delegate
+          - listitem [ref=e190]:
+            - generic [ref=e194]:
+              - generic [ref=e196]:
+                - generic [ref=e197]:
+                  - img "drep-image" [ref=e199]
+                  - generic [ref=e200]:
+                    - paragraph [ref=e201]: TestName
+                    - generic [ref=e202]:
+                      - button "drep1ygpknf98nzyy5qhkc9hr73nzc5w8zwsk37pvpzu6y8x5a0c0z2slx" [ref=e203] [cursor=pointer]:
+                        - paragraph [ref=e204]: drep1ygpknf98nzyy5qhkc9hr73nzc5w8zwsk37pvpzu6y8x5a0c0z2slx
+                      - button "(CIP-105) drep1qd56ffuc3p9q9akpdcl5vck9r3cn5950stqghx3pe48t79f5cw0" [ref=e205] [cursor=pointer]:
+                        - paragraph [ref=e206]: (CIP-105) drep1qd56ffuc3p9q9akpdcl5vck9r3cn5950stqghx3pe48t79f5cw0
+                - generic [ref=e207]:
+                  - generic [ref=e208]:
+                    - paragraph [ref=e209]: Voting power
+                    - paragraph [ref=e210]: ₳ 9,497
+                  - separator [ref=e211]
+                  - generic [ref=e212]:
+                    - paragraph [ref=e213]: Status
+                    - generic [ref=e216]: Active
+              - generic [ref=e217]:
+                - button "View details" [ref=e218] [cursor=pointer]: View details
+                - button "Delegate" [ref=e219] [cursor=pointer]: Delegate
+          - listitem [ref=e220]:
+            - generic [ref=e224]:
+              - generic [ref=e226]:
+                - generic [ref=e227]:
+                  - img "drep-image" [ref=e229]
+                  - generic [ref=e230]:
+                    - paragraph [ref=e231]: Data URL Blocked
+                    - generic [ref=e232]:
+                      - button "drep1yt4yxkeefr7m8h9jd85l7900rakqcgsdl6sgrj6gl0rl0qqttehf5" [ref=e233] [cursor=pointer]:
+                        - paragraph [ref=e234]: drep1yt4yxkeefr7m8h9jd85l7900rakqcgsdl6sgrj6gl0rl0qqttehf5
+                      - button "(CIP-105) drep1afp4kw2glkeaevnfa8l3tmcldsxzyr075zqukj8mclmcqj9vuyz" [ref=e235] [cursor=pointer]:
+                        - paragraph [ref=e236]: (CIP-105) drep1afp4kw2glkeaevnfa8l3tmcldsxzyr075zqukj8mclmcqj9vuyz
+                - generic [ref=e237]:
+                  - generic [ref=e238]:
+                    - paragraph [ref=e239]: Voting power
+                    - paragraph [ref=e240]: ₳ 98
+                  - separator [ref=e241]
+                  - generic [ref=e242]:
+                    - paragraph [ref=e243]: Status
+                    - generic [ref=e246]: Active
+              - generic [ref=e247]:
+                - button "View details" [ref=e248] [cursor=pointer]: View details
+                - button "Delegate" [ref=e249] [cursor=pointer]: Delegate
+          - listitem [ref=e250]:
+            - generic [ref=e254]:
+              - generic [ref=e256]:
+                - generic [ref=e257]:
+                  - img "drep-image" [ref=e259]
+                  - generic [ref=e260]:
+                    - paragraph [ref=e261]: Data URL Blocked
+                    - generic [ref=e262]:
+                      - button "drep1ygajk53cspf2wqzzfulh0d04t5qkmnz233yn0ykwtec4q6shevzv6" [ref=e263] [cursor=pointer]:
+                        - paragraph [ref=e264]: drep1ygajk53cspf2wqzzfulh0d04t5qkmnz233yn0ykwtec4q6shevzv6
+                      - button "(CIP-105) drep18v44ywyq22nsqsj08ammta2aq9kucj5vfyme9nj7w9gx5gdkfcf" [ref=e265] [cursor=pointer]:
+                        - paragraph [ref=e266]: (CIP-105) drep18v44ywyq22nsqsj08ammta2aq9kucj5vfyme9nj7w9gx5gdkfcf
+                - generic [ref=e267]:
+                  - generic [ref=e268]:
+                    - paragraph [ref=e269]: Voting power
+                    - paragraph [ref=e270]: ₳ 98
+                  - separator [ref=e271]
+                  - generic [ref=e272]:
+                    - paragraph [ref=e273]: Status
+                    - generic [ref=e276]: Active
+              - generic [ref=e277]:
+                - button "View details" [ref=e278] [cursor=pointer]: View details
+                - button "Delegate" [ref=e279] [cursor=pointer]: Delegate
+        - generic [ref=e281]:
+          - generic [ref=e282]:
+            - paragraph [ref=e283]: "Rows per page:"
+            - generic [ref=e284]:
+              - combobox [ref=e285] [cursor=pointer]:
+                - generic [ref=e286]: "5"
+              - textbox: "5"
+              - img [ref=e287] [cursor=pointer]
+          - paragraph [ref=e289]: 1-5 of 166
+          - generic [ref=e290]:
+            - button "Previous page" [disabled]:
+              - img
+            - paragraph [ref=e291]: "1"
+            - button "Next page" [ref=e292] [cursor=pointer]:
+              - img [ref=e293]
+      - contentinfo [ref=e295]:
+        - paragraph [ref=e296]: © 2026 GovTool
+        - generic [ref=e297]:
+          - generic [ref=e298] [cursor=pointer]: Privacy policy
+          - generic [ref=e299] [cursor=pointer]: Terms of Use
+        - generic [ref=e300]:
+          - button "helpIcon Help" [ref=e301] [cursor=pointer]:
+            - img "helpIcon" [ref=e303]
+            - text: Help
+          - button "Subscribe to updates" [ref=e304] [cursor=pointer]: Subscribe to updates
+          - button "Feedback" [ref=e305] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e306]
+```
+
+# Test source
+
+```ts
+  1   | import {
+  2   |   ABSTAIN_VOTE_DOC_URL,
+  3   |   DELEGATION_DOC_URL,
+  4   |   DIRECT_VOTER_DOC_URL,
+  5   |   GOVERNANCE_ACTION_DOC_URL,
+  6   |   PROPOSE_GOVERNANCE_ACTION_DOC_URL,
+  7   |   REGISTER_DREP_DOC_URL,
+  8   |   SIGNAL_NO_CONFIDENCE_VOTE_DOC_URL,
+  9   | } from "@constants/docsUrl";
+  10  | import { test } from "@fixtures/walletExtension";
+  11  | import { setAllureEpic } from "@helpers/allure";
+  12  | import { invalid as mockInvalid, valid as mockValid } from "@mock/index";
+  13  | import DRepDirectoryPage from "@pages/dRepDirectoryPage";
+  14  | import ProposalDiscussionPage from "@pages/proposalDiscussionPage";
+  15  | import { Page, expect } from "@playwright/test";
+  16  | import { connectTestWallet } from "lib/wallet/pageWallet";
+  17  | import { randomWallet } from "lib/wallet/testWallets";
+  18  | 
+  19  | test.beforeEach(async () => {
+  20  |   await setAllureEpic("6. Miscellaneous");
+  21  | });
+  22  | 
+  23  | test.describe("Logged in user", () => {
+  24  |   test.use({ walletName: "user01", walletFundsAda: 0 });
+  25  | 
+  26  |   test("6E. Should open Sanchonet docs in a new tab when clicking `Learn More` on dashboards in connected state.", async ({
+  27  |     page,
+  28  |     context,
+  29  |   }) => {
+  30  |     await page.goto("/");
+  31  | 
+  32  |     const [delegationLearnMorepage] = await Promise.all([
+  33  |       context.waitForEvent("page"),
+  34  |       page.getByTestId("delegate-learn-more-button").click(),
+  35  |     ]);
+  36  |     await expect(delegationLearnMorepage).toHaveURL(DELEGATION_DOC_URL);
+  37  | 
+  38  |     const [registerLearnMorepage] = await Promise.all([
+  39  |       context.waitForEvent("page"),
+  40  |       page.getByTestId("d-rep-learn-more-button").click(),
+  41  |     ]);
+  42  |     await expect(registerLearnMorepage).toHaveURL(REGISTER_DREP_DOC_URL);
+  43  | 
+  44  |     const [directVoterLearnMorepage] = await Promise.all([
+  45  |       context.waitForEvent("page"),
+  46  |       page.getByTestId("direct-voter-learn-more-button").first().click(),
+  47  |     ]);
+  48  |     await expect(directVoterLearnMorepage).toHaveURL(DIRECT_VOTER_DOC_URL);
+  49  | 
+  50  |     const [GA_LearnMorepage] = await Promise.all([
+  51  |       context.waitForEvent("page"),
+  52  |       page.getByTestId("list-gov-actions-learn-more-button").click(),
+  53  |     ]);
+  54  |     await expect(GA_LearnMorepage).toHaveURL(GOVERNANCE_ACTION_DOC_URL);
+  55  | 
+  56  |     const [proposed_GA_VoterLearnMorepage] = await Promise.all([
+  57  |       context.waitForEvent("page"),
+  58  |       page.getByTestId("propose-gov-action-learn-more-button").click(),
+  59  |     ]);
+  60  |     await expect(proposed_GA_VoterLearnMorepage).toHaveURL(
+  61  |       PROPOSE_GOVERNANCE_ACTION_DOC_URL
+  62  |     );
+  63  |   });
+  64  | 
+  65  |   test("6F. Should open sanchonet docs in a new tab when clicking `info` button of abstain and signal-no-confidence card", async ({
+  66  |     page,
+  67  |     context,
+  68  |   }) => {
+  69  |     const dRepDirectoryPage = new DRepDirectoryPage(page);
+  70  |     await dRepDirectoryPage.goto();
+  71  | 
+  72  |     await dRepDirectoryPage.automaticDelegationOptionsDropdown.click();
+  73  | 
+  74  |     const [abstain_Info_Page] = await Promise.all([
+  75  |       context.waitForEvent("page"),
+  76  |       dRepDirectoryPage.abstainInfoButton.click(),
+  77  |     ]);
+> 78  |     await expect(abstain_Info_Page).toHaveURL(ABSTAIN_VOTE_DOC_URL);
+      |                                     ^ Error: expect(page).toHaveURL(expected) failed
+  79  | 
+  80  |     const [signal_No_Confidence_Info_Page] = await Promise.all([
+  81  |       context.waitForEvent("page"),
+  82  |       dRepDirectoryPage.signalNoConfidenceInfoButton.click(),
+  83  |     ]);
+  84  |     await expect(signal_No_Confidence_Info_Page).toHaveURL(
+  85  |       SIGNAL_NO_CONFIDENCE_VOTE_DOC_URL
+  86  |     );
+  87  |   });
+  88  | 
+  89  |   test("6I. Should prompt for a username after clicking on proposal discussion link if username is not set", async ({
+  90  |     page,
+  91  |   }) => {
+  92  |     await page.goto("/");
+  93  |     await page.getByTestId("proposal-discussion-link").click();
+  94  |     await page.getByTestId("verify-user-link").first().click();
+  95  | 
+  96  |     await expect(page.getByTestId("setup-username-modal")).toBeVisible();
+  97  |     await expect(page.getByTestId("username-input")).toBeVisible();
+  98  |   });
+  99  | });
+  100 | 
+  101 | test.describe("Temporary user", () => {
+  102 |   let userPage: Page;
+  103 |   let proposalDiscussionPage: ProposalDiscussionPage;
+  104 | 
+  105 |   test.beforeEach(async ({ page }) => {
+  106 |     await connectTestWallet(page, await randomWallet());
+  107 |     userPage = page;
+  108 | 
+  109 |     proposalDiscussionPage = new ProposalDiscussionPage(userPage);
+  110 |     await proposalDiscussionPage.goto();
+  111 |     await proposalDiscussionPage.verifyIdentityBtn.click();
+  112 |   });
+  113 | 
+  114 |   test("6J. Should add a username.", async () => {
+  115 |     await proposalDiscussionPage.setUsername(mockValid.username());
+  116 |   });
+  117 | 
+  118 |   test("6K. Should accept valid username.", async () => {
+  119 |     for (let i = 0; i < 100; i++) {
+  120 |       await userPage.getByTestId("username-input").fill(mockValid.username());
+  121 | 
+  122 |       await expect(
+  123 |         userPage.getByTestId("username-error-text")
+  124 |       ).not.toBeVisible();
+  125 |       await expect(userPage.getByTestId("proceed-button")).toBeEnabled();
+  126 |     }
+  127 |   });
+  128 | 
+  129 |   test("6L. Should reject invalid username.", async () => {
+  130 |     for (let i = 0; i < 100; i++) {
+  131 |       await userPage.getByTestId("username-input").fill(mockInvalid.username());
+  132 | 
+  133 |       await expect(userPage.getByTestId("username-error-text")).toBeVisible();
+  134 |       await expect(userPage.getByTestId("proceed-button")).toBeDisabled();
+  135 |     }
+  136 |   });
+  137 | });
+  138 | 
+```

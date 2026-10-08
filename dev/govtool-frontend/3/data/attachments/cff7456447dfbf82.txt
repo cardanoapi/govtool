@@ -1,0 +1,6 @@
+wallet balance 1019.819495
+wallet address addr_test1qqqquw77s3u3swlyptqlyv2xwh66sd0rcg277gwpmwnxx0h2ts89hdywagjkak8aqlpqt3xz96gggjrp2sh9wdytw7as59au7e
+3
+✔ Uploaded varietas metadata to bucket
+ℹ Waiting for tx completion: a60a735d1bedad5233a355a58e703f4da56fa329cf586d4f535bc9b38fcdf1f5
+✔ Tx completed

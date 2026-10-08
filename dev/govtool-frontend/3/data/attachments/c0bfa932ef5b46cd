@@ -1,0 +1,2014 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 11-budget-proposals-archive/budgetProposalsArchive.spec.ts >> Budget proposals archive list >> 11B_3. Should sort budget proposals
+- Location: tests/11-budget-proposals-archive/budgetProposalsArchive.spec.ts:100:7
+
+# Error details
+
+```
+Test timeout of 540000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 540000ms exceeded.
+Call log:
+  - waiting for getByTestId('Oldest-sort-option')
+    - locator resolved to <li id="Oldest" tabindex="-1" role="menuitem" data-testid="Oldest-sort-option" class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-lm4qhi">…</li>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not stable
+    - retrying click action
+    - waiting 20ms
+    - waiting for element to be visible, enabled and stable
+  - element was detached from the DOM, retrying
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - banner [ref=e12]:
+      - generic [ref=e13]:
+        - link "app-logo" [ref=e14] [cursor=pointer]:
+          - /url: /
+          - img "app-logo" [ref=e15]
+        - generic [ref=e16]:
+          - button "Connect" [ref=e17] [cursor=pointer]: Connect
+          - img "drawer-icon" [ref=e18]
+    - status [ref=e20]:
+      - paragraph [ref=e21]: The 2025 budget process is closed. This is a read-only archive of the 2025 budget proposals, their versions, DRep poll results and comments.
+    - generic [ref=e25]:
+      - generic [ref=e26]:
+        - heading "2025 Budget Proposals" [level=1] [ref=e27]
+        - button "Back to Budget Proposals" [ref=e29] [cursor=pointer]:
+          - img [ref=e31]
+          - text: Back to Budget Proposals
+        - generic [ref=e33]:
+          - generic [ref=e35]:
+            - img [ref=e36]
+            - textbox "Search by name or proposer..." [ref=e38]
+          - 'button "Sort: Newest" [ref=e40] [cursor=pointer]': "Sort: Newest"
+      - generic [ref=e43]:
+        - heading "Core" [level=2] [ref=e46]
+        - generic [ref=e47]:
+          - generic [ref=e50]:
+            - generic [ref=e51]:
+              - generic [ref=e52]:
+                - generic [ref=e53]:
+                  - 'heading "Cardano Cloud: No-Compromise dApps – Easy Code, Fully Verified, Serverless" [level=3] [ref=e54]'
+                  - heading "@agocorona" [level=5] [ref=e55]
+                - button [ref=e56] [cursor=pointer]
+              - generic [ref=e57]:
+                - paragraph [ref=e58]: Budget category
+                - paragraph [ref=e60]: Core
+              - generic [ref=e61]:
+                - paragraph [ref=e62]: Proposal benefit
+                - generic [ref=e64]:
+                  - paragraph [ref=e65]: This is the only solution in all blockchains that statically verifies the entire off-chain + on-chain contract, persists execution state, optionally, to IPFS, and responds from cold start. It turns Cardano’s Haskell choice into a structural DeFi advantage.
+                  - paragraph [ref=e66]: Building on mature, battle-tested Haskell…
+              - generic [ref=e67]:
+                - paragraph [ref=e68]: Budget Requested
+                - paragraph [ref=e69]: ₳ 100,000
+                - paragraph [ref=e70]: 57,000 USD
+              - generic [ref=e72]:
+                - paragraph [ref=e73]: "Proposed on: 13 November 2025"
+                - img [ref=e75]
+              - generic [ref=e77]:
+                - generic [ref=e78]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "0"
+                - paragraph [ref=e79]: "Poll: Yes 0 · No 0"
+            - link "View Details" [ref=e81] [cursor=pointer]:
+              - /url: /budget_discussion/759
+              - button "View Details" [ref=e82]: View Details
+          - generic [ref=e85]:
+            - generic [ref=e86]:
+              - generic [ref=e87]:
+                - generic [ref=e88]:
+                  - 'heading "CardanoScout: A Static Analysis Tool for Smart Contract Security" [level=3] [ref=e89]'
+                  - heading "@matias.cabello" [level=5] [ref=e90]
+                - button [ref=e91] [cursor=pointer]
+              - generic [ref=e92]:
+                - paragraph [ref=e93]: Budget category
+                - paragraph [ref=e95]: Core
+              - generic [ref=e96]:
+                - paragraph [ref=e97]: Proposal benefit
+                - paragraph [ref=e100]: Empower Cardano developers, security auditors and QA engineers with an automated static analysis tool tailored to Cardano smart contracts, enabling automated issues and vulnerability detection during development. It will help developers, auditors, and projects proactively secure their code, reduce…
+              - generic [ref=e101]:
+                - paragraph [ref=e102]: Budget Requested
+                - paragraph [ref=e103]: ₳ 464,500
+                - paragraph [ref=e104]: 325,150 USD
+              - generic [ref=e106]:
+                - paragraph [ref=e107]: "Proposed on: 30 April 2025"
+                - img [ref=e109]
+              - generic [ref=e111]:
+                - generic [ref=e112]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "14"
+                - paragraph [ref=e113]: "Poll: Yes 2 · No 12"
+            - link "View Details" [ref=e115] [cursor=pointer]:
+              - /url: /budget_discussion/734
+              - button "View Details" [ref=e116]: View Details
+          - generic [ref=e119]:
+            - generic [ref=e120]:
+              - generic [ref=e121]:
+                - generic [ref=e122]:
+                  - heading "Advancing Programmable Assets on Cardano – Development and Adoption" [level=3] [ref=e123]
+                  - heading "@business" [level=5] [ref=e124]
+                - button [ref=e125] [cursor=pointer]
+              - generic [ref=e126]:
+                - paragraph [ref=e127]: Budget category
+                - paragraph [ref=e129]: Core
+              - generic [ref=e130]:
+                - paragraph [ref=e131]: Proposal benefit
+                - generic [ref=e133]:
+                  - paragraph [ref=e134]: "Implementation will significantly benefit the Cardano ecosystem by maturing the CIP-143 standard into a production-ready feature:"
+                  - paragraph [ref=e135]: "For Developers & dApp Builders: Enables the creation of innovative dApps leveraging sophisticated programmable assets like soul-bound tokens (SBTs), regulated…"
+              - generic [ref=e136]:
+                - paragraph [ref=e137]: Budget Requested
+                - paragraph [ref=e138]: ₳ 1,400,000
+                - paragraph [ref=e139]: 700,000 USD
+              - generic [ref=e141]:
+                - paragraph [ref=e142]: "Proposed on: 26 April 2025"
+                - img [ref=e144]
+              - generic [ref=e146]:
+                - generic [ref=e147]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "0"
+                - paragraph [ref=e148]: "Poll: Yes 13 · No 1"
+            - link "View Details" [ref=e150] [cursor=pointer]:
+              - /url: /budget_discussion/727
+              - button "View Details" [ref=e151]: View Details
+          - generic [ref=e154]:
+            - generic [ref=e155]:
+              - generic [ref=e156]:
+                - generic [ref=e157]:
+                  - 'heading "Blockdaemon: Institutional-grade Infrastructure Implementations and Integrations" [level=3] [ref=e158]'
+                  - heading "@blockdaemonltd" [level=5] [ref=e159]
+                - button [ref=e160] [cursor=pointer]
+              - generic [ref=e161]:
+                - paragraph [ref=e162]: Budget category
+                - paragraph [ref=e164]: Core
+              - generic [ref=e165]:
+                - paragraph [ref=e166]: Proposal benefit
+                - generic [ref=e168]:
+                  - paragraph [ref=e169]: Funding this proposal equips Cardano with the industrial‑grade rails that turn 2025 roadmap innovations into production revenue and global impact—delivering measurable economic, security and social returns for every segment of the community.
+                  - paragraph [ref=e170]: This proposal helps solve a practical but pressing…
+              - generic [ref=e171]:
+                - paragraph [ref=e172]: Budget Requested
+                - paragraph [ref=e173]: ₳ 5,300,000
+                - paragraph [ref=e174]: 2,650,000 USD
+              - generic [ref=e176]:
+                - paragraph [ref=e177]: "Proposed on: 25 April 2025"
+                - img [ref=e179]
+              - generic [ref=e181]:
+                - generic [ref=e182]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "3"
+                - paragraph [ref=e183]: "Poll: Yes 3 · No 28"
+            - link "View Details" [ref=e185] [cursor=pointer]:
+              - /url: /budget_discussion/707
+              - button "View Details" [ref=e186]: View Details
+          - generic [ref=e189]:
+            - generic [ref=e190]:
+              - generic [ref=e191]:
+                - generic [ref=e192]:
+                  - heading "Cash Grab" [level=3] [ref=e193]
+                  - heading "@nothosky" [level=5] [ref=e194]
+                - button [ref=e195] [cursor=pointer]
+              - generic [ref=e196]:
+                - paragraph [ref=e197]: Budget category
+                - paragraph [ref=e199]: Core
+              - generic [ref=e200]:
+                - paragraph [ref=e201]: Proposal benefit
+                - paragraph [ref=e204]: Myself
+              - generic [ref=e205]:
+                - paragraph [ref=e206]: Budget Requested
+                - paragraph [ref=e207]: ₳ 6,969,696
+                - paragraph [ref=e208]: 6,969,696 USD
+              - generic [ref=e210]:
+                - paragraph [ref=e211]: "Proposed on: 24 April 2025"
+                - img [ref=e213]
+              - generic [ref=e215]:
+                - generic [ref=e216]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "10"
+                - paragraph [ref=e217]: "Poll: Yes 1 · No 26"
+            - link "View Details" [ref=e219] [cursor=pointer]:
+              - /url: /budget_discussion/682
+              - button "View Details" [ref=e220]: View Details
+          - generic [ref=e223]:
+            - generic [ref=e224]:
+              - generic [ref=e225]:
+                - generic [ref=e226]:
+                  - 'heading "Cardano VigilADA: A Multi-Layered ML Framework for Real-Time On-Chain Anomaly Detection and Agentic Analysis" [level=3] [ref=e227]'
+                  - heading "@intelligepsilon" [level=5] [ref=e228]
+                - button [ref=e229] [cursor=pointer]
+              - generic [ref=e230]:
+                - paragraph [ref=e231]: Budget category
+                - paragraph [ref=e233]: Core
+              - generic [ref=e234]:
+                - paragraph [ref=e235]: Proposal benefit
+                - generic [ref=e237]:
+                  - paragraph [ref=e238]: Cardano VigilADA provides continuous AI transaction monitoring, detecting anomalies and fraud, enhancing Cardano's security, transparency, and trust. Additionally, it opens real-time data through an MCP server, allowing LLMs to consume and query data and derive analytical insights.
+                  - paragraph [ref=e239]: An ML‑powered…
+              - generic [ref=e240]:
+                - paragraph [ref=e241]: Budget Requested
+                - paragraph [ref=e242]: ₳ 2,912,000
+                - paragraph [ref=e243]: 1,456,000 USD
+              - generic [ref=e245]:
+                - paragraph [ref=e246]: "Proposed on: 24 April 2025"
+                - img [ref=e248]
+              - generic [ref=e250]:
+                - generic [ref=e251]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "2"
+                - paragraph [ref=e252]: "Poll: Yes 1 · No 17"
+            - link "View Details" [ref=e254] [cursor=pointer]:
+              - /url: /budget_discussion/639
+              - button "View Details" [ref=e255]: View Details
+          - generic [ref=e258]:
+            - generic [ref=e259]:
+              - generic [ref=e260]:
+                - generic [ref=e261]:
+                  - 'heading "LIQWID: A FULLY OPEN-SOURCE CARDANO PUBLIC GOOD" [level=3] [ref=e262]'
+                  - heading "@florian_volery" [level=5] [ref=e263]
+                - button [ref=e264] [cursor=pointer]
+              - generic [ref=e265]:
+                - paragraph [ref=e266]: Budget category
+                - paragraph [ref=e268]: Core
+              - generic [ref=e269]:
+                - paragraph [ref=e270]: Proposal benefit
+                - paragraph [ref=e273]:
+                  - text: "Liqwid as a Cardano Public Good:"
+                  - text: The open-sourcing of Liqwid v2 and v3 smart contracts will transform the protocol into a fully transparent, community-aligned public good. With the Liqwid Core Team maintaining and evolving the codebase, the protocol remains secure, adaptable, and everyone will be…
+              - generic [ref=e274]:
+                - paragraph [ref=e275]: Budget Requested
+                - paragraph [ref=e276]: ₳ 7,215,384
+                - paragraph [ref=e277]: 4,690,000 USD
+              - generic [ref=e279]:
+                - paragraph [ref=e280]: "Proposed on: 23 April 2025"
+                - img [ref=e282]
+              - generic [ref=e284]:
+                - generic [ref=e285]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "7"
+                - paragraph [ref=e286]: "Poll: Yes 5 · No 24"
+            - link "View Details" [ref=e288] [cursor=pointer]:
+              - /url: /budget_discussion/621
+              - button "View Details" [ref=e289]: View Details
+          - generic [ref=e292]:
+            - generic [ref=e293]:
+              - generic [ref=e294]:
+                - generic [ref=e295]:
+                  - 'heading "LedgerSync: Financial Data Infrastructure for Cardano" [level=3] [ref=e296]'
+                  - heading "@breezing" [level=5] [ref=e297]
+                - button [ref=e298] [cursor=pointer]
+              - generic [ref=e299]:
+                - paragraph [ref=e300]: Budget category
+                - paragraph [ref=e302]: Core
+              - generic [ref=e303]:
+                - paragraph [ref=e304]: Proposal benefit
+                - paragraph [ref=e307]: Intersect’s mission is to steward the long-term development, resilience, and adoption of the Cardano ecosystem through community-driven governance and strategic infrastructure investments. This proposal directly advances that mission by addressing a foundational gap in the ecosystem’s data…
+              - generic [ref=e308]:
+                - paragraph [ref=e309]: Budget Requested
+                - paragraph [ref=e310]: ₳ 175,000
+                - paragraph [ref=e311]: 124,000 USD
+              - generic [ref=e313]:
+                - paragraph [ref=e314]: "Proposed on: 23 April 2025"
+                - img [ref=e316]
+              - generic [ref=e318]:
+                - generic [ref=e319]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "5"
+                - paragraph [ref=e320]: "Poll: Yes 1 · No 17"
+            - link "View Details" [ref=e322] [cursor=pointer]:
+              - /url: /budget_discussion/609
+              - button "View Details" [ref=e323]: View Details
+          - generic [ref=e326]:
+            - generic [ref=e327]:
+              - generic [ref=e328]:
+                - generic [ref=e329]:
+                  - 'heading "Atlas PAB: Native Bitcoin (BTC) Integration Layer" [level=3] [ref=e330]'
+                  - heading "@geniusyield" [level=5] [ref=e331]
+                - button [ref=e332] [cursor=pointer]
+              - generic [ref=e333]:
+                - paragraph [ref=e334]: Budget category
+                - paragraph [ref=e336]: Core
+              - generic [ref=e337]:
+                - paragraph [ref=e338]: Proposal benefit
+                - paragraph [ref=e341]:
+                  - text: "This proposal upgrades Atlas PAB into a Bitcoin-aware smart contract backend, enabling developers to:"
+                  - text: Track native BTC transactions via full nodes or lightweight indexers.
+                  - text: Define BTC-based triggers for activating Cardano Plutus endpoints.
+                  - text: Verify BTC proofs (SPV, BitVM, Babylon) from off-chain or…
+              - generic [ref=e343]:
+                - paragraph [ref=e344]: Budget Requested
+                - paragraph [ref=e345]: ₳ 396,826
+                - paragraph [ref=e346]: 250,000 USD
+              - generic [ref=e348]:
+                - paragraph [ref=e349]: "Proposed on: 23 April 2025"
+                - img [ref=e351]
+              - generic [ref=e353]:
+                - generic [ref=e354]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "2"
+                - paragraph [ref=e355]: "Poll: Yes 14 · No 6"
+            - link "View Details" [ref=e357] [cursor=pointer]:
+              - /url: /budget_discussion/607
+              - button "View Details" [ref=e358]: View Details
+          - generic [ref=e361]:
+            - generic [ref=e362]:
+              - generic [ref=e363]:
+                - generic [ref=e364]:
+                  - 'heading "Atlas PAB: Integration with Masumi AI Agent Protocol" [level=3] [ref=e365]'
+                  - heading "@geniusyield" [level=5] [ref=e366]
+                - button [ref=e367] [cursor=pointer]
+              - generic [ref=e368]:
+                - paragraph [ref=e369]: Budget category
+                - paragraph [ref=e371]: Core
+              - generic [ref=e372]:
+                - paragraph [ref=e373]: Proposal benefit
+                - generic [ref=e375]:
+                  - paragraph [ref=e376]: "This proposal delivers a first-of-its-kind integration between Masumi and Atlas, allowing developers to:"
+                  - paragraph [ref=e377]: Authenticate and verify decentralized AI agents using Masumi’s identity registry from Atlas PAB.
+                  - paragraph [ref=e378]: Log agent actions and outputs on-chain via Masumi directly from Plutus dApps.
+                  - paragraph [ref=e379]: Facilitate…
+              - generic [ref=e380]:
+                - paragraph [ref=e381]: Budget Requested
+                - paragraph [ref=e382]: ₳ 102,941
+                - paragraph [ref=e383]: 70,000 USD
+              - generic [ref=e385]:
+                - paragraph [ref=e386]: "Proposed on: 23 April 2025"
+                - img [ref=e388]
+              - generic [ref=e390]:
+                - generic [ref=e391]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "2"
+                - paragraph [ref=e392]: "Poll: Yes 2 · No 14"
+            - link "View Details" [ref=e394] [cursor=pointer]:
+              - /url: /budget_discussion/593
+              - button "View Details" [ref=e395]: View Details
+          - generic [ref=e398]:
+            - generic [ref=e399]:
+              - generic [ref=e400]:
+                - generic [ref=e401]:
+                  - heading "Incentivized Waste Sorting and Recycling Platform" [level=3] [ref=e402]
+                  - heading "@clifford" [level=5] [ref=e403]
+                - button [ref=e404] [cursor=pointer]
+              - generic [ref=e405]:
+                - paragraph [ref=e406]: Budget category
+                - paragraph [ref=e408]: Core
+              - generic [ref=e409]:
+                - paragraph [ref=e410]: Proposal benefit
+                - generic [ref=e412]:
+                  - paragraph [ref=e413]:
+                    - text: Benefits to the Cardano Community
+                    - text: "Increased Adoption and Visibility:"
+                  - list [ref=e414]:
+                    - listitem [ref=e415]: The project will demonstrate Cardano's effectiveness in solving real-world problems, enhancing its reputation and global visibility.
+                    - listitem [ref=e416]: This will attract environmentally conscious users and organizations to the Cardano ecosystem,…
+              - generic [ref=e417]:
+                - paragraph [ref=e418]: Budget Requested
+                - paragraph [ref=e419]: ₳ 189,200
+                - paragraph [ref=e420]: 94,595 USD
+              - generic [ref=e422]:
+                - paragraph [ref=e423]: "Proposed on: 23 April 2025"
+                - img [ref=e425]
+              - generic [ref=e427]:
+                - generic [ref=e428]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "8"
+                - paragraph [ref=e429]: "Poll: Yes 1 · No 15"
+            - link "View Details" [ref=e431] [cursor=pointer]:
+              - /url: /budget_discussion/591
+              - button "View Details" [ref=e432]: View Details
+          - generic [ref=e435]:
+            - generic [ref=e436]:
+              - generic [ref=e437]:
+                - generic [ref=e438]:
+                  - 'heading "Leveling the Pitch: Blockchain Solutions for Fair and Open Football Careers in Africa" [level=3] [ref=e439]'
+                  - heading "@awura" [level=5] [ref=e440]
+                - button [ref=e441] [cursor=pointer]
+              - generic [ref=e442]:
+                - paragraph [ref=e443]: Budget category
+                - paragraph [ref=e445]: Core
+              - generic [ref=e446]:
+                - paragraph [ref=e447]: Proposal benefit
+                - paragraph [ref=e450]:
+                  - text: Benefits to the Cardano Community
+                  - text: This project demonstrates Cardano’s utility in solving real, high-visibility challenges showing how blockchain can transform industries and empower individuals, especially in emerging markets.
+                  - text: By onboarding footballers, clubs, fans, and sponsors, Cardano gains new…
+              - generic [ref=e451]:
+                - paragraph [ref=e452]: Budget Requested
+                - paragraph [ref=e453]: ₳ 242,000
+                - paragraph [ref=e454]: 121,000 USD
+              - generic [ref=e456]:
+                - paragraph [ref=e457]: "Proposed on: 23 April 2025"
+                - img [ref=e459]
+              - generic [ref=e461]:
+                - generic [ref=e462]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "4"
+                - paragraph [ref=e463]: "Poll: Yes 2 · No 17"
+            - link "View Details" [ref=e465] [cursor=pointer]:
+              - /url: /budget_discussion/590
+              - button "View Details" [ref=e466]: View Details
+          - generic [ref=e469]:
+            - generic [ref=e470]:
+              - generic [ref=e471]:
+                - generic [ref=e472]:
+                  - 'heading "Atlas PAB: Hydra and L2 Integration (Midgard, Midnight, ZkFold)" [level=3] [ref=e473]'
+                  - heading "@geniusyield" [level=5] [ref=e474]
+                - button [ref=e475] [cursor=pointer]
+              - generic [ref=e476]:
+                - paragraph [ref=e477]: Budget category
+                - paragraph [ref=e479]: Core
+              - generic [ref=e480]:
+                - paragraph [ref=e481]: Proposal benefit
+                - generic [ref=e483]:
+                  - paragraph [ref=e484]: "This proposal delivers:"
+                  - paragraph [ref=e485]: Seamless Hydra integration in Atlas, enabling dApps to spin up, join, and transact within Hydra heads from off-chain logic.
+                  - paragraph [ref=e486]: Foundational integration with Midgard, Midnight, and ZkFold L2s for submitting payloads, querying outcomes, and synchronizing state with Cardano…
+              - generic [ref=e487]:
+                - paragraph [ref=e488]: Budget Requested
+                - paragraph [ref=e489]: ₳ 132,353
+                - paragraph [ref=e490]: 90,000 USD
+              - generic [ref=e492]:
+                - paragraph [ref=e493]: "Proposed on: 23 April 2025"
+                - img [ref=e495]
+              - generic [ref=e497]:
+                - generic [ref=e498]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "4"
+                - paragraph [ref=e499]: "Poll: Yes 15 · No 7"
+            - link "View Details" [ref=e501] [cursor=pointer]:
+              - /url: /budget_discussion/589
+              - button "View Details" [ref=e502]: View Details
+          - generic [ref=e505]:
+            - generic [ref=e506]:
+              - generic [ref=e507]:
+                - generic [ref=e508]:
+                  - 'heading "Atlas PAB: Aiken and Governance Integration" [level=3] [ref=e509]'
+                  - heading "@geniusyield" [level=5] [ref=e510]
+                - button [ref=e511] [cursor=pointer]
+              - generic [ref=e512]:
+                - paragraph [ref=e513]: Budget category
+                - paragraph [ref=e515]: Core
+              - generic [ref=e516]:
+                - paragraph [ref=e517]: Proposal benefit
+                - generic [ref=e519]:
+                  - paragraph [ref=e520]: "This proposal ensures that Atlas remains the most capable backend tool in the Cardano ecosystem by supporting its two most impactful upgrades:"
+                  - paragraph [ref=e521]: Aiken developers will gain first-class off-chain integration through Atlas, improving testability, endpoint exposure, and Plutus validator interaction…
+              - generic [ref=e522]:
+                - paragraph [ref=e523]: Budget Requested
+                - paragraph [ref=e524]: ₳ 154,412
+                - paragraph [ref=e525]: 105,000 USD
+              - generic [ref=e527]:
+                - paragraph [ref=e528]: "Proposed on: 23 April 2025"
+                - img [ref=e530]
+              - generic [ref=e532]:
+                - generic [ref=e533]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "1"
+                - paragraph [ref=e534]: "Poll: Yes 8 · No 11"
+            - link "View Details" [ref=e536] [cursor=pointer]:
+              - /url: /budget_discussion/587
+              - button "View Details" [ref=e537]: View Details
+          - generic [ref=e540]:
+            - generic [ref=e541]:
+              - generic [ref=e542]:
+                - generic [ref=e543]:
+                  - heading "Atlas PAB - Chainlink Oracle Integration" [level=3] [ref=e544]
+                  - heading "@geniusyield" [level=5] [ref=e545]
+                - button [ref=e546] [cursor=pointer]
+              - generic [ref=e547]:
+                - paragraph [ref=e548]: Budget category
+                - paragraph [ref=e550]: Core
+              - generic [ref=e551]:
+                - paragraph [ref=e552]: Proposal benefit
+                - paragraph [ref=e555]: By integrating Chainlink oracle support into Atlas, this proposal directly enables data-driven dApp development on Cardano. Developers will gain out-of-the-box access to oracle UTXOs, datum parsing, signature verification, and reference input support. The result is a faster, more secure, and more…
+              - generic [ref=e556]:
+                - paragraph [ref=e557]: Budget Requested
+                - paragraph [ref=e558]: ₳ 102,941
+                - paragraph [ref=e559]: 70,000 USD
+              - generic [ref=e561]:
+                - paragraph [ref=e562]: "Proposed on: 23 April 2025"
+                - img [ref=e564]
+              - generic [ref=e566]:
+                - generic [ref=e567]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "1"
+                - paragraph [ref=e568]: "Poll: Yes 13 · No 10"
+            - link "View Details" [ref=e570] [cursor=pointer]:
+              - /url: /budget_discussion/583
+              - button "View Details" [ref=e571]: View Details
+          - generic [ref=e574]:
+            - generic [ref=e575]:
+              - generic [ref=e576]:
+                - generic [ref=e577]:
+                  - 'heading "\"Transforming Governance: Cardano Blockchain for Professional Transparency and Accountability\"" [level=3] [ref=e578]'
+                  - heading "@arccenter" [level=5] [ref=e579]
+                - button [ref=e580] [cursor=pointer]
+              - generic [ref=e581]:
+                - paragraph [ref=e582]: Budget category
+                - paragraph [ref=e584]: Core
+              - generic [ref=e585]:
+                - paragraph [ref=e586]: Proposal benefit
+                - paragraph [ref=e589]:
+                  - text: Benefits to the Cardano Community
+                  - text: The project will demonstrate Cardano's effectiveness in enhancing transparency and accountability within professional groups showcasing its real-world applications, and increasing its visibility and credibility. Engaging influential professional groups can attract…
+              - generic [ref=e590]:
+                - paragraph [ref=e591]: Budget Requested
+                - paragraph [ref=e592]: ₳ 232,600
+                - paragraph [ref=e593]: 116,300 USD
+              - generic [ref=e595]:
+                - paragraph [ref=e596]: "Proposed on: 23 April 2025"
+                - img [ref=e598]
+              - generic [ref=e600]:
+                - generic [ref=e601]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "5"
+                - paragraph [ref=e602]: "Poll: Yes 1 · No 11"
+            - link "View Details" [ref=e604] [cursor=pointer]:
+              - /url: /budget_discussion/578
+              - button "View Details" [ref=e605]: View Details
+          - generic [ref=e608]:
+            - generic [ref=e609]:
+              - generic [ref=e610]:
+                - generic [ref=e611]:
+                  - heading "**Regulated Private Credit RWA products on Cardano**" [level=3] [ref=e612]
+                  - heading "@jasondehni" [level=5] [ref=e613]
+                - button [ref=e614] [cursor=pointer]
+              - generic [ref=e615]:
+                - paragraph [ref=e616]: Budget category
+                - paragraph [ref=e618]: Core
+              - generic [ref=e619]:
+                - paragraph [ref=e620]: Proposal benefit
+                - generic [ref=e622]:
+                  - paragraph [ref=e623]:
+                    - strong [ref=e624]: The BlackOpal Solution
+                  - list [ref=e625]:
+                    - listitem [ref=e626]:
+                      - generic [ref=e627]:
+                        - strong [ref=e628]: "Compliant RWA Vaults:"
+                        - text: Tokenized and regulator-reviewed lending vaults backed by real-world cash flows like invoices and secured SME loans.
+                    - listitem [ref=e629]:
+                      - generic [ref=e630]:
+                        - strong [ref=e631]: "Cardano Vault Infrastructure:"
+                        - text: Fully on-chain, modular vault contracts deployed on Cardano.
+                    - listitem [ref=e632]:
+                      - generic [ref=e633]:
+                        - strong [ref=e634]: "USDA Integration:"
+                        - text: …
+              - generic [ref=e635]:
+                - paragraph [ref=e636]: Budget Requested
+                - paragraph [ref=e637]: ₳ 3,000,000
+                - paragraph [ref=e638]: 1,500,000 USD
+              - generic [ref=e640]:
+                - paragraph [ref=e641]: "Proposed on: 23 April 2025"
+                - img [ref=e643]
+              - generic [ref=e645]:
+                - generic [ref=e646]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "6"
+                - paragraph [ref=e647]: "Poll: Yes 7 · No 15"
+            - link "View Details" [ref=e649] [cursor=pointer]:
+              - /url: /budget_discussion/569
+              - button "View Details" [ref=e650]: View Details
+          - generic [ref=e653]:
+            - generic [ref=e654]:
+              - generic [ref=e655]:
+                - generic [ref=e656]:
+                  - heading "Zekret" [level=3] [ref=e657]
+                  - heading "@arturzekret" [level=5] [ref=e658]
+                - button [ref=e659] [cursor=pointer]
+              - generic [ref=e660]:
+                - paragraph [ref=e661]: Budget category
+                - paragraph [ref=e663]: Core
+              - generic [ref=e664]:
+                - paragraph [ref=e665]: Proposal benefit
+                - generic [ref=e667]:
+                  - paragraph [ref=e668]: If implemented, this proposal will unlock regulatory operability and institutional adoption pathways for the Cardano ecosystem, without compromising decentralization or user privacy.
+                  - paragraph [ref=e669]: Zekret introduces a modular Layer 3 compliance and identity infrastructure that can be integrated into existing…
+              - generic [ref=e670]:
+                - paragraph [ref=e671]: Budget Requested
+                - paragraph [ref=e672]: ₳ 1,587,300
+                - paragraph [ref=e673]: 1,000,000 USD
+              - generic [ref=e675]:
+                - paragraph [ref=e676]: "Proposed on: 19 April 2025"
+                - img [ref=e678]
+              - generic [ref=e680]:
+                - generic [ref=e681]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "15"
+                - paragraph [ref=e682]: "Poll: Yes 2 · No 20"
+            - link "View Details" [ref=e684] [cursor=pointer]:
+              - /url: /budget_discussion/522
+              - button "View Details" [ref=e685]: View Details
+          - generic [ref=e688]:
+            - generic [ref=e689]:
+              - generic [ref=e690]:
+                - generic [ref=e691]:
+                  - heading "Blockfrost Platform community budget proposal" [level=3] [ref=e692]
+                  - heading "@blockfrost.iog" [level=5] [ref=e693]
+                - button [ref=e694] [cursor=pointer]
+              - generic [ref=e695]:
+                - paragraph [ref=e696]: Budget category
+                - paragraph [ref=e698]: Core
+              - generic [ref=e699]:
+                - paragraph [ref=e700]: Proposal benefit
+                - paragraph [ref=e703]: Please see section Decentralizing Blockfrost of the proposal.
+              - generic [ref=e704]:
+                - paragraph [ref=e705]: Budget Requested
+                - paragraph [ref=e706]: ₳ 1,300,000
+                - paragraph [ref=e707]: 650,000 USD
+              - generic [ref=e709]:
+                - paragraph [ref=e710]: "Proposed on: 18 April 2025"
+                - img [ref=e712]
+              - generic [ref=e714]:
+                - generic [ref=e715]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "25"
+                - paragraph [ref=e716]: "Poll: Yes 34 · No 3"
+            - link "View Details" [ref=e718] [cursor=pointer]:
+              - /url: /budget_discussion/509
+              - button "View Details" [ref=e719]: View Details
+          - generic [ref=e722]:
+            - generic [ref=e723]:
+              - generic [ref=e724]:
+                - generic [ref=e725]:
+                  - heading "Cardano DIA Oracle Integration" [level=3] [ref=e726]
+                  - heading "@protofire" [level=5] [ref=e727]
+                - button [ref=e728] [cursor=pointer]
+              - generic [ref=e729]:
+                - paragraph [ref=e730]: Budget category
+                - paragraph [ref=e732]: Core
+              - generic [ref=e733]:
+                - paragraph [ref=e734]: Proposal benefit
+                - generic [ref=e736]:
+                  - paragraph [ref=e737]: DIA’s trustless data feeds are already powering multiple blockchain ecosystems.
+                  - paragraph [ref=e738]: "Bringing DIA to Cardano would:"
+                  - list [ref=e739]:
+                    - listitem [ref=e740]: Enable DeFi dApps to access reliable price data and other off-chain information.
+                    - listitem [ref=e741]: Facilitate the creation of complex smart contracts that depend on external data.
+                    - listitem [ref=e742]: Attract new…
+              - generic [ref=e743]:
+                - paragraph [ref=e744]: Budget Requested
+                - paragraph [ref=e745]: ₳ 207,500
+                - paragraph [ref=e746]: 124,500 USD
+              - generic [ref=e748]:
+                - paragraph [ref=e749]: "Proposed on: 18 April 2025"
+                - img [ref=e751]
+              - generic [ref=e753]:
+                - generic [ref=e754]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "11"
+                - paragraph [ref=e755]: "Poll: Yes 6 · No 21"
+            - link "View Details" [ref=e757] [cursor=pointer]:
+              - /url: /budget_discussion/508
+              - button "View Details" [ref=e758]: View Details
+          - generic [ref=e761]:
+            - generic [ref=e762]:
+              - generic [ref=e763]:
+                - generic [ref=e764]:
+                  - heading "Developing Hydra Hub – Node Distribution System" [level=3] [ref=e765]
+                  - heading "@tonythanh" [level=5] [ref=e766]
+                - button [ref=e767] [cursor=pointer]
+              - generic [ref=e768]:
+                - paragraph [ref=e769]: Budget category
+                - paragraph [ref=e771]: Core
+              - generic [ref=e772]:
+                - paragraph [ref=e773]: Proposal benefit
+                - generic [ref=e775]:
+                  - paragraph [ref=e776]: Supporting Developers and Businesses to Easily Access and Deploy Applications on Hydra
+                  - list [ref=e777]:
+                    - listitem [ref=e778]: DApp development teams will be able to adopt Hydra more quickly and scale their applications without the need for expensive and complex initial infrastructure investment. They can focus entirely on product…
+              - generic [ref=e779]:
+                - paragraph [ref=e780]: Budget Requested
+                - paragraph [ref=e781]: ₳ 580,000
+                - paragraph [ref=e782]: 405,000 USD
+              - generic [ref=e784]:
+                - paragraph [ref=e785]: "Proposed on: 18 April 2025"
+                - img [ref=e787]
+              - generic [ref=e789]:
+                - generic [ref=e790]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "16"
+                - paragraph [ref=e791]: "Poll: Yes 11 · No 10"
+            - link "View Details" [ref=e793] [cursor=pointer]:
+              - /url: /budget_discussion/506
+              - button "View Details" [ref=e794]: View Details
+          - generic [ref=e797]:
+            - generic [ref=e798]:
+              - generic [ref=e799]:
+                - generic [ref=e800]:
+                  - heading "dgghh" [level=3] [ref=e801]
+                  - heading "@testvaledev" [level=5] [ref=e802]
+                - button [ref=e803] [cursor=pointer]
+              - generic [ref=e804]:
+                - paragraph [ref=e805]: Budget category
+                - paragraph [ref=e807]: Core
+              - generic [ref=e808]:
+                - paragraph [ref=e809]: Proposal benefit
+                - paragraph [ref=e812]: dg
+              - generic [ref=e813]:
+                - paragraph [ref=e814]: Budget Requested
+                - paragraph [ref=e815]: ₳ 33
+                - paragraph [ref=e816]: 3 EUR
+              - generic [ref=e818]:
+                - paragraph [ref=e819]: "Proposed on: 17 April 2025"
+                - img [ref=e821]
+              - generic [ref=e823]:
+                - generic [ref=e824]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "4"
+                - paragraph [ref=e825]: "Poll: Yes 0 · No 18"
+            - link "View Details" [ref=e827] [cursor=pointer]:
+              - /url: /budget_discussion/490
+              - button "View Details" [ref=e828]: View Details
+          - generic [ref=e831]:
+            - generic [ref=e832]:
+              - generic [ref=e833]:
+                - generic [ref=e834]:
+                  - heading "Ledger App Rewrite" [level=3] [ref=e835]
+                  - heading "@michal_petro" [level=5] [ref=e836]
+                - button [ref=e837] [cursor=pointer]
+              - generic [ref=e838]:
+                - paragraph [ref=e839]: Budget category
+                - paragraph [ref=e841]: Core
+              - generic [ref=e842]:
+                - paragraph [ref=e843]: Proposal benefit
+                - paragraph [ref=e846]: Ledger wallet users will have better Cardano experience. Further app updates and releases will be faster and cheaper due to Ledger testing suite compatibility.
+              - generic [ref=e847]:
+                - paragraph [ref=e848]: Budget Requested
+                - paragraph [ref=e849]: ₳ 300,000
+                - paragraph [ref=e850]: 170,000 EUR
+              - generic [ref=e852]:
+                - paragraph [ref=e853]: "Proposed on: 17 April 2025"
+                - img [ref=e855]
+              - generic [ref=e857]:
+                - generic [ref=e858]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "6"
+                - paragraph [ref=e859]: "Poll: Yes 8 · No 5"
+            - link "View Details" [ref=e861] [cursor=pointer]:
+              - /url: /budget_discussion/486
+              - button "View Details" [ref=e862]: View Details
+          - generic [ref=e865]:
+            - generic [ref=e866]:
+              - generic [ref=e867]:
+                - generic [ref=e868]:
+                  - heading "BloxBean Java Tools Maintenance and Enhancement" [level=3] [ref=e869]
+                  - heading "@bloxbean" [level=5] [ref=e870]
+                - button [ref=e871] [cursor=pointer]
+              - generic [ref=e872]:
+                - paragraph [ref=e873]: Budget category
+                - paragraph [ref=e875]: Core
+              - generic [ref=e876]:
+                - paragraph [ref=e877]: Proposal benefit
+                - list [ref=e880]:
+                  - listitem [ref=e881]:
+                    - paragraph [ref=e883]: "Long-Term Support: Ensure BloxBean tools remain compatible with future Cardano upgrades for a seamless developer experience."
+                  - listitem:
+                    - paragraph [ref=e885]: "Enhanced Developer Efficiency: Improve tools and documentation, making it easier for developers to build on Cardano using Java and other JVM languages."
+                  - listitem:
+                    - paragraph [ref=e887]: Ecosystem…
+              - generic [ref=e888]:
+                - paragraph [ref=e889]: Budget Requested
+                - paragraph [ref=e890]: ₳ 99,600
+                - paragraph [ref=e891]: 60,000 USD
+              - generic [ref=e893]:
+                - paragraph [ref=e894]: "Proposed on: 16 April 2025"
+                - img [ref=e896]
+              - generic [ref=e898]:
+                - generic [ref=e899]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "7"
+                - paragraph [ref=e900]: "Poll: Yes 5 · No 4"
+            - link "View Details" [ref=e902] [cursor=pointer]:
+              - /url: /budget_discussion/445
+              - button "View Details" [ref=e903]: View Details
+          - generic [ref=e906]:
+            - generic [ref=e907]:
+              - generic [ref=e908]:
+                - generic [ref=e909]:
+                  - heading "Andamio — Powering Contributor Readiness Across Cardano Projects" [level=3] [ref=e910]
+                  - heading "@andamio" [level=5] [ref=e911]
+                - button [ref=e912] [cursor=pointer]
+              - generic [ref=e913]:
+                - paragraph [ref=e914]: Budget category
+                - paragraph [ref=e916]: Core
+              - generic [ref=e917]:
+                - paragraph [ref=e918]: Proposal benefit
+                - generic [ref=e920]:
+                  - paragraph [ref=e921]: Andamio accelerates the Cardano ecosystem's growth by providing live, ecosystem-wide infrastructure that enables projects to identify, verify, and activate talent at scale.
+                  - paragraph [ref=e922]:
+                    - text: Already live and operational,
+                    - emphasis [ref=e923]: Andamio
+                    - text: "will:"
+                  - list [ref=e924]:
+                    - listitem [ref=e925]:
+                      - generic [ref=e926]:
+                        - text: Speed up hiring and contribution readiness for key ecosystem teams.
+                        - text: "-…"
+              - generic [ref=e927]:
+                - paragraph [ref=e928]: Budget Requested
+                - paragraph [ref=e929]: ₳ 298,000
+                - paragraph [ref=e930]: 149,000 USD
+              - generic [ref=e932]:
+                - paragraph [ref=e933]: "Proposed on: 15 April 2025"
+                - img [ref=e935]
+              - generic [ref=e937]:
+                - generic [ref=e938]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "8"
+                - paragraph [ref=e939]: "Poll: Yes 2 · No 10"
+            - link "View Details" [ref=e941] [cursor=pointer]:
+              - /url: /budget_discussion/410
+              - button "View Details" [ref=e942]: View Details
+          - generic [ref=e945]:
+            - generic [ref=e946]:
+              - generic [ref=e947]:
+                - generic [ref=e948]:
+                  - heading "Eternl Maintenance" [level=3] [ref=e949]
+                  - heading "@eternl.drep.committee" [level=5] [ref=e950]
+                - button [ref=e951] [cursor=pointer]
+              - generic [ref=e952]:
+                - paragraph [ref=e953]: Budget category
+                - paragraph [ref=e955]: Core
+              - generic [ref=e956]:
+                - paragraph [ref=e957]: Proposal benefit
+                - paragraph [ref=e960]: Eternl addresses this need with a secure, feature-rich wallet available across multiple platforms. Eternl is a wallet for all ADA holders.
+              - generic [ref=e961]:
+                - paragraph [ref=e962]: Budget Requested
+                - paragraph [ref=e963]: ₳ 583,000
+                - paragraph [ref=e964]: 360,000 EUR
+              - generic [ref=e966]:
+                - paragraph [ref=e967]: "Proposed on: 13 April 2025"
+                - img [ref=e969]
+              - generic [ref=e971]:
+                - generic [ref=e972]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "33"
+                - paragraph [ref=e973]: "Poll: Yes 7 · No 20"
+            - link "View Details" [ref=e975] [cursor=pointer]:
+              - /url: /budget_discussion/324
+              - button "View Details" [ref=e976]: View Details
+          - generic [ref=e979]:
+            - generic [ref=e980]:
+              - generic [ref=e981]:
+                - generic [ref=e982]:
+                  - heading "ZK Bridge" [level=3] [ref=e983]
+                  - heading "@eryxracoon" [level=5] [ref=e984]
+                - button [ref=e985] [cursor=pointer]
+              - generic [ref=e986]:
+                - paragraph [ref=e987]: Budget category
+                - paragraph [ref=e989]: Core
+              - generic [ref=e990]:
+                - paragraph [ref=e991]: Proposal benefit
+                - paragraph [ref=e994]:
+                  - text: Building a zero-knowledge bridge provides several key benefits to the Cardano ecosystem. A bridge between Cardano and other blockchains would make it much easier for value to flow in from external ecosystems, increasing the liquidity available within Cardano.
+                  - text: A zero-knowledge bridge, specifically,…
+              - generic [ref=e995]:
+                - paragraph [ref=e996]: Budget Requested
+                - paragraph [ref=e997]: ₳ 700,000
+                - paragraph [ref=e998]: 350,000 USD
+              - generic [ref=e1000]:
+                - paragraph [ref=e1001]: "Proposed on: 11 April 2025"
+                - img [ref=e1003]
+              - generic [ref=e1005]:
+                - generic [ref=e1006]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "29"
+                - paragraph [ref=e1007]: "Poll: Yes 17 · No 13"
+            - link "View Details" [ref=e1009] [cursor=pointer]:
+              - /url: /budget_discussion/306
+              - button "View Details" [ref=e1010]: View Details
+          - generic [ref=e1013]:
+            - generic [ref=e1014]:
+              - generic [ref=e1015]:
+                - generic [ref=e1016]:
+                  - 'heading "Cardano Maintenance and Roadmap Delivery Proposal: Secure Ada Network Infrastructure for the enTire cardano communitY" [level=3] [ref=e1017]'
+                  - heading "@intersecttsc" [level=5] [ref=e1018]
+                - button [ref=e1019] [cursor=pointer]
+              - generic [ref=e1020]:
+                - paragraph [ref=e1021]: Budget category
+                - paragraph [ref=e1023]: Core
+              - generic [ref=e1024]:
+                - paragraph [ref=e1025]: Proposal benefit
+                - generic [ref=e1027]:
+                  - paragraph [ref=e1028]: "The primary advantages of the TSC approach are:"
+                  - paragraph [ref=e1029]: –
+                  - paragraph [ref=e1030]:
+                    - strong [ref=e1031]: 1. Consistency.
+                    - text: All work items will be evaluated according to the same criteria.
+                  - paragraph [ref=e1032]:
+                    - strong [ref=e1033]: 2. Transparency.
+                    - text: All funded work will engage with and report consistently to the community.
+                  - paragraph [ref=e1034]:
+                    - strong [ref=e1035]: 3. Avoidance of technical gaps.
+                    - text: Vendors can be sought…
+              - generic [ref=e1036]:
+                - paragraph [ref=e1037]: Budget Requested
+                - paragraph [ref=e1038]: ₳ 22,606,000
+                - paragraph [ref=e1039]: 11,303,000 USD
+              - generic [ref=e1041]:
+                - paragraph [ref=e1042]: "Proposed on: 11 April 2025"
+                - img [ref=e1044]
+              - generic [ref=e1046]:
+                - generic [ref=e1047]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "27"
+                - paragraph [ref=e1048]: "Poll: Yes 17 · No 43"
+            - link "View Details" [ref=e1050] [cursor=pointer]:
+              - /url: /budget_discussion/296
+              - button "View Details" [ref=e1051]: View Details
+          - generic [ref=e1054]:
+            - generic [ref=e1055]:
+              - generic [ref=e1056]:
+                - generic [ref=e1057]:
+                  - heading "TWEAG’s Proposals for multiple core budget projects for Cardano 2025" [level=3] [ref=e1058]
+                  - heading "@kris_kowalsky" [level=5] [ref=e1059]
+                - button [ref=e1060] [cursor=pointer]
+              - generic [ref=e1061]:
+                - paragraph [ref=e1062]: Budget category
+                - paragraph [ref=e1064]: Core
+              - generic [ref=e1065]:
+                - paragraph [ref=e1066]: Proposal benefit
+                - paragraph [ref=e1069]:
+                  - text: Proposal Benefit
+                  - text: If implemented, this proposal will deliver transformative technical value to the Cardano ecosystem, accelerating development across critical areas of the network stack. The proposed initiatives—ranging from ledger conformance testing and Plutus re-execution tooling, to Genesis…
+              - generic [ref=e1070]:
+                - paragraph [ref=e1071]: Budget Requested
+                - paragraph [ref=e1072]: ₳ 11,070,322.68
+                - paragraph [ref=e1073]: 7,307,520 USD
+              - generic [ref=e1075]:
+                - paragraph [ref=e1076]: "Proposed on: 9 April 2025"
+                - img [ref=e1078]
+              - generic [ref=e1080]:
+                - generic [ref=e1081]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "18"
+                - paragraph [ref=e1082]: "Poll: Yes 10 · No 6"
+            - link "View Details" [ref=e1084] [cursor=pointer]:
+              - /url: /budget_discussion/205
+              - button "View Details" [ref=e1085]: View Details
+          - generic [ref=e1088]:
+            - generic [ref=e1089]:
+              - generic [ref=e1090]:
+                - generic [ref=e1091]:
+                  - heading "Cardano Cross-Chain Interoperability Protocol Integration" [level=3] [ref=e1092]
+                  - heading "@protofire" [level=5] [ref=e1093]
+                - button [ref=e1094] [cursor=pointer]
+              - generic [ref=e1095]:
+                - paragraph [ref=e1096]: Budget category
+                - paragraph [ref=e1098]: Core
+              - generic [ref=e1099]:
+                - paragraph [ref=e1100]: Proposal benefit
+                - generic [ref=e1102]:
+                  - paragraph [ref=e1103]:
+                    - text: CCIP
+                    - text: CCIP provides a single interface through which dApps and Web3 entrepreneurs can securely meet all their cross-chain needs. CCIP can be used to transfer data, tokens, or both across chains.
+                    - text: "CCIP supports three main capabilities:"
+                  - list [ref=e1104]:
+                    - listitem [ref=e1105]: "Arbitrary Messaging: Send arbitrary data (encoded as bytes) to a…"
+              - generic [ref=e1106]:
+                - paragraph [ref=e1107]: Budget Requested
+                - paragraph [ref=e1108]: ₳ 200,000
+                - paragraph [ref=e1109]: 100,000 USD
+              - generic [ref=e1111]:
+                - paragraph [ref=e1112]: "Proposed on: 8 April 2025"
+                - img [ref=e1114]
+              - generic [ref=e1116]:
+                - generic [ref=e1117]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "9"
+                - paragraph [ref=e1118]: "Poll: Yes 3 · No 7"
+            - link "View Details" [ref=e1120] [cursor=pointer]:
+              - /url: /budget_discussion/175
+              - button "View Details" [ref=e1121]: View Details
+          - generic [ref=e1124]:
+            - generic [ref=e1125]:
+              - generic [ref=e1126]:
+                - generic [ref=e1127]:
+                  - 'heading "Unlocking 10%+ Yield: Bringing Real-World Assets to Cardano with InsurToken" [level=3] [ref=e1128]'
+                  - heading "@wozza" [level=5] [ref=e1129]
+                - button [ref=e1130] [cursor=pointer]
+              - generic [ref=e1131]:
+                - paragraph [ref=e1132]: Budget category
+                - paragraph [ref=e1134]: Core
+              - generic [ref=e1135]:
+                - paragraph [ref=e1136]: Proposal benefit
+                - paragraph [ref=e1139]: Our proposal addresses these specific issues by establishing the open source Cardano InsurToken Protocol, a blockchain-based platform designed explicitly for tokenizing Insurance Industry Assets. Initially, we focus specifically on insurance premium financing assets, leveraging PremFina’s…
+              - generic [ref=e1140]:
+                - paragraph [ref=e1141]: Budget Requested
+                - paragraph [ref=e1142]: ₳ 4,150,000
+                - paragraph [ref=e1143]: 2,070,500 USD
+              - generic [ref=e1145]:
+                - paragraph [ref=e1146]: "Proposed on: 8 April 2025"
+                - img [ref=e1148]
+              - generic [ref=e1150]:
+                - generic [ref=e1151]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "9"
+                - paragraph [ref=e1152]: "Poll: Yes 10 · No 20"
+            - link "View Details" [ref=e1154] [cursor=pointer]:
+              - /url: /budget_discussion/167
+              - button "View Details" [ref=e1155]: View Details
+          - generic [ref=e1158]:
+            - generic [ref=e1159]:
+              - generic [ref=e1160]:
+                - generic [ref=e1161]:
+                  - 'heading "Cardano Stable Index (CSI): A Diversified, On-Chain Basket of Native Stablecoins" [level=3] [ref=e1162]'
+                  - heading "@mayzteam" [level=5] [ref=e1163]
+                - button [ref=e1164] [cursor=pointer]
+              - generic [ref=e1165]:
+                - paragraph [ref=e1166]: Budget category
+                - paragraph [ref=e1168]: Core
+              - generic [ref=e1169]:
+                - paragraph [ref=e1170]: Proposal benefit
+                - generic [ref=e1172]:
+                  - paragraph [ref=e1173]:
+                    - text: The Cardano Stable Index (CSI) introduces a decentralized, algorithmic basket of native stablecoins. The index will be fully collateralized and transparently managed on-chain.
+                    - text: "Initial basket:"
+                  - list [ref=e1174]:
+                    - listitem [ref=e1175]: 25% DJED
+                    - listitem [ref=e1176]: 25% USDM
+                    - listitem [ref=e1177]: 25% iUSD
+                    - listitem [ref=e1178]: 25% USDA
+                  - paragraph [ref=e1179]: Users will be able to mint or redeem the index token 1:1 based…
+              - generic [ref=e1180]:
+                - paragraph [ref=e1181]: Budget Requested
+                - paragraph [ref=e1182]: ₳ 2,040,000
+                - paragraph [ref=e1183]: 1,020,000 USD
+              - generic [ref=e1185]:
+                - paragraph [ref=e1186]: "Proposed on: 7 April 2025"
+                - img [ref=e1188]
+              - generic [ref=e1190]:
+                - generic [ref=e1191]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "13"
+                - paragraph [ref=e1192]: "Poll: Yes 3 · No 10"
+            - link "View Details" [ref=e1194] [cursor=pointer]:
+              - /url: /budget_discussion/153
+              - button "View Details" [ref=e1195]: View Details
+          - generic [ref=e1198]:
+            - generic [ref=e1199]:
+              - generic [ref=e1200]:
+                - generic [ref=e1201]:
+                  - heading "OSC Budget Proposal - Paid Open Source Model for Sustainable Development" [level=3] [ref=e1202]
+                  - heading "@intersectosc" [level=5] [ref=e1203]
+                - button [ref=e1204] [cursor=pointer]
+              - generic [ref=e1205]:
+                - paragraph [ref=e1206]: Budget category
+                - paragraph [ref=e1208]: Core
+              - generic [ref=e1209]:
+                - paragraph [ref=e1210]: Proposal benefit
+                - generic [ref=e1212]:
+                  - paragraph [ref=e1213]:
+                    - emphasis [ref=e1214]: "The Solution: The Paid Open Source Model"
+                  - paragraph [ref=e1215]: "This budget proposal introduces a Paid Open Source Model to ensure that essential open-source projects receive structured funding. It includes:"
+                  - list [ref=e1216]:
+                    - listitem [ref=e1217]: A Maintainer Retainer Program to fund developers maintaining critical repositories.
+                    - listitem [ref=e1218]: Bug bounty and security…
+              - generic [ref=e1219]:
+                - paragraph [ref=e1220]: Budget Requested
+                - paragraph [ref=e1221]: ₳ 5,885,000
+                - paragraph [ref=e1222]: 2,940,000 USD
+              - generic [ref=e1224]:
+                - paragraph [ref=e1225]: "Proposed on: 7 April 2025"
+                - img [ref=e1227]
+              - generic [ref=e1229]:
+                - generic [ref=e1230]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "9"
+                - paragraph [ref=e1231]: "Poll: Yes 22 · No 2"
+            - link "View Details" [ref=e1233] [cursor=pointer]:
+              - /url: /budget_discussion/152
+              - button "View Details" [ref=e1234]: View Details
+          - generic [ref=e1237]:
+            - generic [ref=e1238]:
+              - generic [ref=e1239]:
+                - generic [ref=e1240]:
+                  - heading "2025 Input Output Engineering Core Development Proposal" [level=3] [ref=e1241]
+                  - heading "@inputoutput" [level=5] [ref=e1242]
+                - button [ref=e1243] [cursor=pointer]
+              - generic [ref=e1244]:
+                - paragraph [ref=e1245]: Budget category
+                - paragraph [ref=e1247]: Core
+              - generic [ref=e1248]:
+                - paragraph [ref=e1249]: Proposal benefit
+                - generic [ref=e1251]:
+                  - paragraph [ref=e1252]: In this proposal, IOE and its collaborators outline key core Cardano platform developments aimed at substantially improving network scalability, security, performance, and usability, while enhancing developer support.
+                  - paragraph [ref=e1253]: Implementation of these initiatives offers substantial benefits across the…
+              - generic [ref=e1254]:
+                - paragraph [ref=e1255]: Budget Requested
+                - paragraph [ref=e1256]: ₳ 96,817,080
+                - paragraph [ref=e1257]: 48,408,540 USD
+              - generic [ref=e1259]:
+                - paragraph [ref=e1260]: "Proposed on: 7 April 2025"
+                - img [ref=e1262]
+              - generic [ref=e1264]:
+                - generic [ref=e1265]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "45"
+                - paragraph [ref=e1266]: "Poll: Yes 69 · No 3"
+            - link "View Details" [ref=e1268] [cursor=pointer]:
+              - /url: /budget_discussion/151
+              - button "View Details" [ref=e1269]: View Details
+          - generic [ref=e1272]:
+            - generic [ref=e1273]:
+              - generic [ref=e1274]:
+                - generic [ref=e1275]:
+                  - heading "Scalus - DApps Development Platform" [level=3] [ref=e1276]
+                  - heading "@okhodakivskyi" [level=5] [ref=e1277]
+                - button [ref=e1278] [cursor=pointer]
+              - generic [ref=e1279]:
+                - paragraph [ref=e1280]: Budget category
+                - paragraph [ref=e1282]: Core
+              - generic [ref=e1283]:
+                - paragraph [ref=e1284]: Proposal benefit
+                - generic [ref=e1286]:
+                  - paragraph [ref=e1287]: (1) Benefits for professionals
+                  - paragraph [ref=e1288]: Scalus meets developers where they are. It bridges Web2 engineers from traditional firms with progressive onboarding and built-in safety, while giving seasoned Cardano builders advanced control and optimisations.
+                  - paragraph [ref=e1289]: "Web 2 developers:"
+                  - list [ref=e1290]:
+                    - listitem [ref=e1291]: Familiar dev experience & tooling…
+              - generic [ref=e1292]:
+                - paragraph [ref=e1293]: Budget Requested
+                - paragraph [ref=e1294]: ₳ 657,692
+                - paragraph [ref=e1295]: 427,500 USD
+              - generic [ref=e1297]:
+                - paragraph [ref=e1298]: "Proposed on: 6 April 2025"
+                - img [ref=e1300]
+              - generic [ref=e1302]:
+                - generic [ref=e1303]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "15"
+                - paragraph [ref=e1304]: "Poll: Yes 4 · No 16"
+            - link "View Details" [ref=e1306] [cursor=pointer]:
+              - /url: /budget_discussion/142
+              - button "View Details" [ref=e1307]: View Details
+          - generic [ref=e1310]:
+            - generic [ref=e1311]:
+              - generic [ref=e1312]:
+                - generic [ref=e1313]:
+                  - heading "Deploy XPort, Wanchain's cross-chain data transfer protocol, to Cardano" [level=3] [ref=e1314]
+                  - heading "@wanchain" [level=5] [ref=e1315]
+                - button [ref=e1316] [cursor=pointer]
+              - generic [ref=e1317]:
+                - paragraph [ref=e1318]: Budget category
+                - paragraph [ref=e1320]: Core
+              - generic [ref=e1321]:
+                - paragraph [ref=e1322]: Proposal benefit
+                - paragraph [ref=e1325]: Once deployed, XPort will allow arbitrary data to flow between Cardano, any EVM, and select non-EVM networks. This will enable developers to develop applications that span multiple blockchains. It will also empower developers to shift their focus from extracting value out of a blockchain to…
+              - generic [ref=e1326]:
+                - paragraph [ref=e1327]: Budget Requested
+                - paragraph [ref=e1328]: ₳ 617,200
+                - paragraph [ref=e1329]: 400,000 USD
+              - generic [ref=e1331]:
+                - paragraph [ref=e1332]: "Proposed on: 1 April 2025"
+                - img [ref=e1334]
+              - generic [ref=e1336]:
+                - generic [ref=e1337]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "18"
+                - paragraph [ref=e1338]: "Poll: Yes 3 · No 16"
+            - link "View Details" [ref=e1340] [cursor=pointer]:
+              - /url: /budget_discussion/72
+              - button "View Details" [ref=e1341]: View Details
+          - generic [ref=e1344]:
+            - generic [ref=e1345]:
+              - generic [ref=e1346]:
+                - generic [ref=e1347]:
+                  - heading "Cexplorer.io – Developer-Focused Blockchain Explorer for Cardano" [level=3] [ref=e1348]
+                  - heading "@cexplorer" [level=5] [ref=e1349]
+                - button [ref=e1350] [cursor=pointer]
+              - generic [ref=e1351]:
+                - paragraph [ref=e1352]: Budget category
+                - paragraph [ref=e1354]: Core
+              - generic [ref=e1355]:
+                - paragraph [ref=e1356]: Proposal benefit
+                - paragraph [ref=e1359]: Cexplorer.io serves over 50,000 monthly users and processes millions of data requests, providing real-time, in-depth insights into Cardano’s blockchain. It supports developers, SPOs, researchers, and everyday users with tools for exploring transactions, addresses, tokens, and stake pools. By…
+              - generic [ref=e1360]:
+                - paragraph [ref=e1361]: Budget Requested
+                - paragraph [ref=e1362]: ₳ 266,667
+                - paragraph [ref=e1363]: 185,000 EUR
+              - generic [ref=e1365]:
+                - paragraph [ref=e1366]: "Proposed on: 1 April 2025"
+                - img [ref=e1368]
+              - generic [ref=e1370]:
+                - generic [ref=e1371]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "10"
+                - paragraph [ref=e1372]: "Poll: Yes 5 · No 7"
+            - link "View Details" [ref=e1374] [cursor=pointer]:
+              - /url: /budget_discussion/71
+              - button "View Details" [ref=e1375]: View Details
+          - generic [ref=e1378]:
+            - generic [ref=e1379]:
+              - generic [ref=e1380]:
+                - generic [ref=e1381]:
+                  - heading "Hydra Hexcore – An Automated Deployment & Management Solution for Multi-Hydra Party" [level=3] [ref=e1382]
+                  - heading "@tonythanh" [level=5] [ref=e1383]
+                - button [ref=e1384] [cursor=pointer]
+              - generic [ref=e1385]:
+                - paragraph [ref=e1386]: Budget category
+                - paragraph [ref=e1388]: Core
+              - generic [ref=e1389]:
+                - paragraph [ref=e1390]: Proposal benefit
+                - paragraph [ref=e1393]: Hydra Hexcore is a system designed to simplify and accelerate the application-layer development process. With Hydra Hexcore, developers can fully focus on building their applications without having to worry about managing infrastructure or using complex server-side command line tools. This…
+              - generic [ref=e1394]:
+                - paragraph [ref=e1395]: Budget Requested
+                - paragraph [ref=e1396]: ₳ 160,000
+                - paragraph [ref=e1397]: 2,800,000,000 VND
+              - generic [ref=e1399]:
+                - paragraph [ref=e1400]: "Proposed on: 1 April 2025"
+                - img [ref=e1402]
+              - generic [ref=e1404]:
+                - generic [ref=e1405]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "5"
+                - paragraph [ref=e1406]: "Poll: Yes 11 · No 3"
+            - link "View Details" [ref=e1408] [cursor=pointer]:
+              - /url: /budget_discussion/70
+              - button "View Details" [ref=e1409]: View Details
+          - generic [ref=e1412]:
+            - generic [ref=e1413]:
+              - generic [ref=e1414]:
+                - generic [ref=e1415]:
+                  - heading "Gerolamo - cardano node in typescript" [level=3] [ref=e1416]
+                  - heading "@govtooladmin" [level=5] [ref=e1417]
+                - button [ref=e1418] [cursor=pointer]
+              - generic [ref=e1419]:
+                - paragraph [ref=e1420]: Budget category
+                - paragraph [ref=e1422]: Core
+              - generic [ref=e1423]:
+                - paragraph [ref=e1424]: Proposal benefit
+                - list [ref=e1427]:
+                  - listitem [ref=e1428]: users, turstless and more scalable applications
+                  - listitem [ref=e1429]: experienced developers, local nodes means less infrastructure and easier access to Cardano
+                  - listitem [ref=e1430]: new developers, a familiar source code means more resources to understand what Cardano does
+              - generic [ref=e1431]:
+                - paragraph [ref=e1432]: Budget Requested
+                - paragraph [ref=e1433]: ₳ 578,571
+                - paragraph [ref=e1434]: 372,600 EUR
+              - generic [ref=e1436]:
+                - paragraph [ref=e1437]: "Proposed on: 1 April 2025"
+                - img [ref=e1439]
+              - generic [ref=e1441]:
+                - generic [ref=e1442]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "4"
+                - paragraph [ref=e1443]: "Poll: Yes 12 · No 2"
+            - link "View Details" [ref=e1445] [cursor=pointer]:
+              - /url: /budget_discussion/69
+              - button "View Details" [ref=e1446]: View Details
+          - generic [ref=e1449]:
+            - generic [ref=e1450]:
+              - generic [ref=e1451]:
+                - generic [ref=e1452]:
+                  - heading "Lucid Evolution Maintenance" [level=3] [ref=e1453]
+                  - heading "@govtooladmin" [level=5] [ref=e1454]
+                - button [ref=e1455] [cursor=pointer]
+              - generic [ref=e1456]:
+                - paragraph [ref=e1457]: Budget category
+                - paragraph [ref=e1459]: Core
+              - generic [ref=e1460]:
+                - paragraph [ref=e1461]: Proposal benefit
+                - generic [ref=e1463]:
+                  - paragraph [ref=e1464]: "This project significantly benefits the Cardano community by providing reliable tools for developers:"
+                  - paragraph [ref=e1465]: Increased Efficiency, allowing developers to focus on building and optimizing their applications.
+                  - paragraph [ref=e1466]: "Enhanced Quality: Reliable testing environments that lead to more robust and secure smart…"
+              - generic [ref=e1467]:
+                - paragraph [ref=e1468]: Budget Requested
+                - paragraph [ref=e1469]: ₳ 130,903
+                - paragraph [ref=e1470]: 100,000 USD
+              - generic [ref=e1472]:
+                - paragraph [ref=e1473]: "Proposed on: 1 April 2025"
+                - img [ref=e1475]
+              - generic [ref=e1477]:
+                - generic [ref=e1478]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "4"
+                - paragraph [ref=e1479]: "Poll: Yes 8 · No 2"
+            - link "View Details" [ref=e1481] [cursor=pointer]:
+              - /url: /budget_discussion/68
+              - button "View Details" [ref=e1482]: View Details
+          - generic [ref=e1485]:
+            - generic [ref=e1486]:
+              - generic [ref=e1487]:
+                - generic [ref=e1488]:
+                  - heading "Extended Symbolic" [level=3] [ref=e1489]
+                  - heading "@zkfold" [level=5] [ref=e1490]
+                - button [ref=e1491] [cursor=pointer]
+              - generic [ref=e1492]:
+                - paragraph [ref=e1493]: Budget category
+                - paragraph [ref=e1495]: Core
+              - generic [ref=e1496]:
+                - paragraph [ref=e1497]: Proposal benefit
+                - generic [ref=e1499]:
+                  - paragraph [ref=e1500]: The project has the potential to significantly impact the development of smart contracts on Cardano, reducing fees and increasing efficiency.
+                  - paragraph [ref=e1501]: Providing developers with a proper tool to tap into the power of zero-knowledge protocols enables them to create smart contracts and DApps that are on…
+              - generic [ref=e1502]:
+                - paragraph [ref=e1503]: Budget Requested
+                - paragraph [ref=e1504]: ₳ 404,338
+                - paragraph [ref=e1505]: 300,000 USD
+              - generic [ref=e1507]:
+                - paragraph [ref=e1508]: "Proposed on: 1 April 2025"
+                - img [ref=e1510]
+              - generic [ref=e1512]:
+                - generic [ref=e1513]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "10"
+                - paragraph [ref=e1514]: "Poll: Yes 4 · No 3"
+            - link "View Details" [ref=e1516] [cursor=pointer]:
+              - /url: /budget_discussion/62
+              - button "View Details" [ref=e1517]: View Details
+          - generic [ref=e1520]:
+            - generic [ref=e1521]:
+              - generic [ref=e1522]:
+                - generic [ref=e1523]:
+                  - heading "Extended UPLC Converter" [level=3] [ref=e1524]
+                  - heading "@zkfold" [level=5] [ref=e1525]
+                - button [ref=e1526] [cursor=pointer]
+              - generic [ref=e1527]:
+                - paragraph [ref=e1528]: Budget category
+                - paragraph [ref=e1530]: Core
+              - generic [ref=e1531]:
+                - paragraph [ref=e1532]: Proposal benefit
+                - generic [ref=e1534]:
+                  - paragraph [ref=e1535]: UPLC Converter will significantly support developers and boost the capabilities of the Cardano blockchain, making it more competitive, versatile, and attractive to both developers and users seeking advanced, efficient, and secure blockchain solutions.
+                  - paragraph [ref=e1536]: By enabling the integration of zero knowledge…
+              - generic [ref=e1537]:
+                - paragraph [ref=e1538]: Budget Requested
+                - paragraph [ref=e1539]: ₳ 242,639
+                - paragraph [ref=e1540]: 180,000 USD
+              - generic [ref=e1542]:
+                - paragraph [ref=e1543]: "Proposed on: 1 April 2025"
+                - img [ref=e1545]
+              - generic [ref=e1547]:
+                - generic [ref=e1548]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "7"
+                - paragraph [ref=e1549]: "Poll: Yes 1 · No 11"
+            - link "View Details" [ref=e1551] [cursor=pointer]:
+              - /url: /budget_discussion/61
+              - button "View Details" [ref=e1552]: View Details
+          - generic [ref=e1555]:
+            - generic [ref=e1556]:
+              - generic [ref=e1557]:
+                - generic [ref=e1558]:
+                  - heading "zkFold ZK Rollup" [level=3] [ref=e1559]
+                  - heading "@zkfold" [level=5] [ref=e1560]
+                - button [ref=e1561] [cursor=pointer]
+              - generic [ref=e1562]:
+                - paragraph [ref=e1563]: Budget category
+                - paragraph [ref=e1565]: Core
+              - generic [ref=e1566]:
+                - paragraph [ref=e1567]: Proposal benefit
+                - generic [ref=e1569]:
+                  - paragraph [ref=e1570]:
+                    - text: zkFold will develop and implement ZK rollups on Cardano to scale it efficiently, promoting broader adoption and supporting an ecosystem of decentralized applications and services.
+                    - text: "Overall, our proposal will have the following positive impact on the Cardano ecosystem:"
+                  - list [ref=e1571]:
+                    - listitem [ref=e1572]: "Improved Scalability: ZK…"
+              - generic [ref=e1573]:
+                - paragraph [ref=e1574]: Budget Requested
+                - paragraph [ref=e1575]: ₳ 1,161,000
+                - paragraph [ref=e1576]: 860,000 USD
+              - generic [ref=e1578]:
+                - paragraph [ref=e1579]: "Proposed on: 1 April 2025"
+                - img [ref=e1581]
+              - generic [ref=e1583]:
+                - generic [ref=e1584]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "27"
+                - paragraph [ref=e1585]: "Poll: Yes 25 · No 6"
+            - link "View Details" [ref=e1587] [cursor=pointer]:
+              - /url: /budget_discussion/60
+              - button "View Details" [ref=e1588]: View Details
+          - generic [ref=e1591]:
+            - generic [ref=e1592]:
+              - generic [ref=e1593]:
+                - generic [ref=e1594]:
+                  - heading "Complete Web3 developer stack to make Cardano the smart contract layer for Bitcoin" [level=3] [ref=e1595]
+                  - heading "@gomaestro" [level=5] [ref=e1596]
+                - button [ref=e1597] [cursor=pointer]
+              - generic [ref=e1598]:
+                - paragraph [ref=e1599]: Budget category
+                - paragraph [ref=e1601]: Core
+              - generic [ref=e1602]:
+                - paragraph [ref=e1603]: Proposal benefit
+                - generic [ref=e1605]:
+                  - paragraph [ref=e1606]: "Integrating Maestro’s infrastructure to enable Cardano as the smart contract layer for Bitcoin would generate substantial benefits across several layers of the Cardano developer ecosystem:"
+                  - list [ref=e1607]:
+                    - listitem [ref=e1608]:
+                      - generic [ref=e1609]:
+                        - text: "Cardano DeFi Developers:"
+                        - text: Developers of DeFi applications (such as lending protocols like Fluidtokens) will…
+              - generic [ref=e1610]:
+                - paragraph [ref=e1611]: Budget Requested
+                - paragraph [ref=e1612]: ₳ 600,000
+                - paragraph [ref=e1613]: 360,000 USD
+              - generic [ref=e1615]:
+                - paragraph [ref=e1616]: "Proposed on: 1 April 2025"
+                - img [ref=e1618]
+              - generic [ref=e1620]:
+                - generic [ref=e1621]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "18"
+                - paragraph [ref=e1622]: "Poll: Yes 5 · No 14"
+            - link "View Details" [ref=e1624] [cursor=pointer]:
+              - /url: /budget_discussion/58
+              - button "View Details" [ref=e1625]: View Details
+          - generic [ref=e1628]:
+            - generic [ref=e1629]:
+              - generic [ref=e1630]:
+                - generic [ref=e1631]:
+                  - 'heading "MLabs Core Tool Maintenance & Enhancement: Plutarch" [level=3] [ref=e1632]'
+                  - heading "@mlabsllc01" [level=5] [ref=e1633]
+                - button [ref=e1634] [cursor=pointer]
+              - generic [ref=e1635]:
+                - paragraph [ref=e1636]: Budget category
+                - paragraph [ref=e1638]: Core
+              - generic [ref=e1639]:
+                - paragraph [ref=e1640]: Proposal benefit
+                - paragraph [ref=e1643]: This proposal ensures Plutarch remains robust, up-to-date, and supported, benefiting Cardano developers and dApp projects who rely on it. The value is a more stable, efficient development environment, fostering innovation. The ROI includes increased developer productivity, enhanced dApp quality,…
+              - generic [ref=e1644]:
+                - paragraph [ref=e1645]: Budget Requested
+                - paragraph [ref=e1646]: ₳ 243,478
+                - paragraph [ref=e1647]: 168,000 USD
+              - generic [ref=e1649]:
+                - paragraph [ref=e1650]: "Proposed on: 1 April 2025"
+                - img [ref=e1652]
+              - generic [ref=e1654]:
+                - generic [ref=e1655]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "1"
+                - paragraph [ref=e1656]: "Poll: Yes 5 · No 1"
+            - link "View Details" [ref=e1658] [cursor=pointer]:
+              - /url: /budget_discussion/53
+              - button "View Details" [ref=e1659]: View Details
+          - generic [ref=e1662]:
+            - generic [ref=e1663]:
+              - generic [ref=e1664]:
+                - generic [ref=e1665]:
+                  - 'heading "MLabs Core Tool Maintenance & Enhancement: Cardano Transaction Library (CTL)" [level=3] [ref=e1666]'
+                  - heading "@mlabsllc01" [level=5] [ref=e1667]
+                - button [ref=e1668] [cursor=pointer]
+              - generic [ref=e1669]:
+                - paragraph [ref=e1670]: Budget category
+                - paragraph [ref=e1672]: Core
+              - generic [ref=e1673]:
+                - paragraph [ref=e1674]: Proposal benefit
+                - paragraph [ref=e1677]: This proposal ensures CTL remains robust, up-to-date, and supported, directly benefiting Cardano developers using Purescript to build dApps. It provides a stable and efficient development environment specifically for browser-based applications. The ROI includes enabling faster development cycles…
+              - generic [ref=e1678]:
+                - paragraph [ref=e1679]: Budget Requested
+                - paragraph [ref=e1680]: ₳ 139,130
+                - paragraph [ref=e1681]: 96,000 USD
+              - generic [ref=e1683]:
+                - paragraph [ref=e1684]: "Proposed on: 1 April 2025"
+                - img [ref=e1686]
+              - generic [ref=e1688]:
+                - generic [ref=e1689]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "1"
+                - paragraph [ref=e1690]: "Poll: Yes 4 · No 2"
+            - link "View Details" [ref=e1692] [cursor=pointer]:
+              - /url: /budget_discussion/52
+              - button "View Details" [ref=e1693]: View Details
+          - generic [ref=e1696]:
+            - generic [ref=e1697]:
+              - generic [ref=e1698]:
+                - generic [ref=e1699]:
+                  - heading "Midgard - Optimistic Rollups" [level=3] [ref=e1700]
+                  - heading "@govtooladmin" [level=5] [ref=e1701]
+                - button [ref=e1702] [cursor=pointer]
+              - generic [ref=e1703]:
+                - paragraph [ref=e1704]: Budget category
+                - paragraph [ref=e1706]: Core
+              - generic [ref=e1707]:
+                - paragraph [ref=e1708]: Proposal benefit
+                - paragraph [ref=e1711]: Midgard has a tokenless design. All transaction fees on Midgard are paid in Ada, and every Midgard block is published to the Cardano L1. Where Hydra moves transactions offchain (and thus does not contribute consistently in fee revenue to the Cardano L1) Midgard keeps transactions onchain but in a…
+              - generic [ref=e1712]:
+                - paragraph [ref=e1713]: Budget Requested
+                - paragraph [ref=e1714]: ₳ 2,162,096
+                - paragraph [ref=e1715]: 1,505,000 USD
+              - generic [ref=e1717]:
+                - paragraph [ref=e1718]: "Proposed on: 1 April 2025"
+                - img [ref=e1720]
+              - generic [ref=e1722]:
+                - generic [ref=e1723]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "9"
+                - paragraph [ref=e1724]: "Poll: Yes 33 · No 2"
+            - link "View Details" [ref=e1726] [cursor=pointer]:
+              - /url: /budget_discussion/51
+              - button "View Details" [ref=e1727]: View Details
+          - generic [ref=e1730]:
+            - generic [ref=e1731]:
+              - generic [ref=e1732]:
+                - generic [ref=e1733]:
+                  - 'heading "MLabs Maintenance & Enhancement: Atlas PAB" [level=3] [ref=e1734]'
+                  - heading "@mlabsllc01" [level=5] [ref=e1735]
+                - button [ref=e1736] [cursor=pointer]
+              - generic [ref=e1737]:
+                - paragraph [ref=e1738]: Budget category
+                - paragraph [ref=e1740]: Core
+              - generic [ref=e1741]:
+                - paragraph [ref=e1742]: Proposal benefit
+                - paragraph [ref=e1745]: Funding this proposal ensures Atlas PAB remains a robust and up-to-date backend solution for Cardano dApp developers. This benefits developers by providing a reliable tool for managing application logic, querying chain data, and indexing contract information. The ROI for the community includes…
+              - generic [ref=e1746]:
+                - paragraph [ref=e1747]: Budget Requested
+                - paragraph [ref=e1748]: ₳ 83,478
+                - paragraph [ref=e1749]: 57,600 USD
+              - generic [ref=e1751]:
+                - paragraph [ref=e1752]: "Proposed on: 1 April 2025"
+                - img [ref=e1754]
+              - generic [ref=e1756]:
+                - generic [ref=e1757]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "2"
+                - paragraph [ref=e1758]: "Poll: Yes 3 · No 2"
+            - link "View Details" [ref=e1760] [cursor=pointer]:
+              - /url: /budget_discussion/45
+              - button "View Details" [ref=e1761]: View Details
+          - generic [ref=e1764]:
+            - generic [ref=e1765]:
+              - generic [ref=e1766]:
+                - generic [ref=e1767]:
+                  - 'heading "MLabs Core Tool Maintenance & Enhancement: CLB" [level=3] [ref=e1768]'
+                  - heading "@mlabsllc01" [level=5] [ref=e1769]
+                - button [ref=e1770] [cursor=pointer]
+              - generic [ref=e1771]:
+                - paragraph [ref=e1772]: Budget category
+                - paragraph [ref=e1774]: Core
+              - generic [ref=e1775]:
+                - paragraph [ref=e1776]: Proposal benefit
+                - paragraph [ref=e1779]: This proposal ensures developers have continued access to CLB, a maintained and up-to-date Cardano emulator. The benefit is faster, more efficient, and reliable local testing cycles for dApps, particularly those using Atlas and CTL. This speeds up development, helps identify bugs earlier, and…
+              - generic [ref=e1780]:
+                - paragraph [ref=e1781]: Budget Requested
+                - paragraph [ref=e1782]: ₳ 45,217
+                - paragraph [ref=e1783]: 31,200 USD
+              - generic [ref=e1785]:
+                - paragraph [ref=e1786]: "Proposed on: 1 April 2025"
+                - img [ref=e1788]
+              - generic [ref=e1790]:
+                - generic [ref=e1791]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "2"
+                - paragraph [ref=e1792]: "Poll: Yes 3 · No 1"
+            - link "View Details" [ref=e1794] [cursor=pointer]:
+              - /url: /budget_discussion/44
+              - button "View Details" [ref=e1795]: View Details
+          - generic [ref=e1798]:
+            - generic [ref=e1799]:
+              - generic [ref=e1800]:
+                - generic [ref=e1801]:
+                  - 'heading "MLabs Core Tool Maintenance & Enhancement: Ply" [level=3] [ref=e1802]'
+                  - heading "@mlabsllc01" [level=5] [ref=e1803]
+                - button [ref=e1804] [cursor=pointer]
+              - generic [ref=e1805]:
+                - paragraph [ref=e1806]: Budget category
+                - paragraph [ref=e1808]: Core
+              - generic [ref=e1809]:
+                - paragraph [ref=e1810]: Proposal benefit
+                - paragraph [ref=e1813]: This proposal ensures developers using Plutarch continue to benefit from Ply's type-safe bridge between on-chain and off-chain code. The primary benefit is increased developer confidence, reduced runtime errors related to script interfacing, and potentially faster development due to improved type…
+              - generic [ref=e1814]:
+                - paragraph [ref=e1815]: Budget Requested
+                - paragraph [ref=e1816]: ₳ 45,217
+                - paragraph [ref=e1817]: 31,200 USD
+              - generic [ref=e1819]:
+                - paragraph [ref=e1820]: "Proposed on: 1 April 2025"
+                - img [ref=e1822]
+              - generic [ref=e1824]:
+                - generic [ref=e1825]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "0"
+                - paragraph [ref=e1826]: "Poll: Yes 1 · No 3"
+            - link "View Details" [ref=e1828] [cursor=pointer]:
+              - /url: /budget_discussion/43
+              - button "View Details" [ref=e1829]: View Details
+          - generic [ref=e1832]:
+            - generic [ref=e1833]:
+              - generic [ref=e1834]:
+                - generic [ref=e1835]:
+                  - 'heading "MLabs Core Tool Maintenance & Enhancement: Cardano.nix" [level=3] [ref=e1836]'
+                  - heading "@mlabsllc01" [level=5] [ref=e1837]
+                - button [ref=e1838] [cursor=pointer]
+              - generic [ref=e1839]:
+                - paragraph [ref=e1840]: Budget category
+                - paragraph [ref=e1842]: Core
+              - generic [ref=e1843]:
+                - paragraph [ref=e1844]: Proposal benefit
+                - paragraph [ref=e1847]: Funding this proposal ensures the Cardano community continues to have access to a maintained and reliable Cardano.nix toolset. This benefits anyone deploying Cardano infrastructure (nodes, wallets, explorers) using Nix, including SPOs, developers, and enterprises. The value lies in providing…
+              - generic [ref=e1848]:
+                - paragraph [ref=e1849]: Budget Requested
+                - paragraph [ref=e1850]: ₳ 45,217
+                - paragraph [ref=e1851]: 31,200 USD
+              - generic [ref=e1853]:
+                - paragraph [ref=e1854]: "Proposed on: 1 April 2025"
+                - img [ref=e1856]
+              - generic [ref=e1858]:
+                - generic [ref=e1859]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "0"
+                - paragraph [ref=e1860]: "Poll: Yes 1 · No 3"
+            - link "View Details" [ref=e1862] [cursor=pointer]:
+              - /url: /budget_discussion/42
+              - button "View Details" [ref=e1863]: View Details
+          - generic [ref=e1866]:
+            - generic [ref=e1867]:
+              - generic [ref=e1868]:
+                - generic [ref=e1869]:
+                  - 'heading "Pallas: Sustaining Critical Rust Tooling for Cardano" [level=3] [ref=e1870]'
+                  - heading "@txpipe" [level=5] [ref=e1871]
+                - button [ref=e1872] [cursor=pointer]
+              - generic [ref=e1873]:
+                - paragraph [ref=e1874]: Budget category
+                - paragraph [ref=e1876]: Core
+              - generic [ref=e1877]:
+                - paragraph [ref=e1878]: Proposal benefit
+                - paragraph [ref=e1881]: Securing ongoing funding for Pallas directly benefits the Cardano developer community by ensuring its continued reliability and performance as a key open-source resource for the Cardano ecosystem. Projects like Aiken, Lucid, Mithril, and Amaru already utilize Pallas to streamline development and…
+              - generic [ref=e1882]:
+                - paragraph [ref=e1883]: Budget Requested
+                - paragraph [ref=e1884]: ₳ 220,914
+                - paragraph [ref=e1885]: 132,549 USD
+              - generic [ref=e1887]:
+                - paragraph [ref=e1888]: "Proposed on: 1 April 2025"
+                - img [ref=e1890]
+              - generic [ref=e1892]:
+                - generic [ref=e1893]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "2"
+                - paragraph [ref=e1894]: "Poll: Yes 9 · No 3"
+            - link "View Details" [ref=e1896] [cursor=pointer]:
+              - /url: /budget_discussion/41
+              - button "View Details" [ref=e1897]: View Details
+          - generic [ref=e1900]:
+            - generic [ref=e1901]:
+              - generic [ref=e1902]:
+                - generic [ref=e1903]:
+                  - 'heading "UTxO RPC: Sustaining Cardano Blockchain Integration" [level=3] [ref=e1904]'
+                  - heading "@txpipe" [level=5] [ref=e1905]
+                - button [ref=e1906] [cursor=pointer]
+              - generic [ref=e1907]:
+                - paragraph [ref=e1908]: Budget category
+                - paragraph [ref=e1910]: Core
+              - generic [ref=e1911]:
+                - paragraph [ref=e1912]: Proposal benefit
+                - paragraph [ref=e1915]: Securing funding for UTxO RPC ensures it remains actively maintained and continues to evolve with the Cardano ecosystem's needs. Ongoing updates, performance improvements, and new feature development will ensure the interface stays relevant and effective. This support will help simplify blockchain…
+              - generic [ref=e1916]:
+                - paragraph [ref=e1917]: Budget Requested
+                - paragraph [ref=e1918]: ₳ 220,914
+                - paragraph [ref=e1919]: 132,549 USD
+              - generic [ref=e1921]:
+                - paragraph [ref=e1922]: "Proposed on: 1 April 2025"
+                - img [ref=e1924]
+              - generic [ref=e1926]:
+                - generic [ref=e1927]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "1"
+                - paragraph [ref=e1928]: "Poll: Yes 11 · No 2"
+            - link "View Details" [ref=e1930] [cursor=pointer]:
+              - /url: /budget_discussion/40
+              - button "View Details" [ref=e1931]: View Details
+          - generic [ref=e1934]:
+            - generic [ref=e1935]:
+              - generic [ref=e1936]:
+                - generic [ref=e1937]:
+                  - 'heading "Dolos: Sustaining a Lightweight Cardano Data Node" [level=3] [ref=e1938]'
+                  - heading "@txpipe" [level=5] [ref=e1939]
+                - button [ref=e1940] [cursor=pointer]
+              - generic [ref=e1941]:
+                - paragraph [ref=e1942]: Budget category
+                - paragraph [ref=e1944]: Core
+              - generic [ref=e1945]:
+                - paragraph [ref=e1946]: Proposal benefit
+                - paragraph [ref=e1949]: Securing funding for Dolos will ensure its continued maintenance, optimization, and feature expansion, directly benefiting projects that rely on fast and lightweight access to Cardano ledger data. Continued improvements will enhance performance, reduce infrastructure overhead, and support a broader…
+              - generic [ref=e1950]:
+                - paragraph [ref=e1951]: Budget Requested
+                - paragraph [ref=e1952]: ₳ 220,914
+                - paragraph [ref=e1953]: 132,549 USD
+              - generic [ref=e1955]:
+                - paragraph [ref=e1956]: "Proposed on: 1 April 2025"
+                - img [ref=e1958]
+              - generic [ref=e1960]:
+                - generic [ref=e1961]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "1"
+                - paragraph [ref=e1962]: "Poll: Yes 7 · No 2"
+            - link "View Details" [ref=e1964] [cursor=pointer]:
+              - /url: /budget_discussion/39
+              - button "View Details" [ref=e1965]: View Details
+          - generic [ref=e1968]:
+            - generic [ref=e1969]:
+              - generic [ref=e1970]:
+                - generic [ref=e1971]:
+                  - heading "Daedalus Maintenance and Enhancement Proposal" [level=3] [ref=e1972]
+                  - heading "@govtooladmin" [level=5] [ref=e1973]
+                - button [ref=e1974] [cursor=pointer]
+              - generic [ref=e1975]:
+                - paragraph [ref=e1976]: Budget category
+                - paragraph [ref=e1978]: Core
+              - generic [ref=e1979]:
+                - paragraph [ref=e1980]: Proposal benefit
+                - generic [ref=e1982]:
+                  - paragraph [ref=e1983]: This proposal enhances the Daedalus Wallet by improving performance, governance participation, and scalability, ensuring its long-term viability in the Cardano ecosystem.
+                  - paragraph [ref=e1984]:
+                    - text: "Key Benefits:"
+                    - text: "Better User Experience: LSM integration and Mithril research reduce memory usage and improve sync…"
+              - generic [ref=e1985]:
+                - paragraph [ref=e1986]: Budget Requested
+                - paragraph [ref=e1987]: ₳ 1,164,000
+                - paragraph [ref=e1988]: 582,000 USD
+              - generic [ref=e1990]:
+                - paragraph [ref=e1991]: "Proposed on: 1 April 2025"
+                - img [ref=e1993]
+              - generic [ref=e1995]:
+                - generic [ref=e1996]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "15"
+                - paragraph [ref=e1997]: "Poll: Yes 4 · No 6"
+            - link "View Details" [ref=e1999] [cursor=pointer]:
+              - /url: /budget_discussion/20
+              - button "View Details" [ref=e2000]: View Details
+          - generic [ref=e2003]:
+            - generic [ref=e2004]:
+              - generic [ref=e2005]:
+                - generic [ref=e2006]:
+                  - heading "Hardware Wallets Maintenance" [level=3] [ref=e2007]
+                  - heading "@michal_petro" [level=5] [ref=e2008]
+                - button [ref=e2009] [cursor=pointer]
+              - generic [ref=e2010]:
+                - paragraph [ref=e2011]: Budget category
+                - paragraph [ref=e2013]: Core
+              - generic [ref=e2014]:
+                - paragraph [ref=e2015]: Proposal benefit
+                - generic [ref=e2017]:
+                  - paragraph [ref=e2018]: If implementation of new Cardano features and breaking changes is not completed then hardware wallets may become incompatible with Cardano, stopping users from accessing newer blockchain features or stop working altogether.
+                  - paragraph [ref=e2019]: If regular maintenance, bugfixing and developer support is not completed,…
+              - generic [ref=e2020]:
+                - paragraph [ref=e2021]: Budget Requested
+                - paragraph [ref=e2022]: ₳ 424,800
+                - paragraph [ref=e2023]: 284,600 USD
+              - generic [ref=e2025]:
+                - paragraph [ref=e2026]: "Proposed on: 1 April 2025"
+                - img [ref=e2028]
+              - generic [ref=e2030]:
+                - generic [ref=e2031]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "7"
+                - paragraph [ref=e2032]: "Poll: Yes 11 · No 1"
+            - link "View Details" [ref=e2034] [cursor=pointer]:
+              - /url: /budget_discussion/5
+              - button "View Details" [ref=e2035]: View Details
+          - generic [ref=e2038]:
+            - generic [ref=e2039]:
+              - generic [ref=e2040]:
+                - generic [ref=e2041]:
+                  - 'heading "Starstream: next gen VM" [level=3] [ref=e2042]'
+                  - heading "@govtooladmin" [level=5] [ref=e2043]
+                - button [ref=e2044] [cursor=pointer]
+              - generic [ref=e2045]:
+                - paragraph [ref=e2046]: Budget category
+                - paragraph [ref=e2048]: Core
+              - generic [ref=e2049]:
+                - paragraph [ref=e2050]: Proposal benefit
+                - paragraph [ref=e2053]: Starstream supports use-cases that require private computation (necessary for many RWA use-cases) enabling a new category of apps to exist on Cardano. It does this while also allowing for near-zero cost of batching txs which massively improves scalability even for DeFi use-cases
+              - generic [ref=e2054]:
+                - paragraph [ref=e2055]: Budget Requested
+                - paragraph [ref=e2056]: ₳ 2,000,000
+                - paragraph [ref=e2057]: 1,000,000 USD
+              - generic [ref=e2059]:
+                - paragraph [ref=e2060]: "Proposed on: 1 April 2025"
+                - img [ref=e2062]
+              - generic [ref=e2064]:
+                - generic [ref=e2065]:
+                  - button "comments" [disabled]:
+                    - img
+                    - generic "comments": "4"
+                - paragraph [ref=e2066]: "Poll: Yes 27 · No 4"
+            - link "View Details" [ref=e2068] [cursor=pointer]:
+              - /url: /budget_discussion/4
+              - button "View Details" [ref=e2069]: View Details
+    - contentinfo [ref=e2070]:
+      - paragraph [ref=e2071]: © 2026 GovTool
+      - generic [ref=e2072]:
+        - generic [ref=e2073] [cursor=pointer]: Privacy policy
+        - generic [ref=e2074] [cursor=pointer]: Terms of Use
+      - generic [ref=e2075]:
+        - button "helpIcon Help" [ref=e2076] [cursor=pointer]:
+          - img "helpIcon" [ref=e2078]
+          - text: Help
+        - button "Subscribe to updates" [ref=e2079] [cursor=pointer]: Subscribe to updates
+        - button "Feedback" [ref=e2080] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e2081]
+```
+
+# Test source
+
+```ts
+  49  |     return response.json();
+  50  |   }
+  51  | 
+  52  |   async viewFirstProposal(): Promise<BudgetDiscussionDetailsPage> {
+  53  |     await this.page
+  54  |       .locator(
+  55  |         '[data-testid^="budget-discussion-"][data-testid$="-view-details"]'
+  56  |       )
+  57  |       .first()
+  58  |       .click();
+  59  |     return new BudgetDiscussionDetailsPage(this.page);
+  60  |   }
+  61  | 
+  62  |   async getAllProposals() {
+  63  |     await waitedLoop(async () => {
+  64  |       const count = await this.page.locator(PROPOSAL_CARD_SELECTOR).count();
+  65  |       return count > 0;
+  66  |     });
+  67  |     return this.page.locator(PROPOSAL_CARD_SELECTOR).all();
+  68  |   }
+  69  | 
+  70  |   async showAll(category: BudgetDiscussionEnum) {
+  71  |     const slug =
+  72  |       category === BudgetDiscussionEnum.NoCategory
+  73  |         ? "no-category"
+  74  |         : category.toLowerCase().replace(/ /g, "-");
+  75  |     await this.page.getByTestId(`${slug}-show-all-button`).click();
+  76  |   }
+  77  | 
+  78  |   async clickCategoryCheckboxes(names: string[]) {
+  79  |     for (const name of names) {
+  80  |       await this.page.getByLabel(name).click();
+  81  |     }
+  82  |   }
+  83  | 
+  84  |   async applyAndValidateFilters(
+  85  |     filters: string[],
+  86  |     validateFunction: (
+  87  |       proposalCard: Locator,
+  88  |       filters: string[]
+  89  |     ) => Promise<boolean>
+  90  |   ) {
+  91  |     // single filter
+  92  |     for (const filter of filters) {
+  93  |       await this.clickCategoryCheckboxes([filter]);
+  94  |       await this.validateFilters([filter], validateFunction);
+  95  |       await this.clickCategoryCheckboxes([filter]);
+  96  |     }
+  97  | 
+  98  |     // multiple filters
+  99  |     const multipleFilters = [...filters];
+  100 |     while (multipleFilters.length > 1) {
+  101 |       await this.clickCategoryCheckboxes(multipleFilters);
+  102 |       await this.validateFilters(multipleFilters, validateFunction);
+  103 |       await this.clickCategoryCheckboxes(multipleFilters);
+  104 |       multipleFilters.pop();
+  105 |     }
+  106 |   }
+  107 | 
+  108 |   async validateFilters(
+  109 |     filters: string[],
+  110 |     validateFunction: (
+  111 |       proposalCard: Locator,
+  112 |       filters: string[]
+  113 |     ) => Promise<boolean>
+  114 |   ) {
+  115 |     await functionWaitedAssert(async () => {
+  116 |       const proposalCards = await this.getAllProposals();
+  117 | 
+  118 |       for (const proposalCard of proposalCards) {
+  119 |         const type = await proposalCard
+  120 |           .getByTestId("budget-discussion-type")
+  121 |           .textContent();
+  122 |         const hasFilter = await validateFunction(proposalCard, filters);
+  123 | 
+  124 |         expect(
+  125 |           hasFilter,
+  126 |           !hasFilter &&
+  127 |             `A budget proposal type ${type} does not contain on ${filters}`
+  128 |         ).toBe(true);
+  129 |       }
+  130 |     });
+  131 |   }
+  132 | 
+  133 |   async _validateTypeFiltersInProposalCard(
+  134 |     proposalCard: Locator,
+  135 |     filters: string[]
+  136 |   ): Promise<boolean> {
+  137 |     const type = await proposalCard
+  138 |       .getByTestId("budget-discussion-type")
+  139 |       .textContent();
+  140 | 
+  141 |     if (type === "None of these") {
+  142 |       return filters.includes(BudgetDiscussionEnum.NoCategory);
+  143 |     }
+  144 |     return filters.includes(type);
+  145 |   }
+  146 | 
+  147 |   async sortBy(type: BudgetProposalFilterTypes) {
+  148 |     await this.sortBtn.click();
+> 149 |     await this.page.getByTestId(`${type}-sort-option`).click();
+      |                                                        ^ Error: locator.click: Test timeout of 540000ms exceeded.
+  150 |     await expect(this.sortBtn).toHaveText(`Sort: ${type}`);
+  151 |   }
+  152 | 
+  153 |   /**
+  154 |    * Sorts, then checks that every adjacent pair of cards on the page (one
+  155 |    * category shown in full) is in order by the value `read` takes from a card.
+  156 |    */
+  157 |   async sortAndValidate<T>(
+  158 |     type: BudgetProposalFilterTypes,
+  159 |     read: (proposalCard: Locator) => Promise<T>,
+  160 |     inOrder: (a: T, b: T) => boolean
+  161 |   ) {
+  162 |     await this.sortBy(type);
+  163 | 
+  164 |     await functionWaitedAssert(async () => {
+  165 |       const values = await Promise.all(
+  166 |         (await this.getAllProposals()).map(read)
+  167 |       );
+  168 |       for (let i = 0; i < values.length - 1; i++) {
+  169 |         expect(
+  170 |           inOrder(values[i], values[i + 1]),
+  171 |           `Sorting ${type}: ${values[i]} before ${values[i + 1]}`
+  172 |         ).toBe(true);
+  173 |       }
+  174 |     });
+  175 |   }
+  176 | }
+  177 | 
+```

@@ -1,0 +1,8 @@
+✔ Uploaded Eugene-74a5582c metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 91100bac143cdd05138229e508e25a18c10991fb37686bf048b8cefa98cb0451
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: dc9b1bfeb59b14fdf600f7b9ec68308afac2ee33a14b400255fa33926fa272ed
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

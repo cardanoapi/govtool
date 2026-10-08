@@ -1,0 +1,6 @@
+wallet balance 1019.819495
+wallet address addr_test1qruyelq9357tlnkumvr68qh6semhqxnkpepqet2gt723uskwrfd7emdkh68jn69j5gqs2sm04yl85nqe9euw442l8yvs2amnd6
+0
+✔ Uploaded vulgaris metadata to bucket
+ℹ Waiting for tx completion: 68c05b41fecea54fe46dd7f99a316243dc9331fb1cb5df75420105cca85520a6
+✔ Tx completed
