@@ -1,0 +1,247 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 2-delegation/abstainDelegation.wallet.spec.ts >> Abstain delegation >> 2U. Should show delegated voting power to Abstain
+- Location: tests/2-delegation/abstainDelegation.wallet.spec.ts:24:7
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByText('You have delegated ₳48')
+Expected: visible
+Timeout: 60000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 60000ms
+  - waiting for getByText('You have delegated ₳48')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - generic [ref=e11]:
+      - link "app-logo" [ref=e12] [cursor=pointer]:
+        - /url: /dashboard
+        - img "app-logo" [ref=e13]
+      - generic [ref=e14]:
+        - link "icon Home" [ref=e16] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=e17]:
+            - img "icon" [ref=e18]
+            - paragraph [ref=e19]: Home
+        - link "icon DRep Directory" [ref=e21] [cursor=pointer]:
+          - /url: /connected/drep_directory
+          - generic [ref=e22]:
+            - img "icon" [ref=e23]
+            - paragraph [ref=e24]: DRep Directory
+        - link "icon Budget Proposals" [ref=e26] [cursor=pointer]:
+          - /url: /budget_discussion
+          - generic [ref=e27]:
+            - img "icon" [ref=e28]
+            - paragraph [ref=e29]: Budget Proposals
+        - generic [ref=e30]:
+          - link "icon Governance Actions" [ref=e31] [cursor=pointer]:
+            - /url: /connected/governance_actions
+            - generic [ref=e32]:
+              - img "icon" [ref=e33]
+              - paragraph [ref=e34]: Governance Actions
+          - generic [ref=e35]:
+            - link "Proposals" [ref=e36] [cursor=pointer]:
+              - /url: /proposal_discussion
+              - generic [ref=e37]:
+                - img [ref=e39]
+                - paragraph [ref=e41]: Proposals
+            - link "icon Live Voting" [ref=e42] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e43]:
+                - img "icon" [ref=e44]
+                - paragraph [ref=e45]: Live Voting
+            - link "icon Outcomes" [ref=e46] [cursor=pointer]:
+              - /url: /outcomes
+              - generic [ref=e47]:
+                - img "icon" [ref=e48]
+                - paragraph [ref=e49]: Outcomes
+        - link "icon Guides" [ref=e51] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e52]:
+            - img "icon" [ref=e53]
+            - paragraph [ref=e54]: Guides
+        - link "icon FAQs" [ref=e56] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e57]:
+            - img "icon" [ref=e58]
+            - paragraph [ref=e59]: FAQs
+      - generic [ref=e62]:
+        - paragraph [ref=e63]: "Connected Wallet:"
+        - generic [ref=e64]:
+          - paragraph [ref=e65]: 00e442559781f3a1577500a4884b8f294feebb6ac77011c5a57f47e5077603087f746b9355910dd2db6e2b953e636ae8635f54458b13278839
+          - button "Disconnect" [ref=e66] [cursor=pointer]: Disconnect
+    - generic [ref=e67]:
+      - navigation [ref=e68]:
+        - paragraph [ref=e70]: DRep Directory
+      - generic [ref=e72]:
+        - generic [ref=e73]:
+          - paragraph [ref=e74]: Delegation Options
+          - generic [ref=e75]:
+            - button "Automated Voting Options arrow" [expanded] [ref=e76] [cursor=pointer]:
+              - paragraph [ref=e78]: Automated Voting Options
+              - img "arrow" [ref=e80]
+            - region [ref=e84]:
+              - generic [ref=e86]:
+                - generic [ref=e88]:
+                  - paragraph [ref=e89]: You have delegated ₳0 to “Abstain”
+                  - paragraph [ref=e90]: You have selected to apply your Voting Power to Abstain on every vote.
+                  - button "See transaction" [ref=e91] [cursor=pointer]: See transaction
+                - generic [ref=e92]:
+                  - generic [ref=e93]:
+                    - paragraph [ref=e94]: Signal No Confidence on Every Vote
+                    - paragraph [ref=e95]: Select this to signal no confidence in the current constitutional committee by voting NO on every proposal and voting YES to no confidence proposals
+                  - separator [ref=e96]
+                  - generic [ref=e97]:
+                    - paragraph [ref=e98]: Voting Power
+                    - paragraph [ref=e99]: ₳ 3,763,709
+                  - separator [ref=e100]
+                  - generic [ref=e101]:
+                    - button "Info" [ref=e102] [cursor=pointer]: Info
+                    - button "Delegate" [ref=e103] [cursor=pointer]: Delegate
+        - paragraph [ref=e104]: Find a DRep
+        - generic [ref=e105]:
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - img [ref=e108]
+              - textbox "Search for a DRep name or ID" [ref=e110]
+            - generic [ref=e112]:
+              - generic [ref=e113] [cursor=pointer]:
+                - img "filter" [ref=e114]
+                - paragraph [ref=e115]: Filter
+                - paragraph [ref=e117]: "1"
+              - generic [ref=e118] [cursor=pointer]:
+                - img "sort" [ref=e119]
+                - paragraph [ref=e120]: "Sort by: Voting Activity"
+          - button "Active" [ref=e122]:
+            - generic [ref=e123]: Active
+            - button [ref=e124] [cursor=pointer]:
+              - img [ref=e125]
+        - list [ref=e127]:
+          - listitem [ref=e128]:
+            - generic [ref=e132]:
+              - generic [ref=e134]:
+                - generic [ref=e135]:
+                  - img "drep-image" [ref=e137]
+                  - generic [ref=e138]:
+                    - paragraph [ref=e139]: bob
+                    - generic [ref=e140]:
+                      - button "drep1ytak734u2yted9qllpf84fswjk3hervhmz4hkkefx65c0pcw06he8" [ref=e141] [cursor=pointer]:
+                        - paragraph [ref=e142]: drep1ytak734u2yted9qllpf84fswjk3hervhmz4hkkefx65c0pcw06he8
+                      - button "(CIP-105) drep1ldh5d0z3z7tfg8lc2fa2vr545d7gm97c4da4k2fk4xrcwr2px7f" [ref=e143] [cursor=pointer]:
+                        - paragraph [ref=e144]: (CIP-105) drep1ldh5d0z3z7tfg8lc2fa2vr545d7gm97c4da4k2fk4xrcwr2px7f
+                - generic [ref=e145]:
+                  - generic [ref=e146]:
+                    - paragraph [ref=e147]: Voting power
+                    - paragraph [ref=e148]: ₳ 9,154
+                  - separator [ref=e149]
+                  - generic [ref=e150]:
+                    - paragraph [ref=e151]: Status
+                    - generic [ref=e154]: Active
+              - generic [ref=e155]:
+                - button "View details" [ref=e156] [cursor=pointer]: View details
+                - button "Delegate" [ref=e157] [cursor=pointer]: Delegate
+        - generic [ref=e159]:
+          - generic [ref=e160]:
+            - paragraph [ref=e161]: "Rows per page:"
+            - generic [ref=e162]:
+              - combobox [ref=e163] [cursor=pointer]:
+                - generic [ref=e164]: "5"
+              - textbox: "5"
+              - img [ref=e165] [cursor=pointer]
+          - paragraph [ref=e167]: 1-1 of 1
+          - generic [ref=e168]:
+            - button "Previous page" [disabled]:
+              - img
+            - paragraph [ref=e169]: "1"
+            - button "Next page" [disabled]:
+              - img
+      - contentinfo [ref=e170]:
+        - paragraph [ref=e171]: © 2026 GovTool
+        - generic [ref=e172]:
+          - generic [ref=e173] [cursor=pointer]: Privacy policy
+          - generic [ref=e174] [cursor=pointer]: Terms of Use
+        - generic [ref=e175]:
+          - button "helpIcon Help" [ref=e176] [cursor=pointer]:
+            - img "helpIcon" [ref=e178]
+            - text: Help
+          - button "Subscribe to updates" [ref=e179] [cursor=pointer]: Subscribe to updates
+          - button "Feedback" [ref=e180] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e181]
+```
+
+# Test source
+
+```ts
+  1  | import environments from "@constants/environments";
+  2  | import { test } from "@fixtures/walletExtension";
+  3  | import { correctDRepDirectoryFormat } from "@helpers/adaFormat";
+  4  | import { setAllureEpic } from "@helpers/allure";
+  5  | import { skipIfMainnet } from "@helpers/cardano";
+  6  | import { waitForTxConfirmation } from "@helpers/transaction";
+  7  | import DRepDirectoryPage from "@pages/dRepDirectoryPage";
+  8  | import { expect } from "@playwright/test";
+  9  | import { adaBalance } from "lib/wallet/testWallets";
+  10 | 
+  11 | test.beforeEach(async () => {
+  12 |   await setAllureEpic("2. Delegation");
+  13 |   await skipIfMainnet();
+  14 | });
+  15 | 
+  16 | test.describe("Abstain delegation", () => {
+  17 |   // New accounts per test process: the test leaves the wallet delegated.
+  18 |   test.use({
+  19 |     walletName: "adaHolder03",
+  20 |     singleUseWallet: true,
+  21 |     walletFundsAda: 50,
+  22 |   });
+  23 | 
+  24 |   test("2U. Should show delegated voting power to Abstain", async ({
+  25 |     page,
+  26 |     wallet,
+  27 |   }, testInfo) => {
+  28 |     test.setTimeout(testInfo.timeout + environments.txTimeOut);
+  29 | 
+  30 |     const dRepDirectoryPage = new DRepDirectoryPage(page);
+  31 |     await dRepDirectoryPage.goto();
+  32 | 
+  33 |     await dRepDirectoryPage.automaticDelegationOptionsDropdown.click();
+  34 |     await page.getByTestId("abstain-from-every-vote-delegate-button").click();
+  35 |     await waitForTxConfirmation(page);
+  36 | 
+  37 |     const balance = await adaBalance(wallet!);
+  38 | 
+  39 |     await expect(
+  40 |       page.getByText(
+  41 |         `You have delegated ₳${correctDRepDirectoryFormat(balance)}`
+  42 |       )
+> 43 |     ).toBeVisible({
+     |       ^ Error: expect(locator).toBeVisible() failed
+  44 |       timeout: 60_000,
+  45 |     });
+  46 |   });
+  47 | });
+  48 | 
+```

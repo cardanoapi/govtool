@@ -1,0 +1,320 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 7-proposal-submission/proposalSubmission.loggedin.pd.spec.ts >> Proposal created logged state >> Create a proposal with proper data >> 7G_1. Should create a proposal with proper info action data
+- Location: tests/7-proposal-submission/proposalSubmission.loggedin.pd.spec.ts:130:11
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByTestId('submit-as-GA-button')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for getByTestId('submit-as-GA-button')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - generic [ref=e11]:
+      - link "app-logo" [ref=e12] [cursor=pointer]:
+        - /url: /dashboard
+        - img "app-logo" [ref=e13]
+      - generic [ref=e14]:
+        - link "icon Home" [ref=e16] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=e17]:
+            - img "icon" [ref=e18]
+            - paragraph [ref=e19]: Home
+        - link "icon DRep Directory" [ref=e21] [cursor=pointer]:
+          - /url: /connected/drep_directory
+          - generic [ref=e22]:
+            - img "icon" [ref=e23]
+            - paragraph [ref=e24]: DRep Directory
+        - link "icon Budget Proposals" [ref=e26] [cursor=pointer]:
+          - /url: /budget_discussion
+          - generic [ref=e27]:
+            - img "icon" [ref=e28]
+            - paragraph [ref=e29]: Budget Proposals
+        - generic [ref=e30]:
+          - link "icon Governance Actions" [ref=e31] [cursor=pointer]:
+            - /url: /connected/governance_actions
+            - generic [ref=e32]:
+              - img "icon" [ref=e33]
+              - paragraph [ref=e34]: Governance Actions
+          - generic [ref=e35]:
+            - link "Proposals" [ref=e36] [cursor=pointer]:
+              - /url: /proposal_discussion
+              - generic [ref=e37]:
+                - img [ref=e39]
+                - paragraph [ref=e41]: Proposals
+            - link "icon Live Voting" [ref=e42] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e43]:
+                - img "icon" [ref=e44]
+                - paragraph [ref=e45]: Live Voting
+            - link "icon Outcomes" [ref=e46] [cursor=pointer]:
+              - /url: /outcomes
+              - generic [ref=e47]:
+                - img "icon" [ref=e48]
+                - paragraph [ref=e49]: Outcomes
+        - link "icon Guides" [ref=e51] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e52]:
+            - img "icon" [ref=e53]
+            - paragraph [ref=e54]: Guides
+        - link "icon FAQs" [ref=e56] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e57]:
+            - img "icon" [ref=e58]
+            - paragraph [ref=e59]: FAQs
+      - generic [ref=e62]:
+        - paragraph [ref=e63]: "Connected Wallet:"
+        - generic [ref=e64]:
+          - paragraph [ref=e65]: 00f2f07ed28f1502e10eea1737e8a81aff734d0aecc2baa20f0513836b9d2c3b2f6c99c6dd80a378d9bdd1cd2b23e0934b57fd1852c84ceecb
+          - button "Disconnect" [ref=e66] [cursor=pointer]: Disconnect
+    - generic [ref=e67]:
+      - navigation [ref=e68]:
+        - paragraph [ref=e70]: Proposals
+      - progressbar [ref=e75]:
+        - img [ref=e76]
+      - contentinfo [ref=e78]:
+        - paragraph [ref=e79]: © 2026 GovTool
+        - generic [ref=e80]:
+          - generic [ref=e81] [cursor=pointer]: Privacy policy
+          - generic [ref=e82] [cursor=pointer]: Terms of Use
+        - generic [ref=e83]:
+          - button "helpIcon Help" [ref=e84] [cursor=pointer]:
+            - img "helpIcon" [ref=e86]
+            - text: Help
+          - button "Subscribe to updates" [ref=e87] [cursor=pointer]: Subscribe to updates
+          - button "Feedback" [ref=e88] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e89]
+```
+
+# Test source
+
+```ts
+  53  |         for (let i = 0; i < 50; i++) {
+  54  |           const rewardAddressBech32 = await randomStakeAddress();
+  55  |           const formFields: ProposalCreateRequest =
+  56  |             await proposalSubmissionPage.generateValidProposalFormFields({
+  57  |               proposalType: type,
+  58  |               receivingAddress: rewardAddressBech32,
+  59  |               forValidation: true,
+  60  |             });
+  61  |           await proposalSubmissionPage.validateForm(formFields);
+  62  |         }
+  63  | 
+  64  |         if (type === ProposalType.treasury) {
+  65  |           for (let i = 0; i < 9; i++) {
+  66  |             await expect(
+  67  |               proposalSubmissionPage.addWithdrawalAddressBtn
+  68  |             ).toBeVisible();
+  69  |             await proposalSubmissionPage.addWithdrawalAddressBtn.click();
+  70  |           }
+  71  |         }
+  72  | 
+  73  |         await expect(
+  74  |           proposalSubmissionPage.addWithdrawalAddressBtn
+  75  |         ).toBeHidden();
+  76  | 
+  77  |         for (let i = 0; i < 6; i++) {
+  78  |           await expect(proposalSubmissionPage.addLinkBtn).toBeVisible();
+  79  |           await proposalSubmissionPage.addLinkBtn.click();
+  80  |         }
+  81  | 
+  82  |         // Reference links have no limit (#4087): one past the old cap of 7
+  83  |         // still adds an input.
+  84  |         const linkUrlInputs = page.locator(
+  85  |           '[data-testid^="link-"][data-testid$="-url-input"]'
+  86  |         );
+  87  |         const linkCount = await linkUrlInputs.count();
+  88  |         await expect(proposalSubmissionPage.addLinkBtn).toBeVisible();
+  89  |         await proposalSubmissionPage.addLinkBtn.click();
+  90  |         await expect(linkUrlInputs).toHaveCount(linkCount + 1);
+  91  |         await expect(
+  92  |           page.getByTestId(`link-${linkCount}-url-input`)
+  93  |         ).toBeVisible();
+  94  |         await expect(proposalSubmissionPage.addLinkBtn).toBeVisible();
+  95  |       });
+  96  |     });
+  97  |   });
+  98  | 
+  99  |   test.describe("Reject invalid  data", () => {
+  100 |     getProposalType().map((type: ProposalType, index) => {
+  101 |       test(`7F_${index + 1}. Should reject invalid data in ${type.toLowerCase()} Proposal form`, async ({
+  102 |         page,
+  103 |       }) => {
+  104 |         await skipIfNotInfoAndBootstrapping(type);
+  105 | 
+  106 |         test.slow(); // Brute-force testing with 50 random data
+  107 | 
+  108 |         const proposalSubmissionPage = new ProposalSubmissionPage(page);
+  109 |         await proposalSubmissionPage.goto();
+  110 | 
+  111 |         await proposalSubmissionPage.governanceActionType.click();
+  112 |         await page.getByTestId(`${type.toLocaleLowerCase()}-button`).click();
+  113 |         await proposalSubmissionPage.addLinkBtn.click();
+  114 | 
+  115 |         if (type === ProposalType.updatesToTheConstitution) {
+  116 |           await proposalSubmissionPage.guardrailsScriptCheckbox.click();
+  117 |         }
+  118 | 
+  119 |         for (let i = 0; i < 50; i++) {
+  120 |           const formFields: ProposalCreateRequest =
+  121 |             proposalSubmissionPage.generateInValidProposalFormFields(type);
+  122 |           await proposalSubmissionPage.inValidateForm(formFields);
+  123 |         }
+  124 |       });
+  125 |     });
+  126 |   });
+  127 | 
+  128 |   test.describe("Create a proposal with proper data", () => {
+  129 |     getProposalType().map((type: ProposalType, index) => {
+  130 |       test(`7G_${index + 1}. Should create a proposal with proper ${type.toLowerCase()} data`, async ({
+  131 |         page,
+  132 |         wallet,
+  133 |       }) => {
+  134 |         await skipIfMainnet();
+  135 |         await skipIfNotInfoAndBootstrapping(type);
+  136 | 
+  137 |         const proposalSubmissionPage = new ProposalSubmissionPage(page);
+  138 |         await proposalSubmissionPage.goto();
+  139 | 
+  140 |         await proposalSubmissionPage.addLinkBtn.click();
+  141 | 
+  142 |         const stakeAddressBech32 = wallet!.stakeAddress;
+  143 |         const proposal: ProposalCreateRequest =
+  144 |           await proposalSubmissionPage.generateValidProposalFormFields({
+  145 |             proposalType: type,
+  146 |             receivingAddress: stakeAddressBech32,
+  147 |           });
+  148 | 
+  149 |         await proposalSubmissionPage.fillupForm(proposal);
+  150 |         await proposalSubmissionPage.continueBtn.click();
+  151 |         await proposalSubmissionPage.submitBtn.click();
+  152 | 
+> 153 |         await expect(page.getByTestId("submit-as-GA-button")).toBeVisible();
+      |                                                               ^ Error: expect(locator).toBeVisible() failed
+  154 |         const proposalDetailsPage = new ProposalDiscussionDetailsPage(page);
+  155 | 
+  156 |         await expect(proposalSubmissionPage.titleContent).toHaveText(
+  157 |           proposal.prop_name
+  158 |         );
+  159 |         await expect(
+  160 |           proposalSubmissionPage.governanceActionTypeContent
+  161 |         ).toHaveText(type);
+  162 |         await expect(proposalSubmissionPage.abstractContent).toHaveText(
+  163 |           proposal.prop_abstract
+  164 |         );
+  165 |         await expect(proposalSubmissionPage.motivationContent).toHaveText(
+  166 |           proposal.prop_motivation
+  167 |         );
+  168 |         await expect(proposalSubmissionPage.rationaleContent).toHaveText(
+  169 |           proposal.prop_rationale
+  170 |         );
+  171 |         await expect(proposalSubmissionPage.linkTextContent).toHaveText(
+  172 |           proposal.proposal_links[0].prop_link_text
+  173 |         );
+  174 | 
+  175 |         if (type === ProposalType.updatesToTheConstitution) {
+  176 |           await expect(
+  177 |             proposalSubmissionPage.constitutionUrlContent
+  178 |           ).toHaveText(proposal.prop_constitution_url);
+  179 |           await expect(
+  180 |             proposalSubmissionPage.guardrailsScriptUrlContent
+  181 |           ).toHaveText(proposal.prop_guardrails_script_url);
+  182 |           await expect(
+  183 |             proposalSubmissionPage.guardrailsScriptHashContent
+  184 |           ).toHaveText(proposal.prop_guardrails_script_hash);
+  185 |         }
+  186 | 
+  187 |         if (type == ProposalType.hardFork) {
+  188 |           await expect(proposalSubmissionPage.majorVersionContent).toHaveText(
+  189 |             proposal.prop_major_version
+  190 |           );
+  191 |           await expect(proposalSubmissionPage.minorVersionContent).toHaveText(
+  192 |             proposal.prop_min_version
+  193 |           );
+  194 |         }
+  195 |         // cleanup
+  196 |         await proposalDetailsPage.deleteProposal();
+  197 |       });
+  198 |     });
+  199 |   });
+  200 | 
+  201 |   test.describe("Review fillup form", () => {
+  202 |     getProposalType().map((type: ProposalType, index) => {
+  203 |       test(`7I_${index + 1}. Should valid review submission in ${type.toLowerCase()} Proposal form`, async ({
+  204 |         page,
+  205 |         wallet,
+  206 |       }) => {
+  207 |         await skipIfNotInfoAndBootstrapping(type);
+  208 | 
+  209 |         const proposalSubmissionPage = new ProposalSubmissionPage(page);
+  210 |         await proposalSubmissionPage.goto();
+  211 | 
+  212 |         await proposalSubmissionPage.addLinkBtn.click();
+  213 | 
+  214 |         const rewardAddressBech32 = wallet!.stakeAddress;
+  215 |         const proposal: ProposalCreateRequest =
+  216 |           await proposalSubmissionPage.generateValidProposalFormFields({
+  217 |             proposalType: type,
+  218 |             receivingAddress: rewardAddressBech32,
+  219 |           });
+  220 | 
+  221 |         await proposalSubmissionPage.fillupForm(proposal);
+  222 |         await proposalSubmissionPage.continueBtn.click();
+  223 | 
+  224 |         await expect(
+  225 |           proposalSubmissionPage.governanceActionTypeContent
+  226 |         ).toHaveText(type);
+  227 |         await expect(proposalSubmissionPage.titleContent).toHaveText(
+  228 |           proposal.prop_name
+  229 |         );
+  230 |         await expect(proposalSubmissionPage.abstractContent).toHaveText(
+  231 |           proposal.prop_abstract
+  232 |         );
+  233 |         await expect(proposalSubmissionPage.motivationContent).toHaveText(
+  234 |           proposal.prop_motivation
+  235 |         );
+  236 |         await expect(proposalSubmissionPage.rationaleContent).toHaveText(
+  237 |           proposal.prop_rationale
+  238 |         );
+  239 |         await expect(proposalSubmissionPage.linkTextContent).toHaveText(
+  240 |           proposal.proposal_links[0].prop_link_text
+  241 |         );
+  242 |         if (type === ProposalType.treasury) {
+  243 |           await expect(
+  244 |             proposalSubmissionPage.receivingAddressContent
+  245 |           ).toHaveText(proposal.prop_receiving_address);
+  246 |           await expect(proposalSubmissionPage.amountContent).toHaveText(
+  247 |             adaAmountText(proposal.prop_amount)
+  248 |           );
+  249 |         }
+  250 | 
+  251 |         if (type === ProposalType.updatesToTheConstitution) {
+  252 |           await expect(
+  253 |             proposalSubmissionPage.constitutionUrlContent
+```

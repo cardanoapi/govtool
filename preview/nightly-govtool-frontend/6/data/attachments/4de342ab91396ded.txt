@@ -1,0 +1,7 @@
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Retrying the function download metadata
+✔ Uploaded Emmanuel.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 7c1c7d6511d88cc749557197ada092dd01d65a833f5be3504dae8dfc29c8e709
+✔ Tx completed

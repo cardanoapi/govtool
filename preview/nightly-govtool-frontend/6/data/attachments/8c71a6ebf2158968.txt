@@ -1,0 +1,15 @@
+✔ Uploaded Tanya-048f3046 metadata to bucket
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Uploaded cbbee383-75ee-4915-996f-bc483fa558b1-Vote_Context.jsonld metadata to bucket
+✖ expect(locator).toBeVisible() failed
+
+Locator: getByTestId('alert-warning').getByText('Transaction in progress')
+Expected: visible
+Timeout: 90000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 90000ms
+  - waiting for getByTestId('alert-warning').getByText('Transaction in progress')
+

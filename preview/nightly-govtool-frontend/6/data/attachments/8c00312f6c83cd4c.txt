@@ -1,0 +1,3 @@
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+ℹ Waiting for tx completion: f6fe437f39604b2d35cd610a15a1e829942ee98eaeed883f409993320439e786
+✔ Tx completed

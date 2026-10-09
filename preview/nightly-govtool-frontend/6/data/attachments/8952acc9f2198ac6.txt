@@ -1,0 +1,8 @@
+✔ Uploaded Domenica-ef818a80 metadata to bucket
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: b7095b6b5bc0f5d9f6b41885855d9018e91a88c9b58cc9864a3e387b95f8b808
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID

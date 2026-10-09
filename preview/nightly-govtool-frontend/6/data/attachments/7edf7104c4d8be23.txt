@@ -1,0 +1,12 @@
+✔ Uploaded Reece-2292dc8d metadata to bucket
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: b3357f892d52f595905987b303e76c8323df65eed3d648733272bd28742879e9
+✔ Tx completed
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Uploaded 94bcf346-5e4b-4683-a34c-1bc52875363b-Vote_Context.jsonld metadata to bucket
+ℹ Waiting for tx completion: 65dd9a98a1e9daca9fc88a85aec0a3b1efb0c3551a17134385041740f0656cb7
+✔ Tx completed
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()

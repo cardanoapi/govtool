@@ -1,0 +1,7 @@
+✔ Uploaded Connor-c0b45da8 metadata to bucket
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 159f12463075a4ccac0ac50068a1fa5cb36316d62bb7761c1338352f7b8d2a36
+✔ Tx completed
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()

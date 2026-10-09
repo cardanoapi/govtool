@@ -1,0 +1,4 @@
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 429 ()
+ℹ Waiting for tx completion: 175e15d1b12e8a3ae11b902901f0e9f6137c9cffe579c4f76ee8c95a9c037862
+✔ Tx completed

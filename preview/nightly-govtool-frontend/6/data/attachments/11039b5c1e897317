@@ -1,0 +1,389 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 2-delegation/delegationFunctionality.delegation.spec.ts >> Multiple delegations >> 2R. Should display a modal indicating waiting for previous transaction when delegating if the previous transaction is not completed
+- Location: tests/2-delegation/delegationFunctionality.delegation.spec.ts:216:7
+
+# Error details
+
+```
+Error: expect(locator).toHaveText(expected) failed
+
+Locator: getByTestId('alert-warning')
+Expected pattern: /in progress/i
+Timeout: 60000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toHaveText" with timeout 60000ms
+  - waiting for getByTestId('alert-warning')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: "Network: Preview"
+      - generic [ref=e7]: "|"
+      - link [ref=e8] [cursor=pointer]:
+        - /url: https://gov.tools/
+        - text: Go to Mainnet
+    - img [ref=e9]
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - link [ref=e12] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e13]
+        - generic [ref=e14]:
+          - link [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+            - generic [ref=e17]:
+              - img [ref=e18]
+              - paragraph [ref=e19]: Home
+          - link [ref=e21] [cursor=pointer]:
+            - /url: /connected/drep_directory
+            - generic [ref=e22]:
+              - img [ref=e23]
+              - paragraph [ref=e24]: DRep Directory
+          - link [ref=e26] [cursor=pointer]:
+            - /url: /budget_discussion
+            - generic [ref=e27]:
+              - img [ref=e28]
+              - paragraph [ref=e29]: Budget Proposals
+          - generic [ref=e30]:
+            - link [ref=e31] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e32]:
+                - img [ref=e33]
+                - paragraph [ref=e34]: Governance Actions
+            - generic [ref=e35]:
+              - link [ref=e36] [cursor=pointer]:
+                - /url: /proposal_discussion
+                - generic [ref=e37]:
+                  - img [ref=e39]
+                  - paragraph [ref=e41]: Proposals
+              - link [ref=e42] [cursor=pointer]:
+                - /url: /connected/governance_actions
+                - generic [ref=e43]:
+                  - img [ref=e44]
+                  - paragraph [ref=e45]: Live Voting
+              - link [ref=e46] [cursor=pointer]:
+                - /url: /outcomes
+                - generic [ref=e47]:
+                  - img [ref=e48]
+                  - paragraph [ref=e49]: Outcomes
+          - link [ref=e51] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e52]:
+              - img [ref=e53]
+              - paragraph [ref=e54]: Guides
+          - link [ref=e56] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e57]:
+              - img [ref=e58]
+              - paragraph [ref=e59]: FAQs
+        - generic [ref=e62]:
+          - paragraph [ref=e63]: "Connected Wallet:"
+          - generic [ref=e64]:
+            - paragraph [ref=e65]: 000137d0926887ee2019e5f047183e43df30aaefc17c8180f1f5ee3c0af9cb4cadea2fb1ab58da7d10b3021863ce6745cb8a3173ff08d78957
+            - button [ref=e66] [cursor=pointer]: Disconnect
+      - generic [ref=e67]:
+        - navigation [ref=e68]:
+          - paragraph [ref=e70]: DRep Directory
+        - generic [ref=e72]:
+          - generic [ref=e73]:
+            - paragraph [ref=e74]: Delegation Options
+            - button [ref=e76] [cursor=pointer]:
+              - paragraph [ref=e78]: Automated Voting Options
+              - img [ref=e80]
+          - paragraph [ref=e81]: Find a DRep
+          - generic [ref=e82]:
+            - generic [ref=e83]:
+              - generic [ref=e84]:
+                - img [ref=e85]
+                - textbox [ref=e87]:
+                  - /placeholder: Search for a DRep name or ID
+                  - text: drep1jp0ket57vd2ggwkmtd4w8lwcynj5jt0aeunlqk4a6y457wfrc6k
+                - button [ref=e88] [cursor=pointer]:
+                  - img [ref=e89]
+              - generic [ref=e92]:
+                - generic [ref=e93] [cursor=pointer]:
+                  - img [ref=e94]
+                  - paragraph [ref=e95]: Filter
+                  - paragraph [ref=e97]: "1"
+                - generic [ref=e98] [cursor=pointer]:
+                  - img [ref=e99]
+                  - paragraph [ref=e100]: "Sort by: Voting Activity"
+            - button [ref=e102]:
+              - generic [ref=e103]: Active
+              - button [ref=e104] [cursor=pointer]:
+                - img [ref=e105]
+          - list [ref=e107]:
+            - listitem [ref=e108]:
+              - generic [ref=e112]:
+                - generic [ref=e114]:
+                  - generic [ref=e115]:
+                    - img [ref=e117]
+                    - generic [ref=e119]:
+                      - button [ref=e120] [cursor=pointer]:
+                        - paragraph [ref=e121]: drep1y2g97m9wne34fpp6mddk4clamqjw2jfdlh8j0uz6hhgjknc8yjl7p
+                      - button [ref=e122] [cursor=pointer]:
+                        - paragraph [ref=e123]: (CIP-105) drep1jp0ket57vd2ggwkmtd4w8lwcynj5jt0aeunlqk4a6y457wfrc6k
+                  - generic [ref=e124]:
+                    - generic [ref=e125]:
+                      - paragraph [ref=e126]: Voting power
+                      - paragraph [ref=e127]: ₳ 0
+                    - separator [ref=e128]
+                    - generic [ref=e129]:
+                      - paragraph [ref=e130]: Status
+                      - generic [ref=e133]: Active
+                - button [ref=e135] [cursor=pointer]: Delegate
+          - generic [ref=e137]:
+            - generic [ref=e138]:
+              - paragraph [ref=e139]: "Rows per page:"
+              - generic [ref=e140]:
+                - combobox [ref=e141] [cursor=pointer]:
+                  - generic [ref=e142]: "5"
+                - textbox: "5"
+                - img [ref=e143] [cursor=pointer]
+            - paragraph [ref=e145]: 1-1 of 1
+            - generic [ref=e146]:
+              - button [disabled]:
+                - img
+              - paragraph [ref=e147]: "1"
+              - button [disabled]:
+                - img
+        - contentinfo [ref=e148]:
+          - paragraph [ref=e149]: © 2026 GovTool
+          - generic [ref=e150]:
+            - generic [ref=e151] [cursor=pointer]: Privacy policy
+            - generic [ref=e152] [cursor=pointer]: Terms of Use
+          - generic [ref=e153]:
+            - button [ref=e154] [cursor=pointer]:
+              - img [ref=e156]
+              - text: Help
+            - button [ref=e157] [cursor=pointer]: Subscribe to updates
+            - button [ref=e158] [cursor=pointer]: Feedback
+    - img [ref=e159]
+  - generic [ref=e162]:
+    - img "close" [ref=e163] [cursor=pointer]
+    - img "Status icon" [ref=e164]
+    - paragraph [ref=e165]: Oops!
+    - paragraph [ref=e167]: "\"Application can not create transaction.\""
+    - button "Cancel" [ref=e168] [cursor=pointer]: Cancel
+```
+
+# Test source
+
+```ts
+  128 | 
+  129 |     wallet = await stakeRegisteredWallet(
+  130 |       singleUseWalletName(`${testInfo.title.split(".")[0]}:directVoter`),
+  131 |       600
+  132 |     );
+  133 | 
+  134 |     dRepPage = await createNewPageWithWallet(browser, { wallet });
+  135 | 
+  136 |     await dRepPage.goto("/");
+  137 |     await dRepPage.waitForTimeout(2_000); // Waits to ensure the wallet-connection modal not interfere with interactions
+  138 |   });
+  139 | 
+  140 |   test("2E. Should register as Direct voter", async ({}, testInfo) => {
+  141 |     test.setTimeout(testInfo.timeout + environments.txTimeOut);
+  142 | 
+  143 |     await dRepPage.getByTestId("register-as-sole-voter-button").click();
+  144 |     await dRepPage.getByTestId("continue-button").click();
+  145 |     await expect(
+  146 |       dRepPage.getByTestId("registration-transaction-submitted-modal")
+  147 |     ).toBeVisible({ timeout: 60_000 });
+  148 |     await dRepPage.getByTestId("confirm-modal-button").click();
+  149 |     await waitForTxConfirmation(dRepPage);
+  150 | 
+  151 |     // Checks in dashboard
+  152 |     await expect(dRepPage.getByText("You are a Direct Voter")).toBeVisible({
+  153 |       timeout: 60_000,
+  154 |     });
+  155 |     await expect(
+  156 |       dRepPage.getByTestId("register-as-sole-voter-button")
+  157 |     ).not.toBeVisible();
+  158 |     await expect(
+  159 |       dRepPage.getByTestId("retire-as-sole-voter-button")
+  160 |     ).toBeVisible();
+  161 |   });
+  162 | 
+  163 |   test("2S. Should retire as a Direct Voter on delegating to another DRep", async ({}, testInfo) => {
+  164 |     test.setTimeout(testInfo.timeout + environments.txTimeOut);
+  165 | 
+  166 |     await dRepPage.getByTestId("register-as-sole-voter-button").click();
+  167 |     await dRepPage.getByTestId("continue-button").click();
+  168 |     await expect(
+  169 |       dRepPage.getByTestId("registration-transaction-submitted-modal")
+  170 |     ).toBeVisible({ timeout: 60_000 });
+  171 |     await dRepPage.getByTestId("confirm-modal-button").click();
+  172 |     await waitForTxConfirmation(dRepPage);
+  173 |     await expect(dRepPage.getByText("You are a Direct Voter")).toBeVisible({
+  174 |       timeout: 60_000,
+  175 |     });
+  176 | 
+  177 |     const dRepDirectoryPage = new DRepDirectoryPage(dRepPage);
+  178 |     await dRepDirectoryPage.goto();
+  179 | 
+  180 |     await dRepDirectoryPage.delegateToDRep(await dRepIdOf("dRep01"));
+  181 |     await dRepPage.goto("/dashboard");
+  182 | 
+  183 |     await expect(
+  184 |       dRepPage.getByText("You Have Retired as a Direct")
+  185 |     ).toBeVisible({ timeout: 60_000 });
+  186 |   });
+  187 | });
+  188 | 
+  189 | test("2G. Should delegate to myself", async ({ browser }, testInfo) => {
+  190 |   test.setTimeout(testInfo.timeout + 3 * environments.txTimeOut);
+  191 | 
+  192 |   // Single use: the test leaves the DRep delegated to itself.
+  193 |   const wallet = await registeredDRepWallet(singleUseWalletName("2G:dRep"));
+  194 |   const dRepId = wallet.dRepId;
+  195 | 
+  196 |   const dRepPage = await createNewPageWithWallet(browser, { wallet });
+  197 | 
+  198 |   const dRepDirectoryPage = new DRepDirectoryPage(dRepPage);
+  199 |   await dRepDirectoryPage.goto();
+  200 | 
+  201 |   await dRepDirectoryPage.delegateToDRep(dRepId);
+  202 | 
+  203 |   await expect(
+  204 |     dRepDirectoryPage.currentPage.getByTestId(`${dRepId}-delegate-button`)
+  205 |   ).not.toBeVisible({ timeout: 60_000 });
+  206 |   await expect(
+  207 |     dRepDirectoryPage.currentPage.getByTestId(`${dRepId}-copy-id-button`)
+  208 |   ).toHaveCount(1, {
+  209 |     timeout: 60_000,
+  210 |   });
+  211 | });
+  212 | 
+  213 | test.describe("Multiple delegations", () => {
+  214 |   test.use({ walletName: "adaHolder05", singleUseWallet: true });
+  215 | 
+  216 |   test("2R. Should display a modal indicating waiting for previous transaction when delegating if the previous transaction is not completed", async ({
+  217 |     page,
+  218 |   }) => {
+  219 |     const dRepDirectoryPage = new DRepDirectoryPage(page);
+  220 |     await dRepDirectoryPage.goto();
+  221 | 
+  222 |     const dRepIdFirst = await dRepIdOf("dRep01");
+  223 |     const dRepIdSecond = await dRepIdOf("dRep02");
+  224 | 
+  225 |     await dRepDirectoryPage.searchInput.fill(dRepIdFirst);
+  226 | 
+  227 |     await page.getByTestId(`${dRepIdFirst}-delegate-button`).click();
+> 228 |     await expect(page.getByTestId("alert-warning")).toHaveText(/in progress/i, {
+      |                                                     ^ Error: expect(locator).toHaveText(expected) failed
+  229 |       timeout: 60_000,
+  230 |     });
+  231 | 
+  232 |     await dRepDirectoryPage.searchInput.fill(dRepIdSecond);
+  233 |     await page.getByTestId(`${dRepIdSecond}-delegate-button`).click();
+  234 | 
+  235 |     await expect(page.getByTestId("transaction-inprogress-modal")).toBeVisible({
+  236 |       timeout: 60_000,
+  237 |     });
+  238 |   });
+  239 | });
+  240 | 
+  241 | test.describe("No confidence delegation", () => {
+  242 |   test.use({ walletName: "adaHolder04", singleUseWallet: true });
+  243 | 
+  244 |   test("2V. Should show delegated voting power to No confidence", async ({
+  245 |     page,
+  246 |     wallet,
+  247 |   }, testInfo) => {
+  248 |     test.setTimeout(testInfo.timeout + environments.txTimeOut);
+  249 | 
+  250 |     const dRepDirectoryPage = new DRepDirectoryPage(page);
+  251 |     await dRepDirectoryPage.goto();
+  252 | 
+  253 |     await dRepDirectoryPage.automaticDelegationOptionsDropdown.click();
+  254 |     await page
+  255 |       .getByTestId("signal-no-confidence-on-every-vote-delegate-button")
+  256 |       .click();
+  257 |     await waitForTxConfirmation(page);
+  258 | 
+  259 |     const balance = await adaBalance(wallet!);
+  260 |     await expect(
+  261 |       page.getByText(
+  262 |         `You have delegated ₳${correctDRepDirectoryFormat(balance)}`
+  263 |       )
+  264 |     ).toBeVisible({
+  265 |       timeout: 60_000,
+  266 |     });
+  267 |   });
+  268 | });
+  269 | 
+  270 | test.describe("Delegated ADA visibility", () => {
+  271 |   test.use({
+  272 |     walletName: "adaHolder06",
+  273 |     singleUseWallet: true,
+  274 |     // A second stake key reported as registered, so the app has two to choose
+  275 |     // from. The page preselects the wallet's own key, which the delegation
+  276 |     // uses. The extra key is registered on chain too, so the wallet reports
+  277 |     // only what is true; it is never changed, so one per run is enough.
+  278 |     pageWallet: [
+  279 |       async ({}, use) => {
+  280 |         const other = await stakeRegisteredWallet("2W:extraStake", 5);
+  281 |         await use({
+  282 |           extraRegisteredPubStakeKeys: [other.stake.public],
+  283 |           extraRewardAddresses: [other.rewardAddress],
+  284 |         });
+  285 |       },
+  286 |       { scope: "test", timeout: 3 * environments.txTimeOut },
+  287 |     ],
+  288 |   });
+  289 | 
+  290 |   test("2W. Should show my delegated ADA to the DRep", async ({
+  291 |     page,
+  292 |     wallet,
+  293 |   }, testInfo) => {
+  294 |     test.setTimeout(testInfo.timeout + environments.txTimeOut);
+  295 | 
+  296 |     const dRepDirectoryPage = new DRepDirectoryPage(page);
+  297 |     await dRepDirectoryPage.goto();
+  298 | 
+  299 |     await dRepDirectoryPage.delegateToDRep(await dRepIdOf("dRep01"));
+  300 | 
+  301 |     const adaHolderVotingPower = await adaBalance(wallet!);
+  302 |     await expect(
+  303 |       page.getByText(
+  304 |         `You have delegated ₳ ${correctDRepDirectoryFormat(adaHolderVotingPower)}`
+  305 |       )
+  306 |     ).toBeVisible({ timeout: 60_000 });
+  307 | 
+  308 |     await page.goto("/");
+  309 |     await expect(
+  310 |       page.getByText(
+  311 |         `Your Voting Power of ₳${correctDelegatedVoteAdaFormat(adaHolderVotingPower)} is Delegated to`
+  312 |       )
+  313 |     ).toBeVisible({ timeout: 60_000 });
+  314 |   });
+  315 | });
+  316 | 
+  317 | test.describe("Unregistered stake key", () => {
+  318 |   // A new user: the wallet holds ADA but its stake key was never registered.
+  319 |   test.use({
+  320 |     walletName: "2Y:newHolder",
+  321 |     singleUseWallet: true,
+  322 |     stakeRegistered: false,
+  323 |   });
+  324 | 
+  325 |   test("2Y. Should register the stake key with the first delegation", async ({
+  326 |     page,
+  327 |     wallet,
+  328 |   }, testInfo) => {
+```

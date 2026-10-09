@@ -1,0 +1,16 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 3-drep-registration/dRepRegistration.dRep.spec.ts >> Temporary DReps >> 3I. Should display 'In Progress' status on dashboard until blockchain confirms DRep registration
+- Location: tests/3-drep-registration/dRepRegistration.dRep.spec.ts:210:7
+
+# Error details
+
+```
+Test timeout of 660000ms exceeded.
+```

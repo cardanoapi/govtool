@@ -1,0 +1,278 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 3-drep-registration/editDRep.dRep.spec.ts >> 3P. Should reject invalid edit dRep metadata
+- Location: tests/3-drep-registration/editDRep.dRep.spec.ts:116:5
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByTestId('continue-button')
+    - locator resolved to <button tabindex="0" type="button" data-testid="continue-button" class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-1e5gpy0">…</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    341 × waiting for element to be visible, enabled and stable
+        - element is not enabled
+      - retrying click action
+        - waiting 500ms
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - navigation [ref=e11]:
+      - paragraph [ref=e13]: Edit DRep Info
+      - generic [ref=e15]:
+        - img [ref=e16]
+        - paragraph [ref=e18]: "Voting power:"
+        - paragraph [ref=e19]: ₳ 0
+    - generic [ref=e20]:
+      - generic [ref=e21] [cursor=pointer]:
+        - img [ref=e22]
+        - paragraph [ref=e24]: Back to dashboard
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]:
+            - paragraph [ref=e29]: REQUIRED
+            - paragraph [ref=e30]: Name
+            - paragraph [ref=e31]: This is the name that will be displayed in the DRep Directory and it will be used also by delegators to find your profile.
+          - generic [ref=e32]:
+            - paragraph [ref=e33]: DRep Name
+            - textbox [active] [ref=e35]: Test_DRep
+            - paragraph [ref=e36]: This is the name that will be shown on your DRep profile
+          - generic [ref=e38]:
+            - paragraph [ref=e39]: OPTIONAL
+            - paragraph [ref=e40]: About You
+          - generic [ref=e41]:
+            - generic [ref=e42]:
+              - generic [ref=e43]:
+                - paragraph [ref=e44]: Objectives
+                - paragraph [ref=e45]: What you believe and what you want to achieve as a DRep.
+              - generic [ref=e46]:
+                - paragraph: Objectives
+                - generic [ref=e47]:
+                  - textbox [ref=e48]
+                  - paragraph [ref=e49]: 0/1000
+            - generic [ref=e50]:
+              - generic [ref=e51]:
+                - paragraph [ref=e52]: Motivations
+                - paragraph [ref=e53]: Why do you want to be a DRep, what personal and professional experiences do you want to share.
+              - generic [ref=e54]:
+                - paragraph: Motivations
+                - generic [ref=e55]:
+                  - textbox [ref=e56]
+                  - paragraph [ref=e57]: 0/1000
+            - generic [ref=e58]:
+              - generic [ref=e59]:
+                - paragraph [ref=e60]: Qualifications
+                - paragraph [ref=e61]: List any qualifications that are relevant to your role as a DRep
+              - generic [ref=e62]:
+                - paragraph: Qualifications
+                - generic [ref=e63]:
+                  - textbox [ref=e64]
+                  - paragraph [ref=e65]: 0/1000
+            - generic [ref=e66]:
+              - generic [ref=e67]:
+                - paragraph [ref=e68]: Image
+                - paragraph [ref=e69]: A URL to an image or base64-encoded image that represents you. This could be an photo or a logo.
+              - textbox [ref=e71]
+            - generic [ref=e72]:
+              - paragraph [ref=e73]: References
+              - generic [ref=e74]:
+                - generic [ref=e75]:
+                  - paragraph [ref=e76]: Links
+                  - paragraph [ref=e77]: Links to social media or any other web URL that gives a fuller picture of who you are, what you stand for, and why.
+                - generic [ref=e78]:
+                  - paragraph [ref=e79]: Description
+                  - textbox [ref=e81]
+                  - paragraph [ref=e82]: "Limit: 80 characters"
+                - generic [ref=e83]:
+                  - paragraph [ref=e84]: URL
+                  - textbox [ref=e86]
+                - button "+ Add link" [ref=e87] [cursor=pointer]: + Add link
+              - generic [ref=e88]:
+                - generic [ref=e89]:
+                  - paragraph [ref=e90]: Identity
+                  - paragraph [ref=e91]: Identity links are a way to prove you are who you say you are. Ideally, you will provide a link to a place that shows your DRep ID clearly. The limit is 8 links in total.
+                - generic [ref=e92]:
+                  - paragraph [ref=e93]: Description
+                  - textbox [ref=e95]
+                  - paragraph [ref=e96]: "Limit: 80 characters"
+                - generic [ref=e97]:
+                  - paragraph [ref=e98]: URL
+                  - textbox [ref=e100]
+                - button "+ Add link" [ref=e101] [cursor=pointer]: + Add link
+            - generic [ref=e102]:
+              - paragraph [ref=e103]: Payment Address
+              - paragraph [ref=e104]: An address for DReps to receive payments. Only one address can be entered.
+            - generic [ref=e105]:
+              - paragraph [ref=e106]: Payment Address
+              - textbox [ref=e108]
+            - generic [ref=e110] [cursor=pointer]:
+              - generic [ref=e111]:
+                - checkbox [ref=e112]
+                - img [ref=e113]
+              - paragraph [ref=e115]: Do Not List
+              - paragraph [ref=e116]: Check this box if you do not want to be listed in DRep directories/compilations. If you tick this, you will not have a listing in the DRep listing on GovTool.
+        - generic [ref=e117]:
+          - button "Cancel" [ref=e118] [cursor=pointer]: Cancel
+          - button "Continue" [disabled]
+    - contentinfo [ref=e119]:
+      - paragraph [ref=e120]: © 2026 GovTool
+      - generic [ref=e121]:
+        - generic [ref=e122] [cursor=pointer]: Privacy policy
+        - generic [ref=e123] [cursor=pointer]: Terms of Use
+      - generic [ref=e124]:
+        - button "helpIcon Help" [ref=e125] [cursor=pointer]:
+          - img "helpIcon" [ref=e127]
+          - text: Help
+        - button "Subscribe to updates" [ref=e128] [cursor=pointer]: Subscribe to updates
+        - button "Feedback" [ref=e129] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e130]
+```
+
+# Test source
+
+```ts
+  23  | 
+  24  | test.describe("Validation of edit dRep Form", () => {
+  25  |   test("3M_1. Should accept valid data in edit dRep form", async ({ page }) => {
+  26  |     test.slow();
+  27  | 
+  28  |     const editDRepPage = new EditDRepPage(page);
+  29  |     await editDRepPage.goto();
+  30  | 
+  31  |     // wait until wallet alert close
+  32  |     await expect(page.getByTestId("alert-success")).not.toBeVisible();
+  33  | 
+  34  |     for (let i = 0; i < 100; i++) {
+  35  |       const validDRepInfo = await generateValidDRepInfo();
+  36  |       await editDRepPage.validateForm(validDRepInfo);
+  37  |     }
+  38  | 
+  39  |     for (let i = 0; i < 6; i++) {
+  40  |       await expect(editDRepPage.addLinkReferenceBtn).toBeVisible();
+  41  |       await editDRepPage.addLinkReferenceBtn.click();
+  42  |     }
+  43  | 
+  44  |     for (let i = 0; i < 6; i++) {
+  45  |       await expect(editDRepPage.addIdentityReferenceBtn).toBeVisible();
+  46  |       await editDRepPage.addIdentityReferenceBtn.click();
+  47  |     }
+  48  | 
+  49  |     await expect(editDRepPage.addLinkReferenceBtn).toBeHidden();
+  50  |     await expect(editDRepPage.addIdentityReferenceBtn).toBeHidden();
+  51  |   });
+  52  | 
+  53  |   test("3M_2. Should reject invalid data in edit dRep form", async ({
+  54  |     page,
+  55  |   }) => {
+  56  |     test.slow();
+  57  | 
+  58  |     const editDRepPage = new EditDRepPage(page);
+  59  |     await editDRepPage.goto();
+  60  | 
+  61  |     await expect(page.getByTestId("alert-success")).not.toBeVisible();
+  62  | 
+  63  |     for (let i = 0; i < 100; i++) {
+  64  |       const invalidDRepInfo = generateInvalidDRepInfo();
+  65  |       await editDRepPage.inValidateForm(invalidDRepInfo);
+  66  |     }
+  67  |   });
+  68  | 
+  69  |   test.describe("Metadata anchor Validation", () => {
+  70  |     let editDRepPage: EditDRepPage;
+  71  |     test.beforeEach(async ({ page }) => {
+  72  |       editDRepPage = new EditDRepPage(page);
+  73  |       await editDRepPage.goto();
+  74  | 
+  75  |       const dRepName = faker.person.firstName();
+  76  |       await editDRepPage.nameInput.fill(dRepName);
+  77  | 
+  78  |       await editDRepPage.continueBtn.click();
+  79  |       await page.getByRole("checkbox").click();
+  80  |       await editDRepPage.registerBtn.click();
+  81  |     });
+  82  |     test("3N_1. Should accept valid metadata anchor on edit dRep", async ({
+  83  |       page,
+  84  |     }) => {
+  85  |       for (let i = 0; i < 100; i++) {
+  86  |         await editDRepPage.metadataUrlInput.fill(mockValid.url());
+  87  |         await expect(page.getByTestId("invalid-url-error")).toBeHidden();
+  88  |       }
+  89  |     });
+  90  | 
+  91  |     test("3N_2. Should reject invalid dRep metadata anchor on edit dRep", async ({
+  92  |       page,
+  93  |     }) => {
+  94  |       for (let i = 0; i < 100; i++) {
+  95  |         const invalidUrl = mockInvalid.url(false);
+  96  |         const sentenceWithoutSpace = faker.lorem
+  97  |           .sentence({ min: 128, max: 500 })
+  98  |           .replace(/[\s.]/g, "");
+  99  |         const metadataAnchorGreaterThan128Bytes =
+  100 |           faker.internet.url({ appendSlash: true }) + sentenceWithoutSpace;
+  101 |         const checkedUrl =
+  102 |           Math.random() > 0.5 ? invalidUrl : metadataAnchorGreaterThan128Bytes;
+  103 |         await editDRepPage.metadataUrlInput.fill(checkedUrl);
+  104 |         if (checkedUrl.length <= 128) {
+  105 |           await expect(page.getByTestId("invalid-url-error")).toBeVisible();
+  106 |         } else {
+  107 |           await expect(
+  108 |             page.getByTestId("url-must-be-less-than-128-bytes-error")
+  109 |           ).toBeVisible();
+  110 |         }
+  111 |       }
+  112 |     });
+  113 |   });
+  114 | });
+  115 | 
+  116 | test("3P. Should reject invalid edit dRep metadata", async ({ page }) => {
+  117 |   const editDRepPage = new EditDRepPage(page);
+  118 |   await editDRepPage.goto();
+  119 | 
+  120 |   const dRepName = "Test_DRep";
+  121 |   await editDRepPage.nameInput.fill(dRepName);
+  122 | 
+> 123 |   await editDRepPage.continueBtn.click();
+      |                                  ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  124 |   await page.getByRole("checkbox").click();
+  125 |   await editDRepPage.registerBtn.click();
+  126 | 
+  127 |   const invalidMetadataAnchor = "https://www.google.com";
+  128 |   await editDRepPage.metadataUrlInput.fill(invalidMetadataAnchor);
+  129 |   await editDRepPage.submitBtn.click();
+  130 | 
+  131 |   await expect(page.getByTestId("modal")).toHaveText(
+  132 |     /your external data does not/i
+  133 |   );
+  134 | });
+  135 | 
+```
