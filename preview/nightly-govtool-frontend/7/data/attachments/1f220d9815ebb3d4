@@ -1,0 +1,296 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 2-delegation/abstainDelegation.wallet.spec.ts >> Abstain delegation >> 2U. Should show delegated voting power to Abstain
+- Location: tests/2-delegation/abstainDelegation.wallet.spec.ts:24:7
+
+# Error details
+
+```
+Error: Error: expect(locator).toBeVisible() failed
+
+Locator: getByTestId('alert-warning').getByText('Transaction in progress')
+Expected: visible
+Timeout: 90000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 90000ms
+  - waiting for getByTestId('alert-warning').getByText('Transaction in progress')
+
+```
+
+```
+Error: page.waitForRequest: Test ended.
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: "Network: Preview"
+      - generic [ref=e7]: "|"
+      - link [ref=e8] [cursor=pointer]:
+        - /url: https://gov.tools/
+        - text: Go to Mainnet
+    - img [ref=e9]
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - link [ref=e12] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e13]
+        - generic [ref=e14]:
+          - link [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+            - generic [ref=e17]:
+              - img [ref=e18]
+              - paragraph [ref=e19]: Home
+          - link [ref=e21] [cursor=pointer]:
+            - /url: /connected/drep_directory
+            - generic [ref=e22]:
+              - img [ref=e23]
+              - paragraph [ref=e24]: DRep Directory
+          - link [ref=e26] [cursor=pointer]:
+            - /url: /budget_discussion
+            - generic [ref=e27]:
+              - img [ref=e28]
+              - paragraph [ref=e29]: Budget Proposals
+          - generic [ref=e30]:
+            - link [ref=e31] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e32]:
+                - img [ref=e33]
+                - paragraph [ref=e34]: Governance Actions
+            - generic [ref=e35]:
+              - link [ref=e36] [cursor=pointer]:
+                - /url: /proposal_discussion
+                - generic [ref=e37]:
+                  - img [ref=e39]
+                  - paragraph [ref=e41]: Proposals
+              - link [ref=e42] [cursor=pointer]:
+                - /url: /connected/governance_actions
+                - generic [ref=e43]:
+                  - img [ref=e44]
+                  - paragraph [ref=e45]: Live Voting
+              - link [ref=e46] [cursor=pointer]:
+                - /url: /outcomes
+                - generic [ref=e47]:
+                  - img [ref=e48]
+                  - paragraph [ref=e49]: Outcomes
+          - link [ref=e51] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e52]:
+              - img [ref=e53]
+              - paragraph [ref=e54]: Guides
+          - link [ref=e56] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e57]:
+              - img [ref=e58]
+              - paragraph [ref=e59]: FAQs
+        - generic [ref=e62]:
+          - paragraph [ref=e63]: "Connected Wallet:"
+          - generic [ref=e64]:
+            - paragraph [ref=e65]: 00a323b5a071a415407dfc478198fc4eae7be929f8181ec01bb85a8b1ebb125d49a2f866212829e9c6548aa85f683cda4695bd0c6825c3d112
+            - button [ref=e66] [cursor=pointer]: Disconnect
+      - generic [ref=e67]:
+        - navigation [ref=e68]:
+          - paragraph [ref=e70]: DRep Directory
+        - generic [ref=e72]:
+          - generic [ref=e73]:
+            - paragraph [ref=e74]: Delegation Options
+            - generic [ref=e75]:
+              - button [expanded] [ref=e76] [cursor=pointer]:
+                - paragraph [ref=e78]: Automated Voting Options
+                - img [ref=e80]
+              - region [ref=e84]:
+                - generic [ref=e86]:
+                  - generic [ref=e87]:
+                    - generic [ref=e88]:
+                      - paragraph [ref=e89]: Abstain from Every Vote
+                      - paragraph [ref=e90]: Select this to vote ABSTAIN to every vote.
+                    - separator [ref=e91]
+                    - generic [ref=e92]:
+                      - paragraph [ref=e93]: Voting Power
+                      - paragraph [ref=e94]: ₳ 143,741,857
+                    - separator [ref=e95]
+                    - generic [ref=e96]:
+                      - button [ref=e97] [cursor=pointer]: Info
+                      - button [ref=e98] [cursor=pointer]: Delegate
+                  - generic [ref=e99]:
+                    - generic [ref=e100]:
+                      - paragraph [ref=e101]: Signal No Confidence on Every Vote
+                      - paragraph [ref=e102]: Select this to signal no confidence in the current constitutional committee by voting NO on every proposal and voting YES to no confidence proposals
+                    - separator [ref=e103]
+                    - generic [ref=e104]:
+                      - paragraph [ref=e105]: Voting Power
+                      - paragraph [ref=e106]: ₳ 3,764,301
+                    - separator [ref=e107]
+                    - generic [ref=e108]:
+                      - button [ref=e109] [cursor=pointer]: Info
+                      - button [ref=e110] [cursor=pointer]: Delegate
+          - paragraph [ref=e111]: Find a DRep
+          - generic [ref=e112]:
+            - generic [ref=e113]:
+              - generic [ref=e114]:
+                - img [ref=e115]
+                - textbox [ref=e117]:
+                  - /placeholder: Search for a DRep name or ID
+              - generic [ref=e119]:
+                - generic [ref=e120] [cursor=pointer]:
+                  - img [ref=e121]
+                  - paragraph [ref=e122]: Filter
+                  - paragraph [ref=e124]: "1"
+                - generic [ref=e125] [cursor=pointer]:
+                  - img [ref=e126]
+                  - paragraph [ref=e127]: "Sort by: Voting Activity"
+            - button [ref=e129]:
+              - generic [ref=e130]: Active
+              - button [ref=e131] [cursor=pointer]:
+                - img [ref=e132]
+          - list [ref=e134]:
+            - listitem [ref=e135]:
+              - generic [ref=e139]:
+                - generic [ref=e141]:
+                  - generic [ref=e142]:
+                    - img [ref=e144]
+                    - generic [ref=e145]:
+                      - paragraph [ref=e146]: bob
+                      - generic [ref=e147]:
+                        - button [ref=e148] [cursor=pointer]:
+                          - paragraph [ref=e149]: drep1ytak734u2yted9qllpf84fswjk3hervhmz4hkkefx65c0pcw06he8
+                        - button [ref=e150] [cursor=pointer]:
+                          - paragraph [ref=e151]: (CIP-105) drep1ldh5d0z3z7tfg8lc2fa2vr545d7gm97c4da4k2fk4xrcwr2px7f
+                  - generic [ref=e152]:
+                    - generic [ref=e153]:
+                      - paragraph [ref=e154]: Voting power
+                      - paragraph [ref=e155]: ₳ 9,154
+                    - separator [ref=e156]
+                    - generic [ref=e157]:
+                      - paragraph [ref=e158]: Status
+                      - generic [ref=e161]: Active
+                - generic [ref=e162]:
+                  - button [ref=e163] [cursor=pointer]: View details
+                  - button [ref=e164] [cursor=pointer]: Delegate
+          - generic [ref=e166]:
+            - generic [ref=e167]:
+              - paragraph [ref=e168]: "Rows per page:"
+              - generic [ref=e169]:
+                - combobox [ref=e170] [cursor=pointer]:
+                  - generic [ref=e171]: "5"
+                - textbox: "5"
+                - img [ref=e172] [cursor=pointer]
+            - paragraph [ref=e174]: 1-1 of 1
+            - generic [ref=e175]:
+              - button [disabled]:
+                - img
+              - paragraph [ref=e176]: "1"
+              - button [disabled]:
+                - img
+        - contentinfo [ref=e177]:
+          - paragraph [ref=e178]: © 2026 GovTool
+          - generic [ref=e179]:
+            - generic [ref=e180] [cursor=pointer]: Privacy policy
+            - generic [ref=e181] [cursor=pointer]: Terms of Use
+          - generic [ref=e182]:
+            - button [ref=e183] [cursor=pointer]:
+              - img [ref=e185]
+              - text: Help
+            - button [ref=e186] [cursor=pointer]: Subscribe to updates
+            - button [ref=e187] [cursor=pointer]: Feedback
+    - img [ref=e188]
+  - generic [ref=e191]:
+    - img "close" [ref=e192] [cursor=pointer]
+    - img "Status icon" [ref=e193]
+    - paragraph [ref=e194]: Oops!
+    - paragraph [ref=e196]: "\"Application can not create transaction.\""
+    - button "Cancel" [ref=e197] [cursor=pointer]: Cancel
+```
+
+# Test source
+
+```ts
+  1  | import environments from "@constants/environments";
+  2  | import { Page, expect } from "@playwright/test";
+  3  | import kuberService from "@services/kuberService";
+  4  | import { Logger } from "@helpers/logger";
+  5  | import { functionWaitedAssert } from "./waitedLoop";
+  6  | 
+  7  | /**
+  8  |  * Polls the transaction status until it's resolved or times out.
+  9  |  */
+  10 | export async function pollTransaction(txHash: string) {
+  11 |   await functionWaitedAssert(
+  12 |     async () => {
+  13 |       try {
+  14 |         Logger.info(`Waiting for tx completion: ${txHash}`);
+  15 |         await expect
+  16 |           .poll(
+  17 |             async () => {
+  18 |               const response = await kuberService.getTransactionDetails(txHash);
+  19 |               const data = await response.json();
+  20 |               return data.length;
+  21 |             },
+  22 |             {
+  23 |               timeout: environments.txTimeOut,
+  24 |             }
+  25 |           )
+  26 |           .toBeGreaterThan(0);
+  27 | 
+  28 |         Logger.success("Tx completed");
+  29 |       } catch (err) {
+  30 |         Logger.fail(`Failed due to ${err}`);
+  31 |         throw err;
+  32 |       }
+  33 |     },
+  34 |     { timeout: environments.txTimeOut + 60_000, name: "pollTransaction" }
+  35 |   );
+  36 | }
+  37 | 
+  38 | export async function waitForTxConfirmation(
+  39 |   page: Page,
+  40 |   triggerCallback?: () => Promise<void>
+  41 | ) {
+  42 |   let transactionHash: string | undefined;
+  43 |   try {
+  44 |     // Listen before triggering, so a status poll that starts while the
+  45 |     // trigger is still running is not missed.
+> 46 |     const transactionStatusPromise = page.waitForRequest((request) => {
+     |                                           ^ Error: page.waitForRequest: Test ended.
+  47 |       return request.url().includes("/transaction/status/");
+  48 |     });
+  49 |     await triggerCallback?.call(this);
+  50 | 
+  51 |     await expect(
+  52 |       page
+  53 |         .getByTestId("alert-warning")
+  54 |         .getByText("Transaction in progress", { exact: false })
+  55 |     ).toBeVisible({
+  56 |       timeout: 90_000,
+  57 |     });
+  58 |     const url = (await transactionStatusPromise).url();
+  59 |     const regex = /\/transaction\/status\/([^\/]+)$/;
+  60 |     const match = url.match(regex);
+  61 |     if (match) {
+  62 |       transactionHash = match[1];
+  63 |     }
+  64 | 
+  65 |     if (transactionHash) {
+  66 |       await pollTransaction(transactionHash);
+  67 |       await expect(
+  68 |         page.getByText("In Progress", { exact: true }).first() //FIXME: Only one element needs to be displayed
+  69 |       ).not.toBeVisible({ timeout: 90_000 });
+  70 |     }
+  71 |   } catch (error) {
+  72 |     Logger.fail(error.message);
+  73 |     throw new Error(error);
+  74 |   }
+  75 | }
+  76 | 
+```

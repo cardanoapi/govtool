@@ -1,0 +1,268 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 2-delegation/delegationFunctionality.delegation.spec.ts >> Delegated ADA visibility >> 2W. Should show my delegated ADA to the DRep
+- Location: tests/2-delegation/delegationFunctionality.delegation.spec.ts:290:7
+
+# Error details
+
+```
+Error: Error: expect(locator).toBeVisible() failed
+
+Locator: getByTestId('alert-warning').getByText('Transaction in progress')
+Expected: visible
+Timeout: 90000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 90000ms
+  - waiting for getByTestId('alert-warning').getByText('Transaction in progress')
+
+```
+
+```
+Error: page.waitForRequest: Test ended.
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: "Network: Preview"
+      - generic [ref=e7]: "|"
+      - link [ref=e8] [cursor=pointer]:
+        - /url: https://gov.tools/
+        - text: Go to Mainnet
+    - img [ref=e9]
+    - generic [ref=e10]:
+      - generic [ref=e11]:
+        - link [ref=e12] [cursor=pointer]:
+          - /url: /dashboard
+          - img [ref=e13]
+        - generic [ref=e14]:
+          - link [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+            - generic [ref=e17]:
+              - img [ref=e18]
+              - paragraph [ref=e19]: Home
+          - link [ref=e21] [cursor=pointer]:
+            - /url: /connected/drep_directory
+            - generic [ref=e22]:
+              - img [ref=e23]
+              - paragraph [ref=e24]: DRep Directory
+          - link [ref=e26] [cursor=pointer]:
+            - /url: /budget_discussion
+            - generic [ref=e27]:
+              - img [ref=e28]
+              - paragraph [ref=e29]: Budget Proposals
+          - generic [ref=e30]:
+            - link [ref=e31] [cursor=pointer]:
+              - /url: /connected/governance_actions
+              - generic [ref=e32]:
+                - img [ref=e33]
+                - paragraph [ref=e34]: Governance Actions
+            - generic [ref=e35]:
+              - link [ref=e36] [cursor=pointer]:
+                - /url: /proposal_discussion
+                - generic [ref=e37]:
+                  - img [ref=e39]
+                  - paragraph [ref=e41]: Proposals
+              - link [ref=e42] [cursor=pointer]:
+                - /url: /connected/governance_actions
+                - generic [ref=e43]:
+                  - img [ref=e44]
+                  - paragraph [ref=e45]: Live Voting
+              - link [ref=e46] [cursor=pointer]:
+                - /url: /outcomes
+                - generic [ref=e47]:
+                  - img [ref=e48]
+                  - paragraph [ref=e49]: Outcomes
+          - link [ref=e51] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e52]:
+              - img [ref=e53]
+              - paragraph [ref=e54]: Guides
+          - link [ref=e56] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e57]:
+              - img [ref=e58]
+              - paragraph [ref=e59]: FAQs
+        - generic [ref=e62]:
+          - paragraph [ref=e63]: "Connected Wallet:"
+          - generic [ref=e64]:
+            - paragraph [ref=e65]: 0054438cfe3ddf2c2a6dc017b0733eca6ec539c41605bf1fda44cf887ddb543c0d731d0d096cbfd049fc96097f7bdf1c4ab5412c7774b0ad55
+            - button [ref=e66] [cursor=pointer]: Disconnect
+      - generic [ref=e67]:
+        - navigation [ref=e68]:
+          - paragraph [ref=e70]: DRep Directory
+        - generic [ref=e72]:
+          - generic [ref=e73]:
+            - paragraph [ref=e74]: Delegation Options
+            - button [ref=e76] [cursor=pointer]:
+              - paragraph [ref=e78]: Automated Voting Options
+              - img [ref=e80]
+          - paragraph [ref=e81]: Find a DRep
+          - generic [ref=e82]:
+            - generic [ref=e83]:
+              - generic [ref=e84]:
+                - img [ref=e85]
+                - textbox [ref=e87]:
+                  - /placeholder: Search for a DRep name or ID
+                  - text: drep1085lsdqezjre69hqd63fjvmpacafsek9pg2eyfl30gqzwdysxqx
+                - button [ref=e88] [cursor=pointer]:
+                  - img [ref=e89]
+              - generic [ref=e92]:
+                - generic [ref=e93] [cursor=pointer]:
+                  - img [ref=e94]
+                  - paragraph [ref=e95]: Filter
+                  - paragraph [ref=e97]: "1"
+                - generic [ref=e98] [cursor=pointer]:
+                  - img [ref=e99]
+                  - paragraph [ref=e100]: "Sort by: Voting Activity"
+            - button [ref=e102]:
+              - generic [ref=e103]: Active
+              - button [ref=e104] [cursor=pointer]:
+                - img [ref=e105]
+          - list [ref=e107]:
+            - listitem [ref=e108]:
+              - generic [ref=e112]:
+                - generic [ref=e114]:
+                  - generic [ref=e115]:
+                    - img [ref=e117]
+                    - generic [ref=e119]:
+                      - button [ref=e120] [cursor=pointer]:
+                        - paragraph [ref=e121]: drep1yfu7n7p5ry2g08gkuph29xfnv8hr4xrxc59pty3879aqqfc5amqrh
+                      - button [ref=e122] [cursor=pointer]:
+                        - paragraph [ref=e123]: (CIP-105) drep1085lsdqezjre69hqd63fjvmpacafsek9pg2eyfl30gqzwdysxqx
+                  - generic [ref=e124]:
+                    - generic [ref=e125]:
+                      - paragraph [ref=e126]: Voting power
+                      - paragraph [ref=e127]: ₳ 0
+                    - separator [ref=e128]
+                    - generic [ref=e129]:
+                      - paragraph [ref=e130]: Status
+                      - generic [ref=e133]: Active
+                - button [ref=e135] [cursor=pointer]: Delegate
+          - generic [ref=e137]:
+            - generic [ref=e138]:
+              - paragraph [ref=e139]: "Rows per page:"
+              - generic [ref=e140]:
+                - combobox [ref=e141] [cursor=pointer]:
+                  - generic [ref=e142]: "5"
+                - textbox: "5"
+                - img [ref=e143] [cursor=pointer]
+            - paragraph [ref=e145]: 1-1 of 1
+            - generic [ref=e146]:
+              - button [disabled]:
+                - img
+              - paragraph [ref=e147]: "1"
+              - button [disabled]:
+                - img
+        - contentinfo [ref=e148]:
+          - paragraph [ref=e149]: © 2026 GovTool
+          - generic [ref=e150]:
+            - generic [ref=e151] [cursor=pointer]: Privacy policy
+            - generic [ref=e152] [cursor=pointer]: Terms of Use
+          - generic [ref=e153]:
+            - button [ref=e154] [cursor=pointer]:
+              - img [ref=e156]
+              - text: Help
+            - button [ref=e157] [cursor=pointer]: Subscribe to updates
+            - button [ref=e158] [cursor=pointer]: Feedback
+    - img [ref=e159]
+  - generic [ref=e162]:
+    - img "close" [ref=e163] [cursor=pointer]
+    - img "Status icon" [ref=e164]
+    - paragraph [ref=e165]: Oops!
+    - paragraph [ref=e167]: "\"Application can not create transaction.\""
+    - button "Cancel" [ref=e168] [cursor=pointer]: Cancel
+```
+
+# Test source
+
+```ts
+  1  | import environments from "@constants/environments";
+  2  | import { Page, expect } from "@playwright/test";
+  3  | import kuberService from "@services/kuberService";
+  4  | import { Logger } from "@helpers/logger";
+  5  | import { functionWaitedAssert } from "./waitedLoop";
+  6  | 
+  7  | /**
+  8  |  * Polls the transaction status until it's resolved or times out.
+  9  |  */
+  10 | export async function pollTransaction(txHash: string) {
+  11 |   await functionWaitedAssert(
+  12 |     async () => {
+  13 |       try {
+  14 |         Logger.info(`Waiting for tx completion: ${txHash}`);
+  15 |         await expect
+  16 |           .poll(
+  17 |             async () => {
+  18 |               const response = await kuberService.getTransactionDetails(txHash);
+  19 |               const data = await response.json();
+  20 |               return data.length;
+  21 |             },
+  22 |             {
+  23 |               timeout: environments.txTimeOut,
+  24 |             }
+  25 |           )
+  26 |           .toBeGreaterThan(0);
+  27 | 
+  28 |         Logger.success("Tx completed");
+  29 |       } catch (err) {
+  30 |         Logger.fail(`Failed due to ${err}`);
+  31 |         throw err;
+  32 |       }
+  33 |     },
+  34 |     { timeout: environments.txTimeOut + 60_000, name: "pollTransaction" }
+  35 |   );
+  36 | }
+  37 | 
+  38 | export async function waitForTxConfirmation(
+  39 |   page: Page,
+  40 |   triggerCallback?: () => Promise<void>
+  41 | ) {
+  42 |   let transactionHash: string | undefined;
+  43 |   try {
+  44 |     // Listen before triggering, so a status poll that starts while the
+  45 |     // trigger is still running is not missed.
+> 46 |     const transactionStatusPromise = page.waitForRequest((request) => {
+     |                                           ^ Error: page.waitForRequest: Test ended.
+  47 |       return request.url().includes("/transaction/status/");
+  48 |     });
+  49 |     await triggerCallback?.call(this);
+  50 | 
+  51 |     await expect(
+  52 |       page
+  53 |         .getByTestId("alert-warning")
+  54 |         .getByText("Transaction in progress", { exact: false })
+  55 |     ).toBeVisible({
+  56 |       timeout: 90_000,
+  57 |     });
+  58 |     const url = (await transactionStatusPromise).url();
+  59 |     const regex = /\/transaction\/status\/([^\/]+)$/;
+  60 |     const match = url.match(regex);
+  61 |     if (match) {
+  62 |       transactionHash = match[1];
+  63 |     }
+  64 | 
+  65 |     if (transactionHash) {
+  66 |       await pollTransaction(transactionHash);
+  67 |       await expect(
+  68 |         page.getByText("In Progress", { exact: true }).first() //FIXME: Only one element needs to be displayed
+  69 |       ).not.toBeVisible({ timeout: 90_000 });
+  70 |     }
+  71 |   } catch (error) {
+  72 |     Logger.fail(error.message);
+  73 |     throw new Error(error);
+  74 |   }
+  75 | }
+  76 | 
+```

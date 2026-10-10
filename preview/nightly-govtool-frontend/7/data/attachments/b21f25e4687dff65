@@ -1,0 +1,108 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 5-proposal-functionality/proposalFunctionality.dRep.spec.ts >> Perform voting >> 5F. Should show notification of casted vote after vote
+- Location: tests/5-proposal-functionality/proposalFunctionality.dRep.spec.ts:219:7
+
+# Error details
+
+```
+Error: Error: expect(locator).toBeVisible() failed
+
+Locator: getByTestId('alert-warning').getByText('Transaction in progress')
+Expected: visible
+Timeout: 90000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 90000ms
+  - waiting for getByTestId('alert-warning').getByText('Transaction in progress')
+
+```
+
+# Test source
+
+```ts
+  1  | import environments from "@constants/environments";
+  2  | import { Page, expect } from "@playwright/test";
+  3  | import kuberService from "@services/kuberService";
+  4  | import { Logger } from "@helpers/logger";
+  5  | import { functionWaitedAssert } from "./waitedLoop";
+  6  | 
+  7  | /**
+  8  |  * Polls the transaction status until it's resolved or times out.
+  9  |  */
+  10 | export async function pollTransaction(txHash: string) {
+  11 |   await functionWaitedAssert(
+  12 |     async () => {
+  13 |       try {
+  14 |         Logger.info(`Waiting for tx completion: ${txHash}`);
+  15 |         await expect
+  16 |           .poll(
+  17 |             async () => {
+  18 |               const response = await kuberService.getTransactionDetails(txHash);
+  19 |               const data = await response.json();
+  20 |               return data.length;
+  21 |             },
+  22 |             {
+  23 |               timeout: environments.txTimeOut,
+  24 |             }
+  25 |           )
+  26 |           .toBeGreaterThan(0);
+  27 | 
+  28 |         Logger.success("Tx completed");
+  29 |       } catch (err) {
+  30 |         Logger.fail(`Failed due to ${err}`);
+  31 |         throw err;
+  32 |       }
+  33 |     },
+  34 |     { timeout: environments.txTimeOut + 60_000, name: "pollTransaction" }
+  35 |   );
+  36 | }
+  37 | 
+  38 | export async function waitForTxConfirmation(
+  39 |   page: Page,
+  40 |   triggerCallback?: () => Promise<void>
+  41 | ) {
+  42 |   let transactionHash: string | undefined;
+  43 |   try {
+  44 |     // Listen before triggering, so a status poll that starts while the
+  45 |     // trigger is still running is not missed.
+  46 |     const transactionStatusPromise = page.waitForRequest((request) => {
+  47 |       return request.url().includes("/transaction/status/");
+  48 |     });
+  49 |     await triggerCallback?.call(this);
+  50 | 
+  51 |     await expect(
+  52 |       page
+  53 |         .getByTestId("alert-warning")
+  54 |         .getByText("Transaction in progress", { exact: false })
+  55 |     ).toBeVisible({
+  56 |       timeout: 90_000,
+  57 |     });
+  58 |     const url = (await transactionStatusPromise).url();
+  59 |     const regex = /\/transaction\/status\/([^\/]+)$/;
+  60 |     const match = url.match(regex);
+  61 |     if (match) {
+  62 |       transactionHash = match[1];
+  63 |     }
+  64 | 
+  65 |     if (transactionHash) {
+  66 |       await pollTransaction(transactionHash);
+  67 |       await expect(
+  68 |         page.getByText("In Progress", { exact: true }).first() //FIXME: Only one element needs to be displayed
+  69 |       ).not.toBeVisible({ timeout: 90_000 });
+  70 |     }
+  71 |   } catch (error) {
+  72 |     Logger.fail(error.message);
+> 73 |     throw new Error(error);
+     |           ^ Error: Error: expect(locator).toBeVisible() failed
+  74 |   }
+  75 | }
+  76 | 
+```
