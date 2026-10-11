@@ -1,0 +1,8 @@
+✔ Uploaded Harriet-80e18039 metadata to bucket
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: f6ac3c4167bd82136305547a4c4be2d831a168fd2f29e1523ef3d230f103e2b2
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
