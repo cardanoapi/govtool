@@ -1,0 +1,29 @@
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 429 ()
+ℹ Retrying the function download metadata
+✔ Uploaded Burdette.jsonld metadata to bucket
+ℹ Waiting for tx completion: a8f3b7de4ac273083a2666a06d352271ca419a5bc11e63bec3d28740856d08af
+✔ Tx completed

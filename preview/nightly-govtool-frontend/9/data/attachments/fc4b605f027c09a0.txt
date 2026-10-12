@@ -1,0 +1,12 @@
+✔ Uploaded Kristine-db52782f metadata to bucket
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 111a67cb8beeaa921bc5068da1abf79a30c2a6656203011f96b8cf29f9ca5102
+✔ Tx completed
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Uploaded 02f40f28-8675-40c3-b0ed-f66743afa9d8-Vote_Context.jsonld metadata to bucket
+ℹ Waiting for tx completion: 96aa5acbd64f2b6ca0b941228164a6ea167a10f50f97d05500a3649182689c5a
+✔ Tx completed
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()

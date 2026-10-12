@@ -1,0 +1,8 @@
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Retrying the function download metadata
+✔ Uploaded Michel.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: af0225b6985d9acc2841af3deeb47f03d776fc6364cbd2506aeb4c7baa356a73
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

@@ -1,0 +1,8 @@
+✔ Uploaded Providenci-e75cc699 metadata to bucket
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Uploaded c3d4570b-c50f-4ec9-9fcc-e757336bd731-Vote_Context.jsonld metadata to bucket
+ℹ Waiting for tx completion: 37578aaa3388105c9ad023759ae3682747ded8df40917ffabc72a7f6c5af2e06
+✔ Tx completed
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()

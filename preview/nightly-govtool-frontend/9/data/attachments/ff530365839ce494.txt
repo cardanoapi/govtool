@@ -1,0 +1,8 @@
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 429 ()
+ℹ Retrying the function download metadata
+✔ Uploaded Jerad.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: ed371289f3ecd43bca9ed4d370079252c18b25da978ea8930b470078a4a66149
+✔ Tx completed

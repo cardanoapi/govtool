@@ -1,0 +1,11 @@
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Retrying the function download metadata
+✔ Uploaded Pamela.jsonld metadata to bucket
+ℹ Waiting for tx completion: 2143079e3d124c55f6367b770a6b6e7050a2755397a560ab5e55261eb614d307
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Tx completed
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID

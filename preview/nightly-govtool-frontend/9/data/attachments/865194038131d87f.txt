@@ -1,0 +1,5 @@
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 8db3cd01bb36061d4a60fa66c39b550963d79e5f66af9e0e3ab6c0f98deb782c
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

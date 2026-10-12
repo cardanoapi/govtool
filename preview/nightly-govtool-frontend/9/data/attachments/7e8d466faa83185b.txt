@@ -1,0 +1,4 @@
+wallet balance 1019.819495
+wallet address addr_test1qqtun74zqvkmn6xam2z7sayt9l7geyhv6xy9zthf0cjwyauyq3w47ec4v495fy3lagq70sgfzgkld3crh4lgja6070lqpxyf4a
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+0
