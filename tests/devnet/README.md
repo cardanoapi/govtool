@@ -3,8 +3,8 @@
 Runs GovTool and its integration suites against a local Cardano devnet. Once
 images are pulled or built, nothing reaches a public network, hosted Kuber,
 Blockfrost, a faucet, Pinata or an IPFS gateway, and no secrets are needed.
-CI: `.github/workflows/test_integration_devnet.yml` (push to `dev` and
-`draft/govtool-provider-layer`, manual).
+CI: `.github/workflows/test_integration_devnet.yml` (push to `develop`,
+manual).
 
 - Chain: adaup (`cardano devnet up --docker`) runs cardano-node 11.0.1
   (magic 42, protocol 10), Kuber, db-sync 13.7 with its Postgres and an
@@ -38,8 +38,9 @@ tests/devnet/down.sh                    # everything, volumes included
 (`scripts/faucet-env.js` derives `FAUCET_*` from adaup's faucet key, adds a
 stake key and moves `FAUCET_FUND_ADA`, default 100M ADA, to the base
 address); the app stack, built and healthy; `seed.sh`; then
-`.state/playwright.env` and `.state/pytest.env` (mode 600; the run scripts
-export them, overriding each suite's own `.env`). Skip steps with
+`.state/playwright.env` (mode 600: it holds the wallet mnemonic and faucet
+keys) and `.state/pytest.env`; the run scripts export them, overriding each
+suite's own `.env`. Skip steps with
 `SKIP_CHAIN=1`, `SKIP_FAUCET=1`, `SKIP_SEED=1`; `DEVNET_COMPOSE_BUILD=0`
 starts existing images without rebuilding. Step timings go to
 `.state/timings.txt`.

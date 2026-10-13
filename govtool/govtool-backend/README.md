@@ -105,7 +105,7 @@ values through and expose nothing about caching (D119):
 | Route                                | Response                                                                                    |
 | ------------------------------------ | ------------------------------------------------------------------------------------------- |
 | `GET /metadata/resolve?hash=&url=`   | always `200` with a `MetadataResult`; a failure carries `code`, `category` and `reportId`   |
-| `POST /metadata/retry` `{hash, url}` | always `200` with a `MetadataRefreshGovernance action`; `Retry-After` is set with `retryAfterSeconds` |
+| `POST /metadata/retry` `{hash, url}` | always `200` with a `MetadataRefreshOutcome`; `Retry-After` is set with `retryAfterSeconds` |
 | `GET /metadata/reports/:id`          | `200` with a `MetadataReport`, or `404`                                                     |
 | `GET /metadata/reports?hash=&url=`   | `200` with `MetadataReportSummary[]`, newest first                                          |
 
@@ -193,6 +193,16 @@ underneath:
   voted on and `GET /proposal/get` returns its vote. A `drepId` that names no
   DRep, such as the text `undefined` a disconnected frontend sends, is
   ignored.
+- Documents are fetched ahead, not while a request waits. After each
+  snapshot refresh the warmer fills a store with every DRep's and every
+  governance action's anchored document, 30 at a time from the metadata
+  service, waiting up to 120 s for each
+  ([document-store.ts](src/metadata/document-store.ts), D167).
+  `/drep/list`, `/proposal/list`, the governance action history list, their
+  searches and `/drep/getVotes` read only from it. A failure the service reports is retried after 5, 10 and
+  20 minutes and then kept, with its reason in a DRep row's `metadataError`.
+  A name or text search answers `503` until every document has had an
+  answer, rather than a partial result.
 - `GET /network/metrics` still answers its thirteen counters. The contract has
   no metrics resource, so [network.service.ts](src/network/network.service.ts)
   assembles them from the committee, the DRep counts, the proposal total and
@@ -249,16 +259,16 @@ metadata gateway, the whole-collection reader and the cache. The e2e spec
 covers `/` and `/health` only; to exercise the rest, run the server against
 the fixture.
 
-For a read-only Governance action comparison, build the contract, providers and backend,
+For a read-only governance action comparison, build the contract, providers and backend,
 then run from this directory with the db-sync and Koios environment settings
 for the same network (`.env` supplies defaults):
 
 ```bash
-GOVTOOL_AGGREGATES_REPORT=/tmp/govtool-governance action-live.json node scripts/live-governanceAction-aggregates.mjs
+GOVTOOL_AGGREGATES_REPORT=/tmp/govtool-governance-action-live.json node scripts/live-governance-action-aggregates.mjs
 ```
 
 This samples current, enacted and expired actions, compares each supported
-voter group's complete tally and threshold, and checks the Governance action detail
+voter group's complete tally and threshold, and checks the governance action detail
 projection. Unsupported historical Koios SPO/committee groups are recorded
 separately. Any mismatch or read failure exits nonzero. Chain data changes, so
 the resulting report describes that run rather than a frozen release guarantee.
@@ -267,7 +277,7 @@ To check desktop and mobile rendering with those sampled tallies, run from
 `../../tests/govtool-frontend/playwright`:
 
 ```bash
-GOVTOOL_AGGREGATES_REPORT=/tmp/govtool-governance action-live.json npm run test:governance action-aggregates
+GOVTOOL_AGGREGATES_REPORT=/tmp/govtool-governance-action-live.json npm run test:governance-action-aggregates
 ```
 
 These browser checks replay the captured aggregate data through mocked HTTP

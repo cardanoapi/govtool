@@ -5,9 +5,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-As a minor extension, we also keep a semantic version for the `UNRELEASED`
-changes.
-
 ## [Unreleased]
 
 ### Added
@@ -16,9 +13,17 @@ changes.
 - `govtool-docs` Docker image, built by CI on `main`, `develop`, `test` and version tags; images from `main` and version tags always build for docs.gov.tools
 - A GitHub Pages preview of the documentation, deployed from `develop` and not indexed by search engines
 - Documentation checks on pull requests that touch `docs/`: the site build catches broken links and asset paths, and the Docker image is started and smoke-tested, before merge
+- Guides for AI coding agents: `AGENTS.md` files, each imported by a `CLAUDE.md`, at the root and in `govtool/frontend`, `govtool/govtool-backend` and `tests`, and a rewritten `govtool/AGENTS.md`, covering checks, couplings and traps. The guide to adding a governance action type now covers the data contract, providers, backend and forum ([#4196](https://github.com/IntersectMBO/govtool/issues/4196))
+
+### Fixed
+
+- Developer documentation no longer describes the removed Haskell backend or claims that pull requests run unit tests; broken anchors, the backend and test suite setup docs and their `.env.example` files are corrected, and the README links support, security reporting and the license ([#4196](https://github.com/IntersectMBO/govtool/issues/4196))
 
 ### Changed
 
+- The backend fetches every DRep's and governance action's anchored document ahead, up to 30 at a time and waiting up to 120 s for each, and the DRep directory, the governance action list, the governance action history, their searches and a DRep's vote history read them from that store instead of fetching while the request waits. Failed fetches are retried three times, and a DRep row reports the reason in `metadataError`. A name or title search answers 503 until every document has been fetched once, instead of returning partial results
+- A governance action details page opened from a list row without its document reads the action again for it, so its authors show. When the document cannot be loaded, the authors line says so instead of "No data available", which now means the document lists no authors
+- The DRep directory, the governance action lists, the governance action history and the voted-on tab retry a search the backend cannot run yet for about a minute, then say that search is still loading, instead of showing no results, "You haven't voted yet" or an endless spinner
 - Budget discussions are now a read-only archive of the 2025 budget proposals (linked from a "2025 Budget Proposals" card in Useful links, with a read-only notice on its pages). The list, details, version history, final DRep poll totals and comments are served as static files under `/budget-proposals-2025/`, split from a mainnet export by `govtool/frontend/scripts/split-bd-archive.mjs`; the frontend makes no budget discussion requests. Old `/budget_discussion` links still resolve, `/budget_discussion/propose` redirects to the archive, and the archive is shown whether or not the proposal discussion forum is enabled
 - The frontend image compresses JSON and caches the archive files for 30 days
 
