@@ -1,0 +1,6 @@
+✔ Uploaded Reilly-71b45532 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Uploaded 15ea08d7-1050-49b1-9aae-e26083c22e13-Vote_Context.jsonld metadata to bucket
+ℹ Waiting for tx completion: bc2323696299c81372feaf2e69132009154180646ce593c171dcee4ace023a40
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

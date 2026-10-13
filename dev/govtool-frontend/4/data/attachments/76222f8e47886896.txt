@@ -1,0 +1,4 @@
+✔ Uploaded Pierce-fce0d985 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 9daba52ee572d47c3472897fcb34092458105f038f51167e351e409d629eb410
+✔ Tx completed

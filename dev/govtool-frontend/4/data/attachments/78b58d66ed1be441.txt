@@ -1,0 +1,4 @@
+✔ Uploaded Rae-ad814034 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 16b9024fcaf76c5a9d6adb06607d06ea5e6cd855ebb53a0b7702ee966f98bd90
+✔ Tx completed

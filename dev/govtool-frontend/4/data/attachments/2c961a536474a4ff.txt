@@ -1,0 +1,12 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: be545fdb16bac814d6badc6cacc25e0627782a4dbec678c1b1bae467f9ac8750
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 7d67399c80adc6de1ca6e5782c845f527c8fd14b5f02c5e90e9de5dd181b3456
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed due to FetchError: request to https://preview.kuber.cardanoapi.io/api/v3/utxo?txin=7d67399c80adc6de1ca6e5782c845f527c8fd14b5f02c5e90e9de5dd181b3456%230 failed, reason: socket hang up
+ℹ Retrying the function pollTransaction
+ℹ Waiting for tx completion: 7d67399c80adc6de1ca6e5782c845f527c8fd14b5f02c5e90e9de5dd181b3456
+✔ Tx completed

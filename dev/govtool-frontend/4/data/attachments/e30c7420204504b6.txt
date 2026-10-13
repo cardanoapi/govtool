@@ -1,0 +1,5 @@
+✔ Uploaded Clifton-599b5467 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 7af4d79af901c4e510be28f3deb8e9d7ae05c21104e507d10335a0794332ae94
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

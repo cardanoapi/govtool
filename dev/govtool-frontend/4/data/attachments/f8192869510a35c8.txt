@@ -1,0 +1,9 @@
+✔ Uploaded Chesley-1e4f52b7 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 4766fd64e78778bb08dbfb9f2d486f1cfd7f0ee5ce6ccf5d6819332760ac3d0a
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Uploaded 911517d2-e10e-4b20-a510-75cd2f36cb69-Vote_Context.jsonld metadata to bucket
+ℹ Waiting for tx completion: 0b91277dfdcc939aaa0b0dee088d269bc061c733836be7d9930bae7edcc82a07
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

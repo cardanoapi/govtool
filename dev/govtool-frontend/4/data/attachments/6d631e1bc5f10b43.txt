@@ -1,0 +1,6 @@
+wallet balance 1019.819495
+wallet address addr_test1qqmlftwxvavtxud7zsmctmlngc2ktnlw76kkht6qty40mjd8d4rwhkyl9kpp7ukd9m59cmdr9wyszafddw0z4s3zfjgsj8mas3
+0
+✔ Uploaded tenax metadata to bucket
+ℹ Waiting for tx completion: 05aabaf11a984cf78302b85e41fbac33cf6f6cf987f3d7a341af790f80fc67d5
+✔ Tx completed

@@ -1,0 +1,6 @@
+wallet balance 1019.819495
+wallet address addr_test1qqpuj4p80mmfj88fmpfklm5r8g9fw6ta54z97nn9df8p7ygmcjhgs532cgaeluyzdnaqcxsvfnlfxgtth7cf8d9u5u9qa9lsz9
+1
+✔ Uploaded delibero metadata to bucket
+ℹ Waiting for tx completion: 10ebff5dd58b52a6bb259d318578d61d4c5c7b201048e752f3d6b6d1271a6ca3
+✔ Tx completed

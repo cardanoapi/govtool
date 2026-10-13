@@ -1,0 +1,7 @@
+wallet balance 1019.819495
+wallet address addr_test1qrj5fd962pnkp66utdng6fd4mpp8tesve9dcczqaqnu3rmretzxuxtw0fu7hsfxhcv658kpme8hl8e0sh4hnmdgafy8qklgzu8
+✔ Uploaded guardrail-script metadata to bucket
+2
+✔ Uploaded uberrime metadata to bucket
+ℹ Waiting for tx completion: a6321fccb7df5e7af20a72fcec5c5504a7265b7ce3264f598ec7603437c60774
+✔ Tx completed

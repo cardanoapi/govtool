@@ -1,0 +1,10 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Retrying the function download metadata
+✔ Uploaded Elyssa.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 6c7a77f598521ac31b70449fb13b1a1b2f1bb04ef36da2223f9cf4438c7c3ee8
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()

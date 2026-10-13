@@ -1,0 +1,6 @@
+✔ Uploaded Magdalen-09df668e metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 330a1cb2ae552a78694870fab11d239c916ce3a77648829e0906fc312a663e34
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

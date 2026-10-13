@@ -1,0 +1,5 @@
+✔ Uploaded Garrison-cbde465d metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 870e7dd36d3848c28e748702b135bbc2246d63b6052f1e4e9c6c32332fe731cc
+✔ Tx completed

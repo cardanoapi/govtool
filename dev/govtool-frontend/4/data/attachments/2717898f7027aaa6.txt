@@ -1,0 +1,8 @@
+✔ Uploaded Stanton-a33c1c1d metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 2e9bcaa0f4bb00d1cfe2c8486dccb473c51448c25b083ec735682a6581f6a042
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 0619f5a48889c523c93b3d2cb54565b02888492ac6386620f658e9023f7927cc
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

@@ -1,0 +1,6 @@
+wallet balance 1019.819495
+wallet address addr_test1qz70j6f0lse4dq7cwyqaa43cvl53h2g684de3hmad7agdtw4l62ne9w8kyf3ypnumw8p2tvu0q8rqyvsdtr84uqyt57qmc8n9w
+3
+✔ Uploaded attollo metadata to bucket
+ℹ Waiting for tx completion: 3c535d50dedabbfdae7f3e023bd1971c5603da34fe1d614bae0334b84837e6ab
+✔ Tx completed

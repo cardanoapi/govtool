@@ -1,0 +1,4 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: c1dd4ea30b9c77b85929341c2c2e7cb428efbdaab2443746003d9695b697c341
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

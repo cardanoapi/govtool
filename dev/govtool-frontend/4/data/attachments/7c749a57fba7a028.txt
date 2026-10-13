@@ -1,0 +1,2 @@
+✔ Uploaded Susan-29e8959c metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()

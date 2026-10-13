@@ -1,0 +1,7 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Retrying the function download metadata
+✔ Uploaded Linnie.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: f18f1d3b07c3741a4762c8af58402a77f5a6dbb5d92fc914d1c96e4a010df39f
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

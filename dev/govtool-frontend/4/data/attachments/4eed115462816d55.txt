@@ -1,0 +1,3 @@
+wallet balance 1019.819495
+wallet address addr_test1qrgd5ec24v46ftaf5n3nym00cyhd67g9dfyfqjl47fjcwh3c9astvvzk4zz9lk0qdygc5za788ull4krmce670ylupusu4pvut
+3

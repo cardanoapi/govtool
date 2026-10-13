@@ -1,0 +1,6 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Retrying the function download metadata
+✔ Uploaded Irwin.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 6786bc60bf0f71720998086620a7b9747159b5767881f10081aaf1030eaf33c5
+✔ Tx completed
