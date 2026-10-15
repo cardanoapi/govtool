@@ -1,0 +1,6 @@
+✔ Uploaded Dariana-dfb25678 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Uploaded b82af86d-9a78-449e-8d7f-2d00e52894d0-Vote_Context.jsonld metadata to bucket
+ℹ Waiting for tx completion: 5166d3a70be99f6a0050d924c67031cf49af759e7bca60a4da6394f4b58badcf
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

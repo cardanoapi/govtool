@@ -1,0 +1,141 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 2-delegation/delegation.spec.ts >> DRep dependent tests >> 2P. Should enable sharing of DRep details
+- Location: tests/2-delegation/delegation.spec.ts:174:7
+
+# Error details
+
+```
+Error: Share button not found
+
+expect(received).toBeTruthy()
+
+Received: false
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - img "bg-orange" [ref=e9]
+  - generic [ref=e10]:
+    - banner [ref=e12]:
+      - generic [ref=e13]:
+        - link "app-logo" [ref=e14] [cursor=pointer]:
+          - /url: /
+          - img "app-logo" [ref=e15]
+        - generic [ref=e16]:
+          - button "Connect" [ref=e17] [cursor=pointer]: Connect
+          - img "drawer-icon" [ref=e18]
+    - paragraph [ref=e22]: DRep Directory
+    - generic [ref=e24]:
+      - generic [ref=e25] [cursor=pointer]:
+        - img [ref=e26]
+        - paragraph [ref=e28]: Go to DRep Directory
+      - generic [ref=e29]:
+        - generic [ref=e30]:
+          - generic [ref=e33]:
+            - img "drep-image" [ref=e35]
+            - heading "Mable" [level=1] [ref=e36]
+          - generic [ref=e37]:
+            - heading "DRep ID" [level=2] [ref=e39]
+            - button "drep1y25l2t4zqpptaxxzt0cjplk8na9lwmy2hwjxmf5g67xl05grad8l9" [ref=e41] [cursor=pointer]:
+              - paragraph [ref=e42]: drep1y25l2t4zqpptaxxzt0cjplk8na9lwmy2hwjxmf5g67xl05grad8l9
+          - generic [ref=e43]:
+            - heading "Legacy DRep ID (CIP-105)" [level=2] [ref=e45]
+            - button "drep1486jagsqg2lf3sjm7ys0a3ulf0mkez4m53k6dzxh3hmazgqv9xt" [ref=e47] [cursor=pointer]:
+              - paragraph [ref=e48]: drep1486jagsqg2lf3sjm7ys0a3ulf0mkez4m53k6dzxh3hmazgqv9xt
+          - generic [ref=e49]:
+            - heading "Status" [level=2] [ref=e51]
+            - generic [ref=e54]: Active
+          - generic [ref=e55]:
+            - heading "Voting power" [level=2] [ref=e57]
+            - paragraph [ref=e59]: ₳ 0
+        - button "Connect to delegate" [ref=e60] [cursor=pointer]: Connect to delegate
+        - generic [ref=e61]:
+          - heading "Objectives" [level=2] [ref=e63]
+          - paragraph [ref=e65]: Nam aegre aetas toties. Adeo a utrum vae cado architecto arto audentia cilicium.
+        - generic [ref=e66]:
+          - heading "Motivations" [level=2] [ref=e68]
+          - paragraph [ref=e70]: Statim nesciunt aestus sophismata astrum. Venio tutamen aureus suppono labore cogo crur capillus cauda.
+        - generic [ref=e71]:
+          - heading "Qualifications" [level=2] [ref=e73]
+          - paragraph [ref=e75]: Tabella aurum derelinquo assentator solio. Aiunt villa velociter tribuo arca confido.
+        - generic [ref=e76]:
+          - heading "Payment Address" [level=2] [ref=e78]
+          - button "addr_test1qrv2wcg33yrhd9u2q2jpmetrfakevw6ae7tu6hg6ycrcwld2evn0ymvdfhrkm0m66dl96nwytw5uvwu6qk2mkn00hvdq8clql6" [ref=e80] [cursor=pointer]:
+            - paragraph [ref=e81]: addr_test1qrv2wcg33yrhd9u2q2jpmetrfakevw6ae7tu6hg6ycrcwld2evn0ymvdfhrkm0m66dl96nwytw5uvwu6qk2mkn00hvdq8clql6
+        - generic [ref=e82]:
+          - heading "Metadata URL" [level=2] [ref=e84]
+          - link "https://metadata-govtool.cardanoapi.io/data/Mable-e1bc3bd6 link" [ref=e86] [cursor=pointer]:
+            - /url: https://metadata-govtool.cardanoapi.io/data/Mable-e1bc3bd6
+            - paragraph [ref=e87]: https://metadata-govtool.cardanoapi.io/data/Mable-e1bc3bd6
+            - img "link" [ref=e88]
+        - generic [ref=e89]:
+          - heading "Metadata Hash" [level=2] [ref=e91]
+          - button "9c4083bca793c571724ae335ba39cc1c96cecf1220dfc8ad1342941e036d07e2" [ref=e93] [cursor=pointer]:
+            - paragraph [ref=e94]: 9c4083bca793c571724ae335ba39cc1c96cecf1220dfc8ad1342941e036d07e2
+    - contentinfo [ref=e95]:
+      - paragraph [ref=e96]: © 2026 GovTool
+      - generic [ref=e97]:
+        - generic [ref=e98] [cursor=pointer]: Privacy policy
+        - generic [ref=e99] [cursor=pointer]: Terms of Use
+      - generic [ref=e100]:
+        - button "helpIcon Help" [ref=e101] [cursor=pointer]:
+          - img "helpIcon" [ref=e103]
+          - text: Help
+        - button "Subscribe to updates" [ref=e104] [cursor=pointer]: Subscribe to updates
+        - button "Feedback" [ref=e105] [cursor=pointer]: Feedback
+  - img "bg-blue" [ref=e106]
+```
+
+# Test source
+
+```ts
+  1  | import { expect, Page } from "@playwright/test";
+  2  | 
+  3  | export default class DRepDetailsPage {
+  4  |   readonly copyIdBtn = this.page.getByTestId("copy-drep-id-button");
+  5  |   readonly delegateBtn = this.page.getByTestId("delegate-button");
+  6  |   readonly shareBtn = this.page.getByTestId("share-button");
+  7  | 
+  8  |   constructor(private readonly page: Page) {}
+  9  | 
+  10 |   async goto(dRepId: string) {
+  11 |     await this.page.goto(`/connected/drep_directory/${dRepId}`);
+  12 |   }
+  13 | 
+  14 |   async shareLink() {
+  15 |     const isShareButtonVisible = await this.page
+  16 |       .waitForSelector(`[data-testid="share-button"]`, { timeout: 60_000 })
+  17 |       .then(() => true)
+  18 |       .catch(() => false);
+  19 | 
+  20 |     if (isShareButtonVisible) {
+  21 |       await this.shareBtn.click();
+  22 |     } else {
+> 23 |       expect(false, "Share button not found").toBeTruthy();
+     |                                               ^ Error: Share button not found
+  24 |     }
+  25 | 
+  26 |     await this.page
+  27 |       .getByTestId("copy-link-from-share-button")
+  28 |       .click()
+  29 |       .catch(() => {
+  30 |         expect(false, "Copy link button not found").toBeTruthy();
+  31 |       });
+  32 |   }
+  33 | }
+  34 | 
+```

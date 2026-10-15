@@ -1,0 +1,6 @@
+wallet balance 1019.819495
+wallet address addr_test1qzkz3mq4q3e988cgjwtn52tmmtszw94rl4pmjkvcf60eat4n95pmt034vjpgmz2ydxn68zfqfud4axkptvmw9jhcj4gsv8vrmk
+3
+✔ Uploaded totus metadata to bucket
+ℹ Waiting for tx completion: a109d8f8e2fec47633ca76996087b71e03d06d5f9636c9af6a58596ecfd7268c
+✔ Tx completed

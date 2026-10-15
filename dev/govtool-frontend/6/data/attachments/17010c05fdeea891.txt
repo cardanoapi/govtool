@@ -1,0 +1,6 @@
+wallet balance 1019.819495
+wallet address addr_test1qpd6t4f0pgqpe6jw0clplehh73testx0944awzr023xtw5y55dlru3u3h48xkw20enhcwgxphepae68nym7sjs68dkqsk9xqsw
+0
+✔ Uploaded charisma metadata to bucket
+ℹ Waiting for tx completion: 7ae3d30acf51bc081583b89843de1a1007c120e47af9a7a0676684edc3c44565
+✔ Tx completed

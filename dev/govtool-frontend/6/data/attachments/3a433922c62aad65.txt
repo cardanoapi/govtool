@@ -1,0 +1,6 @@
+wallet balance 1019.819495
+wallet address addr_test1qzgn47tw9d6v4zgru07wp5urmunl05ucy6t5vxed4hg62getzt7vlns7n0e786yhv9mnjdstx8jf0dvq7x2awvla64fq4kx4ef
+1
+✔ Uploaded cariosus metadata to bucket
+ℹ Waiting for tx completion: eaf8a7c99e83502584e0f3a2d3cce98af76da84a10814d5b762cd12e57555c49
+✔ Tx completed

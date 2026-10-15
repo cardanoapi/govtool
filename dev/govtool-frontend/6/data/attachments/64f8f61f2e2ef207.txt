@@ -1,0 +1,4 @@
+✔ Uploaded Toby-6e540f9b metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: f8001a8f3a03bed177378e018b9b84dcb0e9381b202c42645e0a3f3beda06e72
+✔ Tx completed

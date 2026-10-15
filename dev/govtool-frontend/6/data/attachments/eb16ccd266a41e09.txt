@@ -1,0 +1,8 @@
+✔ Uploaded Ward-24b31ab3 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 69f1897eb04d2b0f1dbc2c5aac70418777ecb4112c805f15611cc6bae0b57acb
+✖ Failed due to FetchError: request to https://preview.kuber.cardanoapi.io/api/v3/utxo?txin=69f1897eb04d2b0f1dbc2c5aac70418777ecb4112c805f15611cc6bae0b57acb%230 failed, reason: socket hang up
+ℹ Retrying the function pollTransaction
+ℹ Waiting for tx completion: 69f1897eb04d2b0f1dbc2c5aac70418777ecb4112c805f15611cc6bae0b57acb
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

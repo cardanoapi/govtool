@@ -1,0 +1,7 @@
+wallet balance 1019.819495
+wallet address addr_test1qrg8tf2uksatmkyl0qdt2mkr6llu6qekf47ee5y0vhl7tqasu99qpusqpgz8020kr2zhkakyrlc3yf7xnzkeq4p8d4rqdwt83u
+✔ Uploaded guardrail-script metadata to bucket
+2
+✔ Uploaded quidem metadata to bucket
+ℹ Waiting for tx completion: 0bc1630185f78280fe71ccb5c3490d08dbf0cf4771dff43ec22e530e2c7a924b
+✔ Tx completed

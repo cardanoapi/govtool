@@ -1,0 +1,4 @@
+✔ Uploaded Lisa-cfff30ee metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 131f483618ed33b62c57728aba2fa03d941e039adac840926981dc71b153205f
+✔ Tx completed

@@ -1,0 +1,6 @@
+✔ Uploaded Melanie-860325ad metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: dbf90b70f2074dff150f4236a24c5ad4d360aaa80e61015a4c8a80b286781a6e
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

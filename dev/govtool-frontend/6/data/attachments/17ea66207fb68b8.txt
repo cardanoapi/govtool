@@ -1,0 +1,6 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Retrying the function download metadata
+✔ Uploaded Rufus.jsonld metadata to bucket
+ℹ Waiting for tx completion: db4f5ee50c17b76e8b7d39be54e080acece3a7e0bff5b7aa63b42ee8ba428d93
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Tx completed

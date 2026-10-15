@@ -1,0 +1,8 @@
+✔ Uploaded Frankie-1c4b614f metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 13eedc80a320356f7162b30ab5591799e8afbbb75c39546a7ac1258e7b617f3c
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 7172b399ffbd2180daa643162d3b80ae47c4c7436465ff99d554e76d14dfd094
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

@@ -1,0 +1,6 @@
+✔ Uploaded Zelma-bf54b247 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: c36f33d2a06371b1336c90d5b04cb86119e746251d0ac20e4d0a6f47f936ddf2
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()
