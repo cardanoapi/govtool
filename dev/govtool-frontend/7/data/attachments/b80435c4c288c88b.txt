@@ -1,0 +1,6 @@
+wallet balance 1019.819495
+wallet address addr_test1qzqaqa2u93x0ws5hs530dea0nfxxl9jmwmmcmgzls2fywmelrdzc2m4zc9jn6vw2nqzxypj4ljd7f84pqjje44xgv0psl7vxst
+3
+✔ Uploaded color metadata to bucket
+ℹ Waiting for tx completion: ecc605e03b9d0d4d193a462ebfb5c7603fbe9b36ef606932ab345d45dd5db7cc
+✔ Tx completed

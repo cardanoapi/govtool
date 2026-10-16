@@ -1,0 +1,6 @@
+✔ Uploaded Tabitha-abeb1377 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 1b03901d4a286be0602a2804655f481574f007416a5dc4f86debd5267cde1d5c
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

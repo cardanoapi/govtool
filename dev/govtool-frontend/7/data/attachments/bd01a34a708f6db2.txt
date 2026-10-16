@@ -1,0 +1,8 @@
+✔ Uploaded Margot-f8e0fd64 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 4c9395f39d63c13c2f3d12c23cee8bf72d71e9550c734d744e11a7e7ea5b295f
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 32defe5d07cb113e9eeef0fcfa4e3bf2cd01c906e8a312ea5dc2eb6948c9dde5
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

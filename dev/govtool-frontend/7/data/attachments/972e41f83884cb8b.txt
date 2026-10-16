@@ -1,0 +1,7 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Retrying the function download metadata
+✔ Uploaded Trycia.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 77e1bf62af15749a11cc27673bb23aae38adc4994e73331d2b5dcc9616dbc629
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Tx completed

@@ -1,0 +1,748 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 9-governance-action-history/governance-action-history.spec.ts >> Governance action history page >> 9A_1. Should access governance action history page in disconnect state
+- Location: tests/9-governance-action-history/governance-action-history.spec.ts:21:7
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByRole('heading', { name: 'Historical Actions' })
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for getByRole('heading', { name: 'Historical Actions' })
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: "Network: Preview"
+      - generic [ref=e7]: "|"
+      - link [ref=e8] [cursor=pointer]:
+        - /url: https://gov.tools/
+        - text: Go to Mainnet
+    - img [ref=e9]
+    - generic [ref=e10]:
+      - banner [ref=e12]:
+        - generic [ref=e13]:
+          - link [ref=e14] [cursor=pointer]:
+            - /url: /
+            - img [ref=e15]
+          - navigation [ref=e16]:
+            - generic [ref=e17]:
+              - link [ref=e19] [cursor=pointer]:
+                - /url: /
+                - paragraph [ref=e20]: Home
+              - link [ref=e22] [cursor=pointer]:
+                - /url: /drep_directory
+                - paragraph [ref=e23]: DRep Directory
+              - paragraph [ref=e25] [cursor=pointer]:
+                - generic [ref=e26]:
+                  - text: Governance Actions
+                  - img [ref=e27]
+              - link [ref=e29] [cursor=pointer]:
+                - /url: /governance_actions/history
+                - paragraph [ref=e30]: Guides
+              - link [ref=e32] [cursor=pointer]:
+                - /url: /governance_actions/history
+                - paragraph [ref=e33]: FAQs
+              - button [ref=e35] [cursor=pointer]: Connect Wallet
+      - generic [ref=e38]:
+        - heading [level=1] [ref=e39]: Historical Actions
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - img [ref=e43]
+            - textbox [ref=e45]:
+              - /placeholder: Search Action...
+          - generic [ref=e46]:
+            - button [ref=e48] [cursor=pointer]:
+              - generic [ref=e49]:
+                - paragraph [ref=e50]: Filters
+                - img [ref=e52]
+            - button [ref=e55] [cursor=pointer]:
+              - generic [ref=e56]:
+                - paragraph [ref=e57]: "Sort: Newest first"
+                - img [ref=e59]
+        - generic [ref=e62]:
+          - generic [ref=e63]:
+            - generic [ref=e65]:
+              - generic [ref=e66]:
+                - paragraph [ref=e68]: Reduce minPoolCost to 75 ada
+                - generic [ref=e70]:
+                  - generic [ref=e71]:
+                    - paragraph [ref=e72]: "Submitted: Fri Sep 11, 2026"
+                    - generic [ref=e73]:
+                      - paragraph [ref=e74]: (Epoch 1417)
+                      - img [ref=e76]
+                  - generic [ref=e78]:
+                    - paragraph [ref=e79]: "Expired: Mon Oct 12, 2026"
+                    - generic [ref=e80]:
+                      - paragraph [ref=e81]: (Epoch 1448)
+                      - img [ref=e83]
+                - generic [ref=e85]:
+                  - heading [level=2] [ref=e87]: Abstract
+                  - paragraph [ref=e89]: This governance action proposes reducing minPoolCost from 170,000,000 Lovelace (170 ada) to 75,000,000 Lovelace (75 ada), a decrease of approximately 55.9%. No other protocol parameters are changed by this action.
+                - generic [ref=e90]:
+                  - heading [level=2] [ref=e92]: Governance Action Type
+                  - paragraph [ref=e95]: Protocol Parameter Change
+                - generic [ref=e97]:
+                  - paragraph [ref=e98]: Status
+                  - generic [ref=e101]: Expired
+                - generic [ref=e102]:
+                  - heading [level=2] [ref=e104]: Governance Action ID
+                  - generic [ref=e105]:
+                    - paragraph [ref=e106]: ddaa08c32261c4b8f0c76ed51acd6fd27cfb354327650794dabb29549aa92a3f#0
+                    - img [ref=e108] [cursor=pointer]
+                - generic [ref=e109]:
+                  - heading [level=2] [ref=e111]: (CIP-129) Governance Action ID
+                  - generic [ref=e112]:
+                    - paragraph [ref=e113]: gov_action1mk4q3sezv8zt3ux8dm234nt06f70kd2ryajs09x6hv54fx4f9glsq6j9hus
+                    - img [ref=e115] [cursor=pointer]
+              - link [ref=e117] [cursor=pointer]:
+                - /url: /governance_actions/history/ddaa08c32261c4b8f0c76ed51acd6fd27cfb354327650794dabb29549aa92a3f#0
+                - text: View Details
+            - generic [ref=e119]:
+              - generic [ref=e120]:
+                - paragraph [ref=e122]: Reduce minPoolCost to 75 ada
+                - generic [ref=e124]:
+                  - generic [ref=e125]:
+                    - paragraph [ref=e126]: "Submitted: Wed Sep 09, 2026"
+                    - generic [ref=e127]:
+                      - paragraph [ref=e128]: (Epoch 1415)
+                      - img [ref=e130]
+                  - generic [ref=e132]:
+                    - paragraph [ref=e133]: "Expired: Sat Oct 10, 2026"
+                    - generic [ref=e134]:
+                      - paragraph [ref=e135]: (Epoch 1446)
+                      - img [ref=e137]
+                - generic [ref=e139]:
+                  - heading [level=2] [ref=e141]: Abstract
+                  - paragraph [ref=e143]: This governance action proposes reducing minPoolCost from 170,000,000 Lovelace (170 ada) to 75,000,000 Lovelace (75 ada), a decrease of approximately 55.9%. No other protocol parameters are changed by this action.
+                - generic [ref=e144]:
+                  - heading [level=2] [ref=e146]: Governance Action Type
+                  - paragraph [ref=e149]: Protocol Parameter Change
+                - generic [ref=e151]:
+                  - paragraph [ref=e152]: Status
+                  - generic [ref=e155]: Expired
+                - generic [ref=e156]:
+                  - heading [level=2] [ref=e158]: Governance Action ID
+                  - generic [ref=e159]:
+                    - paragraph [ref=e160]: c91ebdddb534fbc20649853017b06979adccfc653ae11c05d067ce80a4649281#0
+                    - img [ref=e162] [cursor=pointer]
+                - generic [ref=e163]:
+                  - heading [level=2] [ref=e165]: (CIP-129) Governance Action ID
+                  - generic [ref=e166]:
+                    - paragraph [ref=e167]: gov_action1ey0tmhd4xnauypjfs5cp0vrf0xkuelr98ts3cpwsvl8gpfryj2qsqugdvel
+                    - img [ref=e169] [cursor=pointer]
+              - link [ref=e171] [cursor=pointer]:
+                - /url: /governance_actions/history/c91ebdddb534fbc20649853017b06979adccfc653ae11c05d067ce80a4649281#0
+                - text: View Details
+            - generic [ref=e173]:
+              - generic [ref=e174]:
+                - paragraph [ref=e176]: Reduce minPoolCost to 75 ada
+                - generic [ref=e178]:
+                  - generic [ref=e179]:
+                    - paragraph [ref=e180]: "Submitted: Wed Sep 09, 2026"
+                    - generic [ref=e181]:
+                      - paragraph [ref=e182]: (Epoch 1415)
+                      - img [ref=e184]
+                  - generic [ref=e186]:
+                    - paragraph [ref=e187]: "Expired: Sat Oct 10, 2026"
+                    - generic [ref=e188]:
+                      - paragraph [ref=e189]: (Epoch 1446)
+                      - img [ref=e191]
+                - generic [ref=e193]:
+                  - heading [level=2] [ref=e195]: Abstract
+                  - paragraph [ref=e197]: This governance action proposes reducing minPoolCost from 170,000,000 Lovelace (170 ada) to 75,000,000 Lovelace (75 ada), a decrease of approximately 55.9%. No other protocol parameters are changed by this action.
+                - generic [ref=e198]:
+                  - heading [level=2] [ref=e200]: Governance Action Type
+                  - paragraph [ref=e203]: Protocol Parameter Change
+                - generic [ref=e205]:
+                  - paragraph [ref=e206]: Status
+                  - generic [ref=e209]: Expired
+                - generic [ref=e210]:
+                  - heading [level=2] [ref=e212]: Governance Action ID
+                  - generic [ref=e213]:
+                    - paragraph [ref=e214]: c78a0512998fec75ae7426746d351548a81b9bc8ce986eea554d7250ab7fa84c#0
+                    - img [ref=e216] [cursor=pointer]
+                - generic [ref=e217]:
+                  - heading [level=2] [ref=e219]: (CIP-129) Governance Action ID
+                  - generic [ref=e220]:
+                    - paragraph [ref=e221]: gov_action1c79q2y5e3lk8ttn5ye6x6dg4fz5phx7ge6vxa6j4f4e9p2ml4pxqqk0ctes
+                    - img [ref=e223] [cursor=pointer]
+              - link [ref=e225] [cursor=pointer]:
+                - /url: /governance_actions/history/c78a0512998fec75ae7426746d351548a81b9bc8ce986eea554d7250ab7fa84c#0
+                - text: View Details
+            - generic [ref=e227]:
+              - generic [ref=e228]:
+                - paragraph [ref=e230]: "[Preview test] Governance Improvement Survey"
+                - generic [ref=e232]:
+                  - generic [ref=e233]:
+                    - paragraph [ref=e234]: "Submitted: Wed Sep 09, 2026"
+                    - generic [ref=e235]:
+                      - paragraph [ref=e236]: (Epoch 1415)
+                      - img [ref=e238]
+                  - generic [ref=e240]:
+                    - paragraph [ref=e241]: "Expired: Sat Oct 10, 2026"
+                    - generic [ref=e242]:
+                      - paragraph [ref=e243]: (Epoch 1446)
+                      - img [ref=e245]
+                - generic [ref=e247]:
+                  - heading [level=2] [ref=e249]: Abstract
+                  - paragraph [ref=e251]: "Preview test only: this action and survey validate CIP-179 tooling. The source policy examples refer to mainnet, not Preview parameters. Responses are public. Every question is optional; an unanswered question is an abstention. This Info Action and its attached CIP-179 survey are an information-gathering exercise about how Cardano governance could be improved. The survey collects structured opinions from governance participants on several open governance questions. Its purpose is to create a public, auditable preference signal that can help identify areas of agreement and disagreement, prioritize future research, and guide later work to improve Cardano governance."
+                - generic [ref=e252]:
+                  - heading [level=2] [ref=e254]: Governance Action Type
+                  - paragraph [ref=e257]: Info Action
+                - generic [ref=e259]:
+                  - paragraph [ref=e260]: Status
+                  - generic [ref=e263]: Expired
+                - generic [ref=e264]:
+                  - heading [level=2] [ref=e266]: Governance Action ID
+                  - generic [ref=e267]:
+                    - paragraph [ref=e268]: 7dc242095326a3b080a866e8618d7d0f6f7f0289c3ea59334224590b88e13df7#0
+                    - img [ref=e270] [cursor=pointer]
+                - generic [ref=e271]:
+                  - heading [level=2] [ref=e273]: (CIP-129) Governance Action ID
+                  - generic [ref=e274]:
+                    - paragraph [ref=e275]: gov_action10hpyyz2ny63mpq9gvm5xrrtapahh7q5fc049jv6zy3vshz8p8hmsqfy4mfw
+                    - img [ref=e277] [cursor=pointer]
+              - link [ref=e279] [cursor=pointer]:
+                - /url: /governance_actions/history/7dc242095326a3b080a866e8618d7d0f6f7f0289c3ea59334224590b88e13df7#0
+                - text: View Details
+            - generic [ref=e281]:
+              - generic [ref=e282]:
+                - paragraph [ref=e284]: "[Preview test] Governance Improvement Survey"
+                - generic [ref=e286]:
+                  - generic [ref=e287]:
+                    - paragraph [ref=e288]: "Submitted: Wed Sep 09, 2026"
+                    - generic [ref=e289]:
+                      - paragraph [ref=e290]: (Epoch 1415)
+                      - img [ref=e292]
+                  - generic [ref=e294]:
+                    - paragraph [ref=e295]: "Expired: Sat Oct 10, 2026"
+                    - generic [ref=e296]:
+                      - paragraph [ref=e297]: (Epoch 1446)
+                      - img [ref=e299]
+                - generic [ref=e301]:
+                  - heading [level=2] [ref=e303]: Abstract
+                  - paragraph [ref=e305]: "Preview test only: this action and survey validate CIP-179 tooling. The source policy examples refer to mainnet, not Preview parameters. Responses are public. Every question is optional; an unanswered question is an abstention. This Info Action and its attached CIP-179 survey are an information-gathering exercise about how Cardano governance could be improved. The survey collects structured opinions from governance participants on several open governance questions. Its purpose is to create a public, auditable preference signal that can help identify areas of agreement and disagreement, prioritize future research, and guide later work to improve Cardano governance."
+                - generic [ref=e306]:
+                  - heading [level=2] [ref=e308]: Governance Action Type
+                  - paragraph [ref=e311]: Info Action
+                - generic [ref=e313]:
+                  - paragraph [ref=e314]: Status
+                  - generic [ref=e317]: Expired
+                - generic [ref=e318]:
+                  - heading [level=2] [ref=e320]: Governance Action ID
+                  - generic [ref=e321]:
+                    - paragraph [ref=e322]: 58c24851d544da02bff630f320dffb0ed521dff97c33dac4d0d129181dd021fb#0
+                    - img [ref=e324] [cursor=pointer]
+                - generic [ref=e325]:
+                  - heading [level=2] [ref=e327]: (CIP-129) Governance Action ID
+                  - generic [ref=e328]:
+                    - paragraph [ref=e329]: gov_action1trpys5w4gndq90lkxrejphlmpm2jrhle0sea43xs6y53s8wsy8asq9hdspn
+                    - img [ref=e331] [cursor=pointer]
+              - link [ref=e333] [cursor=pointer]:
+                - /url: /governance_actions/history/58c24851d544da02bff630f320dffb0ed521dff97c33dac4d0d129181dd021fb#0
+                - text: View Details
+            - generic [ref=e335]:
+              - generic [ref=e336]:
+                - paragraph [ref=e338]: Test
+                - generic [ref=e340]:
+                  - generic [ref=e341]:
+                    - paragraph [ref=e342]: "Submitted: Tue Sep 08, 2026"
+                    - generic [ref=e343]:
+                      - paragraph [ref=e344]: (Epoch 1414)
+                      - img [ref=e346]
+                  - generic [ref=e348]:
+                    - paragraph [ref=e349]: "Expired: Fri Oct 09, 2026"
+                    - generic [ref=e350]:
+                      - paragraph [ref=e351]: (Epoch 1445)
+                      - img [ref=e353]
+                - generic [ref=e355]:
+                  - heading [level=2] [ref=e357]: Abstract
+                  - paragraph [ref=e359]: Test
+                - generic [ref=e360]:
+                  - heading [level=2] [ref=e362]: Governance Action Type
+                  - paragraph [ref=e365]: Treasury Withdrawals
+                - generic [ref=e367]:
+                  - paragraph [ref=e368]: Status
+                  - generic [ref=e371]: Expired
+                - generic [ref=e372]:
+                  - heading [level=2] [ref=e374]: Governance Action ID
+                  - generic [ref=e375]:
+                    - paragraph [ref=e376]: 4206c3f4e0aa11eb4d6c9a12983a1682960a1ff8abb463b44fb205b1be0e8320#0
+                    - img [ref=e378] [cursor=pointer]
+                - generic [ref=e379]:
+                  - heading [level=2] [ref=e381]: (CIP-129) Governance Action ID
+                  - generic [ref=e382]:
+                    - paragraph [ref=e383]: gov_action1ggrv8a8q4gg7kntvngffswsks2tq58lc4w6x8dz0kgzmr0swsvsqqnug8pd
+                    - img [ref=e385] [cursor=pointer]
+              - link [ref=e387] [cursor=pointer]:
+                - /url: /governance_actions/history/4206c3f4e0aa11eb4d6c9a12983a1682960a1ff8abb463b44fb205b1be0e8320#0
+                - text: View Details
+            - generic [ref=e389]:
+              - generic [ref=e390]:
+                - paragraph [ref=e392]: Withdraw 11,787,063 ada for the OpenZeppelin Stack administered by Intersect
+                - generic [ref=e394]:
+                  - generic [ref=e395]:
+                    - paragraph [ref=e396]: "Submitted: Tue Sep 08, 2026"
+                    - generic [ref=e397]:
+                      - paragraph [ref=e398]: (Epoch 1414)
+                      - img [ref=e400]
+                  - generic [ref=e402]:
+                    - paragraph [ref=e403]: "Expired: Fri Oct 09, 2026"
+                    - generic [ref=e404]:
+                      - paragraph [ref=e405]: (Epoch 1445)
+                      - img [ref=e407]
+                - generic [ref=e409]:
+                  - heading [level=2] [ref=e411]: Abstract
+                  - paragraph [ref=e413]: "This treasury withdrawal proposal requests funding for the design, implementation, security audit, and ecosystem adoption of a comprehensive open-source development stack for Cardano, delivered over an initial 12 months in quarterly milestones. The proposal bundles three tightly coupled workstreams into a single integrated engagement, led by the Reference Implementations and built around them: * OpenZeppelin Reference Implementations for Cardano: three production-ready, end-to-end blueprints targeting strategic DeFi and institutional use cases: a Cardano Liquid Staking Protocol, a Self-Repaying Loans Protocol, and a Tokenized Money Market Fund. * OpenZeppelin Contracts Library for Cardano: a secure, audited, standardized contracts library tailored for Cardano's eUTXO model and Plutus environment, including Contracts Wizard integration, AI development tools, and documentation. * Security Retainer: dedicated security capacity covering line-by-line audits of the library and full-stack security reviews and penetration testing of every Reference Implementation. OpenZeppelin also commits to a Developer Enablement and Co-Marketing program, included at no additional cost, to drive ecosystem and institutional adoption of the libraries and Reference Implementations. This proposal requests a total treasury withdrawal of 11,787,063 ada. The full budget breakdown and disbursement mechanics are set out in the Rationale."
+                - generic [ref=e414]:
+                  - heading [level=2] [ref=e416]: Governance Action Type
+                  - paragraph [ref=e419]: Treasury Withdrawals
+                - generic [ref=e421]:
+                  - paragraph [ref=e422]: Status
+                  - generic [ref=e425]: Expired
+                - generic [ref=e426]:
+                  - heading [level=2] [ref=e428]: Governance Action ID
+                  - generic [ref=e429]:
+                    - paragraph [ref=e430]: 4dce3ac76993d80b54311b9f5a1970e3d722838dc53d7e2c1c127da1883c4b9c#0
+                    - img [ref=e432] [cursor=pointer]
+                - generic [ref=e433]:
+                  - heading [level=2] [ref=e435]: (CIP-129) Governance Action ID
+                  - generic [ref=e436]:
+                    - paragraph [ref=e437]: gov_action1fh8r43mfj0vqk4p3rw045xtsu0tj9qudc57hutquzf76rzpufwwqqdn6xkd
+                    - img [ref=e439] [cursor=pointer]
+              - link [ref=e441] [cursor=pointer]:
+                - /url: /governance_actions/history/4dce3ac76993d80b54311b9f5a1970e3d722838dc53d7e2c1c127da1883c4b9c#0
+                - text: View Details
+            - generic [ref=e443]:
+              - generic [ref=e444]:
+                - paragraph [ref=e446]: Withdraw 11,787,063 ada for the OpenZeppelin Stack administered by Intersect
+                - generic [ref=e448]:
+                  - generic [ref=e449]:
+                    - paragraph [ref=e450]: "Submitted: Fri Sep 04, 2026"
+                    - generic [ref=e451]:
+                      - paragraph [ref=e452]: (Epoch 1410)
+                      - img [ref=e454]
+                  - generic [ref=e456]:
+                    - paragraph [ref=e457]: "Expired: Mon Oct 05, 2026"
+                    - generic [ref=e458]:
+                      - paragraph [ref=e459]: (Epoch 1441)
+                      - img [ref=e461]
+                - generic [ref=e463]:
+                  - heading [level=2] [ref=e465]: Abstract
+                  - paragraph [ref=e467]: "This treasury withdrawal proposal requests funding for the design, implementation, security audit, and ecosystem adoption of a comprehensive open-source development stack for Cardano, delivered over an initial 12 months in quarterly milestones. The proposal bundles three tightly coupled workstreams into a single integrated engagement, led by the Reference Implementations and built around them: * OpenZeppelin Reference Implementations for Cardano: three production-ready, end-to-end blueprints targeting strategic DeFi and institutional use cases: a Cardano Liquid Staking Protocol, a Self-Repaying Loans Protocol, and a Tokenized Money Market Fund. * OpenZeppelin Contracts Library for Cardano: a secure, audited, standardized contracts library tailored for Cardano's eUTXO model and Plutus environment, including Contracts Wizard integration, AI development tools, and documentation. * Security Retainer: dedicated security capacity covering line-by-line audits of the library and full-stack security reviews and penetration testing of every Reference Implementation. OpenZeppelin also commits to a Developer Enablement and Co-Marketing program, included at no additional cost, to drive ecosystem and institutional adoption of the libraries and Reference Implementations. This proposal requests a total treasury withdrawal of 11,787,063 ada. The full budget breakdown and disbursement mechanics are set out in the Rationale."
+                - generic [ref=e468]:
+                  - heading [level=2] [ref=e470]: Governance Action Type
+                  - paragraph [ref=e473]: Treasury Withdrawals
+                - generic [ref=e475]:
+                  - paragraph [ref=e476]: Status
+                  - generic [ref=e479]: Expired
+                - generic [ref=e480]:
+                  - heading [level=2] [ref=e482]: Governance Action ID
+                  - generic [ref=e483]:
+                    - paragraph [ref=e484]: 2e094c108126ada9a812ee4a3f63c09467ded12093330a9120045d4a06998126#0
+                    - img [ref=e486] [cursor=pointer]
+                - generic [ref=e487]:
+                  - heading [level=2] [ref=e489]: (CIP-129) Governance Action ID
+                  - generic [ref=e490]:
+                    - paragraph [ref=e491]: gov_action19cy5cyypy6k6n2qjae9r7c7qj3naa5fqjves4yfqq3w55p5esynqqjk8mkz
+                    - img [ref=e493] [cursor=pointer]
+              - link [ref=e495] [cursor=pointer]:
+                - /url: /governance_actions/history/2e094c108126ada9a812ee4a3f63c09467ded12093330a9120045d4a06998126#0
+                - text: View Details
+            - generic [ref=e497]:
+              - generic [ref=e498]:
+                - paragraph [ref=e500]: Withdraw 11,787,063 ada for the OpenZeppelin Stack administered by Intersect
+                - generic [ref=e502]:
+                  - generic [ref=e503]:
+                    - paragraph [ref=e504]: "Submitted: Fri Aug 28, 2026"
+                    - generic [ref=e505]:
+                      - paragraph [ref=e506]: (Epoch 1403)
+                      - img [ref=e508]
+                  - generic [ref=e510]:
+                    - paragraph [ref=e511]: "Expired: Mon Sep 28, 2026"
+                    - generic [ref=e512]:
+                      - paragraph [ref=e513]: (Epoch 1434)
+                      - img [ref=e515]
+                - generic [ref=e517]:
+                  - heading [level=2] [ref=e519]: Abstract
+                  - paragraph [ref=e521]: "This treasury withdrawal proposal requests funding for the design, implementation, security audit, and ecosystem adoption of a comprehensive open-source development stack for Cardano, delivered over an initial 12 months in quarterly milestones. The proposal bundles three tightly coupled workstreams into a single integrated engagement, led by the Reference Implementations and built around them: * OpenZeppelin Reference Implementations for Cardano: three production-ready, end-to-end blueprints targeting strategic DeFi and institutional use cases: a Cardano Liquid Staking Protocol, a Self-Repaying Loans Protocol, and a Tokenized Money Market Fund. * OpenZeppelin Contracts Library for Cardano: a secure, audited, standardized contracts library tailored for Cardano's eUTXO model and Plutus environment, including Contracts Wizard integration, AI development tools, and documentation. * Security Retainer: dedicated security capacity covering line-by-line audits of the library and full-stack security reviews and penetration testing of every Reference Implementation. OpenZeppelin also commits to a Developer Enablement and Co-Marketing program, included at no additional cost, to drive ecosystem and institutional adoption of the libraries and Reference Implementations. This proposal requests a total treasury withdrawal of 11,787,063 ada. The full budget breakdown and disbursement mechanics are set out in the Rationale."
+                - generic [ref=e522]:
+                  - heading [level=2] [ref=e524]: Governance Action Type
+                  - paragraph [ref=e527]: Treasury Withdrawals
+                - generic [ref=e529]:
+                  - paragraph [ref=e530]: Status
+                  - generic [ref=e533]: Expired
+                - generic [ref=e534]:
+                  - heading [level=2] [ref=e536]: Governance Action ID
+                  - generic [ref=e537]:
+                    - paragraph [ref=e538]: e6ed8d65d82a93ba6601b9d2a94e5221793a53faeee0dca376e5d07285798b1d#0
+                    - img [ref=e540] [cursor=pointer]
+                - generic [ref=e541]:
+                  - heading [level=2] [ref=e543]: (CIP-129) Governance Action ID
+                  - generic [ref=e544]:
+                    - paragraph [ref=e545]: gov_action1umkc6ewc92fm5esph8f2jnjjy9un55l6amsdegmkuhg89pte3vwsq4y0qlp
+                    - img [ref=e547] [cursor=pointer]
+              - link [ref=e549] [cursor=pointer]:
+                - /url: /governance_actions/history/e6ed8d65d82a93ba6601b9d2a94e5221793a53faeee0dca376e5d07285798b1d#0
+                - text: View Details
+            - generic [ref=e551]:
+              - generic [ref=e552]:
+                - paragraph [ref=e554]: Withdraw 11,787,063 ada for the OpenZeppelin Stack administered by Intersect
+                - generic [ref=e556]:
+                  - generic [ref=e557]:
+                    - paragraph [ref=e558]: "Submitted: Mon Aug 17, 2026"
+                    - generic [ref=e559]:
+                      - paragraph [ref=e560]: (Epoch 1392)
+                      - img [ref=e562]
+                  - generic [ref=e564]:
+                    - paragraph [ref=e565]: "Expired: Thu Sep 17, 2026"
+                    - generic [ref=e566]:
+                      - paragraph [ref=e567]: (Epoch 1423)
+                      - img [ref=e569]
+                - generic [ref=e571]:
+                  - heading [level=2] [ref=e573]: Abstract
+                  - paragraph [ref=e575]: "This treasury withdrawal proposal requests funding for the design, implementation, security audit, and ecosystem adoption of a comprehensive open-source development stack for Cardano, delivered over an initial 12 months in quarterly milestones. The proposal bundles three tightly coupled workstreams into a single integrated engagement, led by the Reference Implementations and built around them: * OpenZeppelin Reference Implementations for Cardano: three production-ready, end-to-end blueprints targeting strategic DeFi and institutional use cases: a Cardano Liquid Staking Protocol, a Self-Repaying Loans Protocol, and a Tokenized Money Market Fund. * OpenZeppelin Contracts Library for Cardano: a secure, audited, standardized contracts library tailored for Cardano's eUTXO model and Plutus environment, including Contracts Wizard integration, AI development tools, and documentation. * Security Retainer: dedicated security capacity covering line-by-line audits of the library and full-stack security reviews and penetration testing of every Reference Implementation. OpenZeppelin also commits to a Developer Enablement and Co-Marketing program, included at no additional cost, to drive ecosystem and institutional adoption of the libraries and Reference Implementations. This proposal requests a total treasury withdrawal of 11,787,063 ada. The full budget breakdown and disbursement mechanics are set out in the Rationale."
+                - generic [ref=e576]:
+                  - heading [level=2] [ref=e578]: Governance Action Type
+                  - paragraph [ref=e581]: Treasury Withdrawals
+                - generic [ref=e583]:
+                  - paragraph [ref=e584]: Status
+                  - generic [ref=e587]: Expired
+                - generic [ref=e588]:
+                  - heading [level=2] [ref=e590]: Governance Action ID
+                  - generic [ref=e591]:
+                    - paragraph [ref=e592]: 8f60f9dab943f676c66016217cbd60863a5e43d4f466c87510eb34f9a46675c1#0
+                    - img [ref=e594] [cursor=pointer]
+                - generic [ref=e595]:
+                  - heading [level=2] [ref=e597]: (CIP-129) Governance Action ID
+                  - generic [ref=e598]:
+                    - paragraph [ref=e599]: gov_action13as0nk4eg0m8d3nqzcshe0tqsca9us7573nvsagsav60nfrxwhqsqc0ktx3
+                    - img [ref=e601] [cursor=pointer]
+              - link [ref=e603] [cursor=pointer]:
+                - /url: /governance_actions/history/8f60f9dab943f676c66016217cbd60863a5e43d4f466c87510eb34f9a46675c1#0
+                - text: View Details
+            - generic [ref=e605]:
+              - generic [ref=e606]:
+                - paragraph [ref=e608]: Governance Incentives Framework 2026
+                - generic [ref=e610]:
+                  - generic [ref=e611]:
+                    - paragraph [ref=e612]: "Submitted: Fri Aug 14, 2026"
+                    - generic [ref=e613]:
+                      - paragraph [ref=e614]: (Epoch 1389)
+                      - img [ref=e616]
+                  - generic [ref=e618]:
+                    - paragraph [ref=e619]: "Expired: Mon Sep 14, 2026"
+                    - generic [ref=e620]:
+                      - paragraph [ref=e621]: (Epoch 1420)
+                      - img [ref=e623]
+                - generic [ref=e625]:
+                  - heading [level=2] [ref=e627]: Abstract
+                  - paragraph [ref=e629]: "Cardano is approaching consequential decisions about governance incentives without a shared evidence base for determining which mechanisms work, what they cost, or who should remain accountable for their outcomes. The project separates evidence-based validation from governance legitimacy: candidate incentive mechanisms will first be evaluated through research, data, modeling, and evidence, and then presented to governance for a decision on adoption. Significant work already exists across Cardano on governance compensation, participation, rationale incentives, reward distribution, voting-power concentration, and governance reward design. The Governance Incentives Working Group has already created a mapping document identifying 49 relevant efforts, proposals, research papers, tools, and related initiatives across this space [1]. This includes work developed through CPS-0020 [2], as well as CPS-0033 [3], CIP-0149 [4], Beyond MVG [6], formal reward-scheme research [7], process-first DRep compensation research [8], and Input Output Research’s Cardano Vision 2026 work [9]. The project will consider these existing ideas and approaches, examine their assumptions, advantages, disadvantages, and potential unintended effects, and combine them with further research, governance data, modeling, controlled testing, and community input to build research-backed community consensus around the most suitable governance incentive models for Cardano. The result will be a practical Governance Incentives Framework, public dataset and dashboard, documented model and formula outputs, research publications, findings from a controlled incentive pilot, and a governance integration pathway. This directly supports Cardano 2030 Pillar 3 and, through its research and data infrastructure, Pillar 1."
+                - generic [ref=e630]:
+                  - heading [level=2] [ref=e632]: Governance Action Type
+                  - paragraph [ref=e635]: Treasury Withdrawals
+                - generic [ref=e637]:
+                  - paragraph [ref=e638]: Status
+                  - generic [ref=e641]: Expired
+                - generic [ref=e642]:
+                  - heading [level=2] [ref=e644]: Governance Action ID
+                  - generic [ref=e645]:
+                    - paragraph [ref=e646]: 03434d57d1e21371a53c97f5b589aeca523b22348ba17930df8499e509c3d5df#0
+                    - img [ref=e648] [cursor=pointer]
+                - generic [ref=e649]:
+                  - heading [level=2] [ref=e651]: (CIP-129) Governance Action ID
+                  - generic [ref=e652]:
+                    - paragraph [ref=e653]: gov_action1qdp56473ugfhrffujl6mtzdweffrkg353wshjvxlsjv72zwr6h0sq7d7m3x
+                    - img [ref=e655] [cursor=pointer]
+              - link [ref=e657] [cursor=pointer]:
+                - /url: /governance_actions/history/03434d57d1e21371a53c97f5b589aeca523b22348ba17930df8499e509c3d5df#0
+                - text: View Details
+            - generic [ref=e659]:
+              - generic [ref=e660]:
+                - paragraph [ref=e662]: Governance Incentives Framework 2026
+                - generic [ref=e664]:
+                  - generic [ref=e665]:
+                    - paragraph [ref=e666]: "Submitted: Fri Aug 14, 2026"
+                    - generic [ref=e667]:
+                      - paragraph [ref=e668]: (Epoch 1389)
+                      - img [ref=e670]
+                  - generic [ref=e672]:
+                    - paragraph [ref=e673]: "Expired: Mon Sep 14, 2026"
+                    - generic [ref=e674]:
+                      - paragraph [ref=e675]: (Epoch 1420)
+                      - img [ref=e677]
+                - generic [ref=e679]:
+                  - heading [level=2] [ref=e681]: Abstract
+                  - paragraph [ref=e683]: "Cardano is approaching consequential decisions about governance incentives without a shared evidence base for determining which mechanisms work, what they cost, or who should remain accountable for their outcomes. The project separates evidence-based validation from governance legitimacy: candidate incentive mechanisms will first be evaluated through research, data, modeling, and evidence, and then presented to governance for a decision on adoption. Significant work already exists across Cardano on governance compensation, participation, rationale incentives, reward distribution, voting-power concentration, and governance reward design. The Governance Incentives Working Group has already created a mapping document identifying 49 relevant efforts, proposals, research papers, tools, and related initiatives across this space [1]. This includes work developed through CPS-0020 [2], as well as CPS-0033 [3], CIP-0149 [4], Beyond MVG [6], formal reward-scheme research [7], process-first DRep compensation research [8], and Input Output Research’s Cardano Vision 2026 work [9]. The project will consider these existing ideas and approaches, examine their assumptions, advantages, disadvantages, and potential unintended effects, and combine them with further research, governance data, modeling, controlled testing, and community input to build research-backed community consensus around the most suitable governance incentive models for Cardano. The result will be a practical Governance Incentives Framework, public dataset and dashboard, documented model and formula outputs, research publications, findings from a controlled incentive pilot, and a governance integration pathway. This directly supports Cardano 2030 Pillar 3 and, through its research and data infrastructure, Pillar 1."
+                - generic [ref=e684]:
+                  - heading [level=2] [ref=e686]: Governance Action Type
+                  - paragraph [ref=e689]: Treasury Withdrawals
+                - generic [ref=e691]:
+                  - paragraph [ref=e692]: Status
+                  - generic [ref=e695]: Expired
+                - generic [ref=e696]:
+                  - heading [level=2] [ref=e698]: Governance Action ID
+                  - generic [ref=e699]:
+                    - paragraph [ref=e700]: 9014b9e1755b19867ae98c3c52ea9c3d9301dc6a991518d3c9a21fda2afd6698#0
+                    - img [ref=e702] [cursor=pointer]
+                - generic [ref=e703]:
+                  - heading [level=2] [ref=e705]: (CIP-129) Governance Action ID
+                  - generic [ref=e706]:
+                    - paragraph [ref=e707]: gov_action1jq2tnct4tvvcv7hf3s79965u8kfsrhr2ny23357f5g0a52hav6vqq3hk3qd
+                    - img [ref=e709] [cursor=pointer]
+              - link [ref=e711] [cursor=pointer]:
+                - /url: /governance_actions/history/9014b9e1755b19867ae98c3c52ea9c3d9301dc6a991518d3c9a21fda2afd6698#0
+                - text: View Details
+          - button [ref=e713] [cursor=pointer]: Show More Actions
+      - contentinfo [ref=e714]:
+        - paragraph [ref=e715]: © 2026 GovTool
+        - generic [ref=e716]:
+          - generic [ref=e717] [cursor=pointer]: Privacy policy
+          - generic [ref=e718] [cursor=pointer]: Terms of Use
+        - generic [ref=e719]:
+          - button [ref=e720] [cursor=pointer]:
+            - img [ref=e722]
+            - text: Help
+          - button [ref=e723] [cursor=pointer]: Subscribe to updates
+          - button [ref=e724] [cursor=pointer]: Feedback
+    - img [ref=e725]
+  - menu [ref=e728]:
+    - menuitem "Proposals" [active] [ref=e729] [cursor=pointer]:
+      - link "Proposals" [ref=e730]:
+        - /url: /proposal_discussion
+        - paragraph [ref=e731]: Proposals
+    - menuitem "Live Voting" [ref=e732] [cursor=pointer]:
+      - link "Live Voting" [ref=e733]:
+        - /url: /governance_actions
+        - paragraph [ref=e734]: Live Voting
+    - menuitem "Historical" [ref=e735] [cursor=pointer]:
+      - link "Historical" [ref=e736]:
+        - /url: /governance_actions/history
+        - paragraph [ref=e737]: Historical
+```
+
+# Test source
+
+```ts
+  180 |             ? `&filters=${filterKey}&sort=${sortType}`
+  181 |             : `&sort=${sortType}`
+  182 |         )
+  183 |     );
+  184 | 
+  185 |     await this.page.getByTestId(this.getSortTestId(sortOption)).click();
+  186 | 
+  187 |     const response = await responsePromise;
+  188 |     const actionRecordProposalList: actionRecordProposal[] = await response.json();
+  189 | 
+  190 |     // API validation
+  191 |     if (actionRecordProposalList.length <= 1) return;
+  192 | 
+  193 |     for (let i = 0; i <= actionRecordProposalList.length - 2; i++) {
+  194 |       const isValid = validationFn(
+  195 |         actionRecordProposalList[i],
+  196 |         actionRecordProposalList[i + 1]
+  197 |       );
+  198 |       expect(isValid).toBe(true);
+  199 |     }
+  200 | 
+  201 |     await expect(
+  202 |       this.page.getByRole("progressbar").getByRole("img")
+  203 |     ).toBeHidden({ timeout: 20_000 });
+  204 | 
+  205 |     await functionWaitedAssert(
+  206 |       async () => {
+  207 |         const actionRecordCards = await this.getAllGovernanceActionHistory();
+  208 |         for (const [index, actionRecordCard] of actionRecordCards.entries()) {
+  209 |           const actionRecordProposalFromAPI = actionRecordProposalList[index];
+  210 |           const proposalTypeFromUI = await actionRecordCard
+  211 |             .locator('[data-testid$="-type"]')
+  212 |             .textContent({ timeout: CARD_READ_TIMEOUT });
+  213 |           const proposalTypeFromApi = actionRecordType[actionRecordProposalFromAPI.type];
+  214 | 
+  215 |           const cip105IdFromUI = await actionRecordCard
+  216 |             .locator('[data-testid$="-CIP-105-id"]')
+  217 |             .textContent({ timeout: CARD_READ_TIMEOUT });
+  218 |           const cip105IdFromApi = `${actionRecordProposalFromAPI.tx_hash}#${actionRecordProposalFromAPI.index}`;
+  219 | 
+  220 |           expect(proposalTypeFromUI.replace(/^.*Type/, "")).toContain(
+  221 |             proposalTypeFromApi
+  222 |           );
+  223 | 
+  224 |           expect(cip105IdFromUI.replace(/^.*ID/, "")).toContain(
+  225 |             cip105IdFromApi
+  226 |           );
+  227 |         }
+  228 |       },
+  229 |       {
+  230 |         name: `frontend sort validation of ${sortOption} and filter ${filterKey}`,
+  231 |       }
+  232 |     );
+  233 |   }
+  234 | 
+  235 |   async _validateFiltersInGovernanceActionHistoryCard(
+  236 |     proposalCard: Locator,
+  237 |     filters: string[]
+  238 |   ): Promise<boolean> {
+  239 |     const type = await proposalCard
+  240 |       .locator('[data-testid$="-type"]')
+  241 |       .textContent({ timeout: CARD_READ_TIMEOUT });
+  242 |     const actionRecordType = type.replace(/^.*Type/, "");
+  243 |     return filters.includes(actionRecordType);
+  244 |   }
+  245 | 
+  246 |   async _validateStatusFiltersInGovernanceActionHistoryCard(
+  247 |     proposalCard: Locator,
+  248 |     filters: string[]
+  249 |   ): Promise<boolean> {
+  250 |     const status = await proposalCard
+  251 |       .locator('[data-testid$="-status"]')
+  252 |       .textContent({ timeout: CARD_READ_TIMEOUT });
+  253 |     const actionRecordStatus = actionRecordStatusType.filter((statusType) => {
+  254 |       if (statusType === "Live") {
+  255 |         return "In Progress";
+  256 |       }
+  257 |       return status.includes(statusType);
+  258 |     });
+  259 |     return actionRecordStatus.some((status) => filters.includes(status));
+  260 |   }
+  261 | 
+  262 |   async shouldAccessPage(isLoggedIn = false) {
+  263 |     await this.page.goto("/");
+  264 | 
+  265 |     if (isMobile(this.page)) {
+  266 |       await this.page.getByTestId("open-drawer-button").click();
+  267 |     } else {
+  268 |       if (!isLoggedIn) {
+  269 |         await this.page.getByTestId("governance-actions").click();
+  270 |       }
+  271 |     }
+  272 |     await this.page.getByTestId("governance-actions-governance-actions-link").click();
+  273 | 
+  274 |     if (!isMobile(this.page) && !isLoggedIn) {
+  275 |       await this.page.getByTestId("governance-actions").click();
+  276 |     }
+  277 | 
+  278 |     await expect(
+  279 |       this.page.getByRole("heading", { name: "Historical Actions" })
+> 280 |     ).toBeVisible();
+      |       ^ Error: expect(locator).toBeVisible() failed
+  281 |   }
+  282 | 
+  283 |   async filterGovernanceActionHistory() {
+  284 |     await this.filterBtn.click();
+  285 |     const filterOptionNames = Object.values(actionRecordType);
+  286 | 
+  287 |     // proposal type filter
+  288 |     await this.applyAndValidateFilters(
+  289 |       filterOptionNames,
+  290 |       this._validateFiltersInGovernanceActionHistoryCard
+  291 |     );
+  292 | 
+  293 |     // proposal status filter
+  294 |     await this.applyAndValidateFilters(
+  295 |       status,
+  296 |       this._validateStatusFiltersInGovernanceActionHistoryCard
+  297 |     );
+  298 |   }
+  299 | 
+  300 |   async sortGovernanceActionHistory() {
+  301 |     await this.sortBtn.click();
+  302 | 
+  303 |     await this.sortAndValidate(
+  304 |       SortOption.NewestFirst,
+  305 |       (p1, p2) => p1.expiry_date >= p2.time
+  306 |     );
+  307 | 
+  308 |     await this.sortAndValidate(
+  309 |       SortOption.OldestFirst,
+  310 |       (p1, p2) => p1.expiry_date <= p2.expiry_date
+  311 |     );
+  312 | 
+  313 |     await this.sortAndValidate(
+  314 |       SortOption.HighestAmountYesVote,
+  315 |       (p1, p2) => parseInt(p1.yes_votes) >= parseInt(p2.yes_votes)
+  316 |     );
+  317 |   }
+  318 | 
+  319 |   async filterAndSortGovernanceActionHistory() {
+  320 |     const filterOptionKeys = Object.keys(actionRecordType);
+  321 |     const filterOptionNames = Object.values(actionRecordType);
+  322 | 
+  323 |     const choice = Math.floor(Math.random() * filterOptionKeys.length);
+  324 |     await this.goto({ filter: filterOptionKeys[choice] });
+  325 |     await this.sortBtn.click();
+  326 | 
+  327 |     await this.sortAndValidate(
+  328 |       SortOption.OldestFirst,
+  329 |       (p1, p2) => p1.expiry_date <= p2.expiry_date
+  330 |     );
+  331 | 
+  332 |     await this.validateFilters(
+  333 |       [filterOptionNames[choice]],
+  334 |       this._validateFiltersInGovernanceActionHistoryCard
+  335 |     );
+  336 |   }
+  337 | 
+  338 |   // Cards show the date that ended the action (Enacted, Not Ratified,
+  339 |   // Expired) or, while live, its expiry, so only the expired filter can
+  340 |   // promise an "Expired" date on every card.
+  341 |   async verifyAllGovernanceActionHistoryAreExpired() {
+  342 |     await this.goto({ status: "expired" });
+  343 |     const proposalCards = await this.getAllGovernanceActionHistory();
+  344 | 
+  345 |     for (const proposalCard of proposalCards) {
+  346 |       const expiryDateEl = proposalCard.locator(
+  347 |         '[data-testid$="-Expired-date"]'
+  348 |       );
+  349 |       await expect(expiryDateEl).toBeVisible();
+  350 |       // e.g. "Expired: Thu Oct 01, 2026 (Epoch 2883)"
+  351 |       const match = (await expiryDateEl.innerText()).match(
+  352 |         /(\w{3}) (\d{1,2}), (\d{4})/
+  353 |       );
+  354 |       expect(match, "expired date is not readable").not.toBeNull();
+  355 |       const expiryDate = new Date(`${match[1]} ${match[2]}, ${match[3]}`);
+  356 |       expect(new Date() >= expiryDate).toBeTruthy();
+  357 |     }
+  358 |   }
+  359 | 
+  360 |   async VerifyLoadMoreGovernanceActionHistory() {
+  361 |     const responsePromise = this.page.waitForResponse((response) =>
+  362 |       response
+  363 |         .url()
+  364 |         .includes(`governance-actions?search=&filters=&sort=newestFirst&page=2`)
+  365 |     );
+  366 |     await this.goto();
+  367 | 
+  368 |     let governanceActionIdsBefore: String[];
+  369 |     let governanceActionIdsAfter: String[];
+  370 | 
+  371 |     await functionWaitedAssert(
+  372 |       async () => {
+  373 |         governanceActionIdsBefore =
+  374 |           await this.getAllListedCIP105GovernanceIds();
+  375 |         await this.showMoreBtn.click();
+  376 |       },
+  377 |       { message: "Show more button not visible" }
+  378 |     );
+  379 | 
+  380 |     const response = await responsePromise;
+```

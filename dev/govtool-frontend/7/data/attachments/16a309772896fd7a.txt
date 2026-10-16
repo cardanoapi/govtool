@@ -1,0 +1,6 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Retrying the function download metadata
+✔ Uploaded Tessie.jsonld metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 1d731e9cd2bc66c1c769ccd4de1c0747e9318f8139922ac1d9bc33d3c5666eb9
+✔ Tx completed

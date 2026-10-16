@@ -1,0 +1,6 @@
+✔ Uploaded Theresia-5d185058 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 929021a7665f0d555f5a6e5725f44e082d1fbd26860a537bcfeb9fe94221fa69
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

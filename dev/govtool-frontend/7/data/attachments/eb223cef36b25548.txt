@@ -1,0 +1,6 @@
+wallet balance 1019.819495
+wallet address addr_test1qqqnm5satdhur75rrwwaq43ht2uthnrd6dmtd438jwke5rhmx9mhuyjwy4082dgtefxgtngqjmvh0s0qkswrygl56xpq3d5dj3
+1
+✔ Uploaded tenus metadata to bucket
+ℹ Waiting for tx completion: fbd9de4abaa4a702be546210523edad39ddf6b98422dcc058e134074166caca0
+✔ Tx completed

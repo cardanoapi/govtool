@@ -1,0 +1,4 @@
+✔ Uploaded Leann-4e70fead metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: c2c3a94a8f60e267feee4b68421679dffa3e89cb30daaf9f8101d07d8b3c93ec
+✔ Tx completed

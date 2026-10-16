@@ -1,0 +1,5 @@
+✔ Uploaded Everardo-56bd34bb metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 3a318dc63ff5e00b4f1beb408e4bd43a5c25e21080d64288d0b033c4b416b67f
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

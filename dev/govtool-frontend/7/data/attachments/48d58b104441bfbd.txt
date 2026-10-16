@@ -1,0 +1,6 @@
+✔ Uploaded Vivian-4e6f14ff metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 111fc6308c56fd7815f12c99de7e0166cd57caa58564ce69542a08b8df3cdf89
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

@@ -1,0 +1,4 @@
+✔ Uploaded Lena-75759728 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 676f2d84770cf19225e59fa17ce5b45f164240aa8f31ce17d7b6903613b6b589
+✔ Tx completed

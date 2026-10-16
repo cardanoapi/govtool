@@ -1,0 +1,6 @@
+wallet balance 1019.819495
+wallet address addr_test1qqtyarjzk873lxyc24nh4tzdrh5en39ydfddj0d5shwsawqcu89asr7wlkj7a53k2ehgynlw935jp0dcmpsfsvqr346qj2qxz6
+0
+✔ Uploaded calco metadata to bucket
+ℹ Waiting for tx completion: 3f2eace9b7bf68a5cb7f1938e56a41f1db0d91020ab1af54ce6bc48e25e592ca
+✔ Tx completed
