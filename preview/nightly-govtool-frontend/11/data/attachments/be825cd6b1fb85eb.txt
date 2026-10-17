@@ -1,0 +1,7 @@
+✔ Uploaded Kaylah-79ed4aed metadata to bucket
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: ed901964f29f81d71a8291b122243538b21ea1cdc072171c19368ca0f1e17ef6
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()

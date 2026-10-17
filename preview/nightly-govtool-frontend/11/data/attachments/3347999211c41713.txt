@@ -1,0 +1,6 @@
+wallet balance 1019.819495
+wallet address addr_test1qze7e8gmcen3k23nly04w0lrpdd0nar4z28guczkzy9vx9etfk8lqs7scku35vw4q9mdkfalm0t9v09yay6vmvn9fa9smv9j28
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✔ Uploaded guardrail-script metadata to bucket
+2
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID

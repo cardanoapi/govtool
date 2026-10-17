@@ -1,0 +1,8 @@
+✔ Uploaded Cassandre-c197edbd metadata to bucket
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Uploaded c79dcc15-6fdb-4a36-838c-653b488ae7ac-Vote_Context.jsonld metadata to bucket
+ℹ Waiting for tx completion: 8a0dda957742703005a1e48f1a65c47c3e55064d67811e9ef2cfb7092690de49
+✔ Tx completed
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()

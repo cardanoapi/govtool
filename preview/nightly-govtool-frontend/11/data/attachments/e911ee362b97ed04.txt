@@ -1,0 +1,6 @@
+✖ Failed to load resource: the server responded with a status of 429 ()
+✔ Uploaded Megan-12ca6c02 metadata to bucket
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 3b994afccc54765c0e36f5546c96cc322c9c032684a65d3da4d5513fc1d9f5f8
+✔ Tx completed

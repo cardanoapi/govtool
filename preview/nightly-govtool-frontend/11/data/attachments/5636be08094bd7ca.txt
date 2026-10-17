@@ -1,0 +1,3 @@
+✔ Uploaded Stephen-2a19a1be metadata to bucket
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()

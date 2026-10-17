@@ -1,0 +1,8 @@
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 429 ()
+ℹ Retrying the function download metadata
+✔ Uploaded Muriel.jsonld metadata to bucket
+ℹ Waiting for tx completion: 60d10435076e91fcba4774680affa90b70cc61ce3a79dc6e1eb309e2abbc71cf
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Tx completed

@@ -1,0 +1,6 @@
+✔ Uploaded Jerry-f6ee0ed6 metadata to bucket
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: 5438b70ac49fb79f15f5367a8c4245c15822da3be2852463f67f5f5c8603e0c2
+✔ Tx completed
