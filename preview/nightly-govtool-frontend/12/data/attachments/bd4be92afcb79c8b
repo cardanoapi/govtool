@@ -1,0 +1,141 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 5-proposal-functionality/proposalFunctionality.dRep.spec.ts >> Check voting power >> 5K. Should return deposit on DRep retirement
+- Location: tests/5-proposal-functionality/proposalFunctionality.dRep.spec.ts:320:7
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByTestId('retirement-transaction-submitted-modal')
+Expected: visible
+Timeout: 60000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 60000ms
+  - waiting for getByTestId('retirement-transaction-submitted-modal')
+
+```
+
+# Test source
+
+```ts
+  234 |     );
+  235 | 
+  236 |     await governanceActionsPage.currentPage.reload();
+  237 | 
+  238 |     await governanceActionsPage.votedTab.click();
+  239 | 
+  240 |     await govActionDetailsPage.currentPage.evaluate(() =>
+  241 |       window.scrollTo(0, 500)
+  242 |     );
+  243 | 
+  244 |     // The voted tab reads the DRep's votes every 20 s; give it one more read
+  245 |     // in case the first came before the vote's block.
+  246 |     await expect(
+  247 |       govActionDetailsPage.currentPage.getByTestId("my-vote").getByText("Yes")
+  248 |     ).toBeVisible({ timeout: 30_000 });
+  249 | 
+  250 |     govActionDetailsPage = await governanceActionsPage.viewFirstVotedProposal();
+  251 | 
+  252 |     const fakerContext = faker.lorem.sentence(200)
+  253 |     await govActionDetailsPage.vote(fakerContext, true);
+  254 | 
+  255 |     await govActionDetailsPage.currentPage.reload();
+  256 | 
+  257 |     await governanceActionsPage.votedTab.click();
+  258 | 
+  259 |     govActionDetailsPage = await governanceActionsPage.viewFirstVotedProposal();
+  260 |     
+  261 |         
+  262 |     await govActionDetailsPage.currentPage.getByTestId("yes-radio").isVisible();
+  263 |     
+  264 |     const voteRationaleContext = await govActionDetailsPage.currentPage.getByTestId("vote-rationale-context").textContent();
+  265 | 
+  266 |     expect(voteRationaleContext).toEqual(fakerContext);
+  267 |   });
+  268 | 
+  269 |   test("5I. Should view the vote details,when viewing governance action already voted by the DRep", async ({}, testInfo) => {
+  270 |     test.setTimeout(testInfo.timeout + environments.txTimeOut);
+  271 | 
+  272 |     await govActionDetailsPage.vote();
+  273 | 
+  274 |     const governanceActionsPage = new GovernanceActionsPage(
+  275 |       govActionDetailsPage.currentPage
+  276 |     );
+  277 | 
+  278 |     await governanceActionsPage.getFirstProposal();
+  279 | 
+  280 |     await governanceActionsPage.votedTab.click();
+  281 |     // The voted tab reads the DRep's votes every 20 s; give it one more read
+  282 |     // in case the first came before the vote's block.
+  283 |     await expect(
+  284 |       govActionDetailsPage.currentPage.getByTestId("my-vote").getByText("Yes")
+  285 |     ).toBeVisible({ timeout: 30_000 });
+  286 |   });
+  287 | 
+  288 |    const verifyVoteWithMetadata = async (testInfo: any, useGovToolIPFS: boolean = false) => {
+  289 |     test.setTimeout(testInfo.timeout + environments.txTimeOut);
+  290 |     const fakerContext = faker.lorem.sentence(200);
+  291 |     
+  292 |     if (useGovToolIPFS) {
+  293 |       await govActionDetailsPage.vote(fakerContext, false, true);
+  294 |     } else {
+  295 |       await govActionDetailsPage.vote(fakerContext);
+  296 |     }
+  297 |     
+  298 |     await dRepPage.reload();
+  299 |     await dRepPage.waitForTimeout(5_000);
+  300 |     await govActionsPage.votedTab.click();
+  301 |     
+  302 |     const votedGovActionDetailsPage = await govActionsPage.viewFirstVotedProposal();
+  303 |     await votedGovActionDetailsPage.currentPage.getByTestId("show-more-button").click();
+  304 |     await votedGovActionDetailsPage.currentPage.waitForTimeout(2000);
+  305 |     
+  306 |     const voteRationaleContext = await votedGovActionDetailsPage.currentPage.getByTestId("vote-rationale-context");
+  307 |     await expect(voteRationaleContext).toContainText(fakerContext);
+  308 |   };
+  309 | 
+  310 |   test("5M_1. Should vote with Context (Download and store yourself)", async ({}, testInfo) => {
+  311 |     await verifyVoteWithMetadata(testInfo, false);
+  312 |   });
+  313 | 
+  314 |   test("5M_2. Should vote with Context (GovTool pins data to IPFS)", async ({}, testInfo) => {
+  315 |     await verifyVoteWithMetadata(testInfo, true );
+  316 |   });
+  317 | });
+  318 | 
+  319 | test.describe("Check voting power", () => {
+  320 |   test("5K. Should return deposit on DRep retirement", async ({
+  321 |     browser,
+  322 |   }, testInfo) => {
+  323 |     test.setTimeout(testInfo.timeout + 3 * environments.txTimeOut);
+  324 | 
+  325 |     const wallet = await registeredDRepWallet("5K:dRep");
+  326 | 
+  327 |     const dRepPage = await createNewPageWithWallet(browser, { wallet });
+  328 | 
+  329 |     await dRepPage.goto("/");
+  330 |     await dRepPage.getByTestId("retire-button").click();
+  331 |     await dRepPage.getByTestId("continue-retirement-button").click();
+  332 |     await expect(
+  333 |       dRepPage.getByTestId("retirement-transaction-submitted-modal")
+> 334 |     ).toBeVisible({ timeout: 60_000 });
+      |       ^ Error: expect(locator).toBeVisible() failed
+  335 |     dRepPage.getByTestId("confirm-modal-button").click();
+  336 |     await waitForTxConfirmation(dRepPage);
+  337 | 
+  338 |     const balance = await adaBalance(wallet);
+  339 |     expect(balance, "Retirement deposit not returned").toBeGreaterThan(500);
+  340 |   });
+  341 | });
+  342 | 
+```

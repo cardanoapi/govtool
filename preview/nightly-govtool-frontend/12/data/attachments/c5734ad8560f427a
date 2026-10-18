@@ -1,0 +1,196 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 3-drep-registration/dRepRegistration.dRep.spec.ts >> Temporary DReps >> 3J. Should verify retire as DRep
+- Location: tests/3-drep-registration/dRepRegistration.dRep.spec.ts:164:7
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByTestId('retirement-transaction-submitted-modal')
+Expected: visible
+Timeout: 15000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 15000ms
+  - waiting for getByTestId('retirement-transaction-submitted-modal')
+
+```
+
+# Test source
+
+```ts
+  76  | 
+  77  |     await page.getByTestId("view-drep-details-button").click();
+  78  |     await page.getByTestId("edit-drep-data-button").click();
+  79  |     const editDRepPage = new DRepRegistrationPage(page);
+  80  | 
+  81  |     const newDRepName = faker.person.firstName();
+  82  | 
+  83  |     await editDRepPage.register({
+  84  |       name: newDRepName,
+  85  |       objectives: faker.lorem.paragraph(2),
+  86  |       motivations: faker.lorem.paragraph(2),
+  87  |       qualifications: faker.lorem.paragraph(2),
+  88  |       paymentAddress: await randomAddress(),
+  89  |       linksReferenceLinks: [
+  90  |         {
+  91  |           url: faker.internet.url(),
+  92  |           description: faker.internet.displayName(),
+  93  |         },
+  94  |       ],
+  95  |       identityReferenceLinks: [
+  96  |         {
+  97  |           url: faker.internet.url(),
+  98  |           description: faker.internet.displayName(),
+  99  |         },
+  100 |       ],
+  101 |     });
+  102 |     await page.getByTestId("confirm-modal-button").click();
+  103 |   });
+  104 | 
+  105 |   test("3S. Should restrict dRep registration for dRep", async ({ page }) => {
+  106 |     await page.goto(`${environments.frontendUrl}/register_drep`);
+  107 | 
+  108 |     await expect(page.getByText("You already are a DRep")).toBeVisible({
+  109 |       timeout: 60_000,
+  110 |     });
+  111 |     await expect(page.getByTestId("name-input")).not.toBeVisible();
+  112 |   });
+  113 | });
+  114 | 
+  115 | test.describe("Temporary DReps", () => {
+  116 |   test("3G. Should show confirmation message with link to view transaction, when DRep registration txn is submitted", async ({
+  117 |     browser,
+  118 |   }, testInfo) => {
+  119 |     test.setTimeout(testInfo.timeout + 2 * environments.txTimeOut);
+  120 | 
+  121 |     const wallet = await unregisteredDRepWallet("3G:dRep");
+  122 |     const dRepPage = await createNewPageWithWallet(browser, { wallet });
+  123 | 
+  124 |     const dRepRegistrationPage = new DRepRegistrationPage(dRepPage);
+  125 |     await dRepRegistrationPage.goto();
+  126 |     await dRepRegistrationPage.register({ name: faker.person.firstName() });
+  127 | 
+  128 |     await expect(dRepRegistrationPage.registrationSuccessModal).toBeVisible();
+  129 |     await expect(
+  130 |       dRepRegistrationPage.registrationSuccessModal.getByText("this link")
+  131 |     ).toBeVisible();
+  132 |   });
+  133 | 
+  134 |   test("3Q Should not list dRep in the dRep directory when 'doNotList' is checked during registration", async ({
+  135 |     browser,
+  136 |   }, testInfo) => {
+  137 |     test.setTimeout(testInfo.timeout + 2 * environments.txTimeOut);
+  138 | 
+  139 |     const wallet = await unregisteredDRepWallet("3Q:dRep");
+  140 |     const dRepPage = await createNewPageWithWallet(browser, { wallet });
+  141 | 
+  142 |     const dRepRegistrationPage = new DRepRegistrationPage(dRepPage);
+  143 |     await dRepRegistrationPage.goto();
+  144 |     await dRepRegistrationPage.register({
+  145 |       name: faker.person.firstName(),
+  146 |       donNotList: true,
+  147 |     });
+  148 | 
+  149 |     await dRepRegistrationPage.confirmBtn.click();
+  150 | 
+  151 |     await expect(dRepPage.getByTestId("d-rep-in-progress")).not.toBeVisible({
+  152 |       timeout: 60_000,
+  153 |     });
+  154 | 
+  155 |     // connected state
+  156 |     const dRepDirectoryPage = new DRepDirectoryPage(dRepPage);
+  157 |     await dRepDirectoryPage.verifyDRepInList(wallet.dRepId);
+  158 | 
+  159 |     // disconnected state
+  160 |     await dRepPage.getByTestId("disconnect-button").click();
+  161 |     await dRepDirectoryPage.verifyDRepInList(wallet.dRepId);
+  162 |   });
+  163 | 
+  164 |   test("3J. Should verify retire as DRep", async ({ browser }, testInfo) => {
+  165 |     test.setTimeout(testInfo.timeout + 2 * environments.txTimeOut);
+  166 | 
+  167 |     const wallet = await registeredDRepWallet("3J:dRep");
+  168 |     const dRepPage = await createNewPageWithWallet(browser, { wallet });
+  169 | 
+  170 |     await dRepPage.goto("/");
+  171 |     await dRepPage.getByTestId("retire-button").click();
+  172 |     await dRepPage.getByTestId("continue-retirement-button").click();
+  173 | 
+  174 |     await expect(
+  175 |       dRepPage.getByTestId("retirement-transaction-submitted-modal")
+> 176 |     ).toBeVisible({ timeout: 15_000 });
+      |       ^ Error: expect(locator).toBeVisible() failed
+  177 |   });
+  178 | 
+  179 |   test("3K. Verify DRep behavior in retired state", async ({
+  180 |     browser,
+  181 |   }, testInfo) => {
+  182 |     test.setTimeout(testInfo.timeout + 3 * environments.txTimeOut);
+  183 | 
+  184 |     const wallet = await registeredDRepWallet("3K:dRep");
+  185 |     const dRepPage = await createNewPageWithWallet(browser, { wallet });
+  186 | 
+  187 |     await dRepPage.goto("/");
+  188 |     await dRepPage.getByTestId("retire-button").click();
+  189 |     await dRepPage.getByTestId("continue-retirement-button").click();
+  190 |     await expect(
+  191 |       dRepPage.getByTestId("retirement-transaction-submitted-modal")
+  192 |     ).toBeVisible({ timeout: 60_000 });
+  193 |     dRepPage.getByTestId("confirm-modal-button").click();
+  194 | 
+  195 |     await waitForTxConfirmation(dRepPage);
+  196 | 
+  197 |     await expect(dRepPage.getByTestId("voting-power-chips")).not.toBeVisible({
+  198 |       timeout: 20_000,
+  199 |     });
+  200 | 
+  201 |     await expect(dRepPage.getByTestId("dRep-id-display")).not.toBeVisible();
+  202 | 
+  203 |     const governanceActionsPage = new GovernanceActionsPage(dRepPage);
+  204 |     await governanceActionsPage.goto();
+  205 |     const govActionDetailsPage =
+  206 |       await governanceActionsPage.viewFirstProposal();
+  207 |     await expect(govActionDetailsPage.voteBtn).not.toBeVisible();
+  208 |   });
+  209 | 
+  210 |   test("3I. Should display 'In Progress' status on dashboard until blockchain confirms DRep registration", async ({
+  211 |     browser,
+  212 |   }, testInfo) => {
+  213 |     test.setTimeout(testInfo.timeout + 2 * environments.txTimeOut);
+  214 | 
+  215 |     const wallet = await unregisteredDRepWallet("3I:dRep");
+  216 |     const dRepPage = await createNewPageWithWallet(browser, { wallet });
+  217 | 
+  218 |     const dRepRegistrationPage = new DRepRegistrationPage(dRepPage);
+  219 |     await dRepRegistrationPage.goto();
+  220 |     await dRepRegistrationPage.registerWithoutTxConfirmation({
+  221 |       name: faker.person.firstName(),
+  222 |     });
+  223 |     await dRepRegistrationPage.registrationSuccessModal
+  224 |       .getByTestId("confirm-modal-button")
+  225 |       .click();
+  226 | 
+  227 |     await expect(dRepPage.getByTestId("d-rep-in-progress")).toHaveText(
+  228 |       /in progress/i,
+  229 |       { timeout: 20_000 }
+  230 |     );
+  231 | 
+  232 |     await waitForTxConfirmation(dRepPage);
+  233 | 
+  234 |     await expect(dRepPage.getByTestId("d-rep-in-progress")).not.toBeVisible({
+  235 |       timeout: 20_000,
+  236 |     });
+  237 |   });
+  238 | });
+  239 | 
+```

@@ -1,0 +1,8 @@
+✔ Uploaded Lauriane-08bcf35c metadata to bucket
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Waiting for tx completion: fec48040bc81e3d212d329c3a0f18070da73debac3b2d94efb4ce4a5170a070b
+✔ Tx completed
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: net::ERR_CERT_COMMON_NAME_INVALID
