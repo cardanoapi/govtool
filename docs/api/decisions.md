@@ -5753,3 +5753,41 @@ note. D123 (reports are kept forever) and D125 (anyone may retry once a minute) 
   publisher who fixed the url can check it at once. `verify` still fetches every time.
 - `listReports` returns the latest 10 reports, newest first (`REPORT_LIST_LIMIT`). Older reports stay
   stored and readable by id.
+
+## D170 — A DRep searched by id brings its document, and directory rows carry `doNotList`
+
+**Date:** 2026-10-16
+**Amends:** D167 ("a request never fetches") for `/drep/list` searches by DRep id.
+
+- A DRep is looked up by id as soon as it registers: its dashboard card and its own page. The warmer
+  reaches its document only on a later pass, so a row read from the store alone had no name or
+  payment address. A search by id now fetches the documents the store has no answer for, as
+  `/drep/info` does. It names one DRep, so the fetch is one document. Name searches and the
+  whole directory still read the store only.
+- Directory rows carry `doNotList` (CIP-119), read from the DRep's document, `false` until it is
+  read. The Haskell backend never sent the field (its SQL did not select `do_not_list`), so the
+  frontend's filter on it did nothing on real data.
+- `listed=true` is the directory's view: the backend leaves out `doNotList` DReps before the total
+  and the page, so pages stay full. Without it every DRep is listed, since the DRep's own page, its
+  dashboard and the edit form look it up by id through the same route.
+
+## D171 — The backend redacts the middle of IP addresses
+
+**Date:** 2026-10-18
+**Amends:** D116, which hid nothing in a fetch report, addresses included.
+**Said:** "Backend will return ip as nn.xx.xx.nn -> redacting the mid 2 numbers in case of errors for
+privacy concerns."
+
+- An IPv4 address keeps its first and last octet: `203.0.113.45` is sent as `203.xx.xx.45`. An IPv6
+  address keeps its first and last group the same way: `2606:4700::6810:84e5` is sent as
+  `2606:xx:xx:84e5`. An IPv4-mapped IPv6 address redacts its IPv4 part.
+- The metadata routes (`/metadata/resolve`, `/metadata/retry`, `/metadata/reports` and
+  `/metadata/reports/:id`) redact the DNS answers, the connect attempts, the response headers and every
+  message. They leave the document body, the urls, the ids and the hashes as the service sent them: the
+  body is the publisher's content, the urls are what the chain or the publisher's server named, and ids
+  and hashes are sent back by callers.
+- Error bodies built from data-layer errors (`ChainDataError`, `PinningError` and the `CriticalError`
+  fallback) redact their messages and details, since a provider or database error names the host it
+  failed to reach.
+- Redaction is at the backend's edge only. The metadata service stores and logs full addresses, and the
+  backend's own logs keep them, so an operator can still investigate.
