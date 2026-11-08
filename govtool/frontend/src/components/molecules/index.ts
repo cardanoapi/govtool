@@ -64,3 +64,4 @@ export * from "./GovernanceActionHistoryMenuButton";
 export * from "./GovernanceActionHistorySorting";
 export * from "./GovernanceActionStatusChip";
 export * from "./GovernanceActionVoteSection";
+export * from "./PageTabs";

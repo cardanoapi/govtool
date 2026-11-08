@@ -772,6 +772,9 @@
         "label": "Info Action"
       }
     },
+    "liveVotingTab": "Live Voting",
+    "outcomesTab": "Outcomes",
+    "proposedTab": "Proposed Governance Actions",
     "liveVoting": {
       "title": "Live Voting",
       "label": "Live Voting"
