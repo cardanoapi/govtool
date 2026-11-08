@@ -2,15 +2,16 @@ import { forwardRef, useCallback, useImperativeHandle, useRef } from "react";
 import { TextareaAutosize, styled } from "@mui/material";
 
 import { useScreenDimension } from "@hooks";
+import { FONT_FAMILY } from "@/consts/designTokens";
 
 import { TextAreaProps } from "./types";
 
 const TextAreaBase = styled(TextareaAutosize)(
   () => `
-  font-family: "Poppins";
+  font-family: ${FONT_FAMILY.sans};
   font-weight: 400;
     ::placeholder {
-      font-family: "Poppins";
+      font-family: ${FONT_FAMILY.sans};
       font-weight: 400;
       color: #a6a6a6;
     }

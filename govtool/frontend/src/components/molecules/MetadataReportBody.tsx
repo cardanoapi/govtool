@@ -9,6 +9,7 @@ import {
   ReportBody,
 } from "@models";
 import { buildHighlightedLines } from "@utils";
+import { FONT_FAMILY } from "@/consts/designTokens";
 
 import { REPORT_LABEL } from "./metadataReportStyles";
 
@@ -249,7 +250,7 @@ export const MetadataReportBody = ({ body, issues }: MetadataReportBodyProps) =>
                       sx={{
                         textAlign: "left",
                         fontSize: 14,
-                        fontFamily: "Poppins",
+                        fontFamily: FONT_FAMILY.sans,
                         color: "primary.main",
                         textDecoration: "underline",
                       }}

@@ -12,6 +12,7 @@ import {
 } from "@utils";
 import { LINKS } from "@/consts/links";
 import { errorRed } from "@/consts/colors";
+import { FONT_FAMILY } from "@/consts/designTokens";
 
 export const DataMissingInfoBox = ({
   isDataMissing,
@@ -120,7 +121,7 @@ export const DataMissingInfoBox = ({
             onClick={() => openInNewTab(LINKS.DREP_ERROR_CONDITIONS)}
             underline="hover"
             sx={{
-              fontFamily: "Poppins",
+              fontFamily: FONT_FAMILY.sans,
               fontSize: "16px",
               fontWeight: 600,
               lineHeight: "24px",

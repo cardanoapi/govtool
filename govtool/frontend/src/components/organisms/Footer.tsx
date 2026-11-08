@@ -6,6 +6,7 @@ import { useChatwoot } from "@context";
 import { useScreenDimension, useTranslation } from "@hooks";
 import { openInNewTab, testIdFromLabel } from "@utils";
 import { LINKS } from "@/consts/links";
+import { FONT_FAMILY } from "@/consts/designTokens";
 
 type FooterLinkProps = {
   label: string;
@@ -19,7 +20,7 @@ const FooterLink = ({ label, onClick }: FooterLinkProps) => (
     sx={{
       color: "textBlack",
       cursor: "pointer",
-      fontFamily: "Poppins",
+      fontFamily: FONT_FAMILY.sans,
       fontSize: 12,
       fontWeight: 400,
       textDecoration: "none",

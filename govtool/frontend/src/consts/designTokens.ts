@@ -112,8 +112,10 @@ export const SHADOWS = {
   innerAccent: "inset 0px 4px 4px 0px #FF995C",
 };
 
+// @fontsource registers Geist as "Geist Sans"; "Geist" covers a locally
+// installed copy.
 export const FONT_FAMILY = {
-  sans: '"Geist", Arial, sans-serif',
+  sans: '"Geist Sans", "Geist", Arial, sans-serif',
   mono: '"Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace',
   serif: 'Georgia, "Times New Roman", serif',
 };

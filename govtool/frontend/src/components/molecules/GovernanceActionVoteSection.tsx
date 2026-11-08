@@ -21,6 +21,7 @@ import { primaryBlue, successGreen } from "@consts";
 import { useTranslation } from "@hooks";
 import { formatVoteAggregateValue, voteAggregateResult } from "@utils";
 import type { GovernanceActionVoteAggregate } from "@models";
+import { FONT_FAMILY } from "@/consts/designTokens";
 
 const THRESHOLD_COLOR = "#45458A";
 const NO_BAR_COLOR = "#D84444";
@@ -303,7 +304,7 @@ export const GovernanceActionVoteSection = ({
       mb={3}
       // Plain Box text (bar labels, totals, expand) otherwise falls back to
       // the browser's serif; only Typography gets the theme font.
-      sx={{ fontFamily: "Poppins, Arial" }}
+      sx={{ fontFamily: FONT_FAMILY.sans }}
     >
       <Typography
         data-testid={`${title}-outcome-voter-label`}
