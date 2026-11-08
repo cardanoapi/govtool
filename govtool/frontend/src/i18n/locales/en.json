@@ -381,7 +381,9 @@
     "copyright": "© {{year}} GovTool",
     "privacyPolicy": "Privacy policy",
     "termOfService": "Terms of Use",
-    "subscribe": "Subscribe to updates"
+    "subscribe": "Subscribe to updates",
+    "tagline": "A clearer connection to Cardano governance.",
+    "intersect": "Intersect ↗"
   },
   "forms": {
     "link": "Link",
