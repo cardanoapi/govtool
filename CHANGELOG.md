@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - The frontend and docs images use nginx 1.30 instead of 1.28; the devnet's prebuilt frontend image follows
+- The frontend's shell follows the new design: Geist type self-hosted instead of Poppins from Google Fonts, the new colour scale and shared components, a top navigation for every page (with a wallet menu once connected) in place of the connected sidebar, Proposed, Live Voting and Outcomes tabs on the governance action lists, and a new footer
 
 ### Fixed
 
