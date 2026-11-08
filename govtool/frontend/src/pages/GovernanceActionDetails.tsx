@@ -138,7 +138,7 @@ export const GovernanceActionDetails = () => {
   }, [isEnabled, error]);
 
   return (
-    <Background opacity={0.7}>
+    <Background>
       <Box
         display="flex"
         flexDirection="column"

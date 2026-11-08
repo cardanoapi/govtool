@@ -15,6 +15,7 @@ import {
   DashboardGovernanceActionsVotedOn,
 } from "@organisms";
 import { Button } from "@atoms";
+import { GovernanceActionsTabs } from "./GovernanceActionsTabs";
 
 type TabPanelProps = {
   children?: React.ReactNode;
@@ -102,6 +103,7 @@ export const DashboardGovernanceActions = () => {
       flexDirection="column"
     >
       <>
+        <GovernanceActionsTabs />
         <DataActionsBar
           {...dataActionsBarProps}
           filterOptions={GOVERNANCE_ACTIONS_FILTERS}

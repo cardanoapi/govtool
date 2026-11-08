@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import { useLocation } from "react-router";
 
 import { Background, Typography } from "@atoms";
-import { USER_PATHS } from "@consts";
+import { GOV_ACTION_HISTORY_PATHS, USER_PATHS } from "@consts";
 import { useCardano } from "@context";
 import { useScreenDimension, useTranslation } from "@hooks";
 import {
@@ -10,6 +10,7 @@ import {
   GovernanceActionHistoryDetails,
   GovernanceActionHistoryList,
   GovernanceActionHistorySearchFiltersSortBar,
+  GovernanceActionsTabs,
   TopNav,
 } from "@organisms";
 
@@ -57,6 +58,7 @@ const GovernanceActionHistoryContent = () => {
 export const GovernanceActionHistoryPage = () => {
   const { pagePadding } = useScreenDimension();
   const { isEnabled } = useCardano();
+  const { pathname } = useLocation();
 
   return (
     <Background>
@@ -85,6 +87,9 @@ export const GovernanceActionHistoryPage = () => {
             flexGrow={1}
             minWidth={0}
           >
+            {pathname === GOV_ACTION_HISTORY_PATHS.governanceActionHistory && (
+              <GovernanceActionsTabs />
+            )}
             <GovernanceActionHistoryContent />
           </Box>
         </Box>

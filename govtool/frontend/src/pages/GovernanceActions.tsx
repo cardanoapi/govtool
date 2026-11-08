@@ -7,7 +7,12 @@ import { GOVERNANCE_ACTIONS_FILTERS, PATHS } from "@consts";
 import { useCardano, useDataActionsBar, useFeatureFlag } from "@context";
 import { useScreenDimension, useTranslation } from "@hooks";
 import { DataActionsBar } from "@molecules";
-import { Footer, TopNav, GovernanceActionsToVote } from "@organisms";
+import {
+  Footer,
+  GovernanceActionsTabs,
+  GovernanceActionsToVote,
+  TopNav,
+} from "@organisms";
 import { WALLET_LS_KEY, getItemFromLocalStorage } from "@utils";
 
 export const GovernanceActions = () => {
@@ -62,6 +67,9 @@ export const GovernanceActions = () => {
           >
             {t("govActions.title")}
           </Typography>
+          <Box sx={{ px: pagePadding }}>
+            <GovernanceActionsTabs />
+          </Box>
           {isMobile && (
             <Divider
               style={{

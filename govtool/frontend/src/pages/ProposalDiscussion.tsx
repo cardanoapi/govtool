@@ -11,7 +11,12 @@ import {
 import { useValidateMutation } from "@/hooks/mutations";
 import { useScreenDimension } from "@/hooks/useScreenDimension";
 import { Background } from "@/components/atoms";
-import { Footer, TopNav } from "@/components/organisms";
+import {
+  Footer,
+  GovernanceActionsTabs,
+  TopNav,
+} from "@/components/organisms";
+import { PDF_PATHS } from "@/consts/paths";
 import { useGetDRepVotingPowerList, useGetVoterInfo } from "@/hooks";
 import {
   getAdaHolderVotingPower,
@@ -58,9 +63,11 @@ export const ProposalDiscussionPillar = () => {
           px: context.isEnabled ? { xxs: 2, md: 5 } : pagePadding,
           py: 3,
           display: "flex",
+          flexDirection: "column",
           flex: 1,
         }}
       >
+        {pathname === PDF_PATHS.proposalDiscussion && <GovernanceActionsTabs />}
         <Suspense
           fallback={
             <Box
