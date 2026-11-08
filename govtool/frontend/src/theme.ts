@@ -177,9 +177,8 @@ export const theme = createTheme({
       },
     },
   },
-  shape: {
-    borderRadius: RADIUS.md,
-  },
+  // shape.borderRadius stays at MUI's default 4: MUI multiplies numeric sx
+  // radii by it, and screens not yet redesigned use those numbers.
   typography: {
     fontFamily: FONT_FAMILY.sans,
     allVariants: {

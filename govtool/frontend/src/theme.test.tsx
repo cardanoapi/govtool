@@ -1,8 +1,11 @@
 import { describe, expect, it } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { Box } from "@mui/material";
+import { ThemeProvider } from "@emotion/react";
 
 // GovTool's theme and consts barrel import each other; loading the barrel
 // first gives the same evaluation order as the app.
-import { ds, FONT_FAMILY, RADIUS, SHADOWS } from "@consts";
+import { ds, FONT_FAMILY, SHADOWS } from "@consts";
 import { theme } from "@/theme";
 
 describe("theme", () => {
@@ -21,10 +24,18 @@ describe("theme", () => {
     expect(theme.palette.textGray).toBe("#475467");
   });
 
-  it("uses Figma shadows and radius", () => {
+  it("uses Figma shadows", () => {
     expect(theme.shadows[1]).toBe(SHADOWS.header);
     expect(theme.shadows[3]).toBe(SHADOWS.cardBlue);
-    expect(theme.shape.borderRadius).toBe(RADIUS.md);
+  });
+
+  it("keeps numeric sx radii at MUI's 4px unit, so older screens do not change", () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <Box sx={{ borderRadius: 3 }}>card</Box>
+      </ThemeProvider>,
+    );
+    expect(screen.getByText("card")).toHaveStyle({ borderRadius: "12px" });
   });
 
   it("sets Geist as the font", () => {
