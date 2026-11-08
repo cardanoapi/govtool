@@ -1,15 +1,10 @@
 import { createTheme } from "@mui/material/styles";
 import {
-  cyan,
   ds,
-  errorRed,
   FONT_FAMILY,
-  orange,
-  primaryBlue,
-  progressYellow,
+  PILL_TONES,
   RADIUS,
   SHADOWS,
-  successGreen,
 } from "./consts";
 
 export type Theme = typeof theme;
@@ -119,51 +114,53 @@ export const theme = createTheme({
         {
           props: { color: "default", variant: "filled" },
           style: {
-            backgroundColor: primaryBlue.c50,
+            backgroundColor: PILL_TONES.neutral.bg,
+            color: PILL_TONES.neutral.text,
           },
         },
         {
           props: { color: "success", variant: "filled" },
           style: {
-            backgroundColor: successGreen.c200,
-            color: successGreen.c700,
+            backgroundColor: PILL_TONES.success.bg,
+            color: PILL_TONES.success.text,
           },
         },
         {
           props: { color: "error", variant: "filled" },
           style: {
-            backgroundColor: errorRed.c100,
-            color: errorRed.c500,
+            backgroundColor: PILL_TONES.error.bg,
+            color: PILL_TONES.error.text,
           },
         },
         {
           props: { color: "warning", variant: "filled" },
           style: {
-            backgroundColor: progressYellow.c200,
-            color: orange.c700,
+            backgroundColor: PILL_TONES.warning.bg,
+            color: PILL_TONES.warning.text,
           },
         },
         {
           props: { color: "info", variant: "filled" },
           style: {
-            backgroundColor: cyan.c100,
-            color: cyan.c500,
+            backgroundColor: PILL_TONES.primary.bg,
+            color: PILL_TONES.primary.text,
           },
         },
       ],
       styleOverrides: {
         root: {
-          fontSize: "0.875rem",
-          fontWeight: 500,
-          height: 28,
+          borderRadius: RADIUS.sm,
+          fontSize: "0.75rem",
+          fontWeight: 600,
+          height: 24,
         },
         filledPrimary: {
-          backgroundColor: primaryBlue.c100,
-          color: primaryBlue.c500,
+          backgroundColor: PILL_TONES.primary.bg,
+          color: PILL_TONES.primary.text,
         },
         filledSecondary: {
-          backgroundColor: orange.c100,
-          color: orange.c600,
+          backgroundColor: ds.orange["50"],
+          color: ds.orange["700"],
         },
       },
     },

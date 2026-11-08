@@ -119,3 +119,14 @@ export const FONT_FAMILY = {
   mono: '"Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace',
   serif: 'Georgia, "Times New Roman", serif',
 };
+
+// Status and vote pills (20px high, 6px radius, 12/18 semibold text).
+export const PILL_TONES = {
+  success: { bg: success["50"], border: success["100"], text: success["700"] },
+  primary: { bg: primary["50"], border: primary["100"], text: primary["700"] },
+  neutral: { bg: gray["100"], border: gray["100"], text: gray["700"] },
+  error: { bg: error["50"], border: error["100"], text: error["700"] },
+  warning: { bg: warning["50"], border: warning["100"], text: warning["700"] },
+};
+
+export type PillTone = keyof typeof PILL_TONES;
