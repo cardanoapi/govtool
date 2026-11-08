@@ -26,6 +26,11 @@ describe("PageTabs", () => {
     expect(screen.getByTestId("tab-a")).toHaveStyle({ color: "#667085" });
   });
 
+  it("never shows a vertical scrollbar on the tab row", () => {
+    render(<PageTabs tabs={tabs} />, { wrapper: at("/b") });
+    expect(screen.getByRole("navigation")).toHaveStyle({ overflowY: "hidden" });
+  });
+
   it("links each tab to its route", () => {
     render(<PageTabs tabs={tabs} />, { wrapper: at("/b") });
     expect(screen.getByTestId("tab-a")).toHaveAttribute("href", "/a");

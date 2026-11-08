@@ -12,9 +12,12 @@ export const PageTabs = ({ tabs }: PageTabsProps) => (
   <Box
     component="nav"
     sx={{
-      borderBottom: `1px solid ${ds.gray["200"]}`,
+      // The row's line is an inset shadow, so the active tab's underline sits
+      // inside the row and overflowY can stay hidden (no stray scrollbar).
+      boxShadow: `inset 0 -1px 0 ${ds.gray["200"]}`,
       display: "flex",
       overflowX: "auto",
+      overflowY: "hidden",
     }}
   >
     {tabs.map((tab) => (
@@ -35,7 +38,6 @@ export const PageTabs = ({ tabs }: PageTabsProps) => (
           height: 38,
           letterSpacing: "-0.09px",
           lineHeight: "20px",
-          mb: "-1px",
           px: 1.5,
           py: 1,
           textDecoration: "none",
