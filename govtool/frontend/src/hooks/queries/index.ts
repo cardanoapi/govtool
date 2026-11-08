@@ -22,3 +22,5 @@ export * from "./useGetGovernanceActionRecordQuery";
 export * from "./useGetGovernanceActionHistoryQuery";
 export * from "./useGetGovernanceActionEpochParams";
 export * from "./useGetGovernanceActionProposalDiscussionQuery";
+export * from "./useGetDecidedActionsQuery";
+export * from "./useGetLiveProposalsQuery";

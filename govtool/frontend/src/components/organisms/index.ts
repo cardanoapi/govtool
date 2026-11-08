@@ -35,3 +35,4 @@ export * from "./GovernanceActionVoting";
 export * from "./GovernanceActionHistoryList";
 export * from "./GovernanceActionHistorySearchFiltersSortBar";
 export * from "./GovernanceActionsTabs";
+export * from "./Home";

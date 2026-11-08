@@ -831,6 +831,135 @@
       }
     }
   },
+  "landing": {
+    "eyebrow": "A clearer way into Cardano governance",
+    "titleLine1": "Good governance",
+    "titleLine2": "Starts with ",
+    "titleHighlight": "all of us.",
+    "description": "Participate in Cardano governance, understand what's being decided, and make your voice count.",
+    "viewGovernanceActions": "View Governance Actions",
+    "findDRep": "Find your DRep",
+    "noWalletNeeded": "Open to explore. No wallet needed to start.",
+    "snapshot": {
+      "title": "Governance Snapshot",
+      "subtitle": "Live signals · Updated just now",
+      "epoch": "Epoch {{epoch}}",
+      "activeActions": "Active actions",
+      "acrossTypes_one": "Across {{count}} type",
+      "acrossTypes_other": "Across {{count}} types",
+      "closingThisEpoch": "Ends this epoch",
+      "ofInVoting": "Of {{total}} in voting",
+      "recentlyRatified": "Recently ratified",
+      "lastThirtyDays": "In last 30 days",
+      "latestDecision": "Latest decision",
+      "decidedAgo": "{{status}} · {{ago}}",
+      "votingOn": "What's being voted on",
+      "endsOn": "Ends {{date}}",
+      "nothingYet": "Nothing yet"
+    },
+    "participation": {
+      "eyebrow": "Your participation, your choice",
+      "title": "Participation looks\ndifferent for everyone.",
+      "aside": "Choose the approach that fits you.\nYou don't need to have it all figured out.",
+      "delegate": {
+        "step": "01 / Explore",
+        "title": "Delegate your voice",
+        "description": "Find a DRep whose priorities align with yours and explore delegation."
+      },
+      "represent": {
+        "step": "02 / Connect",
+        "title": "Represent your community",
+        "description": "Learn about becoming a DRep and participating on behalf of others."
+      },
+      "direct": {
+        "step": "03 / Discover",
+        "title": "Take part directly",
+        "description": "Understand direct voting and what you need to get started."
+      }
+    },
+    "pulse": {
+      "eyebrow": "Proposed actions",
+      "title": "The pulse of Cardano governance.",
+      "seeAll": "See all governance proposals",
+      "votes_one": "{{count}} vote",
+      "votes_other": "{{count}} votes",
+      "yes": "Yes",
+      "no": "No",
+      "threshold": "Threshold",
+      "notEligible": "Not eligible",
+      "left": "{{time}} left",
+      "epoch": "Epoch {{epoch}}",
+      "untitled": "Untitled governance action",
+      "empty": "No governance actions are open for voting right now."
+    },
+    "leaderboard": {
+      "eyebrow": "DRep leaderboard",
+      "title": "Meet the DReps with the most voting power",
+      "description": "See the DReps holding the most delegated voting power in Cardano governance.",
+      "votingPower": "Voting power",
+      "viewProfile": "View Profile",
+      "anonymous": "Anonymous"
+    },
+    "outcomes": {
+      "eyebrow": "At a glance",
+      "title": "See how governance decisions progress on-chain",
+      "description": "Recently ratified and enacted actions — final tallies, execution status and audit trail.",
+      "viewOutcomes": "View Action Outcomes →",
+      "decidedThirtyDays": "Actions decided · 30 days",
+      "ratificationRate": "Ratification rate",
+      "votingParticipation": "DRep voting participation",
+      "ratified": "Ratified",
+      "enacted": "Enacted",
+      "expired": "Expired",
+      "notRatified": "Not Ratified"
+    },
+    "faq": {
+      "eyebrow": "A little clarity",
+      "title": "Questions?\nStart here.",
+      "aside": "Good participation starts\nwith understanding.",
+      "readMore": "Read all FAQs",
+      "items": {
+        "whatIsGovTool": {
+          "q": "What is GovTool?",
+          "a": "GovTool brings together tools for Cardano governance, including governance actions, the DRep directory, and budget proposals."
+        },
+        "needWallet": {
+          "q": "Do I need a wallet to get started?",
+          "a": "No. You can explore governance actions and the DRep directory without one. Connect a wallet when you want to delegate, vote or register."
+        },
+        "whatIsDRep": {
+          "q": "What is a DRep?",
+          "a": "Delegated Representatives (DReps) vote on governance actions on behalf of ADA holders who delegate their voting power to them."
+        },
+        "whatIsGovernance": {
+          "q": "What is Cardano governance?",
+          "a": "Cardano governance lets ADA holders have a say in the network's future: proposing changes, discussing them and voting on them on chain."
+        },
+        "whoCanParticipate": {
+          "q": "Who can participate?",
+          "a": "Any ADA holder. You can delegate to a DRep, register as a DRep, or register as a direct voter and vote with your own voting power."
+        },
+        "delegateVsDirect": {
+          "q": "What's the difference between delegating and voting directly?",
+          "a": "Delegating lets a DRep vote on your behalf. As a direct voter you vote on each governance action yourself, using your own voting power."
+        },
+        "needAda": {
+          "q": "Do I need ADA to participate?",
+          "a": "Exploring is free. Delegating, voting and registering are transactions from your wallet, which pay a fee in ADA; registering also takes a refundable deposit."
+        },
+        "whatCanIVote": {
+          "q": "What can I vote on?",
+          "a": "Governance actions submitted on chain: treasury withdrawals, protocol parameter changes, hard forks, updates to the constitution and the committee, motions of no confidence and info actions."
+        }
+      }
+    },
+    "drepBanner": {
+      "tag": "Governance",
+      "title": "What is a DRep? Shape Cardano's future with your voice.",
+      "description": "Delegated Representatives (DReps) vote on governance actions on behalf of ADA holders. Learn how you can make an impact in Cardano's on-chain democracy.",
+      "cta": "Learn about DReps"
+    }
+  },
   "menu": {
     "close": "Close menu",
     "faqs": "FAQs",
