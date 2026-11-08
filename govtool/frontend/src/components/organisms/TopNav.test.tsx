@@ -1,0 +1,116 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { fireEvent, render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router";
+
+import "@/i18n";
+
+import { TopNav } from "./TopNav";
+
+const mocks = vi.hoisted(() => ({
+  cardano: {
+    isEnabled: false,
+    stakeKey: undefined as string | undefined,
+    address: "addr1qxyz",
+    disconnectWallet: vi.fn(),
+  },
+  openModal: vi.fn(),
+}));
+
+vi.mock("@context", () => ({
+  useCardano: () => mocks.cardano,
+  useModal: () => ({ openModal: mocks.openModal }),
+  useFeatureFlag: () => ({ isProposalDiscussionForumEnabled: true }),
+}));
+
+vi.mock("@hooks", async (importOriginal) => ({
+  ...(await importOriginal<typeof import("@hooks")>()),
+  useGetVoterInfo: () => ({ voter: undefined }),
+}));
+
+const renderAt = (path: string) =>
+  render(
+    <MemoryRouter initialEntries={[path]}>
+      <TopNav />
+    </MemoryRouter>,
+  );
+
+describe("TopNav (desktop)", () => {
+  beforeEach(() => {
+    window.innerWidth = 1440;
+    mocks.cardano.isEnabled = false;
+    mocks.cardano.stakeKey = undefined;
+  });
+
+  it("shows the logo, the four nav items and Connect Wallet", () => {
+    renderAt("/");
+    expect(screen.getByTestId("logo-button")).toBeInTheDocument();
+    expect(screen.getByTestId("connect-wallet-button")).toBeInTheDocument();
+    ["Home", "DRep Directory", "Governance Actions", "Guides"].forEach(
+      (label) => expect(screen.getByText(label)).toBeInTheDocument(),
+    );
+    expect(screen.queryByTestId("faqs-link")).toBeNull();
+  });
+
+  it("opens the wallet chooser from Connect Wallet", () => {
+    renderAt("/");
+    fireEvent.click(screen.getByTestId("connect-wallet-button"));
+    expect(mocks.openModal).toHaveBeenCalledWith({ type: "chooseWallet" });
+  });
+
+  it("highlights Governance Actions in orange on its pages", () => {
+    renderAt("/governance_actions");
+    expect(screen.getByTestId("governance-actions")).toHaveStyle({
+      color: "#E9682F",
+    });
+    expect(screen.getByTestId("drep-directory-link")).toHaveStyle({
+      color: "#667085",
+    });
+  });
+
+  it("highlights Governance Actions on forum pages too", () => {
+    renderAt("/proposal_discussion");
+    expect(screen.getByTestId("governance-actions")).toHaveStyle({
+      color: "#E9682F",
+    });
+  });
+
+  describe("with a wallet connected", () => {
+    beforeEach(() => {
+      mocks.cardano.isEnabled = true;
+      mocks.cardano.stakeKey = "stake1u9abcdefghijklmnopqrstuvwxyz";
+    });
+
+    it("shows the wallet pill instead of Connect Wallet", () => {
+      renderAt("/dashboard");
+      expect(screen.queryByTestId("connect-wallet-button")).toBeNull();
+      const pill = screen.getByTestId("wallet-menu-button");
+      expect(pill).toHaveTextContent("stake1u…xyz");
+    });
+
+    it("truncates a long label rather than wrapping the nav", () => {
+      renderAt("/dashboard");
+      expect(screen.getByText("stake1u…xyz")).toHaveStyle({
+        maxWidth: "200px",
+        textOverflow: "ellipsis",
+      });
+    });
+
+    it("offers Disconnect from the wallet menu", () => {
+      renderAt("/dashboard");
+      fireEvent.click(screen.getByTestId("wallet-menu-button"));
+      expect(screen.getByTestId("disconnect-button")).toBeInTheDocument();
+    });
+
+    it("uses the connected nav ids", () => {
+      renderAt("/dashboard");
+      expect(screen.getByTestId("governance-actions-link")).toHaveAttribute(
+        "href",
+        "/connected/governance_actions",
+      );
+      expect(screen.getByTestId("dashboard-link")).toHaveAttribute(
+        "href",
+        "/dashboard",
+      );
+    });
+  });
+});
