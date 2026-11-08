@@ -1,0 +1,119 @@
+// Design tokens from the "Gov.tools [REDESIGN]" Figma file (version of
+// 2026-10-15). Scales are keyed by Figma step. Steps the file never names
+// are left out; read them from the Figma export when a screen needs one.
+// This module imports nothing: theme.ts and the consts barrel import each
+// other, and an import here could close a cycle.
+
+export type ColorScale = Record<string, string>;
+
+const gray: ColorScale = {
+  25: "#FCFCFD",
+  50: "#F8F9FC",
+  100: "#F1F4F9",
+  200: "#E5E9F0",
+  300: "#D5DBE5",
+  400: "#98A2B3",
+  500: "#667085",
+  600: "#475467",
+  700: "#344054",
+  // No named style in the file; the value its frames use on 425 nodes.
+  800: "#182230",
+  900: "#101828",
+  950: "#0B1220",
+};
+
+const primary: ColorScale = {
+  25: "#F5F8FF",
+  50: "#EEF3FF",
+  100: "#E0E9FF",
+  200: "#C6D5FF",
+  300: "#9DB5FF",
+  400: "#668BFF",
+  500: "#315BEF",
+  600: "#1447E6",
+  700: "#0038C7",
+  800: "#12369B",
+  900: "#142F82",
+};
+
+const success: ColorScale = {
+  50: "#E3F8EA",
+  100: "#D1FADF",
+  200: "#A6F4C5",
+  400: "#32D583",
+  500: "#12B76A",
+  600: "#039855",
+  700: "#027A48",
+};
+
+const warning: ColorScale = {
+  25: "#FFFCF5",
+  50: "#FFFAEB",
+  100: "#FEF0C7",
+  400: "#FDB022",
+  600: "#DC6803",
+  700: "#B54708",
+};
+
+const error: ColorScale = {
+  25: "#FFFBFA",
+  50: "#FEF3F2",
+  100: "#FEE4E2",
+  200: "#FECDCA",
+  400: "#F97066",
+  500: "#F04438",
+  600: "#D92D20",
+  700: "#B42318",
+  800: "#912018",
+  900: "#7A271A",
+};
+
+const orange: ColorScale = {
+  25: "#FFF9F5",
+  50: "#FFF4ED",
+  100: "#FFE8D6",
+  200: "#FFD0B0",
+  300: "#FFA26C",
+  400: "#FF833B",
+  500: "#FF640A",
+  600: "#E9682F",
+  700: "#C94F22",
+  800: "#401903",
+};
+
+export const ds = { gray, primary, success, warning, error, orange };
+
+export type DesignScales = typeof ds;
+
+export const RADIUS = {
+  xs: 4,
+  sm: 6,
+  md: 8,
+  lg: 12,
+  xl: 16,
+  pill: 999,
+};
+
+export const SHADOWS = {
+  // Figma "Blue-Shadown": the header.
+  header: "0px 4px 8px 0px #2F62DC0A",
+  // Figma "Dark-Shadow".
+  card: "0px 8px 16px 0px #10182805",
+  // Figma "Card Shadow Blue".
+  cardBlue: "2px 2px 20px 0px #2F62DC33",
+  // Figma "Button shadow".
+  button: "1px 2px 11px 0px #00123D5E",
+  // Figma "Drop Shadow/200".
+  drop: "0px 1px 4px 0px #0C0C0D0D, 0px 1px 4px 0px #0C0C0D1A",
+  // Figma "Drop Shadow/Checkbox".
+  checkbox: "1px 2px 11px 0px #00123D33",
+  // The highlight inside the primary and orange buttons.
+  innerPrimary: "inset 0px 4px 4px 0px #5C7FFF",
+  innerAccent: "inset 0px 4px 4px 0px #FF995C",
+};
+
+export const FONT_FAMILY = {
+  sans: '"Geist", Arial, sans-serif',
+  mono: '"Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace',
+  serif: 'Georgia, "Times New Roman", serif',
+};

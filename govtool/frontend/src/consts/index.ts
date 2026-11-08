@@ -1,5 +1,6 @@
 export * from "./CIP100Context";
 export * from "./colors";
+export * from "./designTokens";
 export * from "./dRepActions";
 export * from "./dRepDirectory";
 export * from "./externalDataModalConfig";

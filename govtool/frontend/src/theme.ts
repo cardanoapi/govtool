@@ -1,10 +1,14 @@
 import { createTheme } from "@mui/material/styles";
 import {
   cyan,
+  ds,
   errorRed,
+  FONT_FAMILY,
   orange,
   primaryBlue,
   progressYellow,
+  RADIUS,
+  SHADOWS,
   successGreen,
 } from "./consts";
 
@@ -25,7 +29,7 @@ export const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         ":root": {
-          fonfFamily: "Poppins, Arial",
+          fontFamily: FONT_FAMILY.sans,
         },
       },
     },
@@ -125,48 +129,48 @@ export const theme = createTheme({
       },
     },
   },
+  shape: {
+    borderRadius: RADIUS.md,
+  },
   typography: {
-    fontFamily: "Poppins, Arial",
+    fontFamily: FONT_FAMILY.sans,
     allVariants: {
-      color: "#242232",
+      color: ds.gray["900"],
     },
   },
   palette: {
-    accentOrange: "#F29339",
+    accentOrange: ds.orange["600"],
     accentYellow: "#F2D9A9",
     arcticWhite: "#FBFBFF",
     boxShadow1: "rgba(0, 18, 61, 0.37)",
     boxShadow2: "rgba(47, 98, 220, 0.2)",
-    darkPurple: "rgba(36, 34, 50, 1)",
-    errorRed: "#9E2323",
-    fadedPurple: "#716E88",
+    darkPurple: ds.gray["900"],
+    ds,
+    errorRed: ds.error["700"],
+    fadedPurple: ds.gray["500"],
     highlightBlue: "#C2EFF299",
-    inputRed: "#FAEAEB",
-    lightBlue: "#D6E2FF",
-    lightOrange: "#FFCBAD",
-    negativeRed: "#E58282",
-    neutralGray: "#8E908E",
+    inputRed: ds.error["50"],
+    lightBlue: ds.primary["100"],
+    lightOrange: ds.orange["200"],
+    negativeRed: ds.error["400"],
+    neutralGray: ds.gray["400"],
     neutralWhite: "#FFFFFF",
-    orangeDark: "#803205",
-    positiveGreen: "#5CC165",
-    primary: { main: "#0033AD" },
-    primaryBlue: "#0033AD",
-    secondary: { main: "rgb(255, 100, 10)" },
-    secondaryBlue: "#6F99FF",
+    orangeDark: ds.orange["700"],
+    positiveGreen: ds.success["500"],
+    primary: { main: ds.primary["600"] },
+    primaryBlue: ds.primary["600"],
+    secondary: { main: ds.orange["600"] },
+    secondaryBlue: ds.primary["400"],
     specialCyan: "#1C94B2",
     specialCyanBorder: "#77BFD1",
-    textBlack: "#242232",
-    textGray: "#525252",
+    textBlack: ds.gray["900"],
+    textGray: ds.gray["600"],
   },
 });
 
-theme.shadows[1] =
-  "0px 1px 2px 0px rgba(0, 51, 173, 0.08), 0px 1px 6px 1px rgba(0, 51, 173, 0.15)";
-theme.shadows[2] =
-  "0px 1px 2px 0px rgba(0, 51, 173, 0.08), 0px 2px 10px 2px rgba(0, 51, 173, 0.15)";
-theme.shadows[3] =
-  "0px 1px 3px 0px rgba(0, 51, 173, 0.08), 0px 4px 12px 3px rgba(0, 51, 173, 0.15)";
-theme.shadows[4] =
-  "0px 2px 3px 0px rgba(0, 51, 173, 0.08), 0px 6px 14px 4px rgba(0, 51, 173, 0.15)";
-theme.shadows[5] =
-  "0px 4px 4px 0px rgba(0, 51, 173, 0.08), 0px 8px 20px 6px rgba(0, 51, 173, 0.15)";
+theme.shadows[1] = SHADOWS.header;
+theme.shadows[2] = SHADOWS.card;
+theme.shadows[3] = SHADOWS.cardBlue;
+theme.shadows[4] = SHADOWS.button;
+theme.shadows[5] = SHADOWS.drop;
+theme.shadows[6] = SHADOWS.checkbox;
