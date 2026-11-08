@@ -11,6 +11,7 @@ import { CenteredBoxBottomButtons } from "@molecules";
 import { ControlledField } from "@organisms";
 import { openInNewTab } from "@utils";
 import { LINKS } from "@/consts/links";
+import { FONT_FAMILY } from "@/consts/designTokens";
 
 type StoreDataInfoProps = {
   setStep: Dispatch<SetStateAction<number>>;
@@ -41,7 +42,7 @@ export const StoreDataInfo = ({ setStep }: StoreDataInfoProps) => {
           cursor: "pointer",
           fontSize: 16,
           fontWeight: 500,
-          fontFamily: "Poppins",
+          fontFamily: FONT_FAMILY.sans,
           my: 4,
           textAlign: "center",
           textDecoration: "none",

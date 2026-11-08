@@ -135,10 +135,29 @@ Wallet-only pages are top-level routes that redirect from a useEffect when no
 wallet is connected; copy CreateGovernanceAction.tsx.
 
 A new page touches src/consts/paths.ts, src/pages/index.ts, App.tsx (both
-branches when it has both), utils/getPageTitle.ts and en.json. It also needs the
-title function in pages/Dashboard.tsx when it renders in the Dashboard without a
-CONNECTED_NAV_ITEMS entry, and NAV_ITEMS and CONNECTED_NAV_ITEMS in
-src/consts/navItems.tsx when it is in the nav.
+branches when it has both), utils/getPageTitle.ts and en.json. It also needs
+NAV_ITEMS and CONNECTED_NAV_ITEMS in src/consts/navItems.tsx when it is in the
+nav.
+
+Public pages and the connected Dashboard layout share one frame: TopNav (logo,
+nav, Connect Wallet or the wallet menu that holds disconnect-button), the page,
+Footer. Below 1024px the nav moves into the mobile drawer. Governance Actions is
+one nav link; its three destinations are the Proposed, Live Voting and Outcomes
+tabs (organisms/GovernanceActionsTabs.tsx), which reuse the old dropdown's test
+ids, public or connected. FAQ is a footer link (faqs-link).
+
+## Design system
+
+The redesign's values live in src/consts/designTokens.ts (colour scales ds.*,
+RADIUS, SHADOWS, FONT_FAMILY, PILL_TONES) and feed src/theme.ts; the palette
+exposes them as theme.palette.ds, and the older palette keys keep their names
+with the new values. The type scale is src/consts/typography.ts, used by the
+Typography atom: the Figma names (paragraphSM, tagline...) plus the old names
+mapped to the nearest size. Geist and Geist Mono are self-hosted through
+src/fonts.ts; nothing loads Google Fonts. Icons come from lucide-react, pinned to
+an exact version. Rebuilt pages sit in the PageContainer atom (1180px). Import
+tokens from @/consts/designTokens rather than @consts in components that tests
+render with a mocked @consts barrel.
 
 ## Transactions
 

@@ -6,9 +6,14 @@ import { toRatio, continuedFraction } from '../dist/governance/proposals/ratio.j
 import { decodeBody, paramGroups } from '../dist/governance/proposals/body.js';
 import { deriveStatus, toGovAction, toLifecycle } from '../dist/governance/proposals/rows.js';
 import {
+  BOUND,
+  CC_SQL,
   DREP_SQL,
   PARAMS_SQL,
+  SPO_SQL,
+  activeDRepSql,
   assembleAggregates,
+  loadAggregates,
   ccFigures,
   drepFigures,
   spoFigures,
@@ -26,12 +31,40 @@ import {
 const H = (n) => n.toString(16).padStart(2, '0').repeat(28);
 const TX = (n) => n.toString(16).padStart(2, '0').repeat(32);
 
-test('DRep tallies invalidate a vote on retirement after the vote but not after the tally epoch', () => {
+test('DRep tallies invalidate a vote on retirement after the vote but not after the tally cutoff', () => {
   assert.match(DREP_SQL, /vp\.vote::text AS vote, vp\.tx_id/);
-  assert.match(DREP_SQL, /WHERE NOT EXISTS\s*\(\s*SELECT 1 FROM drep_registration retired/);
+  assert.match(DREP_SQL, /AND NOT EXISTS\s*\(\s*SELECT 1 FROM drep_registration retired/);
   assert.match(DREP_SQL, /retired\.drep_hash_id = v\.voter AND retired\.deposit < 0/);
   assert.match(DREP_SQL, /retired\.tx_id > v\.tx_id AND retired\.tx_id <= bound\.max_tx/);
-  assert.match(DREP_SQL, /JOIN bound ON bound\.e = p\.e/);
+  assert.match(DREP_SQL, /JOIN bound ON bound\.e = p\.e AND bound\.live = p\.live/);
+});
+
+test('a concluded tally reads certificates up to the end of the epoch before its tally epoch; a live one, all', () => {
+  assert.match(BOUND, /b\.epoch_no = cuts\.e - 1 OFFSET 0\) x\) AS snap_block/);
+  assert.match(BOUND, /b\.epoch_no = cuts\.e OFFSET 0\) x\) AS last_block/);
+  assert.match(BOUND, /CASE WHEN lb\.live THEN lb\.last_block ELSE lb\.snap_block END/);
+  for (const sql of [DREP_SQL, SPO_SQL, CC_SQL]) {
+    assert.match(sql, /unnest\(\$1::bigint\[\], \$2::int\[\], \$3::boolean\[\]\) AS p\(id, e, live\)/);
+    assert.match(sql, /cuts AS \(SELECT DISTINCT e, live FROM p\)/);
+  }
+  assert.match(SPO_SQL, /JOIN rdv ON rdv\.addr_id = r\.reward_addr_id AND rdv\.tx_id <= bound\.max_tx/);
+  assert.match(SPO_SQL, /LEFT JOIN deleg d ON d\.e = r\.e AND d\.live = p\.live/);
+});
+
+test('loadAggregates sends each target\'s tally epoch and liveness to every tally', async () => {
+  const calls = [];
+  const db = { query: async (sql, params) => (calls.push({ sql, params }), []) };
+  await assert.rejects(
+    loadAggregates(db, [
+      { id: '1', dbType: 'InfoAction', epoch: 700, live: true },
+      { id: '2', dbType: 'InfoAction', epoch: 650, live: false },
+    ]),
+    { code: 'STALE_DATA' },
+  );
+  for (const sql of [DREP_SQL, SPO_SQL, CC_SQL]) {
+    const call = calls.find((c) => c.sql === sql);
+    assert.deepEqual(call.params, [['1', '2'], [700, 650], [true, false]]);
+  }
 });
 
 function fakeDb(routes) {
@@ -74,7 +107,7 @@ const row = (over = {}) => ({
   id: '1', tx_hash: TX(1), index: 0, db_type: 'InfoAction', description: '{"tag":"InfoAction"}',
   deposit: '100000000000', return_address: 'stake_test1uz7ve3j0dwpra3d082hfaa0k3h87svruhhnxnhpw0fk06csj0y8h6',
   expiration: 706, ratified_epoch: null, enacted_epoch: null, dropped_epoch: null, expired_epoch: null,
-  tally_epoch: 700, sub_epoch: 675, sub_slot: '58320000', sub_block: '2500000', sub_time: new Date('2024-09-01T00:00:00Z'),
+  tally_epoch: 700, tally_live: true, sub_epoch: 675, sub_slot: '58320000', sub_block: '2500000', sub_time: new Date('2024-09-01T00:00:00Z'),
   anchor_url: null, anchor_hash: null, prev_tx_hash: null, prev_index: null, ...over,
 });
 
@@ -394,16 +427,23 @@ test('filter and search values are bound, never interpolated', async () => {
 });
 
 for (const sort of ['mostYesVotes', 'highestParticipation']) {
-  test(`${sort} applies the same retirement cutoff as the displayed DRep tally`, async () => {
+  test(`${sort} applies the same retirement cutoff and DRep activity as the displayed DRep tally`, async () => {
     const { api, db } = provider([['count(*) AS n', [{ n: '0' }]], ['total_count', []]]);
     await api.list({ page: 1, size: 5, sort });
     const { sql } = db.calls[0];
-    assert.match(sql, /eps AS \(SELECT DISTINCT e FROM f\)/);
+    assert.match(sql, /AS e, \(g\.ratified_epoch IS NULL AND g\.expired_epoch IS NULL AND g\.dropped_epoch IS NULL\) AS live/);
+    assert.match(sql, /cuts AS \(SELECT DISTINCT e, live FROM f\)/);
     assert.match(sql, /bound AS MATERIALIZED/);
+    assert.match(sql, /renewed AS \(/);
     assert.match(sql, /vp\.vote::text AS vote, vp\.tx_id/);
     assert.match(sql, /retired\.drep_hash_id = dv\.voter AND retired\.deposit < 0/);
     assert.match(sql, /retired\.tx_id > dv\.tx_id AND retired\.tx_id <= bound\.max_tx/);
-    assert.match(sql, /JOIN bound ON bound\.e = f\.e/);
+    assert.match(sql, /JOIN bound ON bound\.e = f\.e AND bound\.live = f\.live/);
+    assert.ok(sql.includes(`WHERE ${activeDRepSql('dd', 'f')}`));
+    if (sort === 'highestParticipation') {
+      assert.ok(sql.includes(`WHERE ${activeDRepSql('dd', 'cuts')}`));
+      assert.match(sql, /LEFT JOIN act ON act\.e = f\.e AND act\.live = f\.live/);
+    }
   });
 }
 

@@ -16,6 +16,7 @@ export * from "./modal/Modal";
 export * from "./modal/ModalContents";
 export * from "./modal/ModalHeader";
 export * from "./modal/ModalWrapper";
+export * from "./PageContainer";
 export * from "./PagePaddingBox";
 export * from "./Radio";
 export * from "./ScrollToManage";

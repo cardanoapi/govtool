@@ -30,7 +30,7 @@ export const CenteredBoxPageWrapper: FC<PropsWithChildren<Props>> = ({
   } = theme;
 
   return (
-    <Background isReverted>
+    <Background>
       <Box display="flex" minHeight="100vh" flexDirection="column">
         <DashboardTopNav title={pageTitle} hideVotingPower={!showVotingPower} />
         <Box

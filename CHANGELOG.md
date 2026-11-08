@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Once a develop build's images are on GHCR, CI asks the GitOps repository (the `k8s-dev` environment's `GOVTOOL_ARGO_REPO` variable) to deploy that commit to k8s.dev.gov.tools
+
+### Changed
+
+- The frontend and docs images use nginx 1.30 instead of 1.28; the devnet's prebuilt frontend image follows
+- The frontend's shell follows the new design: Geist type self-hosted instead of Poppins from Google Fonts, the new colour scale and shared components, a top navigation for every page (with a wallet menu once connected) in place of the connected sidebar, Proposed, Live Voting and Outcomes tabs on the governance action lists, and a new footer
+
+### Fixed
+
+- Live DRep tallies and the DRep stake total count a DRep whose activity had lapsed at the epoch's snapshot but who voted since, which renews it: on mainnet such a DRep's 1.3M ADA was missing from every live action's Yes or No
+- Live DRep tallies and the DRep stake total leave out a DRep that retired since the epoch's snapshot and has not registered again, as the ledger's next count does, instead of counting its stake as not voted until the epoch ends
+- A concluded action is tallied from the state the ledger decided it from, the start of its ratified or expired epoch, so a vote, committee resignation, hot-key authorisation, DRep retirement or vote delegation during that epoch no longer changes it. Treasury withdrawal 03f67179, ratified on mainnet, no longer shows the committee failing
+- The DRep directory dates a DRep by its newest registration or update certificate (`latestRegistrationDate`, `latestTxHash`, and the registration transaction on the DRep dashboard card), as GovTool did before 3.0
+- Importing the proposal discussion forum from Strapi merges accounts that share a username into one, keeping each one's comments, likes and poll votes, instead of keeping the first account and skipping the others' content. The backup taken before the import leaves out the copied Strapi tables, which hold emails and password hashes
+
 ## [v3.0.0](https://github.com/IntersectMBO/govtool/compare/v2.1.0-beta.1...v3.0.0) 2026-10-17
 
 Major release. GovTool 3.0 is the 2.1 alpha and beta pre-releases below plus

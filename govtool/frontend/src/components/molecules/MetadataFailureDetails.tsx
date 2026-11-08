@@ -27,6 +27,7 @@ import {
 import { openInNewTab } from "@utils";
 import { LINKS } from "@/consts/links";
 import { errorRed } from "@/consts/colors";
+import { FONT_FAMILY } from "@/consts/designTokens";
 
 import { MetadataReportView } from "./MetadataReportView";
 import { MetadataRetryButton } from "./MetadataRetryButton";
@@ -155,7 +156,7 @@ export const MetadataFailureDetails = ({
             borderRadius: 50,
             bgcolor: errorRed.c100,
             color: errorRed.c700,
-            fontFamily: "Poppins",
+            fontFamily: FONT_FAMILY.sans,
             fontSize: "16px",
             "&:hover": { bgcolor: errorRed.c200 },
           }}

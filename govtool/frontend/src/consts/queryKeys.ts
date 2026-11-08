@@ -23,6 +23,8 @@ export const QUERY_KEYS = {
   useGetGovernanceActionMetadataKey: "useGetGovernanceActionMetadataKey",
   useGetGovernanceActionRecordKey: "useGetGovernanceActionRecordKey",
   useGetGovernanceActionHistoryKey: "useGetGovernanceActionHistoryKey",
+  useGetDecidedActionsKey: "useGetDecidedActionsKey",
+  useGetLiveProposalsKey: "useGetLiveProposalsKey",
   useGetGovernanceActionProposalDiscussionKey: "useGetGovernanceActionProposalDiscussionKey",
   useGovernanceActionVerifySignatureKey: "useGovernanceActionVerifySignatureKey",
 };

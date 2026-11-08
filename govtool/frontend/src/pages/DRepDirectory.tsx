@@ -27,7 +27,11 @@ export const DRepDirectory = () => {
       >
         <TopNav />
 
-        <PageTitle title={t("dRepDirectory.title")} />
+        <PagePaddingBox py={3}>
+          <ContentBox>
+            <PageTitle title={t("dRepDirectory.title")} />
+          </ContentBox>
+        </PagePaddingBox>
 
         <PagePaddingBox sx={{ display: "flex", flex: 1, py: 2 }}>
           <ContentBox

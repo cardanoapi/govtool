@@ -12,6 +12,7 @@ import { Typography, Tooltip, CopyButton, TooltipProps } from "@atoms";
 import { removeMarkdown } from "@/utils";
 import { ICONS } from "@/consts";
 import { useModal } from "@/context";
+import { FONT_FAMILY } from "@/consts/designTokens";
 
 type BaseProps = {
   label: string;
@@ -257,7 +258,7 @@ export const GovernanceActionCardElement = ({
           alignItems={isMarkdown ? "unset" : "center"}
           overflow="hidden"
           flexDirection={isMarkdown ? "column" : "row"}
-          fontFamily="Poppins, Arial"
+          fontFamily={FONT_FAMILY.sans}
         >
           {renderTextOrChildren()}
         </Box>

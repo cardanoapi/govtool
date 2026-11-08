@@ -384,6 +384,9 @@ export const DRepDirectoryContent: FC<DRepDirectoryContentProps> = ({
           }}
         >
           <PaginationFooter
+            // Mainnet lists about a thousand DReps; keep the page size choice
+            // until the directory's redesign settles its own pagination.
+            showPageSize
             page={page}
             total={total || 0}
             pageSize={pageSize}
