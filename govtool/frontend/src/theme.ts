@@ -42,12 +42,12 @@ export const theme = createTheme({
     },
     MuiInputBase: {
       styleOverrides: {
+        // Only radius and spacing here: OutlinedInput and the forum's
+        // TextFields share this root and draw their own border. The full
+        // redesign field look lives on the Input atom.
         root: {
-          bgcolor: "white",
-          borderColor: "#6F99FF",
-          border: 1,
-          borderRadius: 50,
-          padding: "8px 16px",
+          borderRadius: RADIUS.md,
+          padding: "8px 10px",
           width: "100%",
         },
       },
