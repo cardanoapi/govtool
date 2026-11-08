@@ -55,13 +55,64 @@ export const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 50,
+          borderRadius: RADIUS.pill,
+          boxShadow: "none",
+          fontWeight: 600,
+          letterSpacing: "-0.09px",
+          lineHeight: "20px",
           textTransform: "none",
+          "& .MuiButton-startIcon": { marginLeft: 0, marginRight: 6 },
+          "& .MuiButton-endIcon": { marginLeft: 6, marginRight: 0 },
+          "&.Mui-disabled": {
+            backgroundColor: ds.gray["200"],
+            boxShadow: "none",
+            color: ds.gray["400"],
+          },
         },
-        outlined: (props) => ({
-          borderColor: props.theme.palette.lightBlue,
-        }),
+        containedPrimary: {
+          backgroundColor: ds.primary["600"],
+          boxShadow: SHADOWS.innerPrimary,
+          color: "#FFFFFF",
+          "&:hover": {
+            backgroundColor: ds.primary["700"],
+            boxShadow: SHADOWS.innerPrimary,
+          },
+        },
+        containedSecondary: {
+          backgroundColor: ds.orange["600"],
+          boxShadow: SHADOWS.innerAccent,
+          color: "#FFFFFF",
+          "&:hover": {
+            backgroundColor: ds.orange["700"],
+            boxShadow: SHADOWS.innerAccent,
+          },
+        },
+        outlined: {
+          backgroundColor: "#FFFFFF",
+          border: `1px solid ${ds.gray["200"]}`,
+          color: ds.gray["700"],
+          "&:hover": {
+            backgroundColor: ds.gray["50"],
+            border: `1px solid ${ds.gray["200"]}`,
+          },
+        },
+        text: {
+          color: ds.primary["600"],
+          "&:hover": { backgroundColor: ds.primary["50"] },
+          "&.Mui-disabled": { backgroundColor: "transparent" },
+        },
       },
+      variants: [
+        {
+          props: { variant: "soft" },
+          style: {
+            backgroundColor: ds.primary["100"],
+            border: `1px solid ${ds.primary["200"]}`,
+            color: ds.primary["700"],
+            "&:hover": { backgroundColor: ds.primary["200"] },
+          },
+        },
+      ],
     },
     MuiChip: {
       variants: [

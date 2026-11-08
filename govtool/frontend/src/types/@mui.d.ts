@@ -51,3 +51,9 @@ declare module "@mui/material/styles" {
     palette: Palette;
   }
 }
+
+declare module "@mui/material/Button" {
+  interface ButtonPropsVariantOverrides {
+    soft: true;
+  }
+}
