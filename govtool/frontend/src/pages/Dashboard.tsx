@@ -40,7 +40,7 @@ export const Dashboard = () => {
           position: "relative",
         }}
       >
-        <TopNav isConnectButton={false} />
+        <TopNav />
         <ScrollToManage />
         <Box sx={{ display: "flex", flex: 1, flexDirection: "column" }}>
           <Outlet />

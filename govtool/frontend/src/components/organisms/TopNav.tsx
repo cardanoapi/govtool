@@ -3,10 +3,15 @@ import { NavLink, useLocation, useNavigate } from "react-router";
 import { Box, IconButton } from "@mui/material";
 import { Menu, Wallet } from "lucide-react";
 
-import { Button } from "@atoms";
+import { Button, VotingPowerChips } from "@atoms";
 import { CONNECTED_NAV_ITEMS, IMAGES, NAV_ITEMS, PATHS } from "@consts";
 import { useCardano, useModal } from "@context";
-import { useScreenDimension, useTranslation } from "@hooks";
+import {
+  useGetDRepVotingPowerQuery,
+  useGetVoterInfo,
+  useScreenDimension,
+  useTranslation,
+} from "@hooks";
 import { WalletMenu } from "@molecules";
 import { ds, SHADOWS } from "@/consts/designTokens";
 
@@ -21,12 +26,15 @@ export const TopNav = ({ isConnectButton = true }) => {
   const { openModal } = useModal();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const { screenWidth } = useScreenDimension();
-  const { isEnabled, disconnectWallet, stakeKey } = useCardano();
+  const { isEnabled, disconnectWallet, stakeKey, isEnableLoading } =
+    useCardano();
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { t } = useTranslation();
 
   const isConnected = Boolean(isEnabled && stakeKey);
+  const { voter } = useGetVoterInfo({ enabled: isConnected });
+  const { dRepVotingPower } = useGetDRepVotingPowerQuery(voter);
   const navEntries = (
     isConnected ? CONNECTED_NAV_ITEMS : NAV_ITEMS
   ) as NavEntry[];
@@ -39,7 +47,22 @@ export const TopNav = ({ isConnectButton = true }) => {
   };
 
   const renderWalletControl = (isCompact = false) => {
-    if (isConnected) return <WalletMenu />;
+    if (isConnected) {
+      return (
+        <>
+          <VotingPowerChips
+            isLoading={
+              dRepVotingPower === undefined || !!isEnableLoading || !voter
+            }
+            isShown={
+              voter?.isRegisteredAsDRep || voter?.isRegisteredAsSoleVoter
+            }
+            votingPower={dRepVotingPower}
+          />
+          <WalletMenu />
+        </>
+      );
+    }
     if (!isConnectButton) return null;
     return (
       <Button
@@ -145,9 +168,13 @@ export const TopNav = ({ isConnectButton = true }) => {
       >
         <NavLink
           data-testid="logo-button"
-          onClick={() => isConnectButton || disconnectWallet()}
+          // Only leaving wallet setup (ChooseStakeKey, no stake key chosen
+          // yet) disconnects; a connected wallet goes to its dashboard.
+          onClick={() => {
+            if (!isConnectButton && !isConnected) disconnectWallet();
+          }}
           style={{ display: "flex" }}
-          to={PATHS.home}
+          to={isConnected ? PATHS.dashboard : PATHS.home}
         >
           <img
             alt="Cardano GovTool"

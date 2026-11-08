@@ -26,6 +26,7 @@ vi.mock("@context", () => ({
 vi.mock("@hooks", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@hooks")>()),
   useGetVoterInfo: () => ({ voter: undefined }),
+  useGetDRepVotingPowerQuery: () => ({ dRepVotingPower: undefined }),
 }));
 
 vi.mock("react-router", async (importOriginal) => ({

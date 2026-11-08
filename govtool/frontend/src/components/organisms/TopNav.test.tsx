@@ -12,8 +12,12 @@ const mocks = vi.hoisted(() => ({
     stakeKey: undefined as string | undefined,
     address: "addr1qxyz",
     disconnectWallet: vi.fn(),
+    isEnableLoading: null as string | null,
   },
   openModal: vi.fn(),
+  voter: undefined as
+    | { isRegisteredAsDRep?: boolean; isRegisteredAsSoleVoter?: boolean }
+    | undefined,
 }));
 
 vi.mock("@context", () => ({
@@ -24,7 +28,8 @@ vi.mock("@context", () => ({
 
 vi.mock("@hooks", async (importOriginal) => ({
   ...(await importOriginal<typeof import("@hooks")>()),
-  useGetVoterInfo: () => ({ voter: undefined }),
+  useGetVoterInfo: () => ({ voter: mocks.voter }),
+  useGetDRepVotingPowerQuery: () => ({ dRepVotingPower: 1_234_000_000 }),
 }));
 
 const renderAt = (path: string) =>
@@ -39,6 +44,7 @@ describe("TopNav (desktop)", () => {
     window.innerWidth = 1440;
     mocks.cardano.isEnabled = false;
     mocks.cardano.stakeKey = undefined;
+    mocks.voter = undefined;
   });
 
   it("shows the logo, the four nav items and Connect Wallet", () => {
@@ -101,6 +107,26 @@ describe("TopNav (desktop)", () => {
       expect(screen.getByTestId("disconnect-button")).toBeInTheDocument();
     });
 
+    it("keeps the wallet connected when the logo is clicked", () => {
+      mocks.cardano.disconnectWallet.mockClear();
+      renderAt("/connected/drep_directory");
+      const logo = screen.getByTestId("logo-button");
+      expect(logo).toHaveAttribute("href", "/dashboard");
+      fireEvent.click(logo);
+      expect(mocks.cardano.disconnectWallet).not.toHaveBeenCalled();
+    });
+
+    it("shows a DRep's voting power without opening anything", () => {
+      mocks.voter = { isRegisteredAsDRep: true };
+      renderAt("/dashboard");
+      expect(screen.getByTestId("voting-power-chips")).toBeInTheDocument();
+    });
+
+    it("hides voting power for a wallet that is not a voter", () => {
+      renderAt("/dashboard");
+      expect(screen.queryByTestId("voting-power-chips")).toBeNull();
+    });
+
     it("uses the connected nav ids", () => {
       renderAt("/dashboard");
       expect(screen.getByTestId("governance-actions-link")).toHaveAttribute(
@@ -120,6 +146,7 @@ describe("TopNav (mobile)", () => {
     window.innerWidth = 375;
     mocks.cardano.isEnabled = false;
     mocks.cardano.stakeKey = undefined;
+    mocks.voter = undefined;
   });
 
   it("collapses the nav into a round menu button", () => {
