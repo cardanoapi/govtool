@@ -613,6 +613,12 @@
       }
     }
   },
+  "pagination": {
+    "next": "Next →",
+    "previous": "← Previous",
+    "rowsPerPage": "Rows per page:",
+    "showing": "Showing {{from}}–{{to}} of {{total}} results"
+  },
   "proposalDiscussion": {
     "title": "Proposals",
     "proposeAGovernanceAction": "Propose a Governance Action"
