@@ -12,6 +12,7 @@ export * from "./governanceActionHistory";
 export * from "./paths";
 export * from "./placeholders";
 export * from "./queryKeys";
+export * from "./typography";
 
 export const DRAWER_WIDTH = 268;
 export const NETWORK_NAMES = {
