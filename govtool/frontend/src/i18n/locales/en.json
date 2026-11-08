@@ -617,6 +617,7 @@
   },
   "pagination": {
     "next": "Next →",
+    "pageOf": "Page {{page}} of {{count}}",
     "previous": "← Previous",
     "rowsPerPage": "Rows per page:",
     "showing": "Showing {{from}}–{{to}} of {{total}} results"

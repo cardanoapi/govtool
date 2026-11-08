@@ -2,6 +2,8 @@ import { Box, ButtonBase, MenuItem, Select, Typography } from "@mui/material";
 import { FC } from "react";
 import { useTranslation } from "react-i18next";
 
+import { useScreenDimension } from "@/hooks/useScreenDimension";
+
 import { ds, RADIUS } from "@/consts/designTokens";
 
 type Props = {
@@ -49,6 +51,12 @@ const pageButtonSx = (isCurrent: boolean) => ({
   "&.Mui-disabled": { color: ds.gray["300"] },
 });
 
+const stepButtonSx = {
+  ...pageButtonSx(false),
+  flexShrink: 0,
+  whiteSpace: "nowrap",
+};
+
 export const PaginationFooter: FC<Props> = ({
   page,
   total,
@@ -59,6 +67,7 @@ export const PaginationFooter: FC<Props> = ({
   showPageSize = false,
 }) => {
   const { t } = useTranslation();
+  const { isMobile } = useScreenDimension();
   const pageCount = Math.max(1, Math.ceil((total || 0) / (pageSize || 1)));
   const clampedPage = Math.min(Math.max(page, 1), pageCount);
 
@@ -118,33 +127,45 @@ export const PaginationFooter: FC<Props> = ({
         <ButtonBase
           disabled={clampedPage <= 1 || total === 0}
           onClick={() => onPageChange(Math.max(clampedPage - 1, 1))}
-          sx={pageButtonSx(false)}
+          sx={stepButtonSx}
         >
           {t("pagination.previous")}
         </ButtonBase>
-        {pageItems(clampedPage, pageCount).map((item) =>
-          (typeof item === "number" ? (
-            <ButtonBase
-              key={item}
-              aria-current={item === clampedPage ? "page" : undefined}
-              onClick={() => onPageChange(item)}
-              sx={pageButtonSx(item === clampedPage)}
-            >
-              {item}
-            </ButtonBase>
-          ) : (
-            <Typography
-              key={item}
-              sx={{ color: ds.gray["500"], fontSize: 14, px: 0.5 }}
-            >
-              …
-            </Typography>
-          )),
+        {isMobile ? (
+          <Typography
+            sx={{
+              color: ds.gray["600"],
+              fontSize: 14,
+              px: 1,
+              whiteSpace: "nowrap",
+            }}
+          >
+            {t("pagination.pageOf", { page: clampedPage, count: pageCount })}
+          </Typography>
+        ) : (
+          pageItems(clampedPage, pageCount).map((item) =>
+            (typeof item === "number" ? (
+              <ButtonBase
+                key={item}
+                aria-current={item === clampedPage ? "page" : undefined}
+                onClick={() => onPageChange(item)}
+                sx={pageButtonSx(item === clampedPage)}
+              >
+                {item}
+              </ButtonBase>
+            ) : (
+              <Typography
+                key={item}
+                sx={{ color: ds.gray["500"], fontSize: 14, px: 0.5 }}
+              >
+                …
+              </Typography>
+            )))
         )}
         <ButtonBase
           disabled={clampedPage >= pageCount || total === 0}
           onClick={() => onPageChange(Math.min(clampedPage + 1, pageCount))}
-          sx={pageButtonSx(false)}
+          sx={stepButtonSx}
         >
           {t("pagination.next")}
         </ButtonBase>

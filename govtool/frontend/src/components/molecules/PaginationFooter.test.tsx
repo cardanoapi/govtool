@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
 
 import "@/i18n";
@@ -60,5 +60,25 @@ describe("PaginationFooter", () => {
     expect(screen.getByRole("button", { name: "20" })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "10" })).toBeNull();
     expect(screen.getAllByText("…")).toHaveLength(2);
+  });
+
+  describe("on a phone", () => {
+    const desktopWidth = window.innerWidth;
+    beforeEach(() => {
+      window.innerWidth = 375;
+    });
+    afterEach(() => {
+      window.innerWidth = desktopWidth;
+    });
+
+    it("shows Previous, the page count and Next instead of numbered pages", () => {
+      renderFooter(2);
+      expect(screen.getByText("Page 2 of 3")).toBeInTheDocument();
+      expect(screen.queryByRole("button", { name: "1" })).toBeNull();
+      expect(screen.getByRole("button", { name: "Next →" })).toHaveStyle({
+        whiteSpace: "nowrap",
+        flexShrink: "0",
+      });
+    });
   });
 });
