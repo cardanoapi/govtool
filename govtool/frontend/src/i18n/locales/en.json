@@ -830,9 +830,11 @@
     }
   },
   "menu": {
+    "close": "Close menu",
     "faqs": "FAQs",
     "guides": "Guides",
-    "help": "Help"
+    "help": "Help",
+    "open": "Open menu"
   },
   "metadataUpdate": {
     "description": "You can include extra information about yourself by adding a URL and its hash.",

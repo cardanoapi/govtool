@@ -3,7 +3,7 @@ import { Box, ButtonBase, Popover } from "@mui/material";
 import { ChevronDown } from "lucide-react";
 
 import { useCardano } from "@context";
-import { useGetVoterInfo } from "@hooks";
+import { useGetVoterInfo, useScreenDimension } from "@hooks";
 import { ds, RADIUS } from "@/consts/designTokens";
 
 import { DRepInfoCard } from "./DRepInfoCard";
@@ -18,6 +18,7 @@ const shortenStakeKey = (stakeKey?: string) =>
 export const WalletMenu = () => {
   const { stakeKey } = useCardano();
   const { voter } = useGetVoterInfo();
+  const { isMobile } = useScreenDimension();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const isOpen = Boolean(anchorEl);
 
@@ -65,7 +66,7 @@ export const WalletMenu = () => {
             fontWeight: 500,
             letterSpacing: "-0.09px",
             lineHeight: "20px",
-            maxWidth: 200,
+            maxWidth: isMobile ? 96 : 200,
             overflow: "hidden",
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",

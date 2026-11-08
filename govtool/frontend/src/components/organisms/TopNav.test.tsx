@@ -114,3 +114,41 @@ describe("TopNav (desktop)", () => {
     });
   });
 });
+
+describe("TopNav (mobile)", () => {
+  beforeEach(() => {
+    window.innerWidth = 375;
+    mocks.cardano.isEnabled = false;
+    mocks.cardano.stakeKey = undefined;
+  });
+
+  it("collapses the nav into a round menu button", () => {
+    renderAt("/");
+    expect(screen.getByTestId("open-drawer-button")).toHaveStyle({
+      borderRadius: "50%",
+      height: "36px",
+    });
+    expect(screen.queryByTestId("drep-directory-link")).toBeNull();
+  });
+
+  it("lists the nav items in the drawer, without FAQ", () => {
+    renderAt("/drep_directory");
+    fireEvent.click(screen.getByTestId("open-drawer-button"));
+    expect(screen.getByTestId("drep-directory-link")).toHaveStyle({
+      color: "#E9682F",
+    });
+    expect(screen.getByTestId("guides-link")).toBeInTheDocument();
+    expect(screen.getByTestId("governance-actions")).toBeInTheDocument();
+    expect(screen.queryByTestId("faqs-link")).toBeNull();
+    expect(screen.queryByTestId("governance-actions-link")).toBeNull();
+  });
+
+  it("shows the wallet card in the drawer when connected", () => {
+    mocks.cardano.isEnabled = true;
+    mocks.cardano.stakeKey = "stake1u9abcdefghijklmnopqrstuvwxyz";
+    renderAt("/dashboard");
+    expect(screen.getByTestId("wallet-menu-button")).toBeInTheDocument();
+    fireEvent.click(screen.getByTestId("open-drawer-button"));
+    expect(screen.getByTestId("disconnect-button")).toBeInTheDocument();
+  });
+});
