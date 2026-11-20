@@ -17,8 +17,11 @@ export const PATHS = {
   governanceActionsCategory: "/governance_actions/category/:category",
   governanceActionsCategoryAction:
     "/governance_actions/category/:category/:proposalId",
+  governanceActivity: "/governance_activity",
   guides: "/guides",
   home: "/",
+  notifications: "/notifications",
+  notificationPreferences: "/notifications/preferences",
   registerAsdRep: "/register_drep",
   registerAsDirectVoter: "/register_direct_voter",
   retireAsDrep: "/retire_drep",

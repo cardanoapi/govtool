@@ -4,6 +4,7 @@ export const LINKS = {
   COMPATIBLE_WALLETS:
     "https://docs.gov.tools/cardano-govtool/using-govtool/getting-started/compatible-wallets",
   FAQS: "https://docs.gov.tools/cardano-govtool/faqs",
+  INTERSECT: "https://www.intersectmbo.org/",
   SUPPORT: "https://docs.gov.tools/cardano-govtool/support",
   DREP_ERROR_CONDITIONS:
     "https://docs.gov.tools/cardano-govtool/using-govtool/dreps/drep-error-conditions",

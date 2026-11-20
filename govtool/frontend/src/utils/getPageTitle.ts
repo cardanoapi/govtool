@@ -11,6 +11,8 @@ import {
 const PAGE_TITLES = [
   { path: PATHS.home, title: "Home" },
   { path: PATHS.dashboard, title: "Dashboard" },
+  { path: PATHS.notifications, title: "Notifications" },
+  { path: PATHS.notificationPreferences, title: "Notification Preferences" },
 
   // Before the action paths: "/governance_actions/:proposalId" also matches
   // the history list, taking "history" for an action id.
@@ -19,6 +21,7 @@ const PAGE_TITLES = [
     title: "Historical Actions",
   },
   { path: PATHS.governanceActions, title: "Governance Actions" },
+  { path: PATHS.governanceActivity, title: "Governance Activity" },
   {
     path: PATHS.governanceActionsCategory,
     title: "Governance Action Category",

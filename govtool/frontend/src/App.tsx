@@ -27,7 +27,10 @@ import {
   GovernanceActionDetails,
   GovernanceActions,
   GovernanceActionsCategory,
+  GovernanceActivity,
   Home,
+  NotificationPreferencesPage,
+  NotificationsPage,
   RegisterAsdRep,
   RegisterAsDirectVoter,
   RetireAsDrep,
@@ -97,7 +100,12 @@ export default () => {
       cleanUpWalletData();
     };
 
-    const isOnAllowedPage = [PATHS.home, PATHS.governanceActions, PATHS.governanceActionsAction]
+    const isOnAllowedPage = [
+      PATHS.home,
+      PATHS.governanceActions,
+      PATHS.governanceActionsAction,
+      PATHS.governanceActivity,
+    ]
         .includes(window.location.pathname) ||
       pathname === GOV_ACTION_HISTORY_PATHS.governanceActionHistory ||
       pathname.startsWith(`${GOV_ACTION_HISTORY_PATHS.governanceActionHistory}/`);
@@ -131,6 +139,10 @@ export default () => {
           path={PATHS.governanceActionsAction}
           element={<GovernanceActionDetails />}
         />
+        <Route
+          path={PATHS.governanceActivity}
+          element={<GovernanceActivity />}
+        />
         {isProposalDiscussionForumEnabled && !isEnabled && (
           <Route
             path={`${PDF_PATHS.proposalDiscussion}/*`}
@@ -155,6 +167,11 @@ export default () => {
         )}
         <Route element={<Dashboard />}>
           <Route path={PATHS.dashboard} element={<DashboardHome />} />
+          <Route path={PATHS.notifications} element={<NotificationsPage />} />
+          <Route
+            path={PATHS.notificationPreferences}
+            element={<NotificationPreferencesPage />}
+          />
           {isProposalDiscussionForumEnabled && (
             <Route
               path={`${PDF_PATHS.proposalDiscussion}/*`}

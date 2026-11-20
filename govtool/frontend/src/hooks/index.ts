@@ -4,6 +4,7 @@ export * from "./useCountdown";
 export * from "./useDebounce";
 export * from "./useDelegateToDrep";
 export * from "./useFetchNextPageDetector";
+export * from "./useGovernanceActionTabs";
 export * from "./useOutsideClick";
 export * from "./usePrevious";
 export * from "./useSaveScrollPosition";
@@ -14,3 +15,4 @@ export * from "./useWalletErrorModal";
 
 export * from "./forms";
 export * from "./queries";
+export * from "./useNotifications";
