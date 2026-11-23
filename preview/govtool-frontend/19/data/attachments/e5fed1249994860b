@@ -1,0 +1,248 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 3-drep-registration/editDRep.dRep.spec.ts >> Validation of edit dRep Form >> 3M_2. Should reject invalid data in edit dRep form
+- Location: tests/3-drep-registration/editDRep.dRep.spec.ts:53:7
+
+# Error details
+
+```
+Test timeout of 540000ms exceeded.
+```
+
+```
+Error: locator.fill: Test timeout of 540000ms exceeded.
+Call log:
+  - waiting for getByTestId('name-input')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e11]: Whoops!
+      - paragraph [ref=e12]: This page is not available
+      - paragraph [ref=e13]: Error 404
+      - button "Back to dashboard" [ref=e14] [cursor=pointer]
+    - img "error-page" [ref=e16]
+```
+
+# Test source
+
+```ts
+  51  |   );
+  52  |   readonly identityReferenceFirstDescriptionInput = this.form.getByTestId(
+  53  |     "identity-reference-description-1-input"
+  54  |   );
+  55  |   readonly identityReferenceFirstUrlInput = this.form.getByTestId(
+  56  |     "identity-reference-url-1-input"
+  57  |   );
+  58  |   readonly metadataUrlInput = this.form.getByTestId("metadata-url-input");
+  59  |   readonly objectivesInput = this.form.getByTestId("objectives-input");
+  60  |   readonly motivationsInput = this.form.getByTestId("motivations-input");
+  61  |   readonly qualificationsInput = this.form.getByTestId("qualifications-input");
+  62  |   readonly paymentAddressInput = this.form.getByTestId("payment-address-input");
+  63  |   readonly imageInput = this.form.locator(
+  64  |     "div:nth-child(4) > div:nth-child(2) > input"
+  65  |   ); // BUG missing test id
+  66  |   readonly doNotListCheckBox = this.form.getByRole("checkbox");
+  67  | 
+  68  |   constructor(private readonly form: Page) {}
+  69  | 
+  70  |   @withTxConfirmation
+  71  |   async register(dRepInfo: IDRepInfo) {
+  72  |     await this.registerWithoutTxConfirmation(dRepInfo);
+  73  |   }
+  74  | 
+  75  |   async registerWithoutTxConfirmation(dRepInfo: IDRepInfo) {
+  76  |     await this.nameInput.fill(dRepInfo.name);
+  77  | 
+  78  |     if (dRepInfo.objectives != null) {
+  79  |       await this.objectivesInput.fill(dRepInfo.objectives);
+  80  |     }
+  81  |     if (dRepInfo.motivations != null) {
+  82  |       await this.motivationsInput.fill(dRepInfo.motivations);
+  83  |     }
+  84  |     if (dRepInfo.qualifications != null) {
+  85  |       await this.qualificationsInput.fill(dRepInfo.qualifications);
+  86  |     }
+  87  |     if (dRepInfo.paymentAddress != null) {
+  88  |       await this.paymentAddressInput.fill(dRepInfo.paymentAddress);
+  89  |     }
+  90  | 
+  91  |     if (dRepInfo.linksReferenceLinks != null) {
+  92  |       for (let i = 0; i < dRepInfo.linksReferenceLinks.length; i++) {
+  93  |         if (i > 0) {
+  94  |           await this.addLinkReferenceBtn.click();
+  95  |         }
+  96  |         await this.form
+  97  |           .getByTestId(`link-reference-url-${i + 1}-input`)
+  98  |           .fill(dRepInfo.linksReferenceLinks[i].url);
+  99  |         await this.form
+  100 |           .getByTestId(`link-reference-description-${i + 1}-input`)
+  101 |           .fill(dRepInfo.linksReferenceLinks[i].description);
+  102 |       }
+  103 |     }
+  104 | 
+  105 |     if (dRepInfo.identityReferenceLinks != null) {
+  106 |       for (let i = 0; i < dRepInfo.identityReferenceLinks.length; i++) {
+  107 |         if (i > 0) {
+  108 |           await this.addIdentityReferenceBtn.click();
+  109 |         }
+  110 |         await this.form
+  111 |           .getByTestId(`identity-reference-url-${i + 1}-input`)
+  112 |           .fill(dRepInfo.identityReferenceLinks[i].url);
+  113 |         await this.form
+  114 |           .getByTestId(`identity-reference-description-${i + 1}-input`)
+  115 |           .fill(dRepInfo.identityReferenceLinks[i].description);
+  116 |       }
+  117 |     }
+  118 |     if (dRepInfo.donNotList) {
+  119 |       await this.doNotListCheckBox.click();
+  120 |     }
+  121 | 
+  122 |     await this.continueBtn.click();
+  123 |     await this.form.getByRole("checkbox").click();
+  124 |     await this.registerBtn.click();
+  125 | 
+  126 |     let dRepMetadata: { name: string; data: JSON };
+  127 |     await functionWaitedAssert(
+  128 |       async () => {
+  129 |         this.metadataDownloadBtn.click();
+  130 |         dRepMetadata = await this.downloadVoteMetadata();
+  131 |       },
+  132 |       { name: "download metadata" }
+  133 |     );
+  134 |     const url = await metadataBucketService.uploadMetadata(
+  135 |       dRepMetadata.name,
+  136 |       dRepMetadata.data
+  137 |     );
+  138 | 
+  139 |     await this.metadataUrlInput.fill(url);
+  140 |     await this.submitBtn.click();
+  141 |   }
+  142 | 
+  143 |   async downloadVoteMetadata() {
+  144 |     const download: Download = await this.form.waitForEvent("download", {
+  145 |       timeout: 20_000,
+  146 |     });
+  147 |     return downloadMetadata(download);
+  148 |   }
+  149 | 
+  150 |   async fillupForm(dRepInfo: IDRepInfo) {
+> 151 |     await this.nameInput.fill(dRepInfo.name);
+      |                          ^ Error: locator.fill: Test timeout of 540000ms exceeded.
+  152 |     await this.objectivesInput.fill(dRepInfo.objectives);
+  153 |     await this.motivationsInput.fill(dRepInfo.motivations);
+  154 |     await this.qualificationsInput.fill(dRepInfo.qualifications);
+  155 |     await this.paymentAddressInput.fill(dRepInfo.paymentAddress);
+  156 |     await this.imageInput.fill(dRepInfo.image);
+  157 |     await this.linkRefrenceFirstUrlInput.fill(
+  158 |       dRepInfo.linksReferenceLinks[0].url
+  159 |     );
+  160 |     await this.linkRefrenceFirstDescriptionInput.fill(
+  161 |       dRepInfo.linksReferenceLinks[0].description
+  162 |     );
+  163 |     await this.identityReferenceFirstUrlInput.fill(
+  164 |       dRepInfo.identityReferenceLinks[0].url
+  165 |     );
+  166 |     await this.identityReferenceFirstDescriptionInput.fill(
+  167 |       dRepInfo.identityReferenceLinks[0].description
+  168 |     );
+  169 | 
+  170 |     await this.form.keyboard.press("Tab");
+  171 |   }
+  172 | 
+  173 |   async validateForm(dRepInfo: IDRepInfo) {
+  174 |     await this.fillupForm(dRepInfo);
+  175 | 
+  176 |     for (const err of formErrors.dRepName) {
+  177 |       await expect(this.form.getByTestId(err)).toBeHidden();
+  178 |     }
+  179 |     const objectivesInputText = await this.objectivesInput.textContent({
+  180 |       timeout: 60_000,
+  181 |     });
+  182 |     const motivationsInputText = await this.motivationsInput.textContent();
+  183 |     const qualificationsInputText =
+  184 |       await this.qualificationsInput.textContent();
+  185 |     const isImageErrorVisible = await this.form
+  186 |       .getByTestId(formErrors.image)
+  187 |       .isVisible();
+  188 |     const isReferenceLinkErrorVisible = await this.form
+  189 |       .getByTestId(formErrors.links.url)
+  190 |       .isVisible();
+  191 |     const isIdentityLinkErrorVisible = await this.form
+  192 |       .getByTestId(formErrors.identity.url)
+  193 |       .isVisible();
+  194 |     const isPaymentAddressErrorVisible = await this.form
+  195 |       .getByTestId(formErrors.paymentAddress)
+  196 |       .isVisible();
+  197 | 
+  198 |     expect(objectivesInputText, {
+  199 |       message:
+  200 |         objectivesInputText !== dRepInfo.objectives &&
+  201 |         `${dRepInfo.objectives} is not equal to ${objectivesInputText}`,
+  202 |     }).toEqual(dRepInfo.objectives);
+  203 | 
+  204 |     expect(motivationsInputText, {
+  205 |       message:
+  206 |         motivationsInputText !== dRepInfo.motivations &&
+  207 |         `${dRepInfo.motivations} is not equal to ${motivationsInputText}`,
+  208 |     }).toEqual(dRepInfo.motivations);
+  209 |     expect(qualificationsInputText, {
+  210 |       message:
+  211 |         qualificationsInputText !== dRepInfo.qualifications &&
+  212 |         `${dRepInfo.qualifications} is not equal to ${qualificationsInputText}`,
+  213 |     }).toEqual(dRepInfo.qualifications);
+  214 | 
+  215 |     await expect(this.form.getByTestId(formErrors.image), {
+  216 |       message: isImageErrorVisible && `${dRepInfo.image} is an invalid image`,
+  217 |     }).toBeHidden();
+  218 | 
+  219 |     await expect(this.form.getByTestId(formErrors.links.url), {
+  220 |       message:
+  221 |         isReferenceLinkErrorVisible &&
+  222 |         `${dRepInfo.linksReferenceLinks[0].url} is an invalid url`,
+  223 |     }).toBeHidden();
+  224 |     await expect(this.form.getByTestId(formErrors.identity.url), {
+  225 |       message:
+  226 |         isIdentityLinkErrorVisible &&
+  227 |         `${dRepInfo.identityReferenceLinks[0].url} is an invalid url`,
+  228 |     }).toBeHidden();
+  229 |     await expect(this.form.getByTestId(formErrors.paymentAddress), {
+  230 |       message:
+  231 |         isPaymentAddressErrorVisible &&
+  232 |         `${dRepInfo.paymentAddress} is an invalid paymentAddress`,
+  233 |     }).toBeHidden({ timeout: 60_000 });
+  234 |     await expect(this.continueBtn).toBeEnabled();
+  235 |     // Wait for the form to settle after validation
+  236 |     await this.form.waitForTimeout(500);
+  237 |   }
+  238 | 
+  239 |   async inValidateForm(dRepInfo: IDRepInfo) {
+  240 |     await this.fillupForm(dRepInfo);
+  241 | 
+  242 |     function convertTestIdToText(testId: string) {
+  243 |       let text = testId.replace("-error", "");
+  244 |       text = text.replace(/-/g, " ");
+  245 |       return text[0].toUpperCase() + text.substring(1);
+  246 |     }
+  247 | 
+  248 |     const regexPattern = new RegExp(
+  249 |       formErrors.dRepName.map(convertTestIdToText).join("|")
+  250 |     );
+  251 | 
+```

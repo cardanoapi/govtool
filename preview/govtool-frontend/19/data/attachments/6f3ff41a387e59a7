@@ -1,0 +1,212 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 8-proposal-discussion/proposalDiscussion.loggedin.pd.spec.ts >> Proposal created with poll enabled (user auth) >> 8T. Should change vote on poll.
+- Location: tests/8-proposal-discussion/proposalDiscussion.loggedin.pd.spec.ts:104:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded while running "beforeEach" hook.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e11]: Whoops!
+      - paragraph [ref=e12]: This page is not available
+      - paragraph [ref=e13]: Error 404
+      - button "Back to dashboard" [ref=e14] [cursor=pointer]
+    - img "error-page" [ref=e16]
+```
+
+# Test source
+
+```ts
+  1   | import { faker } from "@faker-js/faker";
+  2   | import { test } from "@fixtures/proposal";
+  3   | import { createNewPageWithWallet } from "@helpers/page";
+  4   | import ProposalDiscussionDetailsPage from "@pages/proposalDiscussionDetailsPage";
+  5   | import { Page, expect } from "@playwright/test";
+  6   | import { setAllureEpic } from "@helpers/allure";
+  7   | import { skipIfMainnet } from "@helpers/cardano";
+  8   | import { testWallet } from "lib/wallet/testWallets";
+  9   | 
+  10  | test.beforeEach(async () => {
+  11  |   await setAllureEpic("8. Proposal Discussion Forum");
+  12  |   await skipIfMainnet();
+  13  | });
+  14  | 
+  15  | test.describe("Proposal created logged in state", () => {
+  16  |   test.use({ walletName: "proposal02", walletFundsAda: 0 });
+  17  | 
+  18  |   let proposalDiscussionDetailsPage: ProposalDiscussionDetailsPage;
+  19  | 
+  20  |   test.beforeEach(async ({ page, proposalId }) => {
+  21  |     test.slow();
+  22  |     proposalDiscussionDetailsPage = new ProposalDiscussionDetailsPage(page);
+  23  |     await proposalDiscussionDetailsPage.goto(proposalId);
+  24  | 
+  25  |     await proposalDiscussionDetailsPage.verifyIdentity();
+  26  |   });
+  27  | 
+  28  |   test("8G. Should display the proper likes and dislikes count", async ({
+  29  |     page,
+  30  |   }) => {
+  31  |     await proposalDiscussionDetailsPage.likeBtn.click();
+  32  |     await page.waitForTimeout(2_000);
+  33  |     await expect(proposalDiscussionDetailsPage.likeCount).toHaveText("1");
+  34  | 
+  35  |     await proposalDiscussionDetailsPage.dislikeBtn.click();
+  36  |     await page.waitForTimeout(2_000);
+  37  |     await expect(proposalDiscussionDetailsPage.dislikeCount).toHaveText("1");
+  38  |   });
+  39  | 
+  40  |   test("8J. Should sort the proposed governance action comments.", async ({
+  41  |     page,
+  42  |   }) => {
+  43  |     for (let i = 0; i < 4; i++) {
+  44  |       const comment = faker.lorem.words(5);
+  45  |       await proposalDiscussionDetailsPage.addComment(comment);
+  46  |       await page.waitForTimeout(2_000);
+  47  |     }
+  48  | 
+  49  |     await proposalDiscussionDetailsPage.sortAndValidate(
+  50  |       "asc",
+  51  |       (date1, date2) => new Date(date1) <= new Date(date2)
+  52  |     );
+  53  |   });
+  54  | 
+  55  |   test("8N. Should reply to comments", async ({ page }) => {
+  56  |     const randComment = faker.lorem.words(5);
+  57  |     const randReply = faker.lorem.words(5);
+  58  | 
+  59  |     await proposalDiscussionDetailsPage.addComment(randComment);
+  60  | 
+  61  |     await proposalDiscussionDetailsPage.replyComment(randReply);
+  62  |     const replyRendered = await page
+  63  |       .locator(`[data-testid^="subcomment-"][data-testid$="-content"]`)
+  64  |       .textContent();
+  65  |     expect(replyRendered).toContain(randReply);
+  66  |   });
+  67  | });
+  68  | 
+  69  | test.describe("Proposal created with poll enabled (user auth)", () => {
+  70  |   test.use({
+  71  |     walletName: "proposal02",
+  72  |     walletFundsAda: 0,
+  73  |     pollEnabled: true,
+  74  |   });
+  75  | 
+  76  |   let proposalDiscussionDetailsPage: ProposalDiscussionDetailsPage;
+  77  | 
+> 78  |   test.beforeEach(async ({ page, proposalId }) => {
+      |        ^ Test timeout of 180000ms exceeded while running "beforeEach" hook.
+  79  |     test.slow();
+  80  |     proposalDiscussionDetailsPage = new ProposalDiscussionDetailsPage(page);
+  81  |     await proposalDiscussionDetailsPage.goto(proposalId);
+  82  |     await proposalDiscussionDetailsPage.verifyIdentity();
+  83  |   });
+  84  | 
+  85  |   test("8Q. Should vote on poll.", async ({ page }) => {
+  86  |     const pollVotes = ["Yes", "No"];
+  87  |     const choice = Math.floor(Math.random() * pollVotes.length);
+  88  |     const vote = pollVotes[choice];
+  89  | 
+  90  |     await proposalDiscussionDetailsPage.voteOnPoll(vote);
+  91  | 
+  92  |     await expect(proposalDiscussionDetailsPage.pollYesBtn).not.toBeVisible();
+  93  |     await expect(proposalDiscussionDetailsPage.pollNoBtn).not.toBeVisible();
+  94  |     await expect(
+  95  |       page.getByTestId(`poll-${vote.toLowerCase()}-count`)
+  96  |     ).toHaveText(`${vote}: (100%)`);
+  97  |     // opposite of random choice vote
+  98  |     const oppositeVote = pollVotes[pollVotes.length - 1 - choice];
+  99  |     await expect(
+  100 |       page.getByTestId(`poll-${oppositeVote.toLowerCase()}-count`)
+  101 |     ).toHaveText(`${oppositeVote}: (0%)`);
+  102 |   });
+  103 | 
+  104 |   test("8T. Should change vote on poll.", async ({ page }) => {
+  105 |     const pollVotes = ["Yes", "No"];
+  106 |     const choice = Math.floor(Math.random() * pollVotes.length);
+  107 |     const vote = pollVotes[choice];
+  108 | 
+  109 |     await proposalDiscussionDetailsPage.voteOnPoll(vote);
+  110 | 
+  111 |     await proposalDiscussionDetailsPage.changeVoteBtn.click();
+  112 |     await page.getByTestId("change-poll-vote-yes-button").click();
+  113 | 
+  114 |     await expect(proposalDiscussionDetailsPage.pollYesBtn).not.toBeVisible();
+  115 |     await expect(proposalDiscussionDetailsPage.pollNoBtn).not.toBeVisible();
+  116 | 
+  117 |     // vote must be changed
+  118 |     await expect(
+  119 |       page.getByTestId(`poll-${vote.toLowerCase()}-count`)
+  120 |     ).toHaveText(`${vote}: (0%)`, { timeout: 60_000 });
+  121 |     // opposite of random choice vote
+  122 |     const oppositeVote = pollVotes[pollVotes.length - 1 - choice];
+  123 |     await expect(
+  124 |       page.getByTestId(`poll-${oppositeVote.toLowerCase()}-count`)
+  125 |     ).toHaveText(`${oppositeVote}: (100%)`);
+  126 |   });
+  127 | });
+  128 | 
+  129 | test.describe("Proposal created with poll enabled (proposal auth)", () => {
+  130 |   test.use({
+  131 |     walletName: "user01",
+  132 |     walletFundsAda: 0,
+  133 |     pollEnabled: true,
+  134 |   });
+  135 | 
+  136 |   let ownerProposalDiscussionDetailsPage: ProposalDiscussionDetailsPage;
+  137 |   let proposalPage: Page;
+  138 | 
+  139 |   test.beforeEach(async ({ browser, proposalId }) => {
+  140 |     test.slow();
+  141 |     proposalPage = await createNewPageWithWallet(browser, {
+  142 |       wallet: await testWallet("proposal01"),
+  143 |     });
+  144 |     ownerProposalDiscussionDetailsPage = new ProposalDiscussionDetailsPage(
+  145 |       proposalPage
+  146 |     );
+  147 |     await ownerProposalDiscussionDetailsPage.goto(proposalId);
+  148 |     await ownerProposalDiscussionDetailsPage.verifyIdentity();
+  149 |   });
+  150 | 
+  151 |   test("8P. Should add poll on own proposal", async ({}) => {
+  152 |     await expect(
+  153 |       ownerProposalDiscussionDetailsPage.addPollBtn
+  154 |     ).not.toBeVisible();
+  155 |   });
+  156 | 
+  157 |   test("8R. Should disable voting after cancelling the poll with the current poll result.", async ({
+  158 |     page,
+  159 |   }) => {
+  160 |     await ownerProposalDiscussionDetailsPage.closePollBtn.click();
+  161 |     await ownerProposalDiscussionDetailsPage.closePollYesBtn.click();
+  162 |     await expect(
+  163 |       ownerProposalDiscussionDetailsPage.closePollBtn
+  164 |     ).not.toBeVisible();
+  165 | 
+  166 |     // user
+  167 |     const userProposalDetailsPage = new ProposalDiscussionDetailsPage(page);
+  168 |     await expect(userProposalDetailsPage.pollYesBtn).not.toBeVisible();
+  169 |     await expect(userProposalDetailsPage.pollNoBtn).not.toBeVisible();
+  170 |   });
+  171 | });
+  172 | 
+```

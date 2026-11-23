@@ -1,0 +1,187 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 5-proposal-functionality/proposalFunctionality.spec.ts >> Bad Proposals >> 5G. Should show warning in bad governance action proposal to the users to visit the site at their own risk, when external url is opened
+- Location: tests/5-proposal-functionality/proposalFunctionality.spec.ts:24:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for locator('[data-testid^="govaction-"][data-testid$="-view-detail"]').first()
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e11]: Whoops!
+      - paragraph [ref=e12]: This page is not available
+      - paragraph [ref=e13]: Error 404
+      - button "Back to homepage" [ref=e14] [cursor=pointer]
+    - img "error-page" [ref=e16]
+```
+
+# Test source
+
+```ts
+  1   | import removeAllSpaces from "@helpers/removeAllSpaces";
+  2   | import { Locator, Page, expect } from "@playwright/test";
+  3   | import { GovernanceActionType, IProposal } from "@types";
+  4   | import environments from "lib/constants/environments";
+  5   | import GovernanceActionDetailsPage from "./governanceActionDetailsPage";
+  6   | import { functionWaitedAssert, waitedLoop } from "@helpers/waitedLoop";
+  7   | 
+  8   | export default class GovernanceActionsPage {
+  9   |   readonly filterBtn = this.page.getByTestId("filters-button");
+  10  |   readonly sortBtn = this.page.getByTestId("sort-button");
+  11  |   readonly votedTab = this.page.getByTestId("voted-tab");
+  12  |   readonly searchInput = this.page.getByTestId("search-input");
+  13  | 
+  14  |   readonly actionsLoading = this.page.getByRole("progressbar").getByRole("img");
+  15  | 
+  16  |   constructor(private readonly page: Page) {}
+  17  | 
+  18  |   async goto() {
+  19  |     await this.page.goto(`${environments.frontendUrl}/actions`);
+  20  |     await this.page.waitForTimeout(2_000); // Waits to ensure the alert-success popup does not interfere
+  21  |   }
+  22  | 
+  23  |   get currentPage(): Page {
+  24  |     return this.page;
+  25  |   }
+  26  | 
+  27  |   async viewProposal(
+  28  |     proposal: IProposal
+  29  |   ): Promise<GovernanceActionDetailsPage> {
+  30  |     const proposalId = `govaction-${proposal.txHash}#${proposal.index}-view-detail`;
+  31  |     await this.page.getByTestId(proposalId).click();
+  32  | 
+  33  |     return new GovernanceActionDetailsPage(this.page);
+  34  |   }
+  35  | 
+  36  |   async viewFirstProposal(): Promise<GovernanceActionDetailsPage> {
+  37  |     await this.page
+  38  |       .locator('[data-testid^="govaction-"][data-testid$="-view-detail"]')
+  39  |       .first()
+> 40  |       .click();
+      |        ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  41  |     // Details live at /actions/gov_action1…, with or without a wallet; wait
+  42  |     // for it so callers do not assert against the list page while
+  43  |     // navigation is still in flight.
+  44  |     await this.page.waitForURL(/\/actions\/gov_action1[0-9a-z]+/);
+  45  |     // The router updates the URL before it renders the new route, so also
+  46  |     // wait for the list cards to go.
+  47  |     await expect(
+  48  |       this.page.locator('[data-testid^="govaction-"][data-testid$="-view-detail"]')
+  49  |     ).toHaveCount(0);
+  50  |     return new GovernanceActionDetailsPage(this.page);
+  51  |   }
+  52  | 
+  53  |   async viewFirstVotedProposal(): Promise<GovernanceActionDetailsPage> {
+  54  |     await this.page
+  55  |       .locator('[data-testid^="govaction-"][data-testid$="-change-your-vote"]')
+  56  |       .first()
+  57  |       .click();
+  58  |     return new GovernanceActionDetailsPage(this.page);
+  59  |   }
+  60  | 
+  61  |   async viewFirstProposalByGovernanceAction(
+  62  |     governanceAction: GovernanceActionType
+  63  |   ): Promise<GovernanceActionDetailsPage> {
+  64  |      const proposalCard = this.page
+  65  |           .locator('[data-testid^="govaction-"][data-testid$="-card"]')
+  66  |           .first();
+  67  | 
+  68  |     const isVisible = await proposalCard.isVisible();
+  69  | 
+  70  |     if (isVisible) {
+  71  |       await proposalCard
+  72  |         .locator('[data-testid^="govaction-"][data-testid$="-view-detail"]')
+  73  |         .first()
+  74  |         .click();
+  75  | 
+  76  |       return new GovernanceActionDetailsPage(this.page);
+  77  |     } else {
+  78  |       console.warn(
+  79  |         `Governance action details page for "${governanceAction}" was not found.`
+  80  |       );
+  81  |       return null;
+  82  |     }
+  83  |   }
+  84  | 
+  85  |   async getFirstProposal(
+  86  |   ) {
+  87  |     await functionWaitedAssert(
+  88  |       async () => {
+  89  |         const proposalCard = this.page
+  90  |           .locator('[data-testid^="govaction-"][data-testid$="-card"]')
+  91  |           .first();
+  92  | 
+  93  |         await expect(proposalCard
+  94  |           .locator('[data-testid^="govaction-"][data-testid$="-view-detail"]')
+  95  |           .first()).toBeVisible()
+  96  |       }, { name: "Retrying to get the first proposal" });
+  97  |   }
+  98  | 
+  99  |   async viewVotedProposal(
+  100 |     proposal: IProposal
+  101 |   ): Promise<GovernanceActionDetailsPage> {
+  102 |     const proposalId = `govaction-${proposal.txHash}#${proposal.index}-change-your-vote`;
+  103 |     await this.page.getByTestId(proposalId).click();
+  104 | 
+  105 |     return new GovernanceActionDetailsPage(this.page);
+  106 |   }
+  107 | 
+  108 |   async filterProposalByNames(names: string[]) {
+  109 |     for (const name of names) {
+  110 |       const sanitizedProposalName = removeAllSpaces(name);
+  111 |       await this.page.getByTestId(`${sanitizedProposalName}-checkbox`).click();
+  112 |     }
+  113 |   }
+  114 | 
+  115 |   async unFilterProposalByNames(names: string[]) {
+  116 |     for (const name of names) {
+  117 |       const sanitizedProposalName = removeAllSpaces(name);
+  118 |       await this.page.getByTestId(`${sanitizedProposalName}-checkbox`).click();
+  119 |     }
+  120 |   }
+  121 | 
+  122 |   async getAllProposals(): Promise<Locator[]> {
+  123 |     await waitedLoop(async () => {
+  124 |       return (
+  125 |         (await this.page.locator('[data-testid$="-card"]').count()) > 0 ||
+  126 |         (await this.page.getByText("No results for the search.").isVisible())
+  127 |       );
+  128 |     });
+  129 |     return this.page.locator('[data-testid$="-card"]').all();
+  130 |   }
+  131 | 
+  132 |   async validateFilters(filters: string[]) {
+  133 |     await functionWaitedAssert(async () => {
+  134 |       const proposalCards = await this.getAllProposals();
+  135 | 
+  136 |       for (const proposalCard of proposalCards) {
+  137 |         if (await proposalCard.locator('[data-testid$="-type"]').isVisible()) {
+  138 |           const hasFilter = await this._validateFiltersInProposalCard(
+  139 |             proposalCard,
+  140 |             filters
+```

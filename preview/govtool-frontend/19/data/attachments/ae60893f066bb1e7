@@ -1,0 +1,147 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 11-budget-proposals-archive/budgetProposalsArchive.spec.ts >> Old budget discussion links >> 11I_3. Should redirect an unknown proposal to the archive
+- Location: tests/11-budget-proposals-archive/budgetProposalsArchive.spec.ts:339:7
+
+# Error details
+
+```
+Error: expect(page).toHaveURL(expected) failed
+
+Expected pattern: /\/budget$/
+Received string:  "https://preview.gov.tools/budget/99999999"
+Timeout: 30000ms
+
+Call log:
+  - Expect "toHaveURL" with timeout 30000ms
+    64 × locator resolved to <html lang="en">…</html>
+       - unexpected value "https://preview.gov.tools/budget/99999999"
+
+```
+
+```yaml
+- text: "Network: Preview |"
+- link "Go to Mainnet":
+  - /url: https://gov.tools/
+- paragraph: Whoops!
+- paragraph: This page is not available
+- paragraph: Error 404
+- button "Back to homepage"
+- img "error-page"
+```
+
+# Test source
+
+```ts
+  244 |     await expect(budgetDiscussionDetailsPage.totalComments).toHaveText(
+  245 |       total > 99 ? "99+" : `${total}`
+  246 |     );
+  247 | 
+  248 |     const threads = comments.filter(
+  249 |       (comment) => comment.attributes.comment_parent_id === null
+  250 |     ).length;
+  251 |     await expect(budgetDiscussionDetailsPage.commentCards).toHaveCount(
+  252 |       Math.min(threads, 25)
+  253 |     );
+  254 |     while (await budgetDiscussionDetailsPage.loadMoreCommentsBtn.isVisible()) {
+  255 |       await budgetDiscussionDetailsPage.loadMoreCommentsBtn.click();
+  256 |     }
+  257 |     await expect(budgetDiscussionDetailsPage.commentCards).toHaveCount(threads);
+  258 |   });
+  259 | 
+  260 |   test("11F. Should be read-only", async () => {
+  261 |     const { items } = await budgetDiscussionPage.fetchArchiveList();
+  262 |     const discussion = pickDiscussion(
+  263 |       items,
+  264 |       (item) => item.attributes.prop_comments_number > 0 && !!item.archive.poll
+  265 |     );
+  266 |     await budgetDiscussionDetailsPage.goto(discussion.attributes.master_id);
+  267 |     await expect(
+  268 |       budgetDiscussionDetailsPage.commentCards.first()
+  269 |     ).toBeVisible();
+  270 | 
+  271 |     await expect(budgetDiscussionDetailsPage.commentInput).toHaveCount(0);
+  272 |     await expect(budgetDiscussionDetailsPage.commentBtn).toHaveCount(0);
+  273 |     await expect(budgetDiscussionDetailsPage.replyBtn).toHaveCount(0);
+  274 |     await expect(budgetDiscussionDetailsPage.pollYesBtn).toHaveCount(0);
+  275 |     await expect(budgetDiscussionDetailsPage.pollNoBtn).toHaveCount(0);
+  276 |     await expect(budgetDiscussionDetailsPage.menuButton).toHaveCount(0);
+  277 |   });
+  278 | 
+  279 |   test("11G. Should show the final poll totals", async () => {
+  280 |     const { items } = await budgetDiscussionPage.fetchArchiveList();
+  281 |     const discussion = pickDiscussion(
+  282 |       items,
+  283 |       (item) =>
+  284 |         item.archive.poll && item.archive.poll.yes + item.archive.poll.no > 0
+  285 |     );
+  286 |     const { yes, no } = discussion.archive.poll;
+  287 |     await budgetDiscussionDetailsPage.goto(discussion.attributes.master_id);
+  288 | 
+  289 |     await expect(budgetDiscussionDetailsPage.pollTotalVotes).toHaveText(
+  290 |       `Total votes: ${yes + no}`
+  291 |     );
+  292 |     await expect(budgetDiscussionDetailsPage.pollYesCount).toContainText(
+  293 |       `Yes: ${yes}`
+  294 |     );
+  295 |     await expect(budgetDiscussionDetailsPage.pollNoCount).toContainText(
+  296 |       `No: ${no}`
+  297 |     );
+  298 |   });
+  299 | 
+  300 |   test("11H. Should list every version", async ({ isMobile }) => {
+  301 |     // On a small screen the version list sits behind its own button.
+  302 |     test.skip(isMobile, "Desktop version list only");
+  303 |     const { items } = await budgetDiscussionPage.fetchArchiveList();
+  304 |     const discussion = pickDiscussion(
+  305 |       items,
+  306 |       (item) => item.archive.versions > 2
+  307 |     );
+  308 |     await budgetDiscussionDetailsPage.goto(discussion.attributes.master_id);
+  309 | 
+  310 |     await budgetDiscussionDetailsPage.reviewVersionsBtn.click();
+  311 |     const dialog = budgetDiscussionDetailsPage.reviewVersionsDialog;
+  312 |     await expect(dialog).toBeVisible();
+  313 |     const versions = dialog.getByRole("listitem");
+  314 |     await expect(versions).toHaveCount(discussion.archive.versions);
+  315 |     await expect(versions.filter({ hasText: "(Final)" })).toHaveCount(1);
+  316 |   });
+  317 | });
+  318 | 
+  319 | test.describe("Old budget discussion links", () => {
+  320 |   test("11I_1. Should open a proposal from its old link", async ({ page }) => {
+  321 |     const budgetDiscussionPage = new BudgetDiscussionPage(page);
+  322 |     const { items } = await budgetDiscussionPage.fetchArchiveList();
+  323 |     const discussion = items[0];
+  324 | 
+  325 |     const budgetDiscussionDetailsPage = new BudgetDiscussionDetailsPage(page);
+  326 |     await budgetDiscussionDetailsPage.goto(discussion.attributes.master_id);
+  327 |     await expect(budgetDiscussionDetailsPage.titleContent).toHaveText(
+  328 |       discussion.attributes.bd_proposal_detail.data.attributes.proposal_name
+  329 |     );
+  330 |   });
+  331 | 
+  332 |   test("11I_2. Should redirect the propose page to the archive", async ({
+  333 |     page,
+  334 |   }) => {
+  335 |     await page.goto(`${environments.frontendUrl}/budget/propose`);
+  336 |     await expect(page).toHaveURL(/\/budget$/);
+  337 |   });
+  338 | 
+  339 |   test("11I_3. Should redirect an unknown proposal to the archive", async ({
+  340 |     page,
+  341 |   }) => {
+  342 |     await page.goto(`${environments.frontendUrl}/budget/99999999`);
+  343 |     // The archive redirects only once its proposal index has loaded.
+> 344 |     await expect(page).toHaveURL(/\/budget$/, { timeout: 30_000 });
+      |                        ^ Error: expect(page).toHaveURL(expected) failed
+  345 |   });
+  346 | });
+  347 | 
+```

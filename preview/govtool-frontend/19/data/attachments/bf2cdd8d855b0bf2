@@ -1,0 +1,132 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: cip179/authoring.spec.ts >> 179-1A: authoring without a survey preserves CIP-108 body
+- Location: tests/cip179/authoring.spec.ts:21:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByTestId('continue-button')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e11]: Whoops!
+      - paragraph [ref=e12]: This page is not available
+      - paragraph [ref=e13]: Error 404
+      - button "Back to dashboard" [ref=e14] [cursor=pointer]
+    - img "error-page" [ref=e16]
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect, Page } from "@playwright/test";
+  2  | import { readFile } from "node:fs/promises";
+  3  | import { setup, surveyHash } from "./fixtures";
+  4  | 
+  5  | async function openForm(page: Page) {
+  6  |   await page.goto("/actions/new");
+> 7  |   await page.getByTestId("continue-button").click();
+     |                                             ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  8  |   await page.getByTestId("InfoAction-radio").click();
+  9  |   await page.getByTestId("continue-button").click();
+  10 |   for (const [name, value] of Object.entries({
+  11 |     title: "Test Info Action",
+  12 |     abstract: "Abstract text",
+  13 |     motivation: "Motivation text",
+  14 |     rationale: "Rationale text",
+  15 |   })) {
+  16 |     await page.locator(`[name="${name}"]`).fill(value);
+  17 |   }
+  18 | }
+  19 | 
+  20 | for (const linked of [true, false]) {
+  21 |   test(`179-1A: authoring ${linked ? "with" : "without"} a survey preserves CIP-108 body`, async ({
+  22 |     page,
+  23 |   }) => {
+  24 |     const fixture = await setup(page, { enabled: "default" });
+  25 |     await openForm(page);
+  26 |     if (linked)
+  27 |       await page.locator('[name="surveyTxId"]').fill(surveyHash.toUpperCase());
+  28 |     await page.getByTestId("continue-button").click();
+  29 |     await page.getByTestId("continue-button").click();
+  30 |     await page
+  31 |       .getByTestId("storing-information-checkbox")
+  32 |       .getByRole("checkbox")
+  33 |       .check();
+  34 |     await page.getByTestId("continue-button").click();
+  35 |     await expect(page.getByTestId("metadata-download-button")).toBeVisible();
+  36 |     const downloaded = page.waitForEvent("download");
+  37 |     await page.getByTestId("metadata-download-button").click();
+  38 |     const file = await (await downloaded).path();
+  39 |     expect(file).not.toBeNull();
+  40 |     const json = JSON.parse(await readFile(file!, "utf8"));
+  41 |     expect(json.body).toMatchObject({
+  42 |       title: "Test Info Action",
+  43 |       abstract: "Abstract text",
+  44 |       motivation: "Motivation text",
+  45 |       rationale: "Rationale text",
+  46 |     });
+  47 |     if (linked)
+  48 |       expect(json.body.cip179).toEqual({
+  49 |         specVersion: 5,
+  50 |         kind: "survey-link",
+  51 |         surveyTxId: surveyHash,
+  52 |         surveyIndex: 0,
+  53 |       });
+  54 |     else {
+  55 |       expect(json.body.cip179).toBeUndefined();
+  56 |       expect(json["@context"].CIP179).toBeUndefined();
+  57 |       expect(fixture.requests.some((p) => p.includes("/survey/"))).toBe(false);
+  58 |     }
+  59 |     expect(JSON.stringify(json)).not.toContain("Choose a percentage");
+  60 |     expect(fixture.transactions.unsigned).toHaveLength(0);
+  61 |     expect(fixture.errors).toEqual([]);
+  62 |   });
+  63 | }
+  64 | 
+  65 | test("179-1B: malformed survey transaction IDs cannot proceed", async ({
+  66 |   page,
+  67 | }) => {
+  68 |   const fixture = await setup(page);
+  69 |   await openForm(page);
+  70 |   await page.locator('[name="surveyTxId"]').fill("not-a-transaction-hash");
+  71 |   await expect(page.getByTestId("continue-button")).toBeDisabled();
+  72 |   await page.locator('[name="surveyTxId"]').fill("");
+  73 |   await expect(page.getByTestId("continue-button")).toBeEnabled();
+  74 |   expect(fixture.requests.some((p) => p.includes("/survey/"))).toBe(false);
+  75 | });
+  76 | 
+  77 | test("179-1C: explicit feature opt-out hides the survey authoring field", async ({
+  78 |   page,
+  79 | }) => {
+  80 |   await setup(page, { enabled: false });
+  81 |   await openForm(page);
+  82 |   await expect(page.locator('[name="surveyTxId"]')).toHaveCount(0);
+  83 |   await expect(page.getByTestId("continue-button")).toBeEnabled();
+  84 | });
+  85 | 
+```

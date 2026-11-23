@@ -1,0 +1,153 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 9-governance-action-history/governance-action-history.spec.ts >> GovernanceAction details >> Invalid GovernanceAction Metadata >> 9H_2A: Should display "Data Missing" message in governanceActionHistory when metadata URL could not be found. in disconnect state
+- Location: tests/9-governance-action-history/governance-action-history.spec.ts:101:11
+
+# Error details
+
+```
+Error: The URL "https://metadata-govtool.cardanoapi.io/data/playwright-missing-2d9c4759749240db.jsonld" and hash "b0a32a81a5a7d323e69a3ccdb51ff637ffd2d3f9321aae3cf437b7f8f1fe5eed" do not match the expected properties for type "Data Missing".
+
+expect(locator).toHaveText(expected) failed
+
+Locator: getByTestId('single-action-title')
+Expected: "Data Missing"
+Timeout: 60000ms
+Error: element(s) not found
+
+Call log:
+  - The URL "https://metadata-govtool.cardanoapi.io/data/playwright-missing-2d9c4759749240db.jsonld" and hash "b0a32a81a5a7d323e69a3ccdb51ff637ffd2d3f9321aae3cf437b7f8f1fe5eed" do not match the expected properties for type "Data Missing". with timeout 60000ms
+  - waiting for getByTestId('single-action-title')
+
+```
+
+```yaml
+- text: "Network: Preview |"
+- link "Go to Mainnet":
+  - /url: https://gov.tools/
+- paragraph: Whoops!
+- paragraph: This page is not available
+- paragraph: Error 404
+- button "Back to homepage"
+- img "error-page"
+```
+
+# Test source
+
+```ts
+  66  |       const page = govActionDetailsPage.currentPage;
+  67  |       try {
+  68  |         const response = await actionRecordResponsePromise;
+  69  |         expect(response.ok()).toBeTruthy();
+  70  |         const proposal = await response.json();
+  71  |         expect(Array.isArray(proposal.vote_aggregates)).toBeTruthy();
+  72  |         for (const [role, prefix, title] of [
+  73  |           ["drep", "DReps", "DReps"],
+  74  |           ["spo", "SPOs", "SPOs"],
+  75  |           ["cc", "CC", "Constitutional Committee"],
+  76  |         ]) {
+  77  |           const section = page.getByTestId(`${prefix}-voting-results-data`);
+  78  |           await expect(section).toBeVisible();
+  79  |           const aggregate = proposal.vote_aggregates.find(
+  80  |             (a: { role: string }) => a.role === role
+  81  |           );
+  82  |           if (!aggregate) {
+  83  |             // Unsupported and inapplicable roles have distinct explicit messages.
+  84  |             await expect(section.getByRole("status")).toBeVisible();
+  85  |             await expect(section.getByRole("progressbar")).toHaveCount(0);
+  86  |             continue;
+  87  |           }
+  88  |           const format = (value: string) =>
+  89  |             aggregate.representation === "percent"
+  90  |               ? `${(Number(value) * 100).toFixed(2)}%`
+  91  |               : aggregate.representation === "count"
+  92  |                 ? BigInt(value).toLocaleString("en-US")
+  93  |                 : `₳ ${((BigInt(value) + 999999n) / 1000000n).toLocaleString("en-US")}`;
+  94  |           // Exact integer arithmetic: mainnet lovelace exceeds Number's safe range.
+  95  |           const digits = Math.max(
+  96  |             ...[aggregate.yes, aggregate.abstain, aggregate.totalEligible].map(
+  97  |               (value: string) => value.split(".")[1]?.length ?? 0
+  98  |             )
+  99  |           );
+  100 |           const scaled = (value: string) => {
+  101 |             const [whole, fraction = ""] = value.split(".");
+  102 |             return BigInt(whole + fraction.padEnd(digits, "0"));
+  103 |           };
+  104 |           const denominator =
+  105 |             scaled(aggregate.totalEligible) - scaled(aggregate.abstain);
+  106 |           if (denominator > 0n) {
+  107 |             // Hundredths of a percent, rounded half up, as the UI rounds.
+  108 |             const hundredths =
+  109 |               (scaled(aggregate.yes) * 10000n + denominator / 2n) /
+  110 |               denominator;
+  111 |             const yesPercent = Number(hundredths) / 100;
+  112 |             await expect(
+  113 |               section.getByTestId(`${title}-yes-votes-submitted`)
+  114 |             ).toHaveText(
+  115 |               `${format(aggregate.yes)} - ${yesPercent.toFixed(2)}%`
+  116 |             );
+  117 |           } else {
+  118 |             await expect(section.getByRole("progressbar")).toHaveCount(0);
+  119 |           }
+  120 |           await section.getByTestId(`${title}-expand-button`).click();
+  121 |           for (const [field, suffix] of [
+  122 |             ["yes", "yes-votes"],
+  123 |             ["no", "no-votes"],
+  124 |             ["notVoted", "not-voted-votes"],
+  125 |             ["abstain", "abstain-votes"],
+  126 |           ]) {
+  127 |             await expect(section.getByTestId(`${title}-${suffix}`)).toHaveText(
+  128 |               format(aggregate[field])
+  129 |             );
+  130 |           }
+  131 |         }
+  132 |       } finally {
+  133 |         await page.close();
+  134 |       }
+  135 |     }
+  136 |   }
+  137 | 
+  138 |   async verifyInvalidGovernanceActionMetadata({
+  139 |     actionRecordResponse,
+  140 |     type,
+  141 |     url,
+  142 |     hash,
+  143 |   }: {
+  144 |     actionRecordResponse: actionRecordProposal;
+  145 |     type: string;
+  146 |     url: string;
+  147 |     hash: string;
+  148 |   }) {
+  149 |     await this.page.route("**/governance-actions/*", async (route) => {
+  150 |       if (route.request().url().includes("/governance-actions/metadata")) {
+  151 |         await route.continue();
+  152 |       } else {
+  153 |         await route.fulfill({ body: JSON.stringify(actionRecordResponse) });
+  154 |       }
+  155 |     });
+  156 |     // Straight to the details page, the only page checked here; the list and
+  157 |     // its links are 9A-9F's.
+  158 |     await this.goto(
+  159 |       `${actionRecordResponse.tx_hash}#${actionRecordResponse.index}`
+  160 |     );
+  161 | 
+  162 |     const actionRecordPage = new GovernanceActionHistoryPage(this.page);
+  163 |     await expect(
+  164 |       actionRecordPage.title,
+  165 |       `The URL "${url}" and hash "${hash}" do not match the expected properties for type "${type}".`
+> 166 |     ).toHaveText(type, {
+      |       ^ Error: The URL "https://metadata-govtool.cardanoapi.io/data/playwright-missing-2d9c4759749240db.jsonld" and hash "b0a32a81a5a7d323e69a3ccdb51ff637ffd2d3f9321aae3cf437b7f8f1fe5eed" do not match the expected properties for type "Data Missing".
+  167 |       ignoreCase: true,
+  168 |       timeout: 60_000,
+  169 |     });
+  170 |     await expect(actionRecordPage.metadataErrorLearnMoreBtn).toBeVisible();
+  171 |   }
+  172 | }
+  173 | 
+```

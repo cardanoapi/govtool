@@ -1,0 +1,149 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: cip179/survey.spec.ts >> 179-3D: non-DRep users cannot sign survey votes
+- Location: tests/cip179/survey.spec.ts:431:7
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByRole('heading', { name: 'Survey-linked Info Action', exact: true })
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for getByRole('heading', { name: 'Survey-linked Info Action', exact: true })
+
+```
+
+```yaml
+- text: "Network: Preview |"
+- link "Go to Mainnet":
+  - /url: https://gov.tools/
+- paragraph: Whoops!
+- paragraph: This page is not available
+- paragraph: Error 404
+- button "Back to dashboard"
+- img "error-page"
+```
+
+# Test source
+
+```ts
+  341 |     .getByRole("spinbutton", { name: "Outreach", exact: true })
+  342 |     .fill("4");
+  343 |   await expect(
+  344 |     page.getByText("Complete the selected survey response before submitting.")
+  345 |   ).toBeVisible();
+  346 |   await page
+  347 |     .getByRole("spinbutton", { name: "Testing", exact: true })
+  348 |     .fill("6");
+  349 |   await expect(
+  350 |     page.getByText("Complete the selected survey response before submitting.")
+  351 |   ).toHaveCount(0);
+  352 |   await submitVote(page);
+  353 |   await expect.poll(() => fixture.transactions.signed.length).toBe(1);
+  354 |   expect(checkTransaction(fixture.transactions)).toEqual([
+  355 |     [1, 0, 0],
+  356 |     [2, 1, [0]],
+  357 |     [3, 2, [1, 0]],
+  358 |     [6, 3, [[0, 0]]],
+  359 |     [6, 4, [[0, 1]]],
+  360 |     [
+  361 |       5,
+  362 |       5,
+  363 |       [
+  364 |         [0, 4],
+  365 |         [1, 6],
+  366 |       ],
+  367 |     ],
+  368 |   ]);
+  369 |   expect(fixture.errors).toEqual([]);
+  370 | });
+  371 | 
+  372 | for (const [name, options] of [
+  373 |   ["unavailable definition", { surveyStatus: 404 }],
+  374 |   ["wrong reference", { envelope: { ...envelope(), txId: "cd".repeat(32) } }],
+  375 |   ["wrong expiry", { survey: definition({ endEpoch: 529 }) }],
+  376 |   [
+  377 |     "oversized survey",
+  378 |     {
+  379 |       survey: definition({
+  380 |         questions: Array.from({ length: 101 }, () => questions[0]),
+  381 |       }),
+  382 |     },
+  383 |   ],
+  384 | ] as const) {
+  385 |   test(`179-3A: ${name} does not break ordinary voting`, async ({ page }) => {
+  386 |     const fixture = await setup(page, options);
+  387 |     await openVote(page);
+  388 |     await expect(
+  389 |       page.getByText(/Linked survey response unavailable:/)
+  390 |     ).toBeVisible();
+  391 |     await expect(
+  392 |       page.getByRole("checkbox", { name: /Include a survey/ })
+  393 |     ).toHaveCount(0);
+  394 |     await submitVote(page);
+  395 |     await expect.poll(() => fixture.transactions.signed.length).toBe(1);
+  396 |     expect(checkTransaction(fixture.transactions)).toBeUndefined();
+  397 |     expect(fixture.errors).toEqual([]);
+  398 |   });
+  399 | }
+  400 | 
+  401 | test("179-3B: ineligible roles cannot attach a survey response", async ({
+  402 |   page,
+  403 | }) => {
+  404 |   const fixture = await setup(page, {
+  405 |     survey: definition({ eligibleRoles: [1] }),
+  406 |   });
+  407 |   await openVote(page);
+  408 |   await expect(page.getByText(/does not accept DRep responses/)).toBeVisible();
+  409 |   await expect(
+  410 |     page.getByRole("checkbox", { name: /Include a survey/ })
+  411 |   ).toHaveCount(0);
+  412 |   await submitVote(page);
+  413 |   await expect.poll(() => fixture.transactions.signed.length).toBe(1);
+  414 |   expect(checkTransaction(fixture.transactions)).toBeUndefined();
+  415 | });
+  416 | 
+  417 | test("179-3C: declining wallet signing never submits a transaction", async ({
+  418 |   page,
+  419 | }) => {
+  420 |   const fixture = await setup(page, { rejectSigning: true });
+  421 |   await openVote(page);
+  422 |   await page.getByRole("checkbox", { name: /Include a survey/ }).check();
+  423 |   await page.getByRole("radio", { name: "Usability", exact: true }).check();
+  424 |   await submitVote(page);
+  425 |   await expect(page.getByTestId("vote-transaction-error-modal")).toBeVisible();
+  426 |   expect(fixture.transactions.unsigned).toHaveLength(1);
+  427 |   expect(fixture.transactions.signed).toHaveLength(0);
+  428 | });
+  429 | 
+  430 | for (const connected of [false, true]) {
+  431 |   test(`179-3D: ${connected ? "non-DRep" : "disconnected"} users cannot sign survey votes`, async ({
+  432 |     page,
+  433 |   }) => {
+  434 |     const fixture = await setup(page, { connected, registered: false });
+  435 |     await page.goto(`/actions/${getGovActionCIP129Id(actionHash, 0)}`);
+  436 |     await expect(
+  437 |       page.getByRole("heading", {
+  438 |         name: "Survey-linked Info Action",
+  439 |         exact: true,
+  440 |       })
+> 441 |     ).toBeVisible();
+      |       ^ Error: expect(locator).toBeVisible() failed
+  442 |     await expect(page.getByTestId("vote-button")).toHaveCount(0);
+  443 |     expect(fixture.transactions.unsigned).toHaveLength(0);
+  444 |   });
+  445 | }
+  446 | 
+```

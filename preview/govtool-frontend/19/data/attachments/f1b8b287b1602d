@@ -1,0 +1,126 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 2-delegation/delegationFunctionality.delegation.spec.ts >> Delegate to others >> 2A. Should show delegated DRep Id (on Dashboard, and DRep Directory) after delegation
+- Location: tests/2-delegation/delegationFunctionality.delegation.spec.ts:43:7
+
+# Error details
+
+```
+Test timeout of 420000ms exceeded.
+```
+
+```
+Error: page.waitForRequest: Test timeout of 420000ms exceeded.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e11]: Whoops!
+      - paragraph [ref=e12]: This page is not available
+      - paragraph [ref=e13]: Error 404
+      - button "Back to dashboard" [ref=e14] [cursor=pointer]
+    - img "error-page" [ref=e16]
+```
+
+# Test source
+
+```ts
+  1  | import environments from "@constants/environments";
+  2  | import { Page, expect } from "@playwright/test";
+  3  | import kuberService from "@services/kuberService";
+  4  | import { Logger } from "@helpers/logger";
+  5  | import { functionWaitedAssert } from "./waitedLoop";
+  6  | 
+  7  | /**
+  8  |  * Polls the transaction status until it's resolved or times out.
+  9  |  */
+  10 | export async function pollTransaction(txHash: string) {
+  11 |   await functionWaitedAssert(
+  12 |     async () => {
+  13 |       try {
+  14 |         Logger.info(`Waiting for tx completion: ${txHash}`);
+  15 |         await expect
+  16 |           .poll(
+  17 |             async () => {
+  18 |               const response = await kuberService.getTransactionDetails(txHash);
+  19 |               const data = await response.json();
+  20 |               return data.length;
+  21 |             },
+  22 |             {
+  23 |               timeout: environments.txTimeOut,
+  24 |             }
+  25 |           )
+  26 |           .toBeGreaterThan(0);
+  27 | 
+  28 |         Logger.success("Tx completed");
+  29 |       } catch (err) {
+  30 |         Logger.fail(`Failed due to ${err}`);
+  31 |         throw err;
+  32 |       }
+  33 |     },
+  34 |     { timeout: environments.txTimeOut + 60_000, name: "pollTransaction" }
+  35 |   );
+  36 | }
+  37 | 
+  38 | /**
+  39 |  * Runs `triggerCallback` and waits until the transaction is on chain and the
+  40 |  * app no longer shows it in progress. The hash comes from the first status
+  41 |  * check the app makes after the callback starts, so the callback must submit
+  42 |  * the transaction: the app checks as soon as it submits, and on the devnet a
+  43 |  * block can include the transaction before that check, which is then the
+  44 |  * last one.
+  45 |  */
+  46 | export async function waitForTxConfirmation(
+  47 |   page: Page,
+  48 |   triggerCallback: () => Promise<unknown>
+  49 | ) {
+  50 |   let transactionHash: string | undefined;
+  51 |   try {
+> 52 |     const transactionStatusPromise = page.waitForRequest((request) => {
+     |                                           ^ Error: page.waitForRequest: Test timeout of 420000ms exceeded.
+  53 |       return request.url().includes("/transaction/status/");
+  54 |     });
+  55 |     await triggerCallback();
+  56 | 
+  57 |     await expect(
+  58 |       page
+  59 |         .getByTestId("alert-warning")
+  60 |         .getByText("Transaction in progress", { exact: false })
+  61 |     ).toBeVisible({
+  62 |       timeout: 90_000,
+  63 |     });
+  64 |     const url = (await transactionStatusPromise).url();
+  65 |     const regex = /\/transaction\/status\/([^\/]+)$/;
+  66 |     const match = url.match(regex);
+  67 |     if (match) {
+  68 |       transactionHash = match[1];
+  69 |     }
+  70 | 
+  71 |     if (transactionHash) {
+  72 |       await pollTransaction(transactionHash);
+  73 |       await expect(
+  74 |         page.getByText("In Progress", { exact: true }).first() //FIXME: Only one element needs to be displayed
+  75 |       ).not.toBeVisible({ timeout: 90_000 });
+  76 |     }
+  77 |   } catch (error) {
+  78 |     Logger.fail(error.message);
+  79 |     throw new Error(error);
+  80 |   }
+  81 | }
+  82 | 
+```

@@ -1,0 +1,187 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 11-budget-proposals-archive/budgetProposalsArchive.spec.ts >> Budget proposals archive list >> 11B_3. Should sort budget proposals
+- Location: tests/11-budget-proposals-archive/budgetProposalsArchive.spec.ts:99:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded while running "beforeEach" hook.
+```
+
+```
+Error: locator.waitFor: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for locator('[data-testid^="budget-discussion-"][data-testid$="-card"]').first() to be visible
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e11]: Whoops!
+      - paragraph [ref=e12]: This page is not available
+      - paragraph [ref=e13]: Error 404
+      - button "Back to homepage" [ref=e14] [cursor=pointer]
+    - img "error-page" [ref=e16]
+```
+
+# Test source
+
+```ts
+  1   | import { functionWaitedAssert, waitedLoop } from "@helpers/waitedLoop";
+  2   | import { expect, Locator, Page } from "@playwright/test";
+  3   | import {
+  4   |   BudgetArchiveList,
+  5   |   BudgetDiscussionEnum,
+  6   |   BudgetProposalFilterTypes,
+  7   | } from "@types";
+  8   | import environments from "lib/constants/environments";
+  9   | import BudgetDiscussionDetailsPage from "./budgetDiscussionDetailsPage";
+  10  | 
+  11  | export const BUDGET_ARCHIVE_PATH = "/budget-proposals-2025";
+  12  | 
+  13  | // Requests the archive must never make: the forum's budget discussion API.
+  14  | export const BUDGET_DISCUSSION_API =
+  15  |   /\/api\/(bds|bd-|bd\/versions)|\/api\/comments\?.*bd_proposal_id/;
+  16  | 
+  17  | const PROPOSAL_CARD_SELECTOR =
+  18  |   '[data-testid^="budget-discussion-"][data-testid$="-card"]';
+  19  | 
+  20  | /** The read-only 2025 budget proposals archive list. */
+  21  | export default class BudgetDiscussionPage {
+  22  |   readonly filterBtn = this.page.getByTestId("filter-button");
+  23  |   readonly sortBtn = this.page.getByTestId("sort-button");
+  24  |   readonly searchInput = this.page.getByTestId("search-input");
+  25  |   readonly archiveBanner = this.page.getByTestId(
+  26  |     "budget-proposals-archive-banner"
+  27  |   );
+  28  |   readonly backToListBtn = this.page.getByTestId(
+  29  |     "back-to-budget-proposals-button"
+  30  |   );
+  31  | 
+  32  |   constructor(private readonly page: Page) {}
+  33  | 
+  34  |   get currentPage(): Page {
+  35  |     return this.page;
+  36  |   }
+  37  | 
+  38  |   async goto() {
+  39  |     await this.page.goto(`${environments.frontendUrl}/budget`);
+> 40  |     await this.page.locator(PROPOSAL_CARD_SELECTOR).first().waitFor();
+      |                                                             ^ Error: locator.waitFor: Test timeout of 180000ms exceeded.
+  41  |   }
+  42  | 
+  43  |   /** The archive's list file, as the page reads it. */
+  44  |   async fetchArchiveList(): Promise<BudgetArchiveList> {
+  45  |     const response = await this.page.request.get(
+  46  |       `${environments.frontendUrl}${BUDGET_ARCHIVE_PATH}/list.json`
+  47  |     );
+  48  |     expect(response.ok()).toBe(true);
+  49  |     return response.json();
+  50  |   }
+  51  | 
+  52  |   async viewFirstProposal(): Promise<BudgetDiscussionDetailsPage> {
+  53  |     await this.page
+  54  |       .locator(
+  55  |         '[data-testid^="budget-discussion-"][data-testid$="-view-details"]'
+  56  |       )
+  57  |       .first()
+  58  |       .click();
+  59  |     return new BudgetDiscussionDetailsPage(this.page);
+  60  |   }
+  61  | 
+  62  |   async getAllProposals() {
+  63  |     await waitedLoop(async () => {
+  64  |       const count = await this.page.locator(PROPOSAL_CARD_SELECTOR).count();
+  65  |       return count > 0;
+  66  |     });
+  67  |     return this.page.locator(PROPOSAL_CARD_SELECTOR).all();
+  68  |   }
+  69  | 
+  70  |   async showAll(category: BudgetDiscussionEnum) {
+  71  |     const slug =
+  72  |       category === BudgetDiscussionEnum.NoCategory
+  73  |         ? "no-category"
+  74  |         : category.toLowerCase().replace(/ /g, "-");
+  75  |     await this.page.getByTestId(`${slug}-show-all-button`).click();
+  76  |     // The category page is a new route that remounts the list; wait for it,
+  77  |     // or a sort opened on the old list closes with it.
+  78  |     await expect(this.page).toHaveURL(new RegExp(`/category/${slug}$`));
+  79  |     await expect(this.backToListBtn).toBeVisible();
+  80  |     await this.page.locator(PROPOSAL_CARD_SELECTOR).first().waitFor();
+  81  |   }
+  82  | 
+  83  |   async clickCategoryCheckboxes(names: string[]) {
+  84  |     for (const name of names) {
+  85  |       await this.page.getByLabel(name).click();
+  86  |     }
+  87  |   }
+  88  | 
+  89  |   async applyAndValidateFilters(filters: string[]) {
+  90  |     // single filter
+  91  |     for (const filter of filters) {
+  92  |       await this.clickCategoryCheckboxes([filter]);
+  93  |       await this.validateFilters([filter]);
+  94  |       await this.clickCategoryCheckboxes([filter]);
+  95  |     }
+  96  | 
+  97  |     // multiple filters
+  98  |     const multipleFilters = [...filters];
+  99  |     while (multipleFilters.length > 1) {
+  100 |       await this.clickCategoryCheckboxes(multipleFilters);
+  101 |       await this.validateFilters(multipleFilters);
+  102 |       await this.clickCategoryCheckboxes(multipleFilters);
+  103 |       multipleFilters.pop();
+  104 |     }
+  105 |   }
+  106 | 
+  107 |   async validateFilters(filters: string[]) {
+  108 |     await functionWaitedAssert(async () => {
+  109 |       await this.getAllProposals();
+  110 |       // One read for every card: a read per card is a round trip each, and
+  111 |       // the filters show up to every card in the archive.
+  112 |       const types = await this.page
+  113 |         .locator(PROPOSAL_CARD_SELECTOR)
+  114 |         .getByTestId("budget-discussion-type")
+  115 |         .allTextContents();
+  116 | 
+  117 |       for (const type of types) {
+  118 |         const category =
+  119 |           type === "None of these" ? BudgetDiscussionEnum.NoCategory : type;
+  120 |         expect(
+  121 |           filters.includes(category),
+  122 |           `A budget proposal type ${type} does not contain on ${filters}`
+  123 |         ).toBe(true);
+  124 |       }
+  125 |     });
+  126 |   }
+  127 | 
+  128 |   async sortBy(type: BudgetProposalFilterTypes) {
+  129 |     const menu = this.page.locator("#sort-menu");
+  130 |     const option = this.page.getByTestId(`${type}-sort-option`);
+  131 |     // Click again only while no menu is open: a click on an open menu's
+  132 |     // backdrop closes it.
+  133 |     await expect(async () => {
+  134 |       if (!(await menu.isVisible())) await this.sortBtn.click();
+  135 |       await expect(option).toBeVisible({ timeout: 10_000 });
+  136 |     }).toPass({ timeout: 30_000 });
+  137 |     await option.click();
+  138 |     await expect(menu).toBeHidden();
+  139 |     await expect(this.sortBtn).toHaveText(`Sort: ${type}`);
+  140 |   }
+```

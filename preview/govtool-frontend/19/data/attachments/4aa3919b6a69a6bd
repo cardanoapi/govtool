@@ -1,0 +1,307 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 6-miscellaneous/miscellaneous.loggedin.spec.ts >> Logged in user >> 6I. Should prompt for a username after clicking on proposal discussion link if username is not set
+- Location: tests/6-miscellaneous/miscellaneous.loggedin.spec.ts:98:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByTestId('proposal-discussion-link')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - banner [ref=e10]:
+      - link "Skip to main content" [ref=e11] [cursor=pointer]:
+        - /url: "#main-content"
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: /dashboard
+          - img "Cardano GovTool" [ref=e14]
+        - navigation "Main" [ref=e15]:
+          - link "Home" [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+          - link "DRep Directory" [ref=e17] [cursor=pointer]:
+            - /url: /connected/drep_directory
+          - link "Governance Actions" [ref=e18] [cursor=pointer]:
+            - /url: /connected/governance_actions
+          - link "Governance Activity" [ref=e19] [cursor=pointer]:
+            - /url: /governance_activity
+          - link "Guides" [ref=e20] [cursor=pointer]:
+            - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+        - generic [ref=e21]:
+          - button "Global Search" [ref=e22] [cursor=pointer]
+          - button "stake_t…5dq" [ref=e26] [cursor=pointer]
+          - button "Notifications" [ref=e32] [cursor=pointer]:
+            - generic [ref=e33]: "0"
+          - button "Your governance profile" [ref=e37] [cursor=pointer]
+    - main [ref=e42]:
+      - generic [ref=e44]:
+        - generic [ref=e46]:
+          - generic [ref=e47]:
+            - heading "Welcome back" [level=1] [ref=e48]
+            - generic [ref=e49]: Not registered
+          - generic [ref=e50]: "Current epoch: 1470"
+        - generic [ref=e51]:
+          - generic [ref=e52]:
+            - heading "Your connected wallet" [level=2] [ref=e53]
+            - generic [ref=e56]:
+              - generic [ref=e57]: Demos Wallet
+              - button "Copy stake key stake_test1uzm7a7fr6gv9v93r4gsxt0sgtrc0f5ejsl9fsl9k0lpusmcv395dq" [ref=e58] [cursor=pointer]: stake_test…mcv395dq
+            - generic [ref=e63]:
+              - generic [ref=e64]: Wallet voting power
+              - generic [ref=e65]: ₳ 0
+            - generic [ref=e67]:
+              - generic [ref=e68]:
+                - generic [ref=e69]: Delegation
+                - generic [ref=e70]: Not delegated
+              - link "Delegate now" [ref=e71] [cursor=pointer]:
+                - /url: /connected/drep_directory
+          - generic [ref=e74]:
+            - generic [ref=e75]:
+              - generic [ref=e83]:
+                - heading "Delegate your Voting Power" [level=2] [ref=e84]
+                - generic [ref=e86]: Find a DRep to vote on your behalf.
+              - generic [ref=e87]:
+                - button "View DRep Directory" [ref=e88] [cursor=pointer]
+                - button "Learn more" [ref=e89] [cursor=pointer]
+            - generic [ref=e90]:
+              - generic [ref=e96]:
+                - heading "Become a DRep" [level=2] [ref=e97]
+                - generic [ref=e99]: Accept delegated voting power from other Ada holders, and combine it with your own voting power. Vote with the accumulated Power on Governance Actions.
+              - generic [ref=e100]:
+                - button "Register" [ref=e101] [cursor=pointer]
+                - button "Learn more" [ref=e102] [cursor=pointer]
+            - generic [ref=e103]:
+              - generic [ref=e109]:
+                - heading "Become a Direct Voter" [level=2] [ref=e110]
+                - generic [ref=e112]: Register to Vote on Governance Actions.
+              - generic [ref=e113]:
+                - button "Register" [ref=e114] [cursor=pointer]
+                - button "Learn more" [ref=e115] [cursor=pointer]
+            - generic [ref=e116]:
+              - generic [ref=e122]:
+                - heading "View Governance Actions" [level=2] [ref=e123]
+                - generic [ref=e125]: Review governance actions submitted on-chain.
+              - generic [ref=e126]:
+                - button "View Governance Actions" [ref=e127] [cursor=pointer]
+                - button "Learn more" [ref=e128] [cursor=pointer]
+            - generic [ref=e129]:
+              - generic [ref=e134]:
+                - heading "Propose a Governance Action" [level=2] [ref=e135]
+                - generic [ref=e137]: Submit your proposal for a Governance Action.
+              - generic [ref=e138]:
+                - button "Propose" [ref=e139] [cursor=pointer]
+                - button "Learn more" [ref=e140] [cursor=pointer]
+            - generic [ref=e142]:
+              - paragraph [ref=e143]: Useful links
+              - generic [ref=e144]:
+                - generic [ref=e145]:
+                  - paragraph [ref=e146]: Intersect website
+                  - paragraph [ref=e147]: Intersect is a member-based organization for the Cardano ecosystem — putting the community at the center of Cardano’s development.
+                  - link [ref=e148] [cursor=pointer]:
+                    - /url: https://www.intersectmbo.org/
+                    - paragraph [ref=e149]: Visit intersectmbo.org
+                    - img "Opens in a new tab" [ref=e150]
+                - generic [ref=e151]:
+                  - paragraph [ref=e152]: 2025 Budget Proposals
+                  - paragraph [ref=e153]: Archived. Read the 2025 budget proposals, their versions, DRep poll results and comments.
+                  - link [ref=e154] [cursor=pointer]:
+                    - /url: /budget_discussion
+                    - paragraph [ref=e155]: View the archive
+    - contentinfo [ref=e156]:
+      - generic [ref=e157]:
+        - generic [ref=e158]:
+          - img "Cardano GovTool" [ref=e159]
+          - paragraph [ref=e160]: A clearer connection to Cardano governance.
+          - generic [ref=e161]:
+            - link "Guides" [ref=e162] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+            - link "FAQs" [ref=e163] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/faqs
+            - link "Intersect ↗" [ref=e164] [cursor=pointer]:
+              - /url: https://www.intersectmbo.org/
+        - generic [ref=e165]:
+          - paragraph [ref=e166]: © 2026 GovTool
+          - generic [ref=e167]:
+            - link "Privacy policy" [ref=e168] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/privacy-policy
+            - link "Terms of Use" [ref=e169] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/terms-of-use
+            - link "Help" [ref=e170] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/support
+            - button "Feedback" [ref=e171] [cursor=pointer]
+```
+
+# Test source
+
+```ts
+  2   |   ABSTAIN_VOTE_DOC_URL,
+  3   |   DELEGATION_DOC_URL,
+  4   |   DIRECT_VOTER_DOC_URL,
+  5   |   GOVERNANCE_ACTION_DOC_URL,
+  6   |   PROPOSE_GOVERNANCE_ACTION_DOC_URL,
+  7   |   REGISTER_DREP_DOC_URL,
+  8   |   SIGNAL_NO_CONFIDENCE_VOTE_DOC_URL,
+  9   |   docsPage,
+  10  | } from "@constants/docsUrl";
+  11  | import { test } from "@fixtures/walletExtension";
+  12  | import { setAllureEpic } from "@helpers/allure";
+  13  | import { invalid as mockInvalid, valid as mockValid } from "@mock/index";
+  14  | import DRepDirectoryPage from "@pages/dRepDirectoryPage";
+  15  | import ProposalDiscussionPage from "@pages/proposalDiscussionPage";
+  16  | import { Page, expect } from "@playwright/test";
+  17  | import { connectTestWallet } from "lib/wallet/pageWallet";
+  18  | import { randomWallet } from "lib/wallet/testWallets";
+  19  | 
+  20  | test.beforeEach(async () => {
+  21  |   await setAllureEpic("6. Miscellaneous");
+  22  | });
+  23  | 
+  24  | test.describe("Logged in user", () => {
+  25  |   test.use({ walletName: "user01", walletFundsAda: 0 });
+  26  | 
+  27  |   test("6E. Should open Sanchonet docs in a new tab when clicking `Learn More` on dashboards in connected state.", async ({
+  28  |     page,
+  29  |     context,
+  30  |   }) => {
+  31  |     await page.goto("/");
+  32  | 
+  33  |     const [delegationLearnMorepage] = await Promise.all([
+  34  |       context.waitForEvent("page"),
+  35  |       page.getByTestId("delegate-learn-more-button").click(),
+  36  |     ]);
+  37  |     await expect(delegationLearnMorepage).toHaveURL(
+  38  |       docsPage(DELEGATION_DOC_URL)
+  39  |     );
+  40  | 
+  41  |     const [registerLearnMorepage] = await Promise.all([
+  42  |       context.waitForEvent("page"),
+  43  |       page.getByTestId("d-rep-learn-more-button").click(),
+  44  |     ]);
+  45  |     await expect(registerLearnMorepage).toHaveURL(
+  46  |       docsPage(REGISTER_DREP_DOC_URL)
+  47  |     );
+  48  | 
+  49  |     const [directVoterLearnMorepage] = await Promise.all([
+  50  |       context.waitForEvent("page"),
+  51  |       page.getByTestId("direct-voter-learn-more-button").first().click(),
+  52  |     ]);
+  53  |     await expect(directVoterLearnMorepage).toHaveURL(
+  54  |       docsPage(DIRECT_VOTER_DOC_URL)
+  55  |     );
+  56  | 
+  57  |     const [GA_LearnMorepage] = await Promise.all([
+  58  |       context.waitForEvent("page"),
+  59  |       page.getByTestId("list-gov-actions-learn-more-button").click(),
+  60  |     ]);
+  61  |     await expect(GA_LearnMorepage).toHaveURL(
+  62  |       docsPage(GOVERNANCE_ACTION_DOC_URL)
+  63  |     );
+  64  | 
+  65  |     const [proposed_GA_VoterLearnMorepage] = await Promise.all([
+  66  |       context.waitForEvent("page"),
+  67  |       page.getByTestId("propose-gov-action-learn-more-button").click(),
+  68  |     ]);
+  69  |     await expect(proposed_GA_VoterLearnMorepage).toHaveURL(
+  70  |       docsPage(PROPOSE_GOVERNANCE_ACTION_DOC_URL)
+  71  |     );
+  72  |   });
+  73  | 
+  74  |   test("6F. Should open sanchonet docs in a new tab when clicking `info` button of abstain and signal-no-confidence card", async ({
+  75  |     page,
+  76  |     context,
+  77  |   }) => {
+  78  |     const dRepDirectoryPage = new DRepDirectoryPage(page);
+  79  |     await dRepDirectoryPage.goto();
+  80  | 
+  81  |     await dRepDirectoryPage.automaticDelegationOptionsDropdown.click();
+  82  | 
+  83  |     const [abstain_Info_Page] = await Promise.all([
+  84  |       context.waitForEvent("page"),
+  85  |       dRepDirectoryPage.abstainInfoButton.click(),
+  86  |     ]);
+  87  |     await expect(abstain_Info_Page).toHaveURL(docsPage(ABSTAIN_VOTE_DOC_URL));
+  88  | 
+  89  |     const [signal_No_Confidence_Info_Page] = await Promise.all([
+  90  |       context.waitForEvent("page"),
+  91  |       dRepDirectoryPage.signalNoConfidenceInfoButton.click(),
+  92  |     ]);
+  93  |     await expect(signal_No_Confidence_Info_Page).toHaveURL(
+  94  |       docsPage(SIGNAL_NO_CONFIDENCE_VOTE_DOC_URL)
+  95  |     );
+  96  |   });
+  97  | 
+  98  |   test("6I. Should prompt for a username after clicking on proposal discussion link if username is not set", async ({
+  99  |     page,
+  100 |   }) => {
+  101 |     await page.goto("/");
+> 102 |     await page.getByTestId("proposal-discussion-link").click();
+      |                                                        ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  103 |     await page.getByTestId("verify-user-link").first().click();
+  104 | 
+  105 |     await expect(page.getByTestId("setup-username-modal")).toBeVisible();
+  106 |     await expect(page.getByTestId("username-input")).toBeVisible();
+  107 |   });
+  108 | });
+  109 | 
+  110 | test.describe("Temporary user", () => {
+  111 |   let userPage: Page;
+  112 |   let proposalDiscussionPage: ProposalDiscussionPage;
+  113 | 
+  114 |   test.beforeEach(async ({ page }) => {
+  115 |     await connectTestWallet(page, await randomWallet());
+  116 |     userPage = page;
+  117 | 
+  118 |     proposalDiscussionPage = new ProposalDiscussionPage(userPage);
+  119 |     await proposalDiscussionPage.goto();
+  120 |     await proposalDiscussionPage.verifyIdentityBtn.click();
+  121 |   });
+  122 | 
+  123 |   test("6J. Should add a username.", async () => {
+  124 |     await proposalDiscussionPage.setUsername(mockValid.username());
+  125 |   });
+  126 | 
+  127 |   test("6K. Should accept valid username.", async () => {
+  128 |     for (let i = 0; i < 100; i++) {
+  129 |       await userPage.getByTestId("username-input").fill(mockValid.username());
+  130 | 
+  131 |       await expect(
+  132 |         userPage.getByTestId("username-error-text")
+  133 |       ).not.toBeVisible();
+  134 |       await expect(userPage.getByTestId("proceed-button")).toBeEnabled();
+  135 |     }
+  136 |   });
+  137 | 
+  138 |   test("6L. Should reject invalid username.", async () => {
+  139 |     for (let i = 0; i < 100; i++) {
+  140 |       await userPage.getByTestId("username-input").fill(mockInvalid.username());
+  141 | 
+  142 |       await expect(userPage.getByTestId("username-error-text")).toBeVisible();
+  143 |       await expect(userPage.getByTestId("proceed-button")).toBeDisabled();
+  144 |     }
+  145 |   });
+  146 | });
+  147 | 
+```

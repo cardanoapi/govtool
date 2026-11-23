@@ -1,0 +1,3 @@
+✔ Uploaded Bernardo-6333e80f metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()

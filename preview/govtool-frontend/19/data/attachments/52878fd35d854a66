@@ -1,0 +1,353 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 6-miscellaneous/miscellaneous.spec.ts >> 6C. Navigation within the dApp
+- Location: tests/6-miscellaneous/miscellaneous.spec.ts:23:5
+
+# Error details
+
+```
+Error: expect(page).toHaveURL(expected) failed
+
+Expected pattern: /\/dreps/
+Received string:  "https://preview.gov.tools/drep_directory"
+Timeout: 5000ms
+
+Call log:
+  - Expect "toHaveURL" with timeout 5000ms
+    14 × locator resolved to <html lang="en">…</html>
+       - unexpected value "https://preview.gov.tools/drep_directory"
+
+```
+
+```yaml
+- text: "Network: Preview |"
+- link "Go to Mainnet":
+  - /url: https://gov.tools/
+- banner:
+  - link "Skip to main content":
+    - /url: "#main-content"
+  - link "Cardano GovTool":
+    - /url: /
+    - img "Cardano GovTool"
+  - navigation "Main":
+    - link "Home":
+      - /url: /
+    - link "DRep Directory":
+      - /url: /drep_directory
+    - link "Governance Actions":
+      - /url: /governance_actions
+    - link "Governance Activity":
+      - /url: /governance_activity
+    - link "Guides":
+      - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+  - button "Global Search"
+  - button "Connect Wallet"
+- main:
+  - heading "Find your Delegate Representatives" [level=1]
+  - paragraph: Find your designated Representative and explore their role, responsibilities, and representation of your constituency.
+  - button "Become a DRep"
+  - textbox "Search for a DRep name or ID"
+  - 'button "Status: Active"'
+  - 'button "Sort by: Voting Activity"'
+  - text: "Active filters: 1 Active"
+  - button "Remove filter Active"
+  - button "Clear all"
+  - list:
+    - listitem:
+      - article:
+        - link "Cassandre":
+          - /url: /drep_directory/drep19j7whd9ck5hx9aukm74y4w5c49d6ty3qauxskmw4k9u6239uasd
+        - text: Active
+        - button "More actions for Cassandre"
+        - text: Sit audio cognomen torrens. Sordeo beatus solus infit voveo. Voting power ₳ 0 Participation 14% Registered Oct 17, 2026
+        - button "Connect to delegate"
+    - listitem:
+      - article:
+        - link "Megan":
+          - /url: /drep_directory/drep1lsnftm4nahaj5y2s3mtxeyfnly9x8ajm5tjufuj0zmmc2zr0xe6
+        - text: Active
+        - button "More actions for Megan"
+        - text: Succurro delicate bellicus aestas callide delego terga. Vesco civis venio clamo. Voting power ₳ 0 Participation 14% Registered Oct 17, 2026
+        - button "Connect to delegate"
+    - listitem:
+      - article:
+        - link "Bennie":
+          - /url: /drep_directory/drep1f8wm94s9q02a6s8k0nlu5aq7rdz53amqqmqn83p5yvjzuu76hur
+        - text: Active
+        - button "More actions for Bennie"
+        - text: Curis conduco in hic fugiat articulus conor caecus tergiversatio. Velum vinco suscipit. Voting power ₳ 0 Participation 0% Registered Oct 16, 2026
+        - button "Connect to delegate"
+    - listitem:
+      - article:
+        - link "Everardo":
+          - /url: /drep_directory/drep15jrv2rfagjmrrr0z2gatczycpvx7jtz52wf3jzc3r4stk4jp9vm
+        - text: Active
+        - button "More actions for Everardo"
+        - text: Cicuta tempus abscido tempore cum fugiat pecco solutio. Impedit hic bene. Voting power ₳ 0 Participation 0% Registered Oct 16, 2026
+        - button "Connect to delegate"
+    - listitem:
+      - article:
+        - link "Lena":
+          - /url: /drep_directory/drep1xksms5l6qtmlxc00wm6786n073ps9nad9vwd36e9k5kzq6nqum2
+        - text: Active
+        - button "More actions for Lena"
+        - text: Desparatus stabilis blandior desparatus aestas tardus adfero. Creo velociter amita acervus vesper. Voting power ₳ 0 Participation 0% Registered Oct 16, 2026
+        - button "Connect to delegate"
+    - listitem:
+      - article:
+        - link "Leann":
+          - /url: /drep_directory/drep1mhzsfvwjwvaqf0n79fm9y4hu0hs0yv0a455prm09t0p0c4aprs0
+        - text: Active
+        - button "More actions for Leann"
+        - text: Dicta validus audeo. Delinquo tenetur charisma ambulo ocer sapiente nisi. Voting power ₳ 0 Participation 0% Registered Oct 16, 2026
+        - button "Connect to delegate"
+    - listitem:
+      - article:
+        - link "Arden":
+          - /url: /drep_directory/drep1r7cjp0h397h9r32wtq2sqc2ywma4f2pzw7qn6y5zulh5zk33ztq
+        - text: Active
+        - button "More actions for Arden"
+        - text: Angelus debilito cinis cerno. Aequitas vilitas brevis uter conservo tot tripudio conscendo. Voting power ₳ 0 Participation 0% Registered Oct 16, 2026
+        - button "Connect to delegate"
+    - listitem:
+      - article:
+        - link "Margot":
+          - /url: /drep_directory/drep1uuhkcgvppeypd5r70wz5xfsdyd52p8ztpm2q7l2kx2s9kcq8n6y
+        - text: Active
+        - button "More actions for Margot"
+        - text: Pecco considero debilito calamitas veritas avarus cupiditas censura. Coruscus cornu cornu trepide denuncio tersus admiratio bardus. Voting power ₳ 0 Participation 0% Registered Oct 16, 2026
+        - button "Connect to delegate"
+    - listitem:
+      - article:
+        - link "Toby":
+          - /url: /drep_directory/drep17dqck3rewwpr756h9jjm72eseds9dltduyrgnep6n6nr7wl6e3d
+        - text: Active
+        - button "More actions for Toby"
+        - text: Charisma cribro contabesco cognomen cibus neque aetas numquam adulatio. Taceo defero certe defero libero. Voting power ₳ 0 Participation 0% Registered Oct 15, 2026
+        - button "Connect to delegate"
+    - listitem:
+      - article:
+        - link "Ward":
+          - /url: /drep_directory/drep17590r7h73j5artgfu852ut7q62lu6l5excnh9r6ja5w8vwsvkdg
+        - text: Active
+        - button "More actions for Ward"
+        - text: Conor adeptio aestus defungo calcar custodia. Delectus demulceo coruscus aveho. Voting power ₳ 0 Participation 0% Registered Oct 15, 2026
+        - button "Connect to delegate"
+    - listitem:
+      - article:
+        - link "Dariana":
+          - /url: /drep_directory/drep1wmsugafvrp095xjw4gfwc9l43y6qu4l9283e055vnqwgzzg6d04
+        - text: Active
+        - button "More actions for Dariana"
+        - text: Amita voluptas cura cito coaegresco acervus suscipio. Acceptus vetus vorago pauper. Voting power ₳ 0 Participation 0% Registered Oct 15, 2026
+        - button "Connect to delegate"
+    - listitem:
+      - article:
+        - link "Lisa":
+          - /url: /drep_directory/drep1uasdwc4qas3ztcj34lu333lr7yvjuml0ugzwhs473urkwytuxd7
+        - text: Active
+        - button "More actions for Lisa"
+        - text: Pecco atque trepide quos adflicto tergum cultura cribro. Odit volup statua colligo ultra vilicus suffragium admiratio pectus. Voting power ₳ 0 Participation 0% Registered Oct 15, 2026
+        - button "Connect to delegate"
+  - navigation "Pagination":
+    - paragraph: Showing 1–12 of 191 results
+    - paragraph: "Rows per page:"
+    - combobox: "12"
+    - button "Previous" [disabled]
+    - button "1"
+    - button "2"
+    - paragraph: …
+    - button "16"
+    - button "Next"
+  - text: Governance
+  - heading "What is a DRep? Shape Cardano's future with your voice." [level=2]
+  - paragraph: Delegated Representatives (DReps) vote on governance actions on behalf of ADA holders. Learn how you can make an impact in Cardano's on-chain democracy.
+  - link "Learn about DReps":
+    - /url: https://docs.gov.tools/cardano-govtool/using-govtool/dreps
+- contentinfo:
+  - img "Cardano GovTool"
+  - paragraph: A clearer connection to Cardano governance.
+  - link "Guides":
+    - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+  - link "FAQs":
+    - /url: https://docs.gov.tools/cardano-govtool/faqs
+  - link "Intersect ↗":
+    - /url: https://www.intersectmbo.org/
+  - paragraph: © 2026 GovTool
+  - link "Privacy policy":
+    - /url: https://docs.gov.tools/legal/privacy-policy
+  - link "Terms of Use":
+    - /url: https://docs.gov.tools/legal/terms-of-use
+  - link "Help":
+    - /url: https://docs.gov.tools/cardano-govtool/support
+  - button "Feedback"
+```
+
+# Test source
+
+```ts
+  1   | import {
+  2   |   BOOTSTRAP_DOC_URL,
+  3   |   DELEGATION_DOC_URL,
+  4   |   DIRECT_VOTER_DOC_URL,
+  5   |   FAQS_DOC_URL,
+  6   |   GUIDES_DOC_URL,
+  7   |   HELP_DOC_URL,
+  8   |   PRIVACY_POLICY,
+  9   |   REGISTER_DREP_DOC_URL,
+  10  |   TERMS_AND_CONDITIONS,
+  11  |   docsPage,
+  12  | } from "@constants/docsUrl";
+  13  | import { test } from "@fixtures/walletExtension";
+  14  | import { setAllureEpic } from "@helpers/allure";
+  15  | import { isMobile, openDrawer } from "@helpers/mobile";
+  16  | import { expect, Page } from "@playwright/test";
+  17  | import environments from "lib/constants/environments";
+  18  | 
+  19  | test.beforeEach(async () => {
+  20  |   await setAllureEpic("6. Miscellaneous");
+  21  | });
+  22  | 
+  23  | test("6C. Navigation within the dApp", async ({ page, context }) => {
+  24  |   await page.goto("/");
+  25  | 
+  26  |   const navbarLinks = [
+  27  |     { testId: "dashboard-link", url: `${environments.frontendUrl}/` },
+  28  |     { testId: "drep-directory-link", urlPattern: /\/dreps/ },
+  29  |     {
+  30  |       testId: "proposed-governance-actions-link",
+  31  |       urlPattern: /\/proposals/,
+  32  |       isDropdownContent: true,
+  33  |     },
+  34  |     {
+  35  |       testId: "governance-actions-link",
+  36  |       urlPattern: /\/actions/,
+  37  |       isDropdownContent: true,
+  38  |     },
+  39  |     {
+  40  |       testId: "governance-actions-governance-actions-link",
+  41  |       urlPattern: /\/actions\/history/,
+  42  |       isDropdownContent: true,
+  43  |     },
+  44  |   ];
+  45  | 
+  46  |   for (const link of navbarLinks) {
+  47  |     if (isMobile(page)) {
+  48  |       await openDrawer(page);
+  49  |     }
+  50  | 
+  51  |     if (!isMobile(page) && !!link.isDropdownContent) {
+  52  |       await page.getByTestId("governance-actions").click();
+  53  |     }
+  54  |     await page.getByTestId(link.testId).click();
+  55  | 
+  56  |     if (link.url) {
+  57  |       expect(page.url()).toEqual(link.url);
+  58  |     } else {
+> 59  |       await expect(page).toHaveURL(link.urlPattern);
+      |                          ^ Error: expect(page).toHaveURL(expected) failed
+  60  |     }
+  61  |   }
+  62  | 
+  63  |   const externalLinks = [
+  64  |     { testId: "guides-link", url: GUIDES_DOC_URL },
+  65  |     { testId: "faqs-link", url: FAQS_DOC_URL },
+  66  |   ];
+  67  | 
+  68  |   for (const link of externalLinks) {
+  69  |     if (isMobile(page)) {
+  70  |       await openDrawer(page);
+  71  |     }
+  72  |     const [newPage] = await Promise.all([
+  73  |       context.waitForEvent("page"),
+  74  |       page.getByTestId(link.testId).click(),
+  75  |     ]);
+  76  |     await expect(newPage).toHaveURL(docsPage(link.url));
+  77  |   }
+  78  | });
+  79  | 
+  80  | test("6D. Should open Sanchonet docs in a new tab when clicking `Learn More` on dashboards in disconnected state.", async ({
+  81  |   page,
+  82  |   context,
+  83  | }) => {
+  84  |   await page.goto("/");
+  85  | 
+  86  |   const [delegationLearnMorepage] = await Promise.all([
+  87  |     context.waitForEvent("page"),
+  88  |     page.getByTestId("delegate-learn-more-button").click(),
+  89  |   ]);
+  90  |   await expect(delegationLearnMorepage).toHaveURL(docsPage(DELEGATION_DOC_URL));
+  91  | 
+  92  |   const [registerLearnMorepage] = await Promise.all([
+  93  |     context.waitForEvent("page"),
+  94  |     page.getByTestId("d-rep-learn-more-button").click(),
+  95  |   ]);
+  96  |   await expect(registerLearnMorepage).toHaveURL(
+  97  |     docsPage(REGISTER_DREP_DOC_URL)
+  98  |   );
+  99  | 
+  100 |   const [directVoterLearnMorepage] = await Promise.all([
+  101 |     context.waitForEvent("page"),
+  102 |     page.getByTestId("direct-voter-learn-more-button").click(),
+  103 |   ]);
+  104 |   await expect(directVoterLearnMorepage).toHaveURL(
+  105 |     docsPage(DIRECT_VOTER_DOC_URL)
+  106 |   );
+  107 | });
+  108 | 
+  109 | test("6M. Should navigate between footer links", async ({ page, context }) => {
+  110 |   await page.goto("/");
+  111 | 
+  112 |   const [privacyPolicy] = await Promise.all([
+  113 |     context.waitForEvent("page"),
+  114 |     page.getByTestId("privacy-policy-footer-link").click(),
+  115 |   ]);
+  116 |   await expect(privacyPolicy).toHaveURL(docsPage(PRIVACY_POLICY));
+  117 | 
+  118 |   const [termsAndConditions] = await Promise.all([
+  119 |     context.waitForEvent("page"),
+  120 |     page.getByTestId("terms-of-use-footer-link").click(),
+  121 |   ]);
+  122 |   await expect(termsAndConditions).toHaveURL(docsPage(TERMS_AND_CONDITIONS));
+  123 | 
+  124 |   const [helpUrl] = await Promise.all([
+  125 |     context.waitForEvent("page"),
+  126 |     page.getByTestId("help-footer-button").click(),
+  127 |   ]);
+  128 |   await expect(helpUrl).toHaveURL(docsPage(HELP_DOC_URL));
+  129 | });
+  130 | 
+  131 | test("6O. Should display proper network name", async ({ page }) => {
+  132 |   await page.route("**/network/info", async (route) => {
+  133 |     // Fetch the original response from the server
+  134 |     const response = await route.fetch();
+  135 |     const json = await response.json();
+  136 | 
+  137 |     const networkNames = ["sanchonet", "preview"];
+  138 |     // update network name
+  139 |     json["networkName"] =
+  140 |       networkNames[Math.floor(Math.random() * networkNames.length)];
+  141 |     await route.fulfill({
+  142 |       status: 200,
+  143 |       contentType: "application/json",
+  144 |       body: JSON.stringify(json),
+  145 |     });
+  146 |   });
+  147 |   const responsePromise = page.waitForResponse("**/network/info");
+  148 |   await page.goto("/");
+  149 | 
+  150 |   const response = await responsePromise;
+  151 |   const responseBody = await response.json();
+  152 | 
+  153 |   await expect(page.getByTestId("system-network-name")).toHaveText(
+  154 |     new RegExp(responseBody["networkName"], "i")
+  155 |   );
+  156 | });
+  157 | 
+```

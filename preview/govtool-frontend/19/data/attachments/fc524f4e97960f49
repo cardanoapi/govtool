@@ -1,0 +1,184 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 5-proposal-functionality/proposalFunctionality.dRep.spec.ts >> Proposal checks >> Validate provide context about vote >> 5D_2. Should reject invalid data in provide context
+- Location: tests/5-proposal-functionality/proposalFunctionality.dRep.spec.ts:118:9
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByTestId('to-vote-tab')
+Expected: visible
+Timeout: 60000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 60000ms
+  - waiting for getByTestId('to-vote-tab')
+
+```
+
+```yaml
+- text: "Network: Preview |"
+- link "Go to Mainnet":
+  - /url: https://gov.tools/
+- paragraph: Whoops!
+- paragraph: This page is not available
+- paragraph: Error 404
+- button "Back to dashboard"
+- img "error-page"
+```
+
+# Test source
+
+```ts
+  1   | import environments from "@constants/environments";
+  2   | import { faker } from "@faker-js/faker";
+  3   | import { test } from "@fixtures/walletExtension";
+  4   | import { setAllureEpic } from "@helpers/allure";
+  5   | import {
+  6   |   isBootStrapingPhase,
+  7   |   skipIfMainnet,
+  8   | } from "@helpers/cardano";
+  9   | import { parseGovActionCIP129Id } from "@helpers/encodeDecode";
+  10  | import { createNewPageWithWallet } from "@helpers/page";
+  11  | import { waitForTxConfirmation } from "@helpers/transaction";
+  12  | import GovernanceActionDetailsPage from "@pages/governanceActionDetailsPage";
+  13  | import GovernanceActionsPage from "@pages/governanceActionsPage";
+  14  | import { Page, expect } from "@playwright/test";
+  15  | import { GovernanceActionType } from "@types";
+  16  | import { sharedDRep } from "lib/wallet/sharedDReps";
+  17  | import { adaBalance } from "lib/wallet/testWallets";
+  18  | import { registeredDRepWallet } from "lib/wallet/transactions";
+  19  | 
+  20  | test.beforeEach(async () => {
+  21  |   await setAllureEpic("5. Proposal functionality");
+  22  |   await skipIfMainnet();
+  23  | });
+  24  | 
+  25  | test.describe("Proposal checks", () => {
+  26  |   test.use({ walletName: "dRep01" });
+  27  | 
+  28  |   test.beforeAll(async () => {
+  29  |     test.setTimeout(2 * environments.txTimeOut);
+  30  |     await sharedDRep("dRep01");
+  31  |   });
+  32  | 
+  33  |   let govActionDetailsPage: GovernanceActionDetailsPage;
+  34  |   let currentPage: Page;
+  35  | 
+  36  |   test.beforeEach(async ({ page }) => {
+  37  |     const govActionsPage = new GovernanceActionsPage(page);
+  38  |     await govActionsPage.goto();
+  39  | 
+  40  |     // assert to wait until the loading button is hidden
+> 41  |     await expect(page.getByTestId("to-vote-tab")).toBeVisible({
+      |                                                   ^ Error: expect(locator).toBeVisible() failed
+  42  |       timeout: 60_000,
+  43  |     });
+  44  | 
+  45  |     currentPage = page;
+  46  |     govActionDetailsPage = (await isBootStrapingPhase())
+  47  |       ? await govActionsPage.viewFirstProposalByGovernanceAction(
+  48  |           GovernanceActionType.InfoAction
+  49  |         )
+  50  |       : await govActionsPage.viewFirstProposal();
+  51  |   });
+  52  | 
+  53  |   test("5A. Should show relevant details about governance action as DRep", async () => {
+  54  |     // The page is /actions/gov_action1…, the action's CIP-129 id.
+  55  |     const cip129GovActionId = new URL(currentPage.url()).pathname
+  56  |       .split("/")
+  57  |       .pop();
+  58  |     const { txHash, index } = parseGovActionCIP129Id(cip129GovActionId);
+  59  |     const governanceActionIdWithIndex = `${txHash}#${index}`;
+  60  | 
+  61  |     await expect(govActionDetailsPage.governanceActionType).toBeVisible();
+  62  |     await expect(govActionDetailsPage.submittedDate).toBeVisible();
+  63  |     await expect(govActionDetailsPage.expiryDate).toBeVisible();
+  64  |     await expect(
+  65  |       currentPage.getByTestId(`${governanceActionIdWithIndex}-id`)
+  66  |     ).toBeVisible();
+  67  |     await expect(
+  68  |       currentPage.getByTestId(`${cip129GovActionId}-id`)
+  69  |     ).toBeVisible();
+  70  | 
+  71  |     await expect(govActionDetailsPage.showVotesBtn).toBeVisible();
+  72  | 
+  73  |     await expect(govActionDetailsPage.voteBtn).toBeVisible();
+  74  |     await expect(govActionDetailsPage.yesVoteRadio).toBeVisible();
+  75  |     await expect(govActionDetailsPage.noVoteRadio).toBeVisible();
+  76  |     await expect(govActionDetailsPage.abstainRadio).toBeVisible();
+  77  |   });
+  78  | 
+  79  |   test("5C. Should show required field in proposal voting on registered as DRep", async () => {
+  80  |     await expect(govActionDetailsPage.voteBtn).toBeVisible();
+  81  |     await expect(govActionDetailsPage.yesVoteRadio).toBeVisible();
+  82  |     await expect(govActionDetailsPage.noVoteRadio).toBeVisible();
+  83  |     await expect(govActionDetailsPage.abstainRadio).toBeVisible();
+  84  | 
+  85  |     await govActionDetailsPage.yesVoteRadio.click();
+  86  |     await govActionDetailsPage.voteBtn.click();
+  87  | 
+  88  |     await expect(govActionDetailsPage.contextInput).toBeVisible();
+  89  |     await govActionDetailsPage.cancelModalBtn.click();
+  90  | 
+  91  |     await expect(govActionDetailsPage.voteBtn).toBeEnabled();
+  92  |   });
+  93  | 
+  94  |   test.describe("Validate provide context about vote", () => {
+  95  |     const characters =
+  96  |       "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  97  |     test("5D_1. Should accept valid data in provide context", async () => {
+  98  | 
+  99  |       await govActionDetailsPage.yesVoteRadio.click()
+  100 |       await govActionDetailsPage.voteBtn.click()
+  101 | 
+  102 |       await expect(govActionDetailsPage.contextInput).toBeVisible();
+  103 | 
+  104 |       for (let i = 0; i < 100; i++) {
+  105 |         const randomContext = faker.string.fromCharacters(characters, {
+  106 |           min: 1,
+  107 |           max: 9999,
+  108 |         });
+  109 |         await govActionDetailsPage.contextInput.fill(randomContext);
+  110 |         expect(await govActionDetailsPage.contextInput.textContent()).toEqual(
+  111 |           randomContext
+  112 |         );
+  113 | 
+  114 |         await expect(govActionDetailsPage.confirmModalBtn).toBeVisible();
+  115 |       }
+  116 |     });
+  117 | 
+  118 |     test("5D_2. Should reject invalid data in provide context", async () => {
+  119 |       await govActionDetailsPage.yesVoteRadio.click()
+  120 |       await govActionDetailsPage.voteBtn.click()
+  121 | 
+  122 |       await expect(govActionDetailsPage.contextInput).toBeVisible();
+  123 | 
+  124 |       for (let i = 0; i < 100; i++) {
+  125 |         const randomContext = faker.string.fromCharacters(characters, 10001);
+  126 |         await govActionDetailsPage.contextInput.fill(randomContext);
+  127 |         expect(
+  128 |           await govActionDetailsPage.contextInput.textContent()
+  129 |         ).not.toEqual(randomContext);
+  130 |       }
+  131 |     });
+  132 |   });
+  133 | });
+  134 | 
+  135 | test.describe("Perform voting", () => {
+  136 |   let govActionDetailsPage: GovernanceActionDetailsPage;
+  137 |   let dRepPage: Page;
+  138 |   let govActionsPage: GovernanceActionsPage;
+  139 | 
+  140 |   test.beforeEach(async ({ browser }, testInfo) => {
+  141 |     test.setTimeout(testInfo.timeout + 2 * environments.txTimeOut);
+```

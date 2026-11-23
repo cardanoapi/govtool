@@ -1,0 +1,248 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 4-proposal-visibility/proposalVisibility.dRep.spec.ts >> Check vote count >> 4G. Should display correct vote counts on governance details page for DRep
+- Location: tests/4-proposal-visibility/proposalVisibility.dRep.spec.ts:117:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: page.waitForResponse: Test timeout of 180000ms exceeded.
+=========================== logs ===========================
+waiting for response "**/proposal/list?**"
+============================================================
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e11]: Whoops!
+      - paragraph [ref=e12]: This page is not available
+      - paragraph [ref=e13]: Error 404
+      - button "Back to dashboard" [ref=e14] [cursor=pointer]
+    - img "error-page" [ref=e16]
+```
+
+# Test source
+
+```ts
+  25  | test.beforeEach(async () => {
+  26  |   await setAllureEpic("4. Proposal visibility");
+  27  |   await skipIfMainnet();
+  28  | });
+  29  | 
+  30  | test.describe("Logged in DRep", () => {
+  31  |   test.use({ walletName: "dRep01" });
+  32  | 
+  33  |   test.beforeAll(async () => {
+  34  |     test.setTimeout(2 * environments.txTimeOut);
+  35  |     await sharedDRep("dRep01");
+  36  |   });
+  37  | 
+  38  |   test("4E. Should display DRep's voting power in governance actions page", async ({
+  39  |     page,
+  40  |   }) => {
+  41  |     const votingPowerPromise = page.waitForResponse("**/get-voting-power/**");
+  42  |     const governanceActionsPage = new GovernanceActionsPage(page);
+  43  |     await governanceActionsPage.goto();
+  44  | 
+  45  |     const res = await votingPowerPromise;
+  46  |     const votingPower = await res.json();
+  47  | 
+  48  |     await expect(page.getByTestId("voting-power-chips-value")).toHaveText(
+  49  |       `₳ ${lovelaceToAda(votingPower)}`,
+  50  |       { timeout: 60_000 }
+  51  |     );
+  52  |   });
+  53  | 
+  54  |   test.describe("Vote context metadata anchor validation", () => {
+  55  |     let govActionDetailsPage: GovernanceActionDetailsPage;
+  56  |     test.beforeEach(async ({ page }) => {
+  57  |       const govActionsPage = new GovernanceActionsPage(page);
+  58  |       await govActionsPage.goto();
+  59  | 
+  60  |       // assert to wait until the loading button is hidden
+  61  |       await expect(page.getByTestId("to-vote-tab")).toBeVisible({
+  62  |         timeout: 60_000,
+  63  |       });
+  64  | 
+  65  |       govActionDetailsPage = (await isBootStrapingPhase())
+  66  |         ? await govActionsPage.viewFirstProposalByGovernanceAction(
+  67  |             GovernanceActionType.InfoAction
+  68  |           )
+  69  |         : await govActionsPage.viewFirstProposal();
+  70  |       
+  71  |       await govActionDetailsPage.yesVoteRadio.click();
+  72  |       await govActionDetailsPage.voteBtn.click()
+  73  | 
+  74  |       
+  75  |       await govActionDetailsPage.contextInput.fill(faker.lorem.sentence(200));
+  76  |       await govActionDetailsPage.confirmModalBtn.click();
+  77  |       await govActionDetailsPage.downloadAndStoreYourselfOptionBtn.click();
+  78  |       await page.getByRole("checkbox").click();
+  79  |       await govActionDetailsPage.confirmModalBtn.click();
+  80  |     });
+  81  | 
+  82  |     test("4N. Should accept valid metadata anchor on vote context", async ({
+  83  |       page,
+  84  |     }) => {
+  85  |       for (let i = 0; i < 100; i++) {
+  86  |         await govActionDetailsPage.metadataUrlInput.fill(mockValid.url());
+  87  |         await expect(page.getByTestId("invalid-url-error")).toBeHidden();
+  88  |       }
+  89  |     });
+  90  | 
+  91  |     test("4O. Should reject invalid metadata anchor on vote context", async ({
+  92  |       page,
+  93  |     }) => {
+  94  |       for (let i = 0; i < 100; i++) {
+  95  |         const invalidUrl = mockInvalid.url(false);
+  96  |         await govActionDetailsPage.metadataUrlInput.fill(invalidUrl);
+  97  |         if (invalidUrl.length <= 128) {
+  98  |           await expect(page.getByTestId("invalid-url-error")).toBeVisible();
+  99  |         } else {
+  100 |           await expect(
+  101 |             page.getByTestId("url-must-be-less-than-128-bytes-error")
+  102 |           ).toBeVisible();
+  103 |         }
+  104 |       }
+  105 |     });
+  106 |   });
+  107 | });
+  108 | 
+  109 | test.describe("Check vote count", () => {
+  110 |   test.use({ walletName: "dRep01" });
+  111 | 
+  112 |   test.beforeAll(async () => {
+  113 |     test.setTimeout(2 * environments.txTimeOut);
+  114 |     await sharedDRep("dRep01");
+  115 |   });
+  116 | 
+  117 |   test("4G. Should display correct vote counts on governance details page for DRep", async ({
+  118 |     page,
+  119 |     browser,
+  120 |     wallet,
+  121 |   }) => {
+  122 |     const voteWhiteListOption = (await isBootStrapingPhase())
+  123 |       ? { InfoAction: "InfoAction" }
+  124 |       : GovernanceActionType;
+> 125 |     const responsePromise = page.waitForResponse("**/proposal/list?**");
+      |                                  ^ Error: page.waitForResponse: Test timeout of 180000ms exceeded.
+  126 | 
+  127 |     const governanceActionsPage = new GovernanceActionsPage(page);
+  128 |     await governanceActionsPage.goto();
+  129 | 
+  130 |     const response = await responsePromise;
+  131 |     const allowedTypes = Object.values(voteWhiteListOption);
+  132 |     const proposals: IProposal[] = (await response.json()).elements.filter(
+  133 |       (proposal: IProposal) => allowedTypes.includes(proposal.type)
+  134 |     );
+  135 | 
+  136 |     const uniqueProposalTypes = Array.from(
+  137 |       new Map(proposals.map((proposal) => [proposal.type, proposal])).values()
+  138 |     );
+  139 | 
+  140 |     expect(proposals.length, "No proposals found!").toBeGreaterThan(0);
+  141 | 
+  142 |     await Promise.all(
+  143 |       uniqueProposalTypes.map(async (proposalToCheck) => {
+  144 |         const dRepPage = await createNewPageWithWallet(browser, {
+  145 |           wallet: wallet!,
+  146 |         });
+  147 | 
+  148 |         const totalStakeResponsePromise = dRepPage.waitForResponse((response) =>
+  149 |           response.url().includes(`network/total-stake`)
+  150 |         );
+  151 |         // The totals the page renders: stake moves every epoch, which on a
+  152 |         // devnet is a minute, so the list read earlier can be a boundary behind.
+  153 |         // The page keeps the first answer's totals; the read it repeats once
+  154 |         // the wallet's DRep id is known only adds the DRep's vote.
+  155 |         const shownProposalPromise = dRepPage.waitForResponse((response) =>
+  156 |           response.url().includes("/proposal/get/")
+  157 |         );
+  158 |         const govActionDetailsPage = new GovernanceActionDetailsPage(dRepPage);
+  159 |         await govActionDetailsPage.goto(
+  160 |           `${proposalToCheck.txHash}#${proposalToCheck.index}`
+  161 |         );
+  162 |         const shown: IProposal = (await (await shownProposalPromise).json())
+  163 |           .proposal;
+  164 | 
+  165 |         await govActionDetailsPage.showVotesBtn.click();
+  166 | 
+  167 |         const dRepTotalAbstainVote =
+  168 |           await govActionDetailsPage.getDRepTotalAbstainVoted(
+  169 |             shown,
+  170 |             totalStakeResponsePromise
+  171 |           );
+  172 | 
+  173 |         // check dRep votes
+  174 |         if (await areDRepVoteTotalsDisplayed(shown)) {
+  175 |           await expect(govActionDetailsPage.dRepYesVotes).toHaveText(
+  176 |             `₳ ${correctVoteAdaFormat(shown.dRepYesVotes)}`
+  177 |           );
+  178 |           await expect(govActionDetailsPage.dRepAbstainVotes).toHaveText(
+  179 |             `₳ ${correctVoteAdaFormat(dRepTotalAbstainVote)}`
+  180 |           );
+  181 |           await expect(govActionDetailsPage.dRepNoVotes).toHaveText(
+  182 |             `₳ ${correctVoteAdaFormat(shown.dRepNoVotes)}`
+  183 |           );
+  184 |         }
+  185 | 
+  186 |         // check sPos votes
+  187 |         if (await areSPOVoteTotalsDisplayed(shown)) {
+  188 |           await expect(govActionDetailsPage.sPosYesVotes).toHaveText(
+  189 |             `₳ ${correctVoteAdaFormat(shown.poolYesVotes)}`
+  190 |           );
+  191 |           await expect(govActionDetailsPage.sPosAbstainVotes).toHaveText(
+  192 |             `₳ ${correctVoteAdaFormat(shown.poolAbstainVotes)}`
+  193 |           );
+  194 |           await expect(govActionDetailsPage.sPosNoVotes).toHaveText(
+  195 |             `₳ ${correctVoteAdaFormat(shown.poolNoVotes)}`
+  196 |           );
+  197 |         }
+  198 | 
+  199 |         // check ccCommittee votes
+  200 |         if (areCCVoteTotalsDisplayed(shown)) {
+  201 |           await expect(govActionDetailsPage.ccCommitteeYesVotes).toHaveText(
+  202 |             `${shown.ccYesVotes}`
+  203 |           );
+  204 |           await expect(govActionDetailsPage.ccCommitteeAbstainVotes).toHaveText(
+  205 |             `${shown.ccAbstainVotes}`
+  206 |           );
+  207 |           await expect(govActionDetailsPage.ccCommitteeNoVotes).toHaveText(
+  208 |             `${shown.ccNoVotes}`
+  209 |           );
+  210 |         }
+  211 |       })
+  212 |     );
+  213 |   });
+  214 | });
+  215 | 
+  216 | test("4F. Should Disable DRep functionality upon wallet disconnection on governance actions page", async ({
+  217 |   browser,
+  218 | }, testInfo) => {
+  219 |   test.setTimeout(testInfo.timeout + 2 * environments.txTimeOut);
+  220 | 
+  221 |   const wallet = await registeredDRepWallet("4F:dRep");
+  222 | 
+  223 |   const dRepPage = await createNewPageWithWallet(browser, { wallet });
+  224 | 
+  225 |   const governanceActionsPage = new GovernanceActionsPage(dRepPage);
+```

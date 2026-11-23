@@ -1,0 +1,207 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: cip179/survey.spec.ts >> 179-3C: declining wallet signing never submits a transaction
+- Location: tests/cip179/survey.spec.ts:417:5
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByTestId('yes-radio')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for getByTestId('yes-radio')
+
+```
+
+```yaml
+- text: "Network: Preview |"
+- link "Go to Mainnet":
+  - /url: https://gov.tools/
+- paragraph: Whoops!
+- paragraph: This page is not available
+- paragraph: Error 404
+- button "Back to dashboard"
+- img "error-page"
+```
+
+# Test source
+
+```ts
+  196 |     expiryDate: "2099-01-01T00:00:00Z",
+  197 |     expiryEpochNo: 531,
+  198 |     metadataHash: "66".repeat(32),
+  199 |     url: "https://fixture.invalid/action.jsonld",
+  200 |     protocolParams: null,
+  201 |     references: [],
+  202 |     dRepYesVotes: 0,
+  203 |     dRepNoVotes: 0,
+  204 |     dRepAbstainVotes: 0,
+  205 |     ccYesVotes: 0,
+  206 |     ccNoVotes: 0,
+  207 |     ccAbstainVotes: 0,
+  208 |     poolYesVotes: 0,
+  209 |     poolNoVotes: 0,
+  210 |     poolAbstainVotes: 0,
+  211 |     json: {
+  212 |       body:
+  213 |         options.linked === false
+  214 |           ? {}
+  215 |           : {
+  216 |               cip179: {
+  217 |                 specVersion: 5,
+  218 |                 kind: "survey-link",
+  219 |                 surveyTxId: surveyHash,
+  220 |                 surveyIndex: 0,
+  221 |               },
+  222 |             },
+  223 |     },
+  224 |   };
+  225 |   await page.route("**/*", async (route) => {
+  226 |     const url = new URL(route.request().url());
+  227 |     if (
+  228 |       url.href === "https://fixture.invalid/presentation.json" &&
+  229 |       options.presentation
+  230 |     ) {
+  231 |       return route.fulfill({
+  232 |         contentType: "application/json",
+  233 |         ...options.presentation,
+  234 |       });
+  235 |     }
+  236 |     // No test is allowed to reach a real API, wallet backend or third party.
+  237 |     if (url.origin !== origin) return route.abort();
+  238 |     if (!url.pathname.startsWith("/fixture-")) return route.continue();
+  239 |     requests.push(url.pathname);
+  240 |     let json: unknown;
+  241 |     let status = 200;
+  242 |     if (url.pathname === "/fixture-api/epoch/params") json = params;
+  243 |     else if (url.pathname === "/fixture-api/network/info")
+  244 |       json = {
+  245 |         networkName: "preview",
+  246 |         currentEpoch: 500,
+  247 |         currentTime: "2026-01-01T00:00:00Z",
+  248 |         currentBlock: 1,
+  249 |       };
+  250 |     else if (url.pathname.startsWith("/fixture-api/drep/info/"))
+  251 |       json = {
+  252 |         isRegisteredAsDRep: options.registered ?? true,
+  253 |         isRegisteredAsSoleVoter: false,
+  254 |         votingPower: 5000000000,
+  255 |         givenName: "Test DRep",
+  256 |       };
+  257 |     else if (url.pathname.startsWith("/fixture-api/account/"))
+  258 |       json = {
+  259 |         isRegistered: true,
+  260 |         isScriptBased: false,
+  261 |         view: stakeAddress.to_bech32(),
+  262 |         id: 1,
+  263 |       };
+  264 |     else if (url.pathname.startsWith("/fixture-api/proposal/get/"))
+  265 |       json = { proposal, vote: null };
+  266 |     else if (url.pathname.startsWith("/fixture-api/proposal/list"))
+  267 |       json = { elements: [], total: 0, page: 0, pageSize: 10 };
+  268 |     else if (url.pathname.startsWith("/fixture-api/survey/definition/")) {
+  269 |       json = options.envelope ?? envelope(options.survey);
+  270 |       status = options.surveyStatus ?? 200;
+  271 |     } else if (url.pathname === "/fixture-api/metadata/validate")
+  272 |       json = { valid: true, status: null, metadata: proposal };
+  273 |     else if (url.pathname === "/fixture-api/network/total-stake")
+  274 |       json = {
+  275 |         totalStakeControlledByDReps: 1,
+  276 |         totalStakeControlledBySPOs: 1,
+  277 |         alwaysAbstainVotingPower: 0,
+  278 |         alwaysNoConfidenceVotingPower: 0,
+  279 |       };
+  280 |     else if (url.pathname === "/fixture-api/network/metrics")
+  281 |       json = {
+  282 |         noOfCommitteeMembers: 3,
+  283 |         quorumNumerator: 2,
+  284 |         quorumDenominator: 3,
+  285 |       };
+  286 |     else if (url.pathname.startsWith("/fixture-api/transaction/"))
+  287 |       json = { transactionConfirmed: false, votingProcedure: [] };
+  288 |     else json = null;
+  289 |     await route.fulfill({ status, json });
+  290 |   });
+  291 |   return { transactions, requests, errors };
+  292 | }
+  293 | 
+  294 | export async function openVote(page: Page) {
+  295 |   await page.goto(`/actions/${getGovActionCIP129Id(actionHash, 0)}`);
+> 296 |   await expect(page.getByTestId("yes-radio")).toBeVisible();
+      |                                               ^ Error: expect(locator).toBeVisible() failed
+  297 |   await page.getByTestId("yes-radio").click();
+  298 | }
+  299 | 
+  300 | export async function submitVote(page: Page) {
+  301 |   await page.getByTestId("vote-button").click();
+  302 |   await page.getByTestId("confirm-modal-button").click();
+  303 | }
+  304 | 
+  305 | export function checkTransaction(transactions: {
+  306 |   unsigned: string[];
+  307 |   signed: string[];
+  308 | }) {
+  309 |   expect(transactions.unsigned).toHaveLength(1);
+  310 |   expect(transactions.signed).toHaveLength(1);
+  311 |   const unsigned = CSL.Transaction.from_hex(transactions.unsigned[0]);
+  312 |   const signed = CSL.Transaction.from_hex(transactions.signed[0]);
+  313 |   expect(signed.body().to_hex()).toBe(unsigned.body().to_hex());
+  314 |   expect(signed.auxiliary_data()?.to_hex()).toBe(
+  315 |     unsigned.auxiliary_data()?.to_hex()
+  316 |   );
+  317 |   const aux = signed.auxiliary_data();
+  318 |   expect(signed.body().auxiliary_data_hash()?.to_hex()).toBe(
+  319 |     aux ? CSL.hash_auxiliary_data(aux).to_hex() : undefined
+  320 |   );
+  321 |   const witness = signed.witness_set().vkeys()!.get(0);
+  322 |   expect(
+  323 |     witness
+  324 |       .vkey()
+  325 |       .public_key()
+  326 |       .verify(
+  327 |         blake2b(signed.body().to_bytes(), undefined, 32),
+  328 |         witness.signature()
+  329 |       )
+  330 |   ).toBe(true);
+  331 |   expect(
+  332 |     signed
+  333 |       .body()
+  334 |       .voting_procedures()!
+  335 |       .get(
+  336 |         CSL.Voter.new_drep_credential(credential),
+  337 |         CSL.GovernanceActionId.new(CSL.TransactionHash.from_hex(actionHash), 0)
+  338 |       )!
+  339 |       .vote_kind()
+  340 |   ).toBe(1);
+  341 |   // Independent CBOR decoder: assertions in tests use literal CIP-179 wire values.
+  342 |   if (!aux) return undefined;
+  343 |   const payload = new Decoder({ mapsAsObjects: false }).decode(
+  344 |     aux.metadata()!.get(CSL.BigNum.from_str("17"))!.to_bytes()
+  345 |   );
+  346 |   expect(payload[0]).toBe(1);
+  347 |   expect(payload[1]).toHaveLength(1);
+  348 |   const response = payload[1][0] as Map<number, any>;
+  349 |   expect(response.get(0)).toBe(5);
+  350 |   expect(Buffer.from(response.get(1)[0]).toString("hex")).toBe(surveyHash);
+  351 |   expect(response.get(1)[1]).toBe(0);
+  352 |   expect(response.get(2)).toBe(0);
+  353 |   expect(response.get(3)[0]).toBe(0);
+  354 |   expect(Buffer.from(response.get(3)[1]).toString("hex")).toBe(
+  355 |     key.to_public().hash().to_hex()
+  356 |   );
+  357 |   return response.get(4);
+  358 | }
+  359 | 
+```

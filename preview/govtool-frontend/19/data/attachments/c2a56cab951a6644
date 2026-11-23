@@ -1,0 +1,186 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 1-wallet-connect/walletConnect.loggedin.spec.ts >> 1B. Should connect wallet with single stake key
+- Location: tests/1-wallet-connect/walletConnect.loggedin.spec.ts:10:5
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByTestId('disconnect-button')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for getByTestId('disconnect-button')
+
+```
+
+```yaml
+- text: "Network: Preview |"
+- link "Go to Mainnet":
+  - /url: https://gov.tools/
+- banner:
+  - link "Skip to main content":
+    - /url: "#main-content"
+  - link "Cardano GovTool":
+    - /url: /dashboard
+    - img "Cardano GovTool"
+  - navigation "Main":
+    - link "Home":
+      - /url: /dashboard
+    - link "DRep Directory":
+      - /url: /connected/drep_directory
+    - link "Governance Actions":
+      - /url: /connected/governance_actions
+    - link "Governance Activity":
+      - /url: /governance_activity
+    - link "Guides":
+      - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+  - button "Global Search"
+  - button "stake_t…5dq"
+  - button "Notifications": "0"
+  - button "Your governance profile"
+- main:
+  - heading "Welcome back" [level=1]
+  - text: "Not registered Current epoch: 1470"
+  - heading "Your connected wallet" [level=2]
+  - text: Demos Wallet
+  - button "Copy stake key stake_test1uzm7a7fr6gv9v93r4gsxt0sgtrc0f5ejsl9fsl9k0lpusmcv395dq": stake_test…mcv395dq
+  - text: Wallet voting power ₳ 0 Delegation Not delegated
+  - link "Delegate now":
+    - /url: /connected/drep_directory
+  - heading "Delegate your Voting Power" [level=2]
+  - text: Find a DRep to vote on your behalf.
+  - button "View DRep Directory"
+  - button "Learn more"
+  - heading "Become a DRep" [level=2]
+  - text: Accept delegated voting power from other Ada holders, and combine it with your own voting power. Vote with the accumulated Power on Governance Actions.
+  - button "Register"
+  - button "Learn more"
+  - heading "Become a Direct Voter" [level=2]
+  - text: Register to Vote on Governance Actions.
+  - button "Register"
+  - button "Learn more"
+  - heading "View Governance Actions" [level=2]
+  - text: Review governance actions submitted on-chain.
+  - button "View Governance Actions"
+  - button "Learn more"
+  - heading "Propose a Governance Action" [level=2]
+  - text: Submit your proposal for a Governance Action.
+  - button "Propose"
+  - button "Learn more"
+  - paragraph: Useful links
+  - paragraph: Intersect website
+  - paragraph: Intersect is a member-based organization for the Cardano ecosystem — putting the community at the center of Cardano’s development.
+  - link "Visit intersectmbo.org Opens in a new tab":
+    - /url: https://www.intersectmbo.org/
+    - paragraph: Visit intersectmbo.org
+    - img "Opens in a new tab"
+  - paragraph: 2025 Budget Proposals
+  - paragraph: Archived. Read the 2025 budget proposals, their versions, DRep poll results and comments.
+  - link "View the archive":
+    - /url: /budget_discussion
+    - paragraph: View the archive
+- contentinfo:
+  - img "Cardano GovTool"
+  - paragraph: A clearer connection to Cardano governance.
+  - link "Guides":
+    - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+  - link "FAQs":
+    - /url: https://docs.gov.tools/cardano-govtool/faqs
+  - link "Intersect ↗":
+    - /url: https://www.intersectmbo.org/
+  - paragraph: © 2026 GovTool
+  - link "Privacy policy":
+    - /url: https://docs.gov.tools/legal/privacy-policy
+  - link "Terms of Use":
+    - /url: https://docs.gov.tools/legal/terms-of-use
+  - link "Help":
+    - /url: https://docs.gov.tools/cardano-govtool/support
+  - button "Feedback"
+```
+
+# Test source
+
+```ts
+  1  | import { isMobile, openDrawer } from "@helpers/mobile";
+  2  | import { Page, expect } from "@playwright/test";
+  3  | 
+  4  | export default class LoginPage {
+  5  |   readonly connectWalletBtn = this.page.getByTestId("connect-wallet-button");
+  6  |   readonly demosWalletBtn = this.page.getByTestId("demos-wallet-button");
+  7  |   readonly acceptSanchoNetInfoBtn = this.page
+  8  |     .getByTestId("confirm-modal-button")
+  9  |     .nth(0);
+  10 |   readonly disconnectWalletBtn = this.page.getByTestId("disconnect-button");
+  11 |   readonly dRepIdDisplay = this.page.getByTestId("dRep-id-display");
+  12 | 
+  13 |   constructor(private readonly page: Page) {}
+  14 | 
+  15 |   async goto() {
+  16 |     await this.page.goto("/");
+  17 |   }
+  18 | 
+  19 |   async login() {
+  20 |     await this.goto();
+  21 | 
+  22 |     await this.connectWalletBtn.click();
+  23 |     await this.demosWalletBtn.click({ force: true });
+  24 | 
+  25 |     await this.acceptSanchoNetInfoBtn.click({ force: true });
+  26 | 
+  27 |     const { stakeKeys, rewardAddresses } = await this.page.evaluate(
+  28 |       async () => {
+  29 |         const walletInstance = await (window as any)["cardano"][
+  30 |           "demos"
+  31 |         ].enable();
+  32 | 
+  33 |         let stakeKeys: string[] = [];
+  34 |         let rewardAddresses: string[] = [];
+  35 |         if ("cip95" in walletInstance) {
+  36 |           stakeKeys = await walletInstance.cip95.getRegisteredPubStakeKeys();
+  37 |           rewardAddresses = await walletInstance.getRewardAddresses();
+  38 |         }
+  39 | 
+  40 |         return { stakeKeys, rewardAddresses };
+  41 |       }
+  42 |     );
+  43 | 
+  44 |     // Handle multiple stake keys
+  45 |     if (stakeKeys.length > 1) {
+  46 |       await this.page
+  47 |         .getByTestId(`${rewardAddresses[0]}-radio`)
+  48 |         .locator("div")
+  49 |         .first()
+  50 |         .click({ force: true });
+  51 |       await this.page.getByTestId("select-button").click();
+  52 |     }
+  53 |   }
+  54 | 
+  55 |   async logout() {
+  56 |     if (isMobile(this.page)) {
+  57 |       await openDrawer(this.page);
+  58 |     }
+  59 |     await this.disconnectWalletBtn.click();
+  60 |   }
+  61 | 
+  62 |   async isLoggedIn() {
+  63 |     if (isMobile(this.page)) {
+  64 |       await openDrawer(this.page);
+  65 |     }
+> 66 |     await expect(this.disconnectWalletBtn).toBeVisible();
+     |                                            ^ Error: expect(locator).toBeVisible() failed
+  67 |   }
+  68 | }
+  69 | 
+```

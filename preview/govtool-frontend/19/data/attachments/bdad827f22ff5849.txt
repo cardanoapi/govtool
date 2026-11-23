@@ -1,0 +1,5 @@
+✔ Uploaded Jazmin-17d84750 metadata to bucket
+✖ locator.fill: Test ended.
+Call log:
+  - waiting for getByTestId('search-input')
+

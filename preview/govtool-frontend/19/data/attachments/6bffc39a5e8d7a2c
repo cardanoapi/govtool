@@ -1,0 +1,70 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 3-drep-registration/dRepRegistration.loggedin.spec.ts >> 3O. Should reject invalid dRep registration metadata
+- Location: tests/3-drep-registration/dRepRegistration.loggedin.spec.ts:163:5
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByTestId('continue-button')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e11]: Whoops!
+      - paragraph [ref=e12]: This page is not available
+      - paragraph [ref=e13]: Error 404
+      - button "Back to dashboard" [ref=e14] [cursor=pointer]
+    - img "error-page" [ref=e16]
+```
+
+# Test source
+
+```ts
+  1  | import environments from "@constants/environments";
+  2  | import { Page } from "@playwright/test";
+  3  | import DRepForm from "../forms/dRepForm";
+  4  | 
+  5  | export default class DRepRegistrationPage extends DRepForm {
+  6  |   readonly registerBtn = this.page.getByTestId("register-button");
+  7  |   readonly confirmBtn = this.page.getByTestId("confirm-modal-button");
+  8  | 
+  9  |   readonly registrationSuccessModal = this.page.getByTestId(
+  10 |     "governance-action-submitted-modal"
+  11 |   );
+  12 |   readonly metadataErrorModal = this.page.getByTestId("modal");
+  13 | 
+  14 |   constructor(private readonly page: Page) {
+  15 |     super(page);
+  16 |   }
+  17 | 
+  18 |   async goto() {
+  19 |     await this.page.goto(`${environments.frontendUrl}/my/drep/register`);
+> 20 |     await this.continueBtn.click(); // BUG: testId -> continue-register-button
+     |                            ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  21 |   }
+  22 | }
+  23 | 
+```

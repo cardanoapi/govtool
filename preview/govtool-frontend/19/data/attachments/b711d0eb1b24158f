@@ -1,0 +1,552 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 11-budget-proposals-archive/budgetProposalsArchive.spec.ts >> 11A_2. Should open the archive from Useful links
+- Location: tests/11-budget-proposals-archive/budgetProposalsArchive.spec.ts:55:5
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByTestId('useful-link-budgetProposalsArchive')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - banner [ref=e10]:
+      - link "Skip to main content" [ref=e11] [cursor=pointer]:
+        - /url: "#main-content"
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: /
+          - img "Cardano GovTool" [ref=e14]
+        - navigation "Main" [ref=e15]:
+          - link "Home" [ref=e16] [cursor=pointer]:
+            - /url: /
+          - link "DRep Directory" [ref=e17] [cursor=pointer]:
+            - /url: /drep_directory
+          - link "Governance Actions" [ref=e18] [cursor=pointer]:
+            - /url: /governance_actions
+          - link "Governance Activity" [ref=e19] [cursor=pointer]:
+            - /url: /governance_activity
+          - link "Guides" [ref=e20] [cursor=pointer]:
+            - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+        - generic [ref=e21]:
+          - button "Global Search" [ref=e22] [cursor=pointer]
+          - button [ref=e26] [cursor=pointer]
+    - main [ref=e31]:
+      - generic [ref=e33]:
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - paragraph [ref=e38]: A clearer way into Cardano governance
+            - heading "Good governance Starts with all of us." [level=1] [ref=e39]: Good governanceStarts with all of us.
+            - paragraph [ref=e40]: Participate in Cardano governance, understand what's being decided, and make your voice count.
+            - generic [ref=e41]:
+              - button [ref=e42] [cursor=pointer]
+              - button "Find your DRep" [ref=e47] [cursor=pointer]
+            - paragraph [ref=e48]: Open to explore. No wallet needed to start.
+          - generic [ref=e49]:
+            - generic [ref=e50]:
+              - generic [ref=e51]:
+                - heading "Governance Snapshot" [level=2] [ref=e52]
+                - paragraph [ref=e53]: Live signals · Updated just now
+              - generic [ref=e54]: Epoch 1470
+            - generic [ref=e55]:
+              - generic [ref=e56]:
+                - generic [ref=e57]: Active actions
+                - generic [ref=e60]: "31"
+                - generic [ref=e61]: Across 4 types
+              - generic [ref=e62]:
+                - generic [ref=e63]: Ends this epoch
+                - generic [ref=e66]: "0"
+                - generic [ref=e67]: Of 31 in voting
+              - generic [ref=e68]:
+                - generic [ref=e69]: Recently ratified
+                - generic [ref=e72]: "0"
+                - generic [ref=e73]: In last 30 days
+            - generic [ref=e74]:
+              - paragraph [ref=e75]: Latest decision
+              - generic [ref=e80]:
+                - paragraph [ref=e81]: Update to the Constitution
+                - paragraph [ref=e82]: Expired · 25 days ago
+            - generic [ref=e83]:
+              - paragraph [ref=e84]: What's being voted on
+              - generic [ref=e89]:
+                - paragraph [ref=e90]: Utique quam coma bestia utroque votum.
+                - paragraph [ref=e91]: Ends Nov 16, 2026
+        - generic [ref=e92]:
+          - generic [ref=e93]:
+            - generic [ref=e94]:
+              - paragraph [ref=e95]: Your participation, your choice
+              - heading "Participation looks different for everyone." [level=2] [ref=e96]
+            - paragraph [ref=e97]: Choose the approach that fits you. You don't need to have it all figured out.
+          - generic [ref=e98]:
+            - link "01 / Explore Delegate your voice Find a DRep whose priorities align with yours and explore delegation." [ref=e99] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/using-govtool/delegating
+              - generic [ref=e100]: 01 / Explore
+              - heading "Delegate your voice" [level=3] [ref=e105]
+              - paragraph [ref=e106]: Find a DRep whose priorities align with yours and explore delegation.
+            - link "02 / Connect Represent your community Learn about becoming a DRep and participating on behalf of others." [ref=e107] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/using-govtool/dreps/register-as-a-drep
+              - generic [ref=e108]: 02 / Connect
+              - heading "Represent your community" [level=3] [ref=e115]
+              - paragraph [ref=e116]: Learn about becoming a DRep and participating on behalf of others.
+            - link "03 / Discover Take part directly Understand direct voting and what you need to get started." [ref=e117] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/using-govtool/direct-voting
+              - generic [ref=e118]: 03 / Discover
+              - heading "Take part directly" [level=3] [ref=e123]
+              - paragraph [ref=e124]: Understand direct voting and what you need to get started.
+      - generic [ref=e127]:
+        - generic [ref=e128]:
+          - generic [ref=e129]:
+            - paragraph [ref=e130]: Proposed actions
+            - heading "The pulse of Cardano governance." [level=2] [ref=e131]
+          - button "See all governance proposals" [ref=e132] [cursor=pointer]
+        - generic [ref=e133]:
+          - generic [ref=e134]:
+            - generic [ref=e135]:
+              - generic [ref=e136]: Treasury Withdrawal
+              - button "Utique quam coma bestia utroque votum." [ref=e138] [cursor=pointer]
+              - generic [ref=e139]:
+                - generic [ref=e140]: ₳ 552
+                - generic [ref=e141]: · about 1 month ago
+                - generic [ref=e142]: · Epoch 1452
+            - generic [ref=e143]:
+              - generic [ref=e144]:
+                - generic [ref=e145]: DRep
+                - generic [ref=e149]: 0.0% / 67.0%
+              - generic [ref=e150]:
+                - generic [ref=e151]: SPO
+                - generic [ref=e153]: NOT ELIGIBLE
+              - generic [ref=e154]:
+                - generic [ref=e155]: CC
+                - generic [ref=e158]: 0.0% / 66.7%
+              - generic [ref=e159]:
+                - generic [ref=e160]: 3769287417438 votes
+                - generic [ref=e161]: ·
+                - text: YesNo
+                - generic [ref=e164]: Threshold
+          - generic [ref=e165]:
+            - generic [ref=e166]:
+              - generic [ref=e167]: Update to the Constitution
+              - button "Solus cimentarius earum adnuo aiunt minima." [ref=e169] [cursor=pointer]
+              - generic [ref=e170]:
+                - generic [ref=e171]: about 1 month ago
+                - generic [ref=e172]: · Epoch 1452
+            - generic [ref=e173]:
+              - generic [ref=e174]:
+                - generic [ref=e175]: DRep
+                - generic [ref=e179]: 0.0% / 75.0%
+              - generic [ref=e180]:
+                - generic [ref=e181]: SPO
+                - generic [ref=e183]: NOT ELIGIBLE
+              - generic [ref=e184]:
+                - generic [ref=e185]: CC
+                - generic [ref=e188]: 0.0% / 66.7%
+              - generic [ref=e189]:
+                - generic [ref=e190]: 22189948869134 votes
+                - generic [ref=e191]: ·
+                - text: YesNo
+                - generic [ref=e194]: Threshold
+          - generic [ref=e195]:
+            - generic [ref=e196]:
+              - generic [ref=e197]: No Confidence
+              - button "Cursim caecus adiuvo sufficio quo animus." [ref=e199] [cursor=pointer]
+              - generic [ref=e200]:
+                - generic [ref=e201]: about 1 month ago
+                - generic [ref=e202]: · Epoch 1452
+            - generic [ref=e203]:
+              - generic [ref=e204]:
+                - generic [ref=e205]: DRep
+                - generic [ref=e209]: 16.9% / 67.0%
+              - generic [ref=e210]:
+                - generic [ref=e211]: SPO
+                - generic [ref=e215]: 0.1% / 51.0%
+              - generic [ref=e216]:
+                - generic [ref=e217]: CC
+                - generic [ref=e219]: NOT ELIGIBLE
+              - generic [ref=e220]:
+                - generic [ref=e221]: 297224067024177 votes
+                - generic [ref=e222]: ·
+                - text: YesNo
+                - generic [ref=e225]: Threshold
+      - generic [ref=e227]:
+        - generic [ref=e228]:
+          - paragraph [ref=e229]: DRep leaderboard
+          - heading "Meet the DReps with the most voting power" [level=2] [ref=e230]
+          - paragraph [ref=e231]: See the DReps holding the most delegated voting power in Cardano governance.
+        - generic [ref=e232]:
+          - generic [ref=e233]:
+            - generic [ref=e234]:
+              - generic [ref=e235]: K
+              - generic [ref=e236]:
+                - paragraph [ref=e237]: Kenyon
+                - generic [ref=e238]: Active
+            - generic [ref=e240]:
+              - generic [ref=e241]: Voting power
+              - text: ₳ 838.2
+            - paragraph [ref=e242]: Temptatio culpa clarus comburo depromo depereo. Atqui vergo vulpes cupressus dignissimos abeo summisse.
+            - button "View Profile" [ref=e243] [cursor=pointer]
+          - generic [ref=e244]:
+            - generic [ref=e245]:
+              - generic [ref=e246]: C
+              - generic [ref=e247]:
+                - paragraph [ref=e248]: Candace
+                - generic [ref=e249]: Active
+            - generic [ref=e251]:
+              - generic [ref=e252]: Voting power
+              - text: ₳ 838.2
+            - paragraph [ref=e253]: Tergum dolorum exercitationem tonsor amaritudo territo. Censura sumo conspergo calculus vado absque vilis arceo bis solium.
+            - button "View Profile" [ref=e254] [cursor=pointer]
+          - generic [ref=e255]:
+            - generic [ref=e256]:
+              - generic [ref=e257]: A
+              - generic [ref=e258]:
+                - paragraph [ref=e259]: Alysha
+                - generic [ref=e260]: Active
+            - generic [ref=e262]:
+              - generic [ref=e263]: Voting power
+              - text: ₳ 838.2
+            - paragraph [ref=e264]: Uredo paens deludo ventosus accendo. Vesper alii dolor tristis turba capitulus adinventitias certe coruscus.
+            - button "View Profile" [ref=e265] [cursor=pointer]
+      - generic [ref=e267]:
+        - generic [ref=e268]:
+          - generic [ref=e269]:
+            - paragraph [ref=e270]: At a glance
+            - heading "See how governance decisions progress on-chain" [level=2] [ref=e271]
+            - paragraph [ref=e272]: Recently ratified and enacted actions — final tallies, execution status and audit trail.
+          - button "View Action Outcomes →" [ref=e273] [cursor=pointer]
+        - generic [ref=e274]:
+          - generic [ref=e279]:
+            - paragraph [ref=e280]: "7"
+            - paragraph [ref=e281]: Actions decided · 30 days
+          - generic [ref=e287]:
+            - paragraph [ref=e288]: 0%
+            - paragraph [ref=e289]: Ratification rate
+          - generic [ref=e296]:
+            - paragraph [ref=e297]: 17%
+            - paragraph [ref=e298]: DRep voting participation
+        - generic [ref=e299]:
+          - generic [ref=e304]:
+            - generic [ref=e305]:
+              - generic [ref=e306]:
+                - generic [ref=e307]: Expired
+                - generic [ref=e308]: Not Ratified
+                - generic [ref=e309]: Update to the Constitution
+              - button "Update to the Constitution" [ref=e310] [cursor=pointer]
+            - heading "Update to the Constitution" [level=3] [ref=e315]
+            - generic [ref=e316]:
+              - generic [ref=e317]: DRep ₳ 0 - 0%
+              - generic [ref=e318]: CC 0 - 0%
+          - generic [ref=e323]:
+            - generic [ref=e324]:
+              - generic [ref=e325]:
+                - generic [ref=e326]: Expired
+                - generic [ref=e327]: Not Ratified
+                - generic [ref=e328]: Treasury Withdrawal
+              - button "Treasury Withdrawal" [ref=e329] [cursor=pointer]
+            - heading "Treasury Withdrawal" [level=3] [ref=e334]
+            - generic [ref=e335]:
+              - generic [ref=e336]: DRep ₳ 0 - 0%
+              - generic [ref=e337]: CC 0 - 0%
+          - generic [ref=e342]:
+            - generic [ref=e343]:
+              - generic [ref=e344]:
+                - generic [ref=e345]: Expired
+                - generic [ref=e346]: Not Ratified
+                - generic [ref=e347]: Info Action
+              - button "Info Action" [ref=e348] [cursor=pointer]
+            - heading "Info Action" [level=3] [ref=e353]
+            - generic [ref=e354]:
+              - generic [ref=e355]: DRep ₳ 0 - 0%
+              - generic [ref=e356]: SPO ₳ 0 - 0%
+              - generic [ref=e357]: CC 0 - 0%
+      - generic [ref=e359]:
+        - generic [ref=e360]:
+          - generic [ref=e361]:
+            - paragraph [ref=e362]: What is happening in Cardano
+            - heading "Governance is already shaping Cardano." [level=2] [ref=e363]
+          - link "Subscribe for Newsletter" [ref=e364] [cursor=pointer]:
+            - /url: https://newsletter.gov.tools/#/portal/signup
+        - list [ref=e368]:
+          - listitem [ref=e369]:
+            - generic [ref=e370]: "01"
+            - generic [ref=e371]:
+              - generic [ref=e372]: November 2026
+              - heading "Try the new GovTool design on preview.gov.tools" [level=3] [ref=e374]
+              - paragraph [ref=e375]: GovTool has been redesigned, and the new version is now live on preview.gov.tools for you to try before it comes to mainnet. Preview runs on the Cardano preview testnet, so you can try everything with test ada and nothing you do there touches real funds. What’s new * A cleaner, consistent design across every page, built for both desktop and mobile, with better keyboard navigation and contrast. * Global search. Press Ctrl+K (⌘K on Mac) to jump to any governance action or DRep. * Governance
+            - link "Read Try the new GovTool design on preview.gov.tools" [ref=e376] [cursor=pointer]:
+              - /url: https://newsletter.gov.tools/try-the-new-govtool-design-on-preview-gov-tools/
+          - listitem [ref=e380]:
+            - generic [ref=e381]: "02"
+            - generic [ref=e382]:
+              - generic [ref=e383]:
+                - generic [ref=e384]: November 2026
+                - generic [ref=e385]: Governance Digest
+              - 'heading "Cardano Governance Digest : 26 Oct – 2 Nov 2026" [level=3] [ref=e386]'
+              - paragraph [ref=e387]: "This week in Cardano governance: 1 new action, 1 decision, ₳0 requested from the treasury."
+            - 'link "Read Cardano Governance Digest : 26 Oct – 2 Nov 2026" [ref=e388] [cursor=pointer]':
+              - /url: https://newsletter.gov.tools/cardano-governance-digest-26-oct-2-nov-2026-copy/
+          - listitem [ref=e392]:
+            - generic [ref=e393]: "03"
+            - generic [ref=e394]:
+              - generic [ref=e395]: October 2026
+              - 'heading "GovTool October 2026 Update: GovTool 3.0 Released" [level=3] [ref=e397]'
+              - paragraph [ref=e398]: GovTool 3.0 was released on 26 October 2026. It's the first stable release on GovTool's new TypeScript backend, and it brings together the 2.1 alpha and beta work from the past two months. You can keep voting, delegating and submitting proposals the same way. Most of the work is under the hood, and it makes GovTool faster and easier to maintain. What's new Faster lists. Governance actions and DReps load in the background, and search tells you when it's still loading. Clearer metadata errors
+            - 'link "Read GovTool October 2026 Update: GovTool 3.0 Released" [ref=e399] [cursor=pointer]':
+              - /url: https://newsletter.gov.tools/govtool-october-2026-update-govtool-3-0-released/
+          - listitem [ref=e403]:
+            - generic [ref=e404]: "04"
+            - generic [ref=e405]:
+              - generic [ref=e406]: September 2026
+              - 'heading "GovTool September 2026 Update: 2.1 Alpha Release" [level=3] [ref=e408]'
+              - paragraph [ref=e409]: "September brought the first release under GovTool’s new maintainership: v2.1.0-alpha.1, published on 18 September 2026. It’s an early step toward the GovTool roadmap. What’s in the release * A new TypeScript backend, in alpha. It offers an opt-in path with API parity. The existing backend remains the default while the new one is tested and refined. * Linked surveys for governance actions. This adds support for CIP-179 surveys connected to governance activity. * GovTool improvements. The re"
+            - 'link "Read GovTool September 2026 Update: 2.1 Alpha Release" [ref=e410] [cursor=pointer]':
+              - /url: https://newsletter.gov.tools/govtool-september-2026-update-2-1-alpha-release/
+        - link "View all posts" [ref=e415] [cursor=pointer]:
+          - /url: https://newsletter.gov.tools
+        - generic [ref=e451]:
+          - paragraph [ref=e457]: Stay in the loop
+          - heading "The best ideas, delivered thoughtfully." [level=3] [ref=e458]
+          - generic [ref=e459]: Email address
+          - generic [ref=e460]:
+            - textbox "Email address" [ref=e464]:
+              - /placeholder: you@example.com
+            - button "Subscribe" [ref=e465] [cursor=pointer]
+          - status [ref=e469]
+          - paragraph [ref=e470]:
+            - text: No spam. Unsubscribe anytime. By subscribing, you agree to our
+            - link "Privacy Policy" [ref=e471] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/privacy-policy
+            - text: .
+      - generic [ref=e473]:
+        - generic [ref=e474]:
+          - paragraph [ref=e475]: A little clarity
+          - heading "Questions? Start here." [level=2] [ref=e476]
+          - paragraph [ref=e477]: Good participation starts with understanding.
+        - generic [ref=e478]:
+          - generic [ref=e479]:
+            - button [expanded] [ref=e480] [cursor=pointer]
+            - region "What is GovTool?" [ref=e483]:
+              - paragraph [ref=e484]: GovTool brings together tools for Cardano governance, including governance actions, the DRep directory, and budget proposals.
+          - button [ref=e486] [cursor=pointer]
+          - button [ref=e490] [cursor=pointer]
+          - button [ref=e494] [cursor=pointer]
+          - button [ref=e498] [cursor=pointer]
+          - button [ref=e502] [cursor=pointer]
+          - button [ref=e506] [cursor=pointer]
+          - button [ref=e510] [cursor=pointer]
+          - link "Read all FAQs ↗" [ref=e513] [cursor=pointer]:
+            - /url: https://docs.gov.tools/cardano-govtool/faqs
+      - generic [ref=e516]:
+        - generic [ref=e518]:
+          - text: Governance
+          - heading "What is a DRep? Shape Cardano's future with your voice." [level=2] [ref=e519]
+          - paragraph [ref=e520]: Delegated Representatives (DReps) vote on governance actions on behalf of ADA holders. Learn how you can make an impact in Cardano's on-chain democracy.
+        - link "Learn about DReps" [ref=e521] [cursor=pointer]:
+          - /url: https://docs.gov.tools/cardano-govtool/using-govtool/dreps
+    - contentinfo [ref=e524]:
+      - generic [ref=e525]:
+        - generic [ref=e526]:
+          - img "Cardano GovTool" [ref=e527]
+          - paragraph [ref=e528]: A clearer connection to Cardano governance.
+          - generic [ref=e529]:
+            - link "Guides" [ref=e530] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+            - link "FAQs" [ref=e531] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/faqs
+            - link "Intersect ↗" [ref=e532] [cursor=pointer]:
+              - /url: https://www.intersectmbo.org/
+        - generic [ref=e533]:
+          - paragraph [ref=e534]: © 2026 GovTool
+          - generic [ref=e535]:
+            - link "Privacy policy" [ref=e536] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/privacy-policy
+            - link "Terms of Use" [ref=e537] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/terms-of-use
+            - link "Help" [ref=e538] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/support
+            - button "Feedback" [ref=e539] [cursor=pointer]
+```
+
+# Test source
+
+```ts
+  1   | import environments from "@constants/environments";
+  2   | import { test } from "@fixtures/walletExtension";
+  3   | import { setAllureEpic } from "@helpers/allure";
+  4   | import { injectLogger } from "@helpers/page";
+  5   | import { extractProposalIdFromUrl } from "@helpers/string";
+  6   | import BudgetDiscussionDetailsPage from "@pages/budgetDiscussionDetailsPage";
+  7   | import BudgetDiscussionPage, {
+  8   |   BUDGET_ARCHIVE_PATH,
+  9   |   BUDGET_DISCUSSION_API,
+  10  | } from "@pages/budgetDiscussionPage";
+  11  | import { expect, Locator, Page } from "@playwright/test";
+  12  | import { BudgetArchiveListItem, BudgetDiscussionEnum } from "@types";
+  13  | 
+  14  | // The 2025 budget proposals are a read-only archive served from static files
+  15  | // under /budget-proposals-2025; nothing here calls a backend for them.
+  16  | 
+  17  | test.beforeEach(async ({}) => {
+  18  |   await setAllureEpic("11. Budget Proposals Archive");
+  19  | });
+  20  | 
+  21  | const recordBudgetDiscussionApiCalls = (page: Page) => {
+  22  |   const calls: string[] = [];
+  23  |   page.on("request", (request) => {
+  24  |     if (BUDGET_DISCUSSION_API.test(request.url())) calls.push(request.url());
+  25  |   });
+  26  |   return calls;
+  27  | };
+  28  | 
+  29  | const pickDiscussion = (
+  30  |   items: BudgetArchiveListItem[],
+  31  |   predicate: (item: BudgetArchiveListItem) => boolean
+  32  | ) => {
+  33  |   const item = items.find(predicate);
+  34  |   expect(item, "No archived budget proposal matches").toBeTruthy();
+  35  |   return item;
+  36  | };
+  37  | 
+  38  | test("11A. Should show the budget proposals archive in disconnect state", async ({
+  39  |   page,
+  40  | }) => {
+  41  |   const apiCalls = recordBudgetDiscussionApiCalls(page);
+  42  |   const budgetDiscussionPage = new BudgetDiscussionPage(page);
+  43  |   await budgetDiscussionPage.goto();
+  44  | 
+  45  |   await expect(budgetDiscussionPage.archiveBanner).toBeVisible();
+  46  |   await expect(
+  47  |     page.getByRole("heading", { name: "2025 Budget Proposals" })
+  48  |   ).toBeVisible();
+  49  |   await expect(
+  50  |     page.getByTestId("propose-a-budget-discussion-button")
+  51  |   ).toHaveCount(0);
+  52  |   expect(apiCalls).toEqual([]);
+  53  | });
+  54  | 
+  55  | test("11A_2. Should open the archive from Useful links", async ({ page }) => {
+  56  |   await page.goto("/");
+> 57  |   await page.getByTestId("useful-link-budgetProposalsArchive").click();
+      |                                                                ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  58  | 
+  59  |   await expect(page).toHaveURL(/\/budget$/);
+  60  |   await expect(new BudgetDiscussionPage(page).archiveBanner).toBeVisible();
+  61  | });
+  62  | 
+  63  | test.describe("Budget proposals archive list", () => {
+  64  |   let budgetDiscussionPage: BudgetDiscussionPage;
+  65  | 
+  66  |   test.beforeEach(async ({ page }) => {
+  67  |     budgetDiscussionPage = new BudgetDiscussionPage(page);
+  68  |     await budgetDiscussionPage.goto();
+  69  |   });
+  70  | 
+  71  |   test("11B_1. Should search budget proposals by title", async () => {
+  72  |     const { items } = await budgetDiscussionPage.fetchArchiveList();
+  73  |     const proposalName =
+  74  |       items[Math.floor(Math.random() * items.length)].attributes
+  75  |         .bd_proposal_detail.data.attributes.proposal_name;
+  76  | 
+  77  |     await budgetDiscussionPage.searchInput.fill(proposalName);
+  78  | 
+  79  |     await expect(async () => {
+  80  |       const proposalCards = await budgetDiscussionPage.getAllProposals();
+  81  |       for (const proposalCard of proposalCards) {
+  82  |         const title = await proposalCard
+  83  |           .getByTestId("budget-discussion-title")
+  84  |           .textContent();
+  85  |         expect(title.toLowerCase()).toContain(proposalName.toLowerCase());
+  86  |       }
+  87  |     }).toPass();
+  88  |   });
+  89  | 
+  90  |   test("11B_2. Should filter budget proposals by categories", async () => {
+  91  |     test.slow();
+  92  |     await budgetDiscussionPage.filterBtn.click();
+  93  | 
+  94  |     await budgetDiscussionPage.applyAndValidateFilters(
+  95  |       Object.values(BudgetDiscussionEnum)
+  96  |     );
+  97  |   });
+  98  | 
+  99  |   test("11B_3. Should sort budget proposals", async () => {
+  100 |     test.slow();
+  101 |     await budgetDiscussionPage.showAll(BudgetDiscussionEnum.Core);
+  102 | 
+  103 |     const title = (card: Locator) =>
+  104 |       card.getByTestId("budget-discussion-title").innerText();
+  105 |     const proposer = async (card: Locator) =>
+  106 |       (await card.getByTestId("budget-discussion-creator").innerText()).replace(
+  107 |         /^@/,
+  108 |         ""
+  109 |       );
+  110 |     const comments = async (card: Locator) =>
+  111 |       Number(await card.locator('[data-testid$="-comment-count"]').innerText());
+  112 |     const proposedOn = async (card: Locator) =>
+  113 |       Date.parse(await card.getByTestId("proposed-date").innerText());
+  114 |     const ascending = (a: string, b: string) =>
+  115 |       a.localeCompare(b, undefined, { sensitivity: "base" }) <= 0;
+  116 |     const descending = (a: string, b: string) => ascending(b, a);
+  117 | 
+  118 |     await budgetDiscussionPage.sortAndValidate(
+  119 |       "Oldest",
+  120 |       proposedOn,
+  121 |       (a, b) => a <= b
+  122 |     );
+  123 |     await budgetDiscussionPage.sortAndValidate(
+  124 |       "Newest",
+  125 |       proposedOn,
+  126 |       (a, b) => a >= b
+  127 |     );
+  128 |     await budgetDiscussionPage.sortAndValidate(
+  129 |       "Most comments",
+  130 |       comments,
+  131 |       (a, b) => a >= b
+  132 |     );
+  133 |     await budgetDiscussionPage.sortAndValidate(
+  134 |       "Least comments",
+  135 |       comments,
+  136 |       (a, b) => a <= b
+  137 |     );
+  138 |     await budgetDiscussionPage.sortAndValidate("Name A-Z", title, ascending);
+  139 |     await budgetDiscussionPage.sortAndValidate("Name Z-A", title, descending);
+  140 |     await budgetDiscussionPage.sortAndValidate(
+  141 |       "Proposer A-Z",
+  142 |       proposer,
+  143 |       ascending
+  144 |     );
+  145 |     await budgetDiscussionPage.sortAndValidate(
+  146 |       "Proposer Z-A",
+  147 |       proposer,
+  148 |       descending
+  149 |     );
+  150 |   });
+  151 | });
+  152 | 
+  153 | test("11C. Should show every proposal of a category on its category page", async ({
+  154 |   browser,
+  155 | }) => {
+  156 |   await Promise.all(
+  157 |     Object.values(BudgetDiscussionEnum).map(async (category) => {
+```

@@ -1,0 +1,94 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 11-budget-proposals-archive/budgetProposalsArchive.spec.ts >> Archived budget proposal details >> 11G. Should show the final poll totals
+- Location: tests/11-budget-proposals-archive/budgetProposalsArchive.spec.ts:279:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.waitFor: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByTestId('title-content') to be visible
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e11]: Whoops!
+      - paragraph [ref=e12]: This page is not available
+      - paragraph [ref=e13]: Error 404
+      - button "Back to homepage" [ref=e14] [cursor=pointer]
+    - img "error-page" [ref=e16]
+```
+
+# Test source
+
+```ts
+  1  | import { Page } from "@playwright/test";
+  2  | import environments from "lib/constants/environments";
+  3  | 
+  4  | /** One archived 2025 budget proposal: read-only. */
+  5  | export default class BudgetDiscussionDetailsPage {
+  6  |   // buttons
+  7  |   readonly shareBtn = this.page.getByTestId("share-button");
+  8  |   readonly copyLinkBtn = this.page.getByTestId("copy-link");
+  9  |   readonly sortCommentsBtn = this.page.getByTestId("sort-comments");
+  10 |   readonly reviewVersionsBtn = this.page.getByTestId("review-version");
+  11 |   readonly loadMoreCommentsBtn = this.page.getByTestId("load-more-comments");
+  12 | 
+  13 |   // controls the archive must not show
+  14 |   readonly commentInput = this.page.getByTestId("comment-input");
+  15 |   readonly commentBtn = this.page.getByTestId("comment-button");
+  16 |   readonly replyBtn = this.page.getByTestId("reply-button");
+  17 |   readonly pollYesBtn = this.page.getByTestId("poll-yes-button");
+  18 |   readonly pollNoBtn = this.page.getByTestId("poll-no-button");
+  19 |   readonly menuButton = this.page.getByTestId("menu-button");
+  20 | 
+  21 |   // content
+  22 |   readonly titleContent = this.page.getByTestId("title-content");
+  23 |   readonly copyLinkText = this.page.getByTestId("copy-link-text");
+  24 |   readonly totalComments = this.page.getByTestId("total-comments");
+  25 |   readonly pollResultCard = this.page.getByTestId("poll-result-card");
+  26 |   readonly pollTotalVotes = this.page.getByTestId("poll-total-votes");
+  27 |   readonly pollYesCount = this.page.getByTestId("poll-yes-count");
+  28 |   readonly pollNoCount = this.page.getByTestId("poll-no-count");
+  29 |   readonly reviewVersionsDialog = this.page.getByTestId("review-versions");
+  30 |   readonly commentCards = this.page.locator(
+  31 |     '[data-testid^="comment-"][data-testid$="-content-card"]'
+  32 |   );
+  33 | 
+  34 |   constructor(private readonly page: Page) {}
+  35 | 
+  36 |   get currentPage(): Page {
+  37 |     return this.page;
+  38 |   }
+  39 | 
+  40 |   async goto(masterId: number | string) {
+  41 |     await this.page.goto(
+  42 |       `${environments.frontendUrl}/budget/${masterId}`
+  43 |     );
+> 44 |     await this.titleContent.waitFor();
+     |                             ^ Error: locator.waitFor: Test timeout of 180000ms exceeded.
+  45 |   }
+  46 | }
+  47 | 
+```

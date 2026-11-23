@@ -1,0 +1,188 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 4-proposal-visibility/proposalVisibility.dRep.spec.ts >> Logged in DRep >> 4E. Should display DRep's voting power in governance actions page
+- Location: tests/4-proposal-visibility/proposalVisibility.dRep.spec.ts:38:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: page.waitForResponse: Test timeout of 180000ms exceeded.
+=========================== logs ===========================
+waiting for response "**/get-voting-power/**"
+============================================================
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - paragraph [ref=e11]: Whoops!
+      - paragraph [ref=e12]: This page is not available
+      - paragraph [ref=e13]: Error 404
+      - button "Back to dashboard" [ref=e14] [cursor=pointer]
+    - img "error-page" [ref=e16]
+```
+
+# Test source
+
+```ts
+  1   | import environments from "@constants/environments";
+  2   | import { faker } from "@faker-js/faker";
+  3   | import { test } from "@fixtures/walletExtension";
+  4   | import { setAllureEpic } from "@helpers/allure";
+  5   | import {
+  6   |   isBootStrapingPhase,
+  7   |   lovelaceToAda,
+  8   |   skipIfMainnet,
+  9   | } from "@helpers/cardano";
+  10  | import { createNewPageWithWallet } from "@helpers/page";
+  11  | import GovernanceActionsPage from "@pages/governanceActionsPage";
+  12  | import { Page, expect } from "@playwright/test";
+  13  | import { invalid as mockInvalid, valid as mockValid } from "@mock/index";
+  14  | import { GovernanceActionType, IProposal } from "@types";
+  15  | import GovernanceActionDetailsPage from "@pages/governanceActionDetailsPage";
+  16  | import { correctVoteAdaFormat } from "@helpers/adaFormat";
+  17  | import {
+  18  |   areCCVoteTotalsDisplayed,
+  19  |   areDRepVoteTotalsDisplayed,
+  20  |   areSPOVoteTotalsDisplayed,
+  21  | } from "@helpers/featureFlag";
+  22  | import { sharedDRep } from "lib/wallet/sharedDReps";
+  23  | import { registeredDRepWallet } from "lib/wallet/transactions";
+  24  | 
+  25  | test.beforeEach(async () => {
+  26  |   await setAllureEpic("4. Proposal visibility");
+  27  |   await skipIfMainnet();
+  28  | });
+  29  | 
+  30  | test.describe("Logged in DRep", () => {
+  31  |   test.use({ walletName: "dRep01" });
+  32  | 
+  33  |   test.beforeAll(async () => {
+  34  |     test.setTimeout(2 * environments.txTimeOut);
+  35  |     await sharedDRep("dRep01");
+  36  |   });
+  37  | 
+  38  |   test("4E. Should display DRep's voting power in governance actions page", async ({
+  39  |     page,
+  40  |   }) => {
+> 41  |     const votingPowerPromise = page.waitForResponse("**/get-voting-power/**");
+      |                                     ^ Error: page.waitForResponse: Test timeout of 180000ms exceeded.
+  42  |     const governanceActionsPage = new GovernanceActionsPage(page);
+  43  |     await governanceActionsPage.goto();
+  44  | 
+  45  |     const res = await votingPowerPromise;
+  46  |     const votingPower = await res.json();
+  47  | 
+  48  |     await expect(page.getByTestId("voting-power-chips-value")).toHaveText(
+  49  |       `₳ ${lovelaceToAda(votingPower)}`,
+  50  |       { timeout: 60_000 }
+  51  |     );
+  52  |   });
+  53  | 
+  54  |   test.describe("Vote context metadata anchor validation", () => {
+  55  |     let govActionDetailsPage: GovernanceActionDetailsPage;
+  56  |     test.beforeEach(async ({ page }) => {
+  57  |       const govActionsPage = new GovernanceActionsPage(page);
+  58  |       await govActionsPage.goto();
+  59  | 
+  60  |       // assert to wait until the loading button is hidden
+  61  |       await expect(page.getByTestId("to-vote-tab")).toBeVisible({
+  62  |         timeout: 60_000,
+  63  |       });
+  64  | 
+  65  |       govActionDetailsPage = (await isBootStrapingPhase())
+  66  |         ? await govActionsPage.viewFirstProposalByGovernanceAction(
+  67  |             GovernanceActionType.InfoAction
+  68  |           )
+  69  |         : await govActionsPage.viewFirstProposal();
+  70  |       
+  71  |       await govActionDetailsPage.yesVoteRadio.click();
+  72  |       await govActionDetailsPage.voteBtn.click()
+  73  | 
+  74  |       
+  75  |       await govActionDetailsPage.contextInput.fill(faker.lorem.sentence(200));
+  76  |       await govActionDetailsPage.confirmModalBtn.click();
+  77  |       await govActionDetailsPage.downloadAndStoreYourselfOptionBtn.click();
+  78  |       await page.getByRole("checkbox").click();
+  79  |       await govActionDetailsPage.confirmModalBtn.click();
+  80  |     });
+  81  | 
+  82  |     test("4N. Should accept valid metadata anchor on vote context", async ({
+  83  |       page,
+  84  |     }) => {
+  85  |       for (let i = 0; i < 100; i++) {
+  86  |         await govActionDetailsPage.metadataUrlInput.fill(mockValid.url());
+  87  |         await expect(page.getByTestId("invalid-url-error")).toBeHidden();
+  88  |       }
+  89  |     });
+  90  | 
+  91  |     test("4O. Should reject invalid metadata anchor on vote context", async ({
+  92  |       page,
+  93  |     }) => {
+  94  |       for (let i = 0; i < 100; i++) {
+  95  |         const invalidUrl = mockInvalid.url(false);
+  96  |         await govActionDetailsPage.metadataUrlInput.fill(invalidUrl);
+  97  |         if (invalidUrl.length <= 128) {
+  98  |           await expect(page.getByTestId("invalid-url-error")).toBeVisible();
+  99  |         } else {
+  100 |           await expect(
+  101 |             page.getByTestId("url-must-be-less-than-128-bytes-error")
+  102 |           ).toBeVisible();
+  103 |         }
+  104 |       }
+  105 |     });
+  106 |   });
+  107 | });
+  108 | 
+  109 | test.describe("Check vote count", () => {
+  110 |   test.use({ walletName: "dRep01" });
+  111 | 
+  112 |   test.beforeAll(async () => {
+  113 |     test.setTimeout(2 * environments.txTimeOut);
+  114 |     await sharedDRep("dRep01");
+  115 |   });
+  116 | 
+  117 |   test("4G. Should display correct vote counts on governance details page for DRep", async ({
+  118 |     page,
+  119 |     browser,
+  120 |     wallet,
+  121 |   }) => {
+  122 |     const voteWhiteListOption = (await isBootStrapingPhase())
+  123 |       ? { InfoAction: "InfoAction" }
+  124 |       : GovernanceActionType;
+  125 |     const responsePromise = page.waitForResponse("**/proposal/list?**");
+  126 | 
+  127 |     const governanceActionsPage = new GovernanceActionsPage(page);
+  128 |     await governanceActionsPage.goto();
+  129 | 
+  130 |     const response = await responsePromise;
+  131 |     const allowedTypes = Object.values(voteWhiteListOption);
+  132 |     const proposals: IProposal[] = (await response.json()).elements.filter(
+  133 |       (proposal: IProposal) => allowedTypes.includes(proposal.type)
+  134 |     );
+  135 | 
+  136 |     const uniqueProposalTypes = Array.from(
+  137 |       new Map(proposals.map((proposal) => [proposal.type, proposal])).values()
+  138 |     );
+  139 | 
+  140 |     expect(proposals.length, "No proposals found!").toBeGreaterThan(0);
+  141 | 
+```

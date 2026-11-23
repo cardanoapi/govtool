@@ -1,0 +1,230 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 1-wallet-connect/walletConnect.spec.ts >> 1C. Should disconnect Wallet When connected
+- Location: tests/1-wallet-connect/walletConnect.spec.ts:28:5
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByTestId('disconnect-button')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - banner [ref=e10]:
+      - link "Skip to main content" [ref=e11] [cursor=pointer]:
+        - /url: "#main-content"
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: /dashboard
+          - img "Cardano GovTool" [ref=e14]
+        - navigation "Main" [ref=e15]:
+          - link "Home" [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+          - link "DRep Directory" [ref=e17] [cursor=pointer]:
+            - /url: /connected/drep_directory
+          - link "Governance Actions" [ref=e18] [cursor=pointer]:
+            - /url: /connected/governance_actions
+          - link "Governance Activity" [ref=e19] [cursor=pointer]:
+            - /url: /governance_activity
+          - link "Guides" [ref=e20] [cursor=pointer]:
+            - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+        - generic [ref=e21]:
+          - button "Global Search" [ref=e22] [cursor=pointer]
+          - button "stake_t…lsy" [ref=e26] [cursor=pointer]
+          - button "Notifications" [ref=e32] [cursor=pointer]:
+            - generic [ref=e33]: "0"
+          - button "Your governance profile" [ref=e37] [cursor=pointer]
+    - main [ref=e42]:
+      - generic [ref=e44]:
+        - generic [ref=e46]:
+          - generic [ref=e47]:
+            - heading "Welcome back" [level=1] [ref=e48]
+            - generic [ref=e49]: Not registered
+          - generic [ref=e50]: "Current epoch: 1470"
+        - generic [ref=e51]:
+          - generic [ref=e52]:
+            - heading "Your connected wallet" [level=2] [ref=e53]
+            - generic [ref=e56]:
+              - generic [ref=e57]: Demos Wallet
+              - button "Copy stake key stake_test1uq09wh4847mv9u3mlhxy867emue05ueyvyhrm9wjyw9qsxcp8hlsy" [ref=e58] [cursor=pointer]: stake_test…xcp8hlsy
+            - generic [ref=e63]:
+              - generic [ref=e64]: Wallet voting power
+              - generic [ref=e65]: ₳ 0
+            - generic [ref=e67]:
+              - generic [ref=e68]:
+                - generic [ref=e69]: Delegation
+                - generic [ref=e70]: Not delegated
+              - link "Delegate now" [ref=e71] [cursor=pointer]:
+                - /url: /connected/drep_directory
+          - generic [ref=e74]:
+            - generic [ref=e75]:
+              - generic [ref=e83]:
+                - heading "Delegate your Voting Power" [level=2] [ref=e84]
+                - generic [ref=e86]: Find a DRep to vote on your behalf.
+              - generic [ref=e87]:
+                - button "View DRep Directory" [ref=e88] [cursor=pointer]
+                - button "Learn more" [ref=e89] [cursor=pointer]
+            - generic [ref=e90]:
+              - generic [ref=e96]:
+                - heading "Become a DRep" [level=2] [ref=e97]
+                - generic [ref=e99]: Accept delegated voting power from other Ada holders, and combine it with your own voting power. Vote with the accumulated Power on Governance Actions.
+              - generic [ref=e100]:
+                - button "Register" [ref=e101] [cursor=pointer]
+                - button "Learn more" [ref=e102] [cursor=pointer]
+            - generic [ref=e103]:
+              - generic [ref=e109]:
+                - heading "Become a Direct Voter" [level=2] [ref=e110]
+                - generic [ref=e112]: Register to Vote on Governance Actions.
+              - generic [ref=e113]:
+                - button "Register" [ref=e114] [cursor=pointer]
+                - button "Learn more" [ref=e115] [cursor=pointer]
+            - generic [ref=e116]:
+              - generic [ref=e122]:
+                - heading "View Governance Actions" [level=2] [ref=e123]
+                - generic [ref=e125]: Review governance actions submitted on-chain.
+              - generic [ref=e126]:
+                - button "View Governance Actions" [ref=e127] [cursor=pointer]
+                - button "Learn more" [ref=e128] [cursor=pointer]
+            - generic [ref=e129]:
+              - generic [ref=e134]:
+                - heading "Propose a Governance Action" [level=2] [ref=e135]
+                - generic [ref=e137]: Submit your proposal for a Governance Action.
+              - generic [ref=e138]:
+                - button "Propose" [ref=e139] [cursor=pointer]
+                - button "Learn more" [ref=e140] [cursor=pointer]
+            - generic [ref=e142]:
+              - paragraph [ref=e143]: Useful links
+              - generic [ref=e144]:
+                - generic [ref=e145]:
+                  - paragraph [ref=e146]: Intersect website
+                  - paragraph [ref=e147]: Intersect is a member-based organization for the Cardano ecosystem — putting the community at the center of Cardano’s development.
+                  - link [ref=e148] [cursor=pointer]:
+                    - /url: https://www.intersectmbo.org/
+                    - paragraph [ref=e149]: Visit intersectmbo.org
+                    - img "Opens in a new tab" [ref=e150]
+                - generic [ref=e151]:
+                  - paragraph [ref=e152]: 2025 Budget Proposals
+                  - paragraph [ref=e153]: Archived. Read the 2025 budget proposals, their versions, DRep poll results and comments.
+                  - link [ref=e154] [cursor=pointer]:
+                    - /url: /budget_discussion
+                    - paragraph [ref=e155]: View the archive
+    - contentinfo [ref=e156]:
+      - generic [ref=e157]:
+        - generic [ref=e158]:
+          - img "Cardano GovTool" [ref=e159]
+          - paragraph [ref=e160]: A clearer connection to Cardano governance.
+          - generic [ref=e161]:
+            - link "Guides" [ref=e162] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+            - link "FAQs" [ref=e163] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/faqs
+            - link "Intersect ↗" [ref=e164] [cursor=pointer]:
+              - /url: https://www.intersectmbo.org/
+        - generic [ref=e165]:
+          - paragraph [ref=e166]: © 2026 GovTool
+          - generic [ref=e167]:
+            - link "Privacy policy" [ref=e168] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/privacy-policy
+            - link "Terms of Use" [ref=e169] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/terms-of-use
+            - link "Help" [ref=e170] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/support
+            - button "Feedback" [ref=e171] [cursor=pointer]
+```
+
+# Test source
+
+```ts
+  1  | import { isMobile, openDrawer } from "@helpers/mobile";
+  2  | import { Page, expect } from "@playwright/test";
+  3  | 
+  4  | export default class LoginPage {
+  5  |   readonly connectWalletBtn = this.page.getByTestId("connect-wallet-button");
+  6  |   readonly demosWalletBtn = this.page.getByTestId("demos-wallet-button");
+  7  |   readonly acceptSanchoNetInfoBtn = this.page
+  8  |     .getByTestId("confirm-modal-button")
+  9  |     .nth(0);
+  10 |   readonly disconnectWalletBtn = this.page.getByTestId("disconnect-button");
+  11 |   readonly dRepIdDisplay = this.page.getByTestId("dRep-id-display");
+  12 | 
+  13 |   constructor(private readonly page: Page) {}
+  14 | 
+  15 |   async goto() {
+  16 |     await this.page.goto("/");
+  17 |   }
+  18 | 
+  19 |   async login() {
+  20 |     await this.goto();
+  21 | 
+  22 |     await this.connectWalletBtn.click();
+  23 |     await this.demosWalletBtn.click({ force: true });
+  24 | 
+  25 |     await this.acceptSanchoNetInfoBtn.click({ force: true });
+  26 | 
+  27 |     const { stakeKeys, rewardAddresses } = await this.page.evaluate(
+  28 |       async () => {
+  29 |         const walletInstance = await (window as any)["cardano"][
+  30 |           "demos"
+  31 |         ].enable();
+  32 | 
+  33 |         let stakeKeys: string[] = [];
+  34 |         let rewardAddresses: string[] = [];
+  35 |         if ("cip95" in walletInstance) {
+  36 |           stakeKeys = await walletInstance.cip95.getRegisteredPubStakeKeys();
+  37 |           rewardAddresses = await walletInstance.getRewardAddresses();
+  38 |         }
+  39 | 
+  40 |         return { stakeKeys, rewardAddresses };
+  41 |       }
+  42 |     );
+  43 | 
+  44 |     // Handle multiple stake keys
+  45 |     if (stakeKeys.length > 1) {
+  46 |       await this.page
+  47 |         .getByTestId(`${rewardAddresses[0]}-radio`)
+  48 |         .locator("div")
+  49 |         .first()
+  50 |         .click({ force: true });
+  51 |       await this.page.getByTestId("select-button").click();
+  52 |     }
+  53 |   }
+  54 | 
+  55 |   async logout() {
+  56 |     if (isMobile(this.page)) {
+  57 |       await openDrawer(this.page);
+  58 |     }
+> 59 |     await this.disconnectWalletBtn.click();
+     |                                    ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  60 |   }
+  61 | 
+  62 |   async isLoggedIn() {
+  63 |     if (isMobile(this.page)) {
+  64 |       await openDrawer(this.page);
+  65 |     }
+  66 |     await expect(this.disconnectWalletBtn).toBeVisible();
+  67 |   }
+  68 | }
+  69 | 
+```
