@@ -1,0 +1,244 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 2-delegation/delegationFunctionality.delegation.spec.ts >> Unregistered stake key >> 2Y. Should register the stake key with the first delegation
+- Location: tests/2-delegation/delegationFunctionality.delegation.spec.ts:328:7
+
+# Error details
+
+```
+Error: Error: expect(locator).toBeVisible() failed
+
+Locator: getByTestId('drep1lswpmqlvj5yquzdxkq5pfqmr6f39n4gs4aeycs2n5mvr57gzyep-delegate-button')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for getByTestId('drep1lswpmqlvj5yquzdxkq5pfqmr6f39n4gs4aeycs2n5mvr57gzyep-delegate-button')
+
+```
+
+```
+Error: page.waitForRequest: Test ended.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - banner [ref=e10]:
+      - link "Skip to main content" [ref=e11] [cursor=pointer]:
+        - /url: "#main-content"
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: /dashboard
+          - img "Cardano GovTool" [ref=e14]
+        - navigation "Main" [ref=e15]:
+          - link "Home" [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+          - link "DRep Directory" [ref=e17] [cursor=pointer]:
+            - /url: /dreps
+          - link "Governance Actions" [ref=e18] [cursor=pointer]:
+            - /url: /actions
+          - link "Governance Activity" [ref=e19] [cursor=pointer]:
+            - /url: /activity
+          - link "Guides" [ref=e20] [cursor=pointer]:
+            - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+        - generic [ref=e21]:
+          - button "Global Search" [ref=e22] [cursor=pointer]
+          - button "stake_t…udl" [ref=e26] [cursor=pointer]
+          - button "Notifications" [ref=e32] [cursor=pointer]:
+            - generic [ref=e33]: "0"
+          - button "Your governance profile" [ref=e37] [cursor=pointer]
+    - main [ref=e42]:
+      - generic [ref=e44]:
+        - generic [ref=e45]:
+          - generic [ref=e46]:
+            - heading "Find your Delegate Representatives" [level=1] [ref=e47]
+            - paragraph [ref=e48]: Find your designated Representative and explore their role, responsibilities, and representation of your constituency.
+          - button [ref=e49] [cursor=pointer]
+        - generic [ref=e54]:
+          - heading "Delegation Options" [level=2] [ref=e55]
+          - button [ref=e57] [cursor=pointer]:
+            - paragraph [ref=e59]: Automated Voting Options
+            - img "arrow" [ref=e61]
+        - generic [ref=e62]:
+          - heading "Find a DRep" [level=2] [ref=e63]
+          - generic [ref=e64]:
+            - generic [ref=e65]:
+              - textbox "Search for a DRep name or ID" [active] [ref=e70]: drep1lswpmqlvj5yquzdxkq5pfqmr6f39n4gs4aeycs2n5mvr57gzyep
+              - button "Clear search input" [ref=e71] [cursor=pointer]
+            - 'button "Status: Active" [ref=e75] [cursor=pointer]':
+              - text: "Status:"
+              - generic [ref=e76]: Active
+            - 'button "Sort by: Voting Activity" [ref=e79] [cursor=pointer]':
+              - text: "Sort by:"
+              - generic [ref=e80]: Voting Activity
+          - generic [ref=e83]:
+            - generic [ref=e84]:
+              - text: "Active filters:"
+              - generic [ref=e85]: "2"
+            - generic [ref=e86]:
+              - generic [ref=e87]: Active
+              - button "Remove filter Active" [ref=e88] [cursor=pointer]
+            - generic [ref=e92]:
+              - generic [ref=e93]: "\"drep1lswpmqlvj5yquzdxkq5pfqmr6f39n4gs4aeycs2n5mvr57gzyep\""
+              - button "Remove filter drep1lswpmqlvj5yquzdxkq5pfqmr6f39n4gs4aeycs2n5mvr57gzyep" [ref=e94] [cursor=pointer]
+            - button "Clear all" [ref=e98] [cursor=pointer]
+          - paragraph [ref=e99]: Found 0 DRep out of a total of 191
+          - generic [ref=e100]:
+            - heading "No DReps found" [level=2] [ref=e104]
+            - paragraph [ref=e105]:
+              - text: We couldn't find any representatives matching
+              - strong [ref=e106]: "\"drep1lswpmqlvj5yquzdxkq5pfqmr6f39n4gs4aeycs2n5mvr57gzyep\""
+              - text: . Try adjusting your search terms or removing some filters.
+            - generic [ref=e107]:
+              - button "Clear search" [ref=e108] [cursor=pointer]
+              - button "Browse all DReps" [ref=e109] [cursor=pointer]
+          - navigation "Pagination" [ref=e110]:
+            - generic [ref=e111]:
+              - paragraph [ref=e112]: Showing 0–0 of 0 results
+              - generic [ref=e113]:
+                - paragraph [ref=e114]: "Rows per page:"
+                - generic [ref=e115]:
+                  - combobox [ref=e116] [cursor=pointer]: "12"
+                  - textbox: "12"
+            - generic [ref=e117]:
+              - button "Previous" [disabled]:
+                - generic: ←
+                - text: Previous
+              - button "1" [ref=e118] [cursor=pointer]
+              - button "Next" [disabled]:
+                - text: Next
+                - generic: →
+        - generic [ref=e121]:
+          - generic [ref=e123]:
+            - text: Governance
+            - heading "What is a DRep? Shape Cardano's future with your voice." [level=2] [ref=e124]
+            - paragraph [ref=e125]: Delegated Representatives (DReps) vote on governance actions on behalf of ADA holders. Learn how you can make an impact in Cardano's on-chain democracy.
+          - link "Learn about DReps" [ref=e126] [cursor=pointer]:
+            - /url: https://docs.gov.tools/cardano-govtool/using-govtool/dreps
+    - contentinfo [ref=e129]:
+      - generic [ref=e130]:
+        - generic [ref=e131]:
+          - img "Cardano GovTool" [ref=e132]
+          - paragraph [ref=e133]: A clearer connection to Cardano governance.
+          - generic [ref=e134]:
+            - link "Guides" [ref=e135] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+            - link "FAQs" [ref=e136] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/faqs
+            - link "Intersect ↗" [ref=e137] [cursor=pointer]:
+              - /url: https://www.intersectmbo.org/
+        - generic [ref=e138]:
+          - paragraph [ref=e139]: © 2026 GovTool
+          - generic [ref=e140]:
+            - link "Privacy policy" [ref=e141] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/privacy-policy
+            - link "Terms of Use" [ref=e142] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/terms-of-use
+            - link "Help" [ref=e143] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/support
+            - button "Feedback" [ref=e144] [cursor=pointer]
+```
+
+# Test source
+
+```ts
+  1  | import environments from "@constants/environments";
+  2  | import { Page, expect } from "@playwright/test";
+  3  | import kuberService from "@services/kuberService";
+  4  | import { Logger } from "@helpers/logger";
+  5  | import { functionWaitedAssert } from "./waitedLoop";
+  6  | 
+  7  | /**
+  8  |  * Polls the transaction status until it's resolved or times out.
+  9  |  */
+  10 | export async function pollTransaction(txHash: string) {
+  11 |   await functionWaitedAssert(
+  12 |     async () => {
+  13 |       try {
+  14 |         Logger.info(`Waiting for tx completion: ${txHash}`);
+  15 |         await expect
+  16 |           .poll(
+  17 |             async () => {
+  18 |               const response = await kuberService.getTransactionDetails(txHash);
+  19 |               const data = await response.json();
+  20 |               return data.length;
+  21 |             },
+  22 |             {
+  23 |               timeout: environments.txTimeOut,
+  24 |             }
+  25 |           )
+  26 |           .toBeGreaterThan(0);
+  27 | 
+  28 |         Logger.success("Tx completed");
+  29 |       } catch (err) {
+  30 |         Logger.fail(`Failed due to ${err}`);
+  31 |         throw err;
+  32 |       }
+  33 |     },
+  34 |     { timeout: environments.txTimeOut + 60_000, name: "pollTransaction" }
+  35 |   );
+  36 | }
+  37 | 
+  38 | /**
+  39 |  * Runs `triggerCallback` and waits until the transaction is on chain and the
+  40 |  * app no longer shows it in progress. The hash comes from the first status
+  41 |  * check the app makes after the callback starts, so the callback must submit
+  42 |  * the transaction: the app checks as soon as it submits, and on the devnet a
+  43 |  * block can include the transaction before that check, which is then the
+  44 |  * last one.
+  45 |  */
+  46 | export async function waitForTxConfirmation(
+  47 |   page: Page,
+  48 |   triggerCallback: () => Promise<unknown>
+  49 | ) {
+  50 |   let transactionHash: string | undefined;
+  51 |   try {
+> 52 |     const transactionStatusPromise = page.waitForRequest((request) => {
+     |                                           ^ Error: page.waitForRequest: Test ended.
+  53 |       return request.url().includes("/transaction/status/");
+  54 |     });
+  55 |     await triggerCallback();
+  56 | 
+  57 |     await expect(
+  58 |       page
+  59 |         .getByTestId("alert-warning")
+  60 |         .getByText("Transaction in progress", { exact: false })
+  61 |     ).toBeVisible({
+  62 |       timeout: 90_000,
+  63 |     });
+  64 |     const url = (await transactionStatusPromise).url();
+  65 |     const regex = /\/transaction\/status\/([^\/]+)$/;
+  66 |     const match = url.match(regex);
+  67 |     if (match) {
+  68 |       transactionHash = match[1];
+  69 |     }
+  70 | 
+  71 |     if (transactionHash) {
+  72 |       await pollTransaction(transactionHash);
+  73 |       await expect(
+  74 |         page.getByText("In Progress", { exact: true }).first() //FIXME: Only one element needs to be displayed
+  75 |       ).not.toBeVisible({ timeout: 90_000 });
+  76 |     }
+  77 |   } catch (error) {
+  78 |     Logger.fail(error.message);
+  79 |     throw new Error(error);
+  80 |   }
+  81 | }
+  82 | 
+```

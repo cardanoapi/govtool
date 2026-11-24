@@ -1,0 +1,364 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 9-governance-action-history/governance-action-history.loggedin.spec.ts >> Governance action history page >> 9E_2. Should verify all of the displayed governance actions have expired
+- Location: tests/9-governance-action-history/governance-action-history.loggedin.spec.ts:47:7
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: locator('[data-testid$="-governance-action-card"]').first().locator('[data-testid$="-Expired-date"]')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for locator('[data-testid$="-governance-action-card"]').first().locator('[data-testid$="-Expired-date"]')
+
+```
+
+```yaml
+- text: "Network: Preview |"
+- link "Go to Mainnet":
+  - /url: https://gov.tools/
+- banner:
+  - link "Skip to main content":
+    - /url: "#main-content"
+  - link "Cardano GovTool":
+    - /url: /dashboard
+    - img "Cardano GovTool"
+  - navigation "Main":
+    - link "Home":
+      - /url: /dashboard
+    - link "DRep Directory":
+      - /url: /dreps
+    - link "Governance Actions":
+      - /url: /actions
+    - link "Governance Activity":
+      - /url: /activity
+    - link "Guides":
+      - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+  - button "Global Search"
+  - button "stake_t…5fr"
+  - button "Notifications": "0"
+  - button "Your governance profile"
+- main:
+  - heading "Governance actions" [level=1]
+  - paragraph: Explore proposals shaping Cardano. Review the details, follow voting progress and take part in decisions that move the ecosystem forward.
+  - button "Create Governance Action"
+  - region "Governance action figures": Total Actions 1,552 Voting Now 31 Expiring Soon 0 Enacted 14
+  - navigation "Governance Actions":
+    - link "Proposed Governance Actions":
+      - /url: /proposals
+    - link "Live Voting":
+      - /url: /actions
+    - link "Outcomes":
+      - /url: /actions/history
+  - textbox "Search Action..."
+  - 'button "Sort: Newest First"'
+  - checkbox "All statuses"
+  - checkbox "Expired" [checked]
+  - checkbox "Enacted"
+  - checkbox "Ratified"
+  - button "All Governance Actions 1552" [pressed]
+  - button "Info 624"
+  - button "Treasury Withdrawal 442"
+  - button "Parameter Change 53"
+  - button "Hard Fork 19"
+  - button "New Constitution 204"
+  - button "New Committee 47"
+  - button "No Confidence 163"
+  - article:
+    - text: New Constitution
+    - link "Untitled governance action":
+      - /url: /actions/history/gov_action1wwv2u0dmdmasy2gpe0cd7852ljxacxl43wz6e6hex08xjuvakk6sqccer2n
+    - text: Expired Submitted Sep 28, 2026 · Epoch 1434 Expired Oct 29, 2026 · Epoch 1465
+  - article:
+    - text: Treasury Withdrawals
+    - link "Untitled governance action":
+      - /url: /actions/history/gov_action1ne036dw7e2y83x2z8whhtnq9j3agydz39etgvzlu9y6pxywd9xusqldu4wk
+    - text: Expired Submitted Sep 28, 2026 · Epoch 1434 Expired Oct 29, 2026 · Epoch 1465
+  - article:
+    - text: Info Action
+    - link "Untitled governance action":
+      - /url: /actions/history/gov_action12c6gg46nxdau90tux9rvvk3sjs9f7tuqm2ztuwypgtaeg80vg8jsq2q53zg
+    - text: Expired Submitted Sep 28, 2026 · Epoch 1434 Expired Oct 29, 2026 · Epoch 1465
+  - article:
+    - text: Treasury Withdrawals
+    - link "Untitled governance action":
+      - /url: /actions/history/gov_action1mv7kz7reavmzza7xxanna7w250v7qqljtz5ns4cvrlhuh9jgcq8qqg8yc4q
+    - text: Expired Submitted Sep 26, 2026 · Epoch 1432 Expired Oct 27, 2026 · Epoch 1463
+  - article:
+    - text: Info Action
+    - link "Untitled governance action":
+      - /url: /actions/history/gov_action1hs847hqz3fzp7d7dn5hp87xjuya4swg4a2xygjkcv0p2pwj4gu0qqq8wtsy
+    - text: Expired Submitted Sep 26, 2026 · Epoch 1432 Expired Oct 27, 2026 · Epoch 1463
+  - article:
+    - text: Info Action
+    - link "Untitled governance action":
+      - /url: /actions/history/gov_action1fe539akx6c0lp2c7pa4t5j3knxe8dnd885cyzmhksqw2e705r2yqqj9czr4
+    - text: Expired Submitted Sep 26, 2026 · Epoch 1432 Expired Oct 27, 2026 · Epoch 1463
+  - article:
+    - text: Treasury Withdrawals
+    - link "Untitled governance action":
+      - /url: /actions/history/gov_action1c6w6fdy0ur8p2wht7fyjdd4yyvtw3zkymzudve9cuwxx23q0hutsqut0zev
+    - text: Expired Submitted Sep 26, 2026 · Epoch 1432 Expired Oct 27, 2026 · Epoch 1463
+  - article:
+    - text: Protocol Parameter Change
+    - link "Reduce minPoolCost to 75 ada":
+      - /url: /actions/history/gov_action1mk4q3sezv8zt3ux8dm234nt06f70kd2ryajs09x6hv54fx4f9glsq6j9hus
+    - text: Expired Submitted Sep 11, 2026 · Epoch 1417 Expired Oct 12, 2026 · Epoch 1448
+  - article:
+    - text: Protocol Parameter Change
+    - link "Reduce minPoolCost to 75 ada":
+      - /url: /actions/history/gov_action1ey0tmhd4xnauypjfs5cp0vrf0xkuelr98ts3cpwsvl8gpfryj2qsqugdvel
+    - text: Expired Submitted Sep 9, 2026 · Epoch 1415 Expired Oct 10, 2026 · Epoch 1446
+  - article:
+    - text: Protocol Parameter Change
+    - link "Reduce minPoolCost to 75 ada":
+      - /url: /actions/history/gov_action1c79q2y5e3lk8ttn5ye6x6dg4fz5phx7ge6vxa6j4f4e9p2ml4pxqqk0ctes
+    - text: Expired Submitted Sep 9, 2026 · Epoch 1415 Expired Oct 10, 2026 · Epoch 1446
+  - article:
+    - text: Info Action
+    - link "[Preview test] Governance Improvement Survey":
+      - /url: /actions/history/gov_action10hpyyz2ny63mpq9gvm5xrrtapahh7q5fc049jv6zy3vshz8p8hmsqfy4mfw
+    - text: Expired Submitted Sep 9, 2026 · Epoch 1415 Expired Oct 10, 2026 · Epoch 1446
+  - article:
+    - text: Info Action
+    - link "[Preview test] Governance Improvement Survey":
+      - /url: /actions/history/gov_action1trpys5w4gndq90lkxrejphlmpm2jrhle0sea43xs6y53s8wsy8asq9hdspn
+    - text: Expired Submitted Sep 9, 2026 · Epoch 1415 Expired Oct 10, 2026 · Epoch 1446
+  - button "Show More Actions"
+- contentinfo:
+  - img "Cardano GovTool"
+  - paragraph: A clearer connection to Cardano governance.
+  - link "Guides":
+    - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+  - link "FAQs":
+    - /url: https://docs.gov.tools/cardano-govtool/faqs
+  - link "Intersect ↗":
+    - /url: https://www.intersectmbo.org/
+  - paragraph: © 2026 GovTool
+  - link "Privacy policy":
+    - /url: https://docs.gov.tools/legal/privacy-policy
+  - link "Terms of Use":
+    - /url: https://docs.gov.tools/legal/terms-of-use
+  - link "Help":
+    - /url: https://docs.gov.tools/cardano-govtool/support
+  - button "Feedback"
+```
+
+# Test source
+
+```ts
+  259 |     return actionRecordStatus.some((status) => filters.includes(status));
+  260 |   }
+  261 | 
+  262 |   async shouldAccessPage(isLoggedIn = false) {
+  263 |     await this.page.goto("/");
+  264 | 
+  265 |     if (isMobile(this.page)) {
+  266 |       await this.page.getByTestId("open-drawer-button").click();
+  267 |     } else {
+  268 |       if (!isLoggedIn) {
+  269 |         await this.page.getByTestId("governance-actions").click();
+  270 |       }
+  271 |     }
+  272 |     await this.page.getByTestId("governance-actions-governance-actions-link").click();
+  273 | 
+  274 |     if (!isMobile(this.page) && !isLoggedIn) {
+  275 |       await this.page.getByTestId("governance-actions").click();
+  276 |     }
+  277 | 
+  278 |     await expect(this.page).toHaveURL(/\/actions\/history(\?|$)/);
+  279 |     // Text, not role: the governance actions menu reopened above leaves the
+  280 |     // page aria-hidden. Connected, the page has no heading of its own; the
+  281 |     // dashboard bar repeats the nav item's label.
+  282 |     if (isLoggedIn) {
+  283 |       await expect(
+  284 |         this.page.getByText("Historical", { exact: true })
+  285 |       ).toHaveCount(2);
+  286 |     } else {
+  287 |       await expect(
+  288 |         this.page.getByText("Historical Actions", { exact: true })
+  289 |       ).toBeVisible();
+  290 |     }
+  291 |   }
+  292 | 
+  293 |   async filterGovernanceActionHistory() {
+  294 |     await this.filterBtn.click();
+  295 |     const filterOptionNames = Object.values(actionRecordType);
+  296 | 
+  297 |     // proposal type filter
+  298 |     await this.applyAndValidateFilters(
+  299 |       filterOptionNames,
+  300 |       this._validateFiltersInGovernanceActionHistoryCard
+  301 |     );
+  302 | 
+  303 |     // proposal status filter
+  304 |     await this.applyAndValidateFilters(
+  305 |       status,
+  306 |       this._validateStatusFiltersInGovernanceActionHistoryCard
+  307 |     );
+  308 |   }
+  309 | 
+  310 |   async sortGovernanceActionHistory() {
+  311 |     await this.sortBtn.click();
+  312 | 
+  313 |     await this.sortAndValidate(
+  314 |       SortOption.NewestFirst,
+  315 |       (p1, p2) => p1.expiry_date >= p2.time
+  316 |     );
+  317 | 
+  318 |     await this.sortAndValidate(
+  319 |       SortOption.OldestFirst,
+  320 |       (p1, p2) => p1.expiry_date <= p2.expiry_date
+  321 |     );
+  322 | 
+  323 |     await this.sortAndValidate(
+  324 |       SortOption.HighestAmountYesVote,
+  325 |       (p1, p2) => parseInt(p1.yes_votes) >= parseInt(p2.yes_votes)
+  326 |     );
+  327 |   }
+  328 | 
+  329 |   async filterAndSortGovernanceActionHistory() {
+  330 |     const filterOptionKeys = Object.keys(actionRecordType);
+  331 |     const filterOptionNames = Object.values(actionRecordType);
+  332 | 
+  333 |     const choice = Math.floor(Math.random() * filterOptionKeys.length);
+  334 |     await this.goto({ filter: filterOptionKeys[choice] });
+  335 |     await this.sortBtn.click();
+  336 | 
+  337 |     await this.sortAndValidate(
+  338 |       SortOption.OldestFirst,
+  339 |       (p1, p2) => p1.expiry_date <= p2.expiry_date
+  340 |     );
+  341 | 
+  342 |     await this.validateFilters(
+  343 |       [filterOptionNames[choice]],
+  344 |       this._validateFiltersInGovernanceActionHistoryCard
+  345 |     );
+  346 |   }
+  347 | 
+  348 |   // Cards show the date that ended the action (Enacted, Not Ratified,
+  349 |   // Expired) or, while live, its expiry, so only the expired filter can
+  350 |   // promise an "Expired" date on every card.
+  351 |   async verifyAllGovernanceActionHistoryAreExpired() {
+  352 |     await this.goto({ status: "expired" });
+  353 |     const proposalCards = await this.getAllGovernanceActionHistory();
+  354 | 
+  355 |     for (const proposalCard of proposalCards) {
+  356 |       const expiryDateEl = proposalCard.locator(
+  357 |         '[data-testid$="-Expired-date"]'
+  358 |       );
+> 359 |       await expect(expiryDateEl).toBeVisible();
+      |                                  ^ Error: expect(locator).toBeVisible() failed
+  360 |       // e.g. "Expired: Thu Oct 01, 2026 (Epoch 2883)"
+  361 |       const match = (await expiryDateEl.innerText()).match(
+  362 |         /(\w{3}) (\d{1,2}), (\d{4})/
+  363 |       );
+  364 |       expect(match, "expired date is not readable").not.toBeNull();
+  365 |       const expiryDate = new Date(`${match[1]} ${match[2]}, ${match[3]}`);
+  366 |       expect(new Date() >= expiryDate).toBeTruthy();
+  367 |     }
+  368 |   }
+  369 | 
+  370 |   async VerifyLoadMoreGovernanceActionHistory() {
+  371 |     const responsePromise = this.page.waitForResponse((response) =>
+  372 |       response
+  373 |         .url()
+  374 |         .includes(`governance-actions?search=&filters=&sort=newestFirst&page=2`)
+  375 |     );
+  376 |     await this.goto();
+  377 | 
+  378 |     let governanceActionIdsBefore: String[];
+  379 |     let governanceActionIdsAfter: String[];
+  380 | 
+  381 |     await functionWaitedAssert(
+  382 |       async () => {
+  383 |         governanceActionIdsBefore =
+  384 |           await this.getAllListedCIP105GovernanceIds();
+  385 |         await this.showMoreBtn.click();
+  386 |       },
+  387 |       { message: "Show more button not visible" }
+  388 |     );
+  389 | 
+  390 |     const response = await responsePromise;
+  391 |     const governanceActionListAfter = await response.json();
+  392 | 
+  393 |     await functionWaitedAssert(
+  394 |       async () => {
+  395 |         governanceActionIdsAfter = await this.getAllListedCIP105GovernanceIds();
+  396 |         expect(governanceActionIdsAfter.length).toBeGreaterThan(
+  397 |           governanceActionIdsBefore.length
+  398 |         );
+  399 |       },
+  400 |       { message: "GovernanceActionHistory not loaded after clicking show more" }
+  401 |     );
+  402 | 
+  403 |     if (governanceActionListAfter.length >= governanceActionIdsBefore.length) {
+  404 |       await expect(this.showMoreBtn).toBeVisible();
+  405 |       expect(true).toBeTruthy();
+  406 |     } else {
+  407 |       await expect(this.showMoreBtn).not.toBeVisible();
+  408 |     }
+  409 |   }
+  410 | 
+  411 |   async fetchGovernanceActionIdAndTitleFromNetwork(
+  412 |     governanceActionId?: string,
+  413 |     governanceActionTitle?: string
+  414 |   ): Promise<{ governanceActionId: string; governanceActionTitle: string }> {
+  415 |     let updatedGovernanceActionId = governanceActionId;
+  416 |     let updatedGovernanceActionTitle = governanceActionTitle;
+  417 | 
+  418 |     await this.page.route(
+  419 |       "**/governance-actions?search=&filters=&sort=**",
+  420 |       async (route) => {
+  421 |         const response = await route.fetch();
+  422 |         const data: actionRecordProposal[] = await response.json();
+  423 | 
+  424 |         if (!updatedGovernanceActionId && data.length > 0) {
+  425 |           const randomIndex = Math.floor(Math.random() * data.length);
+  426 |           updatedGovernanceActionId = `${data[randomIndex].tx_hash}#${data[randomIndex].index}`;
+  427 |         }
+  428 | 
+  429 |         if (!updatedGovernanceActionTitle) {
+  430 |           const itemWithTitle = data.find((item) => item.title != null);
+  431 |           if (itemWithTitle) {
+  432 |             updatedGovernanceActionTitle = itemWithTitle.title;
+  433 |           }
+  434 |         }
+  435 | 
+  436 |         await route.fulfill({
+  437 |           status: 200,
+  438 |           contentType: "application/json",
+  439 |           body: JSON.stringify(data),
+  440 |         });
+  441 |       }
+  442 |     );
+  443 | 
+  444 |     await this.page.route(
+  445 |       "**/governance-actions/metadata?**",
+  446 |       async (route) => {
+  447 |         try {
+  448 |           const response = await route.fetch();
+  449 |           if (response.status() !== 200) {
+  450 |             await route.continue();
+  451 |             return;
+  452 |           }
+  453 | 
+  454 |           const data: actionRecordMetadata = await response.json();
+  455 |           if (!updatedGovernanceActionTitle && data.data.title) {
+  456 |             updatedGovernanceActionTitle = data.data.title;
+  457 |           }
+  458 | 
+  459 |           await route.fulfill({
+```

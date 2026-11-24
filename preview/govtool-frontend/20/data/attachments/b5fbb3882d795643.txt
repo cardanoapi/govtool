@@ -1,0 +1,9 @@
+ℹ Retrying the function
+ℹ Retrying the function search by id
+ℹ Retrying the function search by id
+ℹ Retrying the function search by id
+ℹ Retrying the function search by id
+locator.textContent: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator('[data-testid$="-governance-action-card"]').first().locator('[data-testid$="-CIP-105-id"]')
+

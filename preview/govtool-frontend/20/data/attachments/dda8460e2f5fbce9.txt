@@ -1,0 +1,5 @@
+wallet balance 2041.819495
+wallet address addr_test1qr70g8nd7zwfcwgvzgksg0g89824wvvwvf67sz2yw6429vuww2k3djzd27ta0uneu6ta8nyw7l0e2gvkhfs342ww7sjqepf2wn
+✖ Failed to load resource: the server responded with a status of 404 ()
+1
+✖ Failed to load resource: the server responded with a status of 404 ()

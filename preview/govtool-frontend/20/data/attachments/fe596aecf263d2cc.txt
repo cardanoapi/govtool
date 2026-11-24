@@ -1,0 +1,2 @@
+✔ Uploaded Jamaal-b8ba70d6 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()

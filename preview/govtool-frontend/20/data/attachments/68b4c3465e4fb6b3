@@ -1,0 +1,449 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 4-proposal-visibility/proposalVisibility.spec.ts >> 4C_2. Should sort Governance Action Type on governance actions page
+- Location: tests/4-proposal-visibility/proposalVisibility.spec.ts:93:5
+
+# Error details
+
+```
+Error: expect(locator).toContainText(expected) failed
+
+Locator: locator('[data-testid^="govaction-"][data-testid$="-card"]').first()
+Expected substring: "1ac710c7e4ec6e82a6b0ba37f1a44c1ee9da7ca398e29d858d2e07d39d40d3db"
+Received string:    "ActiveTreasury WithdrawalEvolution SDK test: treasury withdrawal through the constitution guardrailSubmittedabout 2 months agoExpiresEpoch 1473DRep0.2% / 67.0%SPONOT ELIGIBLECC0.0% / 66.7%"
+Timeout: 5000ms
+
+Call log:
+  - Expect "toContainText" with timeout 5000ms
+  - waiting for locator('[data-testid^="govaction-"][data-testid$="-card"]').first()
+    14 × locator resolved to <article class="MuiBox-root css-1fezn6b" data-testid="govaction-TreasuryWithdrawal-card">…</article>
+       - unexpected value "ActiveTreasury WithdrawalEvolution SDK test: treasury withdrawal through the constitution guardrailSubmittedabout 2 months agoExpiresEpoch 1473DRep0.2% / 67.0%SPONOT ELIGIBLECC0.0% / 66.7%"
+
+
+expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: false
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - banner [ref=e10]:
+      - link "Skip to main content" [ref=e11] [cursor=pointer]:
+        - /url: "#main-content"
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: /
+          - img "Cardano GovTool" [ref=e14]
+        - generic [ref=e15]:
+          - button "Global Search" [ref=e16] [cursor=pointer]
+          - button "Connect" [ref=e20] [cursor=pointer]
+          - button "Open menu" [ref=e21] [cursor=pointer]
+    - main [ref=e23]:
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - generic [ref=e27]:
+            - generic [ref=e28]:
+              - heading "Governance actions" [level=1] [ref=e29]
+              - paragraph [ref=e30]: Explore proposals shaping Cardano. Review the details, follow voting progress and take part in decisions that move the ecosystem forward.
+            - button [ref=e31] [cursor=pointer]
+          - region "Governance action figures" [ref=e37]:
+            - generic [ref=e38]:
+              - generic [ref=e39]: Total Actions
+              - generic [ref=e45]: 1,552
+            - generic [ref=e46]:
+              - generic [ref=e47]: Voting Now
+              - generic [ref=e52]: "31"
+            - generic [ref=e53]:
+              - generic [ref=e54]: Expiring Soon
+              - generic [ref=e58]: "0"
+            - generic [ref=e59]:
+              - generic [ref=e60]: Enacted
+              - generic [ref=e65]: "14"
+          - navigation "Governance Actions" [ref=e67]:
+            - link "Proposed Governance Actions" [ref=e68] [cursor=pointer]:
+              - /url: /proposals
+            - link "Live Voting" [ref=e69] [cursor=pointer]:
+              - /url: /actions
+            - link "Outcomes" [ref=e70] [cursor=pointer]:
+              - /url: /actions/history
+        - generic [ref=e71]:
+          - generic [ref=e72]:
+            - textbox "Search Governance Actions" [ref=e78]
+            - button "Filters" [ref=e79] [cursor=pointer]
+            - 'button "Sort: Soon to expire" [active] [ref=e81] [cursor=pointer]':
+              - text: "Sort:"
+              - generic [ref=e82]: Soon to expire
+          - generic [ref=e87]:
+            - article [ref=e88]:
+              - generic [ref=e89]:
+                - generic [ref=e90]:
+                  - generic [ref=e91]: Active
+                  - generic [ref=e93]: Treasury Withdrawal
+                - link [ref=e94] [cursor=pointer]:
+                  - /url: /actions/gov_action1rtr3p3lya3hg9f4shgmlrfzvrm5a5l9rnr3fmpvd9cra882q60dsqurjzc4
+                  - 'heading "Evolution SDK test: treasury withdrawal through the constitution guardrail" [level=3] [ref=e96]'
+                - generic [ref=e98]:
+                  - generic [ref=e99]:
+                    - generic [ref=e100]: Submitted
+                    - generic [ref=e101]: about 2 months ago
+                  - generic [ref=e103]:
+                    - generic [ref=e104]: Expires
+                    - generic [ref=e105]:
+                      - text: Epoch 1473
+                      - generic "6th Nov 2026, 00:00" [ref=e106]
+              - generic [ref=e109]:
+                - generic [ref=e110]:
+                  - generic [ref=e115]: DRep
+                  - generic [ref=e116]: 0.2% / 67.0%
+                - generic [ref=e117]:
+                  - generic [ref=e119]: SPO
+                  - generic [ref=e120]: NOT ELIGIBLE
+                - generic [ref=e121]:
+                  - generic [ref=e124]: CC
+                  - generic [ref=e125]: 0.0% / 66.7%
+            - article [ref=e126]:
+              - generic [ref=e127]:
+                - generic [ref=e128]:
+                  - generic [ref=e129]: Active
+                  - generic [ref=e131]: No Confidence
+                - link [ref=e132] [cursor=pointer]:
+                  - /url: /actions/gov_action10pjlrxx4c256urfjwa6hn9qvdm8fztqc5hgrku0y0lqcejgz6ywsqphlmp3
+                  - heading "Articulus mollitia terreo bibo balbus depono." [level=3] [ref=e134]
+                - generic [ref=e136]:
+                  - generic [ref=e137]:
+                    - generic [ref=e138]: Submitted
+                    - generic [ref=e139]: about 2 months ago
+                  - generic [ref=e141]:
+                    - generic [ref=e142]: Expires
+                    - generic [ref=e143]:
+                      - text: Epoch 1475
+                      - generic "8th Nov 2026, 00:00" [ref=e144]
+              - generic [ref=e147]:
+                - generic [ref=e148]:
+                  - generic [ref=e152]: DRep
+                  - generic [ref=e153]: 16.9% / 67.0%
+                - generic [ref=e154]:
+                  - generic [ref=e158]: SPO
+                  - generic [ref=e159]: 0.1% / 51.0%
+                - generic [ref=e160]:
+                  - generic [ref=e162]: CC
+                  - generic [ref=e163]: NOT ELIGIBLE
+            - article [ref=e164]:
+              - generic [ref=e165]:
+                - generic [ref=e166]:
+                  - generic [ref=e167]: Active
+                  - generic [ref=e169]: Update to the Constitution
+                - link [ref=e170] [cursor=pointer]:
+                  - /url: /actions/gov_action1yrct7c0zgmvdylfu5allfs9evu5w0vetmgxers4syxme0kapfdwqqgz4p60
+                  - heading "Decens eius adeo crustulum desino atrocitas." [level=3] [ref=e172]
+                - generic [ref=e174]:
+                  - generic [ref=e175]:
+                    - generic [ref=e176]: Submitted
+                    - generic [ref=e177]: about 2 months ago
+                  - generic [ref=e179]:
+                    - generic [ref=e180]: Expires
+                    - generic [ref=e181]:
+                      - text: Epoch 1475
+                      - generic "8th Nov 2026, 00:00" [ref=e182]
+              - generic [ref=e185]:
+                - generic [ref=e186]:
+                  - generic [ref=e190]: DRep
+                  - generic [ref=e191]: 0.0% / 75.0%
+                - generic [ref=e192]:
+                  - generic [ref=e194]: SPO
+                  - generic [ref=e195]: NOT ELIGIBLE
+                - generic [ref=e196]:
+                  - generic [ref=e199]: CC
+                  - generic [ref=e200]: 0.0% / 66.7%
+            - article [ref=e201]:
+              - generic [ref=e202]:
+                - generic [ref=e203]:
+                  - generic [ref=e204]: Active
+                  - generic [ref=e206]: Treasury Withdrawal
+                - link [ref=e207] [cursor=pointer]:
+                  - /url: /actions/gov_action1qvmvn3m8wezq99ue0e5qal7s30576w8d63z2sdtgtczvsmnwuv3sqr0yflp
+                  - heading "Vulnus commodo coerceo cibus tempore autem." [level=3] [ref=e209]
+                - generic [ref=e211]:
+                  - generic [ref=e212]:
+                    - generic [ref=e213]: Submitted
+                    - generic [ref=e214]: about 2 months ago
+                  - generic [ref=e216]:
+                    - generic [ref=e217]: Expires
+                    - generic [ref=e218]:
+                      - text: Epoch 1475
+                      - generic "8th Nov 2026, 00:00" [ref=e219]
+              - generic [ref=e222]:
+                - generic [ref=e223]:
+                  - generic [ref=e227]: DRep
+                  - generic [ref=e228]: 0.0% / 67.0%
+                - generic [ref=e229]:
+                  - generic [ref=e231]: SPO
+                  - generic [ref=e232]: NOT ELIGIBLE
+                - generic [ref=e233]:
+                  - generic [ref=e236]: CC
+                  - generic [ref=e237]: 0.0% / 66.7%
+            - article [ref=e238]:
+              - generic [ref=e239]:
+                - generic [ref=e240]:
+                  - generic [ref=e241]: Active
+                  - generic [ref=e243]: Info Action
+                - link [ref=e244] [cursor=pointer]:
+                  - /url: /actions/gov_action168q20qqeg0uqqacyvcy6r89wt6gt5m532zr8gjuw55n3z0ct554sqmtrvrq
+                  - heading "Aspicio consequatur crinis cubitum impedit tracto." [level=3] [ref=e246]
+                - generic [ref=e248]:
+                  - generic [ref=e249]:
+                    - generic [ref=e250]: Submitted
+                    - generic [ref=e251]: about 2 months ago
+                  - generic [ref=e253]:
+                    - generic [ref=e254]: Expires
+                    - generic [ref=e255]:
+                      - text: Epoch 1475
+                      - generic "8th Nov 2026, 00:00" [ref=e256]
+              - generic [ref=e259]:
+                - generic [ref=e260]:
+                  - generic [ref=e264]: DRep
+                  - generic [ref=e265]: 0.0% / 100.0%
+                - generic [ref=e266]:
+                  - generic [ref=e270]: SPO
+                  - generic [ref=e271]: 0.0% / 100.0%
+                - generic [ref=e272]:
+                  - generic [ref=e275]: CC
+                  - generic [ref=e276]: 0.0% / 100.0%
+            - article [ref=e277]:
+              - generic [ref=e278]:
+                - generic [ref=e279]:
+                  - generic [ref=e280]: Active
+                  - generic [ref=e282]: No Confidence
+                - link [ref=e283] [cursor=pointer]:
+                  - /url: /actions/gov_action1jc4hmxdllrrcdgz24vtlzwwnpwut4mq6dr96z2reykednx80prdqqz9g72z
+                  - heading "Abutor acer super textor administratio venio." [level=3] [ref=e285]
+                - generic [ref=e287]:
+                  - generic [ref=e288]:
+                    - generic [ref=e289]: Submitted
+                    - generic [ref=e290]: about 2 months ago
+                  - generic [ref=e292]:
+                    - generic [ref=e293]: Expires
+                    - generic [ref=e294]:
+                      - text: Epoch 1475
+                      - generic "8th Nov 2026, 00:00" [ref=e295]
+              - generic [ref=e298]:
+                - generic [ref=e299]:
+                  - generic [ref=e303]: DRep
+                  - generic [ref=e304]: 16.9% / 67.0%
+                - generic [ref=e305]:
+                  - generic [ref=e309]: SPO
+                  - generic [ref=e310]: 0.1% / 51.0%
+                - generic [ref=e311]:
+                  - generic [ref=e313]: CC
+                  - generic [ref=e314]: NOT ELIGIBLE
+            - article [ref=e315]:
+              - generic [ref=e316]:
+                - generic [ref=e317]:
+                  - generic [ref=e318]: Active
+                  - generic [ref=e320]: Treasury Withdrawal
+                - link [ref=e321] [cursor=pointer]:
+                  - /url: /actions/gov_action1zuhzdddv359u8ehecek4p0c0q7t0rwdp9u663wylygyqsal7nfqqq6h8nmr
+                  - heading "Rerum culpa comprehendo neque tam via." [level=3] [ref=e323]
+                - generic [ref=e325]:
+                  - generic [ref=e326]:
+                    - generic [ref=e327]: Submitted
+                    - generic [ref=e328]: about 2 months ago
+                  - generic [ref=e330]:
+                    - generic [ref=e331]: Expires
+                    - generic [ref=e332]:
+                      - text: Epoch 1475
+                      - generic "8th Nov 2026, 00:00" [ref=e333]
+              - generic [ref=e336]:
+                - generic [ref=e337]:
+                  - generic [ref=e341]: DRep
+                  - generic [ref=e342]: 0.0% / 67.0%
+                - generic [ref=e343]:
+                  - generic [ref=e345]: SPO
+                  - generic [ref=e346]: NOT ELIGIBLE
+                - generic [ref=e347]:
+                  - generic [ref=e350]: CC
+                  - generic [ref=e351]: 0.0% / 66.7%
+            - article [ref=e352]:
+              - generic [ref=e353]:
+                - generic [ref=e354]:
+                  - generic [ref=e355]: Active
+                  - generic [ref=e357]: No Confidence
+                - link [ref=e358] [cursor=pointer]:
+                  - /url: /actions/gov_action15c98xhgmakk4yvar2kjcuuplfkjklgefeavx6n6nt0ym8r7d786sqkk6rre
+                  - heading "Vergo conventus decretum usque taceo adeo." [level=3] [ref=e360]
+                - generic [ref=e362]:
+                  - generic [ref=e363]:
+                    - generic [ref=e364]: Submitted
+                    - generic [ref=e365]: about 2 months ago
+                  - generic [ref=e367]:
+                    - generic [ref=e368]: Expires
+                    - generic [ref=e369]:
+                      - text: Epoch 1475
+                      - generic "8th Nov 2026, 00:00" [ref=e370]
+              - generic [ref=e373]:
+                - generic [ref=e374]:
+                  - generic [ref=e378]: DRep
+                  - generic [ref=e379]: 16.9% / 67.0%
+                - generic [ref=e380]:
+                  - generic [ref=e384]: SPO
+                  - generic [ref=e385]: 0.1% / 51.0%
+                - generic [ref=e386]:
+                  - generic [ref=e388]: CC
+                  - generic [ref=e389]: NOT ELIGIBLE
+            - article [ref=e390]:
+              - generic [ref=e391]:
+                - generic [ref=e392]:
+                  - generic [ref=e393]: Active
+                  - generic [ref=e395]: Update to the Constitution
+                - link [ref=e396] [cursor=pointer]:
+                  - /url: /actions/gov_action13ha99weztxtk8w6wecp7ae3a98p99j9pqjfz7k96vekumg8nzfqsqant9g6
+                  - heading "Amicitia statim cupio agnitio asper caritas." [level=3] [ref=e398]
+                - generic [ref=e400]:
+                  - generic [ref=e401]:
+                    - generic [ref=e402]: Submitted
+                    - generic [ref=e403]: about 2 months ago
+                  - generic [ref=e405]:
+                    - generic [ref=e406]: Expires
+                    - generic [ref=e407]:
+                      - text: Epoch 1475
+                      - generic "8th Nov 2026, 00:00" [ref=e408]
+              - generic [ref=e411]:
+                - generic [ref=e412]:
+                  - generic [ref=e416]: DRep
+                  - generic [ref=e417]: 0.0% / 75.0%
+                - generic [ref=e418]:
+                  - generic [ref=e420]: SPO
+                  - generic [ref=e421]: NOT ELIGIBLE
+                - generic [ref=e422]:
+                  - generic [ref=e425]: CC
+                  - generic [ref=e426]: 0.0% / 66.7%
+            - article [ref=e427]:
+              - generic [ref=e428]:
+                - generic [ref=e429]:
+                  - generic [ref=e430]: Active
+                  - generic [ref=e432]: Treasury Withdrawal
+                - link [ref=e433] [cursor=pointer]:
+                  - /url: /actions/gov_action1dcpr34wqu37hwysc2mmtgn53l08amyyuk9pktuuzvw0u4t74nz2qqgytdkn
+                  - heading "Thesis voluptas absens vacuus videlicet facilis." [level=3] [ref=e435]
+                - generic [ref=e437]:
+                  - generic [ref=e438]:
+                    - generic [ref=e439]: Submitted
+                    - generic [ref=e440]: about 2 months ago
+                  - generic [ref=e442]:
+                    - generic [ref=e443]: Expires
+                    - generic [ref=e444]:
+                      - text: Epoch 1475
+                      - generic "8th Nov 2026, 00:00" [ref=e445]
+              - generic [ref=e448]:
+                - generic [ref=e449]:
+                  - generic [ref=e453]: DRep
+                  - generic [ref=e454]: 0.0% / 67.0%
+                - generic [ref=e455]:
+                  - generic [ref=e457]: SPO
+                  - generic [ref=e458]: NOT ELIGIBLE
+                - generic [ref=e459]:
+                  - generic [ref=e462]: CC
+                  - generic [ref=e463]: 0.0% / 66.7%
+            - navigation "Pagination" [ref=e464]:
+              - paragraph [ref=e466]: Showing 1–10 of 31 results
+              - generic [ref=e467]:
+                - button "Previous" [disabled]:
+                  - generic: ←
+                  - text: Previous
+                - paragraph [ref=e468]: Page 1 of 4
+                - button "Next" [ref=e469] [cursor=pointer]:
+                  - text: Next
+                  - generic [ref=e470]: →
+    - contentinfo [ref=e471]:
+      - generic [ref=e472]:
+        - generic [ref=e473]:
+          - img "Cardano GovTool" [ref=e474]
+          - paragraph [ref=e475]: A clearer connection to Cardano governance.
+          - generic [ref=e476]:
+            - link "Guides" [ref=e477] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+            - link "FAQs" [ref=e478] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/faqs
+            - link "Intersect ↗" [ref=e479] [cursor=pointer]:
+              - /url: https://www.intersectmbo.org/
+        - generic [ref=e480]:
+          - paragraph [ref=e481]: © 2026 GovTool
+          - generic [ref=e482]:
+            - link "Privacy policy" [ref=e483] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/privacy-policy
+            - link "Terms of Use" [ref=e484] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/terms-of-use
+            - link "Help" [ref=e485] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/support
+            - button "Feedback" [ref=e486] [cursor=pointer]
+```
+
+# Test source
+
+```ts
+  1  | import { expect } from "@playwright/test";
+  2  | import { Logger } from "./logger";
+  3  | 
+  4  | export async function waitedLoop(
+  5  |   conditionFn,
+  6  |   timeout = 60000,
+  7  |   interval = 2000
+  8  | ) {
+  9  |   const startTime = Date.now();
+  10 |   while (Date.now() - startTime < timeout) {
+  11 |     if (await conditionFn()) return true;
+  12 |     Logger.info("Retrying the function");
+  13 |     await new Promise((resolve) => setTimeout(resolve, interval));
+  14 |   }
+  15 |   return false;
+  16 | }
+  17 | 
+  18 | export async function functionWaitedAssert(
+  19 |   fn,
+  20 |   options: {
+  21 |     timeout?: number;
+  22 |     interval?: number;
+  23 |     message?: string;
+  24 |     name?: string;
+  25 |   } = {}
+  26 | ) {
+  27 |   const startTime = Date.now();
+  28 |   const timeout = options.timeout || 60000;
+  29 |   const interval = options.interval || 2000;
+  30 |   const name = options.name || "";
+  31 | 
+  32 |   while (true) {
+  33 |     try {
+  34 |       await fn();
+  35 |       return true;
+  36 |     } catch (error) {
+  37 |       if (Date.now() - startTime >= timeout) {
+  38 |         // Callers throw strings as well as Errors; keep either's text.
+  39 |         const errorMessage =
+  40 |           options.message || (error instanceof Error ? error.message : String(error));
+  41 |         console.log(errorMessage);
+> 42 |         expect(false, { message: errorMessage }).toBe(true);
+     |                                                  ^ Error: expect(locator).toContainText(expected) failed
+  43 |       }
+  44 |       Logger.info(`Retrying the function ${name}`);
+  45 |       await new Promise((resolve) => setTimeout(resolve, interval));
+  46 |     }
+  47 |   }
+  48 | }
+  49 | 
+```

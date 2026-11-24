@@ -1,0 +1,288 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 7-proposal-submission/proposalSubmission.loggedin.pd.spec.ts >> Proposal created logged state >> 7B. Should access proposal creation page
+- Location: tests/7-proposal-submission/proposalSubmission.loggedin.pd.spec.ts:25:7
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByTestId('proposal-discussion-link')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - banner [ref=e10]:
+      - link "Skip to main content" [ref=e11] [cursor=pointer]:
+        - /url: "#main-content"
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: /dashboard
+          - img "Cardano GovTool" [ref=e14]
+        - navigation "Main" [ref=e15]:
+          - link "Home" [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+          - link "DRep Directory" [ref=e17] [cursor=pointer]:
+            - /url: /dreps
+          - link "Governance Actions" [ref=e18] [cursor=pointer]:
+            - /url: /actions
+          - link "Governance Activity" [ref=e19] [cursor=pointer]:
+            - /url: /activity
+          - link "Guides" [ref=e20] [cursor=pointer]:
+            - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+        - generic [ref=e21]:
+          - button "Global Search" [ref=e22] [cursor=pointer]
+          - button "stake_t…ga0" [ref=e26] [cursor=pointer]
+          - button "Notifications" [ref=e32] [cursor=pointer]:
+            - generic [ref=e33]: "0"
+          - button "Your governance profile" [ref=e37] [cursor=pointer]
+    - main [ref=e42]:
+      - generic [ref=e44]:
+        - generic [ref=e46]:
+          - generic [ref=e47]:
+            - heading "Welcome back" [level=1] [ref=e48]
+            - generic [ref=e49]: Not registered
+          - generic [ref=e50]: "Current epoch: 1470"
+        - generic [ref=e51]:
+          - generic [ref=e52]:
+            - heading "Your connected wallet" [level=2] [ref=e53]
+            - generic [ref=e56]:
+              - generic [ref=e57]: Demos Wallet
+              - button "Copy stake key stake_test1up6fz2a8m8yw4mdyd30w95cfwckeu6mu86mu0ap63k3mmrshpnga0" [ref=e58] [cursor=pointer]: stake_test…rshpnga0
+            - generic [ref=e63]:
+              - generic [ref=e64]: Wallet voting power
+              - generic [ref=e65]: ₳ 0
+            - generic [ref=e67]:
+              - generic [ref=e68]:
+                - generic [ref=e69]: Delegation
+                - generic [ref=e70]: Not delegated
+              - link "Delegate now" [ref=e71] [cursor=pointer]:
+                - /url: /dreps
+          - generic [ref=e74]:
+            - generic [ref=e75]:
+              - generic [ref=e83]:
+                - heading "Delegate your Voting Power" [level=2] [ref=e84]
+                - generic [ref=e86]: Find a DRep to vote on your behalf.
+              - generic [ref=e87]:
+                - button "View DRep Directory" [ref=e88] [cursor=pointer]
+                - button "Learn more" [ref=e89] [cursor=pointer]
+            - generic [ref=e90]:
+              - generic [ref=e96]:
+                - heading "Become a DRep" [level=2] [ref=e97]
+                - generic [ref=e99]: Accept delegated voting power from other Ada holders, and combine it with your own voting power. Vote with the accumulated Power on Governance Actions.
+              - generic [ref=e100]:
+                - button "Register" [ref=e101] [cursor=pointer]
+                - button "Learn more" [ref=e102] [cursor=pointer]
+            - generic [ref=e103]:
+              - generic [ref=e109]:
+                - heading "Become a Direct Voter" [level=2] [ref=e110]
+                - generic [ref=e112]: Register to Vote on Governance Actions.
+              - generic [ref=e113]:
+                - button "Register" [ref=e114] [cursor=pointer]
+                - button "Learn more" [ref=e115] [cursor=pointer]
+            - generic [ref=e116]:
+              - generic [ref=e122]:
+                - heading "View Governance Actions" [level=2] [ref=e123]
+                - generic [ref=e125]: Review governance actions submitted on-chain.
+              - generic [ref=e126]:
+                - button "View Governance Actions" [ref=e127] [cursor=pointer]
+                - button "Learn more" [ref=e128] [cursor=pointer]
+            - generic [ref=e129]:
+              - generic [ref=e134]:
+                - heading "Propose a Governance Action" [level=2] [ref=e135]
+                - generic [ref=e137]: Submit your proposal for a Governance Action.
+              - generic [ref=e138]:
+                - button "Propose" [ref=e139] [cursor=pointer]
+                - button "Learn more" [ref=e140] [cursor=pointer]
+            - generic [ref=e142]:
+              - paragraph [ref=e143]: Useful links
+              - generic [ref=e144]:
+                - generic [ref=e145]:
+                  - paragraph [ref=e146]: Intersect website
+                  - paragraph [ref=e147]: Intersect is a member-based organization for the Cardano ecosystem — putting the community at the center of Cardano’s development.
+                  - link [ref=e148] [cursor=pointer]:
+                    - /url: https://www.intersectmbo.org/
+                    - paragraph [ref=e149]: Visit intersectmbo.org
+                    - img "Opens in a new tab" [ref=e150]
+                - generic [ref=e151]:
+                  - paragraph [ref=e152]: 2025 Budget Proposals
+                  - paragraph [ref=e153]: Archived. Read the 2025 budget proposals, their versions, DRep poll results and comments.
+                  - link [ref=e154] [cursor=pointer]:
+                    - /url: /budget
+                    - paragraph [ref=e155]: View the archive
+    - contentinfo [ref=e156]:
+      - generic [ref=e157]:
+        - generic [ref=e158]:
+          - img "Cardano GovTool" [ref=e159]
+          - paragraph [ref=e160]: A clearer connection to Cardano governance.
+          - generic [ref=e161]:
+            - link "Guides" [ref=e162] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+            - link "FAQs" [ref=e163] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/faqs
+            - link "Intersect ↗" [ref=e164] [cursor=pointer]:
+              - /url: https://www.intersectmbo.org/
+        - generic [ref=e165]:
+          - paragraph [ref=e166]: © 2026 GovTool
+          - generic [ref=e167]:
+            - link "Privacy policy" [ref=e168] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/privacy-policy
+            - link "Terms of Use" [ref=e169] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/terms-of-use
+            - link "Help" [ref=e170] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/support
+            - button "Feedback" [ref=e171] [cursor=pointer]
+```
+
+# Test source
+
+```ts
+  1   | import { faker } from "@faker-js/faker";
+  2   | import { test } from "@fixtures/proposal";
+  3   | import { setAllureEpic } from "@helpers/allure";
+  4   | import { getDraftProposalWalletName } from "@helpers/auth";
+  5   | import {
+  6   |   skipIfNotInfoAndBootstrapping,
+  7   |   isBootStrapingPhase,
+  8   |   skipIfMainnet,
+  9   | } from "@helpers/cardano";
+  10  | import { adaAmountText } from "@helpers/adaFormat";
+  11  | import { getProposalType } from "@helpers/index";
+  12  | import { createNewPageWithWallet } from "@helpers/page";
+  13  | import ProposalDiscussionDetailsPage from "@pages/proposalDiscussionDetailsPage";
+  14  | import ProposalSubmissionPage from "@pages/proposalSubmissionPage";
+  15  | import { expect } from "@playwright/test";
+  16  | import { ProposalCreateRequest, ProposalType } from "@types";
+  17  | import { randomStakeAddress, testWallet } from "lib/wallet/testWallets";
+  18  | 
+  19  | test.beforeEach(async () => {
+  20  |   await setAllureEpic("7. Proposal submission");
+  21  | });
+  22  | 
+  23  | test.describe("Proposal created logged state", () => {
+  24  |   test.use({ walletName: "proposal01", walletFundsAda: 0 });
+  25  |   test("7B. Should access proposal creation page", async ({ page }) => {
+  26  |     await page.goto("/");
+> 27  |     await page.getByTestId("proposal-discussion-link").click();
+      |                                                        ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  28  | 
+  29  |     await expect(page.getByText("Proposals", { exact: true })).toHaveCount(2);
+  30  |   });
+  31  | 
+  32  |   test.describe("Accept valid data", () => {
+  33  |     getProposalType().map((type: ProposalType, index) => {
+  34  |       test(`7E_${index + 1}. Should accept valid data in ${type.toLowerCase()} proposal form`, async ({
+  35  |         page,
+  36  |       }) => {
+  37  |         await skipIfNotInfoAndBootstrapping(type);
+  38  | 
+  39  |         test.slow(); // Brute-force testing with 50 random data
+  40  | 
+  41  |         const proposalSubmissionPage = new ProposalSubmissionPage(page);
+  42  | 
+  43  |         await proposalSubmissionPage.goto();
+  44  | 
+  45  |         await proposalSubmissionPage.governanceActionType.click();
+  46  |         await page.getByTestId(`${type.toLocaleLowerCase()}-button`).click();
+  47  |         await proposalSubmissionPage.addLinkBtn.click();
+  48  | 
+  49  |         if (type === ProposalType.updatesToTheConstitution) {
+  50  |           await proposalSubmissionPage.guardrailsScriptCheckbox.click();
+  51  |         }
+  52  | 
+  53  |         for (let i = 0; i < 50; i++) {
+  54  |           const rewardAddressBech32 = await randomStakeAddress();
+  55  |           const formFields: ProposalCreateRequest =
+  56  |             await proposalSubmissionPage.generateValidProposalFormFields({
+  57  |               proposalType: type,
+  58  |               receivingAddress: rewardAddressBech32,
+  59  |               forValidation: true,
+  60  |             });
+  61  |           await proposalSubmissionPage.validateForm(formFields);
+  62  |         }
+  63  | 
+  64  |         if (type === ProposalType.treasury) {
+  65  |           for (let i = 0; i < 9; i++) {
+  66  |             await expect(
+  67  |               proposalSubmissionPage.addWithdrawalAddressBtn
+  68  |             ).toBeVisible();
+  69  |             await proposalSubmissionPage.addWithdrawalAddressBtn.click();
+  70  |           }
+  71  |         }
+  72  | 
+  73  |         await expect(
+  74  |           proposalSubmissionPage.addWithdrawalAddressBtn
+  75  |         ).toBeHidden();
+  76  | 
+  77  |         for (let i = 0; i < 6; i++) {
+  78  |           await expect(proposalSubmissionPage.addLinkBtn).toBeVisible();
+  79  |           await proposalSubmissionPage.addLinkBtn.click();
+  80  |         }
+  81  | 
+  82  |         // Reference links have no limit (#4087): one past the old cap of 7
+  83  |         // still adds an input.
+  84  |         const linkUrlInputs = page.locator(
+  85  |           '[data-testid^="link-"][data-testid$="-url-input"]'
+  86  |         );
+  87  |         const linkCount = await linkUrlInputs.count();
+  88  |         await expect(proposalSubmissionPage.addLinkBtn).toBeVisible();
+  89  |         await proposalSubmissionPage.addLinkBtn.click();
+  90  |         await expect(linkUrlInputs).toHaveCount(linkCount + 1);
+  91  |         await expect(
+  92  |           page.getByTestId(`link-${linkCount}-url-input`)
+  93  |         ).toBeVisible();
+  94  |         await expect(proposalSubmissionPage.addLinkBtn).toBeVisible();
+  95  |       });
+  96  |     });
+  97  |   });
+  98  | 
+  99  |   test.describe("Reject invalid  data", () => {
+  100 |     getProposalType().map((type: ProposalType, index) => {
+  101 |       test(`7F_${index + 1}. Should reject invalid data in ${type.toLowerCase()} Proposal form`, async ({
+  102 |         page,
+  103 |       }) => {
+  104 |         await skipIfNotInfoAndBootstrapping(type);
+  105 | 
+  106 |         test.slow(); // Brute-force testing with 50 random data
+  107 | 
+  108 |         const proposalSubmissionPage = new ProposalSubmissionPage(page);
+  109 |         await proposalSubmissionPage.goto();
+  110 | 
+  111 |         await proposalSubmissionPage.governanceActionType.click();
+  112 |         await page.getByTestId(`${type.toLocaleLowerCase()}-button`).click();
+  113 |         await proposalSubmissionPage.addLinkBtn.click();
+  114 | 
+  115 |         if (type === ProposalType.updatesToTheConstitution) {
+  116 |           await proposalSubmissionPage.guardrailsScriptCheckbox.click();
+  117 |         }
+  118 | 
+  119 |         for (let i = 0; i < 50; i++) {
+  120 |           const formFields: ProposalCreateRequest =
+  121 |             proposalSubmissionPage.generateInValidProposalFormFields(type);
+  122 |           await proposalSubmissionPage.inValidateForm(formFields);
+  123 |         }
+  124 |       });
+  125 |     });
+  126 |   });
+  127 | 
+```

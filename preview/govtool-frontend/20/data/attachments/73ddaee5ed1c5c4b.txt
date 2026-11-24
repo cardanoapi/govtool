@@ -1,0 +1,7 @@
+wallet balance 1019.819495
+wallet address addr_test1qrngeq79ufl5u5ye56e47nzwkhkw55jxgq4c6c5dk6eq6x9cpn6f4uaa9r98pu9gpyeskyfcphv3a2663fssncp58f4s69qvap
+✖ Failed to load resource: the server responded with a status of 404 ()
+3
+✔ Uploaded deleniti metadata to bucket
+ℹ Waiting for tx completion: dd089abe9a41f34efd8513d7585ef7af361bb55ed6d897005631813f04e02a47
+✔ Tx completed

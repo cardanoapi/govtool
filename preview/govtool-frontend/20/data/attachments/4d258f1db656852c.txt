@@ -1,0 +1,21 @@
+ℹ Retrying the function frontend sort validation of SoonestToExpire and filter 
+ℹ Retrying the function frontend sort validation of SoonestToExpire and filter 
+ℹ Retrying the function frontend sort validation of SoonestToExpire and filter 
+ℹ Retrying the function frontend sort validation of SoonestToExpire and filter 
+ℹ Retrying the function frontend sort validation of SoonestToExpire and filter 
+ℹ Retrying the function frontend sort validation of SoonestToExpire and filter 
+ℹ Retrying the function frontend sort validation of SoonestToExpire and filter 
+ℹ Retrying the function frontend sort validation of SoonestToExpire and filter 
+expect(locator).toContainText(expected) failed
+
+Locator: locator('[data-testid^="govaction-"][data-testid$="-card"]').first()
+Expected substring: "1ac710c7e4ec6e82a6b0ba37f1a44c1ee9da7ca398e29d858d2e07d39d40d3db"
+Received string:    "ActiveTreasury WithdrawalEvolution SDK test: treasury withdrawal through the constitution guardrailSubmittedabout 2 months agoExpiresEpoch 1473DRep0.2% / 67.0%SPONOT ELIGIBLECC0.0% / 66.7%"
+Timeout: 5000ms
+
+Call log:
+  - Expect "toContainText" with timeout 5000ms
+  - waiting for locator('[data-testid^="govaction-"][data-testid$="-card"]').first()
+    14 × locator resolved to <article class="MuiBox-root css-1fezn6b" data-testid="govaction-TreasuryWithdrawal-card">…</article>
+       - unexpected value "ActiveTreasury WithdrawalEvolution SDK test: treasury withdrawal through the constitution guardrailSubmittedabout 2 months agoExpiresEpoch 1473DRep0.2% / 67.0%SPONOT ELIGIBLECC0.0% / 66.7%"
+

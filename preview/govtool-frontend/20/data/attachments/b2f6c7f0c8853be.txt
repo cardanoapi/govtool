@@ -1,0 +1,13 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ expect(locator).toBeVisible() failed
+
+Locator: getByTestId('drep1lswpmqlvj5yquzdxkq5pfqmr6f39n4gs4aeycs2n5mvr57gzyep-delegate-button')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for getByTestId('drep1lswpmqlvj5yquzdxkq5pfqmr6f39n4gs4aeycs2n5mvr57gzyep-delegate-button')
+

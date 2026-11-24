@@ -1,0 +1,472 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 7-proposal-submission/proposalSubmission.loggedin.pd.spec.ts >> Proposal created logged state >> Accept valid data >> 7E_2. Should accept valid data in treasury requests proposal form
+- Location: tests/7-proposal-submission/proposalSubmission.loggedin.pd.spec.ts:34:11
+
+# Error details
+
+```
+Error: pdf sign-in did not complete
+
+expect(received).toBe(expected) // Object.is equality
+
+Expected: 0
+Received: 1
+
+Call Log:
+- Timeout 30000ms exceeded while waiting on the predicate
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - banner [ref=e10]:
+      - link "Skip to main content" [ref=e11] [cursor=pointer]:
+        - /url: "#main-content"
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: /dashboard
+          - img "Cardano GovTool" [ref=e14]
+        - navigation "Main" [ref=e15]:
+          - link "Home" [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+          - link "DRep Directory" [ref=e17] [cursor=pointer]:
+            - /url: /dreps
+          - link "Governance Actions" [ref=e18] [cursor=pointer]:
+            - /url: /actions
+          - link "Governance Activity" [ref=e19] [cursor=pointer]:
+            - /url: /activity
+          - link "Guides" [ref=e20] [cursor=pointer]:
+            - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+        - generic [ref=e21]:
+          - button "Global Search" [ref=e22] [cursor=pointer]
+          - button "stake_t…ga0" [ref=e26] [cursor=pointer]
+          - button "Notifications" [ref=e32] [cursor=pointer]:
+            - generic [ref=e33]: "0"
+          - button "Your governance profile" [ref=e37] [cursor=pointer]
+    - main [ref=e42]:
+      - generic [ref=e44]:
+        - generic [ref=e45]:
+          - generic [ref=e46]:
+            - generic [ref=e47]:
+              - generic [ref=e48]:
+                - heading "Governance actions" [level=1] [ref=e49]
+                - paragraph [ref=e50]: Explore proposals shaping Cardano. Review the details, follow voting progress and take part in decisions that move the ecosystem forward.
+              - button "Propose a Governance Action" [disabled]
+            - status [ref=e51]:
+              - generic [ref=e52]: To submit a proposal, you need to verify yourself by signing a transaction.
+              - button "Sign a transaction" [active] [ref=e55] [cursor=pointer]
+          - region "Governance action figures" [ref=e59]:
+            - generic [ref=e60]:
+              - generic [ref=e61]: Total Actions
+              - generic [ref=e67]: 1,552
+            - generic [ref=e68]:
+              - generic [ref=e69]: Voting Now
+              - generic [ref=e74]: "31"
+            - generic [ref=e75]:
+              - generic [ref=e76]: Expiring Soon
+              - generic [ref=e80]: "0"
+            - generic [ref=e81]:
+              - generic [ref=e82]: Enacted
+              - generic [ref=e87]: "14"
+          - navigation "Governance Actions" [ref=e89]:
+            - link "Proposed Governance Actions" [ref=e90] [cursor=pointer]:
+              - /url: /proposals
+            - link "Live Voting" [ref=e91] [cursor=pointer]:
+              - /url: /actions
+            - link "Outcomes" [ref=e92] [cursor=pointer]:
+              - /url: /actions/history
+        - generic [ref=e95]:
+          - generic [ref=e96]:
+            - textbox "Search proposals by name…" [ref=e102]
+            - 'button "Date Range: Latest" [ref=e103] [cursor=pointer]':
+              - text: "Date Range:"
+              - generic [ref=e104]: Latest
+          - generic [ref=e107]:
+            - generic [ref=e109]:
+              - heading "Action type" [level=2] [ref=e110]
+              - button "All Governance Actions 3886" [pressed] [ref=e111] [cursor=pointer]:
+                - generic [ref=e114]: All Governance Actions
+                - generic [ref=e115]: "3886"
+              - button "Info Action 1976" [ref=e116] [cursor=pointer]:
+                - generic [ref=e120]: Info Action
+                - generic [ref=e121]: "1976"
+              - button "Treasury requests 1822" [ref=e122] [cursor=pointer]:
+                - generic [ref=e130]: Treasury requests
+                - generic [ref=e131]: "1822"
+              - button "Updates to the Constitution 49" [ref=e132] [cursor=pointer]:
+                - generic [ref=e137]: Updates to the Constitution
+                - generic [ref=e138]: "49"
+              - button "Motion of No Confidence 39" [ref=e139] [cursor=pointer]:
+                - generic [ref=e145]: Motion of No Confidence
+                - generic [ref=e146]: "39"
+              - button "Hard fork 0" [ref=e147] [cursor=pointer]:
+                - generic [ref=e154]: Hard fork
+                - generic [ref=e155]: "0"
+            - generic [ref=e157]:
+              - article [ref=e158]:
+                - generic [ref=e159]:
+                  - generic [ref=e160]:
+                    - generic [ref=e161]: Info Action
+                    - generic [ref=e162]: Active
+                  - generic [ref=e163]:
+                    - generic [ref=e164]:
+                      - text: "Proposed on:"
+                      - generic [ref=e167]: 17 November 2026
+                    - button "Share proposal" [ref=e168] [cursor=pointer]
+                - heading [level=3] [ref=e175]:
+                  - link "Test" [ref=e176] [cursor=pointer]:
+                    - /url: /proposals/17078
+                - paragraph [ref=e177]: Testbkdfbk kdf kb kd fknb n dsfb
+                - generic [ref=e178]:
+                  - generic [ref=e179]:
+                    - paragraph [ref=e180]: Proposer
+                    - generic [ref=e181]:
+                      - generic [ref=e182]: K
+                      - generic [ref=e183]: kushal123
+                  - generic [ref=e184]:
+                    - paragraph [ref=e185]: Discussions
+                    - generic [ref=e186]: 0 comments
+                  - generic [ref=e189]:
+                    - paragraph [ref=e190]: Support
+                    - generic [ref=e191]: No votes yet
+              - article [ref=e195]:
+                - generic [ref=e196]:
+                  - generic [ref=e197]:
+                    - generic [ref=e198]: Treasury requests
+                    - generic [ref=e199]: Active
+                  - generic [ref=e200]:
+                    - generic [ref=e201]:
+                      - text: "Proposed on:"
+                      - generic [ref=e204]: 18 October 2026
+                    - button "Share proposal" [ref=e205] [cursor=pointer]
+                - heading [level=3] [ref=e212]:
+                  - link "Ut cedo spiculum acer blanditiis civitas." [ref=e213] [cursor=pointer]:
+                    - /url: /proposals/17070
+                - paragraph [ref=e214]: earum vox vespillo vigilo viridis
+                - generic [ref=e215]:
+                  - generic [ref=e216]:
+                    - paragraph [ref=e217]: Proposer
+                    - generic [ref=e218]:
+                      - generic [ref=e219]: L
+                      - generic [ref=e220]: leila22_1792297459254
+                  - generic [ref=e221]:
+                    - paragraph [ref=e222]: Discussions
+                    - generic [ref=e223]: 0 comments
+                  - generic [ref=e226]:
+                    - paragraph [ref=e227]: Support
+                    - generic [ref=e228]: No votes yet
+              - article [ref=e232]:
+                - generic [ref=e233]:
+                  - generic [ref=e234]:
+                    - generic [ref=e235]: Updates to the Constitution
+                    - generic [ref=e236]: Active
+                  - generic [ref=e237]:
+                    - generic [ref=e238]:
+                      - text: "Proposed on:"
+                      - generic [ref=e241]: 18 October 2026
+                    - button "Share proposal" [ref=e242] [cursor=pointer]
+                - heading [level=3] [ref=e249]:
+                  - link "Sunt certe urbanus vulgaris tero usque." [ref=e250] [cursor=pointer]:
+                    - /url: /proposals/17069
+                - paragraph [ref=e251]: xiphias terga vado aduro cubicularis
+                - generic [ref=e252]:
+                  - generic [ref=e253]:
+                    - paragraph [ref=e254]: Proposer
+                    - generic [ref=e255]:
+                      - generic [ref=e256]: A
+                      - generic [ref=e257]: armani.daugherty_1792296924534
+                  - generic [ref=e258]:
+                    - paragraph [ref=e259]: Discussions
+                    - generic [ref=e260]: 0 comments
+                  - generic [ref=e263]:
+                    - paragraph [ref=e264]: Support
+                    - generic [ref=e265]: No votes yet
+              - article [ref=e269]:
+                - generic [ref=e270]:
+                  - generic [ref=e271]:
+                    - generic [ref=e272]: Treasury requests
+                    - generic [ref=e273]: Active
+                  - generic [ref=e274]:
+                    - generic [ref=e275]:
+                      - text: "Proposed on:"
+                      - generic [ref=e278]: 18 October 2026
+                    - button "Share proposal" [ref=e279] [cursor=pointer]
+                - heading [level=3] [ref=e286]:
+                  - link "Vinculum coadunatio charisma conitor amicitia universe." [ref=e287] [cursor=pointer]:
+                    - /url: /proposals/17064
+                - paragraph [ref=e288]: stips aedificium annus doloremque tantillus
+                - generic [ref=e289]:
+                  - generic [ref=e290]:
+                    - paragraph [ref=e291]: Proposer
+                    - generic [ref=e292]:
+                      - generic [ref=e293]: A
+                      - generic [ref=e294]: armani.daugherty_1792296924534
+                  - generic [ref=e295]:
+                    - paragraph [ref=e296]: Discussions
+                    - generic [ref=e297]: 0 comments
+                  - generic [ref=e300]:
+                    - paragraph [ref=e301]: Support
+                    - generic [ref=e302]: No votes yet
+              - article [ref=e306]:
+                - generic [ref=e307]:
+                  - generic [ref=e308]:
+                    - generic [ref=e309]: Motion of No Confidence
+                    - generic [ref=e310]: Active
+                  - generic [ref=e311]:
+                    - generic [ref=e312]:
+                      - text: "Proposed on:"
+                      - generic [ref=e315]: 18 October 2026
+                    - button "Share proposal" [ref=e316] [cursor=pointer]
+                - heading [level=3] [ref=e323]:
+                  - link "Cunctatio tyrannus caste acer allatus pauci." [ref=e324] [cursor=pointer]:
+                    - /url: /proposals/17063
+                - paragraph [ref=e325]: comptus cur undique tibi solitudo
+                - generic [ref=e326]:
+                  - generic [ref=e327]:
+                    - paragraph [ref=e328]: Proposer
+                    - generic [ref=e329]:
+                      - generic [ref=e330]: A
+                      - generic [ref=e331]: armani.daugherty_1792296924534
+                  - generic [ref=e332]:
+                    - paragraph [ref=e333]: Discussions
+                    - generic [ref=e334]: 0 comments
+                  - generic [ref=e337]:
+                    - paragraph [ref=e338]: Support
+                    - generic [ref=e339]: No votes yet
+              - article [ref=e343]:
+                - generic [ref=e344]:
+                  - generic [ref=e345]:
+                    - generic [ref=e346]: Info Action
+                    - generic [ref=e347]: Active
+                  - generic [ref=e348]:
+                    - generic [ref=e349]:
+                      - text: "Proposed on:"
+                      - generic [ref=e352]: 18 October 2026
+                    - button "Share proposal" [ref=e353] [cursor=pointer]
+                - heading [level=3] [ref=e360]:
+                  - link "Cruentus aggredior corpus aetas amor cetera." [ref=e361] [cursor=pointer]:
+                    - /url: /proposals/17061
+                - paragraph [ref=e362]: abstergo velit bonus aegrus solitudo
+                - generic [ref=e363]:
+                  - generic [ref=e364]:
+                    - paragraph [ref=e365]: Proposer
+                    - generic [ref=e366]:
+                      - generic [ref=e367]: A
+                      - generic [ref=e368]: armani.daugherty_1792296924534
+                  - generic [ref=e369]:
+                    - paragraph [ref=e370]: Discussions
+                    - generic [ref=e371]: 0 comments
+                  - generic [ref=e374]:
+                    - paragraph [ref=e375]: Support
+                    - generic [ref=e376]: No votes yet
+              - article [ref=e380]:
+                - generic [ref=e381]:
+                  - generic [ref=e382]:
+                    - generic [ref=e383]: Info Action
+                    - generic [ref=e384]: Active
+                  - generic [ref=e385]:
+                    - generic [ref=e386]:
+                      - text: "Proposed on:"
+                      - generic [ref=e389]: 15 October 2026
+                    - button "Share proposal" [ref=e390] [cursor=pointer]
+                - heading [level=3] [ref=e397]:
+                  - link "Varius sufficio cunae universe tristis sum." [ref=e398] [cursor=pointer]:
+                    - /url: /proposals/17022
+                - paragraph [ref=e399]: cogito acies color utrum cervus
+                - generic [ref=e400]:
+                  - generic [ref=e401]:
+                    - paragraph [ref=e402]: Proposer
+                    - generic [ref=e403]:
+                      - generic [ref=e404]: D
+                      - generic [ref=e405]: dina.murray_1792034227228
+                  - generic [ref=e406]:
+                    - paragraph [ref=e407]: Discussions
+                    - generic [ref=e408]: 0 comments
+                  - generic [ref=e411]:
+                    - paragraph [ref=e412]: Support
+                    - generic [ref=e413]: No votes yet
+              - article [ref=e417]:
+                - generic [ref=e418]:
+                  - generic [ref=e419]:
+                    - generic [ref=e420]: Updates to the Constitution
+                    - generic [ref=e421]: Active
+                  - generic [ref=e422]:
+                    - generic [ref=e423]:
+                      - text: "Proposed on:"
+                      - generic [ref=e426]: 12 October 2026
+                    - button "Share proposal" [ref=e427] [cursor=pointer]
+                - heading [level=3] [ref=e434]:
+                  - link "Astrum acies aeneus vix thesaurus taceo." [ref=e435] [cursor=pointer]:
+                    - /url: /proposals/17021
+                - paragraph [ref=e436]: sui taedium bibo curto eveniet
+                - generic [ref=e437]:
+                  - generic [ref=e438]:
+                    - paragraph [ref=e439]: Proposer
+                    - generic [ref=e440]:
+                      - generic [ref=e441]: R
+                      - generic [ref=e442]: robin0_1791783253792
+                  - generic [ref=e443]:
+                    - paragraph [ref=e444]: Discussions
+                    - generic [ref=e445]: 0 comments
+                  - generic [ref=e448]:
+                    - paragraph [ref=e449]: Support
+                    - generic [ref=e450]: No votes yet
+              - article [ref=e454]:
+                - generic [ref=e455]:
+                  - generic [ref=e456]:
+                    - generic [ref=e457]: Info Action
+                    - generic [ref=e458]: Active
+                  - generic [ref=e459]:
+                    - generic [ref=e460]:
+                      - text: "Proposed on:"
+                      - generic [ref=e463]: 12 October 2026
+                    - button "Share proposal" [ref=e464] [cursor=pointer]
+                - heading [level=3] [ref=e471]:
+                  - link "Velociter dedecor quis ipsa chirographum vulgivagus." [ref=e472] [cursor=pointer]:
+                    - /url: /proposals/17020
+                - paragraph [ref=e473]: autem cupiditas temperantia utique concedo
+                - generic [ref=e474]:
+                  - generic [ref=e475]:
+                    - paragraph [ref=e476]: Proposer
+                    - generic [ref=e477]:
+                      - generic [ref=e478]: R
+                      - generic [ref=e479]: robin0_1791783253792
+                  - generic [ref=e480]:
+                    - paragraph [ref=e481]: Discussions
+                    - generic [ref=e482]: 0 comments
+                  - generic [ref=e485]:
+                    - paragraph [ref=e486]: Support
+                    - generic [ref=e487]: No votes yet
+              - article [ref=e491]:
+                - generic [ref=e492]:
+                  - generic [ref=e493]:
+                    - generic [ref=e494]: Info Action
+                    - generic [ref=e495]: Active
+                  - generic [ref=e496]:
+                    - generic [ref=e497]:
+                      - text: "Proposed on:"
+                      - generic [ref=e500]: 12 October 2026
+                    - button "Share proposal" [ref=e501] [cursor=pointer]
+                - heading [level=3] [ref=e508]:
+                  - link "Audax demoror spero taedium caste sollers." [ref=e509] [cursor=pointer]:
+                    - /url: /proposals/17019
+                - paragraph [ref=e510]: subseco sonitus valeo aperte vallum
+                - generic [ref=e511]:
+                  - generic [ref=e512]:
+                    - paragraph [ref=e513]: Proposer
+                    - generic [ref=e514]:
+                      - generic [ref=e515]: R
+                      - generic [ref=e516]: robin0_1791783253792
+                  - generic [ref=e517]:
+                    - paragraph [ref=e518]: Discussions
+                    - generic [ref=e519]: 0 comments
+                  - generic [ref=e522]:
+                    - paragraph [ref=e523]: Support
+                    - generic [ref=e524]: No votes yet
+              - navigation "Pagination" [ref=e528]:
+                - paragraph [ref=e530]: Showing 1–10 of 3886 results
+                - generic [ref=e531]:
+                  - button "Previous" [disabled]:
+                    - generic: ←
+                    - text: Previous
+                  - button "1" [ref=e532] [cursor=pointer]
+                  - button "2" [ref=e533] [cursor=pointer]
+                  - paragraph [ref=e534]: …
+                  - button "389" [ref=e535] [cursor=pointer]
+                  - button "Next" [ref=e536] [cursor=pointer]:
+                    - text: Next
+                    - generic [ref=e537]: →
+        - generic [ref=e538]:
+          - generic [ref=e540]:
+            - text: Create governance action
+            - heading "Have an idea for Cardano governance?" [level=2] [ref=e541]
+            - paragraph [ref=e542]:
+              - generic [ref=e543]: Create Proposal
+              - generic [ref=e544]: Review
+              - generic [ref=e547]: Submit On-chain
+            - paragraph [ref=e550]: Create and submit a governance action for the community
+          - button "Propose Action" [ref=e551] [cursor=pointer]
+    - contentinfo [ref=e554]:
+      - generic [ref=e555]:
+        - generic [ref=e556]:
+          - img "Cardano GovTool" [ref=e557]
+          - paragraph [ref=e558]: A clearer connection to Cardano governance.
+          - generic [ref=e559]:
+            - link "Guides" [ref=e560] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+            - link "FAQs" [ref=e561] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/faqs
+            - link "Intersect ↗" [ref=e562] [cursor=pointer]:
+              - /url: https://www.intersectmbo.org/
+        - generic [ref=e563]:
+          - paragraph [ref=e564]: © 2026 GovTool
+          - generic [ref=e565]:
+            - link "Privacy policy" [ref=e566] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/privacy-policy
+            - link "Terms of Use" [ref=e567] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/terms-of-use
+            - link "Help" [ref=e568] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/support
+            - button "Feedback" [ref=e569] [cursor=pointer]
+```
+
+# Test source
+
+```ts
+  1  | import { valid as mockValid } from "@mock/index";
+  2  | import { expect, Page } from "@playwright/test";
+  3  | 
+  4  | /** Sets the pdf username through the "setup your username" modal. */
+  5  | export async function setPdfUsername(page: Page, name: string) {
+  6  |   await page.getByTestId("username-input").fill(name);
+  7  | 
+  8  |   const proceedBtn = page.getByTestId("proceed-button");
+  9  |   await proceedBtn.click();
+  10 |   await proceedBtn.click();
+  11 | 
+  12 |   await page.getByTestId("close-button").click();
+  13 | }
+  14 | 
+  15 | /**
+  16 |  * Call right after clicking `verify-user-link`. Test wallets are new each run,
+  17 |  * so the first pdf sign-in has no username and pdf-ui opens the "setup your
+  18 |  * username" modal. Waits until the sign-in either opens that modal, which then
+  19 |  * gets a unique valid username, or completes for a user that already has one.
+  20 |  * Returns whether a username was set.
+  21 |  */
+  22 | export async function setUsernameIfPrompted(
+  23 |   page: Page,
+  24 |   timeout = 30_000
+  25 | ): Promise<boolean> {
+  26 |   const modal = page.getByTestId("setup-username-modal");
+  27 |   // pdf-ui shows one of these links until the user is signed in and named.
+  28 |   const pending = page
+  29 |     .getByTestId("verify-user-link")
+  30 |     .or(page.getByTestId("create-govtool-display-name-link"));
+  31 | 
+  32 |   let prompted = false;
+  33 |   await expect(async () => {
+  34 |     prompted = await modal.isVisible();
+  35 |     if (!prompted) expect(await pending.count()).toBe(0);
+> 36 |   }, "pdf sign-in did not complete").toPass({ timeout });
+     |                                      ^ Error: pdf sign-in did not complete
+  37 | 
+  38 |   if (prompted) await setPdfUsername(page, mockValid.username());
+  39 |   return prompted;
+  40 | }
+  41 | 
+```

@@ -1,0 +1,8 @@
+wallet balance 1019.819495
+wallet address addr_test1qplj4g27j8w08n6p6g898hmwqqg6kcnrrpfalxeeqv9clmjesjysdeh4y3c5meljvejm9nnmuemq72a56wjjkja254vq8p2h94
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Uploaded guardrail-script metadata to bucket
+2
+✔ Uploaded casso metadata to bucket
+ℹ Waiting for tx completion: 2901e12ac92eabaff4bd9b5eb539a27fbe37ac5f34ee89afeb7be8db069860bb
+✔ Tx completed

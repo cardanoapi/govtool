@@ -1,0 +1,8 @@
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+ℹ Retrying the function download metadata
+✔ Uploaded Nelda.jsonld metadata to bucket
+ℹ Waiting for tx completion: d9ee68a88ea2f653b53361a43a2ad0ef278295ed832447d26770f03857b1464e
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✔ Tx completed

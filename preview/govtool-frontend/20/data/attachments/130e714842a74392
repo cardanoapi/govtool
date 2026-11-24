@@ -1,0 +1,292 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 3-drep-registration/dRepRegistration.dRep.spec.ts >> Logged in DReps >> 3H. Should Update DRep data
+- Location: tests/3-drep-registration/dRepRegistration.dRep.spec.ts:67:7
+
+# Error details
+
+```
+Error: expect(locator).toContainText(expected) failed
+
+Locator: getByTestId('dRep-id-display-card-dashboard')
+Expected substring: "drep1lswpmqlvj5yquzdxkq5pfqmr6f39n4gs4aeycs2n5mvr57gzyep"
+Timeout: 20000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toContainText" with timeout 20000ms
+  - waiting for getByTestId('dRep-id-display-card-dashboard')
+
+```
+
+```yaml
+- text: "Network: Preview |"
+- link "Go to Mainnet":
+  - /url: https://gov.tools/
+- banner:
+  - link "Skip to main content":
+    - /url: "#main-content"
+  - link "Cardano GovTool":
+    - /url: /dashboard
+    - img "Cardano GovTool"
+  - navigation "Main":
+    - link "Home":
+      - /url: /dashboard
+    - link "DRep Directory":
+      - /url: /dreps
+    - link "Governance Actions":
+      - /url: /actions
+    - link "Governance Activity":
+      - /url: /activity
+    - link "Guides":
+      - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+  - button "Global Search"
+  - button "stake_t…6nu"
+  - button "Notifications": "0"
+  - button "Your governance profile"
+- main:
+  - heading "Welcome back" [level=1]
+  - text: "Not registered Current epoch: 1470"
+  - heading "Your connected wallet" [level=2]
+  - text: Demos Wallet
+  - button "Copy stake key stake_test1urraszsmpt06kuuvem6g5sx0u2rnhjlreh0p248ypgy0k8gtmn6nu": stake_test…8gtmn6nu
+  - text: Wallet voting power ₳ 0 Delegation Not delegated
+  - link "Delegate now":
+    - /url: /dreps
+  - heading "Delegate your Voting Power" [level=2]
+  - text: Find a DRep to vote on your behalf.
+  - button "View DRep Directory"
+  - button "Learn more"
+  - heading "Become a DRep" [level=2]
+  - text: Accept delegated voting power from other Ada holders, and combine it with your own voting power. Vote with the accumulated Power on Governance Actions.
+  - button "Register"
+  - button "Learn more"
+  - heading "Become a Direct Voter" [level=2]
+  - text: Register to Vote on Governance Actions.
+  - button "Register"
+  - button "Learn more"
+  - heading "View Governance Actions" [level=2]
+  - text: Review governance actions submitted on-chain.
+  - button "View Governance Actions"
+  - button "Learn more"
+  - heading "Propose a Governance Action" [level=2]
+  - text: Submit your proposal for a Governance Action.
+  - button "Propose"
+  - button "Learn more"
+  - paragraph: Useful links
+  - paragraph: Intersect website
+  - paragraph: Intersect is a member-based organization for the Cardano ecosystem — putting the community at the center of Cardano’s development.
+  - link "Visit intersectmbo.org Opens in a new tab":
+    - /url: https://www.intersectmbo.org/
+    - paragraph: Visit intersectmbo.org
+    - img "Opens in a new tab"
+  - paragraph: 2025 Budget Proposals
+  - paragraph: Archived. Read the 2025 budget proposals, their versions, DRep poll results and comments.
+  - link "View the archive":
+    - /url: /budget
+    - paragraph: View the archive
+- contentinfo:
+  - img "Cardano GovTool"
+  - paragraph: A clearer connection to Cardano governance.
+  - link "Guides":
+    - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+  - link "FAQs":
+    - /url: https://docs.gov.tools/cardano-govtool/faqs
+  - link "Intersect ↗":
+    - /url: https://www.intersectmbo.org/
+  - paragraph: © 2026 GovTool
+  - link "Privacy policy":
+    - /url: https://docs.gov.tools/legal/privacy-policy
+  - link "Terms of Use":
+    - /url: https://docs.gov.tools/legal/terms-of-use
+  - link "Help":
+    - /url: https://docs.gov.tools/cardano-govtool/support
+  - button "Feedback"
+```
+
+# Test source
+
+```ts
+  1   | import environments from "@constants/environments";
+  2   | import { faker } from "@faker-js/faker";
+  3   | import { test } from "@fixtures/walletExtension";
+  4   | import { setAllureEpic } from "@helpers/allure";
+  5   | import { skipIfMainnet } from "@helpers/cardano";
+  6   | import { createNewPageWithWallet } from "@helpers/page";
+  7   | import { waitForTxConfirmation } from "@helpers/transaction";
+  8   | import DRepRegistrationPage from "@pages/dRepRegistrationPage";
+  9   | import GovernanceActionsPage from "@pages/governanceActionsPage";
+  10  | import { expect } from "@playwright/test";
+  11  | import DRepDirectoryPage from "@pages/dRepDirectoryPage";
+  12  | import { GovernanceActionType } from "@types";
+  13  | import { sharedDRep } from "lib/wallet/sharedDReps";
+  14  | import { randomAddress, singleUseWalletName } from "lib/wallet/testWallets";
+  15  | import {
+  16  |   registeredDRepWallet,
+  17  |   stakeRegisteredWallet,
+  18  | } from "lib/wallet/transactions";
+  19  | 
+  20  | test.beforeEach(async () => {
+  21  |   await setAllureEpic("3. DRep registration");
+  22  |   await skipIfMainnet();
+  23  | });
+  24  | 
+  25  | /**
+  26  |  * A funded wallet whose DRep key is not registered yet, new in each test
+  27  |  * process since the tests register it. Its stake key is registered, as the old
+  28  |  * registerDRep wallets had it.
+  29  |  */
+  30  | function unregisteredDRepWallet(name: string) {
+  31  |   return stakeRegisteredWallet(singleUseWalletName(name), 600);
+  32  | }
+  33  | 
+  34  | test.describe("Logged in DReps", () => {
+  35  |   test.use({ walletName: "dRep01" });
+  36  | 
+  37  |   test.beforeAll(async () => {
+  38  |     test.setTimeout(2 * environments.txTimeOut);
+  39  |     await sharedDRep("dRep01");
+  40  |   });
+  41  | 
+  42  |   test("3A. Should show dRepId on dashboard and enable voting on governance actions after connecting registered dRep Wallet", async ({
+  43  |     page,
+  44  |   }) => {
+  45  |     await page.goto("/");
+  46  | 
+  47  |     await expect(page.getByTestId("voting-power-chips")).toBeVisible({
+  48  |       timeout: 60_000,
+  49  |     });
+  50  | 
+  51  |     
+  52  |     const governanceActionsPage = new GovernanceActionsPage(page);
+  53  |     
+  54  |     await governanceActionsPage.goto();
+  55  |     
+  56  |     await governanceActionsPage.getFirstProposal();
+  57  |     const governanceActionDetailsPage =
+  58  |       await governanceActionsPage.viewFirstProposalByGovernanceAction(
+  59  |         GovernanceActionType.InfoAction
+  60  |       );
+  61  | 
+  62  |     await expect(governanceActionDetailsPage.voteBtn).toBeVisible({
+  63  |       timeout: 60_000,
+  64  |     });
+  65  |   });
+  66  | 
+  67  |   test("3H. Should Update DRep data", async ({ page, wallet }, testInfo) => {
+  68  |     test.setTimeout(testInfo.timeout + environments.txTimeOut);
+  69  | 
+  70  |     await page.goto("/");
+  71  | 
+  72  |     // Add an assertion to prevent clicking on "View Your dRep Details".
+  73  |     await expect(
+  74  |       page.getByTestId("dRep-id-display-card-dashboard")
+> 75  |     ).toContainText(wallet!.dRepId, { timeout: 20_000 });
+      |       ^ Error: expect(locator).toContainText(expected) failed
+  76  | 
+  77  |     await page.getByTestId("view-drep-details-button").click();
+  78  |     await page.getByTestId("edit-drep-data-button").click();
+  79  |     const editDRepPage = new DRepRegistrationPage(page);
+  80  | 
+  81  |     const newDRepName = faker.person.firstName();
+  82  | 
+  83  |     await editDRepPage.register({
+  84  |       name: newDRepName,
+  85  |       objectives: faker.lorem.paragraph(2),
+  86  |       motivations: faker.lorem.paragraph(2),
+  87  |       qualifications: faker.lorem.paragraph(2),
+  88  |       paymentAddress: await randomAddress(),
+  89  |       linksReferenceLinks: [
+  90  |         {
+  91  |           url: faker.internet.url(),
+  92  |           description: faker.internet.displayName(),
+  93  |         },
+  94  |       ],
+  95  |       identityReferenceLinks: [
+  96  |         {
+  97  |           url: faker.internet.url(),
+  98  |           description: faker.internet.displayName(),
+  99  |         },
+  100 |       ],
+  101 |     });
+  102 |     await page.getByTestId("confirm-modal-button").click();
+  103 |   });
+  104 | 
+  105 |   test("3S. Should restrict dRep registration for dRep", async ({ page }) => {
+  106 |     await page.goto(`${environments.frontendUrl}/my/drep/register`);
+  107 | 
+  108 |     await expect(page.getByText("You already are a DRep")).toBeVisible({
+  109 |       timeout: 60_000,
+  110 |     });
+  111 |     await expect(page.getByTestId("name-input")).not.toBeVisible();
+  112 |   });
+  113 | });
+  114 | 
+  115 | test.describe("Temporary DReps", () => {
+  116 |   test("3G. Should show confirmation message with link to view transaction, when DRep registration txn is submitted", async ({
+  117 |     browser,
+  118 |   }, testInfo) => {
+  119 |     test.setTimeout(testInfo.timeout + 2 * environments.txTimeOut);
+  120 | 
+  121 |     const wallet = await unregisteredDRepWallet("3G:dRep");
+  122 |     const dRepPage = await createNewPageWithWallet(browser, { wallet });
+  123 | 
+  124 |     const dRepRegistrationPage = new DRepRegistrationPage(dRepPage);
+  125 |     await dRepRegistrationPage.goto();
+  126 |     await dRepRegistrationPage.register({ name: faker.person.firstName() });
+  127 | 
+  128 |     await expect(dRepRegistrationPage.registrationSuccessModal).toBeVisible();
+  129 |     await expect(
+  130 |       dRepRegistrationPage.registrationSuccessModal.getByText("this link")
+  131 |     ).toBeVisible();
+  132 |   });
+  133 | 
+  134 |   test("3Q Should not list dRep in the dRep directory when 'doNotList' is checked during registration", async ({
+  135 |     browser,
+  136 |   }, testInfo) => {
+  137 |     test.setTimeout(testInfo.timeout + 2 * environments.txTimeOut);
+  138 | 
+  139 |     const wallet = await unregisteredDRepWallet("3Q:dRep");
+  140 |     const dRepPage = await createNewPageWithWallet(browser, { wallet });
+  141 | 
+  142 |     const dRepRegistrationPage = new DRepRegistrationPage(dRepPage);
+  143 |     await dRepRegistrationPage.goto();
+  144 |     await dRepRegistrationPage.register({
+  145 |       name: faker.person.firstName(),
+  146 |       donNotList: true,
+  147 |     });
+  148 | 
+  149 |     await dRepRegistrationPage.confirmBtn.click();
+  150 | 
+  151 |     await expect(dRepPage.getByTestId("d-rep-in-progress")).not.toBeVisible({
+  152 |       timeout: 60_000,
+  153 |     });
+  154 | 
+  155 |     // connected state
+  156 |     const dRepDirectoryPage = new DRepDirectoryPage(dRepPage);
+  157 |     await dRepDirectoryPage.verifyDRepInList(wallet.dRepId);
+  158 | 
+  159 |     // disconnected state
+  160 |     await dRepPage.getByTestId("disconnect-button").click();
+  161 |     await dRepDirectoryPage.verifyDRepInList(wallet.dRepId);
+  162 |   });
+  163 | 
+  164 |   test("3J. Should verify retire as DRep", async ({ browser }, testInfo) => {
+  165 |     test.setTimeout(testInfo.timeout + 2 * environments.txTimeOut);
+  166 | 
+  167 |     const wallet = await registeredDRepWallet("3J:dRep");
+  168 |     const dRepPage = await createNewPageWithWallet(browser, { wallet });
+  169 | 
+  170 |     await dRepPage.goto("/");
+  171 |     await dRepPage.getByTestId("retire-button").click();
+  172 |     await dRepPage.getByTestId("continue-retirement-button").click();
+  173 | 
+  174 |     await expect(
+  175 |       dRepPage.getByTestId("retirement-transaction-submitted-modal")
+```

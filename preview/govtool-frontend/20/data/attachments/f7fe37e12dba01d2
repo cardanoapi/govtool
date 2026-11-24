@@ -1,0 +1,577 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 8-proposal-discussion/proposalDiscussion.spec.ts >> Filter and sort proposals >> 8B_1. Should filter the list of proposed governance actions.
+- Location: tests/8-proposal-discussion/proposalDiscussion.spec.ts:48:7
+
+# Error details
+
+```
+Test timeout of 540000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 540000ms exceeded.
+Call log:
+  - waiting for getByTestId('filter-button')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - banner [ref=e10]:
+      - link "Skip to main content" [ref=e11] [cursor=pointer]:
+        - /url: "#main-content"
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: /
+          - img "Cardano GovTool" [ref=e14]
+        - navigation "Main" [ref=e15]:
+          - link "Home" [ref=e16] [cursor=pointer]:
+            - /url: /
+          - link "DRep Directory" [ref=e17] [cursor=pointer]:
+            - /url: /dreps
+          - link "Governance Actions" [ref=e18] [cursor=pointer]:
+            - /url: /actions
+          - link "Governance Activity" [ref=e19] [cursor=pointer]:
+            - /url: /activity
+          - link "Guides" [ref=e20] [cursor=pointer]:
+            - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+        - generic [ref=e21]:
+          - button "Global Search" [ref=e22] [cursor=pointer]
+          - button [ref=e26] [cursor=pointer]
+    - main [ref=e31]:
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34]:
+            - generic [ref=e35]:
+              - heading "Governance actions" [level=1] [ref=e36]
+              - paragraph [ref=e37]: Explore proposals shaping Cardano. Review the details, follow voting progress and take part in decisions that move the ecosystem forward.
+            - button [ref=e38] [cursor=pointer]
+          - status [ref=e44]:
+            - generic [ref=e45]: To submit a proposal, you need to connect a Cardano Wallet.
+            - button "Connect a Cardano wallet" [ref=e48] [cursor=pointer]
+        - region "Governance action figures" [ref=e52]:
+          - generic [ref=e53]:
+            - generic [ref=e54]: Total Actions
+            - generic [ref=e60]: 1,552
+          - generic [ref=e61]:
+            - generic [ref=e62]: Voting Now
+            - generic [ref=e67]: "31"
+          - generic [ref=e68]:
+            - generic [ref=e69]: Expiring Soon
+            - generic [ref=e73]: "0"
+          - generic [ref=e74]:
+            - generic [ref=e75]: Enacted
+            - generic [ref=e80]: "14"
+        - navigation "Governance Actions" [ref=e82]:
+          - link "Proposed Governance Actions" [ref=e83] [cursor=pointer]:
+            - /url: /proposals
+          - link "Live Voting" [ref=e84] [cursor=pointer]:
+            - /url: /actions
+          - link "Outcomes" [ref=e85] [cursor=pointer]:
+            - /url: /actions/history
+      - generic [ref=e88]:
+        - generic [ref=e89]:
+          - textbox "Search proposals by name…" [ref=e95]
+          - 'button "Date Range: Latest" [ref=e96] [cursor=pointer]':
+            - text: "Date Range:"
+            - generic [ref=e97]: Latest
+        - generic [ref=e100]:
+          - generic [ref=e102]:
+            - heading "Action type" [level=2] [ref=e103]
+            - button "All Governance Actions 3890" [pressed] [ref=e104] [cursor=pointer]:
+              - generic [ref=e107]: All Governance Actions
+              - generic [ref=e108]: "3890"
+            - button "Info Action 1977" [ref=e109] [cursor=pointer]:
+              - generic [ref=e113]: Info Action
+              - generic [ref=e114]: "1977"
+            - button "Treasury requests 1824" [ref=e115] [cursor=pointer]:
+              - generic [ref=e123]: Treasury requests
+              - generic [ref=e124]: "1824"
+            - button "Updates to the Constitution 49" [ref=e125] [cursor=pointer]:
+              - generic [ref=e130]: Updates to the Constitution
+              - generic [ref=e131]: "49"
+            - button "Motion of No Confidence 40" [ref=e132] [cursor=pointer]:
+              - generic [ref=e138]: Motion of No Confidence
+              - generic [ref=e139]: "40"
+            - button "Hard fork 0" [ref=e140] [cursor=pointer]:
+              - generic [ref=e147]: Hard fork
+              - generic [ref=e148]: "0"
+          - generic [ref=e150]:
+            - article [ref=e151]:
+              - generic [ref=e152]:
+                - generic [ref=e153]:
+                  - generic [ref=e154]: Treasury requests
+                  - generic [ref=e155]: Active
+                - generic [ref=e156]:
+                  - generic [ref=e157]:
+                    - text: "Proposed on:"
+                    - generic [ref=e160]: 24 November 2026
+                  - button "Share proposal" [ref=e161] [cursor=pointer]
+              - heading [level=3] [ref=e168]:
+                - link "Atrocitas stultus thymbra quia architecto exercitationem." [ref=e169] [cursor=pointer]:
+                  - /url: /proposals/17105
+              - paragraph [ref=e170]: molestias velit collum testimonium utique
+              - generic [ref=e171]:
+                - generic [ref=e172]:
+                  - paragraph [ref=e173]: Proposer
+                  - generic [ref=e174]:
+                    - generic [ref=e175]: M
+                    - generic [ref=e176]: macey_gutmann55_1795502673473
+                - generic [ref=e177]:
+                  - paragraph [ref=e178]: Discussions
+                  - generic [ref=e179]: 0 comments
+                - generic [ref=e182]:
+                  - paragraph [ref=e183]: Support
+                  - generic [ref=e184]: No votes yet
+            - article [ref=e188]:
+              - generic [ref=e189]:
+                - generic [ref=e190]:
+                  - generic [ref=e191]: Info Action
+                  - generic [ref=e192]: Active
+                - generic [ref=e193]:
+                  - generic [ref=e194]:
+                    - text: "Proposed on:"
+                    - generic [ref=e197]: 24 November 2026
+                  - button "Share proposal" [ref=e198] [cursor=pointer]
+              - heading [level=3] [ref=e205]:
+                - link "Ab colligo vicissitudo urbs tero error." [ref=e206] [cursor=pointer]:
+                  - /url: /proposals/17103
+              - paragraph [ref=e207]: spoliatio tenuis tactus cibus aestus
+              - generic [ref=e208]:
+                - generic [ref=e209]:
+                  - paragraph [ref=e210]: Proposer
+                  - generic [ref=e211]:
+                    - generic [ref=e212]: M
+                    - generic [ref=e213]: macey_gutmann55_1795502673473
+                - generic [ref=e214]:
+                  - paragraph [ref=e215]: Discussions
+                  - generic [ref=e216]: 0 comments
+                - generic [ref=e219]:
+                  - paragraph [ref=e220]: Support
+                  - generic [ref=e221]: No votes yet
+            - article [ref=e225]:
+              - generic [ref=e226]:
+                - generic [ref=e227]:
+                  - generic [ref=e228]: Treasury requests
+                  - generic [ref=e229]: Active
+                - generic [ref=e230]:
+                  - generic [ref=e231]:
+                    - text: "Proposed on:"
+                    - generic [ref=e234]: 24 November 2026
+                  - button "Share proposal" [ref=e235] [cursor=pointer]
+              - heading [level=3] [ref=e242]:
+                - link "Supra vox casus defessus animi avaritia." [ref=e243] [cursor=pointer]:
+                  - /url: /proposals/17102
+              - paragraph [ref=e244]: defero abbas candidus nesciunt tabella
+              - generic [ref=e245]:
+                - generic [ref=e246]:
+                  - paragraph [ref=e247]: Proposer
+                  - generic [ref=e248]:
+                    - generic [ref=e249]: M
+                    - generic [ref=e250]: macey_gutmann55_1795502673473
+                - generic [ref=e251]:
+                  - paragraph [ref=e252]: Discussions
+                  - generic [ref=e253]: 0 comments
+                - generic [ref=e256]:
+                  - paragraph [ref=e257]: Support
+                  - generic [ref=e258]: No votes yet
+            - article [ref=e262]:
+              - generic [ref=e263]:
+                - generic [ref=e264]:
+                  - generic [ref=e265]: Motion of No Confidence
+                  - generic [ref=e266]: Active
+                - generic [ref=e267]:
+                  - generic [ref=e268]:
+                    - text: "Proposed on:"
+                    - generic [ref=e271]: 24 November 2026
+                  - button "Share proposal" [ref=e272] [cursor=pointer]
+              - heading [level=3] [ref=e279]:
+                - link "Thema benigne ciminatio canto tricesimus facere." [ref=e280] [cursor=pointer]:
+                  - /url: /proposals/17098
+              - paragraph [ref=e281]: adeo benigne quis claudeo stips
+              - generic [ref=e282]:
+                - generic [ref=e283]:
+                  - paragraph [ref=e284]: Proposer
+                  - generic [ref=e285]:
+                    - generic [ref=e286]: C
+                    - generic [ref=e287]: cathryn.feil69_1795502343143
+                - generic [ref=e288]:
+                  - paragraph [ref=e289]: Discussions
+                  - generic [ref=e290]: 0 comments
+                - generic [ref=e293]:
+                  - paragraph [ref=e294]: Support
+                  - generic [ref=e295]: No votes yet
+            - article [ref=e299]:
+              - generic [ref=e300]:
+                - generic [ref=e301]:
+                  - generic [ref=e302]: Info Action
+                  - generic [ref=e303]: Active
+                - generic [ref=e304]:
+                  - generic [ref=e305]:
+                    - text: "Proposed on:"
+                    - generic [ref=e308]: 17 November 2026
+                  - button "Share proposal" [ref=e309] [cursor=pointer]
+              - heading [level=3] [ref=e316]:
+                - link "Test" [ref=e317] [cursor=pointer]:
+                  - /url: /proposals/17078
+              - paragraph [ref=e318]: Testbkdfbk kdf kb kd fknb n dsfb
+              - generic [ref=e319]:
+                - generic [ref=e320]:
+                  - paragraph [ref=e321]: Proposer
+                  - generic [ref=e322]:
+                    - generic [ref=e323]: K
+                    - generic [ref=e324]: kushal123
+                - generic [ref=e325]:
+                  - paragraph [ref=e326]: Discussions
+                  - generic [ref=e327]: 0 comments
+                - generic [ref=e330]:
+                  - paragraph [ref=e331]: Support
+                  - generic [ref=e332]: No votes yet
+            - article [ref=e336]:
+              - generic [ref=e337]:
+                - generic [ref=e338]:
+                  - generic [ref=e339]: Treasury requests
+                  - generic [ref=e340]: Active
+                - generic [ref=e341]:
+                  - generic [ref=e342]:
+                    - text: "Proposed on:"
+                    - generic [ref=e345]: 18 October 2026
+                  - button "Share proposal" [ref=e346] [cursor=pointer]
+              - heading [level=3] [ref=e353]:
+                - link "Ut cedo spiculum acer blanditiis civitas." [ref=e354] [cursor=pointer]:
+                  - /url: /proposals/17070
+              - paragraph [ref=e355]: earum vox vespillo vigilo viridis
+              - generic [ref=e356]:
+                - generic [ref=e357]:
+                  - paragraph [ref=e358]: Proposer
+                  - generic [ref=e359]:
+                    - generic [ref=e360]: L
+                    - generic [ref=e361]: leila22_1792297459254
+                - generic [ref=e362]:
+                  - paragraph [ref=e363]: Discussions
+                  - generic [ref=e364]: 0 comments
+                - generic [ref=e367]:
+                  - paragraph [ref=e368]: Support
+                  - generic [ref=e369]: No votes yet
+            - article [ref=e373]:
+              - generic [ref=e374]:
+                - generic [ref=e375]:
+                  - generic [ref=e376]: Updates to the Constitution
+                  - generic [ref=e377]: Active
+                - generic [ref=e378]:
+                  - generic [ref=e379]:
+                    - text: "Proposed on:"
+                    - generic [ref=e382]: 18 October 2026
+                  - button "Share proposal" [ref=e383] [cursor=pointer]
+              - heading [level=3] [ref=e390]:
+                - link "Sunt certe urbanus vulgaris tero usque." [ref=e391] [cursor=pointer]:
+                  - /url: /proposals/17069
+              - paragraph [ref=e392]: xiphias terga vado aduro cubicularis
+              - generic [ref=e393]:
+                - generic [ref=e394]:
+                  - paragraph [ref=e395]: Proposer
+                  - generic [ref=e396]:
+                    - generic [ref=e397]: A
+                    - generic [ref=e398]: armani.daugherty_1792296924534
+                - generic [ref=e399]:
+                  - paragraph [ref=e400]: Discussions
+                  - generic [ref=e401]: 0 comments
+                - generic [ref=e404]:
+                  - paragraph [ref=e405]: Support
+                  - generic [ref=e406]: No votes yet
+            - article [ref=e410]:
+              - generic [ref=e411]:
+                - generic [ref=e412]:
+                  - generic [ref=e413]: Treasury requests
+                  - generic [ref=e414]: Active
+                - generic [ref=e415]:
+                  - generic [ref=e416]:
+                    - text: "Proposed on:"
+                    - generic [ref=e419]: 18 October 2026
+                  - button "Share proposal" [ref=e420] [cursor=pointer]
+              - heading [level=3] [ref=e427]:
+                - link "Vinculum coadunatio charisma conitor amicitia universe." [ref=e428] [cursor=pointer]:
+                  - /url: /proposals/17064
+              - paragraph [ref=e429]: stips aedificium annus doloremque tantillus
+              - generic [ref=e430]:
+                - generic [ref=e431]:
+                  - paragraph [ref=e432]: Proposer
+                  - generic [ref=e433]:
+                    - generic [ref=e434]: A
+                    - generic [ref=e435]: armani.daugherty_1792296924534
+                - generic [ref=e436]:
+                  - paragraph [ref=e437]: Discussions
+                  - generic [ref=e438]: 0 comments
+                - generic [ref=e441]:
+                  - paragraph [ref=e442]: Support
+                  - generic [ref=e443]: No votes yet
+            - article [ref=e447]:
+              - generic [ref=e448]:
+                - generic [ref=e449]:
+                  - generic [ref=e450]: Motion of No Confidence
+                  - generic [ref=e451]: Active
+                - generic [ref=e452]:
+                  - generic [ref=e453]:
+                    - text: "Proposed on:"
+                    - generic [ref=e456]: 18 October 2026
+                  - button "Share proposal" [ref=e457] [cursor=pointer]
+              - heading [level=3] [ref=e464]:
+                - link "Cunctatio tyrannus caste acer allatus pauci." [ref=e465] [cursor=pointer]:
+                  - /url: /proposals/17063
+              - paragraph [ref=e466]: comptus cur undique tibi solitudo
+              - generic [ref=e467]:
+                - generic [ref=e468]:
+                  - paragraph [ref=e469]: Proposer
+                  - generic [ref=e470]:
+                    - generic [ref=e471]: A
+                    - generic [ref=e472]: armani.daugherty_1792296924534
+                - generic [ref=e473]:
+                  - paragraph [ref=e474]: Discussions
+                  - generic [ref=e475]: 0 comments
+                - generic [ref=e478]:
+                  - paragraph [ref=e479]: Support
+                  - generic [ref=e480]: No votes yet
+            - article [ref=e484]:
+              - generic [ref=e485]:
+                - generic [ref=e486]:
+                  - generic [ref=e487]: Info Action
+                  - generic [ref=e488]: Active
+                - generic [ref=e489]:
+                  - generic [ref=e490]:
+                    - text: "Proposed on:"
+                    - generic [ref=e493]: 18 October 2026
+                  - button "Share proposal" [ref=e494] [cursor=pointer]
+              - heading [level=3] [ref=e501]:
+                - link "Cruentus aggredior corpus aetas amor cetera." [ref=e502] [cursor=pointer]:
+                  - /url: /proposals/17061
+              - paragraph [ref=e503]: abstergo velit bonus aegrus solitudo
+              - generic [ref=e504]:
+                - generic [ref=e505]:
+                  - paragraph [ref=e506]: Proposer
+                  - generic [ref=e507]:
+                    - generic [ref=e508]: A
+                    - generic [ref=e509]: armani.daugherty_1792296924534
+                - generic [ref=e510]:
+                  - paragraph [ref=e511]: Discussions
+                  - generic [ref=e512]: 0 comments
+                - generic [ref=e515]:
+                  - paragraph [ref=e516]: Support
+                  - generic [ref=e517]: No votes yet
+            - navigation "Pagination" [ref=e521]:
+              - paragraph [ref=e523]: Showing 1–10 of 3890 results
+              - generic [ref=e524]:
+                - button "Previous" [disabled]:
+                  - generic: ←
+                  - text: Previous
+                - button "1" [ref=e525] [cursor=pointer]
+                - button "2" [ref=e526] [cursor=pointer]
+                - paragraph [ref=e527]: …
+                - button "389" [ref=e528] [cursor=pointer]
+                - button "Next" [ref=e529] [cursor=pointer]:
+                  - text: Next
+                  - generic [ref=e530]: →
+      - generic [ref=e531]:
+        - generic [ref=e533]:
+          - text: Create governance action
+          - heading "Have an idea for Cardano governance?" [level=2] [ref=e534]
+          - paragraph [ref=e535]:
+            - generic [ref=e536]: Create Proposal
+            - generic [ref=e537]: Review
+            - generic [ref=e540]: Submit On-chain
+          - paragraph [ref=e543]: Create and submit a governance action for the community
+        - button "Propose Action" [ref=e544] [cursor=pointer]
+    - contentinfo [ref=e547]:
+      - generic [ref=e548]:
+        - generic [ref=e549]:
+          - img "Cardano GovTool" [ref=e550]
+          - paragraph [ref=e551]: A clearer connection to Cardano governance.
+          - generic [ref=e552]:
+            - link "Guides" [ref=e553] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+            - link "FAQs" [ref=e554] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/faqs
+            - link "Intersect ↗" [ref=e555] [cursor=pointer]:
+              - /url: https://www.intersectmbo.org/
+        - generic [ref=e556]:
+          - paragraph [ref=e557]: © 2026 GovTool
+          - generic [ref=e558]:
+            - link "Privacy policy" [ref=e559] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/privacy-policy
+            - link "Terms of Use" [ref=e560] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/terms-of-use
+            - link "Help" [ref=e561] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/support
+            - button "Feedback" [ref=e562] [cursor=pointer]
+```
+
+# Test source
+
+```ts
+  1   | import environments from "@constants/environments";
+  2   | import {
+  3   |   BOOTSTRAP_PROPOSAL_TYPE_FILTERS,
+  4   |   PROPOSAL_STATUS_FILTER,
+  5   | } from "@constants/index";
+  6   | import { faker } from "@faker-js/faker";
+  7   | import { test } from "@fixtures/proposal";
+  8   | import { setAllureEpic } from "@helpers/allure";
+  9   | import { isBootStrapingPhase } from "@helpers/cardano";
+  10  | import { getProposalType } from "@helpers/index";
+  11  | import { injectLogger } from "@helpers/page";
+  12  | import { extractProposalIdFromUrl } from "@helpers/string";
+  13  | import { functionWaitedAssert } from "@helpers/waitedLoop";
+  14  | import ProposalDiscussionDetailsPage from "@pages/proposalDiscussionDetailsPage";
+  15  | import ProposalDiscussionPage from "@pages/proposalDiscussionPage";
+  16  | import { expect } from "@playwright/test";
+  17  | import {
+  18  |   ProposalDiscussionFilterTypes,
+  19  |   ProposalType,
+  20  |   ProposedGovAction,
+  21  | } from "@types";
+  22  | 
+  23  | const mockProposal = require("../../lib/_mock/proposal.json");
+  24  | const mockPoll = require("../../lib/_mock/proposalPoll.json");
+  25  | const mockComments = require("../../lib/_mock/proposalComments.json");
+  26  | 
+  27  | test.beforeEach(async () => {
+  28  |   await setAllureEpic("8. Proposal Discussion Forum");
+  29  | });
+  30  | 
+  31  | test("8A. Should access proposed governance actions in disconnected state", async ({
+  32  |   page,
+  33  | }) => {
+  34  |   const proposalDiscussionPage = new ProposalDiscussionPage(page);
+  35  |   await proposalDiscussionPage.goto();
+  36  | 
+  37  |   await expect(page.getByText(/Proposed Governance Actions/i)).toHaveCount(1);
+  38  | });
+  39  | 
+  40  | test.describe("Filter and sort proposals", () => {
+  41  |   let proposalDiscussionPage: ProposalDiscussionPage;
+  42  | 
+  43  |   test.beforeEach(async ({ page }) => {
+  44  |     proposalDiscussionPage = new ProposalDiscussionPage(page);
+  45  |     await proposalDiscussionPage.goto();
+  46  |   });
+  47  | 
+  48  |   test("8B_1. Should filter the list of proposed governance actions.", async () => {
+  49  |     test.slow();
+  50  | 
+> 51  |     await proposalDiscussionPage.filterBtn.click();
+      |                                            ^ Error: locator.click: Test timeout of 540000ms exceeded.
+  52  | 
+  53  |     // unselect active proposal
+  54  |     await proposalDiscussionPage.activeProposalWrapper.click();
+  55  |     const isBootStraping = await isBootStrapingPhase();
+  56  | 
+  57  |     // proposal type filter
+  58  |     await proposalDiscussionPage.applyAndValidateFilters(
+  59  |       isBootStraping ? BOOTSTRAP_PROPOSAL_TYPE_FILTERS : getProposalType(),
+  60  |       proposalDiscussionPage._validateTypeFiltersInProposalCard
+  61  |     );
+  62  | 
+  63  |     // proposal status filter
+  64  |     await proposalDiscussionPage.applyAndValidateFilters(
+  65  |       PROPOSAL_STATUS_FILTER,
+  66  |       proposalDiscussionPage._validateStatusFiltersInProposalCard
+  67  |     );
+  68  |   });
+  69  | 
+  70  |   test("8B_2. Should sort the list of proposed governance actions.", async () => {
+  71  |     test.slow();
+  72  |     const sortOptions = {
+  73  |       Oldest: (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  74  |         p1.attributes.content.attributes.createdAt <=
+  75  |         p2.attributes.content.attributes.createdAt,
+  76  |       Newest: (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  77  |         p1.attributes.content.attributes.createdAt >=
+  78  |         p2.attributes.content.attributes.createdAt,
+  79  |       "Most likes": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  80  |         p1.attributes.prop_likes >= p2.attributes.prop_likes,
+  81  |       "Least likes": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  82  |         p1.attributes.prop_likes <= p2.attributes.prop_likes,
+  83  |       "Most dislikes": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  84  |         p1.attributes.prop_dislikes >= p2.attributes.prop_dislikes,
+  85  |       "Least dislikes": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  86  |         p1.attributes.prop_dislikes <= p2.attributes.prop_dislikes,
+  87  |       "Most comments": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  88  |         p1.attributes.prop_comments_number >=
+  89  |         p2.attributes.prop_comments_number,
+  90  |       "Least comments": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  91  |         p1.attributes.prop_comments_number <=
+  92  |         p2.attributes.prop_comments_number,
+  93  |       "Name A-Z": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  94  |         p1.attributes.content.attributes.prop_name
+  95  |           .replace(/ /g, "")
+  96  |           .localeCompare(
+  97  |             p2.attributes.content.attributes.prop_name.replace(/ /g, "")
+  98  |           ) <= 0,
+  99  |       "Name Z-A": (p1: ProposedGovAction, p2: ProposedGovAction) =>
+  100 |         p1.attributes.content.attributes.prop_name
+  101 |           .replace(/ /g, "")
+  102 |           .localeCompare(
+  103 |             p2.attributes.content.attributes.prop_name.replace(/ /g, "")
+  104 |           ) >= 0,
+  105 |     };
+  106 | 
+  107 |     for (const [sortOption, sortFunction] of Object.entries(sortOptions)) {
+  108 |       await proposalDiscussionPage.sortAndValidate(
+  109 |         sortOption as ProposalDiscussionFilterTypes,
+  110 |         sortFunction
+  111 |       );
+  112 |     }
+  113 |   });
+  114 | });
+  115 | 
+  116 | test("8C. Should search the list of proposed governance actions.", async ({
+  117 |   page,
+  118 | }) => {
+  119 |   let proposalName = "Labadie, Stehr and Rosenbaum";
+  120 |   let proposalNameSet = false;
+  121 | 
+  122 |   await page.route("**/api/proposals?**", async (route) => {
+  123 |     const response = await route.fetch();
+  124 |     const json = await response.json();
+  125 |     if (!proposalNameSet && "data" in json && json["data"].length > 0) {
+  126 |       const randomIndex = Math.floor(Math.random() * json["data"].length);
+  127 |       proposalName =
+  128 |         json["data"][randomIndex]["attributes"]["content"]["attributes"][
+  129 |           "prop_name"
+  130 |         ];
+  131 |       proposalNameSet = true;
+  132 |     }
+  133 |     await route.fulfill({
+  134 |       status: 200,
+  135 |       contentType: "application/json",
+  136 |       body: JSON.stringify(json),
+  137 |     });
+  138 |   });
+  139 | 
+  140 |   const responsePromise = page.waitForResponse("**/api/proposals?**");
+  141 |   const proposalDiscussionPage = new ProposalDiscussionPage(page);
+  142 |   await proposalDiscussionPage.goto();
+  143 | 
+  144 |   await responsePromise;
+  145 | 
+  146 |   await proposalDiscussionPage.searchInput.fill(proposalName);
+  147 | 
+  148 |   await page.waitForTimeout(2000);
+  149 | 
+  150 |   await functionWaitedAssert(
+  151 |     async () => {
+```

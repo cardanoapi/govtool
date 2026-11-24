@@ -1,0 +1,4 @@
+locator.innerText: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for locator('[data-testid$="-card"]').first().getByTestId('expiry-date')
+

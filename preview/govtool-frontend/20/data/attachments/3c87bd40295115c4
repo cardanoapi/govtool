@@ -1,0 +1,564 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 9-governance-action-history/governance-action-history.loggedin.spec.ts >> Governance action history page >> actionRecord sorting and filtering >> 9C_3B. Should filter and sort Governance Action Type on governance action history page
+- Location: tests/9-governance-action-history/governance-action-history.loggedin.spec.ts:42:9
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: page.waitForResponse: Test timeout of 180000ms exceeded.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: "Network: Preview"
+      - generic [ref=e7]: "|"
+      - link [ref=e8] [cursor=pointer]:
+        - /url: https://gov.tools/
+        - text: Go to Mainnet
+    - generic [ref=e9]:
+      - banner [ref=e10]:
+        - link [ref=e11] [cursor=pointer]:
+          - /url: "#main-content"
+          - text: Skip to main content
+        - generic [ref=e12]:
+          - link [ref=e13] [cursor=pointer]:
+            - /url: /dashboard
+          - navigation [ref=e15]:
+            - link [ref=e16] [cursor=pointer]:
+              - /url: /dashboard
+              - text: Home
+            - link [ref=e17] [cursor=pointer]:
+              - /url: /dreps
+              - text: DRep Directory
+            - link [ref=e18] [cursor=pointer]:
+              - /url: /actions
+              - text: Governance Actions
+            - link [ref=e19] [cursor=pointer]:
+              - /url: /activity
+              - text: Governance Activity
+            - link [ref=e20] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+              - text: Guides
+          - generic [ref=e21]:
+            - button [ref=e22] [cursor=pointer]
+            - button [ref=e26] [cursor=pointer]:
+              - generic [ref=e29]: stake_t…5fr
+            - button [ref=e32] [cursor=pointer]
+            - button [ref=e37] [cursor=pointer]
+      - main [ref=e42]:
+        - generic [ref=e46]:
+          - generic [ref=e47]:
+            - generic [ref=e49]:
+              - generic [ref=e50]:
+                - heading [level=1] [ref=e51]: Governance actions
+                - paragraph [ref=e52]: Explore proposals shaping Cardano. Review the details, follow voting progress and take part in decisions that move the ecosystem forward.
+              - button [ref=e53] [cursor=pointer]: Create Governance Action
+            - region [ref=e59]:
+              - generic [ref=e60]:
+                - generic [ref=e61]: Total Actions
+                - generic [ref=e67]: 1,552
+              - generic [ref=e68]:
+                - generic [ref=e69]: Voting Now
+                - generic [ref=e74]: "31"
+              - generic [ref=e75]:
+                - generic [ref=e76]: Expiring Soon
+                - generic [ref=e80]: "0"
+              - generic [ref=e81]:
+                - generic [ref=e82]: Enacted
+                - generic [ref=e87]: "14"
+            - navigation [ref=e89]:
+              - link [ref=e90] [cursor=pointer]:
+                - /url: /proposals
+                - text: Proposed Governance Actions
+              - link [ref=e91] [cursor=pointer]:
+                - /url: /actions
+                - text: Live Voting
+              - link [ref=e92] [cursor=pointer]:
+                - /url: /actions/history
+                - text: Outcomes
+          - generic [ref=e93]:
+            - generic [ref=e94]:
+              - textbox [ref=e100]:
+                - /placeholder: Search Action...
+              - button [expanded] [ref=e101] [cursor=pointer]:
+                - text: "Sort:"
+                - generic [ref=e102]: Newest First
+            - generic [ref=e105]:
+              - generic [ref=e107]:
+                - generic [ref=e108]:
+                  - checkbox [ref=e109] [cursor=pointer]:
+                    - generic [ref=e113]: All statuses
+                  - checkbox [ref=e115] [cursor=pointer]:
+                    - generic [ref=e124]: Expired
+                  - checkbox [ref=e126] [cursor=pointer]:
+                    - generic [ref=e130]: Enacted
+                  - checkbox [ref=e132] [cursor=pointer]:
+                    - generic [ref=e137]: Ratified
+                - generic [ref=e139]:
+                  - button [ref=e140] [cursor=pointer]:
+                    - generic [ref=e143]: All Governance Actions
+                    - generic [ref=e144]: "1552"
+                  - button [ref=e145] [cursor=pointer]:
+                    - generic [ref=e149]: Info
+                    - generic [ref=e150]: "624"
+                  - button [ref=e151] [cursor=pointer]:
+                    - generic [ref=e159]: Treasury Withdrawal
+                    - generic [ref=e160]: "442"
+                  - button [ref=e161] [cursor=pointer]:
+                    - generic [ref=e164]: Parameter Change
+                    - generic [ref=e165]: "53"
+                  - button [ref=e166] [cursor=pointer]:
+                    - generic [ref=e173]: Hard Fork
+                    - generic [ref=e174]: "19"
+                  - button [ref=e175] [cursor=pointer]:
+                    - generic [ref=e180]: New Constitution
+                    - generic [ref=e181]: "204"
+                  - button [ref=e182] [cursor=pointer]:
+                    - generic [ref=e189]: New Committee
+                    - generic [ref=e190]: "47"
+                  - button [pressed] [ref=e191] [cursor=pointer]:
+                    - generic [ref=e197]: No Confidence
+                    - generic [ref=e198]: "163"
+              - generic [ref=e200]:
+                - generic [ref=e201]:
+                  - article [ref=e202]:
+                    - generic [ref=e203]:
+                      - generic [ref=e204]:
+                        - generic [ref=e205]: Motion of no Confidence
+                        - link [ref=e206] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1z9sv63gfdxqwrxzk9pfp4f4gftrf8cnpvsqac3vm82lf0g2qhy6qqnvz3gn
+                          - text: CoSponsor tooling test - No Confidence (please ignore)
+                      - generic [ref=e207]: Not ratified
+                    - generic [ref=e213]:
+                      - generic [ref=e214]:
+                        - generic [ref=e215]: Submitted
+                        - generic [ref=e216]: Jul 6, 2026 · Epoch 1350
+                      - generic [ref=e218]:
+                        - generic [ref=e219]: Not ratified
+                        - generic [ref=e220]: Jul 17, 2026 · Epoch 1361
+                  - article [ref=e221]:
+                    - generic [ref=e222]:
+                      - generic [ref=e223]:
+                        - generic [ref=e224]: Motion of no Confidence
+                        - link [ref=e225] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1c435rakuyh0phzw8jvg2pjh0zt5mqwyppk94jy7ezr05ywlp0umsq46t8vl
+                          - text: "[TEST #4] No confidence in current committee"
+                      - generic [ref=e226]: Expired
+                    - generic [ref=e235]:
+                      - generic [ref=e236]:
+                        - generic [ref=e237]: Submitted
+                        - generic [ref=e238]: Apr 8, 2026 · Epoch 1261
+                      - generic [ref=e240]:
+                        - generic [ref=e241]: Expired
+                        - generic [ref=e242]: May 9, 2026 · Epoch 1292
+                  - article [ref=e243]:
+                    - generic [ref=e244]:
+                      - generic [ref=e245]:
+                        - generic [ref=e246]: Motion of no Confidence
+                        - link [ref=e247] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1uwzvtfqmq566fd0dvqdmf37e66dst9u3rl3zy44p4tcml69ztw0sqahjks7
+                          - text: Hard Fork to Protocol Version 10
+                      - generic [ref=e248]: Expired
+                    - generic [ref=e257]:
+                      - generic [ref=e258]:
+                        - generic [ref=e259]: Submitted
+                        - generic [ref=e260]: Nov 28, 2025 · Epoch 1130
+                      - generic [ref=e262]:
+                        - generic [ref=e263]: Expired
+                        - generic [ref=e264]: Dec 29, 2025 · Epoch 1161
+                  - article [ref=e265]:
+                    - generic [ref=e266]:
+                      - generic [ref=e267]:
+                        - generic [ref=e268]: Motion of no Confidence
+                        - link [ref=e269] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1r335m6ttcg8yezf30jjhth5dn0pxk22ulwfzythxmdlp25p8k2ssqrf8w45
+                          - text: MAY OR MAY NOT BE A NO CONFIDENCE PROPOSAL
+                      - generic [ref=e270]: Expired
+                    - generic [ref=e279]:
+                      - generic [ref=e280]:
+                        - generic [ref=e281]: Submitted
+                        - generic [ref=e282]: Sep 6, 2025 · Epoch 1047
+                      - generic [ref=e284]:
+                        - generic [ref=e285]: Expired
+                        - generic [ref=e286]: Oct 7, 2025 · Epoch 1078
+                  - article [ref=e287]:
+                    - generic [ref=e288]:
+                      - generic [ref=e289]:
+                        - generic [ref=e290]: Motion of no Confidence
+                        - link [ref=e291] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1xfeszlc7vrelltnh0r7p7gkgnajt75lvt9c49p7a6lad506lpg3qqvdyhjs
+                          - text: No Confidence 1 Title
+                      - generic [ref=e292]: Expired
+                    - generic [ref=e301]:
+                      - generic [ref=e302]:
+                        - generic [ref=e303]: Submitted
+                        - generic [ref=e304]: Sep 5, 2025 · Epoch 1046
+                      - generic [ref=e306]:
+                        - generic [ref=e307]: Expired
+                        - generic [ref=e308]: Oct 6, 2025 · Epoch 1077
+                  - article [ref=e309]:
+                    - generic [ref=e310]:
+                      - generic [ref=e311]:
+                        - generic [ref=e312]: Motion of no Confidence
+                        - link [ref=e313] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1rmfy0xe2h2mgt0gvzj8gsrvmfsqxhusejxcttgqqpend7ckkae9qq8qrsgk
+                          - text: Untitled governance action
+                      - generic [ref=e314]: Not ratified
+                    - generic [ref=e320]:
+                      - generic [ref=e321]:
+                        - generic [ref=e322]: Submitted
+                        - generic [ref=e323]: Jul 9, 2025 · Epoch 988
+                      - generic [ref=e325]:
+                        - generic [ref=e326]: Not ratified
+                        - generic [ref=e327]: Jul 15, 2025 · Epoch 994
+                  - article [ref=e328]:
+                    - generic [ref=e329]:
+                      - generic [ref=e330]:
+                        - generic [ref=e331]: Motion of no Confidence
+                        - link [ref=e332] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1e87nu7c2us9p4slx26f3xakhnf7jkvmj0egg8jga38t5klt2kajsq0te5ak
+                          - text: Untitled governance action
+                      - generic [ref=e333]: Not ratified
+                    - generic [ref=e339]:
+                      - generic [ref=e340]:
+                        - generic [ref=e341]: Submitted
+                        - generic [ref=e342]: Jul 3, 2025 · Epoch 982
+                      - generic [ref=e344]:
+                        - generic [ref=e345]: Not ratified
+                        - generic [ref=e346]: Jul 15, 2025 · Epoch 994
+                  - article [ref=e347]:
+                    - generic [ref=e348]:
+                      - generic [ref=e349]:
+                        - generic [ref=e350]: Motion of no Confidence
+                        - link [ref=e351] [cursor=pointer]:
+                          - /url: /actions/history/gov_action13a5330s7za3v4cdr0zyz6z6qxlsww9mvu6wwf7r559cwm0zdsd7sq3dd5vv
+                          - text: Untitled governance action
+                      - generic [ref=e352]: Not ratified
+                    - generic [ref=e358]:
+                      - generic [ref=e359]:
+                        - generic [ref=e360]: Submitted
+                        - generic [ref=e361]: Jul 2, 2025 · Epoch 981
+                      - generic [ref=e363]:
+                        - generic [ref=e364]: Not ratified
+                        - generic [ref=e365]: Jul 15, 2025 · Epoch 994
+                  - article [ref=e366]:
+                    - generic [ref=e367]:
+                      - generic [ref=e368]:
+                        - generic [ref=e369]: Motion of no Confidence
+                        - link [ref=e370] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1am0r2spmpawnmw8xl6q2qw8jf3ycck6xwkqhuv4x0cec7223rk2qqsc5p7h
+                          - text: Untitled governance action
+                      - generic [ref=e371]: Not ratified
+                    - generic [ref=e377]:
+                      - generic [ref=e378]:
+                        - generic [ref=e379]: Submitted
+                        - generic [ref=e380]: Jun 26, 2025 · Epoch 975
+                      - generic [ref=e382]:
+                        - generic [ref=e383]: Not ratified
+                        - generic [ref=e384]: Jul 15, 2025 · Epoch 994
+                  - article [ref=e385]:
+                    - generic [ref=e386]:
+                      - generic [ref=e387]:
+                        - generic [ref=e388]: Motion of no Confidence
+                        - link [ref=e389] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1p4ejk3ey34c232npudtq707aetecp8vzcpjuhha2xmmex8dkxltsqgj98dh
+                          - text: Untitled governance action
+                      - generic [ref=e390]: Not ratified
+                    - generic [ref=e396]:
+                      - generic [ref=e397]:
+                        - generic [ref=e398]: Submitted
+                        - generic [ref=e399]: Jun 26, 2025 · Epoch 975
+                      - generic [ref=e401]:
+                        - generic [ref=e402]: Not ratified
+                        - generic [ref=e403]: Jul 15, 2025 · Epoch 994
+                  - article [ref=e404]:
+                    - generic [ref=e405]:
+                      - generic [ref=e406]:
+                        - generic [ref=e407]: Motion of no Confidence
+                        - link [ref=e408] [cursor=pointer]:
+                          - /url: /actions/history/gov_action124ft3gsfl8l6m3d2tql0tq724uthdjjnhjvfwgt95k6c83qy2v5qqkam3l0
+                          - text: Untitled governance action
+                      - generic [ref=e409]: Not ratified
+                    - generic [ref=e415]:
+                      - generic [ref=e416]:
+                        - generic [ref=e417]: Submitted
+                        - generic [ref=e418]: Jun 26, 2025 · Epoch 975
+                      - generic [ref=e420]:
+                        - generic [ref=e421]: Not ratified
+                        - generic [ref=e422]: Jul 15, 2025 · Epoch 994
+                  - article [ref=e423]:
+                    - generic [ref=e424]:
+                      - generic [ref=e425]:
+                        - generic [ref=e426]: Motion of no Confidence
+                        - link [ref=e427] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1ng96ymlklnmcesc8vrk76qnlfg3ezeeyxp79hqvk5rsn3p0vcutsq9qe3tk
+                          - text: Untitled governance action
+                      - generic [ref=e428]: Not ratified
+                    - generic [ref=e434]:
+                      - generic [ref=e435]:
+                        - generic [ref=e436]: Submitted
+                        - generic [ref=e437]: Jun 26, 2025 · Epoch 975
+                      - generic [ref=e439]:
+                        - generic [ref=e440]: Not ratified
+                        - generic [ref=e441]: Jul 15, 2025 · Epoch 994
+                - button [ref=e443] [cursor=pointer]: Show More Actions
+      - contentinfo [ref=e444]:
+        - generic [ref=e445]:
+          - generic [ref=e446]:
+            - paragraph [ref=e448]: A clearer connection to Cardano governance.
+            - generic [ref=e449]:
+              - link [ref=e450] [cursor=pointer]:
+                - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+                - text: Guides
+              - link [ref=e451] [cursor=pointer]:
+                - /url: https://docs.gov.tools/cardano-govtool/faqs
+                - text: FAQs
+              - link [ref=e452] [cursor=pointer]:
+                - /url: https://www.intersectmbo.org/
+                - text: Intersect ↗
+          - generic [ref=e453]:
+            - paragraph [ref=e454]: © 2026 GovTool
+            - generic [ref=e455]:
+              - link [ref=e456] [cursor=pointer]:
+                - /url: https://docs.gov.tools/legal/privacy-policy
+                - text: Privacy policy
+              - link [ref=e457] [cursor=pointer]:
+                - /url: https://docs.gov.tools/legal/terms-of-use
+                - text: Terms of Use
+              - link [ref=e458] [cursor=pointer]:
+                - /url: https://docs.gov.tools/cardano-govtool/support
+                - text: Help
+              - button [ref=e459] [cursor=pointer]: Feedback
+  - radiogroup "Sort:" [ref=e462]:
+    - generic [ref=e463] [cursor=pointer]:
+      - radio "Newest First" [checked] [ref=e465]
+      - generic [ref=e471]: Newest First
+    - generic [ref=e472] [cursor=pointer]:
+      - radio "Oldest First" [ref=e474]
+      - generic [ref=e478]: Oldest First
+    - generic [ref=e479] [cursor=pointer]:
+      - radio "Highest amount of yes votes" [ref=e481]
+      - generic [ref=e485]: Highest amount of yes votes
+```
+
+# Test source
+
+```ts
+  75  |   }
+  76  | 
+  77  |   async getAllGovernanceActionHistory(): Promise<Locator[]> {
+  78  |     await waitedLoop(async () => {
+  79  |       return (
+  80  |         (await this.page.locator('[data-testid$="-governance-action-card"]').count()) >
+  81  |           0 ||
+  82  |         (await this.page.getByText("No governance actions found").isVisible())
+  83  |       );
+  84  |     });
+  85  |     return await this.page.locator('[data-testid$="-governance-action-card"]').all();
+  86  |   }
+  87  | 
+  88  |   async clickCheckboxByNames(names: string[]) {
+  89  |     const formattedNames = names.map((name) =>
+  90  |       name === "Info Action" ? "Info" : name
+  91  |     );
+  92  |     for (const name of formattedNames) {
+  93  |       const testId = name.toLowerCase().replace(/ /g, "-");
+  94  |       await this.page.getByTestId(`${testId}-checkbox`).click();
+  95  |     }
+  96  |   }
+  97  | 
+  98  |   async filterProposalByNames(names: string[]) {
+  99  |     await this.clickCheckboxByNames(names);
+  100 |   }
+  101 | 
+  102 |   async unFilterProposalByNames(names: string[]) {
+  103 |     await this.clickCheckboxByNames(names);
+  104 |   }
+  105 | 
+  106 |   async applyAndValidateFilters(
+  107 |     filters: string[],
+  108 |     validateFunction: (proposalCard: any, filters: string[]) => Promise<boolean>
+  109 |   ) {
+  110 |     await this.page.waitForTimeout(4_000); // wait for the proposals to load
+  111 |     // single filter
+  112 |     for (const filter of filters) {
+  113 |       await this.filterProposalByNames([filter]);
+  114 |       await this.validateFilters([filter], validateFunction);
+  115 |       await this.unFilterProposalByNames([filter]);
+  116 |     }
+  117 | 
+  118 |     // multiple filter
+  119 |     const multipleFilters = [...filters];
+  120 |     while (multipleFilters.length > 1) {
+  121 |       await this.filterProposalByNames(multipleFilters);
+  122 |       await this.validateFilters(multipleFilters, validateFunction);
+  123 |       await this.unFilterProposalByNames(multipleFilters);
+  124 |       multipleFilters.pop();
+  125 |     }
+  126 |   }
+  127 | 
+  128 |   async validateFilters(
+  129 |     filters: string[],
+  130 |     validateFunction: (proposalCard: any, filters: string[]) => Promise<boolean>
+  131 |   ) {
+  132 |     await functionWaitedAssert(
+  133 |       async () => {
+  134 |         const proposalCards = await this.getAllGovernanceActionHistory();
+  135 |         for (const proposalCard of proposalCards) {
+  136 |           if (await proposalCard.isVisible()) {
+  137 |             const type = await proposalCard
+  138 |               .locator('[data-testid$="-type"]')
+  139 |               .textContent({ timeout: CARD_READ_TIMEOUT });
+  140 |             const actionRecordType = type.replace(/^.*Type/, "");
+  141 |             const hasFilter = await validateFunction(proposalCard, filters);
+  142 |             if (!hasFilter) {
+  143 |               const errorMessage = `An actionRecord type ${actionRecordType} does not contain on ${filters}`;
+  144 |               throw errorMessage;
+  145 |             }
+  146 |             expect(hasFilter).toBe(true);
+  147 |           }
+  148 |         }
+  149 |       },
+  150 |       {
+  151 |         name: "validateFilters",
+  152 |       }
+  153 |     );
+  154 |   }
+  155 | 
+  156 |   getSortType(sortOption: string) {
+  157 |     let sortType = sortOption;
+  158 |     if (sortOption === "Highest amount of yes votes") {
+  159 |       sortType = "Highest yes votes";
+  160 |     }
+  161 |     return toCamelCase(sortType);
+  162 |   }
+  163 | 
+  164 |   getSortTestId(sortOption: string) {
+  165 |     const sortType = this.getSortType(sortOption);
+  166 |     return sortType.toLowerCase().replace(/[\s.]/g, "") + "-radio";
+  167 |   }
+  168 | 
+  169 |   async sortAndValidate(
+  170 |     sortOption: string,
+  171 |     validationFn: (p1: actionRecordProposal, p2: actionRecordProposal) => boolean,
+  172 |     filterKey?: string
+  173 |   ) {
+  174 |     const sortType = this.getSortType(sortOption);
+> 175 |     const responsePromise = this.page.waitForResponse((response) =>
+      |                                       ^ Error: page.waitForResponse: Test timeout of 180000ms exceeded.
+  176 |       response
+  177 |         .url()
+  178 |         .includes(
+  179 |           filterKey
+  180 |             ? `&filters=${filterKey}&sort=${sortType}`
+  181 |             : `&sort=${sortType}`
+  182 |         )
+  183 |     );
+  184 | 
+  185 |     await this.page.getByTestId(this.getSortTestId(sortOption)).click();
+  186 | 
+  187 |     const response = await responsePromise;
+  188 |     const actionRecordProposalList: actionRecordProposal[] = await response.json();
+  189 | 
+  190 |     // API validation
+  191 |     if (actionRecordProposalList.length <= 1) return;
+  192 | 
+  193 |     for (let i = 0; i <= actionRecordProposalList.length - 2; i++) {
+  194 |       const isValid = validationFn(
+  195 |         actionRecordProposalList[i],
+  196 |         actionRecordProposalList[i + 1]
+  197 |       );
+  198 |       expect(isValid).toBe(true);
+  199 |     }
+  200 | 
+  201 |     await expect(
+  202 |       this.page.getByRole("progressbar").getByRole("img")
+  203 |     ).toBeHidden({ timeout: 20_000 });
+  204 | 
+  205 |     await functionWaitedAssert(
+  206 |       async () => {
+  207 |         const actionRecordCards = await this.getAllGovernanceActionHistory();
+  208 |         for (const [index, actionRecordCard] of actionRecordCards.entries()) {
+  209 |           const actionRecordProposalFromAPI = actionRecordProposalList[index];
+  210 |           const proposalTypeFromUI = await actionRecordCard
+  211 |             .locator('[data-testid$="-type"]')
+  212 |             .textContent({ timeout: CARD_READ_TIMEOUT });
+  213 |           const proposalTypeFromApi = actionRecordType[actionRecordProposalFromAPI.type];
+  214 | 
+  215 |           const cip105IdFromUI = await actionRecordCard
+  216 |             .locator('[data-testid$="-CIP-105-id"]')
+  217 |             .textContent({ timeout: CARD_READ_TIMEOUT });
+  218 |           const cip105IdFromApi = `${actionRecordProposalFromAPI.tx_hash}#${actionRecordProposalFromAPI.index}`;
+  219 | 
+  220 |           expect(proposalTypeFromUI.replace(/^.*Type/, "")).toContain(
+  221 |             proposalTypeFromApi
+  222 |           );
+  223 | 
+  224 |           expect(cip105IdFromUI.replace(/^.*ID/, "")).toContain(
+  225 |             cip105IdFromApi
+  226 |           );
+  227 |         }
+  228 |       },
+  229 |       {
+  230 |         name: `frontend sort validation of ${sortOption} and filter ${filterKey}`,
+  231 |       }
+  232 |     );
+  233 |   }
+  234 | 
+  235 |   async _validateFiltersInGovernanceActionHistoryCard(
+  236 |     proposalCard: Locator,
+  237 |     filters: string[]
+  238 |   ): Promise<boolean> {
+  239 |     const type = await proposalCard
+  240 |       .locator('[data-testid$="-type"]')
+  241 |       .textContent({ timeout: CARD_READ_TIMEOUT });
+  242 |     const actionRecordType = type.replace(/^.*Type/, "");
+  243 |     return filters.includes(actionRecordType);
+  244 |   }
+  245 | 
+  246 |   async _validateStatusFiltersInGovernanceActionHistoryCard(
+  247 |     proposalCard: Locator,
+  248 |     filters: string[]
+  249 |   ): Promise<boolean> {
+  250 |     const status = await proposalCard
+  251 |       .locator('[data-testid$="-status"]')
+  252 |       .textContent({ timeout: CARD_READ_TIMEOUT });
+  253 |     const actionRecordStatus = actionRecordStatusType.filter((statusType) => {
+  254 |       if (statusType === "Live") {
+  255 |         return "In Progress";
+  256 |       }
+  257 |       return status.includes(statusType);
+  258 |     });
+  259 |     return actionRecordStatus.some((status) => filters.includes(status));
+  260 |   }
+  261 | 
+  262 |   async shouldAccessPage(isLoggedIn = false) {
+  263 |     await this.page.goto("/");
+  264 | 
+  265 |     if (isMobile(this.page)) {
+  266 |       await this.page.getByTestId("open-drawer-button").click();
+  267 |     } else {
+  268 |       if (!isLoggedIn) {
+  269 |         await this.page.getByTestId("governance-actions").click();
+  270 |       }
+  271 |     }
+  272 |     await this.page.getByTestId("governance-actions-governance-actions-link").click();
+  273 | 
+  274 |     if (!isMobile(this.page) && !isLoggedIn) {
+  275 |       await this.page.getByTestId("governance-actions").click();
+```

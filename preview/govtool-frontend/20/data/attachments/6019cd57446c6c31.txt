@@ -1,0 +1,4 @@
+locator.textContent: Test timeout of 540000ms exceeded.
+Call log:
+  - waiting for locator('[data-testid$="-drep-card"]').first().locator('[data-testid$="-copy-id-button"]').first()
+

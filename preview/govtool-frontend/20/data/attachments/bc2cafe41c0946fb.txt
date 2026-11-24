@@ -1,0 +1,7 @@
+wallet balance 1019.819495
+wallet address addr_test1qzhhqvst7yuuu4gscnpa3dwfngryplwtwe4gz7959k47jnpekyd4wnftv44n4f03nhv4d27u4gqmc8ngkhyng6szpmmslc6jt3
+✖ Failed to load resource: the server responded with a status of 404 ()
+1
+✔ Uploaded harum metadata to bucket
+ℹ Waiting for tx completion: 112c133b3fd6d152ea42f3d3840db2b3322f0d405e5208183db2a3bf23eb051d
+✔ Tx completed

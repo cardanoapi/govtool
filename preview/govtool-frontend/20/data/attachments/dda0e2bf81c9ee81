@@ -1,0 +1,230 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 4-proposal-visibility/proposalVisibility.spec.ts >> 4L. Should search governance actions
+- Location: tests/4-proposal-visibility/proposalVisibility.spec.ts:141:5
+
+# Error details
+
+```
+Error: fbd9de4abaa4a702be546210523edad39ddf6b98422dcc058e134074166caca0#0 not found
+
+expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: false
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - banner [ref=e10]:
+      - link "Skip to main content" [ref=e11] [cursor=pointer]:
+        - /url: "#main-content"
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: /
+          - img "Cardano GovTool" [ref=e14]
+        - navigation "Main" [ref=e15]:
+          - link "Home" [ref=e16] [cursor=pointer]:
+            - /url: /
+          - link "DRep Directory" [ref=e17] [cursor=pointer]:
+            - /url: /dreps
+          - link "Governance Actions" [ref=e18] [cursor=pointer]:
+            - /url: /actions
+          - link "Governance Activity" [ref=e19] [cursor=pointer]:
+            - /url: /activity
+          - link "Guides" [ref=e20] [cursor=pointer]:
+            - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+        - generic [ref=e21]:
+          - button "Global Search" [ref=e22] [cursor=pointer]
+          - button [ref=e26] [cursor=pointer]
+    - main [ref=e31]:
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e35]:
+            - generic [ref=e36]:
+              - heading "Governance actions" [level=1] [ref=e37]
+              - paragraph [ref=e38]: Explore proposals shaping Cardano. Review the details, follow voting progress and take part in decisions that move the ecosystem forward.
+            - button [ref=e39] [cursor=pointer]
+          - region "Governance action figures" [ref=e45]:
+            - generic [ref=e46]:
+              - generic [ref=e47]: Total Actions
+              - generic [ref=e53]: 1,552
+            - generic [ref=e54]:
+              - generic [ref=e55]: Voting Now
+              - generic [ref=e60]: "31"
+            - generic [ref=e61]:
+              - generic [ref=e62]: Expiring Soon
+              - generic [ref=e66]: "0"
+            - generic [ref=e67]:
+              - generic [ref=e68]: Enacted
+              - generic [ref=e73]: "14"
+          - navigation "Governance Actions" [ref=e75]:
+            - link "Proposed Governance Actions" [ref=e76] [cursor=pointer]:
+              - /url: /proposals
+            - link "Live Voting" [ref=e77] [cursor=pointer]:
+              - /url: /actions
+            - link "Outcomes" [ref=e78] [cursor=pointer]:
+              - /url: /actions/history
+        - generic [ref=e79]:
+          - generic [ref=e80]:
+            - textbox "Search Governance Actions" [active] [ref=e86]: fbd9de4abaa4a702be546210523edad39ddf6b98422dcc058e134074166caca0#0
+            - 'button "Sort: Default" [ref=e87] [cursor=pointer]':
+              - text: "Sort:"
+              - generic [ref=e88]: Default
+          - generic [ref=e91]:
+            - generic [ref=e93]:
+              - heading "Action type" [level=2] [ref=e94]
+              - button "All Governance Actions 31" [pressed] [ref=e95] [cursor=pointer]:
+                - generic [ref=e98]: All Governance Actions
+                - generic [ref=e99]: "31"
+              - button "Info Action 7" [ref=e100] [cursor=pointer]:
+                - generic [ref=e104]: Info Action
+                - generic [ref=e105]: "7"
+              - button "Treasury Withdrawal 9" [ref=e106] [cursor=pointer]:
+                - generic [ref=e114]: Treasury Withdrawal
+                - generic [ref=e115]: "9"
+              - button "Protocol Parameter Change 0" [ref=e116] [cursor=pointer]:
+                - generic [ref=e119]: Protocol Parameter Change
+                - generic [ref=e120]: "0"
+              - button "Hard Fork 0" [ref=e121] [cursor=pointer]:
+                - generic [ref=e128]: Hard Fork
+                - generic [ref=e129]: "0"
+              - button "Update to the Constitution 7" [ref=e130] [cursor=pointer]:
+                - generic [ref=e135]: Update to the Constitution
+                - generic [ref=e136]: "7"
+              - button "New Committee 0" [ref=e137] [cursor=pointer]:
+                - generic [ref=e144]: New Committee
+                - generic [ref=e145]: "0"
+              - button "No Confidence 8" [ref=e146] [cursor=pointer]:
+                - generic [ref=e152]: No Confidence
+                - generic [ref=e153]: "8"
+            - generic [ref=e155]:
+              - article [ref=e156]:
+                - generic [ref=e157]:
+                  - generic [ref=e158]:
+                    - generic [ref=e159]: Active
+                    - generic [ref=e161]: Treasury Withdrawal
+                  - link [ref=e162] [cursor=pointer]:
+                    - /url: /actions/gov_action1l0vauj465jns90j5vgg9y0k66wwa76ucggkucpvwzdq8g9nv4jsqqtrwhvy
+                    - heading "Utique quam coma bestia utroque votum." [level=3] [ref=e164]
+                  - generic [ref=e166]:
+                    - generic [ref=e167]:
+                      - generic [ref=e168]: Submitted
+                      - generic [ref=e169]: about 1 month ago
+                    - generic [ref=e171]:
+                      - generic [ref=e172]: Expires
+                      - generic [ref=e173]:
+                        - text: Epoch 1483
+                        - generic "16th Nov 2026, 00:00" [ref=e174]
+                - generic [ref=e177]:
+                  - generic [ref=e178]:
+                    - generic [ref=e182]: DRep
+                    - generic [ref=e183]: 0.0% / 67.0%
+                  - generic [ref=e184]:
+                    - generic [ref=e186]: SPO
+                    - generic [ref=e187]: NOT ELIGIBLE
+                  - generic [ref=e188]:
+                    - generic [ref=e191]: CC
+                    - generic [ref=e192]: 0.0% / 66.7%
+              - navigation "Pagination" [ref=e193]:
+                - paragraph [ref=e195]: Showing 1–1 of 1 results
+                - generic [ref=e196]:
+                  - button "Previous" [disabled]:
+                    - generic: ←
+                    - text: Previous
+                  - button "1" [ref=e197] [cursor=pointer]
+                  - button "Next" [disabled]:
+                    - text: Next
+                    - generic: →
+    - contentinfo [ref=e198]:
+      - generic [ref=e199]:
+        - generic [ref=e200]:
+          - img "Cardano GovTool" [ref=e201]
+          - paragraph [ref=e202]: A clearer connection to Cardano governance.
+          - generic [ref=e203]:
+            - link "Guides" [ref=e204] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+            - link "FAQs" [ref=e205] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/faqs
+            - link "Intersect ↗" [ref=e206] [cursor=pointer]:
+              - /url: https://www.intersectmbo.org/
+        - generic [ref=e207]:
+          - paragraph [ref=e208]: © 2026 GovTool
+          - generic [ref=e209]:
+            - link "Privacy policy" [ref=e210] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/privacy-policy
+            - link "Terms of Use" [ref=e211] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/terms-of-use
+            - link "Help" [ref=e212] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/support
+            - button "Feedback" [ref=e213] [cursor=pointer]
+```
+
+# Test source
+
+```ts
+  1  | import { expect } from "@playwright/test";
+  2  | import { Logger } from "./logger";
+  3  | 
+  4  | export async function waitedLoop(
+  5  |   conditionFn,
+  6  |   timeout = 60000,
+  7  |   interval = 2000
+  8  | ) {
+  9  |   const startTime = Date.now();
+  10 |   while (Date.now() - startTime < timeout) {
+  11 |     if (await conditionFn()) return true;
+  12 |     Logger.info("Retrying the function");
+  13 |     await new Promise((resolve) => setTimeout(resolve, interval));
+  14 |   }
+  15 |   return false;
+  16 | }
+  17 | 
+  18 | export async function functionWaitedAssert(
+  19 |   fn,
+  20 |   options: {
+  21 |     timeout?: number;
+  22 |     interval?: number;
+  23 |     message?: string;
+  24 |     name?: string;
+  25 |   } = {}
+  26 | ) {
+  27 |   const startTime = Date.now();
+  28 |   const timeout = options.timeout || 60000;
+  29 |   const interval = options.interval || 2000;
+  30 |   const name = options.name || "";
+  31 | 
+  32 |   while (true) {
+  33 |     try {
+  34 |       await fn();
+  35 |       return true;
+  36 |     } catch (error) {
+  37 |       if (Date.now() - startTime >= timeout) {
+  38 |         // Callers throw strings as well as Errors; keep either's text.
+  39 |         const errorMessage =
+  40 |           options.message || (error instanceof Error ? error.message : String(error));
+  41 |         console.log(errorMessage);
+> 42 |         expect(false, { message: errorMessage }).toBe(true);
+     |                                                  ^ Error: fbd9de4abaa4a702be546210523edad39ddf6b98422dcc058e134074166caca0#0 not found
+  43 |       }
+  44 |       Logger.info(`Retrying the function ${name}`);
+  45 |       await new Promise((resolve) => setTimeout(resolve, interval));
+  46 |     }
+  47 |   }
+  48 | }
+  49 | 
+```

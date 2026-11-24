@@ -1,0 +1,445 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 2-delegation/delegation.spec.ts >> 2K_2. Should sort DReps
+- Location: tests/2-delegation/delegation.spec.ts:30:5
+
+# Error details
+
+```
+Test timeout of 540000ms exceeded.
+```
+
+```
+Error: locator.textContent: Test timeout of 540000ms exceeded.
+Call log:
+  - waiting for locator('[data-testid$="-drep-card"]').first().locator('[data-testid$="-copy-id-button"]').first()
+
+
+expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: false
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - banner [ref=e10]:
+      - link "Skip to main content" [ref=e11] [cursor=pointer]:
+        - /url: "#main-content"
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: /
+          - img "Cardano GovTool" [ref=e14]
+        - navigation "Main" [ref=e15]:
+          - link "Home" [ref=e16] [cursor=pointer]:
+            - /url: /
+          - link "DRep Directory" [ref=e17] [cursor=pointer]:
+            - /url: /dreps
+          - link "Governance Actions" [ref=e18] [cursor=pointer]:
+            - /url: /actions
+          - link "Governance Activity" [ref=e19] [cursor=pointer]:
+            - /url: /activity
+          - link "Guides" [ref=e20] [cursor=pointer]:
+            - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+        - generic [ref=e21]:
+          - button "Global Search" [ref=e22] [cursor=pointer]
+          - button [ref=e26] [cursor=pointer]
+    - main [ref=e31]:
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - generic [ref=e34]:
+            - heading "Find your Delegate Representatives" [level=1] [ref=e35]
+            - paragraph [ref=e36]: Find your designated Representative and explore their role, responsibilities, and representation of your constituency.
+          - button [ref=e37] [cursor=pointer]
+        - generic [ref=e42]:
+          - generic [ref=e43]:
+            - textbox "Search for a DRep name or ID" [ref=e49]
+            - 'button "Status: Active" [ref=e50] [cursor=pointer]':
+              - text: "Status:"
+              - generic [ref=e51]: Active
+            - 'button "Sort by: Registration date" [active] [ref=e54] [cursor=pointer]':
+              - text: "Sort by:"
+              - generic [ref=e55]: Registration date
+          - generic [ref=e58]:
+            - generic [ref=e59]:
+              - text: "Active filters:"
+              - generic [ref=e60]: "1"
+            - generic [ref=e61]:
+              - generic [ref=e62]: Active
+              - button "Remove filter Active" [ref=e63] [cursor=pointer]
+            - button "Clear all" [ref=e67] [cursor=pointer]
+          - list [ref=e68]:
+            - listitem [ref=e69]:
+              - article [ref=e70]:
+                - generic [ref=e71]:
+                  - generic [ref=e72]: DR
+                  - generic [ref=e73]:
+                    - link "Data URL Blocked" [ref=e74] [cursor=pointer]:
+                      - /url: /dreps/drep1uvnqjvxvjy3wfr4zapnrhfjt7nx6xpakcltvqtm3mfxq7kkytxy
+                    - generic [ref=e75]: Active
+                  - button "More actions for drep1uvnqj…kkytxy" [ref=e78] [cursor=pointer]
+                - generic [ref=e83]: This DRep has not published a profile summary.
+                - generic [ref=e85]:
+                  - generic [ref=e86]:
+                    - generic [ref=e87]:
+                      - generic [ref=e88]: Voting power
+                      - generic [ref=e89]: ₳ 0
+                    - generic [ref=e90]:
+                      - generic [ref=e91]: Participation
+                      - generic [ref=e92]: 0%
+                    - generic [ref=e93]:
+                      - generic [ref=e94]: Registered
+                      - generic [ref=e95]: Oct 30, 2026
+                  - button "Connect to delegate" [ref=e96] [cursor=pointer]
+            - listitem [ref=e97]:
+              - article [ref=e98]:
+                - generic [ref=e99]:
+                  - generic [ref=e100]: DR
+                  - generic [ref=e101]:
+                    - link "Data URL Blocked" [ref=e102] [cursor=pointer]:
+                      - /url: /dreps/drep1avlpd7qvmnyvyq8y0xm0fjvumsvzj6fhwlq0pefakjq65fkfllf
+                    - generic [ref=e103]: Active
+                  - button "More actions for drep1avlpd…fkfllf" [ref=e106] [cursor=pointer]
+                - generic [ref=e111]: This DRep has not published a profile summary.
+                - generic [ref=e113]:
+                  - generic [ref=e114]:
+                    - generic [ref=e115]:
+                      - generic [ref=e116]: Voting power
+                      - generic [ref=e117]: ₳ 0
+                    - generic [ref=e118]:
+                      - generic [ref=e119]: Participation
+                      - generic [ref=e120]: 0%
+                    - generic [ref=e121]:
+                      - generic [ref=e122]: Registered
+                      - generic [ref=e123]: Oct 30, 2026
+                  - button "Connect to delegate" [ref=e124] [cursor=pointer]
+            - listitem [ref=e125]:
+              - article [ref=e126]:
+                - generic [ref=e127]:
+                  - generic [ref=e128]: DR
+                  - generic [ref=e129]:
+                    - link "Data URL Blocked" [ref=e130] [cursor=pointer]:
+                      - /url: /dreps/drep15umlwm9sl4asem8ey5h6v348y8axcpg9k69q4wkadk7mkndlvqr
+                    - generic [ref=e131]: Active
+                  - button "More actions for drep15umlw…ndlvqr" [ref=e134] [cursor=pointer]
+                - generic [ref=e139]: This DRep has not published a profile summary.
+                - generic [ref=e141]:
+                  - generic [ref=e142]:
+                    - generic [ref=e143]:
+                      - generic [ref=e144]: Voting power
+                      - generic [ref=e145]: ₳ 0
+                    - generic [ref=e146]:
+                      - generic [ref=e147]: Participation
+                      - generic [ref=e148]: 0%
+                    - generic [ref=e149]:
+                      - generic [ref=e150]: Registered
+                      - generic [ref=e151]: Oct 30, 2026
+                  - button "Connect to delegate" [ref=e152] [cursor=pointer]
+            - listitem [ref=e153]:
+              - article [ref=e154]:
+                - generic [ref=e155]:
+                  - generic [ref=e156]: DR
+                  - generic [ref=e157]:
+                    - link "Data URL Blocked" [ref=e158] [cursor=pointer]:
+                      - /url: /dreps/drep19n93n5ayt95h8al0y3qjwcr3gz450e03vgs3fd35lghuknnzftm
+                    - generic [ref=e159]: Active
+                  - button "More actions for drep19n93n…nnzftm" [ref=e162] [cursor=pointer]
+                - generic [ref=e167]: This DRep has not published a profile summary.
+                - generic [ref=e169]:
+                  - generic [ref=e170]:
+                    - generic [ref=e171]:
+                      - generic [ref=e172]: Voting power
+                      - generic [ref=e173]: ₳ 0
+                    - generic [ref=e174]:
+                      - generic [ref=e175]: Participation
+                      - generic [ref=e176]: 0%
+                    - generic [ref=e177]:
+                      - generic [ref=e178]: Registered
+                      - generic [ref=e179]: Oct 30, 2026
+                  - button "Connect to delegate" [ref=e180] [cursor=pointer]
+            - listitem [ref=e181]:
+              - article [ref=e182]:
+                - generic [ref=e183]:
+                  - generic [ref=e185]:
+                    - link "Vincenza" [ref=e186] [cursor=pointer]:
+                      - /url: /dreps/drep1qy6cpv0mga7gu7t6lrnh4dsj4hjdltr0c29p4tcu2hu72lvjv3m
+                    - generic [ref=e187]: Active
+                  - button "More actions for Vincenza" [ref=e190] [cursor=pointer]
+                - generic [ref=e195]: Averto turbo universe cum tolero. Venustas deleo tamdiu.
+                - generic [ref=e197]:
+                  - generic [ref=e198]:
+                    - generic [ref=e199]:
+                      - generic [ref=e200]: Voting power
+                      - generic [ref=e201]: ₳ 0
+                    - generic [ref=e202]:
+                      - generic [ref=e203]: Participation
+                      - generic [ref=e204]: 0%
+                    - generic [ref=e205]:
+                      - generic [ref=e206]: Registered
+                      - generic [ref=e207]: Oct 18, 2026
+                  - button "Connect to delegate" [ref=e208] [cursor=pointer]
+            - listitem [ref=e209]:
+              - article [ref=e210]:
+                - generic [ref=e211]:
+                  - generic [ref=e213]:
+                    - link "Charles" [ref=e214] [cursor=pointer]:
+                      - /url: /dreps/drep1nrxux9dm4tc5wwezwd296z8fqrtw97zxu03v7y8mzp04u65crdu
+                    - generic [ref=e215]: Active
+                  - button "More actions for Charles" [ref=e218] [cursor=pointer]
+                - generic [ref=e223]: Tubineus terga adficio caecus avarus abscido. Suffoco pecus crux validus quam.
+                - generic [ref=e225]:
+                  - generic [ref=e226]:
+                    - generic [ref=e227]:
+                      - generic [ref=e228]: Voting power
+                      - generic [ref=e229]: ₳ 0
+                    - generic [ref=e230]:
+                      - generic [ref=e231]: Participation
+                      - generic [ref=e232]: 0%
+                    - generic [ref=e233]:
+                      - generic [ref=e234]: Registered
+                      - generic [ref=e235]: Oct 18, 2026
+                  - button "Connect to delegate" [ref=e236] [cursor=pointer]
+            - listitem [ref=e237]:
+              - article [ref=e238]:
+                - generic [ref=e239]:
+                  - generic [ref=e241]:
+                    - link "Alonzo" [ref=e242] [cursor=pointer]:
+                      - /url: /dreps/drep1g8jrv99dfrk7fvvly5s2wrvxjwcywcdujsw6vexr3wdgzq0p755
+                    - generic [ref=e243]: Active
+                  - button "More actions for Alonzo" [ref=e246] [cursor=pointer]
+                - generic [ref=e251]: Alius capitulus tabella vos canto ager. Uberrime corroboro dicta sol venio curvo carcer pariatur.
+                - generic [ref=e253]:
+                  - generic [ref=e254]:
+                    - generic [ref=e255]:
+                      - generic [ref=e256]: Voting power
+                      - generic [ref=e257]: ₳ 0
+                    - generic [ref=e258]:
+                      - generic [ref=e259]: Participation
+                      - generic [ref=e260]: 0%
+                    - generic [ref=e261]:
+                      - generic [ref=e262]: Registered
+                      - generic [ref=e263]: Oct 18, 2026
+                  - button "Connect to delegate" [ref=e264] [cursor=pointer]
+            - listitem [ref=e265]:
+              - article [ref=e266]:
+                - generic [ref=e267]:
+                  - generic [ref=e269]:
+                    - link "Lora" [ref=e270] [cursor=pointer]:
+                      - /url: /dreps/drep1f45uuqur982kfm6nn9jxpadvceg8rskdvkxlqpps33rjj38y7ew
+                    - generic [ref=e271]: Active
+                  - button "More actions for Lora" [ref=e274] [cursor=pointer]
+                - generic [ref=e279]: Aegrotatio amiculum depopulo terga xiphias. Compono videlicet rem absens ab damno deleniti aliqua audax.
+                - generic [ref=e281]:
+                  - generic [ref=e282]:
+                    - generic [ref=e283]:
+                      - generic [ref=e284]: Voting power
+                      - generic [ref=e285]: ₳ 0
+                    - generic [ref=e286]:
+                      - generic [ref=e287]: Participation
+                      - generic [ref=e288]: 0%
+                    - generic [ref=e289]:
+                      - generic [ref=e290]: Registered
+                      - generic [ref=e291]: Oct 18, 2026
+                  - button "Connect to delegate" [ref=e292] [cursor=pointer]
+            - listitem [ref=e293]:
+              - article [ref=e294]:
+                - generic [ref=e295]:
+                  - generic [ref=e297]:
+                    - link "Pattie" [ref=e298] [cursor=pointer]:
+                      - /url: /dreps/drep1228gmwya92hkwjyzs66v48rcda5md7stmxqkmg38ls6ykk3ea6f
+                    - generic [ref=e299]: Active
+                  - button "More actions for Pattie" [ref=e302] [cursor=pointer]
+                - generic [ref=e307]: Tui admoveo sum aequus. Theologus sol cruentus amor.
+                - generic [ref=e309]:
+                  - generic [ref=e310]:
+                    - generic [ref=e311]:
+                      - generic [ref=e312]: Voting power
+                      - generic [ref=e313]: ₳ 0
+                    - generic [ref=e314]:
+                      - generic [ref=e315]: Participation
+                      - generic [ref=e316]: 0%
+                    - generic [ref=e317]:
+                      - generic [ref=e318]: Registered
+                      - generic [ref=e319]: Oct 18, 2026
+                  - button "Connect to delegate" [ref=e320] [cursor=pointer]
+            - listitem [ref=e321]:
+              - article [ref=e322]:
+                - generic [ref=e323]:
+                  - generic [ref=e325]:
+                    - link "Claudine" [ref=e326] [cursor=pointer]:
+                      - /url: /dreps/drep1hp4x2xgtt8eln4sll4yuu596jz859nwyslyyt6kfhsmkcg7ysms
+                    - generic [ref=e327]: Active
+                  - button "More actions for Claudine" [ref=e330] [cursor=pointer]
+                - generic [ref=e335]: Ullus adimpleo subito crustulum amissio tactus textor adnuo substantia. Atrox cubicularis testimonium campana.
+                - generic [ref=e337]:
+                  - generic [ref=e338]:
+                    - generic [ref=e339]:
+                      - generic [ref=e340]: Voting power
+                      - generic [ref=e341]: ₳ 0
+                    - generic [ref=e342]:
+                      - generic [ref=e343]: Participation
+                      - generic [ref=e344]: 0%
+                    - generic [ref=e345]:
+                      - generic [ref=e346]: Registered
+                      - generic [ref=e347]: Oct 18, 2026
+                  - button "Connect to delegate" [ref=e348] [cursor=pointer]
+            - listitem [ref=e349]:
+              - article [ref=e350]:
+                - generic [ref=e351]:
+                  - generic [ref=e353]:
+                    - link "Archie" [ref=e354] [cursor=pointer]:
+                      - /url: /dreps/drep1h6f7h84sc8hmzpmlnel3t333n8cec7a2l8c6kxrqy3yljclug2t
+                    - generic [ref=e355]: Active
+                  - button "More actions for Archie" [ref=e358] [cursor=pointer]
+                - generic [ref=e363]: Desino conduco nam perferendis viscus vos facilis amita antiquus aliqua. Ipsum aestas aeneus.
+                - generic [ref=e365]:
+                  - generic [ref=e366]:
+                    - generic [ref=e367]:
+                      - generic [ref=e368]: Voting power
+                      - generic [ref=e369]: ₳ 0
+                    - generic [ref=e370]:
+                      - generic [ref=e371]: Participation
+                      - generic [ref=e372]: 0%
+                    - generic [ref=e373]:
+                      - generic [ref=e374]: Registered
+                      - generic [ref=e375]: Oct 18, 2026
+                  - button "Connect to delegate" [ref=e376] [cursor=pointer]
+            - listitem [ref=e377]:
+              - article [ref=e378]:
+                - generic [ref=e379]:
+                  - generic [ref=e381]:
+                    - link "Colton" [ref=e382] [cursor=pointer]:
+                      - /url: /dreps/drep18vs4vpnxwwh9dm8kqc42vxppexh8jecxg36xj5k493dmkcfv89e
+                    - generic [ref=e383]: Active
+                  - button "More actions for Colton" [ref=e386] [cursor=pointer]
+                - generic [ref=e391]: Amplexus aegre error subseco. Vacuus synagoga at tolero possimus.
+                - generic [ref=e393]:
+                  - generic [ref=e394]:
+                    - generic [ref=e395]:
+                      - generic [ref=e396]: Voting power
+                      - generic [ref=e397]: ₳ 0
+                    - generic [ref=e398]:
+                      - generic [ref=e399]: Participation
+                      - generic [ref=e400]: 0%
+                    - generic [ref=e401]:
+                      - generic [ref=e402]: Registered
+                      - generic [ref=e403]: Oct 18, 2026
+                  - button "Connect to delegate" [ref=e404] [cursor=pointer]
+          - navigation "Pagination" [ref=e405]:
+            - generic [ref=e406]:
+              - paragraph [ref=e407]: Showing 1–12 of 191 results
+              - generic [ref=e408]:
+                - paragraph [ref=e409]: "Rows per page:"
+                - generic [ref=e410]:
+                  - combobox [ref=e411] [cursor=pointer]: "12"
+                  - textbox: "12"
+            - generic [ref=e412]:
+              - button "Previous" [disabled]:
+                - generic: ←
+                - text: Previous
+              - button "1" [ref=e413] [cursor=pointer]
+              - button "2" [ref=e414] [cursor=pointer]
+              - paragraph [ref=e415]: …
+              - button "16" [ref=e416] [cursor=pointer]
+              - button "Next" [ref=e417] [cursor=pointer]:
+                - text: Next
+                - generic [ref=e418]: →
+        - generic [ref=e421]:
+          - generic [ref=e423]:
+            - text: Governance
+            - heading "What is a DRep? Shape Cardano's future with your voice." [level=2] [ref=e424]
+            - paragraph [ref=e425]: Delegated Representatives (DReps) vote on governance actions on behalf of ADA holders. Learn how you can make an impact in Cardano's on-chain democracy.
+          - link "Learn about DReps" [ref=e426] [cursor=pointer]:
+            - /url: https://docs.gov.tools/cardano-govtool/using-govtool/dreps
+    - contentinfo [ref=e429]:
+      - generic [ref=e430]:
+        - generic [ref=e431]:
+          - img "Cardano GovTool" [ref=e432]
+          - paragraph [ref=e433]: A clearer connection to Cardano governance.
+          - generic [ref=e434]:
+            - link "Guides" [ref=e435] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+            - link "FAQs" [ref=e436] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/faqs
+            - link "Intersect ↗" [ref=e437] [cursor=pointer]:
+              - /url: https://www.intersectmbo.org/
+        - generic [ref=e438]:
+          - paragraph [ref=e439]: © 2026 GovTool
+          - generic [ref=e440]:
+            - link "Privacy policy" [ref=e441] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/privacy-policy
+            - link "Terms of Use" [ref=e442] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/terms-of-use
+            - link "Help" [ref=e443] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/support
+            - button "Feedback" [ref=e444] [cursor=pointer]
+```
+
+# Test source
+
+```ts
+  1  | import { expect } from "@playwright/test";
+  2  | import { Logger } from "./logger";
+  3  | 
+  4  | export async function waitedLoop(
+  5  |   conditionFn,
+  6  |   timeout = 60000,
+  7  |   interval = 2000
+  8  | ) {
+  9  |   const startTime = Date.now();
+  10 |   while (Date.now() - startTime < timeout) {
+  11 |     if (await conditionFn()) return true;
+  12 |     Logger.info("Retrying the function");
+  13 |     await new Promise((resolve) => setTimeout(resolve, interval));
+  14 |   }
+  15 |   return false;
+  16 | }
+  17 | 
+  18 | export async function functionWaitedAssert(
+  19 |   fn,
+  20 |   options: {
+  21 |     timeout?: number;
+  22 |     interval?: number;
+  23 |     message?: string;
+  24 |     name?: string;
+  25 |   } = {}
+  26 | ) {
+  27 |   const startTime = Date.now();
+  28 |   const timeout = options.timeout || 60000;
+  29 |   const interval = options.interval || 2000;
+  30 |   const name = options.name || "";
+  31 | 
+  32 |   while (true) {
+  33 |     try {
+  34 |       await fn();
+  35 |       return true;
+  36 |     } catch (error) {
+  37 |       if (Date.now() - startTime >= timeout) {
+  38 |         // Callers throw strings as well as Errors; keep either's text.
+  39 |         const errorMessage =
+  40 |           options.message || (error instanceof Error ? error.message : String(error));
+  41 |         console.log(errorMessage);
+> 42 |         expect(false, { message: errorMessage }).toBe(true);
+     |                                                  ^ Error: locator.textContent: Test timeout of 540000ms exceeded.
+  43 |       }
+  44 |       Logger.info(`Retrying the function ${name}`);
+  45 |       await new Promise((resolve) => setTimeout(resolve, interval));
+  46 |     }
+  47 |   }
+  48 | }
+  49 | 
+```

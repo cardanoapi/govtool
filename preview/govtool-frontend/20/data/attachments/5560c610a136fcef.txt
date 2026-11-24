@@ -1,0 +1,14 @@
+✔ Uploaded Diane-e448a5c9 metadata to bucket
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ Failed to load resource: the server responded with a status of 404 ()
+✖ expect(locator).toBeVisible() failed
+
+Locator: getByTestId('drep122uauwgwsaxmwwmv6lsncnwjesa8cssgv868vzz2g58ykmfhdkj-delegate-button')
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for getByTestId('drep122uauwgwsaxmwwmv6lsncnwjesa8cssgv868vzz2g58ykmfhdkj-delegate-button')
+

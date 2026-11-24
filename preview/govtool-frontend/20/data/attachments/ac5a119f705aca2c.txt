@@ -1,0 +1,7 @@
+wallet balance 1019.819495
+wallet address addr_test1qpp8djhdfhhkca82ghtcryhqlmyf247j0ntquz3qpm725jnnnmsnjcpsecqg7ppth2fgwhx9cjyuwaua2qc9dm580xesdt8uz3
+✖ Failed to load resource: the server responded with a status of 404 ()
+0
+✔ Uploaded vinitor metadata to bucket
+ℹ Waiting for tx completion: acd1b47e7ba4371de571eb9e6d37c60185999c24bfcd3751db4ea56a5a5f5dd6
+✔ Tx completed

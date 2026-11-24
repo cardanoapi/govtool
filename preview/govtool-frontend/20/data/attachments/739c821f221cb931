@@ -1,0 +1,342 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 9-governance-action-history/governance-action-history.loggedin.spec.ts >> Governance action history page >> GovernanceAction details dependent test >> 9D_2. Should copy governanceActionId in disconnect state
+- Location: tests/9-governance-action-history/governance-action-history.loggedin.spec.ts:77:9
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: locator.click: Test timeout of 180000ms exceeded.
+Call log:
+  - waiting for getByTestId('bc0f5f5c028a441f37cd9d2e13f8d2e13b583915ea8c444ad863c2a0ba55471e#0-CIP-105-id').getByTestId('copy-button')
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]: "Network: Preview"
+    - generic [ref=e7]: "|"
+    - link "Go to Mainnet" [ref=e8] [cursor=pointer]:
+      - /url: https://gov.tools/
+  - generic [ref=e9]:
+    - banner [ref=e10]:
+      - link "Skip to main content" [ref=e11] [cursor=pointer]:
+        - /url: "#main-content"
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: /dashboard
+          - img "Cardano GovTool" [ref=e14]
+        - navigation "Main" [ref=e15]:
+          - link "Home" [ref=e16] [cursor=pointer]:
+            - /url: /dashboard
+          - link "DRep Directory" [ref=e17] [cursor=pointer]:
+            - /url: /dreps
+          - link "Governance Actions" [ref=e18] [cursor=pointer]:
+            - /url: /actions
+          - link "Governance Activity" [ref=e19] [cursor=pointer]:
+            - /url: /activity
+          - link "Guides" [ref=e20] [cursor=pointer]:
+            - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+        - generic [ref=e21]:
+          - button "Global Search" [ref=e22] [cursor=pointer]
+          - button "stake_t…5fr" [ref=e26] [cursor=pointer]
+          - button "Notifications" [ref=e32] [cursor=pointer]:
+            - generic [ref=e33]: "0"
+          - button "Your governance profile" [ref=e37] [cursor=pointer]
+    - main [ref=e42]:
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - generic [ref=e49]:
+            - generic [ref=e50]:
+              - heading "Governance actions" [level=1] [ref=e51]
+              - paragraph [ref=e52]: Explore proposals shaping Cardano. Review the details, follow voting progress and take part in decisions that move the ecosystem forward.
+            - button [ref=e53] [cursor=pointer]
+          - region "Governance action figures" [ref=e59]:
+            - generic [ref=e60]:
+              - generic [ref=e61]: Total Actions
+              - generic [ref=e67]: 1,552
+            - generic [ref=e68]:
+              - generic [ref=e69]: Voting Now
+              - generic [ref=e74]: "31"
+            - generic [ref=e75]:
+              - generic [ref=e76]: Expiring Soon
+              - generic [ref=e80]: "0"
+            - generic [ref=e81]:
+              - generic [ref=e82]: Enacted
+              - generic [ref=e87]: "14"
+          - navigation "Governance Actions" [ref=e89]:
+            - link "Proposed Governance Actions" [ref=e90] [cursor=pointer]:
+              - /url: /proposals
+            - link "Live Voting" [ref=e91] [cursor=pointer]:
+              - /url: /actions
+            - link "Outcomes" [ref=e92] [cursor=pointer]:
+              - /url: /actions/history
+        - generic [ref=e93]:
+          - generic [ref=e94]:
+            - generic [ref=e95]:
+              - textbox "Search Action..." [active] [ref=e100]: bc0f5f5c028a441f37cd9d2e13f8d2e13b583915ea8c444ad863c2a0ba55471e#0
+              - button "Clear search input" [ref=e101] [cursor=pointer]
+            - 'button "Sort: Newest First" [ref=e105] [cursor=pointer]':
+              - text: "Sort:"
+              - generic [ref=e106]: Newest First
+          - generic [ref=e109]:
+            - generic [ref=e111]:
+              - generic [ref=e112]:
+                - checkbox "All statuses" [ref=e113] [cursor=pointer]
+                - checkbox "Expired" [ref=e119] [cursor=pointer]
+                - checkbox "Enacted" [ref=e130] [cursor=pointer]
+                - checkbox "Ratified" [ref=e136] [cursor=pointer]
+              - generic [ref=e143]:
+                - button "All Governance Actions 1552" [pressed] [ref=e144] [cursor=pointer]:
+                  - generic [ref=e147]: All Governance Actions
+                  - generic [ref=e148]: "1552"
+                - button "Info 624" [ref=e149] [cursor=pointer]:
+                  - generic [ref=e153]: Info
+                  - generic [ref=e154]: "624"
+                - button "Treasury Withdrawal 442" [ref=e155] [cursor=pointer]:
+                  - generic [ref=e163]: Treasury Withdrawal
+                  - generic [ref=e164]: "442"
+                - button "Parameter Change 53" [ref=e165] [cursor=pointer]:
+                  - generic [ref=e168]: Parameter Change
+                  - generic [ref=e169]: "53"
+                - button "Hard Fork 19" [ref=e170] [cursor=pointer]:
+                  - generic [ref=e177]: Hard Fork
+                  - generic [ref=e178]: "19"
+                - button "New Constitution 204" [ref=e179] [cursor=pointer]:
+                  - generic [ref=e184]: New Constitution
+                  - generic [ref=e185]: "204"
+                - button "New Committee 47" [ref=e186] [cursor=pointer]:
+                  - generic [ref=e193]: New Committee
+                  - generic [ref=e194]: "47"
+                - button "No Confidence 163" [ref=e195] [cursor=pointer]:
+                  - generic [ref=e201]: No Confidence
+                  - generic [ref=e202]: "163"
+            - article [ref=e206]:
+              - generic [ref=e207]:
+                - generic [ref=e208]:
+                  - generic [ref=e209]: Info Action
+                  - link "Untitled governance action" [ref=e210] [cursor=pointer]:
+                    - /url: /actions/history/gov_action1hs847hqz3fzp7d7dn5hp87xjuya4swg4a2xygjkcv0p2pwj4gu0qqq8wtsy
+                - generic [ref=e211]: Expired
+              - generic [ref=e220]:
+                - generic [ref=e221]:
+                  - generic [ref=e222]: Submitted
+                  - generic [ref=e223]: Sep 26, 2026 · Epoch 1432
+                - generic [ref=e225]:
+                  - generic [ref=e226]: Expired
+                  - generic [ref=e227]: Oct 27, 2026 · Epoch 1463
+    - contentinfo [ref=e228]:
+      - generic [ref=e229]:
+        - generic [ref=e230]:
+          - img "Cardano GovTool" [ref=e231]
+          - paragraph [ref=e232]: A clearer connection to Cardano governance.
+          - generic [ref=e233]:
+            - link "Guides" [ref=e234] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+            - link "FAQs" [ref=e235] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/faqs
+            - link "Intersect ↗" [ref=e236] [cursor=pointer]:
+              - /url: https://www.intersectmbo.org/
+        - generic [ref=e237]:
+          - paragraph [ref=e238]: © 2026 GovTool
+          - generic [ref=e239]:
+            - link "Privacy policy" [ref=e240] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/privacy-policy
+            - link "Terms of Use" [ref=e241] [cursor=pointer]:
+              - /url: https://docs.gov.tools/legal/terms-of-use
+            - link "Help" [ref=e242] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/support
+            - button "Feedback" [ref=e243] [cursor=pointer]
+```
+
+# Test source
+
+```ts
+  459 |           await route.fulfill({
+  460 |             status: 200,
+  461 |             contentType: "application/json",
+  462 |             body: JSON.stringify(data),
+  463 |           });
+  464 |         } catch (error) {
+  465 |           // Just return without handling the error
+  466 |           return;
+  467 |         }
+  468 |       }
+  469 |     );
+  470 | 
+  471 |     const actionsResponsePromise = this.page.waitForResponse(
+  472 |       "**/governance-actions?search=&filters=&sort=**"
+  473 |     );
+  474 | 
+  475 |     await this.goto();
+  476 |     await actionsResponsePromise;
+  477 | 
+  478 |     const needMetadataForTitle = !updatedGovernanceActionTitle;
+  479 |     const metadataResponsePromise = needMetadataForTitle
+  480 |       ? this.page.waitForResponse("**/governance-actions/metadata?**")
+  481 |       : Promise.resolve(null);
+  482 |     if (needMetadataForTitle) {
+  483 |       await metadataResponsePromise;
+  484 |     }
+  485 | 
+  486 |     return {
+  487 |       governanceActionId: updatedGovernanceActionId,
+  488 |       governanceActionTitle: updatedGovernanceActionTitle,
+  489 |     };
+  490 |   }
+  491 | 
+  492 |   async searchGovernanceActionHistoryById(governanceActionId: string) {
+  493 |     await this.searchInput.fill(governanceActionId);
+  494 | 
+  495 |     try {
+  496 |       await expect(
+  497 |         this.page.getByRole("progressbar").getByRole("img")
+  498 |       ).toBeVisible();
+  499 |     } catch (error) {
+  500 |       // Handle the case where the progress bar is not visible
+  501 |       console.warn("Progress bar not visible, proceeding with search.");
+  502 |     }
+  503 |     await functionWaitedAssert(
+  504 |       async () => {
+  505 |         const idSearchGovernanceActionHistoryCards = await this.getAllGovernanceActionHistory();
+  506 |         expect(idSearchGovernanceActionHistoryCards.length, {
+  507 |           message:
+  508 |             idSearchGovernanceActionHistoryCards.length == 0 && "No governance actions found",
+  509 |         }).toBeGreaterThan(0);
+  510 |         for (const actionRecordCard of idSearchGovernanceActionHistoryCards) {
+  511 |           const id = await actionRecordCard
+  512 |             .locator('[data-testid$="-CIP-105-id"]')
+  513 |             .textContent({ timeout: CARD_READ_TIMEOUT });
+  514 |           expect(id.replace(/^.*ID/, "")).toContain(governanceActionId);
+  515 |         }
+  516 |       },
+  517 |       { name: "search by id" }
+  518 |     );
+  519 |   }
+  520 | 
+  521 |   async searchGovernanceActionHistoryByTitle(governanceActionTitle: string) {
+  522 |     await this.searchInput.fill(governanceActionTitle);
+  523 |     try {
+  524 |       await expect(
+  525 |         this.page.getByRole("progressbar").getByRole("img")
+  526 |       ).toBeVisible();
+  527 |     } catch (error) {
+  528 |       // Handle the case where the progress bar is not visible
+  529 |       console.warn("Progress bar not visible, proceeding with search.");
+  530 |     }
+  531 | 
+  532 |     await functionWaitedAssert(
+  533 |       async () => {
+  534 |         const titleSearchGovernanceActionHistoryCards = await this.getAllGovernanceActionHistory();
+  535 |         expect(titleSearchGovernanceActionHistoryCards.length, {
+  536 |           message:
+  537 |             titleSearchGovernanceActionHistoryCards.length == 0 &&
+  538 |             "No governance actions found",
+  539 |         }).toBeGreaterThan(0);
+  540 |         for (const actionRecordCard of titleSearchGovernanceActionHistoryCards) {
+  541 |           const title = await actionRecordCard
+  542 |             .locator('[data-testid$="-card-title"]')
+  543 |             .textContent({ timeout: CARD_READ_TIMEOUT });
+  544 |           expect(title.toLowerCase()).toContain(
+  545 |             governanceActionTitle.toLowerCase()
+  546 |           );
+  547 |         }
+  548 |       },
+  549 |       { name: "search by title" }
+  550 |     );
+  551 |   }
+  552 | 
+  553 |   async shouldCopyGovernanceActionId(governanceActionId: string) {
+  554 |     await this.searchInput.fill(governanceActionId);
+  555 | 
+  556 |     await this.page
+  557 |       .getByTestId(`${governanceActionId}-CIP-105-id`)
+  558 |       .getByTestId("copy-button")
+> 559 |       .click();
+      |        ^ Error: locator.click: Test timeout of 180000ms exceeded.
+  560 |     await expect(this.page.getByText("Copied to clipboard")).toBeVisible({
+  561 |       timeout: 60_000,
+  562 |     });
+  563 |     const copiedTextDRepDirectory = await this.page.evaluate(() =>
+  564 |       navigator.clipboard.readText()
+  565 |     );
+  566 |     expect(copiedTextDRepDirectory).toEqual(governanceActionId);
+  567 |   }
+  568 | 
+  569 |   async navigateToFilteredProposalDetail(
+  570 |     browser: Browser,
+  571 |     filterKey: string,
+  572 |     isLoggedIn: boolean
+  573 |   ) {
+  574 |     let page: Page;
+  575 |     if (!isLoggedIn) {
+  576 |       page = await browser.newPage();
+  577 |     } else {
+  578 |       page = await createNewPageWithWallet(browser, {
+  579 |         wallet: await testWallet("user01"),
+  580 |       });
+  581 |     }
+  582 |     injectLogger(page);
+  583 | 
+  584 |     const actionRecordListResponsePromise = page.waitForResponse(
+  585 |       (response) =>
+  586 |         response
+  587 |           .url()
+  588 |           .includes(`governance-actions?search=&filters=${filterKey}`),
+  589 |       { timeout: 60_000 }
+  590 |     );
+  591 | 
+  592 |     const actionRecordPage = new GovernanceActionHistoryPage(page);
+  593 |     await actionRecordPage.goto({ filter: filterKey });
+  594 | 
+  595 |     const actionRecordListResponse = await actionRecordListResponsePromise;
+  596 |     const proposals = await actionRecordListResponse.json();
+  597 | 
+  598 |     if (proposals.length === 0) {
+  599 |       expect(true, "No proposals found!").toBeTruthy();
+  600 |       return {
+  601 |         govActionDetailsPage: null,
+  602 |         actionRecordResponsePromise: null,
+  603 |       };
+  604 |     }
+  605 | 
+  606 |     expect(
+  607 |       proposals.length,
+  608 |       proposals.length == 0 && "No proposals found!"
+  609 |     ).toBeGreaterThan(0);
+  610 | 
+  611 |     const { index: governanceActionIndex, tx_hash: governanceTransactionHash } =
+  612 |       proposals[0];
+  613 | 
+  614 |     const actionRecordResponsePromise = page.waitForResponse(
+  615 |       (response) =>
+  616 |         response
+  617 |           .url()
+  618 |           .includes(
+  619 |             `governance-actions/${governanceTransactionHash}?index=${governanceActionIndex}`
+  620 |           ),
+  621 |       { timeout: 120_000 }
+  622 |     );
+  623 | 
+  624 |     const govActionDetailsPage = await actionRecordPage.viewFirstGovernanceActionHistory();
+  625 |     return {
+  626 |       govActionDetailsPage,
+  627 |       actionRecordResponsePromise,
+  628 |     };
+  629 |   }
+  630 | }
+  631 | 
+```

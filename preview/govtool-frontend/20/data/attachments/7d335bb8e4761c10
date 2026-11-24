@@ -1,0 +1,561 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 9-governance-action-history/governance-action-history.spec.ts >> Governance action history page >> actionRecord sorting and filtering >> 9C_3A. Should filter and sort Governance Action Type on governance action history page in disconnect state
+- Location: tests/9-governance-action-history/governance-action-history.spec.ts:41:9
+
+# Error details
+
+```
+Test timeout of 180000ms exceeded.
+```
+
+```
+Error: page.waitForResponse: Test timeout of 180000ms exceeded.
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: "Network: Preview"
+      - generic [ref=e7]: "|"
+      - link [ref=e8] [cursor=pointer]:
+        - /url: https://gov.tools/
+        - text: Go to Mainnet
+    - generic [ref=e9]:
+      - banner [ref=e10]:
+        - link [ref=e11] [cursor=pointer]:
+          - /url: "#main-content"
+          - text: Skip to main content
+        - generic [ref=e12]:
+          - link [ref=e13] [cursor=pointer]:
+            - /url: /
+          - navigation [ref=e15]:
+            - link [ref=e16] [cursor=pointer]:
+              - /url: /
+              - text: Home
+            - link [ref=e17] [cursor=pointer]:
+              - /url: /dreps
+              - text: DRep Directory
+            - link [ref=e18] [cursor=pointer]:
+              - /url: /actions
+              - text: Governance Actions
+            - link [ref=e19] [cursor=pointer]:
+              - /url: /activity
+              - text: Governance Activity
+            - link [ref=e20] [cursor=pointer]:
+              - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+              - text: Guides
+          - generic [ref=e21]:
+            - button [ref=e22] [cursor=pointer]
+            - button [ref=e26] [cursor=pointer]: Connect Wallet
+      - main [ref=e31]:
+        - generic [ref=e33]:
+          - generic [ref=e34]:
+            - generic [ref=e36]:
+              - generic [ref=e37]:
+                - heading [level=1] [ref=e38]: Governance actions
+                - paragraph [ref=e39]: Explore proposals shaping Cardano. Review the details, follow voting progress and take part in decisions that move the ecosystem forward.
+              - button [ref=e40] [cursor=pointer]: Create Governance Action
+            - region [ref=e46]:
+              - generic [ref=e47]:
+                - generic [ref=e48]: Total Actions
+                - generic [ref=e54]: 1,552
+              - generic [ref=e55]:
+                - generic [ref=e56]: Voting Now
+                - generic [ref=e61]: "31"
+              - generic [ref=e62]:
+                - generic [ref=e63]: Expiring Soon
+                - generic [ref=e67]: "0"
+              - generic [ref=e68]:
+                - generic [ref=e69]: Enacted
+                - generic [ref=e74]: "14"
+            - navigation [ref=e76]:
+              - link [ref=e77] [cursor=pointer]:
+                - /url: /proposals
+                - text: Proposed Governance Actions
+              - link [ref=e78] [cursor=pointer]:
+                - /url: /actions
+                - text: Live Voting
+              - link [ref=e79] [cursor=pointer]:
+                - /url: /actions/history
+                - text: Outcomes
+          - generic [ref=e80]:
+            - generic [ref=e81]:
+              - textbox [ref=e87]:
+                - /placeholder: Search Action...
+              - button [expanded] [ref=e88] [cursor=pointer]:
+                - text: "Sort:"
+                - generic [ref=e89]: Newest First
+            - generic [ref=e92]:
+              - generic [ref=e94]:
+                - generic [ref=e95]:
+                  - checkbox [ref=e96] [cursor=pointer]:
+                    - generic [ref=e100]: All statuses
+                  - checkbox [ref=e102] [cursor=pointer]:
+                    - generic [ref=e111]: Expired
+                  - checkbox [ref=e113] [cursor=pointer]:
+                    - generic [ref=e117]: Enacted
+                  - checkbox [ref=e119] [cursor=pointer]:
+                    - generic [ref=e124]: Ratified
+                - generic [ref=e126]:
+                  - button [ref=e127] [cursor=pointer]:
+                    - generic [ref=e130]: All Governance Actions
+                    - generic [ref=e131]: "1552"
+                  - button [ref=e132] [cursor=pointer]:
+                    - generic [ref=e136]: Info
+                    - generic [ref=e137]: "624"
+                  - button [ref=e138] [cursor=pointer]:
+                    - generic [ref=e146]: Treasury Withdrawal
+                    - generic [ref=e147]: "442"
+                  - button [pressed] [ref=e148] [cursor=pointer]:
+                    - generic [ref=e151]: Parameter Change
+                    - generic [ref=e152]: "53"
+                  - button [ref=e153] [cursor=pointer]:
+                    - generic [ref=e160]: Hard Fork
+                    - generic [ref=e161]: "19"
+                  - button [ref=e162] [cursor=pointer]:
+                    - generic [ref=e167]: New Constitution
+                    - generic [ref=e168]: "204"
+                  - button [ref=e169] [cursor=pointer]:
+                    - generic [ref=e176]: New Committee
+                    - generic [ref=e177]: "47"
+                  - button [ref=e178] [cursor=pointer]:
+                    - generic [ref=e184]: No Confidence
+                    - generic [ref=e185]: "163"
+              - generic [ref=e187]:
+                - generic [ref=e188]:
+                  - article [ref=e189]:
+                    - generic [ref=e190]:
+                      - generic [ref=e191]:
+                        - generic [ref=e192]: Protocol Parameter Change
+                        - link [ref=e193] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1mk4q3sezv8zt3ux8dm234nt06f70kd2ryajs09x6hv54fx4f9glsq6j9hus
+                          - text: Reduce minPoolCost to 75 ada
+                      - generic [ref=e194]: Expired
+                    - generic [ref=e203]:
+                      - generic [ref=e204]:
+                        - generic [ref=e205]: Submitted
+                        - generic [ref=e206]: Sep 11, 2026 · Epoch 1417
+                      - generic [ref=e208]:
+                        - generic [ref=e209]: Expired
+                        - generic [ref=e210]: Oct 12, 2026 · Epoch 1448
+                  - article [ref=e211]:
+                    - generic [ref=e212]:
+                      - generic [ref=e213]:
+                        - generic [ref=e214]: Protocol Parameter Change
+                        - link [ref=e215] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1ey0tmhd4xnauypjfs5cp0vrf0xkuelr98ts3cpwsvl8gpfryj2qsqugdvel
+                          - text: Reduce minPoolCost to 75 ada
+                      - generic [ref=e216]: Expired
+                    - generic [ref=e225]:
+                      - generic [ref=e226]:
+                        - generic [ref=e227]: Submitted
+                        - generic [ref=e228]: Sep 9, 2026 · Epoch 1415
+                      - generic [ref=e230]:
+                        - generic [ref=e231]: Expired
+                        - generic [ref=e232]: Oct 10, 2026 · Epoch 1446
+                  - article [ref=e233]:
+                    - generic [ref=e234]:
+                      - generic [ref=e235]:
+                        - generic [ref=e236]: Protocol Parameter Change
+                        - link [ref=e237] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1c79q2y5e3lk8ttn5ye6x6dg4fz5phx7ge6vxa6j4f4e9p2ml4pxqqk0ctes
+                          - text: Reduce minPoolCost to 75 ada
+                      - generic [ref=e238]: Expired
+                    - generic [ref=e247]:
+                      - generic [ref=e248]:
+                        - generic [ref=e249]: Submitted
+                        - generic [ref=e250]: Sep 9, 2026 · Epoch 1415
+                      - generic [ref=e252]:
+                        - generic [ref=e253]: Expired
+                        - generic [ref=e254]: Oct 10, 2026 · Epoch 1446
+                  - article [ref=e255]:
+                    - generic [ref=e256]:
+                      - generic [ref=e257]:
+                        - generic [ref=e258]: Protocol Parameter Change
+                        - link [ref=e259] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1m48mcctgp0tl508e0kq4hha02j7fsukjl5xx7h5mmwr0aupxp3gsqjwupe3
+                          - text: Reduce minPoolCost to 75 ada and increase Plutus Memory Limits (Part 2)
+                      - generic [ref=e260]: Enacted
+                    - generic [ref=e264]:
+                      - generic [ref=e265]:
+                        - generic [ref=e266]: Submitted
+                        - generic [ref=e267]: Jul 14, 2026 · Epoch 1358
+                      - generic [ref=e269]:
+                        - generic [ref=e270]: Ratified
+                        - generic [ref=e271]: Jul 22, 2026 · Epoch 1366
+                  - article [ref=e272]:
+                    - generic [ref=e273]:
+                      - generic [ref=e274]:
+                        - generic [ref=e275]: Protocol Parameter Change
+                        - link [ref=e276] [cursor=pointer]:
+                          - /url: /actions/history/gov_action130tj03a2kavtucyetzummtuyp94c7v9u0naqj4kk50wujxupv4gqqurtz7k
+                          - text: "CIP-0169 Example: Parameter Change (Preview)"
+                      - generic [ref=e277]: Not ratified
+                    - generic [ref=e283]:
+                      - generic [ref=e284]:
+                        - generic [ref=e285]: Submitted
+                        - generic [ref=e286]: Jul 6, 2026 · Epoch 1350
+                      - generic [ref=e288]:
+                        - generic [ref=e289]: Not ratified
+                        - generic [ref=e290]: Jul 23, 2026 · Epoch 1367
+                  - article [ref=e291]:
+                    - generic [ref=e292]:
+                      - generic [ref=e293]:
+                        - generic [ref=e294]: Protocol Parameter Change
+                        - link [ref=e295] [cursor=pointer]:
+                          - /url: /actions/history/gov_action13d0sj6kkxcv0rde3ztv2c3hmt9ge397tlgcclkullmfdlnh8stjqqhs744v
+                          - text: CoSponsor tooling test - Protocol Parameters (please ignore)
+                      - generic [ref=e296]: Not ratified
+                    - generic [ref=e302]:
+                      - generic [ref=e303]:
+                        - generic [ref=e304]: Submitted
+                        - generic [ref=e305]: Jul 6, 2026 · Epoch 1350
+                      - generic [ref=e307]:
+                        - generic [ref=e308]: Not ratified
+                        - generic [ref=e309]: Jul 23, 2026 · Epoch 1367
+                  - article [ref=e310]:
+                    - generic [ref=e311]:
+                      - generic [ref=e312]:
+                        - generic [ref=e313]: Protocol Parameter Change
+                        - link [ref=e314] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1sqyl8gj8xyeqy3zksfe6f4lw6x6rvpnujxhtnz7m9pewghh4k8tqq4gpgsj
+                          - text: "CIP-0169 Example: Parameter Change (Preview)"
+                      - generic [ref=e315]: Not ratified
+                    - generic [ref=e321]:
+                      - generic [ref=e322]:
+                        - generic [ref=e323]: Submitted
+                        - generic [ref=e324]: Jul 3, 2026 · Epoch 1347
+                      - generic [ref=e326]:
+                        - generic [ref=e327]: Not ratified
+                        - generic [ref=e328]: Jul 23, 2026 · Epoch 1367
+                  - article [ref=e329]:
+                    - generic [ref=e330]:
+                      - generic [ref=e331]:
+                        - generic [ref=e332]: Protocol Parameter Change
+                        - link [ref=e333] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1k8g7t0hhzlfkv9ecstq0cjz30hhn33lc3l0jdwmlmuuxtkatt0xqq7ga9rz
+                          - text: Test title
+                      - generic [ref=e334]: Expired
+                    - generic [ref=e343]:
+                      - generic [ref=e344]:
+                        - generic [ref=e345]: Submitted
+                        - generic [ref=e346]: Jun 20, 2026 · Epoch 1334
+                      - generic [ref=e348]:
+                        - generic [ref=e349]: Expired
+                        - generic [ref=e350]: Jul 21, 2026 · Epoch 1365
+                  - article [ref=e351]:
+                    - generic [ref=e352]:
+                      - generic [ref=e353]:
+                        - generic [ref=e354]: Protocol Parameter Change
+                        - link [ref=e355] [cursor=pointer]:
+                          - /url: /actions/history/gov_action19gkux7ezjwwn4eeetj9yp82dqcjjq8ygjfkkg8t0g3qux2r78xaqqvel3c9
+                          - text: Reduce govActionDeposit to increase testnet governance participation
+                      - generic [ref=e356]: Enacted
+                    - generic [ref=e360]:
+                      - generic [ref=e361]:
+                        - generic [ref=e362]: Submitted
+                        - generic [ref=e363]: Jun 12, 2026 · Epoch 1326
+                      - generic [ref=e365]:
+                        - generic [ref=e366]: Ratified
+                        - generic [ref=e367]: Jun 15, 2026 · Epoch 1329
+                  - article [ref=e368]:
+                    - generic [ref=e369]:
+                      - generic [ref=e370]:
+                        - generic [ref=e371]: Protocol Parameter Change
+                        - link [ref=e372] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1rmyuglpjh0wdsp2t46wh9l0rn6nduq3z07gmqqa96dtf7l2rfansq9jyl9j
+                          - text: Reduce the committeeMinSize parameter from 7 to 5
+                      - generic [ref=e373]: Not ratified
+                    - generic [ref=e379]:
+                      - generic [ref=e380]:
+                        - generic [ref=e381]: Submitted
+                        - generic [ref=e382]: Jun 5, 2026 · Epoch 1319
+                      - generic [ref=e384]:
+                        - generic [ref=e385]: Not ratified
+                        - generic [ref=e386]: Jun 16, 2026 · Epoch 1330
+                  - article [ref=e387]:
+                    - generic [ref=e388]:
+                      - generic [ref=e389]:
+                        - generic [ref=e390]: Protocol Parameter Change
+                        - link [ref=e391] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1xwqmqlxep09ermdzpszeyyegjhy8grj2secvxsnpymgm8c9wlghsqgg8crv
+                          - text: Mike's Island
+                      - generic [ref=e392]: Expired
+                    - generic [ref=e401]:
+                      - generic [ref=e402]:
+                        - generic [ref=e403]: Submitted
+                        - generic [ref=e404]: Apr 29, 2026 · Epoch 1282
+                      - generic [ref=e406]:
+                        - generic [ref=e407]: Expired
+                        - generic [ref=e408]: May 30, 2026 · Epoch 1313
+                  - article [ref=e409]:
+                    - generic [ref=e410]:
+                      - generic [ref=e411]:
+                        - generic [ref=e412]: Protocol Parameter Change
+                        - link [ref=e413] [cursor=pointer]:
+                          - /url: /actions/history/gov_action1q9xr9etnglg3gazzzrsexj3qsnzaqpf2yvfpwrvnwk9l64n089tqqqg02j9
+                          - text: Update Plutus Cost Models
+                      - generic [ref=e414]: Enacted
+                    - generic [ref=e418]:
+                      - generic [ref=e419]:
+                        - generic [ref=e420]: Submitted
+                        - generic [ref=e421]: Apr 14, 2026 · Epoch 1267
+                      - generic [ref=e423]:
+                        - generic [ref=e424]: Ratified
+                        - generic [ref=e425]: Apr 16, 2026 · Epoch 1269
+                - button [ref=e427] [cursor=pointer]: Show More Actions
+      - contentinfo [ref=e428]:
+        - generic [ref=e429]:
+          - generic [ref=e430]:
+            - paragraph [ref=e432]: A clearer connection to Cardano governance.
+            - generic [ref=e433]:
+              - link [ref=e434] [cursor=pointer]:
+                - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+                - text: Guides
+              - link [ref=e435] [cursor=pointer]:
+                - /url: https://docs.gov.tools/cardano-govtool/faqs
+                - text: FAQs
+              - link [ref=e436] [cursor=pointer]:
+                - /url: https://www.intersectmbo.org/
+                - text: Intersect ↗
+          - generic [ref=e437]:
+            - paragraph [ref=e438]: © 2026 GovTool
+            - generic [ref=e439]:
+              - link [ref=e440] [cursor=pointer]:
+                - /url: https://docs.gov.tools/legal/privacy-policy
+                - text: Privacy policy
+              - link [ref=e441] [cursor=pointer]:
+                - /url: https://docs.gov.tools/legal/terms-of-use
+                - text: Terms of Use
+              - link [ref=e442] [cursor=pointer]:
+                - /url: https://docs.gov.tools/cardano-govtool/support
+                - text: Help
+              - button [ref=e443] [cursor=pointer]: Feedback
+  - radiogroup "Sort:" [ref=e446]:
+    - generic [ref=e447] [cursor=pointer]:
+      - radio "Newest First" [checked] [ref=e449]
+      - generic [ref=e455]: Newest First
+    - generic [ref=e456] [cursor=pointer]:
+      - radio "Oldest First" [ref=e458]
+      - generic [ref=e462]: Oldest First
+    - generic [ref=e463] [cursor=pointer]:
+      - radio "Highest amount of yes votes" [ref=e465]
+      - generic [ref=e469]: Highest amount of yes votes
+```
+
+# Test source
+
+```ts
+  75  |   }
+  76  | 
+  77  |   async getAllGovernanceActionHistory(): Promise<Locator[]> {
+  78  |     await waitedLoop(async () => {
+  79  |       return (
+  80  |         (await this.page.locator('[data-testid$="-governance-action-card"]').count()) >
+  81  |           0 ||
+  82  |         (await this.page.getByText("No governance actions found").isVisible())
+  83  |       );
+  84  |     });
+  85  |     return await this.page.locator('[data-testid$="-governance-action-card"]').all();
+  86  |   }
+  87  | 
+  88  |   async clickCheckboxByNames(names: string[]) {
+  89  |     const formattedNames = names.map((name) =>
+  90  |       name === "Info Action" ? "Info" : name
+  91  |     );
+  92  |     for (const name of formattedNames) {
+  93  |       const testId = name.toLowerCase().replace(/ /g, "-");
+  94  |       await this.page.getByTestId(`${testId}-checkbox`).click();
+  95  |     }
+  96  |   }
+  97  | 
+  98  |   async filterProposalByNames(names: string[]) {
+  99  |     await this.clickCheckboxByNames(names);
+  100 |   }
+  101 | 
+  102 |   async unFilterProposalByNames(names: string[]) {
+  103 |     await this.clickCheckboxByNames(names);
+  104 |   }
+  105 | 
+  106 |   async applyAndValidateFilters(
+  107 |     filters: string[],
+  108 |     validateFunction: (proposalCard: any, filters: string[]) => Promise<boolean>
+  109 |   ) {
+  110 |     await this.page.waitForTimeout(4_000); // wait for the proposals to load
+  111 |     // single filter
+  112 |     for (const filter of filters) {
+  113 |       await this.filterProposalByNames([filter]);
+  114 |       await this.validateFilters([filter], validateFunction);
+  115 |       await this.unFilterProposalByNames([filter]);
+  116 |     }
+  117 | 
+  118 |     // multiple filter
+  119 |     const multipleFilters = [...filters];
+  120 |     while (multipleFilters.length > 1) {
+  121 |       await this.filterProposalByNames(multipleFilters);
+  122 |       await this.validateFilters(multipleFilters, validateFunction);
+  123 |       await this.unFilterProposalByNames(multipleFilters);
+  124 |       multipleFilters.pop();
+  125 |     }
+  126 |   }
+  127 | 
+  128 |   async validateFilters(
+  129 |     filters: string[],
+  130 |     validateFunction: (proposalCard: any, filters: string[]) => Promise<boolean>
+  131 |   ) {
+  132 |     await functionWaitedAssert(
+  133 |       async () => {
+  134 |         const proposalCards = await this.getAllGovernanceActionHistory();
+  135 |         for (const proposalCard of proposalCards) {
+  136 |           if (await proposalCard.isVisible()) {
+  137 |             const type = await proposalCard
+  138 |               .locator('[data-testid$="-type"]')
+  139 |               .textContent({ timeout: CARD_READ_TIMEOUT });
+  140 |             const actionRecordType = type.replace(/^.*Type/, "");
+  141 |             const hasFilter = await validateFunction(proposalCard, filters);
+  142 |             if (!hasFilter) {
+  143 |               const errorMessage = `An actionRecord type ${actionRecordType} does not contain on ${filters}`;
+  144 |               throw errorMessage;
+  145 |             }
+  146 |             expect(hasFilter).toBe(true);
+  147 |           }
+  148 |         }
+  149 |       },
+  150 |       {
+  151 |         name: "validateFilters",
+  152 |       }
+  153 |     );
+  154 |   }
+  155 | 
+  156 |   getSortType(sortOption: string) {
+  157 |     let sortType = sortOption;
+  158 |     if (sortOption === "Highest amount of yes votes") {
+  159 |       sortType = "Highest yes votes";
+  160 |     }
+  161 |     return toCamelCase(sortType);
+  162 |   }
+  163 | 
+  164 |   getSortTestId(sortOption: string) {
+  165 |     const sortType = this.getSortType(sortOption);
+  166 |     return sortType.toLowerCase().replace(/[\s.]/g, "") + "-radio";
+  167 |   }
+  168 | 
+  169 |   async sortAndValidate(
+  170 |     sortOption: string,
+  171 |     validationFn: (p1: actionRecordProposal, p2: actionRecordProposal) => boolean,
+  172 |     filterKey?: string
+  173 |   ) {
+  174 |     const sortType = this.getSortType(sortOption);
+> 175 |     const responsePromise = this.page.waitForResponse((response) =>
+      |                                       ^ Error: page.waitForResponse: Test timeout of 180000ms exceeded.
+  176 |       response
+  177 |         .url()
+  178 |         .includes(
+  179 |           filterKey
+  180 |             ? `&filters=${filterKey}&sort=${sortType}`
+  181 |             : `&sort=${sortType}`
+  182 |         )
+  183 |     );
+  184 | 
+  185 |     await this.page.getByTestId(this.getSortTestId(sortOption)).click();
+  186 | 
+  187 |     const response = await responsePromise;
+  188 |     const actionRecordProposalList: actionRecordProposal[] = await response.json();
+  189 | 
+  190 |     // API validation
+  191 |     if (actionRecordProposalList.length <= 1) return;
+  192 | 
+  193 |     for (let i = 0; i <= actionRecordProposalList.length - 2; i++) {
+  194 |       const isValid = validationFn(
+  195 |         actionRecordProposalList[i],
+  196 |         actionRecordProposalList[i + 1]
+  197 |       );
+  198 |       expect(isValid).toBe(true);
+  199 |     }
+  200 | 
+  201 |     await expect(
+  202 |       this.page.getByRole("progressbar").getByRole("img")
+  203 |     ).toBeHidden({ timeout: 20_000 });
+  204 | 
+  205 |     await functionWaitedAssert(
+  206 |       async () => {
+  207 |         const actionRecordCards = await this.getAllGovernanceActionHistory();
+  208 |         for (const [index, actionRecordCard] of actionRecordCards.entries()) {
+  209 |           const actionRecordProposalFromAPI = actionRecordProposalList[index];
+  210 |           const proposalTypeFromUI = await actionRecordCard
+  211 |             .locator('[data-testid$="-type"]')
+  212 |             .textContent({ timeout: CARD_READ_TIMEOUT });
+  213 |           const proposalTypeFromApi = actionRecordType[actionRecordProposalFromAPI.type];
+  214 | 
+  215 |           const cip105IdFromUI = await actionRecordCard
+  216 |             .locator('[data-testid$="-CIP-105-id"]')
+  217 |             .textContent({ timeout: CARD_READ_TIMEOUT });
+  218 |           const cip105IdFromApi = `${actionRecordProposalFromAPI.tx_hash}#${actionRecordProposalFromAPI.index}`;
+  219 | 
+  220 |           expect(proposalTypeFromUI.replace(/^.*Type/, "")).toContain(
+  221 |             proposalTypeFromApi
+  222 |           );
+  223 | 
+  224 |           expect(cip105IdFromUI.replace(/^.*ID/, "")).toContain(
+  225 |             cip105IdFromApi
+  226 |           );
+  227 |         }
+  228 |       },
+  229 |       {
+  230 |         name: `frontend sort validation of ${sortOption} and filter ${filterKey}`,
+  231 |       }
+  232 |     );
+  233 |   }
+  234 | 
+  235 |   async _validateFiltersInGovernanceActionHistoryCard(
+  236 |     proposalCard: Locator,
+  237 |     filters: string[]
+  238 |   ): Promise<boolean> {
+  239 |     const type = await proposalCard
+  240 |       .locator('[data-testid$="-type"]')
+  241 |       .textContent({ timeout: CARD_READ_TIMEOUT });
+  242 |     const actionRecordType = type.replace(/^.*Type/, "");
+  243 |     return filters.includes(actionRecordType);
+  244 |   }
+  245 | 
+  246 |   async _validateStatusFiltersInGovernanceActionHistoryCard(
+  247 |     proposalCard: Locator,
+  248 |     filters: string[]
+  249 |   ): Promise<boolean> {
+  250 |     const status = await proposalCard
+  251 |       .locator('[data-testid$="-status"]')
+  252 |       .textContent({ timeout: CARD_READ_TIMEOUT });
+  253 |     const actionRecordStatus = actionRecordStatusType.filter((statusType) => {
+  254 |       if (statusType === "Live") {
+  255 |         return "In Progress";
+  256 |       }
+  257 |       return status.includes(statusType);
+  258 |     });
+  259 |     return actionRecordStatus.some((status) => filters.includes(status));
+  260 |   }
+  261 | 
+  262 |   async shouldAccessPage(isLoggedIn = false) {
+  263 |     await this.page.goto("/");
+  264 | 
+  265 |     if (isMobile(this.page)) {
+  266 |       await this.page.getByTestId("open-drawer-button").click();
+  267 |     } else {
+  268 |       if (!isLoggedIn) {
+  269 |         await this.page.getByTestId("governance-actions").click();
+  270 |       }
+  271 |     }
+  272 |     await this.page.getByTestId("governance-actions-governance-actions-link").click();
+  273 | 
+  274 |     if (!isMobile(this.page) && !isLoggedIn) {
+  275 |       await this.page.getByTestId("governance-actions").click();
+```

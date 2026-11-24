@@ -1,0 +1,328 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 4-proposal-visibility/proposalVisibility.dRep.spec.ts >> Logged in DRep >> Vote context metadata anchor validation >> 4O. Should reject invalid metadata anchor on vote context
+- Location: tests/4-proposal-visibility/proposalVisibility.dRep.spec.ts:91:9
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByTestId('to-vote-tab')
+Expected: visible
+Timeout: 60000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 60000ms
+  - waiting for getByTestId('to-vote-tab')
+
+```
+
+```yaml
+- text: "Network: Preview |"
+- link "Go to Mainnet":
+  - /url: https://gov.tools/
+- banner:
+  - link "Skip to main content":
+    - /url: "#main-content"
+  - link "Cardano GovTool":
+    - /url: /dashboard
+    - img "Cardano GovTool"
+  - navigation "Main":
+    - link "Home":
+      - /url: /dashboard
+    - link "DRep Directory":
+      - /url: /dreps
+    - link "Governance Actions":
+      - /url: /actions
+    - link "Governance Activity":
+      - /url: /activity
+    - link "Guides":
+      - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+  - button "Global Search"
+  - button "stake_t…6nu"
+  - button "Notifications": "0"
+  - button "Your governance profile"
+- main:
+  - heading "Governance actions" [level=1]
+  - paragraph: Explore proposals shaping Cardano. Review the details, follow voting progress and take part in decisions that move the ecosystem forward.
+  - button "Create Governance Action"
+  - region "Governance action figures": Total Actions 1,552 Voting Now 31 Expiring Soon 0 Enacted 14
+  - navigation "Governance Actions":
+    - link "Proposed Governance Actions":
+      - /url: /proposals
+    - link "Live Voting":
+      - /url: /actions
+    - link "Outcomes":
+      - /url: /actions/history
+  - textbox "Search Governance Actions"
+  - 'button "Sort: Default"'
+  - heading "Action type" [level=2]
+  - button "All Governance Actions 31" [pressed]
+  - button "Info Action 7"
+  - button "Treasury Withdrawal 9"
+  - button "Protocol Parameter Change 0"
+  - button "Hard Fork 0"
+  - button "Update to the Constitution 7"
+  - button "New Committee 0"
+  - button "No Confidence 8"
+  - article:
+    - text: Active Treasury Withdrawal
+    - link "Utique quam coma bestia utroque votum.":
+      - /url: /actions/gov_action1l0vauj465jns90j5vgg9y0k66wwa76ucggkucpvwzdq8g9nv4jsqqtrwhvy
+      - heading "Utique quam coma bestia utroque votum." [level=3]
+    - text: Submitted about 1 month ago Expires Epoch 1483 DRep 0.0% / 67.0% SPO NOT ELIGIBLE CC 0.0% / 66.7%
+  - article:
+    - text: Active Update to the Constitution
+    - link "Solus cimentarius earum adnuo aiunt minima.":
+      - /url: /actions/gov_action1x2j56d9k4pu3grp8s97adwkkhp5f2483d3yh3rkqae6ct8fwmjkqqjq2687
+      - heading "Solus cimentarius earum adnuo aiunt minima." [level=3]
+    - text: Submitted about 1 month ago Expires Epoch 1483 DRep 0.0% / 75.0% SPO NOT ELIGIBLE CC 0.0% / 66.7%
+  - article:
+    - text: Active No Confidence
+    - link "Cursim caecus adiuvo sufficio quo animus.":
+      - /url: /actions/gov_action1anrqtcpmn5x56xf6gchtldw8vqlmaxekaasxjv4tx3w5th2aklxqqkxf03e
+      - heading "Cursim caecus adiuvo sufficio quo animus." [level=3]
+    - text: Submitted about 1 month ago Expires Epoch 1483 DRep 16.9% / 67.0% SPO 0.1% / 51.0% CC NOT ELIGIBLE
+  - article:
+    - text: Active Info Action
+    - link "Pax patrocinor audax aeternus talio cattus.":
+      - /url: /actions/gov_action18uh2e6dhha52tjmlryuw26jp78dsmygzp2c674xwd0zguf09jt9qq8u60lv
+      - heading "Pax patrocinor audax aeternus talio cattus." [level=3]
+    - text: Submitted about 1 month ago Expires Epoch 1483 DRep 0.0% / 100.0% SPO 0.0% / 100.0% CC 0.0% / 100.0%
+  - article:
+    - text: Active Update to the Constitution
+    - link "Tonsor arbitro repudiandae comburo advoco thesaurus.":
+      - /url: /actions/gov_action1p0qkxqv977pgpln3ej6uxjgdprdlpn68w80lg0kz9efsutr6jf9sqn2gkww
+      - heading "Tonsor arbitro repudiandae comburo advoco thesaurus." [level=3]
+    - text: Submitted about 1 month ago Expires Epoch 1482 DRep 0.0% / 75.0% SPO NOT ELIGIBLE CC 0.0% / 66.7%
+  - article:
+    - text: Active No Confidence
+    - link "Pecco sto arx sto recusandae sub.":
+      - /url: /actions/gov_action15yya378zlmz8vv72w6vkppahrcpaqm2ljcmvntm2tpvkan7hy6xqq7wvwyl
+      - heading "Pecco sto arx sto recusandae sub." [level=3]
+    - text: Submitted about 1 month ago Expires Epoch 1482 DRep 16.9% / 67.0% SPO 0.1% / 51.0% CC NOT ELIGIBLE
+  - article:
+    - text: Active Treasury Withdrawal
+    - link "Subito tutis aperte varius atqui voluptatum.":
+      - /url: /actions/gov_action1atu20jv7sdgztp8q7w3d8n8f3tmkm2z2zzq56kmk9ngju464t3ysqtsqykn
+      - heading "Subito tutis aperte varius atqui voluptatum." [level=3]
+    - text: Submitted about 1 month ago Expires Epoch 1482 DRep 0.0% / 67.0% SPO NOT ELIGIBLE CC 0.0% / 66.7%
+  - article:
+    - text: Active Info Action
+    - link "Auctor voro valetudo acceptus sordeo ab.":
+      - /url: /actions/gov_action10t3axzk02x7qs9vrhzvy8hs6zqruzg8y0tu60gr8v6zwms7yg4jsqn3fqkn
+      - heading "Auctor voro valetudo acceptus sordeo ab." [level=3]
+    - text: Submitted about 1 month ago Expires Epoch 1482 DRep 0.0% / 100.0% SPO 0.0% / 100.0% CC 0.0% / 100.0%
+  - article:
+    - text: Active No Confidence
+    - link "Explicabo iure amoveo dolorum vinitor terga.":
+      - /url: /actions/gov_action183f465x7m2almtnl8cprh5vhr3tq8k35lcwkzjawqv6tsjphu64sqd2guje
+      - heading "Explicabo iure amoveo dolorum vinitor terga." [level=3]
+    - text: Submitted about 1 month ago Expires Epoch 1480 DRep 16.9% / 67.0% SPO 0.1% / 51.0% CC NOT ELIGIBLE
+  - article:
+    - text: Active Treasury Withdrawal
+    - link "Vitae vivo basium voluntarius sum coma.":
+      - /url: /actions/gov_action1zr4l7hw43df2dwe9n5cc27xkr4x9c7eqzpyww5hn66mdzfc6dj3sqss0xsh
+      - heading "Vitae vivo basium voluntarius sum coma." [level=3]
+    - text: Submitted about 1 month ago Expires Epoch 1480 DRep 0.0% / 67.0% SPO NOT ELIGIBLE CC 0.0% / 66.7%
+  - navigation "Pagination":
+    - paragraph: Showing 1–10 of 31 results
+    - button "Previous" [disabled]
+    - button "1"
+    - button "2"
+    - button "3"
+    - button "4"
+    - button "Next"
+- contentinfo:
+  - img "Cardano GovTool"
+  - paragraph: A clearer connection to Cardano governance.
+  - link "Guides":
+    - /url: https://docs.gov.tools/cardano-govtool/using-govtool
+  - link "FAQs":
+    - /url: https://docs.gov.tools/cardano-govtool/faqs
+  - link "Intersect ↗":
+    - /url: https://www.intersectmbo.org/
+  - paragraph: © 2026 GovTool
+  - link "Privacy policy":
+    - /url: https://docs.gov.tools/legal/privacy-policy
+  - link "Terms of Use":
+    - /url: https://docs.gov.tools/legal/terms-of-use
+  - link "Help":
+    - /url: https://docs.gov.tools/cardano-govtool/support
+  - button "Feedback"
+```
+
+# Test source
+
+```ts
+  1   | import environments from "@constants/environments";
+  2   | import { faker } from "@faker-js/faker";
+  3   | import { test } from "@fixtures/walletExtension";
+  4   | import { setAllureEpic } from "@helpers/allure";
+  5   | import {
+  6   |   isBootStrapingPhase,
+  7   |   lovelaceToAda,
+  8   |   skipIfMainnet,
+  9   | } from "@helpers/cardano";
+  10  | import { createNewPageWithWallet } from "@helpers/page";
+  11  | import GovernanceActionsPage from "@pages/governanceActionsPage";
+  12  | import { Page, expect } from "@playwright/test";
+  13  | import { invalid as mockInvalid, valid as mockValid } from "@mock/index";
+  14  | import { GovernanceActionType, IProposal } from "@types";
+  15  | import GovernanceActionDetailsPage from "@pages/governanceActionDetailsPage";
+  16  | import { correctVoteAdaFormat } from "@helpers/adaFormat";
+  17  | import {
+  18  |   areCCVoteTotalsDisplayed,
+  19  |   areDRepVoteTotalsDisplayed,
+  20  |   areSPOVoteTotalsDisplayed,
+  21  | } from "@helpers/featureFlag";
+  22  | import { sharedDRep } from "lib/wallet/sharedDReps";
+  23  | import { registeredDRepWallet } from "lib/wallet/transactions";
+  24  | 
+  25  | test.beforeEach(async () => {
+  26  |   await setAllureEpic("4. Proposal visibility");
+  27  |   await skipIfMainnet();
+  28  | });
+  29  | 
+  30  | test.describe("Logged in DRep", () => {
+  31  |   test.use({ walletName: "dRep01" });
+  32  | 
+  33  |   test.beforeAll(async () => {
+  34  |     test.setTimeout(2 * environments.txTimeOut);
+  35  |     await sharedDRep("dRep01");
+  36  |   });
+  37  | 
+  38  |   test("4E. Should display DRep's voting power in governance actions page", async ({
+  39  |     page,
+  40  |   }) => {
+  41  |     const votingPowerPromise = page.waitForResponse("**/get-voting-power/**");
+  42  |     const governanceActionsPage = new GovernanceActionsPage(page);
+  43  |     await governanceActionsPage.goto();
+  44  | 
+  45  |     const res = await votingPowerPromise;
+  46  |     const votingPower = await res.json();
+  47  | 
+  48  |     await expect(page.getByTestId("voting-power-chips-value")).toHaveText(
+  49  |       `₳ ${lovelaceToAda(votingPower)}`,
+  50  |       { timeout: 60_000 }
+  51  |     );
+  52  |   });
+  53  | 
+  54  |   test.describe("Vote context metadata anchor validation", () => {
+  55  |     let govActionDetailsPage: GovernanceActionDetailsPage;
+  56  |     test.beforeEach(async ({ page }) => {
+  57  |       const govActionsPage = new GovernanceActionsPage(page);
+  58  |       await govActionsPage.goto();
+  59  | 
+  60  |       // assert to wait until the loading button is hidden
+> 61  |       await expect(page.getByTestId("to-vote-tab")).toBeVisible({
+      |                                                     ^ Error: expect(locator).toBeVisible() failed
+  62  |         timeout: 60_000,
+  63  |       });
+  64  | 
+  65  |       govActionDetailsPage = (await isBootStrapingPhase())
+  66  |         ? await govActionsPage.viewFirstProposalByGovernanceAction(
+  67  |             GovernanceActionType.InfoAction
+  68  |           )
+  69  |         : await govActionsPage.viewFirstProposal();
+  70  |       
+  71  |       await govActionDetailsPage.yesVoteRadio.click();
+  72  |       await govActionDetailsPage.voteBtn.click()
+  73  | 
+  74  |       
+  75  |       await govActionDetailsPage.contextInput.fill(faker.lorem.sentence(200));
+  76  |       await govActionDetailsPage.confirmModalBtn.click();
+  77  |       await govActionDetailsPage.downloadAndStoreYourselfOptionBtn.click();
+  78  |       await page.getByRole("checkbox").click();
+  79  |       await govActionDetailsPage.confirmModalBtn.click();
+  80  |     });
+  81  | 
+  82  |     test("4N. Should accept valid metadata anchor on vote context", async ({
+  83  |       page,
+  84  |     }) => {
+  85  |       for (let i = 0; i < 100; i++) {
+  86  |         await govActionDetailsPage.metadataUrlInput.fill(mockValid.url());
+  87  |         await expect(page.getByTestId("invalid-url-error")).toBeHidden();
+  88  |       }
+  89  |     });
+  90  | 
+  91  |     test("4O. Should reject invalid metadata anchor on vote context", async ({
+  92  |       page,
+  93  |     }) => {
+  94  |       for (let i = 0; i < 100; i++) {
+  95  |         const invalidUrl = mockInvalid.url(false);
+  96  |         await govActionDetailsPage.metadataUrlInput.fill(invalidUrl);
+  97  |         if (invalidUrl.length <= 128) {
+  98  |           await expect(page.getByTestId("invalid-url-error")).toBeVisible();
+  99  |         } else {
+  100 |           await expect(
+  101 |             page.getByTestId("url-must-be-less-than-128-bytes-error")
+  102 |           ).toBeVisible();
+  103 |         }
+  104 |       }
+  105 |     });
+  106 |   });
+  107 | });
+  108 | 
+  109 | test.describe("Check vote count", () => {
+  110 |   test.use({ walletName: "dRep01" });
+  111 | 
+  112 |   test.beforeAll(async () => {
+  113 |     test.setTimeout(2 * environments.txTimeOut);
+  114 |     await sharedDRep("dRep01");
+  115 |   });
+  116 | 
+  117 |   test("4G. Should display correct vote counts on governance details page for DRep", async ({
+  118 |     page,
+  119 |     browser,
+  120 |     wallet,
+  121 |   }) => {
+  122 |     const voteWhiteListOption = (await isBootStrapingPhase())
+  123 |       ? { InfoAction: "InfoAction" }
+  124 |       : GovernanceActionType;
+  125 |     const responsePromise = page.waitForResponse("**/proposal/list?**");
+  126 | 
+  127 |     const governanceActionsPage = new GovernanceActionsPage(page);
+  128 |     await governanceActionsPage.goto();
+  129 | 
+  130 |     const response = await responsePromise;
+  131 |     const allowedTypes = Object.values(voteWhiteListOption);
+  132 |     const proposals: IProposal[] = (await response.json()).elements.filter(
+  133 |       (proposal: IProposal) => allowedTypes.includes(proposal.type)
+  134 |     );
+  135 | 
+  136 |     const uniqueProposalTypes = Array.from(
+  137 |       new Map(proposals.map((proposal) => [proposal.type, proposal])).values()
+  138 |     );
+  139 | 
+  140 |     expect(proposals.length, "No proposals found!").toBeGreaterThan(0);
+  141 | 
+  142 |     await Promise.all(
+  143 |       uniqueProposalTypes.map(async (proposalToCheck) => {
+  144 |         const dRepPage = await createNewPageWithWallet(browser, {
+  145 |           wallet: wallet!,
+  146 |         });
+  147 | 
+  148 |         const totalStakeResponsePromise = dRepPage.waitForResponse((response) =>
+  149 |           response.url().includes(`network/total-stake`)
+  150 |         );
+  151 |         // The totals the page renders: stake moves every epoch, which on a
+  152 |         // devnet is a minute, so the list read earlier can be a boundary behind.
+  153 |         // The page keeps the first answer's totals; the read it repeats once
+  154 |         // the wallet's DRep id is known only adds the DRep's vote.
+  155 |         const shownProposalPromise = dRepPage.waitForResponse((response) =>
+  156 |           response.url().includes("/proposal/get/")
+  157 |         );
+  158 |         const govActionDetailsPage = new GovernanceActionDetailsPage(dRepPage);
+  159 |         await govActionDetailsPage.goto(
+  160 |           `${proposalToCheck.txHash}#${proposalToCheck.index}`
+  161 |         );
+```
