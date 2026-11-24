@@ -1,9 +1,9 @@
 import { useMemo, useRef } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import { Box, CircularProgress, Link } from "@mui/material";
 
 import { Background, Typography } from "@atoms";
-import { ICONS, PATHS } from "@consts";
+import { GOVERNANCE_ACTION_TYPE_PARAM, ICONS, PATHS } from "@consts";
 import { useCardano, useDataActionsBar, useFeatureFlag } from "@context";
 import {
   DataActionsBar,
@@ -25,11 +25,12 @@ import {
 import { ValidatedGovernanceActionCard } from "@/components/organisms";
 
 export const DashboardGovernanceActionsCategory = () => {
-  const { category } = useParams();
+  const [searchParams] = useSearchParams();
+  const category = searchParams.get(GOVERNANCE_ACTION_TYPE_PARAM) ?? "";
   const { debouncedSearchText, ...dataActionsBarProps } = useDataActionsBar();
   const { governanceActionsSort } = useFeatureFlag();
   const { chosenSorting } = dataActionsBarProps;
-  const { isMobile, screenWidth } = useScreenDimension();
+  const { isMobile } = useScreenDimension();
   const navigate = useNavigate();
   const { pendingTransaction, isEnableLoading } = useCardano();
   const { voter } = useGetVoterInfo();
@@ -84,7 +85,7 @@ export const DashboardGovernanceActionsCategory = () => {
             textDecoration: "none",
             margin: "12px 0 28px",
           }}
-          onClick={() => navigate(PATHS.dashboardGovernanceActions)}
+          onClick={() => navigate(PATHS.governanceActions)}
         >
           <img
             src={ICONS.arrowRightIcon}
@@ -132,9 +133,7 @@ export const DashboardGovernanceActionsCategory = () => {
           <Box
             columnGap="20px"
             display="grid"
-            gridTemplateColumns={`repeat(auto-fit, minmax(${
-              screenWidth < 420 ? "290px" : isMobile ? "324px" : "350px"
-            }, 1fr))`}
+            gridTemplateColumns="minmax(0, 1fr)"
           >
             {mappedData.map((item) => (
               <Box pb={4.25} key={item.txHash + item.index}>

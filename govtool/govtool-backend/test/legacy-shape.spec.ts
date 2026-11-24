@@ -853,6 +853,58 @@ describe('GET /drep/info/:drepId', () => {
     });
   });
 
+  it('names the update that set or cleared the anchor, as the Haskell backend did', async () => {
+    const update = {
+      txRef: { txHash: 'e'.repeat(64) },
+      at: { epoch: 520, time: '2026-04-01T00:00:00.000Z' },
+      deposit: null,
+    };
+    const registeredBare = {
+      txRef: { txHash: 'd'.repeat(64) },
+      at: { epoch: 500 },
+      anchor: null,
+      deposit: '500000000',
+    };
+    const read = (drep: DRep) =>
+      drepService({
+        governance: { dreps: { get: () => Promise.resolve(env(drep)) } },
+      }).getInfo(DREP_ID);
+
+    // Registered without an anchor, then an update added one.
+    await expect(
+      read(
+        fullDRep({
+          registration: {
+            latest: registeredBare,
+            latestUpdate: { ...update, anchor: fullDRep().anchor },
+          },
+        }),
+      ),
+    ).resolves.toMatchObject({
+      isRegisteredAsDRep: true,
+      dRepRegisterTxHash: 'e'.repeat(64),
+      soleVoterRegisterTxHash: null,
+    });
+
+    // An update with no anchor cleared it: a direct voter since that update.
+    await expect(
+      read(
+        fullDRep({
+          kind: 'anonymous',
+          anchor: null,
+          registration: {
+            latest: { ...registeredBare, anchor: fullDRep().anchor },
+            latestUpdate: { ...update, anchor: null },
+          },
+        }),
+      ),
+    ).resolves.toMatchObject({
+      isRegisteredAsSoleVoter: true,
+      dRepRegisterTxHash: null,
+      soleVoterRegisterTxHash: 'e'.repeat(64),
+    });
+  });
+
   it('reports a retired direct voter as no longer registered', async () => {
     const service = drepService({
       governance: {
@@ -953,6 +1005,8 @@ describe('GET /drep/list', () => {
       type: 'DRep',
       latestTxHash: 'c'.repeat(64),
       latestRegistrationDate: '2026-01-01T00:00:00.000Z',
+      // Optional on the provider; null where it supplies none.
+      delegatorCount: null,
       // Every field below is metadata-derived, and chain data carries none.
       metadataError: null,
       doNotList: false,
@@ -967,6 +1021,45 @@ describe('GET /drep/list', () => {
       // the legacy field is never null.
       identityReferences: [],
       linkReferences: [],
+    });
+  });
+
+  it("carries the provider's delegator count, zero included", async () => {
+    for (const delegatorCount of [920, 0]) {
+      const service = drepService({
+        governance: {
+          dreps: {
+            list: () => Promise.resolve(page([fullDRep({ delegatorCount })])),
+          },
+        },
+      });
+      const body = await service.list({ status: [], page: 0, pageSize: 10 });
+      expect(body.elements[0].delegatorCount).toBe(delegatorCount);
+    }
+  });
+
+  it('dates a row by its newest registration or update, as the Haskell backend did', async () => {
+    const updated = fullDRep({
+      registration: {
+        latest: fullDRep().registration.latest,
+        latestUpdate: {
+          txRef: { txHash: 'e'.repeat(64) },
+          at: { epoch: 520, time: '2026-04-01T00:00:00.000Z' },
+          anchor: fullDRep().anchor,
+          deposit: null,
+        },
+      },
+    });
+    const service = drepService({
+      governance: { dreps: { list: () => Promise.resolve(page([updated])) } },
+    });
+
+    const body = await service.list({ status: [], page: 0, pageSize: 10 });
+    expect(body.elements[0]).toMatchObject({
+      latestTxHash: 'e'.repeat(64),
+      latestRegistrationDate: '2026-04-01T00:00:00.000Z',
+      // The deposit is still the registration's.
+      deposit: 500000000,
     });
   });
 

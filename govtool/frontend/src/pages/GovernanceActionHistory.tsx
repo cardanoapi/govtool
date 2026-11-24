@@ -1,50 +1,36 @@
 import { Box } from "@mui/material";
 import { useLocation } from "react-router";
 
-import { Background, Typography } from "@atoms";
+import { Background, PageContainer } from "@atoms";
 import { USER_PATHS } from "@consts";
-import { useCardano } from "@context";
-import { useScreenDimension, useTranslation } from "@hooks";
+import { useIsWalletConnected } from "@hooks";
 import {
   Footer,
   GovernanceActionHistoryDetails,
   GovernanceActionHistoryList,
   GovernanceActionHistorySearchFiltersSortBar,
+  GovernanceActionsHeader,
   TopNav,
 } from "@organisms";
 
-const GOVERNANCE_ACTION_SEGMENT = "governance_actions/history/";
+const GOVERNANCE_ACTION_SEGMENT = "actions/history/";
 
-const GovernanceActionHistoryListPage = () => {
-  const { isEnabled } = useCardano();
-  const { isMobile } = useScreenDimension();
-  const { t } = useTranslation();
-
-  return (
-    <Box display="flex" flexDirection="column" flexGrow={1}>
-      {!isEnabled && (
-        <Typography
-          sx={{ paddingX: 1, paddingY: 2 }}
-          variant={isMobile ? "title1" : "headline3"}
-          component="h1"
-        >
-          {t("governanceActionHistoryList.title")}
-        </Typography>
-      )}
-      <GovernanceActionHistorySearchFiltersSortBar />
-      <Box marginTop={3}>
-        <GovernanceActionHistoryList />
-      </Box>
-    </Box>
-  );
-};
+const GovernanceActionHistoryListPage = () => (
+  <Box display="flex" flexDirection="column" flexGrow={1}>
+    <GovernanceActionsHeader />
+    <GovernanceActionHistorySearchFiltersSortBar>
+      <GovernanceActionHistoryList />
+    </GovernanceActionHistorySearchFiltersSortBar>
+  </Box>
+);
 
 const GovernanceActionHistoryContent = () => {
-  const { pathname, hash } = useLocation();
+  const { pathname } = useLocation();
 
   if (pathname.includes(GOVERNANCE_ACTION_SEGMENT)) {
-    // Links carry the CIP-105 id, so `#index` arrives as the URL hash.
-    const id = `${pathname.split("/").pop()}${hash}`;
+    // The record's CIP-129 id; an old txHash#index link is rewritten by
+    // getCurrentUrl before this renders.
+    const id = pathname.split("/").pop();
     if (id) return <GovernanceActionHistoryDetails id={id} />;
   }
 
@@ -55,8 +41,7 @@ const GovernanceActionHistoryContent = () => {
 };
 
 export const GovernanceActionHistoryPage = () => {
-  const { pagePadding } = useScreenDimension();
-  const { isEnabled } = useCardano();
+  const isConnected = useIsWalletConnected();
 
   return (
     <Background>
@@ -65,18 +50,13 @@ export const GovernanceActionHistoryPage = () => {
           display: "flex",
           flexDirection: "column",
           flex: 1,
-          minHeight: !isEnabled ? "100vh" : "auto",
+          minHeight: !isConnected ? "100vh" : "auto",
+          // An outcome's header tint spans the window; clip keeps sticky intact.
+          overflowX: "clip",
         }}
       >
-        {!isEnabled && <TopNav />}
-        <Box
-          sx={{
-            px: isEnabled ? { xs: 2, sm: 5 } : pagePadding,
-            py: 3,
-            display: "flex",
-            flex: 1,
-          }}
-        >
+        {!isConnected && <TopNav />}
+        <PageContainer component={isConnected ? "div" : "main"} sx={{ display: "flex", flex: 1 }}>
           <Box
             component="section"
             className="governance-actions-container"
@@ -87,8 +67,8 @@ export const GovernanceActionHistoryPage = () => {
           >
             <GovernanceActionHistoryContent />
           </Box>
-        </Box>
-        {!isEnabled && <Footer />}
+        </PageContainer>
+        {!isConnected && <Footer />}
       </Box>
     </Background>
   );

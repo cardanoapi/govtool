@@ -2,6 +2,7 @@ import environments from "@constants/environments";
 import { Browser, expect, Page } from "@playwright/test";
 import { actionRecordProposal, actionRecordType } from "@types";
 import GovernanceActionHistoryPage from "./governanceActionHistoryPage";
+import { toGovActionUrlId } from "@helpers/encodeDecode";
 
 export default class GovernanceActionHistoryDetailsPage {
   readonly dRepYesVotes = this.page.getByTestId("DReps-yes-votes-submitted");
@@ -41,9 +42,10 @@ export default class GovernanceActionHistoryDetailsPage {
     return this.page;
   }
 
+  /** Takes "txHash#index" or a gov_action1… id. */
   async goto(proposalId: string) {
     await this.page.goto(
-      `${environments.frontendUrl}/governance_actions/history/${proposalId}`
+      `${environments.frontendUrl}/actions/history/${toGovActionUrlId(proposalId)}`
     );
   }
 
@@ -107,14 +109,14 @@ export default class GovernanceActionHistoryDetailsPage {
               (scaled(aggregate.yes) * 10000n + denominator / 2n) /
               denominator;
             const yesPercent = Number(hundredths) / 100;
+            // The card shortens the figure (₳ 3.75B); the percentage is exact.
             await expect(
               section.getByTestId(`${title}-yes-votes-submitted`)
-            ).toHaveText(
-              `${format(aggregate.yes)} - ${yesPercent.toFixed(2)}%`
-            );
+            ).toContainText(`${yesPercent.toFixed(2)}%`);
           } else {
             await expect(section.getByRole("progressbar")).toHaveCount(0);
           }
+          // See all data opens a dialog with every figure, exactly.
           await section.getByTestId(`${title}-expand-button`).click();
           for (const [field, suffix] of [
             ["yes", "yes-votes"],
@@ -122,10 +124,11 @@ export default class GovernanceActionHistoryDetailsPage {
             ["notVoted", "not-voted-votes"],
             ["abstain", "abstain-votes"],
           ]) {
-            await expect(section.getByTestId(`${title}-${suffix}`)).toHaveText(
+            await expect(page.getByTestId(`${title}-${suffix}`)).toHaveText(
               format(aggregate[field])
             );
           }
+          await page.getByTestId("outcome-all-data-close").click();
         }
       } finally {
         await page.close();
@@ -144,26 +147,23 @@ export default class GovernanceActionHistoryDetailsPage {
     url: string;
     hash: string;
   }) {
-    let governanceActionPromise = this.page.route(
-      "**/governance-actions/*",
-      async (route) => {
-        if (route.request().url().includes("/governance-actions/metadata")) {
-          await route.continue();
-        } else {
-          await route.fulfill({ body: JSON.stringify(actionRecordResponse) });
-        }
+    await this.page.route("**/governance-actions/*", async (route) => {
+      if (route.request().url().includes("/governance-actions/metadata")) {
+        await route.continue();
+      } else {
+        await route.fulfill({ body: JSON.stringify(actionRecordResponse) });
       }
+    });
+    // Straight to the details page, the only page checked here; the list and
+    // its links are 9A-9F's.
+    await this.goto(
+      `${actionRecordResponse.tx_hash}#${actionRecordResponse.index}`
     );
-    const actionRecordPage = new GovernanceActionHistoryPage(this.page);
-    await actionRecordPage.goto();
-    await actionRecordPage.viewFirstGovernanceActionHistory();
-    await governanceActionPromise;
-    const actionRecordTitle = await actionRecordPage.title.textContent();
 
+    const actionRecordPage = new GovernanceActionHistoryPage(this.page);
     await expect(
       actionRecordPage.title,
-      actionRecordTitle.toLowerCase() !== type.toLowerCase() &&
-        `The URL "${url}" and hash "${hash}" do not match the expected properties for type "${type}".`
+      `The URL "${url}" and hash "${hash}" do not match the expected properties for type "${type}".`
     ).toHaveText(type, {
       ignoreCase: true,
       timeout: 60_000,

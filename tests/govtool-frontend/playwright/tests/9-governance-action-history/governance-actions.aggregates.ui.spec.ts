@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import type { GovernanceActionVoteAggregate } from "../../../../../govtool/frontend/src/models/governanceActions";
+import { getGovActionCIP129Id } from "../../lib/helpers/encodeDecode";
 
 const drep: GovernanceActionVoteAggregate = {
   role: "drep",
@@ -188,7 +189,7 @@ for (const sample of samples) {
       });
     }
     await page.goto(
-      `/governance_actions/history/${sample.txHash}#${sample.index}`
+      `/actions/history/${getGovActionCIP129Id(sample.txHash, sample.index)}`
     );
     const panel = page.getByTestId("single-action-voting-numbers");
     await expect(panel).toBeVisible();
@@ -225,9 +226,14 @@ for (const sample of samples) {
             : aggregate.representation === "stake"
               ? `₳ ${((BigInt(aggregate.yes) + 999999n) / 1000000n).toLocaleString("en-US")}`
               : BigInt(aggregate.yes).toLocaleString("en-US");
-        await expect(section.getByTestId(`${title}-yes-votes`)).toHaveText(
+        // See all data is a modal dialog, outside the section; close it
+        // before the next role.
+        const dialog = page.getByRole("dialog");
+        await expect(dialog.getByTestId(`${title}-yes-votes`)).toHaveText(
           value
         );
+        await dialog.getByTestId("outcome-all-data-close").click();
+        await expect(page.getByTestId(`${title}-yes-votes`)).toHaveCount(0);
       } else {
         await expect(section.getByRole("status")).toBeVisible();
         await expect(section.getByRole("progressbar")).toHaveCount(0);
@@ -236,23 +242,26 @@ for (const sample of samples) {
             "inconsistent voting breakdown"
           );
         }
+        // No verdict without a usable tally: neither Pass nor Fail.
         await expect(
           page.getByTestId(`${prefix}-voting-results-indicator`)
-        ).toContainText("-");
+        ).not.toContainText(/Pass|Fail/);
       }
       if (type === "InfoAction") {
+        // Info actions have no threshold, so no pass or fail.
         await expect(
           page.getByTestId(`${prefix}-voting-results-indicator`)
-        ).toContainText("-");
+        ).not.toContainText(/Pass|Fail/);
       }
       if (aggregate?.passing === false && type !== "InfoAction") {
         const indicator = page.getByTestId(
           `${prefix}-voting-results-indicator`
         );
-        await expect(indicator).not.toContainText("-");
+        await expect(indicator).toContainText("Fail");
+        // The design system's error 600.
         await expect(indicator.getByTestId("vote-result-icon")).toHaveCSS(
           "background-color",
-          "rgb(211, 47, 47)"
+          "rgb(217, 45, 32)"
         );
       }
     }
@@ -269,21 +278,21 @@ for (const sample of samples) {
           JSON.stringify("unavailable-wallet")
         )
       );
-      await page.goto("/governance_actions/history");
+      await page.goto("/actions/history");
       await expect
         .poll(() =>
           page.evaluate(() => localStorage.getItem("wallet_data_name"))
         )
         .toBeNull();
       await expect(
-        page.getByRole("heading", { name: "Historical Actions" })
+        page.getByRole("heading", { name: "Governance actions" })
       ).toBeVisible();
       const details = page.getByTestId(
         `${sample.txHash}#${sample.index}-view-details`
       );
       await expect(details).toHaveAttribute(
         "href",
-        `/governance_actions/history/${sample.txHash}#${sample.index}`
+        `/actions/history/${getGovActionCIP129Id(sample.txHash, sample.index)}`
       );
       await details.click();
       await expect(

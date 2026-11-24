@@ -1,27 +1,21 @@
 import { useEffect, useState } from "react";
-import {
-  useNavigate,
-  useLocation,
-  useParams,
-  generatePath,
-} from "react-router";
+import { useNavigate, useLocation, useParams } from "react-router";
 import { Box, CircularProgress, Link } from "@mui/material";
 import { AxiosError } from "axios";
+import { ChevronLeft } from "lucide-react";
 
-import { Background, Typography } from "@atoms";
-import { ICONS, GOV_ACTION_HISTORY_PATHS, PATHS } from "@consts";
-import { useCardano } from "@context";
+import { Background, PageContainer, Typography } from "@atoms";
+import { GOV_ACTION_HISTORY_PATHS, PATHS } from "@consts";
 import {
   useGetProposalQuery,
-  useScreenDimension,
   useTranslation,
 } from "@hooks";
 import { Footer, TopNav, GovernanceActionDetailsCard } from "@organisms";
 import {
-  WALLET_LS_KEY,
   getFullGovActionId,
-  getItemFromLocalStorage,
+  getGovActionsTypePath,
   getShortenedGovActionId,
+  parseGovActionCIP129Id,
 } from "@utils";
 import { Breadcrumbs } from "@molecules";
 import {
@@ -31,6 +25,7 @@ import {
   ProposalData,
 } from "@/models";
 import { useValidateMutation } from "@/hooks/mutations";
+import { ds } from "@/consts/designTokens";
 
 type GovernanceActionDetailsState = {
   proposal?: ProposalData;
@@ -40,17 +35,19 @@ type GovernanceActionDetailsState = {
 // TODO: Refactor: GovernanceActionDetals and DashboardGovernanceActionDetails are almost identical
 // and should be unified
 export const GovernanceActionDetails = () => {
-  const { state: untypedState, hash } = useLocation();
+  const { state: untypedState } = useLocation();
   const state = untypedState as GovernanceActionDetailsState | null;
-  const index = hash.slice(1);
   const navigate = useNavigate();
-  const { pagePadding, isMobile } = useScreenDimension();
-  const { isEnabled } = useCardano();
   const { t } = useTranslation();
-  const { proposalId: txHash } = useParams();
+  // The CIP-129 gov_action1… id.
+  const { proposalId = "" } = useParams();
+  const parsedId = parseGovActionCIP129Id(proposalId);
 
-  const fullProposalId = txHash && getFullGovActionId(txHash, +index);
-  const shortenedGovActionId = txHash && getShortenedGovActionId(txHash, +index);
+  const fullProposalId =
+    parsedId && getFullGovActionId(parsedId.txHash, parsedId.index);
+  const shortenedGovActionId = parsedId
+    ? getShortenedGovActionId(proposalId, "")
+    : proposalId;
 
   // A row opened from a list carries its document, and so its authors, only
   // when the backend held it. Without one the action is read again for it,
@@ -58,7 +55,7 @@ export const GovernanceActionDetails = () => {
   const needsDocument = !!state?.proposal && state.proposal.json == null;
   const { data, isLoading, error } = useGetProposalQuery(
     fullProposalId ?? "",
-    !state?.proposal || needsDocument,
+    !!fullProposalId && (!state?.proposal || needsDocument),
   );
   // TODO: Refactor this mess with proposals and metadata validation
   // once authors are existing in all CIP-108 metadata
@@ -121,24 +118,16 @@ export const GovernanceActionDetails = () => {
       error.response?.data.message.match(/Proposal with id: .* not found/);
     if (isProposalNotFound && fullProposalId) {
       navigate(
-        GOV_ACTION_HISTORY_PATHS.governanceActionHistoryDetail.replace(":id", fullProposalId),
+        GOV_ACTION_HISTORY_PATHS.governanceActionHistoryDetail.replace(
+          ":id",
+          proposalId,
+        ),
       );
-    } else if (
-      isEnabled &&
-      getItemFromLocalStorage(`${WALLET_LS_KEY}_stake_key`)
-    ) {
-      // The effect can run again before this page unmounts (StrictMode runs
-      // it twice in development), so only redirect once, and keep the hash:
-      // it carries the action index.
-      const { pathname, search, hash: locationHash } = window.location;
-      if (!pathname.startsWith("/connected")) {
-        navigate(`/connected${pathname}${search}${locationHash}`);
-      }
     }
-  }, [isEnabled, error]);
+  }, [error]);
 
   return (
-    <Background opacity={0.7}>
+    <Background>
       <Box
         display="flex"
         flexDirection="column"
@@ -146,59 +135,38 @@ export const GovernanceActionDetails = () => {
         minHeight="100vh"
       >
         <TopNav />
-        <Box
-          display="flex"
-          flex={1}
-          flexDirection="row"
-          pt={2}
-          px={pagePadding}
-        >
+        <PageContainer component="main" sx={{ display: "flex", flex: 1, flexDirection: "column", pt: { xxs: 2, md: 3 } }}>
           <Box display="flex" flex={1} flexDirection="column" width="100%">
-            {isMobile ? (
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  padding: "8px 0 24px",
-                  mb: "10px",
-                  borderBottom: "1px solid #FFF",
-                }}
-              >
-                <Typography variant="title1">
-                  {t("govActions.title")}
-                </Typography>
-              </Box>
-            ) : null}
             <Breadcrumbs
-              elementOne={t("govActions.title")}
+              elementOne={t("govActions.pageTitle")}
               elementOnePath={PATHS.governanceActions}
-              elementTwo={extendedProposal?.title ?? ""}
+              elementTwo={extendedProposal?.title || t("govActions.card.untitled")}
               isDataMissing={metadataStatus ?? null}
             />
             <Link
+              data-testid="back-to-list-link"
               sx={{
+                alignItems: "center",
+                alignSelf: "flex-start",
+                color: ds.gray["600"],
                 cursor: "pointer",
                 display: "flex",
+                fontSize: 13,
+                gap: 0.5,
+                mt: 1,
                 textDecoration: "none",
+                "&:hover": { color: ds.primary["600"] },
               }}
               onClick={() =>
                 navigate(
-                  state?.openedFromCategoryPage
-                    ? generatePath(PATHS.governanceActionsCategory, {
-                        category: state?.proposal?.type,
-                      })
+                  state?.openedFromCategoryPage && state.proposal?.type
+                    ? getGovActionsTypePath(state.proposal.type)
                     : PATHS.governanceActions,
                 )
               }
             >
-              <img
-                alt="arrow"
-                src={ICONS.arrowRightIcon}
-                style={{ marginRight: "12px", transform: "rotate(180deg)" }}
-              />
-              <Typography color="primary" fontWeight={400} variant="body2">
-                {t("back")}
-              </Typography>
+              <ChevronLeft aria-hidden size={16} />
+              {t("back")}
             </Link>
             {isLoading && !state?.proposal ? (
               <Box
@@ -237,9 +205,7 @@ export const GovernanceActionDetails = () => {
               </Box>
             )}
           </Box>
-        </Box>
-        {/* FIXME: Footer should be on top of the layout.
-        Should not be rerendered across the pages */}
+        </PageContainer>
         <Footer />
       </Box>
     </Background>

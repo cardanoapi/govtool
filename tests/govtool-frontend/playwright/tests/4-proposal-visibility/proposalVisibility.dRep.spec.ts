@@ -9,6 +9,7 @@ import {
 } from "@helpers/cardano";
 import { createNewPageWithWallet } from "@helpers/page";
 import GovernanceActionsPage from "@pages/governanceActionsPage";
+import LoginPage from "@pages/loginPage";
 import { Page, expect } from "@playwright/test";
 import { invalid as mockInvalid, valid as mockValid } from "@mock/index";
 import { GovernanceActionType, IProposal } from "@types";
@@ -35,18 +36,18 @@ test.describe("Logged in DRep", () => {
     await sharedDRep("dRep01");
   });
 
-  test("4E. Should display DRep's voting power in governance actions page", async ({
+  test("4E. Should display DRep's voting power on the dashboard", async ({
     page,
   }) => {
-    const votingPowerPromise = page.waitForResponse("**/get-voting-power/**");
-    const governanceActionsPage = new GovernanceActionsPage(page);
-    await governanceActionsPage.goto();
+    const dRepInfoPromise = page.waitForResponse("**/drep/info/**");
+    await page.goto("/dashboard");
 
-    const res = await votingPowerPromise;
-    const votingPower = await res.json();
+    const res = await dRepInfoPromise;
+    const { votingPower } = await res.json();
+    const ada = Math.round(lovelaceToAda(votingPower ?? 0)).toLocaleString("en-US");
 
-    await expect(page.getByTestId("voting-power-chips-value")).toHaveText(
-      `₳ ${lovelaceToAda(votingPower)}`,
+    await expect(page.getByTestId("drep-representation-voting-power")).toHaveText(
+      `₳ ${ada}`,
       { timeout: 60_000 }
     );
   });
@@ -148,55 +149,64 @@ test.describe("Check vote count", () => {
         const totalStakeResponsePromise = dRepPage.waitForResponse((response) =>
           response.url().includes(`network/total-stake`)
         );
+        // The totals the page renders: stake moves every epoch, which on a
+        // devnet is a minute, so the list read earlier can be a boundary behind.
+        // The page keeps the first answer's totals; the read it repeats once
+        // the wallet's DRep id is known only adds the DRep's vote.
+        const shownProposalPromise = dRepPage.waitForResponse((response) =>
+          response.url().includes("/proposal/get/")
+        );
         const govActionDetailsPage = new GovernanceActionDetailsPage(dRepPage);
         await govActionDetailsPage.goto(
           `${proposalToCheck.txHash}#${proposalToCheck.index}`
         );
+        const shown: IProposal = (await (await shownProposalPromise).json())
+          .proposal;
 
         await govActionDetailsPage.showVotesBtn.click();
 
         const dRepTotalAbstainVote =
           await govActionDetailsPage.getDRepTotalAbstainVoted(
-            proposalToCheck,
+            shown,
             totalStakeResponsePromise
           );
 
         // check dRep votes
-        if (await areDRepVoteTotalsDisplayed(proposalToCheck)) {
+        if (await areDRepVoteTotalsDisplayed(shown)) {
           await expect(govActionDetailsPage.dRepYesVotes).toHaveText(
-            `₳ ${correctVoteAdaFormat(proposalToCheck.dRepYesVotes)}`
+            `₳ ${correctVoteAdaFormat(shown.dRepYesVotes)}`
           );
           await expect(govActionDetailsPage.dRepAbstainVotes).toHaveText(
             `₳ ${correctVoteAdaFormat(dRepTotalAbstainVote)}`
           );
           await expect(govActionDetailsPage.dRepNoVotes).toHaveText(
-            `₳ ${correctVoteAdaFormat(proposalToCheck.dRepNoVotes)}`
+            `₳ ${correctVoteAdaFormat(shown.dRepNoVotes)}`
           );
         }
 
         // check sPos votes
-        if (await areSPOVoteTotalsDisplayed(proposalToCheck)) {
+        if (await areSPOVoteTotalsDisplayed(shown)) {
           await expect(govActionDetailsPage.sPosYesVotes).toHaveText(
-            `₳ ${correctVoteAdaFormat(proposalToCheck.poolYesVotes)}`
+            `₳ ${correctVoteAdaFormat(shown.poolYesVotes)}`
           );
           await expect(govActionDetailsPage.sPosAbstainVotes).toHaveText(
-            `₳ ${correctVoteAdaFormat(proposalToCheck.poolAbstainVotes)}`
+            `₳ ${correctVoteAdaFormat(shown.poolAbstainVotes)}`
           );
           await expect(govActionDetailsPage.sPosNoVotes).toHaveText(
-            `₳ ${correctVoteAdaFormat(proposalToCheck.poolNoVotes)}`
+            `₳ ${correctVoteAdaFormat(shown.poolNoVotes)}`
           );
         }
 
         // check ccCommittee votes
-        if (areCCVoteTotalsDisplayed(proposalToCheck)) {
+        if (areCCVoteTotalsDisplayed(shown)) {
           await expect(govActionDetailsPage.ccCommitteeYesVotes).toHaveText(
-            `${proposalToCheck.ccYesVotes}`
+            `${shown.ccYesVotes}`
           );
           await expect(govActionDetailsPage.ccCommitteeAbstainVotes).toHaveText(
-            `${proposalToCheck.ccAbstainVotes}`
+            `${shown.ccAbstainVotes}`
           );
           await expect(govActionDetailsPage.ccCommitteeNoVotes).toHaveText(
-            `${proposalToCheck.ccNoVotes}`
+            `${shown.ccNoVotes}`
           );
         }
       })
@@ -216,9 +226,9 @@ test("4F. Should Disable DRep functionality upon wallet disconnection on governa
   const governanceActionsPage = new GovernanceActionsPage(dRepPage);
   await governanceActionsPage.goto();
 
-  await dRepPage.getByTestId("disconnect-button").click();
+  await new LoginPage(dRepPage).logout();
 
-  await expect(dRepPage).toHaveURL("/governance_actions");
+  await expect(dRepPage).toHaveURL("/actions");
 
   const govActionDetailsPage = await governanceActionsPage.viewFirstProposal();
   await expect(govActionDetailsPage.voteBtn).not.toBeVisible();

@@ -43,7 +43,7 @@ export const DRepDashboardCard = ({
 
   const navigateToDrepDirectory = () => {
     if (dRep) {
-      navigate(PATHS.dashboardDRepDirectoryDRep.replace(":dRepId", dRep.view), {
+      navigate(PATHS.dRepDirectoryDRep.replace(":dRepId", dRep.view), {
         state: { enteredFromWithinApp: true },
       });
     }
@@ -95,7 +95,6 @@ export const DRepDashboardCard = ({
             dataTestId: "view-drep-details-button",
             onClick: navigateToDrepDirectory,
             variant: "outlined",
-            sx: { backgroundColor: "arcticWhite" },
           },
           {
             children: t("dashboard.cards.drep.retire"),

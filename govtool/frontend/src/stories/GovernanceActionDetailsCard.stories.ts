@@ -92,6 +92,9 @@ const cip129GovActionId = encodeCIP129Identifier({
   bech32Prefix: "gov_action",
 });
 
+// The story's dates are today; in November "Nov" also matches /no/i.
+const todayDate = formatDisplayDate(new Date());
+
 async function assertTooltip(tooltip: HTMLElement, expectedText: RegExp) {
   await userEvent.hover(tooltip);
   await waitFor(async () => {
@@ -105,7 +108,6 @@ async function assertGovActionDetails(
   canvas: ReturnType<typeof within>,
   args: React.ComponentProps<typeof GovernanceActionDetailsCard>,
 ) {
-  const todayDate = formatDisplayDate(new Date());
   await expect(canvas.getAllByText(todayDate)).toHaveLength(2);
   await expect(
     canvas.getByTestId(
@@ -154,16 +156,21 @@ export const GovernanceActionDetailsCardComponent: Story = {
     }
 
     await assertGovActionDetails(canvas, args);
-    const [tooltip1, tooltip2] = canvas.getAllByTestId("InfoOutlinedIcon");
+    // The dates box closes the action information card, after the authors.
+    const [tooltip1, tooltip2] = canvas
+      .getAllByTestId("InfoOutlinedIcon")
+      .slice(-2);
 
     await assertTooltip(tooltip1, /Submission Date/i);
     await assertTooltip(tooltip2, /Expiry Date/i);
 
-    await expect(canvas.getAllByText(/yes/i)).toHaveLength(2);
-    await expect(canvas.getAllByText(/abstain/i)).toHaveLength(3);
-    await expect(canvas.getAllByText(/no/i)).toHaveLength(4);
-    await expect(canvas.getAllByText(/constitutional/i)).toHaveLength(3);
-    await expect(canvas.getAllByText(/not voted/i)).toHaveLength(2);
+    await expect(canvas.getByTestId("votes-submitted")).toBeInTheDocument();
+    await expect(
+      canvas.getByTestId("submitted-votes-dReps-yes"),
+    ).toBeInTheDocument();
+    await expect(
+      canvas.getByTestId("submitted-votes-dReps-abstain"),
+    ).toBeInTheDocument();
   },
 };
 
@@ -186,7 +193,10 @@ export const GovernanceActionDetailsDrep: Story = {
     await expect(canvas.getByText(args.proposal.title!)).toBeInTheDocument();
 
     await assertGovActionDetails(canvas, args);
-    const [tooltip1, tooltip2] = canvas.getAllByTestId("InfoOutlinedIcon");
+    // The dates box closes the action information card, after the authors.
+    const [tooltip1, tooltip2] = canvas
+      .getAllByTestId("InfoOutlinedIcon")
+      .slice(-2);
 
     await assertTooltip(tooltip1, /Submission Date/i);
     await assertTooltip(tooltip2, /Expiry Date/i);
@@ -212,7 +222,10 @@ export const GovernanceActionDetailsDataMissing: Story = {
     await expect(window.open).toHaveBeenCalledTimes(1);
 
     await assertGovActionDetails(canvas, args);
-    const [tooltip1, tooltip2] = canvas.getAllByTestId("InfoOutlinedIcon");
+    // The dates box closes the action information card, after the authors.
+    const [tooltip1, tooltip2] = canvas
+      .getAllByTestId("InfoOutlinedIcon")
+      .slice(-2);
 
     await assertTooltip(tooltip1, /Submission Date/i);
     await assertTooltip(tooltip2, /Expiry Date/i);
@@ -238,7 +251,10 @@ export const GovernanceActionDetailsIncorrectFormat: Story = {
     await expect(window.open).toHaveBeenCalledTimes(1);
 
     await assertGovActionDetails(canvas, args);
-    const [tooltip1, tooltip2] = canvas.getAllByTestId("InfoOutlinedIcon");
+    // The dates box closes the action information card, after the authors.
+    const [tooltip1, tooltip2] = canvas
+      .getAllByTestId("InfoOutlinedIcon")
+      .slice(-2);
 
     await assertTooltip(tooltip1, /Submission Date/i);
     await assertTooltip(tooltip2, /Expiry Date/i);
@@ -264,7 +280,10 @@ export const GovernanceActionDetailsNotVerifiable: Story = {
     await expect(window.open).toHaveBeenCalledTimes(1);
 
     await assertGovActionDetails(canvas, args);
-    const [tooltip1, tooltip2] = canvas.getAllByTestId("InfoOutlinedIcon");
+    // The dates box closes the action information card, after the authors.
+    const [tooltip1, tooltip2] = canvas
+      .getAllByTestId("InfoOutlinedIcon")
+      .slice(-2);
 
     await assertTooltip(tooltip1, /Submission Date/i);
     await assertTooltip(tooltip2, /Expiry Date/i);

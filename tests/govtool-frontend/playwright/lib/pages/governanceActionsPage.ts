@@ -4,6 +4,7 @@ import { GovernanceActionType, IProposal } from "@types";
 import environments from "lib/constants/environments";
 import GovernanceActionDetailsPage from "./governanceActionDetailsPage";
 import { functionWaitedAssert, waitedLoop } from "@helpers/waitedLoop";
+import { isMobile } from "@helpers/mobile";
 
 export default class GovernanceActionsPage {
   readonly filterBtn = this.page.getByTestId("filters-button");
@@ -16,7 +17,7 @@ export default class GovernanceActionsPage {
   constructor(private readonly page: Page) {}
 
   async goto() {
-    await this.page.goto(`${environments.frontendUrl}/governance_actions`);
+    await this.page.goto(`${environments.frontendUrl}/actions`);
     await this.page.waitForTimeout(2_000); // Waits to ensure the alert-success popup does not interfere
   }
 
@@ -38,10 +39,10 @@ export default class GovernanceActionsPage {
       .locator('[data-testid^="govaction-"][data-testid$="-view-detail"]')
       .first()
       .click();
-    // Details live at /governance_actions/<txHash>#<index> (prefixed with
-    // /connected when a wallet is connected); wait for it so callers do not
-    // assert against the list page while navigation is still in flight.
-    await this.page.waitForURL(/\/governance_actions\/(?!category\/)[^/?#]+/);
+    // Details live at /actions/gov_action1…, with or without a wallet; wait
+    // for it so callers do not assert against the list page while
+    // navigation is still in flight.
+    await this.page.waitForURL(/\/actions\/gov_action1[0-9a-z]+/);
     // The router updates the URL before it renders the new route, so also
     // wait for the list cards to go.
     await expect(
@@ -105,6 +106,14 @@ export default class GovernanceActionsPage {
     return new GovernanceActionDetailsPage(this.page);
   }
 
+  // The type filter is a sidebar beside the list; phones open it with the
+  // Filters button.
+  async openFilters() {
+    if (isMobile(this.page)) {
+      await this.filterBtn.click();
+    }
+  }
+
   async filterProposalByNames(names: string[]) {
     for (const name of names) {
       const sanitizedProposalName = removeAllSpaces(name);
@@ -149,8 +158,13 @@ export default class GovernanceActionsPage {
     });
   }
 
+  // The sort menu closes after each choice, so reopen it when needed.
   async sortProposal(option: string) {
-    await this.page.getByTestId(`${option}-radio`).check();
+    const radio = this.page.getByTestId(`${option}-radio`);
+    if (!(await radio.isVisible())) {
+      await this.sortBtn.click();
+    }
+    await radio.check();
   }
 
   async sortAndValidate(

@@ -1,4 +1,4 @@
-import React, { ComponentProps, Suspense } from "react";
+import React, { ComponentProps, Suspense, useState } from "react";
 import { Box, CircularProgress } from "@mui/material";
 import { useLocation } from "react-router";
 import {
@@ -9,10 +9,23 @@ import {
   useSnackbar,
 } from "@/context";
 import { useValidateMutation } from "@/hooks/mutations";
-import { useScreenDimension } from "@/hooks/useScreenDimension";
-import { Background } from "@/components/atoms";
-import { Footer, TopNav } from "@/components/organisms";
-import { useGetDRepVotingPowerList, useGetVoterInfo } from "@/hooks";
+import { Background, PageContainer } from "@/components/atoms";
+import {
+  Footer,
+  GovernanceActionsHeader,
+  ProposeActionBanner,
+  TopNav,
+} from "@/components/organisms";
+import {
+  type ForumProposeState,
+  useProposeHeaderControls,
+} from "@/components/organisms/ProposeHeaderControls";
+import { PDF_PATHS } from "@/consts/paths";
+import {
+  useGetDRepVotingPowerList,
+  useGetVoterInfo,
+  useIsWalletConnected,
+} from "@/hooks";
 import {
   getAdaHolderVotingPower,
   getAccount,
@@ -29,7 +42,6 @@ const isTestMode = ["development", "test"].includes(env.VITE_APP_ENV ?? "");
 
 export const ProposalDiscussionPillar = () => {
   const { epochParams } = useAppContext();
-  const { pagePadding } = useScreenDimension();
   const { validateMetadata } = useValidateMutation();
   const { walletApi, ...context } = useCardano();
   const { voter } = useGetVoterInfo();
@@ -38,8 +50,25 @@ export const ProposalDiscussionPillar = () => {
   const { username, setUsername } = useProposalDiscussion();
   const snackbarContext = useSnackbar();
   const { pathname } = useLocation();
+  // The layout follows a saved wallet while it reconnects, as App.tsx does.
+  const isConnected = useIsWalletConnected();
+  const [forumPropose, setForumPropose] = useState<ForumProposeState | null>(
+    null,
+  );
+  const proposeControls = useProposeHeaderControls(forumPropose);
   // Computed on every render: it also reads the saved wallet name.
   const walletStatus = getPdfWalletStatus(context);
+  // The propose path is the list with pdf-ui's propose dialog over it.
+  const isListPage =
+    pathname === PDF_PATHS.proposalDiscussion ||
+    pathname === PDF_PATHS.proposalDiscussionPropose;
+
+  // The banner at the foot takes the same next step as the header button:
+  // connect, sign in to the forum, create a display name, or propose.
+  const onPropose = () => {
+    proposeControls.onPropose();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const content = (
     <Box
@@ -47,20 +76,20 @@ export const ProposalDiscussionPillar = () => {
         display: "flex",
         flexDirection: "column",
         flex: 1,
-        minHeight: !context.isEnabled ? "100vh" : "auto",
+        minHeight: !isConnected ? "100vh" : "auto",
       }}
     >
-      {!context.isEnabled && <TopNav />}
-      <Box
-        sx={{
-          // Connected: the dashboard's PagePaddingBox values. Public: the
-          // pagePadding every public GovTool page uses.
-          px: context.isEnabled ? { xxs: 2, md: 5 } : pagePadding,
-          py: 3,
-          display: "flex",
-          flex: 1,
-        }}
+      {!isConnected && <TopNav />}
+      <PageContainer
+        component={isConnected ? "div" : "main"}
+        sx={{ display: "flex", flex: 1, flexDirection: "column" }}
       >
+        {isListPage && (
+          <GovernanceActionsHeader
+            action={proposeControls.action}
+            notice={proposeControls.notice}
+          />
+        )}
         <Suspense
           fallback={
             <Box
@@ -99,15 +128,19 @@ export const ProposalDiscussionPillar = () => {
             getAdaHolderVotingPower={getAdaHolderVotingPower}
             getAccount={getAccount}
             getEnactedProposalDetails={getEnactedProposalDetails}
+            onProposeStateChange={setForumPropose}
             {...snackbarContext}
           />
         </Suspense>
-      </Box>
-      {!context.isEnabled && <Footer />}
+        {isListPage && (
+          <ProposeActionBanner onPropose={onPropose} />
+        )}
+      </PageContainer>
+      {!isConnected && <Footer />}
     </Box>
   );
 
   // Public GovTool pages sit on the orange and blue background; the
   // dashboard layout draws its own.
-  return context.isEnabled ? content : <Background>{content}</Background>;
+  return isConnected ? content : <Background>{content}</Background>;
 };

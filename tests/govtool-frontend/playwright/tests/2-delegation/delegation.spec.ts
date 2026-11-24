@@ -124,33 +124,20 @@ test("2O. Should load more DReps on show more (Deprecated)", async ({ page }) =>
   }
 });
 
-test("2K_1. Should filter DReps", async ({ page }) => {
+test("2K_1. Should filter DReps by status", async ({ page }) => {
   const dRepFilterOptions: DRepStatus[] = ["Active", "Inactive", "Retired"];
 
   const dRepDirectory = new DRepDirectoryPage(page);
   await dRepDirectory.goto();
 
-  await dRepDirectory.filterBtn.click();
-  await page.getByTestId(`Active-checkbox`).click();
-
-  // Single filter
+  // Status is a single choice; the directory opens on Active.
   for (const option of dRepFilterOptions) {
-    await dRepDirectory.filterDReps([option]);
-    await dRepDirectory.validateFilters([option], dRepFilterOptions);
-    await dRepDirectory.unFilterDReps([option]);
+    await dRepDirectory.filterByStatus(option);
+    await dRepDirectory.validateFilters([option]);
   }
 
-  // Multiple filters
-  const multipleFilterOptionNames = [...dRepFilterOptions];
-  while (multipleFilterOptionNames.length > 1) {
-    await dRepDirectory.filterDReps(multipleFilterOptionNames);
-    await dRepDirectory.validateFilters(
-      multipleFilterOptionNames,
-      dRepFilterOptions
-    );
-    await dRepDirectory.unFilterDReps(multipleFilterOptionNames);
-    multipleFilterOptionNames.pop();
-  }
+  await dRepDirectory.filterByStatus("");
+  await expect(dRepDirectory.statusFilterBtn).toHaveText(/All/);
 });
 
 test("2M. Should access dRep directory page on disconnected state", async ({
@@ -174,10 +161,7 @@ test.describe("DRep dependent tests", () => {
   test("2P. Should enable sharing of DRep details", async ({
     page,
     context,
-    isMobile,
   }) => {
-    // The DRep page shows its share button from 1020px wide only.
-    test.skip(isMobile, "Share button is desktop only");
     await context.grantPermissions(["clipboard-read", "clipboard-write"]);
 
     const dRepDetailsPage = new DRepDetailsPage(page);
@@ -190,7 +174,7 @@ test.describe("DRep dependent tests", () => {
       navigator.clipboard.readText()
     );
     expect(copiedText).toEqual(
-      `${environments.frontendUrl}/drep_directory/${dRepId}`
+      `${environments.frontendUrl}/dreps/${dRepId}`
     );
   });
 
@@ -255,7 +239,7 @@ Object.values(["script drep", "drep"]).forEach((type, index) => {
       type === "drep" ? false : true
     );
 
-    await page.goto(`/drep_directory/${dRepId}`);
+    await page.goto(`/dreps/${dRepId}`);
     await responsePromise;
 
     await expect(
